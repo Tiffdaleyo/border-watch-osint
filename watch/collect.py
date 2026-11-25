@@ -18,6 +18,7 @@ def log(*a):
     print(*a, flush=True)
 
 
+THROTTLED = [0]     # how many times a service said "too many requests" in this run
 DEADLINE = [None]   # time.monotonic() after which no new searches start (set by collect)
 
 
@@ -29,8 +30,11 @@ def _get(url, timeout=20, tries=3):
     for attempt in range(tries):
         try:
             r = requests.get(url, headers=HEADERS, timeout=timeout)
-            if r.status_code == 429:          # "too many requests": wait and try again
-                time.sleep(10 * (attempt + 1))
+            if r.status_code == 429:          # "too many requests": count it, wait a little, try once more
+                THROTTLED[0] += 1
+                if attempt or _late() or THROTTLED[0] > 20:
+                    return None
+                time.sleep(8)
                 continue
             r.raise_for_status()
             return r
@@ -131,15 +135,15 @@ def collect(cfg, days, budget_minutes=None):
         def one_edition(ed):
             found = []
             for q in (gn.get("queries") or {}).get(ed["lang"], []):
-                if _late():
-                    log(f"  Google News {ed['gl']}: time budget reached, stopping early")
+                if _late() or THROTTLED[0] > 20:
+                    log(f"  Google News {ed['gl']}: stopping early (time budget reached or Google is limiting requests)")
                     break
                 found += google_news(q, ed, days)
                 time.sleep(delay)
             log(f"  Google News {ed['gl']}/{ed['lang']}: {len(found)} headlines")
             return found
-        # the editions are searched side by side (4 at a time) so the daily run stays short
-        with ThreadPoolExecutor(max_workers=4) as pool:
+        # the editions are searched side by side (3 at a time) so the daily run stays short
+        with ThreadPoolExecutor(max_workers=3) as pool:
             for found in pool.map(one_edition, gn.get("editions", [])):
                 items += found
     gd = src.get("gdelt") or {}
@@ -160,5 +164,7 @@ def collect(cfg, days, budget_minutes=None):
         res = rss_feed(feed)
         items += res
         log(f"  RSS {feed.get('name', feed['url'])}: {len(res)} items")
+    if THROTTLED[0]:
+        log(f"  note: news services asked us to slow down {THROTTLED[0]} times")
     cutoff = (dt.date.today() - dt.timedelta(days=days + 1)).isoformat()
     return [i for i in items if i["title"] and i["url"] and (not i["date"] or i["date"] >= cutoff)]

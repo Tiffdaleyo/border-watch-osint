@@ -28,7 +28,7 @@ jobs:
           python-version: "3.12"
       - run: pip install -r requirements.txt
       - name: Search the news, analyse and rebuild the website
-        run: python run.py --days "${{ github.event.inputs.days || '2' }}"
+        run: python -u run.py --days "${{ github.event.inputs.days || '2' }}"
       - name: Save the results
         run: |
           git config user.name  "border-watch-osint-bot"
