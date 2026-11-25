@@ -18,8 +18,15 @@ def log(*a):
     print(*a, flush=True)
 
 
-def _get(url, timeout=25):
-    for attempt in range(3):
+DEADLINE = [None]   # time.monotonic() after which no new searches start (set by collect)
+
+
+def _late():
+    return DEADLINE[0] is not None and time.monotonic() > DEADLINE[0]
+
+
+def _get(url, timeout=20, tries=3):
+    for attempt in range(tries):
         try:
             r = requests.get(url, headers=HEADERS, timeout=timeout)
             if r.status_code == 429:          # "too many requests": wait and try again
@@ -28,7 +35,7 @@ def _get(url, timeout=25):
             r.raise_for_status()
             return r
         except requests.RequestException as exc:
-            if attempt == 2:
+            if attempt == tries - 1:
                 log(f"    ! could not read {url[:90]}... ({type(exc).__name__})")
             time.sleep(3)
     return None
@@ -74,13 +81,13 @@ def google_news(query, ed, days):
 def gdelt(query, days, maxrec=75):
     params = {"query": query, "mode": "ArtList", "format": "json", "timespan": f"{max(1, days)}d",
               "maxrecords": str(maxrec), "sort": "DateDesc"}
-    r = _get("https://api.gdeltproject.org/api/v2/doc/doc?" + urllib.parse.urlencode(params))
+    r = _get("https://api.gdeltproject.org/api/v2/doc/doc?" + urllib.parse.urlencode(params), timeout=15, tries=2)
     if not r:
-        return []
+        return None             # GDELT did not answer
     try:
         data = r.json()
     except ValueError:          # GDELT answers in plain text when it is busy
-        return []
+        return None
     out = []
     for a in data.get("articles", []):
         sd = a.get("seendate", "")
@@ -113,8 +120,10 @@ def rss_feed(feed):
     return out
 
 
-def collect(cfg, days):
+def collect(cfg, days, budget_minutes=None):
     src = cfg.get("sources") or {}
+    budget = budget_minutes or float((cfg.get("run") or {}).get("search_budget_minutes", 20))
+    DEADLINE[0] = time.monotonic() + budget * 60
     delay = float((cfg.get("run") or {}).get("delay_seconds", 1.5))
     items = []
     gn = src.get("google_news") or {}
@@ -122,6 +131,9 @@ def collect(cfg, days):
         def one_edition(ed):
             found = []
             for q in (gn.get("queries") or {}).get(ed["lang"], []):
+                if _late():
+                    log(f"  Google News {ed['gl']}: time budget reached, stopping early")
+                    break
                 found += google_news(q, ed, days)
                 time.sleep(delay)
             log(f"  Google News {ed['gl']}/{ed['lang']}: {len(found)} headlines")
@@ -132,9 +144,14 @@ def collect(cfg, days):
                 items += found
     gd = src.get("gdelt") or {}
     if gd.get("enabled"):
-        got = 0
+        got, fails = 0, 0
         for q in gd.get("queries", []):
+            if _late() or fails >= 2:      # GDELT is often slow; give up after two failed searches
+                log("  GDELT: skipped the rest (time budget or GDELT not answering)")
+                break
             res = gdelt(q, days)
+            fails = fails + 1 if res is None else 0
+            res = res or []
             items += res
             got += len(res)
             time.sleep(max(delay, 5))       # GDELT asks for one request every 5 seconds
