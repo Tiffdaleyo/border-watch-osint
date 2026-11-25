@@ -7,7 +7,7 @@ To teach the program a new spelling, add it to the list. Names of people's natio
 
 COUNTRIES = {
     # Caribbean
-    "Jamaica": ["Jamaica", "Jamaïque", "Kingston, Jamaica", "Montego Bay", "Ocho Rios", "Negril", "Spanish Town"],
+    "Jamaica": ["Jamaica", "Jamaïque", "Kingston, Jamaica", "Kingston Wharves", "Port Bustamante", "Montego Bay", "Ocho Rios", "Negril", "Spanish Town"],
     "Haiti": ["Haiti", "Haití", "Haïti", "Port-au-Prince", "Cap-Haitien", "Cap-Haïtien"],
     "Dominican Republic": ["Dominican Republic", "República Dominicana", "Republica Dominicana", "République dominicaine", "Santo Domingo", "Punta Cana"],
     "Cuba": ["Cuba", "Havana", "La Habana"],

@@ -47,8 +47,9 @@ def main():
             items = collect.collect(cfg, days)
         print(f"  {len(items)} headlines found in total")
         new = []
+        focus = set(site.get("region_countries", [])) | {site.get("home_country", "")}
         for it in items:
-            facts = extract.extract(it)
+            facts = extract.extract(it, focus)
             if not facts:
                 continue
             ev = {**it, **facts, "id": store.make_id(it), "first_seen": dt.date.today().isoformat()}

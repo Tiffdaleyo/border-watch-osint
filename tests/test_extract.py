@@ -54,3 +54,29 @@ def test_interpol_arrest_is_an_incident():
 
 def test_spanish_sports_is_not_deportation():
     assert extract({"title": "Noticias de deportes: Jamaica gana"}) is None
+
+
+def test_drug_courier_at_airport():
+    f = extract({"title": "Passenger arrested at Norman Manley airport with 3 kg of cocaine in suitcase"})
+    assert "Drug trafficking" in f["categories"] and f["kind"] == "Incident"
+    assert f["weight_kg"] == 3
+
+
+def test_street_drug_story_without_border_angle_is_dropped():
+    assert extract({"title": "Police arrest man with cocaine in Manchester flat"}) is None
+
+
+def test_firearms_in_cargo():
+    f = extract({"title": "Customs seize firearms hidden in barrel shipment at Kingston Wharves"})
+    assert {"Firearms and ammunition", "Cargo operations"} <= set(f["categories"])
+    assert "Jamaica" in f["countries"]
+
+
+def test_tonnes_converted_to_kg():
+    f = extract({"title": "1.2 tonnes of cocaine found in container at port"})
+    assert f["weight_kg"] == 1200
+
+
+def test_health_travel_rule_is_update():
+    f = extract({"title": "New entry requirements: airport health screening after outbreak"})
+    assert "Health travel rules" in f["categories"] and f["kind"] == "Update"

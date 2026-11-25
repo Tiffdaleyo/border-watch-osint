@@ -32,6 +32,14 @@ def score_event(ev, risk_cfg, home_places, region_countries, region_words=()):
     if mp and p >= mp.get("threshold", 10 ** 9):
         score += mp.get("points", 0)
         reasons.append(f"Many people involved: {p} (+{mp.get('points', 0)})")
+    wt = risk_cfg.get("weight") or {}
+    kg = ev.get("weight_kg") or 0
+    if wt and kg >= wt.get("big_threshold_kg", 10 ** 9):
+        score += wt.get("big_points", 0)
+        reasons.append(f"Very large quantity: about {kg:g} kg (+{wt.get('big_points', 0)})")
+    elif wt and kg >= wt.get("threshold_kg", 10 ** 9):
+        score += wt.get("points", 0)
+        reasons.append(f"Large quantity: about {kg:g} kg (+{wt.get('points', 0)})")
     score = min(score, 100)
     bands = risk_cfg.get("bands") or {"high": 40, "medium": 20}
     level = "High" if score >= bands["high"] else "Medium" if score >= bands["medium"] else "Low"

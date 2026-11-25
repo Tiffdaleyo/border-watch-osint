@@ -98,11 +98,78 @@ CATEGORIES = {
         "immigration officer*", "immigration officials", "PICA", "seguridad fronteriza", "control fronterizo",
         "controle aux frontieres", "police aux frontieres", "seguranca de fronteira",
     ],
+    "Drug trafficking": [
+        "cocaine", "heroin", "cannabis", "marijuana", "ganja", "methamphetamine", "crystal meth", "fentanyl", "MDMA",
+        "ecstasy pills", "ketamine", "narcotic*", "drug mule*", "drug courier*", "drug smuggl*", "drug trafficking",
+        "drug traffickers", "drugs seized", "drug bust", "drug haul", "swallowed pellets", "swallower*",
+        "body packer*", "cocaine pellets", "cocaina", "marihuana", "narcotrafic*", "droga*", "cocaine", "stupefiants",
+        "drogue*", "maconha", "trafico de drogas", "trafico de drogas",
+    ],
+    "Cash couriers": [
+        "undeclared cash", "undeclared currency", "undeclared money", "cash smuggl*", "currency smuggl*", "bulk cash",
+        "cash courier*", "money laundering", "money launderer*", "smuggled cash", "smuggling cash", "cash seized",
+        "currency seized", "seized cash", "dinero no declarado", "contrabando de divisas", "lavado de dinero",
+        "argent liquide non declare", "blanchiment", "dinheiro nao declarado", "lavagem de dinheiro",
+    ],
+    "Firearms and ammunition": [
+        "firearm*", "gun smuggl*", "guns smuggled", "gun running", "gunrunning", "arms trafficking", "arms smuggling",
+        "weapons smuggling", "weapons trafficking", "illegal guns", "illegal weapons", "pistol*", "rifle*",
+        "ammunition", "rounds of ammunition", "ghost gun*", "gun parts", "armas de fuego", "municiones",
+        "trafico de armas", "armes a feu", "trafic d'armes", "munitions", "armas de fogo", "municoes",
+    ],
+    "Terrorism and sanctions": [
+        "foreign terrorist fighter*", "foreign fighter*", "terror suspect*", "terrorism suspect*", "terrorist suspect*",
+        "terror charges", "terrorism charges", "terror watchlist", "terror plot", "terrorist", "ISIS", "Islamic State",
+        "al-Qaeda", "radicali*ed", "sanctions list", "sanctioned individual*", "sanctions evasion", "OFAC",
+        "terrorista*", "terroriste*",
+    ],
+    "Aviation security": [
+        "stowaway*", "airport security breach", "security breach at", "airport worker*", "airport employee*",
+        "airport staff", "baggage handler*", "airline employee*", "airline staff", "ramp agent*", "insider threat",
+        "unruly passenger*", "disruptive passenger*", "airside", "aviation security", "AVSEC", "bomb threat",
+        "suspicious package", "polizon*", "passager clandestin", "clandestino em aviao",
+    ],
+    "Wildlife smuggling": [
+        "wildlife trafficking", "wildlife smuggl*", "wildlife crime", "ivory", "rhino horn*", "pangolin*",
+        "exotic animal*", "exotic bird*", "protected species", "endangered species", "CITES", "parrots smuggled",
+        "smuggled birds", "smuggled reptiles", "shark fins", "trafico de fauna", "trafico de especies",
+        "trafic d'especes", "trafico de animais",
+    ],
+    "Health travel rules": [
+        "travel restriction*", "travel advisory", "travel advisories", "health screening", "entry screening",
+        "airport screening", "quarantine", "yellow fever certificate", "vaccination requirement*", "vaccine requirement*",
+        "proof of vaccination", "outbreak", "mpox", "ebola", "marburg", "cholera", "dengue", "restricciones de viaje",
+        "cuarentena", "restrictions de voyage", "restricoes de viagem",
+    ],
+    "Cargo operations": [
+        "air cargo", "cargo shed", "cargo terminal", "cargo flight*", "cargo plane", "shipping container*", "container*",
+        "shipment*", "consignment*", "courier package*", "courier parcel*", "parcel*", "postal", "mail centre",
+        "mail center", "misdeclar*", "mis-declar*", "falsely declared", "false declaration", "undeclared goods",
+        "contraband", "free zone", "transshipment", "trans-shipment", "bill of lading", "wharf", "wharves",
+        "carga aerea", "contenedor*", "contrabando", "cargamento*", "conteneur*", "fret aerien",
+        "colis", "conteiner*", "encomenda*",
+    ],
 }
+
+# Goods topics are kept only when the report is about a border, a journey or a shipment (not a street-level police
+# story), or when it names a country we focus on (the Caribbean, by default).
+BORDER_CONTEXT = [
+    "airport*", "flight*", "passenger*", "luggage", "suitcase*", "baggage", "carry-on", "traveller*", "traveler*",
+    "port", "ports", "seaport", "container*", "cargo", "shipment*", "consignment*", "vessel*", "ship", "boat*",
+    "border*", "customs", "courier*", "parcel*", "mule*", "swallow*", "smuggl*", "traffick*", "import*", "export*",
+    "wharf", "wharves", "aeropuerto*", "aduana*", "puerto*", "frontera*", "contenedor*", "vuelo*", "aeroport*",
+    "douane*", "frontiere*", "vol", "aeroporto*", "alfandega*", "fronteira*", "navio*", "travel*", "entry",
+]
+GOODS_TOPICS = {"Drug trafficking", "Cash couriers", "Firearms and ammunition", "Wildlife smuggling",
+                "Terrorism and sanctions", "Health travel rules", "Cargo operations"}
 
 # Topics that describe crime. Anything else (policy, security, deportation news) is an "Update", not an incident.
 CRIME_TOPICS = {"Passport fraud", "Visa and permit fraud", "Identity and document fraud", "Impostors",
-                "Migrant smuggling", "Human trafficking"}
+                "Migrant smuggling", "Human trafficking", "Drug trafficking", "Cash couriers",
+                "Firearms and ammunition", "Wildlife smuggling"}
+# These count as an incident only when something happened (arrest, seizure, interception...).
+ACTION_TOPICS = {"Citizenship and naturalisation", "INTERPOL and watch lists", "Irregular migration",
+                 "Immigration enforcement", "Terrorism and sanctions", "Aviation security", "Cargo operations"}
 # Broad topics: kept on their own only when something happened (arrest, interception...) or a place we watch is named.
 BROAD_TOPICS = {"Immigration enforcement", "Deportation and returns", "Border security"}
 
@@ -301,7 +368,30 @@ def find_count(rx, text):
 # ---------------------------------------------------------------------------------------------
 # main entry point
 # ---------------------------------------------------------------------------------------------
-def extract(item):
+_CONTEXT_RE = compile_words(BORDER_CONTEXT)
+_KG_RE = re.compile(r"(?<!\w)(\d[\d,\.]*)\s*(?:-\s*)?(kg|kgs|kilo|kilos|kilogram|kilograms|kilogrammes|tonnes?|tons?|"
+                    r"lbs?|pounds)(?!\w)")
+
+
+def find_weight_kg(text):
+    """Largest weight in the text, in kilograms (pounds and tonnes converted)."""
+    best = 0.0
+    for m in _KG_RE.finditer(fold(text)):
+        num = m.group(1).replace(",", "")
+        try:
+            n = float(num)
+        except ValueError:
+            continue
+        unit = m.group(2)
+        if unit.startswith("ton"):
+            n *= 1000
+        elif unit.startswith(("lb", "pound")):
+            n *= 0.4536
+        best = max(best, n)
+    return round(best, 1)
+
+
+def extract(item, focus_countries=()):
     """item = dict with at least 'title' (and optionally 'summary'). Returns the facts, or None if off-topic."""
     text = f"{item.get('title', '')}. {item.get('summary', '')}"
     folded = fold(text)
@@ -315,11 +405,19 @@ def extract(item):
     if not cats:
         return None
     countries = find_countries(text)
+    # goods topics need a border, journey or shipment angle, or a country we focus on
+    if not _CONTEXT_RE.search(folded) and not (set(countries) & set(focus_countries)):
+        for k in GOODS_TOPICS:
+            cats.pop(k, None)
+    # "Cargo operations" on its own needs something that happened or a crime word
+    if set(cats) == {"Cargo operations"} and not actions:
+        return None
+    if not cats:
+        return None
     if set(cats) <= BROAD_TOPICS and not actions and not countries:
         return None
     crime = bool(set(cats) & CRIME_TOPICS) or (
-        bool(actions) and bool(set(cats) & {"Citizenship and naturalisation", "INTERPOL and watch lists",
-                                            "Irregular migration", "Immigration enforcement"}))
+        bool(actions) and bool(set(cats) & ACTION_TOPICS))
     origin, dest = find_route(text)
     return {
         "kind": "Incident" if crime else "Update",
@@ -333,4 +431,5 @@ def extract(item):
         "destination": dest,
         "documents_count": find_count(_DOC_COUNT_RE, text),
         "people_count": find_count(_PEOPLE_COUNT_RE, text),
+        "weight_kg": find_weight_kg(text),
     }

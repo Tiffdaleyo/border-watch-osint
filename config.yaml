@@ -6,7 +6,7 @@
 
 site:
   title: "Border Watch OSINT"
-  subtitle: "Open-source news on migration, travel documents, visas, citizenship and border security, worldwide with a Caribbean focus"
+  subtitle: "Open-source news on migration, travel documents, trafficking, smuggling, cargo and border security, worldwide with a Caribbean focus"
   home_country: "Jamaica"          # events mentioning this country are highlighted
   home_places: ["Jamaica", "Kingston", "Montego Bay", "Norman Manley", "Sangster", "Ocho Rios", "Negril", "PICA"]
   region_name: "Caribbean"
@@ -57,13 +57,34 @@ sources:
            "fugitive arrested at airport", "extradited Jamaica", "watch list airport",
            # deportation and border security
            "deportees Jamaica", "deportation flight Caribbean", "PICA Jamaica", "border security Caribbean",
-           "CARICOM IMPACS"]
-      es: ["migración irregular", "nuevos requisitos de visa", "exigencia de visa", "notificación roja Interpol",
+           "CARICOM IMPACS",
+           # drug trafficking through airports and ports
+           "cocaine seized airport", "drug mule arrested airport", "swallowed cocaine pellets", "drugs found in luggage",
+           "cocaine seized container port", "Jamaica cocaine seized", "ganja seized airport Jamaica",
+           "Caribbean drug trafficking route", "cocaine Caribbean Europe seized",
+           # cash couriers
+           "undeclared cash seized airport", "cash courier arrested", "currency smuggling airport",
+           # firearms
+           "firearms seized port Jamaica", "gun smuggling Jamaica", "ammunition seized airport", "guns shipped barrel Jamaica",
+           "firearms trafficking Caribbean",
+           # terrorism-related travel and sanctions
+           "terror suspect arrested airport", "foreign terrorist fighters travel", "sanctions evasion passenger",
+           # aviation security
+           "stowaway airport", "airport worker arrested smuggling", "airport security breach", "baggage handler arrested drugs",
+           # wildlife
+           "wildlife smuggling airport", "exotic animals smuggled luggage",
+           # health-related travel rules
+           "outbreak travel restrictions", "airport health screening", "entry requirements vaccination",
+           # cargo operations
+           "air cargo drugs seized", "container seized cocaine", "misdeclared shipment customs", "contraband seized customs Jamaica",
+           "Kingston Wharves seized", "courier package drugs seized", "free zone transshipment seized"]
+      es: ["cocaína incautada aeropuerto", "contenedor cocaína incautado", "armas incautadas aduana",
+           "dinero no declarado aeropuerto", "migración irregular", "nuevos requisitos de visa", "exigencia de visa", "notificación roja Interpol",
            "migrantes interceptados", "pasaportes falsos detenido", "pasaporte falso aeropuerto", "red de falsificación de documentos",
            "tráfico de migrantes detenidos", "visas falsas detenidos", "trata de personas aeropuerto"]
-      fr: ["migration irrégulière", "obligation de visa", "notice rouge Interpol", "faux passeports interpellé", "passeport falsifié aéroport", "filière d'immigration clandestine démantelée",
+      fr: ["cocaïne saisie aéroport", "mule cocaïne interpellée", "migration irrégulière", "obligation de visa", "notice rouge Interpol", "faux passeports interpellé", "passeport falsifié aéroport", "filière d'immigration clandestine démantelée",
            "fraude documentaire aéroport"]
-      pt: ["migração irregular", "exigência de visto", "difusão vermelha Interpol", "passaportes falsos preso", "passaporte falso aeroporto", "tráfico de migrantes preso"]
+      pt: ["cocaína apreendida aeroporto", "contêiner cocaína apreendido", "migração irregular", "exigência de visto", "difusão vermelha Interpol", "passaportes falsos preso", "passaporte falso aeroporto", "tráfico de migrantes preso"]
 
   gdelt:                 # a free global news index; no key needed
     enabled: true
@@ -84,6 +105,12 @@ sources:
       - '"citizenship" fraud'
       - '"deportees" Jamaica'
       - 'Jamaica immigration'
+      - 'cocaine airport seized'
+      - '"drug mule"'
+      - 'firearms Jamaica seized'
+      - '"undeclared cash"'
+      - 'stowaway'
+      - 'cocaine container port'
 
   # Add RSS feeds from agencies you trust (press-release pages that offer RSS).
   # Example:  - {name: "Agency name", url: "https://example.org/news/rss"}
@@ -110,7 +137,7 @@ risk:
     insider:
       label: "Possible insider or corruption"
       points: 15
-      words: ["bribe*", "corrupt*", "insider", "immigration officer arrested", "official arrested", "officials arrested",
+      words: ["bribe*", "corrupt*", "insider", "baggage handler*", "airport worker*", "airport employee*", "airline employee*", "port worker*", "dock worker*", "customs officer arrested", "immigration officer arrested", "official arrested", "officials arrested",
               "employee arrested", "soborno", "funcionario", "corruption", "propina"]
     impostor:
       label: "Impostor or look-alike use of a genuine document"
@@ -127,6 +154,26 @@ risk:
       points: 15
       words: ["red notice", "interpol", "fugitive", "wanted", "watch list", "watchlist", "extradit*",
               "notificacion roja", "notice rouge"]
+    concealment:
+      label: "Concealment method (body, luggage, cargo)"
+      points: 15
+      words: ["swallowed", "swallowing", "swallower*", "pellets", "body pack*", "body-pack*", "internal concealment", "strapped to",
+              "hidden in", "concealed in", "false bottom", "suitcase lining", "secret compartment", "in his luggage",
+              "in her luggage", "inside a container", "among a shipment", "rip-on", "rip-off", "oculta*", "escondid*",
+              "dissimule*", "engolid*"]
+    cargo_red_flags:
+      label: "Cargo red flags (misdeclared, front company, transshipment)"
+      points: 15
+      words: ["misdeclar*", "mis-declar*", "falsely declared", "false declaration", "front company", "shell company",
+              "free zone", "transshipment", "trans-shipment", "declared as", "manifested as", "falsa declaracion"]
+    weapons:
+      label: "Weapons involved"
+      points: 10
+      words: ["firearm*", "gun", "guns", "pistol*", "rifle*", "ammunition", "explosive*", "armas", "armes"]
+    terrorism:
+      label: "Terrorism link"
+      points: 20
+      words: ["terror*", "foreign fighter*", "ISIS", "Islamic State", "al-Qaeda", "extremist*"]
     transit:
       label: "Transit or onward route"
       points: 10
@@ -149,6 +196,8 @@ risk:
   # extra points for scale
   many_documents: {threshold: 5, points: 10, big_threshold: 50, big_points: 20}
   many_people: {threshold: 10, points: 10}
+  # extra points for weight (drugs, cash, goods), in kilograms
+  weight: {threshold_kg: 10, points: 10, big_threshold_kg: 500, big_points: 20}
   # YOUR WATCH LIST. Anything listed here (a name, a company, a vessel, a route word) makes every
   # matching report High and puts it in the "Watch list hits" box at the top of the website.
   # The site is public, so only list things that are already public (e.g. a fugitive on a public notice).

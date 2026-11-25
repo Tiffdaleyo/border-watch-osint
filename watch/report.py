@@ -7,7 +7,7 @@ import os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 FIELDS = ["date", "kind", "level", "score", "title", "source", "url", "categories", "document_types", "countries",
-          "airports", "origin", "destination", "documents_count", "people_count", "reasons", "via"]
+          "airports", "origin", "destination", "documents_count", "people_count", "weight_kg", "reasons", "via"]
 
 
 def _method(cfg):
@@ -20,6 +20,10 @@ def _method(cfg):
     if md:
         out.append({"label": f"{md['threshold']}+ documents ({md['big_threshold']}+ documents)",
                     "points": f"{md['points']} ({md['big_points']})", "words": "number found in the report"})
+    wt = risk.get("weight") or {}
+    if wt:
+        out.append({"label": f"{wt['threshold_kg']}+ kg ({wt['big_threshold_kg']}+ kg)",
+                    "points": f"{wt['points']} ({wt['big_points']})", "words": "weight found in the report"})
     if mp:
         out.append({"label": f"{mp['threshold']}+ people", "points": mp["points"], "words": "number found in the report"})
     return out

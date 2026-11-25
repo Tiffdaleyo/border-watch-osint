@@ -47,6 +47,7 @@ python run.py --days 30   # real search, last 30 days
 - **Add a search phrase:** add it under `sources > google_news > queries` (and `gdelt > queries`) in `config.yaml`.
 - **Add an agency feed:** add `- {name: "Agency", url: "https://.../rss"}` under `rss_feeds`.
 - **Flag a name, company, vessel or route:** add it under `risk > watchlist`. Any matching report becomes High and appears in the "Watch list hits" box. The site is public, so only list things that are already public.
+- **Topics now covered:** passport, visa and document fraud; impostors; irregular migration; visa and entry rules; citizenship; INTERPOL and watch lists; deportations; border security; drug trafficking; cash couriers; firearms; terrorism and sanctions; aviation security; wildlife smuggling; health travel rules; cargo operations; migrant smuggling and human trafficking. Topic words live in `watch/extract.py` (CATEGORIES).
 - **Change your region:** edit `site > region_countries` and `region_words`.
 - **Change the risk points:** edit `risk > indicators`.
 - **Recognise a new airport or city:** add it in `watch/places.py`.

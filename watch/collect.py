@@ -7,6 +7,7 @@ import re
 import time
 import urllib.parse
 import xml.etree.ElementTree as ET
+from concurrent.futures import ThreadPoolExecutor
 
 import requests
 
@@ -118,14 +119,17 @@ def collect(cfg, days):
     items = []
     gn = src.get("google_news") or {}
     if gn.get("enabled"):
-        for ed in gn.get("editions", []):
-            got = 0
+        def one_edition(ed):
+            found = []
             for q in (gn.get("queries") or {}).get(ed["lang"], []):
-                res = google_news(q, ed, days)
-                items += res
-                got += len(res)
+                found += google_news(q, ed, days)
                 time.sleep(delay)
-            log(f"  Google News {ed['gl']}/{ed['lang']}: {got} headlines")
+            log(f"  Google News {ed['gl']}/{ed['lang']}: {len(found)} headlines")
+            return found
+        # the editions are searched side by side (4 at a time) so the daily run stays short
+        with ThreadPoolExecutor(max_workers=4) as pool:
+            for found in pool.map(one_edition, gn.get("editions", [])):
+                items += found
     gd = src.get("gdelt") or {}
     if gd.get("enabled"):
         got = 0
