@@ -4,266 +4,439 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>__TITLE__</title>
+<script src="vendor/echarts.min.js"></script>
 <style>
   :root {
-    --bg:#0a1020; --panel:#111a2d; --panel2:#152039; --line:#22304d; --ink:#e6ecf5; --muted:#8a98b3; --dim:#5f6d88;
-    --accent:#3fb6e8; --accent2:#7c8cff; --high:#ef5350; --med:#f2a33a; --low:#4caf7a; --upd:#7a88a6; --home:#f5c84c;
-    --radius:12px;
+    --bg:#070d1a; --panel:#0e1729; --panel2:#132036; --line:#1e2b45; --ink:#e8edf6; --muted:#93a1bb; --dim:#64738f;
+    --accent:#338ced; --high:#eb6263; --med:#d28e05; --low:#0aac23; --upd:#7d8aa5; --home:#f2c14e;
+    --g1:#338ced; --g2:#e76624; --g3:#00a888; --g4:#d28e05; --g5:#e24d8b; --g6:#9887ef;
+    --r:14px;
   }
   * { box-sizing:border-box; }
-  html { -webkit-text-size-adjust:100%; }
-  body { margin:0; background:radial-gradient(1200px 500px at 10% -10%, #14234a 0%, transparent 60%), var(--bg);
-         color:var(--ink); font:15px/1.5 "Inter","Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif; }
-  a { color:var(--ink); text-decoration:none; }
-  a:hover { color:var(--accent); text-decoration:underline; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:14px/1.5 "Inter","Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif; }
+  a { color:var(--ink); text-decoration:none; } a:hover { color:var(--accent); }
+  button { font:inherit; }
 
-  /* top bar */
-  .top { position:sticky; top:0; z-index:5; background:rgba(10,16,32,.88); backdrop-filter:blur(8px);
-         border-bottom:1px solid var(--line); }
-  .top .in { max-width:1320px; margin:0 auto; padding:12px 20px; display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
-  .mark { width:34px; height:34px; border-radius:9px; display:grid; place-items:center;
-          background:linear-gradient(135deg,var(--accent),var(--accent2)); color:#0a1020; font-weight:800; font-size:15px; }
-  .brand h1 { margin:0; font-size:18px; letter-spacing:.02em; }
-  .brand p { margin:0; font-size:12px; color:var(--muted); }
-  .spacer { flex:1; }
-  .badge { font-size:11px; letter-spacing:.08em; text-transform:uppercase; padding:4px 9px; border-radius:20px;
-           border:1px solid var(--line); color:var(--muted); white-space:nowrap; }
-  .live { display:flex; align-items:center; gap:7px; font-size:12px; color:var(--muted); white-space:nowrap; }
-  .live i { width:8px; height:8px; border-radius:50%; background:var(--low); box-shadow:0 0 0 4px rgba(76,175,122,.18); }
+  .hdr { background:linear-gradient(180deg,#0c1730,#070d1a); border-bottom:1px solid var(--line); }
+  .hdr .in { max-width:1480px; margin:0 auto; padding:16px 22px; display:flex; gap:16px; align-items:center; flex-wrap:wrap; }
+  .logo { width:40px; height:40px; border-radius:10px; display:grid; place-items:center; font-weight:800; letter-spacing:.02em;
+          background:conic-gradient(from 210deg,#338ced,#00a888,#338ced); color:#06101f; }
+  .ttl h1 { margin:0; font-size:20px; letter-spacing:.01em; }
+  .ttl p { margin:1px 0 0; color:var(--muted); font-size:12.5px; }
+  .grow { flex:1; }
+  .pill { font-size:11px; letter-spacing:.08em; text-transform:uppercase; border:1px solid #2c3d61; color:#b7c3da; padding:5px 10px; border-radius:30px; white-space:nowrap; }
+  .upd { font-size:12px; color:var(--muted); display:flex; align-items:center; gap:8px; white-space:nowrap; }
+  .upd i { width:8px; height:8px; border-radius:50%; background:#0aac23; box-shadow:0 0 0 4px rgba(10,172,35,.18); }
 
-  .wrap { max-width:1320px; margin:0 auto; padding:20px; }
-  .demo { background:rgba(239,83,80,.12); border:1px solid rgba(239,83,80,.4); color:#ffcdcb; padding:10px 14px;
-          border-radius:var(--radius); margin-bottom:16px; font-size:14px; }
-  .disclaimer { font-size:12.5px; color:var(--muted); margin:0 0 18px; max-width:980px; }
-  .disclaimer b { color:var(--ink); }
+  .fbar { position:sticky; top:0; z-index:20; background:rgba(7,13,26,.92); backdrop-filter:blur(10px); border-bottom:1px solid var(--line); }
+  .fbar .in { max-width:1480px; margin:0 auto; padding:10px 22px; display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+  .seg { display:inline-flex; background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:3px; }
+  .seg button { background:none; border:0; color:var(--muted); padding:6px 11px; border-radius:7px; cursor:pointer; font-size:12.5px; }
+  .seg button.on { background:var(--panel2); color:var(--ink); box-shadow:inset 0 0 0 1px #2c3d61; }
+  .fbar select, .fbar input { background:var(--panel); color:var(--ink); border:1px solid var(--line); border-radius:10px; padding:8px 10px; font:inherit; font-size:12.5px; }
+  .fbar input { min-width:160px; flex:1; }
+  .fbar select { max-width:190px; }
+  .reset { background:none; border:1px solid var(--line); color:var(--muted); border-radius:10px; padding:7px 12px; cursor:pointer; font-size:12.5px; }
+  .reset:hover { color:var(--ink); border-color:var(--accent); }
 
-  /* KPI strip */
-  .kpis { display:grid; grid-template-columns:repeat(6,1fr); gap:12px; margin-bottom:18px; }
-  .kpi { background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:14px 16px; position:relative; overflow:hidden; }
-  .kpi::before { content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--c,var(--accent)); }
-  .kpi .n { font-size:28px; font-weight:700; line-height:1.1; font-variant-numeric:tabular-nums; }
-  .kpi .l { font-size:12px; color:var(--muted); margin-top:4px; }
+  .wrap { max-width:1480px; margin:0 auto; padding:18px 22px 30px; }
+  .demo { background:rgba(235,98,99,.1); border:1px solid rgba(235,98,99,.4); color:#ffd0d0; padding:9px 14px; border-radius:var(--r); margin-bottom:14px; font-size:13px; }
+  .note { font-size:12px; color:var(--muted); margin:0 0 14px; }
+  .note b { color:var(--ink); }
 
-  /* panels */
-  .row { display:grid; gap:14px; margin-bottom:14px; }
-  .r3 { grid-template-columns:1.25fr 1fr 1fr; }
-  .r3b { grid-template-columns:repeat(3,1fr); }
-  .panel { background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:16px 18px; min-width:0; }
-  .panel h2 { margin:0 0 12px; font-size:13px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--muted);
-              display:flex; align-items:center; gap:8px; }
-  .panel h2 .dot { width:7px; height:7px; border-radius:50%; background:var(--c,var(--accent)); }
-  .hint { font-size:12px; color:var(--dim); margin:10px 0 0; }
+  .grid { display:grid; grid-template-columns:repeat(12,1fr); gap:14px; }
+  .s4 { grid-column:span 4; } .s5 { grid-column:span 5; } .s6 { grid-column:span 6; }
+  .s7 { grid-column:span 7; } .s8 { grid-column:span 8; } .s12 { grid-column:span 12; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:var(--r); padding:14px 16px; min-width:0; position:relative; }
+  .card h2 { margin:0; font-size:12px; font-weight:600; letter-spacing:.09em; text-transform:uppercase; color:var(--muted); }
+  .card .sub { font-size:12px; color:var(--dim); margin:2px 0 6px; }
+  .head { display:flex; justify-content:space-between; align-items:flex-start; gap:8px; flex-wrap:wrap; }
+  .chart { width:100%; }
 
-  /* feed lists */
-  .feed { list-style:none; margin:0; padding:0; }
-  .feed li { padding:10px 0; border-top:1px solid var(--line); }
-  .feed li:first-child { border-top:0; padding-top:2px; }
-  .feed .t { font-size:14px; line-height:1.4; display:block; }
-  .meta { font-size:12px; color:var(--dim); margin-top:3px; display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
-  .empty { color:var(--dim); font-size:13px; }
+  .kpis { display:grid; grid-template-columns:repeat(6,1fr); gap:14px; margin-bottom:14px; }
+  .kpi { background:var(--panel); border:1px solid var(--line); border-radius:var(--r); padding:14px 16px; }
+  .kpi .l { font-size:11.5px; color:var(--muted); letter-spacing:.06em; text-transform:uppercase; }
+  .kpi .n { font-size:30px; font-weight:700; margin-top:4px; font-variant-numeric:tabular-nums; line-height:1.1; }
+  .kpi .d { font-size:12px; color:var(--dim); margin-top:4px; }
+  .kpi .bar { height:3px; border-radius:3px; margin-top:10px; background:var(--c); opacity:.85; }
 
-  /* chips */
-  .chip { display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; padding:2px 8px; border-radius:20px;
-          border:1px solid currentColor; white-space:nowrap; }
-  .High { color:var(--high); background:rgba(239,83,80,.10); }
-  .Medium { color:var(--med); background:rgba(242,163,58,.10); }
-  .Low { color:var(--low); background:rgba(76,175,122,.10); }
-  .Update { color:var(--upd); background:rgba(122,136,166,.10); }
-  .tag { display:inline-block; font-size:11.5px; color:#c3cde0; background:var(--panel2); border:1px solid var(--line);
-         border-radius:6px; padding:1px 7px; margin:2px 3px 0 0; }
-  .homeflag { color:var(--home); font-size:11px; font-weight:700; letter-spacing:.05em; }
+  .feed { list-style:none; margin:6px 0 0; padding:0; max-height:420px; overflow:auto; }
+  .feed li { padding:9px 0; border-top:1px solid var(--line); }
+  .feed li:first-child { border-top:0; }
+  .feed .t { font-size:13.5px; line-height:1.35; display:block; }
+  .meta { font-size:11.5px; color:var(--dim); margin-top:4px; display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+  .chip { font-size:10.5px; font-weight:700; padding:1px 7px; border-radius:20px; border:1px solid currentColor; white-space:nowrap; }
+  .High { color:var(--high); } .Medium { color:var(--med); } .Low { color:var(--low); } .Update { color:var(--upd); }
+  .jm { color:var(--home); font-weight:700; font-size:10.5px; letter-spacing:.05em; }
+  .empty { color:var(--dim); font-size:13px; padding:10px 0; }
 
-  /* bars */
-  .bar { display:grid; grid-template-columns:minmax(0,1fr) 1.1fr 30px; gap:10px; align-items:center; font-size:13px; padding:4px 0; }
-  .bar .name { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:#cfd8e8; }
-  .bar .track { height:8px; background:#1a2742; border-radius:6px; overflow:hidden; }
-  .bar .fill { height:100%; border-radius:6px; background:linear-gradient(90deg,var(--accent),var(--accent2)); }
-  .bar .v { text-align:right; color:var(--muted); font-variant-numeric:tabular-nums; }
+  .mapbtns { display:flex; gap:6px; }
+  .mapbtns button { background:var(--panel2); border:1px solid var(--line); color:var(--muted); border-radius:8px; padding:4px 10px; cursor:pointer; font-size:12px; }
+  .mapbtns button:hover { color:var(--ink); }
 
-  /* weekly columns */
-  .cols { display:flex; align-items:flex-end; gap:6px; height:130px; padding-top:8px; }
-  .col { flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; min-width:0; }
-  .col .b { width:100%; max-width:34px; background:linear-gradient(180deg,var(--accent),#2a6fa0); border-radius:5px 5px 2px 2px; min-height:2px; }
-  .col .c { font-size:11px; color:var(--muted); }
-  .col .d { font-size:10px; color:var(--dim); white-space:nowrap; }
+  table.rep { width:100%; border-collapse:collapse; font-size:13px; }
+  table.rep th { text-align:left; font-size:11px; color:var(--dim); text-transform:uppercase; letter-spacing:.07em; padding:8px; border-bottom:1px solid var(--line); position:sticky; top:0; background:var(--panel); z-index:1; }
+  table.rep td { padding:10px 8px; border-bottom:1px solid var(--line); vertical-align:top; }
+  table.rep tr:hover td { background:rgba(51,140,237,.05); }
+  table.rep tr.home td:first-child { box-shadow:inset 3px 0 0 var(--home); }
+  .tag { display:inline-block; font-size:11px; color:#c5cfe2; background:var(--panel2); border:1px solid var(--line); border-radius:6px; padding:0 6px; margin:2px 3px 0 0; }
+  .gdot { display:inline-block; width:8px; height:8px; border-radius:2px; margin-right:5px; vertical-align:middle; }
+  .tablewrap { max-height:640px; overflow:auto; margin-top:8px; }
+  details.why { font-size:12px; color:var(--muted); margin-top:4px; }
+  details.why summary { cursor:pointer; color:var(--accent); }
+  .dl { display:flex; gap:6px; align-items:center; }
+  .dl a, .dl select { font-size:12px; border:1px solid var(--line); border-radius:8px; padding:5px 10px; color:var(--muted); background:var(--panel2); }
+  .dl a:hover { color:var(--ink); border-color:var(--accent); }
 
-  table.mini { width:100%; border-collapse:collapse; font-size:13px; }
-  table.mini td, table.mini th { padding:6px 4px; border-bottom:1px solid var(--line); text-align:left; }
-  table.mini th { color:var(--dim); font-weight:600; font-size:11px; text-transform:uppercase; letter-spacing:.06em; }
-  table.mini td.num { text-align:right; font-variant-numeric:tabular-nums; color:var(--muted); }
+  details.about { margin-top:14px; }
+  details.about summary { cursor:pointer; color:var(--muted); font-size:13px; }
+  table.mini { width:100%; border-collapse:collapse; font-size:12.5px; margin-top:8px; }
+  table.mini td, table.mini th { padding:6px; border-bottom:1px solid var(--line); text-align:left; }
+  table.mini th { color:var(--dim); font-size:11px; text-transform:uppercase; letter-spacing:.06em; }
   .Rising { color:var(--high); font-weight:600; } .Falling { color:var(--low); font-weight:600; } .Steady { color:var(--dim); }
+  footer { max-width:1480px; margin:0 auto; padding:0 22px 30px; font-size:11.5px; color:var(--dim); }
 
-  /* reports */
-  .filters { display:grid; grid-template-columns:2fr repeat(6,1fr); gap:8px; margin-bottom:12px; }
-  .filters input, .filters select { width:100%; background:var(--panel2); color:var(--ink); border:1px solid var(--line);
-         border-radius:8px; padding:9px 10px; font:inherit; font-size:13.5px; }
-  .filters input:focus, .filters select:focus { outline:2px solid var(--accent); outline-offset:-1px; }
-  .bar2 { display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; font-size:12.5px; color:var(--muted); margin-bottom:6px; }
-  .btn { display:inline-block; padding:6px 12px; border:1px solid var(--line); border-radius:8px; color:var(--ink); background:var(--panel2); font-size:12.5px; }
-  .btn:hover { border-color:var(--accent); text-decoration:none; color:var(--accent); }
-  .reports { list-style:none; margin:0; padding:0; }
-  .rep { display:grid; grid-template-columns:92px 96px minmax(0,1fr) 260px; gap:14px; padding:13px 10px; border-top:1px solid var(--line); }
-  .rep:hover { background:rgba(63,182,232,.04); }
-  .rep.home { box-shadow:inset 3px 0 0 var(--home); }
-  .rep .date { font-size:12.5px; color:var(--muted); font-variant-numeric:tabular-nums; padding-top:2px; }
-  .rep .t { font-size:14.5px; font-weight:500; line-height:1.4; }
-  .rep details { margin-top:6px; font-size:12.5px; color:var(--muted); }
-  .rep summary { cursor:pointer; color:var(--accent); font-size:12px; }
-  .rep .why { margin:6px 0 0; padding-left:16px; }
-  .rep .side { font-size:12px; }
-
-  .method td:nth-child(2) { white-space:nowrap; }
-  footer { max-width:1320px; margin:10px auto 30px; padding:0 20px; font-size:12px; color:var(--dim); }
-
-  @media (max-width:1100px) {
+  @media (max-width:1150px) {
     .kpis { grid-template-columns:repeat(3,1fr); }
-    .r3, .r3b { grid-template-columns:1fr 1fr; }
-    .filters { grid-template-columns:1fr 1fr 1fr; }
-    .filters input { grid-column:1 / -1; }
-    .rep { grid-template-columns:84px 90px minmax(0,1fr); }
-    .rep .side { grid-column:3; }
+    .s4, .s5 { grid-column:span 6; } .s7, .s8 { grid-column:span 12; }
   }
-  @media (max-width:700px) {
-    .wrap { padding:14px; }
+  @media (max-width:720px) {
+    .wrap, .hdr .in, .fbar .in { padding-left:12px; padding-right:12px; }
     .kpis { grid-template-columns:1fr 1fr; }
-    .r3, .r3b { grid-template-columns:1fr; }
-    .filters { grid-template-columns:1fr 1fr; }
-    .rep { grid-template-columns:1fr; gap:6px; }
-    .rep .side { grid-column:auto; }
-    .rep .date { display:flex; gap:8px; align-items:center; }
-    .badge { display:none; }
+    .s4, .s5, .s6, .s7, .s8 { grid-column:span 12; }
+    .pill { display:none; }
+    .fbar input { min-width:100%; }
+    .fbar select { flex:1 1 45%; max-width:none; }
+    #map { height:300px !important; }
+    table.rep .hide-m { display:none; }
   }
 </style>
 </head>
 <body>
-<div class="top"><div class="in">
-  <div class="mark">BW</div>
-  <div class="brand"><h1>__TITLE__</h1><p>__SUBTITLE__</p></div>
-  <div class="spacer"></div>
-  <span class="badge">Unofficial · Open-source only</span>
-  <span class="live"><i></i>Updated <span id="updated"></span></span>
+<div class="hdr"><div class="in">
+  <div class="logo">BW</div>
+  <div class="ttl"><h1>__TITLE__</h1><p>__SUBTITLE__</p></div>
+  <div class="grow"></div>
+  <span class="pill">Unofficial · open-source only</span>
+  <span class="upd"><i></i>Updated <span id="updated"></span></span>
+</div></div>
+
+<div class="fbar"><div class="in">
+  <div class="seg" id="period">
+    <button data-v="7">7d</button><button data-v="30">30d</button><button data-v="90" class="on">90d</button><button data-v="0">All</button>
+  </div>
+  <div class="seg" id="scope">
+    <button data-v="" class="on">World</button><button data-v="region">__REGION__</button><button data-v="home">__HOME__</button>
+  </div>
+  <select id="fgroup"><option value="">All areas</option></select>
+  <select id="ftopic"><option value="">All topics</option></select>
+  <select id="fcountry"><option value="">All countries</option></select>
+  <select id="flevel"><option value="">Incidents + updates</option><option value="Incident">Incidents only</option><option>High</option><option>Medium</option><option>Low</option><option value="Update">Updates only</option></select>
+  <input type="search" id="q" placeholder="Search headlines…">
+  <button class="reset" id="reset">Reset</button>
 </div></div>
 
 <div class="wrap">
-  <div id="demo" class="demo" hidden><b>Demo data.</b> Everything below is invented to show how the site works. Real results replace it after the first daily run.</div>
-  <p class="disclaimer"><b>Unofficial project, open-source news only.</b> Not a government service and not linked to any agency's official systems. Items are found automatically and are leads to verify against the original article and official sources before any action. The risk score shows what is worth a closer look; it is not evidence and never reflects a person's nationality.</p>
+  <div id="demo" class="demo" hidden><b>Demo data.</b> Everything below is invented to show how the dashboard works. Real results replace it after the first daily run.</div>
+  <p class="note"><b>Unofficial project, open-source news only.</b> Not a government service and not linked to any agency's official systems. Items are found automatically and are leads to verify against the original article and official sources. Risk scores flag what is worth a closer look; they are not evidence and never reflect nationality. Click any bar or map bubble to filter the whole dashboard.</p>
 
   <div class="kpis" id="kpis"></div>
 
-  <div class="row r3">
-    <section class="panel" style="--c:var(--home)"><h2><span class="dot"></span>__REGION__ &amp; __HOME__ · latest</h2><ul class="feed" id="regional"></ul></section>
-    <section class="panel" style="--c:var(--accent2)"><h2><span class="dot"></span>Visa, entry &amp; policy changes</h2><ul class="feed" id="policy"></ul><p class="hint">Worldwide: new visa rules, entry requirements, travel bans, border systems.</p></section>
-    <section class="panel" style="--c:var(--high)"><h2><span class="dot"></span>Watch list hits</h2><ul class="feed" id="watch"></ul><p class="hint">Terms on the watch list in <code>config.yaml</code>.</p></section>
+  <div class="grid">
+    <section class="card s8">
+      <div class="head"><div><h2>Where it is happening</h2><div class="sub">Bubble size = reports naming the country · red pulse = has high-risk incidents</div></div>
+        <div class="mapbtns"><button id="mWorld">World</button><button id="mCar">__REGION__</button></div></div>
+      <div id="map" class="chart" style="height:430px"></div>
+    </section>
+    <section class="card s4">
+      <h2>Priority feed</h2><div class="sub">High-risk incidents and anything naming __HOME__</div>
+      <ul class="feed" id="priority"></ul>
+    </section>
+
+    <section class="card s8">
+      <h2>Activity over time</h2><div class="sub">Reports per <span id="unit">week</span>, by area</div>
+      <div id="trend" class="chart" style="height:300px"></div>
+    </section>
+    <section class="card s4">
+      <h2>Risk mix by area</h2><div class="sub">Click an area to filter</div>
+      <div id="riskmix" class="chart" style="height:300px"></div>
+    </section>
+
+    <section class="card s5">
+      <h2>Topics</h2><div class="sub">Coloured by area · click to filter</div>
+      <div id="topics" class="chart" style="height:420px"></div>
+    </section>
+    <section class="card s7">
+      <h2>Countries named</h2><div class="sub">Top 15 · green = __REGION__ · click to filter</div>
+      <div id="countries" class="chart" style="height:420px"></div>
+    </section>
+
+    <section class="card s6">
+      <h2>Routes</h2><div class="sub">From → to, when a report names them</div>
+      <div id="routes" class="chart" style="height:300px"></div>
+    </section>
+    <section class="card s6">
+      <h2>Airports named</h2><div class="sub">Top 10</div>
+      <div id="airports" class="chart" style="height:300px"></div>
+    </section>
+
+    <section class="card s6">
+      <h2>Visa, entry &amp; policy changes</h2><div class="sub">New rules, visa requirements, travel bans, health entry rules, citizenship policy</div>
+      <ul class="feed" id="policy" style="max-height:330px"></ul>
+    </section>
+    <section class="card s6">
+      <h2>Watch list hits</h2><div class="sub">Terms on the watch list in config.yaml</div>
+      <ul class="feed" id="watch" style="max-height:330px"></ul>
+    </section>
+
+    <section class="card s12">
+      <div class="head"><div><h2>All reports</h2><div class="sub" id="shown"></div></div>
+        <div class="dl"><select id="fsort"><option value="region">__REGION__ first</option><option value="date">Newest first</option><option value="risk">Highest risk first</option></select>
+          <a href="events.csv">⬇ CSV</a><a href="bulletin.html">Weekly bulletin</a></div></div>
+      <div class="tablewrap"><table class="rep"><thead><tr><th>Date</th><th>Risk</th><th>Report</th><th class="hide-m">Topics</th><th class="hide-m">Places</th></tr></thead><tbody id="rows"></tbody></table></div>
+    </section>
   </div>
 
-  <div class="row r3b">
-    <section class="panel"><h2><span class="dot"></span>Topics</h2><div id="cats"></div></section>
-    <section class="panel"><h2><span class="dot"></span>Countries mentioned</h2><div id="countries"></div></section>
-    <section class="panel"><h2><span class="dot"></span>Reports per week</h2><div class="cols" id="weeks"></div></section>
-  </div>
-  <div class="row r3b">
-    <section class="panel"><h2><span class="dot"></span>Routes (from → to)</h2><div id="routes"></div><p class="hint">Shown when a report names one or both ends of the journey.</p></section>
-    <section class="panel"><h2><span class="dot"></span>Airports mentioned</h2><div id="airports"></div></section>
-    <section class="panel"><h2><span class="dot"></span>This week vs. usual</h2><table class="mini" id="trends"></table></section>
-  </div>
-
-  <section class="panel" style="margin-bottom:14px">
-    <h2><span class="dot"></span>All reports</h2>
-    <div class="filters">
-      <input type="search" id="q" placeholder="Search: Haiti, impostor, Heathrow, red notice…">
-      <select id="fcat"><option value="">All topics</option></select>
-      <select id="fcountry"><option value="">All countries</option></select>
-      <select id="flevel"><option value="">Incidents + updates</option><option value="Incident">Incidents only</option><option>High</option><option>Medium</option><option>Low</option><option value="Update">Updates only</option></select>
-      <select id="fscope"><option value="">Worldwide</option><option value="region">__REGION__ only</option><option value="home">__HOME__ only</option></select>
-      <select id="fsort"><option value="region">__REGION__ first</option><option value="date">Newest first</option><option value="risk">Highest risk first</option></select>
-      <select id="fdays"><option value="">Any date</option><option value="7">Last 7 days</option><option value="30">Last 30 days</option><option value="90">Last 90 days</option></select>
-    </div>
-    <div class="bar2"><span id="shown"></span><span><span class="homeflag">▍</span> gold edge = mentions __HOME__ &nbsp; <a class="btn" href="events.csv">⬇ CSV for Excel</a> <a class="btn" href="bulletin.html">Weekly bulletin</a></span></div>
-    <ul class="reports" id="rows"></ul>
-  </section>
-
-  <section class="panel">
-    <h2><span class="dot"></span>How the risk score works</h2>
-    <p class="hint" style="margin:0 0 10px">Only incidents (crimes) are scored; policy, security and deportation news shows as “Update”. __BANDS__</p>
-    <table class="mini method" id="method"></table>
-  </section>
+  <details class="about card">
+    <summary>About the data: how the risk score works, and this week compared with usual</summary>
+    <p class="note" style="margin-top:10px">Only incidents (crimes) are scored; policy, security and deportation news is shown as “Update”. __BANDS__</p>
+    <table class="mini" id="method"></table>
+    <table class="mini" id="trends" style="margin-top:16px"></table>
+  </details>
 </div>
-<footer>Open-source news only. Only headlines, short summaries and links are stored, never full articles.</footer>
+<footer>Open-source news only. Only headlines, short summaries and links are stored, never full articles. Map outlines: Natural Earth via world-atlas. Charts: Apache ECharts.</footer>
 
 <script>
 const DATA = __DATA__;
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const chip = e => `<span class="chip ${e.level}">${e.level === "Update" ? "Update" : e.watch ? "High · watch list" : e.level + " · " + e.score}</span>`;
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+
+/* areas (groups of topics) with fixed colours: colour follows the area, never its rank */
+const GROUPS = [
+  ["Documents & identity", ["Passport fraud", "Visa and permit fraud", "Identity and document fraud", "Impostors"]],
+  ["Migration", ["Irregular migration", "Migrant smuggling", "Immigration enforcement", "Deportation and returns"]],
+  ["Human trafficking", ["Human trafficking"]],
+  ["Drugs & contraband", ["Drug trafficking", "Cash couriers", "Wildlife smuggling", "Cargo operations"]],
+  ["Security & watch lists", ["Firearms and ammunition", "Terrorism and sanctions", "Aviation security", "Border security", "INTERPOL and watch lists"]],
+  ["Policy & citizenship", ["Visa and entry policy", "Citizenship and naturalisation", "Health travel rules"]],
+];
+const GCOL = ["--g1", "--g2", "--g3", "--g4", "--g5", "--g6"].map(css);
+const topicGroup = {}; GROUPS.forEach(([g, ts], i) => ts.forEach(t => topicGroup[t] = i));
+const groupOf = e => Math.min(...e.categories.map(c => topicGroup[c] ?? 5));
+const LV = {High: css("--high"), Medium: css("--med"), Low: css("--low"), Update: css("--upd")};
+const INK = css("--ink"), MUTED = css("--muted"), LINE = css("--line");
+
 $("updated").textContent = DATA.updated;
 $("demo").hidden = !DATA.demo;
+const today = DATA.updated.slice(0, 10);
+const ev = DATA.events.map(e => ({...e, g: groupOf(e)}));
 
-const S = DATA.summary;
-const kpi = (n, l, c) => `<div class="kpi" style="--c:${c}"><div class="n">${n}</div><div class="l">${l}</div></div>`;
-$("kpis").innerHTML = kpi(S.total, "reports · last " + DATA.report_days + " days", "var(--accent)")
-  + kpi(S.by_level.High || 0, "high-risk incidents", "var(--high)")
-  + kpi(S.region_count, esc(DATA.region) + " reports", "var(--accent2)")
-  + kpi(S.home_count, "mention " + esc(DATA.home), "var(--home)")
-  + kpi(S.update_count, "policy & other updates", "var(--upd)")
-  + kpi(DATA.new_today, "new in latest run", "var(--low)");
+/* filters: every chart, list and number below follows these */
+const F = {period: 90, scope: "", group: "", topic: "", country: "", level: "", q: ""};
+GROUPS.forEach(([g], i) => $("fgroup").add(new Option(g, i)));
+[...new Set(ev.flatMap(e => e.categories))].sort().forEach(v => $("ftopic").add(new Option(v, v)));
+[...new Set(ev.flatMap(e => e.countries))].sort().forEach(v => $("fcountry").add(new Option(v, v)));
 
-const feedItem = e => `<li><a class="t" href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.title)}</a>
-  <div class="meta">${chip(e)}<span>${esc(e.date)}</span><span>${esc(e.source)}</span></div></li>`;
-const feed = (el, rows, empty) => { $(el).innerHTML = rows.length ? rows.slice(0, 6).map(feedItem).join("") : `<li class="empty">${empty}</li>`; };
-feed("regional", DATA.events.filter(e => e.region).sort((a, b) => (b.home - a.home) || b.date.localeCompare(a.date)), "Nothing yet.");
-feed("policy", DATA.events.filter(e => e.kind === "Update" && e.categories.includes("Visa and entry policy")), "Nothing yet.");
-feed("watch", DATA.events.filter(e => e.watch), "No hits. Add names or terms to the watch list in config.yaml.");
-
-function bars(el, pairs) {
-  if (!pairs.length) { $(el).innerHTML = '<p class="empty">Nothing yet.</p>'; return; }
-  const max = Math.max(...pairs.map(p => p[1]));
-  $(el).innerHTML = pairs.map(([k, v]) => `<div class="bar"><span class="name" title="${esc(k)}">${esc(k)}</span>
-    <span class="track"><span class="fill" style="display:block;width:${(100 * v / max).toFixed(1)}%"></span></span><span class="v">${v}</span></div>`).join("");
+function segment(id, key) {
+  $(id).querySelectorAll("button").forEach(b => b.onclick = () => {
+    $(id).querySelectorAll("button").forEach(x => x.classList.remove("on")); b.classList.add("on");
+    F[key] = key === "period" ? +b.dataset.v : b.dataset.v; update();
+  });
 }
-bars("cats", S.by_category.slice(0, 10)); bars("countries", S.by_country.slice(0, 10));
-bars("routes", S.by_route.slice(0, 8)); bars("airports", S.by_airport.slice(0, 8));
+segment("period", "period"); segment("scope", "scope");
+$("fgroup").onchange = e => { F.group = e.target.value; update(); };
+$("ftopic").onchange = e => { F.topic = e.target.value; update(); };
+$("fcountry").onchange = e => { F.country = e.target.value; update(); };
+$("flevel").onchange = e => { F.level = e.target.value; update(); };
+$("q").oninput = e => { F.q = e.target.value.toLowerCase(); update(); };
+$("fsort").onchange = () => renderTable(current);
+$("reset").onclick = () => {
+  Object.assign(F, {period: 90, scope: "", group: "", topic: "", country: "", level: "", q: ""});
+  ["fgroup", "ftopic", "fcountry", "flevel"].forEach(id => $(id).value = ""); $("q").value = "";
+  document.querySelectorAll("#period button").forEach(b => b.classList.toggle("on", b.dataset.v === "90"));
+  document.querySelectorAll("#scope button").forEach(b => b.classList.toggle("on", b.dataset.v === ""));
+  update();
+};
+const setFilter = (key, val, sel) => { F[key] = F[key] === String(val) ? "" : String(val); if (sel) $(sel).value = F[key]; update(); };
 
-const wk = S.per_week.slice(-12), wmax = Math.max(1, ...wk.map(w => w[1]));
-$("weeks").innerHTML = wk.length ? wk.map(([w, n]) => `<div class="col" title="Week of ${w}: ${n}"><span class="c">${n}</span>
-  <span class="b" style="height:${Math.round(90 * n / wmax)}px"></span><span class="d">${w.slice(5)}</span></div>`).join("") : '<p class="empty">Nothing yet.</p>';
+function since(days) { if (!days) return ""; const d = new Date(today); d.setDate(d.getDate() - days + 1); return d.toISOString().slice(0, 10); }
+function filtered(ignorePeriod) {
+  const from = ignorePeriod ? "" : since(F.period);
+  return ev.filter(e => (!from || e.date >= from) && (!F.scope || e[F.scope])
+    && (F.group === "" || e.categories.some(c => topicGroup[c] === +F.group))
+    && (!F.topic || e.categories.includes(F.topic)) && (!F.country || e.countries.includes(F.country))
+    && (!F.level || e.level === F.level || e.kind === F.level)
+    && (!F.q || (e.title + " " + e.summary + " " + e.source + " " + e.countries.join(" ")).toLowerCase().includes(F.q)));
+}
 
-$("trends").innerHTML = "<tr><th>Topic</th><th style='text-align:right'>Week</th><th style='text-align:right'>Usual</th><th></th></tr>" +
-  (S.trends.length ? S.trends.map(t => `<tr><td>${esc(t.category)}</td><td class="num">${t.this_week}</td><td class="num">${t.usual_week}</td><td class="${t.note}">${t.note}</td></tr>`).join("")
-   : '<tr><td colspan="4" class="empty">Needs a few weeks of history.</td></tr>');
-$("method").innerHTML = "<tr><th>Indicator</th><th>Points</th><th>Example words</th></tr>" +
-  DATA.method.map(m => `<tr><td>${esc(m.label)}</td><td>${m.points}</td><td style="color:var(--muted)">${esc(m.words)}</td></tr>`).join("");
+/* charts */
+const charts = {};
+["map", "trend", "riskmix", "topics", "countries", "routes", "airports"].forEach(id => charts[id] = echarts.init($(id)));
+window.addEventListener("resize", () => Object.values(charts).forEach(c => c.resize()));
+const TT = {backgroundColor: "#0b1426", borderColor: "#2c3d61", textStyle: {color: INK, fontSize: 12}, extraCssText: "border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.4)"};
+const AX = {axisLine: {lineStyle: {color: LINE}}, axisTick: {show: false}, axisLabel: {color: MUTED, fontSize: 11}, splitLine: {lineStyle: {color: "#17233a"}}};
+const EMPTY = {title: {text: "Nothing in this view", left: "center", top: "middle", textStyle: {color: "#64738f", fontSize: 13, fontWeight: 400}}};
 
-[...new Set(DATA.events.flatMap(e => e.categories))].sort().forEach(c => $("fcat").add(new Option(c, c)));
-[...new Set(DATA.events.flatMap(e => e.countries))].sort().forEach(c => $("fcountry").add(new Option(c, c)));
+function hbar(chart, pairs, colorFn, onClick, selected) {
+  if (!pairs.length) { chart.setOption(EMPTY, true); return; }
+  pairs = pairs.slice().reverse();
+  chart.setOption({
+    animationDuration: 400, grid: {left: 8, right: 36, top: 4, bottom: 4, containLabel: true},
+    tooltip: {...TT, trigger: "item", formatter: p => `${esc(p.name)}<br><b>${p.value}</b> report${p.value === 1 ? "" : "s"}`},
+    xAxis: {type: "value", show: false},
+    yAxis: {type: "category", data: pairs.map(p => p[0]), ...AX, axisLine: {show: false},
+            axisLabel: {color: MUTED, fontSize: 11.5, width: 180, overflow: "truncate"}},
+    series: [{type: "bar", data: pairs.map(p => ({value: p[1], itemStyle: {color: colorFn(p[0]), opacity: selected && selected !== p[0] ? .35 : 1}})),
+              barMaxWidth: 14, barCategoryGap: "35%", itemStyle: {borderRadius: [0, 4, 4, 0]},
+              label: {show: true, position: "right", color: MUTED, fontSize: 11}, cursor: onClick ? "pointer" : "default"}],
+  }, true);
+  chart.off("click"); if (onClick) chart.on("click", p => onClick(p.name));
+}
+const count = (rows, fn) => { const m = new Map(); rows.forEach(e => fn(e).forEach(k => m.set(k, (m.get(k) || 0) + 1))); return [...m].sort((a, b) => b[1] - a[1]); };
 
+let geoReady = false, mapView = {center: null, zoom: 1};
+fetch("vendor/world.json").then(r => r.json()).then(w => { echarts.registerMap("world", w); geoReady = true; drawMap(current); })
+  .catch(() => charts.map.setOption({title: {text: "Map could not load", left: "center", top: "middle", textStyle: {color: "#64738f", fontSize: 13}}}));
+$("mWorld").onclick = () => { mapView = {center: null, zoom: 1}; drawMap(current); };
+$("mCar").onclick = () => { mapView = {center: [-72, 17], zoom: 5.5}; drawMap(current); };
+
+function drawMap(rows) {
+  if (!geoReady) return;
+  const per = {};
+  rows.forEach(e => e.countries.forEach(c => {
+    const p = per[c] ||= {n: 0, high: 0, topics: {}};
+    p.n++; if (e.level === "High") p.high++;
+    e.categories.forEach(t => p.topics[t] = (p.topics[t] || 0) + 1);
+  }));
+  const pts = Object.entries(per).filter(([c]) => DATA.centroids[c]).map(([c, p]) => ({
+    name: c, value: [DATA.centroids[c][1], DATA.centroids[c][0], p.n], high: p.high,
+    top: Object.entries(p.topics).sort((a, b) => b[1] - a[1]).slice(0, 3).map(t => t[0]).join(", ")}));
+  const max = Math.max(1, ...pts.map(p => p.value[2]));
+  const size = v => 8 + 26 * Math.sqrt(v[2] / max);
+  const tip = p => `<b>${esc(p.name)}</b><br>${p.data.value[2]} report${p.data.value[2] === 1 ? "" : "s"} · ${p.data.high} high-risk<br><span style="color:${MUTED}">${esc(p.data.top)}</span>`;
+  charts.map.setOption({
+    tooltip: {...TT, trigger: "item", formatter: p => p.seriesType === "map" || !p.data ? esc(p.name) : tip(p)},
+    geo: {map: "world", roam: true, ...(mapView.center ? {center: mapView.center} : {}), zoom: mapView.zoom, scaleLimit: {min: 1, max: 14},
+          left: 4, right: 4, top: 8, bottom: 8,
+          itemStyle: {areaColor: "#15233d", borderColor: "#26385d", borderWidth: .6},
+          emphasis: {itemStyle: {areaColor: "#1c2e4f"}, label: {show: false}}, label: {show: false}},
+    series: [
+      {type: "scatter", coordinateSystem: "geo", data: pts.filter(p => !p.high), symbolSize: size,
+       itemStyle: {color: "rgba(51,140,237,.8)", borderColor: "#0e1729", borderWidth: 2}, z: 3},
+      {type: "effectScatter", coordinateSystem: "geo", data: pts.filter(p => p.high), symbolSize: size,
+       rippleEffect: {scale: 2.2, brushType: "stroke"}, itemStyle: {color: "rgba(235,98,99,.9)", borderColor: "#0e1729", borderWidth: 2}, z: 4},
+    ],
+  }, true);
+  charts.map.off("click"); charts.map.on("click", p => { if (p.seriesType !== "map" && p.data) setFilter("country", p.name, "fcountry"); });
+}
+
+function drawTrend(rows) {
+  const daily = F.period && F.period <= 30;
+  $("unit").textContent = daily ? "day" : "week";
+  const key = d => { if (daily) return d; const x = new Date(d); x.setDate(x.getDate() - ((x.getDay() + 6) % 7)); return x.toISOString().slice(0, 10); };
+  const keys = [];
+  const first = F.period ? since(F.period) : (rows.length ? rows.reduce((m, e) => e.date < m ? e.date : m, today) : since(90));
+  for (let d = new Date(first); d <= new Date(today); d.setDate(d.getDate() + 1)) { const k = key(d.toISOString().slice(0, 10)); if (keys[keys.length - 1] !== k) keys.push(k); }
+  const series = GROUPS.map(([g], i) => {
+    const m = {}; rows.filter(e => e.g === i).forEach(e => { const k = key(e.date); m[k] = (m[k] || 0) + 1; });
+    return {name: g, type: "bar", stack: "a", data: keys.map(k => m[k] || 0), barMaxWidth: 26, emphasis: {focus: "series"},
+            itemStyle: {color: GCOL[i], borderColor: "#0e1729", borderWidth: 1}};
+  });
+  charts.trend.setOption({
+    animationDuration: 400, grid: {left: 6, right: 10, top: 36, bottom: 4, containLabel: true},
+    legend: {top: 0, left: 0, icon: "roundRect", itemWidth: 10, itemHeight: 10, textStyle: {color: MUTED, fontSize: 11.5}},
+    tooltip: {...TT, trigger: "axis", axisPointer: {type: "shadow", shadowStyle: {color: "rgba(51,140,237,.06)"}},
+              formatter: ps => `<b>${daily ? "" : "Week of "}${ps[0].axisValue}</b><br>` + (ps.filter(p => p.value).map(p => `${p.marker}${esc(p.seriesName)}: <b>${p.value}</b>`).join("<br>") || "No reports")},
+    xAxis: {type: "category", data: keys.map(k => k.slice(5)), ...AX},
+    yAxis: {type: "value", minInterval: 1, ...AX, axisLine: {show: false}},
+    series,
+  }, true);
+}
+
+function drawRiskMix(rows) {
+  const levels = ["High", "Medium", "Low", "Update"];
+  const names = GROUPS.map(g => g[0]).slice().reverse();
+  charts.riskmix.setOption({
+    animationDuration: 400, grid: {left: 6, right: 12, top: 34, bottom: 4, containLabel: true},
+    legend: {top: 0, left: 0, icon: "roundRect", itemWidth: 10, itemHeight: 10, textStyle: {color: MUTED, fontSize: 11.5}},
+    tooltip: {...TT, trigger: "axis", axisPointer: {type: "shadow", shadowStyle: {color: "rgba(51,140,237,.06)"}}},
+    xAxis: {type: "value", minInterval: 1, ...AX}, yAxis: {type: "category", data: names, ...AX, axisLine: {show: false}},
+    series: levels.map(l => ({name: l === "Update" ? "Update" : l, type: "bar", stack: "r", barMaxWidth: 16,
+      itemStyle: {color: LV[l], borderColor: "#0e1729", borderWidth: 1},
+      data: names.map(n => rows.filter(e => GROUPS[e.g][0] === n && e.level === l).length)})),
+  }, true);
+  charts.riskmix.off("click"); charts.riskmix.on("click", p => setFilter("group", GROUPS.findIndex(g => g[0] === p.name), "fgroup"));
+}
+
+function kpis(rows) {
+  const prevFrom = F.period ? (() => { const d = new Date(since(F.period)); d.setDate(d.getDate() - F.period); return d.toISOString().slice(0, 10); })() : null;
+  const prev = prevFrom ? filtered(true).filter(e => e.date >= prevFrom && e.date < since(F.period)) : null;
+  const delta = (now, fn) => { if (!prev) return "all dates"; const d = now - prev.filter(fn).length;
+    return `${d > 0 ? "▲ " + d : d < 0 ? "▼ " + (-d) : "no change"} vs previous ${F.period} days`; };
+  const n = fn => rows.filter(fn).length;
+  const kg = rows.reduce((s, e) => s + (e.weight_kg || 0), 0);
+  const items = [
+    ["Reports", rows.length, delta(rows.length, () => true), css("--accent")],
+    ["High-risk incidents", n(e => e.level === "High"), delta(n(e => e.level === "High"), e => e.level === "High"), LV.High],
+    [DATA.region, n(e => e.region), delta(n(e => e.region), e => e.region), css("--g3")],
+    [DATA.home, n(e => e.home), delta(n(e => e.home), e => e.home), css("--home")],
+    ["Policy & other updates", n(e => e.kind === "Update"), "visa, entry, citizenship, health", LV.Update],
+    ["Weight reported seized", kg >= 1000 ? (kg / 1000).toFixed(1) + " t" : Math.round(kg) + " kg", "as stated in the reports", css("--g4")],
+  ];
+  $("kpis").innerHTML = items.map(([l, v, d, c]) => `<div class="kpi"><div class="l">${esc(l)}</div><div class="n">${v}</div><div class="d">${esc(d)}</div><div class="bar" style="--c:${c}"></div></div>`).join("");
+}
+
+const chip = e => `<span class="chip ${e.level}">${e.level === "Update" ? "Update" : e.watch ? "Watch list" : e.level + " " + e.score}</span>`;
+const feedItem = e => `<li><a class="t" href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.title)}</a>
+  <div class="meta">${chip(e)}${e.home ? `<span class="jm">${esc(DATA.home.toUpperCase())}</span>` : ""}<span>${esc(e.date)}</span><span>${esc(e.source)}</span></div></li>`;
+const feed = (id, rows, empty) => $(id).innerHTML = rows.length ? rows.slice(0, 25).map(feedItem).join("") : `<li class="empty">${empty}</li>`;
 const rank = {High: 0, Medium: 1, Low: 2, Update: 3};
-function render() {
-  const q = $("q").value.toLowerCase(), fc = $("fcat").value, fco = $("fcountry").value, fl = $("flevel").value,
-        fs = $("fscope").value, fd = +$("fdays").value, so = $("fsort").value;
-  const since = fd ? new Date(Date.now() - fd * 864e5).toISOString().slice(0, 10) : "";
-  const rows = DATA.events.filter(e => (!q || (e.title + " " + e.summary + " " + e.source + " " + e.countries.join(" ")).toLowerCase().includes(q))
-    && (!fc || e.categories.includes(fc)) && (!fco || e.countries.includes(fco)) && (!fl || e.level === fl || e.kind === fl)
-    && (!fs || e[fs]) && (!since || e.date >= since));
+
+function renderTable(rows) {
+  const so = $("fsort").value;
+  rows = rows.slice();
   if (so === "region") rows.sort((a, b) => (b.home - a.home) || (b.region - a.region) || b.date.localeCompare(a.date));
   else if (so === "risk") rows.sort((a, b) => (rank[a.level] - rank[b.level]) || (b.score - a.score) || b.date.localeCompare(a.date));
   else rows.sort((a, b) => b.date.localeCompare(a.date));
-  $("shown").textContent = `${rows.length} of ${DATA.events.length} reports` + (rows.length > 400 ? " (first 400 shown)" : "");
-  $("rows").innerHTML = rows.slice(0, 400).map(e => {
-    const route = (e.origin || e.destination) ? `<span>Route: ${esc(e.origin || "?")} → ${esc(e.destination || "?")}</span>` : "";
-    const counts = [e.documents_count ? e.documents_count + " documents" : "", e.people_count ? e.people_count + " people" : ""].filter(Boolean).join(" · ");
-    return `<li class="rep ${e.home ? "home" : ""}">
-      <div class="date">${esc(e.date)}</div>
-      <div>${chip(e)}</div>
-      <div><a class="t" href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.title)}</a>
-        <div class="meta"><span>${esc(e.source)}</span>${counts ? `<span>${counts}</span>` : ""}${route}</div>
-        ${e.reasons.length ? `<details><summary>Why this score</summary><ul class="why">${e.reasons.map(r => `<li>${esc(r)}</li>`).join("")}</ul></details>` : ""}</div>
-      <div class="side">${e.categories.map(c => `<span class="tag">${esc(c)}</span>`).join("")}<br>
-        ${[...e.countries, ...e.airports].map(p => `<span class="tag" style="color:var(--muted)">${esc(p)}</span>`).join("")}</div>
-    </li>`;
-  }).join("") || '<li class="empty" style="padding:14px 10px">No reports match these filters.</li>';
+  $("shown").textContent = `${rows.length} of ${ev.length} reports match` + (rows.length > 300 ? " · first 300 shown" : "");
+  $("rows").innerHTML = rows.slice(0, 300).map(e => {
+    const extra = [e.documents_count ? e.documents_count + " documents" : "", e.people_count ? e.people_count + " people" : "",
+                   e.weight_kg ? e.weight_kg + " kg" : "", (e.origin || e.destination) ? `${esc(e.origin || "?")} → ${esc(e.destination || "?")}` : ""].filter(Boolean).join(" · ");
+    return `<tr class="${e.home ? "home" : ""}"><td style="white-space:nowrap;color:${MUTED}">${esc(e.date)}</td><td>${chip(e)}</td>
+      <td><a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.title)}</a><div class="meta"><span>${esc(e.source)}</span>${extra ? `<span>${extra}</span>` : ""}</div>
+      ${e.reasons.length ? `<details class="why"><summary>Why this score</summary>${e.reasons.map(esc).join("<br>")}</details>` : ""}</td>
+      <td class="hide-m">${e.categories.map(c => `<span class="tag"><span class="gdot" style="background:${GCOL[topicGroup[c] ?? 5]}"></span>${esc(c)}</span>`).join("")}</td>
+      <td class="hide-m">${[...e.countries, ...e.airports].map(p => `<span class="tag">${esc(p)}</span>`).join("")}</td></tr>`;
+  }).join("") || `<tr><td colspan="5" class="empty">No reports match these filters.</td></tr>`;
 }
-["q", "fcat", "fcountry", "flevel", "fscope", "fsort", "fdays"].forEach(id => $(id).addEventListener("input", render));
-render();
+
+let current = [];
+function update() {
+  current = filtered(false);
+  kpis(current);
+  drawMap(current); drawTrend(current); drawRiskMix(current);
+  hbar(charts.topics, count(current, e => e.categories).slice(0, 18), t => GCOL[topicGroup[t] ?? 5], t => setFilter("topic", t, "ftopic"), F.topic);
+  hbar(charts.countries, count(current, e => e.countries).slice(0, 15),
+       c => DATA.region_countries.includes(c) ? css("--g3") : css("--accent"), c => setFilter("country", c, "fcountry"), F.country);
+  hbar(charts.routes, count(current.filter(e => e.origin || e.destination), e => [`${e.origin || "?"} → ${e.destination || "?"}`]).slice(0, 10), () => css("--g6"));
+  hbar(charts.airports, count(current, e => e.airports).slice(0, 10), () => css("--g1"));
+  feed("priority", current.filter(e => e.level === "High" || e.home).sort((a, b) => (rank[a.level] - rank[b.level]) || b.date.localeCompare(a.date)), "Nothing high-risk in this view.");
+  feed("policy", current.filter(e => e.kind === "Update" && GROUPS[5][1].some(t => e.categories.includes(t))).sort((a, b) => b.date.localeCompare(a.date)), "No policy changes in this view.");
+  feed("watch", current.filter(e => e.watch), "No hits. Add names or terms to the watch list in config.yaml.");
+  renderTable(current);
+  const act = Object.entries(F).filter(([k, v]) => v !== "" && k !== "period").length;
+  $("reset").textContent = act ? `Reset (${act})` : "Reset";
+}
+
+$("method").innerHTML = "<tr><th>Indicator</th><th>Points</th><th>Example words</th></tr>" +
+  DATA.method.map(m => `<tr><td>${esc(m.label)}</td><td>${m.points}</td><td style="color:${MUTED}">${esc(m.words)}</td></tr>`).join("");
+const S = DATA.summary;
+$("trends").innerHTML = "<tr><th>Topic</th><th>This week</th><th>Usual week</th><th></th></tr>" +
+  (S.trends.length ? S.trends.map(t => `<tr><td>${esc(t.category)}</td><td>${t.this_week}</td><td>${t.usual_week}</td><td class="${t.note}">${t.note}</td></tr>`).join("")
+   : '<tr><td colspan="4" class="empty">Needs a few weeks of history.</td></tr>');
+
+update();
 </script>
 </body>
 </html>

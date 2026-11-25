@@ -5,6 +5,8 @@ import html
 import json
 import os
 
+from .places import CENTROIDS
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 FIELDS = ["date", "kind", "level", "score", "title", "source", "url", "categories", "document_types", "countries",
           "airports", "origin", "destination", "documents_count", "people_count", "weight_kg", "reasons", "via"]
@@ -37,6 +39,8 @@ def write_dashboard(out_dir, events, summary, cfg, new_today, demo=False):
         "report_days": (cfg.get("run") or {}).get("report_days", 180),
         "home": site.get("home_country", ""), "region": site.get("region_name", "Region"),
         "method": _method(cfg),
+        "region_countries": site.get("region_countries", []),
+        "centroids": {c: CENTROIDS[c] for c in {c for e in events for c in e.get("countries", [])} if c in CENTROIDS},
     }
     with open(os.path.join(HERE, "dashboard.html"), encoding="utf-8") as f:
         page = f.read()
