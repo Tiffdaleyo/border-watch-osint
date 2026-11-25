@@ -5,7 +5,7 @@ import html
 import json
 import os
 
-from .places import CENTROIDS
+from .places import CENTROIDS, COUNTRIES
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 FIELDS = ["date", "kind", "level", "score", "title", "source", "url", "categories", "document_types", "countries",
@@ -40,6 +40,7 @@ def write_dashboard(out_dir, events, summary, cfg, new_today, demo=False):
         "home": site.get("home_country", ""), "region": site.get("region_name", "Region"),
         "method": _method(cfg),
         "region_countries": site.get("region_countries", []),
+        "all_countries": sorted(COUNTRIES),
         "centroids": {c: CENTROIDS[c] for c in {c for e in events for c in e.get("countries", [])} if c in CENTROIDS},
     }
     with open(os.path.join(HERE, "dashboard.html"), encoding="utf-8") as f:

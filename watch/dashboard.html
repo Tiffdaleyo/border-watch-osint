@@ -94,6 +94,23 @@
   table.mini td, table.mini th { padding:6px; border-bottom:1px solid var(--line); text-align:left; }
   table.mini th { color:var(--dim); font-size:11px; text-transform:uppercase; letter-spacing:.06em; }
   .Rising { color:var(--high); font-weight:600; } .Falling { color:var(--low); font-weight:600; } .Steady { color:var(--dim); }
+  /* trend lookup */
+  .lk-form { display:flex; gap:10px; flex-wrap:wrap; align-items:flex-end; margin:10px 0 6px; }
+  .lk-form label { display:flex; flex-direction:column; gap:4px; font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; }
+  .lk-form select, .lk-form input { background:var(--panel2); color:var(--ink); border:1px solid var(--line); border-radius:10px; padding:9px 10px; font:inherit; font-size:13px; min-width:200px; }
+  .lk-go { background:var(--accent); color:#06101f; border:0; border-radius:10px; padding:10px 18px; font-weight:700; cursor:pointer; }
+  .lk-go:hover { filter:brightness(1.1); }
+  .lk-grid { display:grid; grid-template-columns:repeat(12,1fr); gap:14px; margin-top:12px; }
+  .lk-box { background:var(--panel2); border:1px solid var(--line); border-radius:12px; padding:12px 14px; min-width:0; }
+  .lk-box h3 { margin:0 0 6px; font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); font-weight:600; }
+  .lk-links { display:flex; flex-wrap:wrap; gap:6px; }
+  .lk-links a { font-size:12.5px; border:1px solid var(--line); background:var(--panel); border-radius:8px; padding:6px 10px; color:#cfd8ea; }
+  .lk-links a:hover { border-color:var(--accent); color:var(--ink); }
+  .lk-stat { display:flex; gap:18px; flex-wrap:wrap; margin-bottom:6px; }
+  .lk-stat div { font-size:12px; color:var(--muted); } .lk-stat b { display:block; font-size:22px; color:var(--ink); }
+  .lk-note { font-size:12px; color:var(--dim); margin-top:10px; }
+  @media (max-width:1150px) { .lk-grid > * { grid-column:span 12 !important; } }
+
   footer { max-width:1480px; margin:0 auto; padding:0 22px 30px; font-size:11.5px; color:var(--dim); }
 
   @media (max-width:1150px) {
@@ -151,6 +168,20 @@
     <section class="card s4">
       <h2>Priority feed</h2><div class="sub">High-risk incidents and anything naming __HOME__</div>
       <ul class="feed" id="priority"></ul>
+    </section>
+
+    <section class="card s12" id="lookup">
+      <div class="head"><div><h2>Trend lookup</h2><div class="sub">Research a travel route: what open sources say about movement from one country to another, the routes used, visa rules, and smuggling or document facilitation.</div></div></div>
+      <div class="lk-form">
+        <label>From (origin country)<select id="lkFrom"></select></label>
+        <label>To (destination)<select id="lkTo"></select></label>
+        <label>Focus<select id="lkFocus">
+          <option value="all">Everything</option><option value="overstay">Overstays and refused entry</option>
+          <option value="visa">Visa and entry rules</option><option value="smuggling">Smuggling and routes</option>
+          <option value="documents">Fake or misused documents</option><option value="trafficking">Human trafficking</option></select></label>
+        <button class="lk-go" id="lkGo">Look up</button>
+      </div>
+      <div id="lkOut"><p class="lk-note">Pick an origin and a destination, then press Look up.</p></div>
     </section>
 
     <section class="card s8">
@@ -427,6 +458,127 @@ function update() {
   renderTable(current);
   const act = Object.entries(F).filter(([k, v]) => v !== "" && k !== "period").length;
   $("reset").textContent = act ? `Reset (${act})` : "Reset";
+}
+
+/* ---------------- Trend lookup ---------------- */
+const LANG = {es: ["Mexico","Colombia","Venezuela","Ecuador","Peru","Bolivia","Chile","Argentina","Paraguay","Uruguay","Cuba",
+  "Dominican Republic","Guatemala","Honduras","El Salvador","Nicaragua","Costa Rica","Panama","Spain","Puerto Rico"],
+  fr: ["Haiti","France","Senegal","Mali","Guinea","Cameroon","Ivory Coast","Burkina Faso","Niger","Togo","Benin",
+  "Democratic Republic of the Congo","Belgium","Switzerland","Morocco","Algeria","Tunisia"],
+  pt: ["Brazil","Portugal","Angola","Mozambique","Cape Verde"]};
+const langOf = c => Object.keys(LANG).find(l => LANG[l].includes(c)) || "";
+const FOCUS = {
+  all: {en: "(migrants OR migration OR visa OR overstay OR smuggling OR passport OR deported OR trafficking OR immigration)",
+        q: ["migrants", "visa requirement", "overstay", "smuggling route", "fake passports", "deported", "human trafficking"]},
+  overstay: {en: "(overstay OR overstayed OR \"refused entry\" OR \"denied entry\" OR deported OR inadmissible)",
+        q: ["overstay", "refused entry", "deported", "immigration arrests"]},
+  visa: {en: "(visa OR \"entry requirements\" OR \"visa-free\" OR \"visa waiver\" OR \"travel ban\")",
+        q: ["visa requirement", "visa-free", "new entry requirements", "visa suspended"]},
+  smuggling: {en: "(smuggling OR smugglers OR route OR transit OR \"irregular migration\" OR intercepted)",
+        q: ["migrant smuggling", "smuggling route", "transit route", "intercepted migrants"]},
+  documents: {en: "(\"fake passport\" OR \"forged passport\" OR \"fraudulent documents\" OR impostor OR \"fake visa\")",
+        q: ["fake passports", "forged documents", "fraudulent visas", "impostor passport"]},
+  trafficking: {en: "(\"human trafficking\" OR trafficked OR exploitation OR \"forced labour\")",
+        q: ["human trafficking", "trafficking victims", "forced labour"]},
+};
+const LOCAL = {es: ["migrantes", "visa", "tráfico de migrantes", "pasaportes falsos", "deportados"],
+               fr: ["migrants", "visa", "passeurs", "faux passeports", "expulsés"],
+               pt: ["migrantes", "visto", "tráfico de migrantes", "passaportes falsos", "deportados"]};
+const OFFICIAL = [
+  ["IOM Displacement Tracking Matrix", "https://dtm.iom.int/"],
+  ["IOM Missing Migrants Project", "https://missingmigrants.iom.int/"],
+  ["UNHCR Refugee Data Finder", "https://www.unhcr.org/refugee-statistics/"],
+  ["US CBP encounter statistics", "https://www.cbp.gov/newsroom/stats/nationwide-encounters"],
+  ["Frontex migratory map", "https://www.frontex.europa.eu/what-we-do/monitor-and-risk-analysis/migratory-map/"],
+  ["UNODC migrant smuggling", "https://www.unodc.org/unodc/en/human-trafficking-and-migrant-smuggling/index.html"],
+  ["Jamaica PICA", "https://www.pica.gov.jm/"],
+];
+(function initLookup() {
+  const all = DATA.all_countries.slice().sort();
+  all.forEach(c => $("lkFrom").add(new Option(c, c)));
+  $("lkTo").add(new Option(DATA.home, DATA.home)); $("lkTo").add(new Option("The " + DATA.region + " (any)", "__region"));
+  all.filter(c => c !== DATA.home).forEach(c => $("lkTo").add(new Option(c, c)));
+  $("lkFrom").value = all.includes("Haiti") ? "Haiti" : all[0];
+  $("lkGo").onclick = runLookup;
+  // a link like index.html?from=Haiti&to=Jamaica#lookup opens a ready-made lookup
+  const u = new URLSearchParams(location.search);
+  if (u.get("from") && all.includes(u.get("from"))) {
+    $("lkFrom").value = u.get("from");
+    if (u.get("to")) $("lkTo").value = u.get("to") === "region" ? "__region" : u.get("to");
+    if (u.get("focus") && FOCUS[u.get("focus")]) $("lkFocus").value = u.get("focus");
+    setTimeout(runLookup, 0);
+  }
+})();
+const gnews = (q, hl) => `https://news.google.com/search?q=${encodeURIComponent(q)}&hl=${hl || "en-US"}`;
+const gdeltUrl = (q, mode, extra) => `https://api.gdeltproject.org/api/v2/doc/doc?query=${encodeURIComponent(q)}&mode=${mode}&timespan=6m&sort=DateDesc${extra || ""}`;
+let lkChart = null;
+
+function runLookup() {
+  const from = $("lkFrom").value, toV = $("lkTo").value, focus = FOCUS[$("lkFocus").value];
+  const isRegion = toV === "__region", to = isRegion ? DATA.region : toV;
+  const regionSet = new Set(DATA.region_countries);
+  const inDest = e => isRegion ? e.countries.some(c => c !== from && regionSet.has(c)) || e.region : e.countries.includes(to);
+  const both = ev.filter(e => e.countries.includes(from) && inDest(e)).sort((a, b) => b.date.localeCompare(a.date));
+  const fromAny = ev.filter(e => e.countries.includes(from));
+  const routes = count(fromAny.filter(e => e.origin === from || e.destination === from), e => [`${e.origin || "?"} → ${e.destination || "?"}`]).slice(0, 6);
+  const topics = count(both.length ? both : fromAny, e => e.categories).slice(0, 6);
+
+  const toQ = isRegion ? "Caribbean" : to;
+  const lang = langOf(from), hl = {es: "es-419", fr: "fr", pt: "pt-BR"}[lang];
+  const searches = focus.q.map(t => [`${from} ${t} ${toQ}`, gnews(`"${from}" ${t} ${toQ}`)]);
+  searches.push([`${from} transit route via Central America / Caribbean`, gnews(`"${from}" migrants route Caribbean OR "Central America" OR Panama`)]);
+  if (lang) LOCAL[lang].forEach(t => searches.push([`${t} ${from} ${toQ} (${lang.toUpperCase()})`, gnews(`${t} ${from} ${toQ}`, hl)]));
+  const visaWiki = `https://en.wikipedia.org/w/index.php?search=${encodeURIComponent("Visa requirements for " + from + " citizens")}`;
+  const gq = `"${from}" "${toQ}" ${focus.en}`;
+
+  $("lkOut").innerHTML = `
+    <div class="lk-grid">
+      <div class="lk-box" style="grid-column:span 4">
+        <h3>In this dashboard's data</h3>
+        <div class="lk-stat"><div><b>${both.length}</b>reports naming both</div><div><b>${fromAny.length}</b>reports naming ${esc(from)}</div></div>
+        <h3 style="margin-top:10px">Main topics</h3>
+        ${topics.length ? topics.map(([t, n]) => `<span class="tag"><span class="gdot" style="background:${GCOL[topicGroup[t] ?? 5]}"></span>${esc(t)} · ${n}</span>`).join("") : '<span class="empty">None yet.</span>'}
+        <h3 style="margin-top:10px">Routes reported involving ${esc(from)}</h3>
+        ${routes.length ? routes.map(([r, n]) => `<div style="font-size:13px">${esc(r)} <span style="color:${MUTED}">· ${n}</span></div>`).join("") : '<span class="empty">None yet.</span>'}
+        <button class="reset" style="margin-top:10px" id="lkFilter">Filter the whole dashboard to ${esc(from)}</button>
+      </div>
+      <div class="lk-box" style="grid-column:span 8">
+        <h3>News attention over the last 6 months (live, GDELT)</h3>
+        <div id="lkChart" style="height:170px"></div>
+        <h3 style="margin-top:6px">Latest matching articles (live)</h3>
+        <ul class="feed" id="lkArts" style="max-height:220px"><li class="empty">Loading…</li></ul>
+      </div>
+      <div class="lk-box" style="grid-column:span 12">
+        <h3>Ready-made news searches (open in a new tab)</h3>
+        <div class="lk-links">${searches.map(([l, u]) => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(l)}</a>`).join("")}
+          <a href="${esc(gdeltUrl(gq, "ArtList", "&format=html&maxrecords=75"))}" target="_blank" rel="noopener">GDELT: all matching articles</a></div>
+        <h3 style="margin-top:12px">Official data and rules</h3>
+        <div class="lk-links"><a href="${esc(visaWiki)}" target="_blank" rel="noopener">Visa requirements for ${esc(from)} passport holders</a>
+          ${OFFICIAL.map(([l, u]) => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(l)}</a>`).join("")}</div>
+      </div>
+    </div>
+    <p class="lk-note">This looks at routes, rules and facilitation patterns reported in open sources. It does not assess any individual, and a pattern on a route is never a reason to treat a traveller differently because of nationality. Use it alongside official data and your agency's procedures.</p>`;
+  $("lkFilter").onclick = () => { setFilter("country", from, "fcountry"); document.querySelector(".kpis").scrollIntoView({behavior: "smooth"}); };
+
+  if (lkChart) lkChart.dispose();
+  lkChart = echarts.init($("lkChart"));
+  lkChart.showLoading({text: "", color: css("--accent"), maskColor: "rgba(0,0,0,0)"});
+  fetch(gdeltUrl(gq, "TimelineVolRaw", "&format=json")).then(r => r.json()).then(j => {
+    const pts = ((j.timeline || [])[0] || {}).data || [];
+    lkChart.hideLoading();
+    lkChart.setOption({grid: {left: 6, right: 10, top: 10, bottom: 4, containLabel: true},
+      tooltip: {...TT, trigger: "axis", formatter: p => `${p[0].axisValue}<br><b>${p[0].value}</b> articles`},
+      xAxis: {type: "category", data: pts.map(d => `${d.date.slice(0, 4)}-${d.date.slice(4, 6)}-${d.date.slice(6, 8)}`), ...AX},
+      yAxis: {type: "value", minInterval: 1, ...AX, axisLine: {show: false}},
+      series: [{type: "line", data: pts.map(d => d.value), showSymbol: false, lineStyle: {width: 2, color: css("--accent")},
+                areaStyle: {color: "rgba(51,140,237,.15)"}, smooth: .3}]});
+  }).catch(() => { lkChart.hideLoading(); lkChart.setOption({title: {text: "Live news chart unavailable right now; use the GDELT link below", left: "center", top: "middle", textStyle: {color: "#64738f", fontSize: 12, fontWeight: 400}}}); });
+  fetch(gdeltUrl(gq, "ArtList", "&format=json&maxrecords=20")).then(r => r.json()).then(j => {
+    const arts = j.articles || [];
+    $("lkArts").innerHTML = arts.length ? arts.map(a => `<li><a class="t" href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.title)}</a>
+      <div class="meta"><span>${esc((a.seendate || "").slice(0, 8).replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"))}</span><span>${esc(a.domain)}</span></div></li>`).join("")
+      : '<li class="empty">No recent articles found for this pair. Try “Everything” or the region as destination.</li>';
+  }).catch(() => { $("lkArts").innerHTML = '<li class="empty">Live articles unavailable right now (the news index may be busy). Use the search links below.</li>'; });
 }
 
 $("method").innerHTML = "<tr><th>Indicator</th><th>Points</th><th>Example words</th></tr>" +
