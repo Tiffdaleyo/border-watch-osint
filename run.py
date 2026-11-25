@@ -1,0 +1,79 @@
+#!/usr/bin/env python3
+"""
+Border Watch OSINT - the daily run.
+
+  python run.py              # search the news (last 2 days), analyse, rebuild the website in docs/
+  python run.py --days 30    # first run: fill in the last 30 days of history
+  python run.py --demo       # no internet needed: invented sample data, to see how the site looks
+  python run.py --rebuild    # no searching: just rebuild the website from the stored data
+"""
+import argparse
+import datetime as dt
+import os
+import sys
+
+import yaml
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+
+from watch import analyze, collect, demo, extract, report, store  # noqa: E402
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--days", type=int, default=None, help="how many days back to search")
+    ap.add_argument("--demo", action="store_true", help="use invented sample data (no internet)")
+    ap.add_argument("--rebuild", action="store_true", help="only rebuild the website from stored data")
+    args = ap.parse_args()
+
+    with open(os.path.join(HERE, "config.yaml"), encoding="utf-8") as f:
+        cfg = yaml.safe_load(f)
+    site = cfg.get("site") or {}
+    days = args.days or (cfg.get("run") or {}).get("lookback_days", 2)
+    db_path = os.path.join(HERE, "data", "demo_events.json" if args.demo else "events.json")
+    out_dir = os.path.join(HERE, "docs")
+    os.makedirs(out_dir, exist_ok=True)
+
+    events = store.load(db_path)
+    added = 0
+    if not args.rebuild:
+        if args.demo:
+            print("Demo mode: using invented sample headlines.")
+            cfg.setdefault("risk", {})["watchlist"] = ["Example Travel Agency"]   # demo watch list entry
+            items = demo.sample_items()
+        else:
+            print(f"Searching the news for the last {days} days...")
+            items = collect.collect(cfg, days)
+        print(f"  {len(items)} headlines found in total")
+        new = []
+        for it in items:
+            facts = extract.extract(it)
+            if not facts:
+                continue
+            ev = {**it, **facts, "id": store.make_id(it), "first_seen": dt.date.today().isoformat()}
+            ev["date"] = ev.get("date") or ev["first_seen"]
+            new.append(ev)
+        print(f"  {len(new)} are on-topic")
+        events, added = store.merge(events, new)
+        print(f"  {added} new events added (the rest were repeats of stories already stored)")
+
+    # Re-score everything, so a change to config.yaml applies to the whole history.
+    for ev in events:
+        ev.setdefault("kind", "Incident")
+        analyze.score_event(ev, cfg.get("risk") or {}, site.get("home_places", []), site.get("region_countries", []),
+                             site.get("region_words", []))
+    store.save(db_path, events)
+
+    keep_from = (dt.date.today() - dt.timedelta(days=(cfg.get("run") or {}).get("report_days", 180))).isoformat()
+    shown = sorted([e for e in events if e.get("date", "") >= keep_from], key=lambda e: e["date"], reverse=True)
+    summary = analyze.summarise(shown, cfg)
+    report.write_dashboard(out_dir, shown, summary, cfg, added, demo=args.demo)
+    report.write_csv(out_dir, shown)
+    report.write_bulletin(out_dir, shown, summary, cfg)
+    print(f"Website rebuilt in docs/ with {len(shown)} events "
+          f"({summary['by_level'].get('High', 0)} High, {summary['region_count']} in the {site.get('region_name', 'region')}).")
+
+
+if __name__ == "__main__":
+    main()

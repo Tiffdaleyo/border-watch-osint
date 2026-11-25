@@ -1,0 +1,160 @@
+# =====================================================================
+#  BORDER WATCH OSINT - settings
+#  Everything you may want to change is in this file. Lines starting
+#  with # are notes and are ignored by the program.
+# =====================================================================
+
+site:
+  title: "Border Watch OSINT"
+  subtitle: "Open-source news on migration, travel documents, visas, citizenship and border security, worldwide with a Caribbean focus"
+  home_country: "Jamaica"          # events mentioning this country are highlighted
+  home_places: ["Jamaica", "Kingston", "Montego Bay", "Norman Manley", "Sangster", "Ocho Rios", "Negril", "PICA"]
+  region_name: "Caribbean"
+  region_words: ["Caribbean", "CARICOM", "IMPACS", "Caribe", "Caraibes", "West Indies"]   # these words also count as the region
+  region_countries: ["Jamaica", "Haiti", "Dominican Republic", "Cuba", "Bahamas", "Turks and Caicos Islands",
+                     "Cayman Islands", "Trinidad and Tobago", "Barbados", "Guyana", "Suriname", "Belize",
+                     "Saint Lucia", "Grenada", "Saint Vincent and the Grenadines", "Antigua and Barbuda",
+                     "Saint Kitts and Nevis", "Dominica", "Puerto Rico", "Aruba", "Curacao",
+                     "British Virgin Islands", "US Virgin Islands", "Anguilla", "Montserrat", "Bermuda"]
+
+run:
+  lookback_days: 2       # how far back each daily run searches (2 gives a safe overlap)
+  report_days: 180       # how much history the website shows
+  delay_seconds: 1.5     # pause between searches, to be polite to the news services
+
+sources:
+  google_news:
+    enabled: true
+    # Each edition is one Google News country and language. More editions = wider coverage.
+    editions:
+      - {lang: en, hl: en-US,  gl: US, ceid: "US:en"}
+      - {lang: en, hl: en-GB,  gl: GB, ceid: "GB:en"}
+      - {lang: en, hl: en-CA,  gl: CA, ceid: "CA:en"}
+      - {lang: en, hl: en-NG,  gl: NG, ceid: "NG:en"}
+      - {lang: es, hl: es-419, gl: MX, ceid: "MX:es-419"}
+      - {lang: es, hl: es-419, gl: CO, ceid: "CO:es-419"}
+      - {lang: es, hl: es,     gl: ES, ceid: "ES:es"}
+      - {lang: fr, hl: fr,     gl: FR, ceid: "FR:fr"}
+      - {lang: pt, hl: pt-BR,  gl: BR, ceid: "BR:pt-419"}
+    queries:
+      en: ["fake passports seized", "forged passport arrested airport", "fraudulent passport arrested",
+           "passport fraud ring", "counterfeit visas seized", "visa fraud arrested", "identity fraud passport",
+           "impostor passport airport", "migrant smuggling arrested", "human smuggling airport arrested",
+           "human trafficking airport intercepted", "fake documents migrants arrested",
+           "citizenship by investment fraud", "Jamaica passport fraud", "Jamaica immigration arrested",
+           "Caribbean human smuggling", "fraudulent travel documents",
+           # irregular migration trends
+           "irregular migration", "migrants intercepted", "migrant boat intercepted", "Haitian migrants interdicted",
+           "Darien Gap migrants", "Caribbean migration", "migrant arrivals rise",
+           # visa and entry rules
+           "new visa requirement", "visa requirement Jamaica", "visa-free travel", "visa waiver", "visa restrictions",
+           "travel ban", "entry requirements", "ETIAS", "Entry/Exit System", "electronic travel authorisation",
+           "UK visa Jamaica", "Canada visa Jamaica", "US visa policy", "Schengen visa",
+           # citizenship
+           "citizenship fraud", "citizenship revoked", "citizenship by investment", "naturalisation fraud",
+           # INTERPOL and watch lists
+           "Interpol red notice arrested", "Interpol operation migrant smuggling", "Interpol stolen passports",
+           "fugitive arrested at airport", "extradited Jamaica", "watch list airport",
+           # deportation and border security
+           "deportees Jamaica", "deportation flight Caribbean", "PICA Jamaica", "border security Caribbean",
+           "CARICOM IMPACS"]
+      es: ["migración irregular", "nuevos requisitos de visa", "exigencia de visa", "notificación roja Interpol",
+           "migrantes interceptados", "pasaportes falsos detenido", "pasaporte falso aeropuerto", "red de falsificación de documentos",
+           "tráfico de migrantes detenidos", "visas falsas detenidos", "trata de personas aeropuerto"]
+      fr: ["migration irrégulière", "obligation de visa", "notice rouge Interpol", "faux passeports interpellé", "passeport falsifié aéroport", "filière d'immigration clandestine démantelée",
+           "fraude documentaire aéroport"]
+      pt: ["migração irregular", "exigência de visto", "difusão vermelha Interpol", "passaportes falsos preso", "passaporte falso aeroporto", "tráfico de migrantes preso"]
+
+  gdelt:                 # a free global news index; no key needed
+    enabled: true
+    queries:
+      - '"fake passports"'
+      - '"forged passport"'
+      - '"fraudulent passport"'
+      - '"passport fraud"'
+      - '"visa fraud"'
+      - '"migrant smuggling"'
+      - '"human smuggling" airport'
+      - '"fraudulent documents" immigration'
+      - '"citizenship by investment"'
+      - '"irregular migration"'
+      - '"visa requirement"'
+      - '"visa-free"'
+      - '"Interpol" "red notice"'
+      - '"citizenship" fraud'
+      - '"deportees" Jamaica'
+      - 'Jamaica immigration'
+
+  # Add RSS feeds from agencies you trust (press-release pages that offer RSS).
+  # Example:  - {name: "Agency name", url: "https://example.org/news/rss"}
+  rss_feeds: []
+
+risk:
+  # Only incidents (crimes) are scored. Policy, security and deportation news is shown as "Update".
+  # Each indicator adds points when its words appear in the headline or summary.
+  # Words match whole words; a word ending in * also matches longer forms (laminat* = laminator, laminating).
+  # Indicators describe the event, never a person's nationality or background.
+  # A high score means "worth a closer look", not proof.
+  bands: {high: 40, medium: 20}       # score >= 40 = High, >= 20 = Medium, else Low
+  indicators:
+    organised_network:
+      label: "Organised network or ring"
+      points: 15
+      words: ["syndicate", "ring", "racket", "network", "gang", "smuggling cell", "cartel", "organised crime", "organized crime",
+              "red criminal", "banda", "organización criminal", "réseau", "filière", "quadrilha", "organização criminosa"]
+    document_factory:
+      label: "Document factory or forging equipment"
+      points: 20
+      words: ["factory", "printing equipment", "laminat*", "forging equipment", "blank passports", "stolen blank",
+              "document lab", "holograms", "taller de falsificación", "imprenta", "atelier", "fábrica de documentos"]
+    insider:
+      label: "Possible insider or corruption"
+      points: 15
+      words: ["bribe*", "corrupt*", "insider", "immigration officer arrested", "official arrested", "officials arrested",
+              "employee arrested", "soborno", "funcionario", "corruption", "propina"]
+    impostor:
+      label: "Impostor or look-alike use of a genuine document"
+      points: 15
+      words: ["impostor", "imposter", "look-alike", "lookalike", "someone else's passport", "another person's passport",
+              "belonging to another", "suplantación", "usurpation d'identité"]
+    trafficking:
+      label: "Exploitation or trafficking indicators"
+      points: 15
+      words: ["human trafficking", "trafficked", "people trafficking", "exploitation", "forced labour", "forced labor", "victims", "trata",
+              "traite", "tráfico de pessoas"]
+    wanted_person:
+      label: "Wanted person or INTERPOL notice"
+      points: 15
+      words: ["red notice", "interpol", "fugitive", "wanted", "watch list", "watchlist", "extradit*",
+              "notificacion roja", "notice rouge"]
+    transit:
+      label: "Transit or onward route"
+      points: 10
+      words: ["transit", "en route to", "bound for", "connecting flight", "onward", "stopover", "en tránsito",
+              "con destino a", "à destination de", "com destino a"]
+    investment_citizenship:
+      label: "Citizenship or residence by investment"
+      points: 10
+      words: ["citizenship by investment", "golden passport", "golden visa", "economic citizenship", "cbi programme",
+              "cbi program"]
+    digital:
+      label: "Digital, biometric or e-visa fraud"
+      points: 10
+      words: ["morphing", "deepfake", "e-visa", "evisa", "esta application", "eta application", "biometric", "online visa", "fake website"]
+    airport:
+      label: "Detected at an airport or border post"
+      points: 5
+      words: ["airport", "aeropuerto", "aéroport", "aeroporto", "border post", "port of entry", "immigration counter",
+              "check-in"]
+  # extra points for scale
+  many_documents: {threshold: 5, points: 10, big_threshold: 50, big_points: 20}
+  many_people: {threshold: 10, points: 10}
+  # YOUR WATCH LIST. Anything listed here (a name, a company, a vessel, a route word) makes every
+  # matching report High and puts it in the "Watch list hits" box at the top of the website.
+  # The site is public, so only list things that are already public (e.g. a fugitive on a public notice).
+  # Example:  watchlist: ["Example Travel Agency", "MV Example"]
+  watchlist: []
+
+analysis:
+  trend_days: 7          # "this week" compared with ...
+  baseline_weeks: 4      # ... the average of the 4 weeks before

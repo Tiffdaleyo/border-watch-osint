@@ -1,0 +1,143 @@
+"""Searches free news sources: Google News, GDELT and any RSS feeds listed in config.yaml.
+No API keys, no accounts. Only the headline, short summary, date, source name and link are kept."""
+import datetime as dt
+import email.utils
+import html
+import re
+import time
+import urllib.parse
+import xml.etree.ElementTree as ET
+
+import requests
+
+HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; BorderWatchOSINT/1.0; open-source news monitor)"}
+
+
+def log(*a):
+    print(*a, flush=True)
+
+
+def _get(url, timeout=25):
+    for attempt in range(3):
+        try:
+            r = requests.get(url, headers=HEADERS, timeout=timeout)
+            if r.status_code == 429:          # "too many requests": wait and try again
+                time.sleep(10 * (attempt + 1))
+                continue
+            r.raise_for_status()
+            return r
+        except requests.RequestException as exc:
+            if attempt == 2:
+                log(f"    ! could not read {url[:90]}... ({type(exc).__name__})")
+            time.sleep(3)
+    return None
+
+
+def strip_html(s):
+    s = re.sub(r"<[^>]+>", " ", s or "")
+    return re.sub(r"\s+", " ", html.unescape(s)).strip()
+
+
+def _rss_date(s):
+    try:
+        return email.utils.parsedate_to_datetime(s).date().isoformat()
+    except Exception:
+        return ""
+
+
+def google_news(query, ed, days):
+    q = urllib.parse.quote(f"{query} when:{days}d")
+    url = f"https://news.google.com/rss/search?q={q}&hl={ed['hl']}&gl={ed['gl']}&ceid={ed['ceid']}"
+    r = _get(url)
+    if not r:
+        return []
+    out = []
+    try:
+        root = ET.fromstring(r.content)
+    except ET.ParseError:
+        return []
+    for it in root.iter("item"):
+        title = strip_html(it.findtext("title"))
+        source = strip_html(it.findtext("source"))
+        if source and title.endswith(" - " + source):        # Google adds " - Source name" to each headline
+            title = title[: -len(source) - 3]
+        summary = strip_html(it.findtext("description"))
+        if summary.startswith(title):                       # Google's summary often just repeats the headline
+            summary = ""
+        out.append({"title": title, "summary": summary, "url": it.findtext("link") or "",
+                    "date": _rss_date(it.findtext("pubDate")), "source": source,
+                    "lang": ed["lang"], "via": f"Google News {ed['gl']}"})
+    return out
+
+
+def gdelt(query, days, maxrec=75):
+    params = {"query": query, "mode": "ArtList", "format": "json", "timespan": f"{max(1, days)}d",
+              "maxrecords": str(maxrec), "sort": "DateDesc"}
+    r = _get("https://api.gdeltproject.org/api/v2/doc/doc?" + urllib.parse.urlencode(params))
+    if not r:
+        return []
+    try:
+        data = r.json()
+    except ValueError:          # GDELT answers in plain text when it is busy
+        return []
+    out = []
+    for a in data.get("articles", []):
+        sd = a.get("seendate", "")
+        date = f"{sd[:4]}-{sd[4:6]}-{sd[6:8]}" if len(sd) >= 8 else ""
+        out.append({"title": a.get("title", ""), "summary": "", "url": a.get("url", ""), "date": date,
+                    "source": a.get("domain", ""), "lang": (a.get("language") or "")[:2].lower(), "via": "GDELT"})
+    return out
+
+
+def rss_feed(feed):
+    r = _get(feed["url"])
+    if not r:
+        return []
+    try:
+        root = ET.fromstring(r.content)
+    except ET.ParseError:
+        return []
+    out = []
+    atom = "{http://www.w3.org/2005/Atom}"
+    for it in list(root.iter("item")) + list(root.iter(atom + "entry")):
+        title = strip_html(it.findtext("title") or it.findtext(atom + "title"))
+        link = it.findtext("link") or ""
+        if not link:
+            el = it.find(atom + "link")
+            link = el.get("href", "") if el is not None else ""
+        date = _rss_date(it.findtext("pubDate") or "") or (it.findtext(atom + "updated") or "")[:10]
+        summary = strip_html(it.findtext("description") or it.findtext(atom + "summary") or "")[:600]
+        out.append({"title": title, "summary": summary, "url": link, "date": date,
+                    "source": feed.get("name", ""), "lang": "", "via": "RSS"})
+    return out
+
+
+def collect(cfg, days):
+    src = cfg.get("sources") or {}
+    delay = float((cfg.get("run") or {}).get("delay_seconds", 1.5))
+    items = []
+    gn = src.get("google_news") or {}
+    if gn.get("enabled"):
+        for ed in gn.get("editions", []):
+            got = 0
+            for q in (gn.get("queries") or {}).get(ed["lang"], []):
+                res = google_news(q, ed, days)
+                items += res
+                got += len(res)
+                time.sleep(delay)
+            log(f"  Google News {ed['gl']}/{ed['lang']}: {got} headlines")
+    gd = src.get("gdelt") or {}
+    if gd.get("enabled"):
+        got = 0
+        for q in gd.get("queries", []):
+            res = gdelt(q, days)
+            items += res
+            got += len(res)
+            time.sleep(max(delay, 5))       # GDELT asks for one request every 5 seconds
+        log(f"  GDELT: {got} headlines")
+    for feed in src.get("rss_feeds") or []:
+        res = rss_feed(feed)
+        items += res
+        log(f"  RSS {feed.get('name', feed['url'])}: {len(res)} items")
+    cutoff = (dt.date.today() - dt.timedelta(days=days + 1)).isoformat()
+    return [i for i in items if i["title"] and i["url"] and (not i["date"] or i["date"] >= cutoff)]

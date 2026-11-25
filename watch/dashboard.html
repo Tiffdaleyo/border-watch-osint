@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>__TITLE__</title>
+<style>
+  :root { --navy:#13294b; --blue:#1f5fa8; --bg:#f4f6f9; --card:#fff; --ink:#1d2430; --muted:#5b6575; --line:#dde2ea;
+          --high:#b3261e; --med:#b86e00; --low:#3d7a3d; --home:#fff6d6; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; background:var(--bg); color:var(--ink); }
+  header { background:var(--navy); color:#fff; padding:22px 24px 18px; }
+  header h1 { margin:0; font-size:26px; }
+  header p { margin:6px 0 0; color:#c9d6ea; }
+  .wrap { max-width:1200px; margin:0 auto; padding:18px; }
+  .banner { background:#fdecea; border:1px solid #f3b8b3; padding:10px 14px; border-radius:8px; margin-bottom:14px; }
+  .note { font-size:13px; color:var(--muted); }
+  .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(135px,1fr)); gap:12px; margin-bottom:16px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:14px; }
+  .card .n { font-size:28px; font-weight:700; }
+  .card .l { font-size:13px; color:var(--muted); }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:14px; margin-bottom:16px; }
+  h2 { font-size:17px; margin:0 0 10px; }
+  .bar { display:flex; align-items:center; gap:8px; margin:4px 0; font-size:13px; }
+  .bar .name { width:44%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .bar .track { flex:1; background:#e8edf4; border-radius:4px; height:12px; }
+  .bar .fill { background:var(--blue); height:12px; border-radius:4px; }
+  .bar .v { width:34px; text-align:right; font-variant-numeric:tabular-nums; }
+  table { width:100%; border-collapse:collapse; font-size:14px; }
+  td:first-child { white-space:nowrap; }
+  th, td { text-align:left; padding:8px 6px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.03em; }
+  tr.home td { background:var(--home); }
+  .pill { display:inline-block; padding:1px 8px; border-radius:10px; font-size:12px; font-weight:600; color:#fff; }
+  .High { background:var(--high); } .Medium { background:var(--med); } .Low { background:var(--low); } .Update { background:#5b6575; }
+  .list { margin:0; padding-left:18px; font-size:14px; } .list li { margin:6px 0; }
+  .wide { grid-column:1 / -1; }
+  .tag { display:inline-block; background:#e8edf4; border-radius:4px; padding:0 6px; margin:1px; font-size:12px; }
+  .filters { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:10px; }
+  .filters select, .filters input { padding:7px; border:1px solid var(--line); border-radius:6px; font-size:14px; }
+  .filters input[type=search] { flex:1; min-width:180px; }
+  details { margin-top:4px; font-size:12px; color:var(--muted); }
+  a { color:var(--blue); }
+  .Rising { color:var(--high); font-weight:600; } .Falling { color:var(--low); font-weight:600; }
+  .downloads a { margin-right:14px; }
+  footer { font-size:12px; color:var(--muted); padding:20px; text-align:center; }
+</style>
+</head>
+<body>
+<header>
+  <h1>__TITLE__</h1>
+  <p>__SUBTITLE__ · updated <span id="updated"></span></p>
+</header>
+<div class="wrap">
+  <div id="demo" class="banner" hidden><b>Demo data.</b> Everything on this page is invented to show how the site works. Real results appear after the first daily run.</div>
+  <p class="note"><b>Unofficial project, open-source news only.</b> Not a government service and not linked to any agency's official systems. Leads from open-source news, found automatically. Each item must be verified against the original article and official sources before any action. The risk score shows which reports are worth a closer look; it is not evidence and never reflects a person's nationality.</p>
+
+  <div class="cards" id="cards"></div>
+
+  <div class="grid">
+    <div class="card"><h2>__REGION__ and __HOME__: latest</h2><ol class="list" id="regional"></ol></div>
+    <div class="card"><h2>Visa, entry and policy changes</h2><ol class="list" id="policy"></ol><p class="note">Worldwide. New rules, visa requirements, travel bans and border systems.</p></div>
+    <div class="card" id="watchbox"><h2>Watch list hits</h2><ol class="list" id="watch"></ol><p class="note">Names and terms on the watch list in <code>config.yaml</code>.</p></div>
+  </div>
+
+  <div class="grid">
+    <div class="card"><h2>Topics</h2><div id="cats"></div></div>
+    <div class="card"><h2>Countries mentioned</h2><div id="countries"></div></div>
+    <div class="card"><h2>Routes (from → to)</h2><div id="routes"></div><p class="note">Only when the article names both or one end of the journey.</p></div>
+    <div class="card"><h2>Airports mentioned</h2><div id="airports"></div></div>
+    <div class="card"><h2>This week compared with usual</h2><table id="trends"></table></div>
+    <div class="card"><h2>Reports per week</h2><div id="weeks"></div></div>
+  </div>
+
+  <div class="card">
+    <h2>All reports</h2>
+    <div class="filters">
+      <input type="search" id="q" placeholder="Search headlines (e.g. Haiti, impostor, Heathrow)">
+      <select id="fcat"><option value="">All topics</option></select>
+      <select id="fcountry"><option value="">All countries</option></select>
+      <select id="flevel"><option value="">Incidents and updates</option><option value="Incident">Incidents only</option><option>High</option><option>Medium</option><option>Low</option><option value="Update">Policy and other updates</option></select>
+      <select id="fscope"><option value="">Worldwide</option><option value="region">__REGION__ only</option><option value="home">__HOME__ only</option></select>
+      <select id="fsort"><option value="region">__REGION__ first</option><option value="date">Newest first</option><option value="risk">Highest risk first</option></select>
+      <select id="fdays"><option value="">Any date</option><option value="7">Last 7 days</option><option value="30">Last 30 days</option><option value="90">Last 90 days</option></select>
+    </div>
+    <p class="note"><span id="shown"></span> · rows highlighted in yellow mention __HOME__ · <span class="downloads"><a href="events.csv">Download CSV (Excel)</a><a href="bulletin.html">Weekly bulletin</a></span></p>
+    <table>
+      <thead><tr><th>Date</th><th>Risk</th><th>Report</th><th>Topics</th><th>Places</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h2>How the risk score works</h2>
+    <p class="note">Only incidents (crimes) are scored; policy, security and deportation news shows as "Update". Points are added when these words appear in the report. __BANDS__ The words and points are set in <code>config.yaml</code>.</p>
+    <table id="method"></table>
+  </div>
+</div>
+<footer>Built with open-source news only. Only headlines, short summaries and links are stored, never full articles.</footer>
+
+<script>
+const DATA = __DATA__;
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+$("updated").textContent = DATA.updated;
+$("demo").hidden = !DATA.demo;
+
+const S = DATA.summary;
+const card = (n, l) => `<div class="card"><div class="n">${n}</div><div class="l">${l}</div></div>`;
+$("cards").innerHTML = card(S.total, "reports in the last " + DATA.report_days + " days")
+  + card(S.by_level.High || 0, "High-risk incidents") + card(S.region_count, DATA.region + " reports")
+  + card(S.home_count, "mention " + DATA.home) + card(S.update_count, "policy and other updates")
+  + card(S.watch_count, "watch list hits") + card(DATA.new_today, "new in the latest run");
+
+const item = e => `<li><span class="pill ${e.level}">${e.level === "Update" ? "Update" : e.level + " " + e.score}</span>
+  <a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.title)}</a> <span class="note">${esc(e.date)} · ${esc(e.source)}</span></li>`;
+const listInto = (el, rows, empty) => { $(el).innerHTML = rows.length ? rows.slice(0, 8).map(item).join("") : `<p class="note">${empty}</p>`; };
+listInto("regional", DATA.events.filter(e => e.region), "Nothing yet.");
+listInto("policy", DATA.events.filter(e => e.kind === "Update" && e.categories.includes("Visa and entry policy")), "Nothing yet.");
+listInto("watch", DATA.events.filter(e => e.watch), "No hits. Add names or terms to the watch list in config.yaml.");
+
+function bars(el, pairs) {
+  if (!pairs.length) { $(el).innerHTML = '<p class="note">Nothing yet.</p>'; return; }
+  const max = Math.max(...pairs.map(p => p[1]));
+  $(el).innerHTML = pairs.map(([k, v]) => `<div class="bar"><span class="name" title="${esc(k)}">${esc(k)}</span>
+    <span class="track"><span class="fill" style="display:block;width:${(100 * v / max).toFixed(1)}%"></span></span><span class="v">${v}</span></div>`).join("");
+}
+bars("cats", S.by_category); bars("countries", S.by_country.slice(0, 12)); bars("routes", S.by_route.slice(0, 10));
+bars("airports", S.by_airport.slice(0, 10)); bars("weeks", S.per_week.slice(-12).map(([w, n]) => ["Week of " + w, n]));
+$("trends").innerHTML = "<tr><th>Topic</th><th>This week</th><th>Usual week</th><th></th></tr>" +
+  (S.trends.length ? S.trends.map(t => `<tr><td>${esc(t.category)}</td><td>${t.this_week}</td><td>${t.usual_week}</td><td class="${t.note}">${t.note}</td></tr>`).join("")
+   : '<tr><td colspan="4" class="note">Needs a few weeks of history.</td></tr>');
+$("method").innerHTML = "<tr><th>Indicator</th><th>Points</th><th>Example words</th></tr>" +
+  DATA.method.map(m => `<tr><td>${esc(m.label)}</td><td>${m.points}</td><td class="note">${esc(m.words)}</td></tr>`).join("");
+
+const cats = [...new Set(DATA.events.flatMap(e => e.categories))].sort();
+const ctrs = [...new Set(DATA.events.flatMap(e => e.countries))].sort();
+cats.forEach(c => $("fcat").add(new Option(c, c)));
+ctrs.forEach(c => $("fcountry").add(new Option(c, c)));
+
+function render() {
+  const q = $("q").value.toLowerCase(), fc = $("fcat").value, fco = $("fcountry").value,
+        fl = $("flevel").value, fs = $("fscope").value, fd = +$("fdays").value, so = $("fsort").value;
+  const since = fd ? new Date(Date.now() - fd * 864e5).toISOString().slice(0, 10) : "";
+  const rows = DATA.events.filter(e => (!q || (e.title + " " + e.summary + " " + e.source).toLowerCase().includes(q))
+    && (!fc || e.categories.includes(fc)) && (!fco || e.countries.includes(fco))
+    && (!fl || e.level === fl || e.kind === fl)
+    && (!fs || e[fs]) && (!since || e.date >= since));
+  const rank = {High: 0, Medium: 1, Low: 2, Update: 3};
+  if (so === "region") rows.sort((a, b) => (b.home - a.home) || (b.region - a.region) || b.date.localeCompare(a.date));
+  else if (so === "risk") rows.sort((a, b) => (rank[a.level] - rank[b.level]) || (b.score - a.score) || b.date.localeCompare(a.date));
+  $("shown").textContent = rows.length + " of " + DATA.events.length + " reports shown";
+  $("rows").innerHTML = rows.slice(0, 500).map(e => {
+    const places = [...e.countries, ...e.airports].map(p => `<span class="tag">${esc(p)}</span>`).join("");
+    const route = (e.origin || e.destination) ? `<div class="note">Route: ${esc(e.origin || "?")} → ${esc(e.destination || "?")}</div>` : "";
+    const counts = [e.documents_count ? e.documents_count + " documents" : "", e.people_count ? e.people_count + " people" : ""].filter(Boolean).join(", ");
+    return `<tr class="${e.home ? "home" : ""}"><td>${esc(e.date)}</td><td><span class="pill ${e.level}">${e.level === "Update" ? "Update" : e.level + " " + e.score}</span></td>
+      <td><a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.title)}</a><div class="note">${esc(e.source)}${counts ? " · " + counts : ""}</div>${route}
+      ${e.reasons.length ? `<details><summary>Why this score</summary>${e.reasons.map(esc).join("<br>")}</details>` : ""}</td>
+      <td>${e.categories.map(c => `<span class="tag">${esc(c)}</span>`).join("")}</td><td>${places}</td></tr>`;
+  }).join("");
+}
+["q", "fcat", "fcountry", "flevel", "fscope", "fsort", "fdays"].forEach(id => $(id).addEventListener("input", render));
+render();
+</script>
+</body>
+</html>
