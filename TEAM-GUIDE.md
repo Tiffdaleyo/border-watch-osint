@@ -330,6 +330,8 @@ smuggling ring appears in both Passports & Documents and Immigration.
 `#policy`, `#official`. A link ending in an Event ID (for example `#BWO-2026-0123`) still opens that report.
 
 **Everywhere on the site:**
+- **Light or dark:** the site opens in a light theme. The **☾ Dark** button at the top right switches to dark (and
+  **☀ Light** switches back). Each computer or phone remembers its own choice.
 - **Filter bar:** choose the period, the scope (World, Caribbean or Jamaica), topic, country, nationality, transport
   mode, news vs official releases, review status, or incidents and updates. You can also search headlines or an
   Event ID. Every chart, list and number follows the filters, and the filters stay on when you change section.
@@ -479,3 +481,4 @@ Privacy rules are in `watch/privacy.py`.
 | 2026-11-26 | Alerts limited to stories dated within the last 7 days, after the first live alert listed 145 incidents from the backlog. |
 | 2026-11-26 | Site organised into **sections** (Overview, Passports & Documents, Immigration & Irregular Movement, Human Trafficking, Citizenship & Residence, Border Security, Seizures & Contraband, Visa & Entry Rules, Official Updates), each with its own link, quick sub-topic buttons, relevant charts and a download of the current view. New **Stowaways** and **Travel advisories** topics. Embassy, high commission and foreign-ministry sources added. Fixed: English figures such as "13.795 kg" were read as 13,795 kg. |
 | 2026-11-26 | Key-number cards are clickable. A "Filters on" line shows every active filter with a ✕. An Event ID search from an alert link now clears when you open a section. |
+| 2026-11-26 | Light theme by default, with a Light / Dark button that each device remembers. |

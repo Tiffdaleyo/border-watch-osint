@@ -4,42 +4,58 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>__TITLE__</title>
+<script>document.documentElement.dataset.theme = localStorage.getItem("bwo-theme") || "light";</script>
 <script src="vendor/echarts.min.js"></script>
 <style>
+  /* light theme (default) */
   :root {
-    --bg:#070d1a; --panel:#0e1729; --panel2:#132036; --line:#1e2b45; --ink:#e8edf6; --muted:#93a1bb; --dim:#64738f;
-    --accent:#338ced; --high:#eb6263; --med:#d28e05; --low:#0aac23; --upd:#7d8aa5; --home:#f2c14e;
-    --g1:#338ced; --g2:#e76624; --g3:#00a888; --g4:#d28e05; --g5:#e24d8b; --g6:#9887ef; --g7:#9fb43c;
+    --bg:#f3f5f9; --panel:#ffffff; --panel2:#edf1f7; --line:#d6dde9; --ink:#14213d; --ink2:#2b3a55; --muted:#4a5873; --dim:#6b7890;
+    --accent:#1f6fd1; --high:#d03b3c; --med:#b06f00; --low:#0a8a1e; --upd:#6b7690; --home:#a87800;
+    --g1:#2a7de1; --g2:#e0621f; --g3:#00977a; --g4:#c08000; --g5:#d63f7e; --g6:#7b68e0; --g7:#7a9220;
+    --hdr1:#ffffff; --hdr2:#f3f5f9; --fbar:rgba(243,245,249,.94); --snav:#ffffff; --pill:#c6cfdf; --pillc:#4a5873;
+    --split:#e7ebf2; --land:#dfe6f0; --landb:#b9c4d6; --landh:#cdd7e6; --edge:#ffffff; --tt:#ffffff; --heat0:#dbe7fb;
+    --demoink:#8a1c1c; --shadow:0 1px 2px rgba(20,33,61,.06);
     --r:14px;
   }
+  html[data-theme="dark"] {
+    --bg:#070d1a; --panel:#0e1729; --panel2:#132036; --line:#1e2b45; --ink:#e8edf6; --ink2:#cfd8ea; --muted:#93a1bb; --dim:#64738f;
+    --accent:#338ced; --high:#eb6263; --med:#d28e05; --low:#0aac23; --upd:#7d8aa5; --home:#f2c14e;
+    --g1:#338ced; --g2:#e76624; --g3:#00a888; --g4:#d28e05; --g5:#e24d8b; --g6:#9887ef; --g7:#9fb43c;
+    --hdr1:#0c1730; --hdr2:#070d1a; --fbar:rgba(7,13,26,.92); --snav:#0a1324; --pill:#2c3d61; --pillc:#b7c3da;
+    --split:#17233a; --land:#15233d; --landb:#26385d; --landh:#1c2e4f; --edge:#0e1729; --tt:#0b1426; --heat0:#1d3557;
+    --demoink:#ffd0d0; --shadow:none;
+  }
+  .themebtn { background:var(--panel); border:1px solid var(--line); color:var(--ink); border-radius:30px; padding:5px 12px; cursor:pointer; font-size:12.5px; white-space:nowrap; }
+  .themebtn:hover { border-color:var(--accent); }
   * { box-sizing:border-box; }
   body { margin:0; background:var(--bg); color:var(--ink); font:14px/1.5 "Inter","Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif; }
   a { color:var(--ink); text-decoration:none; } a:hover { color:var(--accent); }
   button { font:inherit; }
 
-  .hdr { background:linear-gradient(180deg,#0c1730,#070d1a); border-bottom:1px solid var(--line); }
+  .hdr { background:linear-gradient(180deg,var(--hdr1),var(--hdr2)); border-bottom:1px solid var(--line); }
   .hdr .in { max-width:1480px; margin:0 auto; padding:16px 22px; display:flex; gap:16px; align-items:center; flex-wrap:wrap; }
   .logo { width:40px; height:40px; border-radius:10px; display:grid; place-items:center; font-weight:800; letter-spacing:.02em;
           background:conic-gradient(from 210deg,#338ced,#00a888,#338ced); color:#06101f; }
+  .ttl { flex:1 1 360px; min-width:0; }
   .ttl h1 { margin:0; font-size:20px; letter-spacing:.01em; }
   .ttl p { margin:1px 0 0; color:var(--muted); font-size:12.5px; }
   .grow { flex:1; }
-  .pill { font-size:11px; letter-spacing:.08em; text-transform:uppercase; border:1px solid #2c3d61; color:#b7c3da; padding:5px 10px; border-radius:30px; white-space:nowrap; }
+  .pill { font-size:11px; letter-spacing:.08em; text-transform:uppercase; border:1px solid var(--pill); color:var(--pillc); padding:5px 10px; border-radius:30px; white-space:nowrap; }
   .upd { font-size:12px; color:var(--muted); display:flex; align-items:center; gap:8px; white-space:nowrap; }
   .upd i { width:8px; height:8px; border-radius:50%; background:#0aac23; box-shadow:0 0 0 4px rgba(10,172,35,.18); }
 
-  .fbar { position:sticky; top:0; z-index:20; background:rgba(7,13,26,.92); backdrop-filter:blur(10px); border-bottom:1px solid var(--line); }
+  .fbar { position:sticky; top:0; z-index:20; background:var(--fbar); backdrop-filter:blur(10px); border-bottom:1px solid var(--line); }
   .fbar .in { max-width:1480px; margin:0 auto; padding:10px 22px; display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
   .seg { display:inline-flex; background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:3px; }
   .seg button { background:none; border:0; color:var(--muted); padding:6px 11px; border-radius:7px; cursor:pointer; font-size:12.5px; }
-  .seg button.on { background:var(--panel2); color:var(--ink); box-shadow:inset 0 0 0 1px #2c3d61; }
+  .seg button.on { background:var(--panel2); color:var(--ink); box-shadow:inset 0 0 0 1px var(--pill); }
   .fbar select, .fbar input { background:var(--panel); color:var(--ink); border:1px solid var(--line); border-radius:10px; padding:8px 10px; font:inherit; font-size:12.5px; }
   .fbar input { min-width:160px; flex:1; }
   .fbar select { max-width:190px; }
   .reset { background:none; border:1px solid var(--line); color:var(--muted); border-radius:10px; padding:7px 12px; cursor:pointer; font-size:12.5px; }
   .reset:hover { color:var(--ink); border-color:var(--accent); }
 
-  .snav { background:#0a1324; border-bottom:1px solid var(--line); }
+  .snav { background:var(--snav); border-bottom:1px solid var(--line); }
   .snav .in { max-width:1480px; margin:0 auto; padding:0 22px; display:flex; gap:2px; flex-wrap:wrap; }
   .snav a { display:flex; align-items:center; gap:6px; padding:11px 10px; color:var(--muted); font-size:12.5px; white-space:nowrap;
             border-bottom:2px solid transparent; }
@@ -64,13 +80,14 @@
   .grid { grid-auto-flow:dense; }
   [data-hide] { display:none !important; }
   .wrap { max-width:1480px; margin:0 auto; padding:18px 22px 30px; }
-  .demo { background:rgba(235,98,99,.1); border:1px solid rgba(235,98,99,.4); color:#ffd0d0; padding:9px 14px; border-radius:var(--r); margin-bottom:14px; font-size:13px; }
+  .demo { background:rgba(235,98,99,.1); border:1px solid rgba(235,98,99,.4); color:var(--demoink); padding:9px 14px; border-radius:var(--r); margin-bottom:14px; font-size:13px; }
   .note { font-size:12px; color:var(--muted); margin:0 0 14px; }
   .note b { color:var(--ink); }
 
   .grid { display:grid; grid-template-columns:repeat(12,1fr); gap:14px; }
   .s4 { grid-column:span 4; } .s5 { grid-column:span 5; } .s6 { grid-column:span 6; }
   .s7 { grid-column:span 7; } .s8 { grid-column:span 8; } .s12 { grid-column:span 12; }
+  .card, .kpi { box-shadow:var(--shadow); }
   .card { background:var(--panel); border:1px solid var(--line); border-radius:var(--r); padding:14px 16px; min-width:0; position:relative; }
   .card h2 { margin:0; font-size:12px; font-weight:600; letter-spacing:.09em; text-transform:uppercase; color:var(--muted); }
   .card .sub { font-size:12px; color:var(--dim); margin:2px 0 6px; }
@@ -110,7 +127,7 @@
   table.rep td { padding:10px 8px; border-bottom:1px solid var(--line); vertical-align:top; }
   table.rep tr:hover td { background:rgba(51,140,237,.05); }
   table.rep tr.home td:first-child { box-shadow:inset 3px 0 0 var(--home); }
-  .tag { display:inline-block; font-size:11px; color:#c5cfe2; background:var(--panel2); border:1px solid var(--line); border-radius:6px; padding:0 6px; margin:2px 3px 0 0; }
+  .tag { display:inline-block; font-size:11px; color:var(--ink2); background:var(--panel2); border:1px solid var(--line); border-radius:6px; padding:0 6px; margin:2px 3px 0 0; }
   .gdot { display:inline-block; width:8px; height:8px; border-radius:2px; margin-right:5px; vertical-align:middle; }
   .tablewrap { max-height:640px; overflow:auto; margin-top:8px; }
   details.why { font-size:12px; color:var(--muted); margin-top:4px; }
@@ -129,13 +146,13 @@
   .lk-form { display:flex; gap:10px; flex-wrap:wrap; align-items:flex-end; margin:10px 0 6px; }
   .lk-form label { display:flex; flex-direction:column; gap:4px; font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; }
   .lk-form select, .lk-form input { background:var(--panel2); color:var(--ink); border:1px solid var(--line); border-radius:10px; padding:9px 10px; font:inherit; font-size:13px; min-width:200px; }
-  .lk-go { background:var(--accent); color:#06101f; border:0; border-radius:10px; padding:10px 18px; font-weight:700; cursor:pointer; }
+  .lk-go { background:var(--accent); color:#fff; border:0; border-radius:10px; padding:10px 18px; font-weight:700; cursor:pointer; }
   .lk-go:hover { filter:brightness(1.1); }
   .lk-grid { display:grid; grid-template-columns:repeat(12,1fr); gap:14px; margin-top:12px; }
   .lk-box { background:var(--panel2); border:1px solid var(--line); border-radius:12px; padding:12px 14px; min-width:0; }
   .lk-box h3 { margin:0 0 6px; font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); font-weight:600; }
   .lk-links { display:flex; flex-wrap:wrap; gap:6px; }
-  .lk-links a { font-size:12.5px; border:1px solid var(--line); background:var(--panel); border-radius:8px; padding:6px 10px; color:#cfd8ea; }
+  .lk-links a { font-size:12.5px; border:1px solid var(--line); background:var(--panel); border-radius:8px; padding:6px 10px; color:var(--ink2); }
   .lk-links a:hover { border-color:var(--accent); color:var(--ink); }
   .lk-stat { display:flex; gap:18px; flex-wrap:wrap; margin-bottom:6px; }
   .lk-stat div { font-size:12px; color:var(--muted); } .lk-stat b { display:block; font-size:22px; color:var(--ink); }
@@ -143,15 +160,15 @@
   @media (max-width:1150px) { .lk-grid > * { grid-column:span 12 !important; } }
 
   .nr { color:var(--dim); font-style:italic; }
-  .chip.off { color:#00a888; }
+  .chip.off { color:var(--g3); }
   .rv { font-size:10.5px; padding:1px 7px; border-radius:20px; background:var(--panel2); border:1px solid var(--line); color:var(--muted); white-space:nowrap; }
-  .rv.Reviewed, .rv.Corrected { color:#00a888; border-color:#00a888; } .rv.Awaiting { color:var(--home); border-color:#6b5a26; }
+  .rv.Reviewed, .rv.Corrected { color:var(--g3); border-color:var(--g3); } .rv.Awaiting { color:var(--home); border-color:var(--home); }
   .eid { font-family:ui-monospace,Menlo,Consolas,monospace; font-size:11px; color:var(--muted); }
   details.rec { font-size:12.5px; margin-top:6px; }
   details.rec summary { cursor:pointer; color:var(--accent); font-size:12px; }
   table.recT { border-collapse:collapse; margin-top:6px; width:100%; max-width:760px; }
   table.recT th { text-align:left; color:var(--dim); font-weight:600; font-size:11.5px; padding:4px 10px 4px 0; vertical-align:top; white-space:nowrap; width:190px; }
-  table.recT td { padding:4px 0; color:#cfd8ea; vertical-align:top; }
+  table.recT td { padding:4px 0; color:var(--ink2); vertical-align:top; }
   table.recT a.rel { color:var(--accent); cursor:pointer; margin-right:8px; }
   footer { max-width:1480px; margin:0 auto; padding:0 22px 30px; font-size:11.5px; color:var(--dim); }
 
@@ -177,9 +194,10 @@
 <div class="hdr"><div class="in">
   <div class="logo">BW</div>
   <div class="ttl"><h1>__TITLE__</h1><p>__SUBTITLE__</p></div>
-  <div class="grow"></div>
+
   <span class="pill">Unofficial · open-source only</span>
   <span class="upd"><i></i>Updated <span id="updated"></span></span>
+  <button class="themebtn" id="theme" title="Switch between light and dark"></button>
 </div></div>
 
 <nav class="snav" aria-label="Sections"><div class="in" id="snav"></div></nav>
@@ -366,6 +384,9 @@ const LV = {High: css("--high"), Medium: css("--med"), Low: css("--low"), Update
 const INK = css("--ink"), MUTED = css("--muted"), LINE = css("--line");
 
 $("updated").textContent = DATA.updated;
+/* light / dark: remembered on this device; the page reloads so every chart redraws in the new colours */
+$("theme").textContent = document.documentElement.dataset.theme === "dark" ? "☀ Light" : "☾ Dark";
+$("theme").onclick = () => { localStorage.setItem("bwo-theme", document.documentElement.dataset.theme === "dark" ? "light" : "dark"); location.reload(); };
 $("demo").hidden = !DATA.demo;
 const today = DATA.updated.slice(0, 10);
 const ev = DATA.events.map(e => ({tags: [], related: [], home: false, region: false, watch: false, review_status: "Automatically collected", ...e,
@@ -427,9 +448,9 @@ function filtered(ignorePeriod, ignoreSection, ignoreTopic) {
 const charts = {};
 ["map", "jmap", "trend", "riskmix", "topics", "countries", "routes", "airports", "modes", "nats", "natroute", "pubs"].forEach(id => charts[id] = echarts.init($(id)));
 window.addEventListener("resize", () => Object.values(charts).forEach(c => c.resize()));
-const TT = {backgroundColor: "#0b1426", borderColor: "#2c3d61", textStyle: {color: INK, fontSize: 12}, extraCssText: "border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.4)"};
-const AX = {axisLine: {lineStyle: {color: LINE}}, axisTick: {show: false}, axisLabel: {color: MUTED, fontSize: 11}, splitLine: {lineStyle: {color: "#17233a"}}};
-const EMPTY = {title: {text: "Nothing in this view", left: "center", top: "middle", textStyle: {color: "#64738f", fontSize: 13, fontWeight: 400}}};
+const TT = {backgroundColor: css("--tt"), borderColor: css("--line"), textStyle: {color: INK, fontSize: 12}, extraCssText: "border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.18)"};
+const AX = {axisLine: {lineStyle: {color: LINE}}, axisTick: {show: false}, axisLabel: {color: MUTED, fontSize: 11}, splitLine: {lineStyle: {color: css("--split")}}};
+const EMPTY = {title: {text: "Nothing in this view", left: "center", top: "middle", textStyle: {color: css("--dim"), fontSize: 13, fontWeight: 400}}};
 
 function hbar(chart, pairs, colorFn, onClick, selected) {
   if (!pairs.length) { chart.setOption(EMPTY, true); return; }
@@ -450,7 +471,7 @@ const count = (rows, fn) => { const m = new Map(); rows.forEach(e => fn(e).forEa
 
 let geoReady = false, mapView = {center: null, zoom: 1};
 fetch("vendor/world.json").then(r => r.json()).then(w => { echarts.registerMap("world", w); geoReady = true; drawMap(current); drawJourneys(current); })
-  .catch(() => charts.map.setOption({title: {text: "Map could not load", left: "center", top: "middle", textStyle: {color: "#64738f", fontSize: 13}}}));
+  .catch(() => charts.map.setOption({title: {text: "Map could not load", left: "center", top: "middle", textStyle: {color: css("--dim"), fontSize: 13}}}));
 $("mWorld").onclick = () => { mapView = {center: null, zoom: 1}; drawMap(current); };
 $("mCar").onclick = () => { mapView = {center: [-72, 17], zoom: 5.5}; drawMap(current); };
 
@@ -472,13 +493,13 @@ function drawMap(rows) {
     tooltip: {...TT, trigger: "item", formatter: p => p.seriesType === "map" || !p.data ? esc(p.name) : tip(p)},
     geo: {map: "world", roam: true, ...(mapView.center ? {center: mapView.center} : {}), zoom: mapView.zoom, scaleLimit: {min: 1, max: 14},
           left: 4, right: 4, top: 8, bottom: 8,
-          itemStyle: {areaColor: "#15233d", borderColor: "#26385d", borderWidth: .6},
-          emphasis: {itemStyle: {areaColor: "#1c2e4f"}, label: {show: false}}, label: {show: false}},
+          itemStyle: {areaColor: css("--land"), borderColor: css("--landb"), borderWidth: .6},
+          emphasis: {itemStyle: {areaColor: css("--landh")}, label: {show: false}}, label: {show: false}},
     series: [
       {type: "scatter", coordinateSystem: "geo", data: pts.filter(p => !p.high), symbolSize: size,
-       itemStyle: {color: "rgba(51,140,237,.8)", borderColor: "#0e1729", borderWidth: 2}, z: 3},
+       itemStyle: {color: "rgba(51,140,237,.8)", borderColor: css("--edge"), borderWidth: 2}, z: 3},
       {type: "effectScatter", coordinateSystem: "geo", data: pts.filter(p => p.high), symbolSize: size,
-       rippleEffect: {scale: 2.2, brushType: "stroke"}, itemStyle: {color: "rgba(235,98,99,.9)", borderColor: "#0e1729", borderWidth: 2}, z: 4},
+       rippleEffect: {scale: 2.2, brushType: "stroke"}, itemStyle: {color: "rgba(235,98,99,.9)", borderColor: css("--edge"), borderWidth: 2}, z: 4},
     ],
   }, true);
   charts.map.off("click"); charts.map.on("click", p => { if (p.seriesType !== "map" && p.data) setFilter("country", p.name, "fcountry"); });
@@ -494,10 +515,10 @@ function drawTrend(rows) {
   const series = GROUPS.map(([g], i) => {
     const m = {}; rows.filter(e => e.g === i).forEach(e => { const k = key(e.date); m[k] = (m[k] || 0) + 1; });
     return {name: g, type: "bar", stack: "a", data: keys.map(k => m[k] || 0), barMaxWidth: 26, emphasis: {focus: "series"},
-            itemStyle: {color: GCOL[i], borderColor: "#0e1729", borderWidth: 1}};
+            itemStyle: {color: GCOL[i], borderColor: css("--edge"), borderWidth: 1}};
   });
   charts.trend.setOption({
-    animationDuration: 400, grid: {left: 6, right: 10, top: 36, bottom: 4, containLabel: true},
+    animationDuration: 400, grid: {left: 6, right: 10, top: 58, bottom: 4, containLabel: true},
     legend: {top: 0, left: 0, icon: "roundRect", itemWidth: 10, itemHeight: 10, textStyle: {color: MUTED, fontSize: 11.5}},
     tooltip: {...TT, trigger: "axis", axisPointer: {type: "shadow", shadowStyle: {color: "rgba(51,140,237,.06)"}},
               formatter: ps => `<b>${daily ? "" : "Week of "}${ps[0].axisValue}</b><br>` + (ps.filter(p => p.value).map(p => `${p.marker}${esc(p.seriesName)}: <b>${p.value}</b>`).join("<br>") || "No reports")},
@@ -516,7 +537,7 @@ function drawRiskMix(rows) {
     tooltip: {...TT, trigger: "axis", axisPointer: {type: "shadow", shadowStyle: {color: "rgba(51,140,237,.06)"}}},
     xAxis: {type: "value", minInterval: 1, ...AX}, yAxis: {type: "category", data: names, ...AX, axisLine: {show: false}},
     series: levels.map(l => ({name: l === "Update" ? "Update" : l, type: "bar", stack: "r", barMaxWidth: 16,
-      itemStyle: {color: LV[l], borderColor: "#0e1729", borderWidth: 1},
+      itemStyle: {color: LV[l], borderColor: css("--edge"), borderWidth: 1},
       data: names.map(n => rows.filter(e => GROUPS[e.g][0] === n && e.level === l).length)})),
   }, true);
   charts.riskmix.off("click"); charts.riskmix.on("click", p => setFilter("group", gi(p.name), "fgroup"));
@@ -547,8 +568,8 @@ function drawJourneys(rows) {
       : p.seriesType === "scatter" ? `<b>${esc(p.name)}</b><br>${esc(p.seriesName)} in <b>${p.value[2]}</b> report${p.value[2] === 1 ? "" : "s"}` : esc(p.name)},
     legend: {top: 0, left: 0, textStyle: {color: MUTED, fontSize: 11.5}, data: ["Origin", "Transit", "Destination", "Interception"]},
     geo: {map: "world", roam: true, ...(jView.center ? {center: jView.center} : {}), zoom: jView.zoom, scaleLimit: {min: 1, max: 14},
-          left: 4, right: 4, top: 28, bottom: 8, itemStyle: {areaColor: "#15233d", borderColor: "#26385d", borderWidth: .6},
-          emphasis: {itemStyle: {areaColor: "#1c2e4f"}, label: {show: false}}, label: {show: false}},
+          left: 4, right: 4, top: 28, bottom: 8, itemStyle: {areaColor: css("--land"), borderColor: css("--landb"), borderWidth: .6},
+          emphasis: {itemStyle: {areaColor: css("--landh")}, label: {show: false}}, label: {show: false}},
     series: [
       {name: "Reported connection", type: "lines", coordinateSystem: "geo", data: lines, z: 2,
        lineStyle: {color: css("--g6"), opacity: .55, curveness: .22, width: 1},
@@ -557,7 +578,7 @@ function drawJourneys(rows) {
       ...ROLES.map(([name, sym, col, off], r) => ({name, type: "scatter", coordinateSystem: "geo", symbol: sym, symbolOffset: off, z: 3 + r,
         data: Object.entries(pts[r]).filter(([c]) => C(c)).map(([c, n]) => ({name: c, value: [...C(c), n]})),
         symbolSize: v => 7 + 12 * Math.sqrt(v[2] / Math.max(1, ...Object.values(pts[r]))),
-        itemStyle: {color: css(col), borderColor: "#0e1729", borderWidth: 1}})),
+        itemStyle: {color: css(col), borderColor: css("--edge"), borderWidth: 1}})),
     ],
   }, true);
   // line width follows the number of reports (set after, so it can use each line's value)
@@ -577,8 +598,8 @@ function drawNatRoute(rows) {
     tooltip: {...TT, formatter: p => `${esc(nats[p.value[1]])} · ${esc(routes[p.value[0]])}<br><b>${p.value[2]}</b> report${p.value[2] === 1 ? "" : "s"}`},
     xAxis: {type: "category", data: routes, ...AX, axisLabel: {color: MUTED, fontSize: 10.5, interval: 0, rotate: 28, width: 150, overflow: "truncate"}, splitArea: {show: false}},
     yAxis: {type: "category", data: nats, ...AX, axisLine: {show: false}},
-    visualMap: {show: false, min: 1, max: Math.max(1, ...data.map(d => d[2])), inRange: {color: ["#1d3557", css("--g5")]}},
-    series: [{type: "heatmap", data, label: {show: true, color: INK, fontSize: 11}, itemStyle: {borderColor: "#0e1729", borderWidth: 2, borderRadius: 4}}],
+    visualMap: {show: false, min: 1, max: Math.max(1, ...data.map(d => d[2])), inRange: {color: [css("--heat0"), css("--g5")]}},
+    series: [{type: "heatmap", data, label: {show: true, color: INK, fontSize: 11}, itemStyle: {borderColor: css("--edge"), borderWidth: 2, borderRadius: 4}}],
   }, true);
   charts.natroute.off("click"); charts.natroute.on("click", p => setFilter("nat", nats[p.value[1]], "fnat"));
 }
@@ -874,7 +895,7 @@ function runLookup() {
       yAxis: {type: "value", minInterval: 1, ...AX, axisLine: {show: false}},
       series: [{type: "line", data: pts.map(d => d.value), showSymbol: false, lineStyle: {width: 2, color: css("--accent")},
                 areaStyle: {color: "rgba(51,140,237,.15)"}, smooth: .3}]});
-  }).catch(() => { lkChart.hideLoading(); lkChart.setOption({title: {text: "Live news chart unavailable right now; use the GDELT link below", left: "center", top: "middle", textStyle: {color: "#64738f", fontSize: 12, fontWeight: 400}}}); });
+  }).catch(() => { lkChart.hideLoading(); lkChart.setOption({title: {text: "Live news chart unavailable right now; use the GDELT link below", left: "center", top: "middle", textStyle: {color: css("--dim"), fontSize: 12, fontWeight: 400}}}); });
   fetch(gdeltUrl(gq, "ArtList", "&format=json&maxrecords=20")).then(r => r.json()).then(j => {
     const arts = j.articles || [];
     $("lkArts").innerHTML = arts.length ? arts.map(a => `<li><a class="t" href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.title)}</a>
