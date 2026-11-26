@@ -14,6 +14,10 @@ Every morning (06:00 Jamaica time) GitHub runs it for you. It:
 
 > Leads from open-source news only. Verify every item against the original article and official sources before acting. This repository is public: never put case files, names from official systems or anything classified in it.
 
+**Team guide:** [TEAM-GUIDE.md](TEAM-GUIDE.md) explains everything in plain language (sources, topics, every field, scoring, privacy rules, reviews, limits) and keeps a change log.
+
+**Privacy:** ID and passport numbers, victims' names, private addresses and emails are removed from summaries before anything is saved or published (`watch/privacy.py`). Names of people charged or convicted, officials and agencies are kept as the source states them. Nationality is never recorded.
+
 ## Files
 
 | File | What it does |

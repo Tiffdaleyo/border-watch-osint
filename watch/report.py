@@ -16,7 +16,7 @@ FIELDS = ["event_id", "title", "summary_text", "primary_category", "tags", "grou
           "countries", "cities", "airports", "ports", "crossings", "origin", "destination",
           "caribbean_connection", "jamaica_connection", "transport_mode", "document_types", "documents_count",
           "people_count", "weight_kg", "agencies", "outcome", "exploitation", "victim_assistance",
-          "review_status", "review_note", "source", "source_url", "url", "sources", "related", "reasons"]
+          "specialist", "review_status", "review_note", "source", "source_url", "url", "sources", "related", "reasons"]
 # fields the website needs (the stored file keeps more, e.g. the raw article facts)
 DROP = {"article", "matched_words", "other_sources", "action", "lang", "via", "id", "published"}
 KEEP = {"categories", "countries", "airports", "reasons", "title", "date", "level", "score", "kind", "source", "url", "event_id"}
@@ -45,6 +45,7 @@ def slim(e):
 def csv_row(e):
     loc = e.get("location") or {}
     flat = {**e, "cities": loc.get("cities", []), "ports": loc.get("ports", []), "crossings": loc.get("crossings", []),
+            "specialist": [f"{sec}: " + ", ".join(f"{k} = {v or NR}" for k, v in rows) for sec, rows in e.get("specialist", [])],
             "sources": [f"{s.get('publisher', '')} {s.get('date', '')} {s.get('url', '')}".strip() for s in e.get("sources", [])]}
     if e.get("kind") == "Update":
         flat["outcome"] = flat.get("outcome") or "Not applicable (update)"

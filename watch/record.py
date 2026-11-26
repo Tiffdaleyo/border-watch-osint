@@ -394,6 +394,22 @@ def build(ev, site, reviews):
     else:
         ev.pop("exploitation", None)
         ev.pop("victim_assistance", None)
+    ev["specialist"] = _specialist(ev, art, text)
     ensure_sources(ev)
     apply_review(ev, reviews)
+    from . import privacy
+    privacy.apply(ev)
     return ev
+
+
+def _specialist(ev, art, text):
+    """Category-specific details: from the full article when it was read, filled in from the headline otherwise."""
+    from . import specialist
+    head = specialist.sections(ev, text)
+    full = {name: dict(rows) for name, rows in (art.get("specialist") or [])}
+    for name, rows in head:
+        for row in rows:
+            v = full.get(name, {}).get(row[0])
+            if v:
+                row[1] = v
+    return head

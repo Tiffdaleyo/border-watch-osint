@@ -468,7 +468,10 @@ function record(e) {
     ["Transport mode", val(e.transport_mode)], ["Document types", val(e.document_types)], ["Reporting agency", val(e.agencies)],
     ["Reported outcome", e.kind === "Update" ? '<span class="nr">Not applicable (update, not an incident)</span>' : val(e.outcome)],
   ];
-  if (e.categories.includes("Human trafficking")) rows.push(["Exploitation type", val(e.exploitation)], ["Victim assistance", val(e.victim_assistance)]);
+  (e.specialist || []).forEach(([name, items]) => {
+    rows.push([`<span style="color:var(--accent)">${esc(name)} details</span>`, ""]);
+    items.forEach(([k, v]) => rows.push([esc(k), /^https?:/.test(v) ? v.split("; ").map(u => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(u)}</a>`).join("<br>") : val(v)]));
+  });
   rows.push(["Review status", esc(e.review_status) + (e.review_note ? ` <span class="nr">· ${esc(e.review_note)}</span>` : "")],
             ["Sources", src || NR], ["Related events", rel || '<span class="nr">None found</span>']);
   return `<details class="rec"><summary>Full record</summary><table class="recT">${rows.map(([k, v]) => `<tr><th>${k}</th><td>${v}</td></tr>`).join("")}</table></details>`;

@@ -155,3 +155,56 @@ def test_jamaica_connection_role():
           "origin": "Jamaica", "destination": "United Kingdom", "airports": ["Norman Manley (KIN)"]}
     car, jm = record.connections(ev, site)
     assert car == ["Origin (Jamaica)"] and any("airport" in j for j in jm)
+
+
+# ---- specialist fields and privacy ----------------------------------------------------------
+from watch import privacy, specialist  # noqa: E402
+
+
+def _sec(ev, text):
+    return {name: dict(rows) for name, rows in specialist.sections(ev, text)}
+
+
+def test_specialist_only_for_matching_category():
+    ev = {"categories": ["Drug trafficking"], "kind": "Incident"}
+    assert _sec(ev, "Cocaine seized at the port") == {}
+
+
+def test_document_fraud_fields():
+    ev = {"categories": ["Passport fraud"], "kind": "Incident", "document_types": ["Passport"], "documents_count": 12}
+    s = _sec(ev, "Officers seized 12 fake Canadian passports and blank booklets from a passenger at check-in")["Document fraud"]
+    assert s["Issuing country of the document"] == "Canada"
+    assert "Blank" in s["Blank versus issued documents"] and s["Detection stage"].startswith("At check-in")
+    assert s["Number of documents"] == "12"
+
+
+def test_smuggling_fees_and_transit():
+    ev = {"categories": ["Migrant smuggling"], "kind": "Incident"}
+    s = _sec(ev, "Migrants travelled via Panama and each paid $5,000 to smugglers")["Migrant smuggling"]
+    assert s["Reported transit"] == "Panama" and "$5,000" in s["Reported fees and currency"]
+    assert "Smugglers / guides" in s["Alleged facilitators (role)"]
+
+
+def test_trafficking_victims_kept_apart():
+    ev = {"categories": ["Human trafficking"], "kind": "Incident"}
+    s = _sec(ev, "Police identified 12 potential victims; 4 victims were rescued and referred to a shelter")["Human trafficking"]
+    assert "12" in s["Potential / suspected victims (as stated)"] and "4" in s["Identified / rescued victims (as stated)"]
+    assert s["Assistance or referral reported"] == "Reported"
+
+
+def test_policy_fields():
+    ev = {"categories": ["Visa and entry policy"], "kind": "Update", "date": "2026-11-20", "countries": ["United Kingdom"]}
+    s = _sec(ev, "The Home Office said the new visa requirement takes effect from January 5, 2027 for nationals of Jamaica")["Policy update"]
+    assert s["Issuing authority"] == "Home Office" and "January 5, 2027" in s["Effective date"]
+    assert s["Status"] == "Active / in force" and "gov.uk" in s["Official guidance link"]
+
+
+def test_privacy():
+    t = privacy.scrub("He showed passport number A1234567. The victim, Jane Doe, was 16.")
+    assert "A1234567" not in t and "Jane Doe" not in t
+    ht = privacy.scrub("Police rescued Maria Lopez, 17. Suspect John Brown was charged.", trafficking=True)
+    assert "Maria Lopez" not in ht and "John Brown" in ht
+    ev = {"title": "Trafficking Victims Rescued In Kingston", "summary": "Trafficking Victims Rescued In Kingston  Gleaner",
+          "categories": ["Human trafficking"]}
+    privacy.apply(ev)
+    assert ev["summary"].startswith("Trafficking Victims Rescued In Kingston")
