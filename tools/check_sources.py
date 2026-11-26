@@ -31,6 +31,15 @@ CANDIDATES = [
     ("CBSA", ["https://www.canada.ca/en/border-services-agency/news.html",
               "https://api.io.canada.ca/io-server/gc/news/en/v2?dept=canadaborderservicesagency&type=newsreleases&sort=publishedDate&orderBy=desc&pick=50&format=atom&atomtitle=CBSA"]),
 ]
+PAGES = [
+    ("Frontex", "https://www.frontex.europa.eu/media-centre/news/news-release/", "/media-centre/news/news-release/"),
+    ("US ICE", "https://www.ice.gov/newsroom", "/news/releases/"),
+    ("US DHS", "https://www.dhs.gov/news-releases/press-releases", "/news/20"),
+    ("UNODC", "https://www.unodc.org/unodc/en/press/allpress.html", "/press/releases/"),
+    ("IOM", "https://www.iom.int/news", "/news/"),
+    ("PICA", "https://www.pica.gov.jm/news", "/news/"),
+    ("CBP page", "https://www.cbp.gov/newsroom/media-releases/all", "/newsroom/"),
+]
 H = {"User-Agent": "Mozilla/5.0 (compatible; BorderWatchOSINT/1.0; +https://github.com)"}
 for name, urls in CANDIDATES:
     for u in urls:
@@ -45,3 +54,20 @@ for name, urls in CANDIDATES:
         except Exception as e:
             print(f"{name:16} ERR {type(e).__name__} {u}")
     sys.stdout.flush()
+
+print("\n--- pages: links that look like releases ---")
+import urllib.parse
+for name, url, pat in PAGES:
+    try:
+        t = requests.get(url, headers=H, timeout=25).text
+        found = []
+        for m in re.finditer(r'<a\s[^>]*href="([^"]+)"[^>]*>(.*?)</a>', t, re.S):
+            href, text = m.group(1), re.sub(r"<[^>]+>|\s+", " ", m.group(2)).strip()
+            full = urllib.parse.urljoin(url, href)
+            if pat in full and full.rstrip("/") != url.rstrip("/") and 25 <= len(text) <= 220:
+                found.append((text[:90], full))
+        print(f"{name:10} {len(found)} links")
+        for x in found[:6]:
+            print("     ", x[0], "|", x[1])
+    except Exception as e:
+        print(name, "ERR", type(e).__name__)
