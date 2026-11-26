@@ -100,8 +100,15 @@ download. **Anything the report does not state is shown as "Not reported".** Not
 | Event date | When it happened, **only if the article says so**. It is marked *exact* (a date is written), *approximate* (for example "on Monday" or "last week") or *unknown*. |
 | Publication date | When the article was published. |
 | First captured / Last updated | When the site first found the report, and when its record last changed (a new source, a full read or a review). |
-| Country / territory, City, Airport, Seaport, Border crossing | The places named in the report. |
-| Route (as stated) | From → to, only when the report states it, for example "bound for London". |
+| Incident location: countries named, City, Airport, Seaport, Border crossing | The places named in the report (where it happened, or places mentioned). |
+| Journey: origin | Where the journey started, only when stated ("from Jamaica"). |
+| Transit points, in order | Places passed through, only when stated ("via Panama"). |
+| Intended destination | Where the journey was going, only when stated ("bound for Spain"). |
+| Interception location | Where it was stopped: the airport, seaport or crossing named, or "intercepted in/at/off X". |
+| Route completeness | *Complete* (origin and destination stated), *Partial* (only part stated) or *Not reported*. |
+| Source basis | *Explicitly stated in article* (the full article was read) or *Stated in headline or summary*. |
+| Journey (summary) | For example "Jamaica → Panama → Spain", or for an incomplete journey "Origin: Jamaica; destination not reported". |
+| Nationality (as stated) | Only when the report says it in words, for example "a Jamaican national", "two Venezuelan migrants", "citizens of Haiti". See below. |
 | Caribbean connection | What kind of link the report has to the region: origin, destination, transit, occurred in or named, or another explicit link. Otherwise "None identified". |
 | Jamaica connection | The specific link to Jamaica: a Jamaican airport or port, a journey that started in or was bound for Jamaica, PICA named, or "named in the report (role not stated)". |
 | Transport mode | Air passenger, air cargo, maritime cargo, small vessel, land, or postal / courier. "Mixed" means more than one is stated. |
@@ -112,8 +119,24 @@ download. **Anything the report does not state is shown as "Not reported".** Not
 | Sources | Every publisher that carried the story, with links and dates. |
 | Related events | Up to 3 other reports on the same topic within 90 days that share places, a route or wording. Click one to jump to it. |
 
-**Never recorded:** nationality. The site records places (where something happened, a route) and the country that
-issued a document. It never records the nationality of a person.
+**Four different things, kept apart on purpose:**
+
+| | Means | Example |
+|---|---|---|
+| Incident location | Where it happened | Arrested at Norman Manley airport (Jamaica) |
+| Journey origin | Where the journey started | Flight from Jamaica |
+| Document issuing country | The country a document claims to be from | A fake Canadian passport |
+| Nationality | The person's nationality, as the report states it | A Venezuelan national |
+
+**Nationality rules.** Nationality is useful for analysis and reporting, so it is recorded, but under strict rules:
+- It is recorded **only when the report states it in words**, next to a person: "Jamaican woman", "nationals of
+  Haiti", "ciudadano venezolano".
+- It is **never inferred** from a name, a route, an origin or a document's issuing country.
+- "Jamaican police" or "UK student visa" do not count, because the word does not describe a person.
+- It is **never used in the risk score**. A tested rule checks that the score stays the same with or without it.
+- It can be used as a filter (Any nationality) and appears in two charts: *Nationality (as stated)* and
+  *Nationality by journey*.
+- A pattern in the data is a lead for analysis. It is never a reason to treat an individual traveller differently.
 
 ## 6. Specialist fields (shown only for the matching category)
 
@@ -125,7 +148,7 @@ reports in that category. Each field still shows "Not reported" unless the artic
 | Document fraud | Document type; issuing country of the document; reported fraud method (counterfeit, forged or altered, stolen blank, stolen genuine, fraudulently obtained genuine, impostor, document factory); number of documents; blank versus issued documents; detection stage (check-in, boarding gate, departure or arrival immigration, transit, baggage, application, mail, cargo, at sea, land border, inland) |
 | Visa / permit fraud | Visa or permit type; purported issuing authority; reported method (forged visa or stamp, forged approval or letter, fraudulent supporting documents, fake agent or website, bribery, sham marriage) |
 | Impostor use | Use of another person's genuine document; detection point; the source's own description of the method |
-| Migrant smuggling | Reported origin, transit and destination; transport mode; people intercepted; alleged facilitators **by role only** (network, smugglers, boat captain, driver, travel agent, document supplier, corrupt official, safe house); reported fees and currency |
+| Migrant smuggling | Reported origin, transit and destination (also in the journey fields); transport mode; people intercepted; alleged facilitators **by role only** (network, smugglers, boat captain, driver, travel agent, document supplier, corrupt official, safe house); reported fees and currency |
 | Human trafficking | Exploitation type; potential or suspected victims and identified or rescued victims, **kept separate as the source states them**; assistance or referral reported; proceedings |
 | Citizenship / residence fraud | Programme involved; application stage; alleged misrepresentation; documents involved; administrative or court outcome |
 | Border integrity | Organisation or role implicated (only in corruption or insider reports); alleged conduct; location; investigation, disciplinary or criminal outcome |
@@ -138,7 +161,7 @@ They fill in as articles are re-read, up to 400 per day.
 ## 7. Risk score
 
 Only **incidents** are scored, from 0 to 100. **High** means 40 points or more, and **Medium** means 20 or more.
-A high score means "worth a closer look", never proof. The score **never** uses nationality. Click "Why this score"
+A high score means "worth a closer look", never proof. The score **never** uses nationality (section 5). Click "Why this score"
 on any report to see which indicators it matched.
 
 | Indicator | Points |
@@ -175,7 +198,7 @@ The site republishes public news, but it is itself public. So it follows the sam
 | Victims' names | Removed from summaries in human-trafficking reports (sentences about victims, rescued people, minors) and wherever a name directly follows "victim" | Victims are protected people. Publishing their identity can put them at risk and harm cases. |
 | Suspects, people charged or convicted, officials, agencies | Kept as the source states them, with the allegation or outcome attributed to the source | These are publicly documented cases, and the names help explain them. |
 | Private street addresses and email addresses | Replaced with "[address withheld]" or "[email withheld]" | Not needed for the analysis. |
-| Nationality | Never recorded or scored | It should not drive risk. |
+| Nationality | Recorded only when stated in words; never inferred; never scored | Useful for analysis and reporting, but it must not drive risk or be guessed. |
 | Headlines | Kept as published (only numbers removed) | They are the publisher's own public words and the link to the source. |
 | Full article text | Never stored | Copyright, and the data minimisation principle. |
 
@@ -199,7 +222,7 @@ To record a review:
    workflow by hand.
 
 Fields you can correct: title, primary_category, categories, event_date, event_date_quality, countries, origin,
-destination, transport_mode, outcome, agencies, summary_text, level.
+transit (a list), destination, interception, nationality (a list), transport_mode, outcome, agencies, summary_text, level.
 
 ```yaml
 reviews:
@@ -223,11 +246,16 @@ is public.**
 ## 10. Using the website
 
 - **Filter bar (top):** choose the period, the scope (World, Caribbean or Jamaica), the main group, topic, country,
-  transport mode, review status, or incidents and updates. You can also search headlines or an Event ID. Every
+  nationality, transport mode, review status, or incidents and updates. You can also search headlines or an Event ID. Every
   chart, list and number follows the filters. Click any bar or map bubble to filter by it.
 - **Key numbers:** reports, high-risk incidents, Caribbean, Jamaica, policy updates and weight seized, compared with
   the previous period.
 - **Map:** countries named. A red pulse means the country has high-risk incidents.
+- **Reported journeys map:** distinct markers for origin (●), transit (◆), intended destination (▲) and interception
+  (📍). A line shows a connection the report states between two places. **It is not an actual flight or sailing
+  path.** Line width = number of reports. Next to it, the **Journeys** list shows incomplete journeys as, for
+  example, "Origin: Jamaica; destination not reported".
+- **Nationality (as stated)** and **Nationality by journey:** see the nationality rules in section 5.
 - **Priority feed:** high-risk incidents and anything naming Jamaica.
 - **Trend lookup:** research a route (origin → destination) with live news-index results and ready-made searches.
 - **Charts:** activity over time and risk mix by main group, topics, countries, routes, airports and transport mode.
@@ -280,6 +308,7 @@ Privacy rules are in `watch/privacy.py`.
 | `watch/record.py` | The event record (IDs, dates, location, connections, review status, sources, related) |
 | `watch/specialist.py` | Category-specific fields |
 | `watch/privacy.py` | Privacy filter |
+| `watch/journey.py` | Structured journeys and stated nationality |
 | `watch/analyze.py` | Risk score and trends |
 | `watch/report.py`, `watch/dashboard.html` | Website, CSV and bulletin |
 | `data/events.json` | All stored reports |
@@ -300,3 +329,4 @@ Privacy rules are in `watch/privacy.py`.
 | 2026-11-26 | Full event record: Event IDs, primary category and tags, event vs publication date, location, Caribbean and Jamaica connection, transport mode, agency, outcome, review status (`reviews.yaml`), all sources, related events, "Not reported" for anything not stated. |
 | 2026-11-26 | Topics reorganised into seven main groups. New topics: supporting-document fraud, digital identity fraud, application fraud, corruption and insider facilitation, border technology. Trafficking and smuggling kept separate. Seizures & Contraband section and transport-mode chart added. |
 | 2026-11-26 | Specialist fields per category, and the privacy filter (ID numbers, victims' names, private addresses and emails removed; charged or convicted names kept as reported). This team guide started. |
+| 2026-11-26 | Structured journeys (origin, transit points in order, intended destination, interception location, route completeness, source basis), with a journey map using distinct markers. Incomplete journeys are shown as "Origin: X; destination not reported". Nationality is now recorded when stated in words (never inferred, never scored), with a filter and two charts. |

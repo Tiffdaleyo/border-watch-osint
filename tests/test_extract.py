@@ -208,3 +208,34 @@ def test_privacy():
           "categories": ["Human trafficking"]}
     privacy.apply(ev)
     assert ev["summary"].startswith("Trafficking Victims Rescued In Kingston")
+
+
+# ---- journeys and stated nationality --------------------------------------------------------
+from watch import journey  # noqa: E402
+
+
+def test_journey_structure():
+    ev = {"origin": "Jamaica", "destination": "Spain", "kind": "Incident"}
+    j = journey.build(ev, "travelled from Jamaica via Panama to Spain and was intercepted in Panama", True)
+    assert j["transit"] == ["Panama"] and j["interception"] == "Panama" and j["completeness"] == "Complete"
+    assert j["basis"] == "Explicitly stated in article"
+    assert journey.describe(j) == "Jamaica → Panama → Spain"
+    assert journey.describe({"origin": "Jamaica"}) == "Origin: Jamaica; destination not reported"
+
+
+def test_nationality_only_when_stated():
+    assert journey.nationalities("Two Venezuelan nationals and a Jamaican woman were held") == ["Venezuela", "Jamaica"]
+    assert journey.nationalities("Jamaican police seized cocaine") == []          # an agency, not a person
+    assert journey.nationalities("UK student visa rules change") == []             # a visa, not a person
+    assert journey.nationalities("Capturan a ciudadano venezolano") == ["Venezuela"]
+
+
+def test_nationality_not_in_score():
+    from watch import analyze
+    ev = {"title": "Jamaican man arrested", "summary": "", "categories": ["Passport fraud"], "kind": "Incident",
+          "countries": [], "nationality": ["Jamaica"]}
+    a = dict(ev)
+    analyze.score_event(a, {"indicators": {}, "bands": {"high": 40, "medium": 20}}, [], [], [])
+    b = dict(ev, nationality=[])
+    analyze.score_event(b, {"indicators": {}, "bands": {"high": 40, "medium": 20}}, [], [], [])
+    assert a["score"] == b["score"]

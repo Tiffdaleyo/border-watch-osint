@@ -10,7 +10,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import requests
 
-from . import extract, record, specialist
+from . import extract, journey, record, specialist
 
 HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
                          "Chrome/124.0 Safari/537.36"}
@@ -133,6 +133,10 @@ def article_facts(ev, text, risk_words, focus):
     for key in ("document_types", "countries", "airports", "origin", "destination", "documents_count", "people_count"):
         tmp[key] = facts[key] or ev.get(key)
     facts["specialist"] = specialist.sections(tmp, text[:5000])
+    # journey details and stated nationality, from the opening part of the article (the event itself)
+    facts["transit"] = journey.transit_points(text[:4000])
+    facts["interception"], facts["interception_country"] = journey.interception(text[:3000], tmp)
+    facts["nationality"] = journey.nationalities(text[:4000])
     return facts
 
 

@@ -11,7 +11,8 @@
 #               this file is public.
 # by:           optional, your initials
 # corrections:  optional. Fields you may correct: title, primary_category, categories, event_date,
-#               event_date_quality, countries, origin, destination, transport_mode, outcome, agencies,
+#               event_date_quality, countries, origin, transit, destination, interception, nationality,
+#               transport_mode, outcome, agencies,
 #               summary_text, level
 #
 # Example (remove the # at the start of each line to use it, and keep the spaces at the start of lines):

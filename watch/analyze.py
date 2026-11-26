@@ -84,7 +84,9 @@ def summarise(events, cfg, today=None):
         for c in ev["countries"]:
             by_country[c] += 1
         if ev.get("origin") or ev.get("destination"):
-            by_route[f"{ev.get('origin') or '?'} → {ev.get('destination') or '?'}"] += 1
+            o, de = ev.get("origin"), ev.get("destination")
+            by_route[f"{o} → {de}" if o and de else (f"Origin: {o}; destination not reported" if o
+                     else f"Destination: {de}; origin not reported")] += 1
         for ap in ev.get("airports", []):
             by_airport[ap] += 1
         by_level[ev["level"]] += 1

@@ -13,7 +13,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 # CSV columns, in the order of the event record. Empty values are written as "Not reported".
 FIELDS = ["event_id", "title", "summary_text", "primary_category", "tags", "groups", "kind", "level", "score",
           "event_date", "event_date_quality", "published", "first_seen", "last_updated",
-          "countries", "cities", "airports", "ports", "crossings", "origin", "destination",
+          "countries", "cities", "airports", "ports", "crossings", "origin", "transit", "destination", "interception",
+          "route_completeness", "route_basis", "route_text", "nationality",
           "caribbean_connection", "jamaica_connection", "transport_mode", "document_types", "documents_count",
           "people_count", "weight_kg", "agencies", "outcome", "exploitation", "victim_assistance",
           "specialist", "review_status", "review_note", "source", "source_url", "url", "sources", "related", "reasons"]
@@ -25,6 +26,10 @@ KEEP = {"categories", "countries", "airports", "reasons", "title", "date", "leve
 def slim(e):
     # empty values are left out to keep the page small; the page shows them as "Not reported"
     out = {k: v for k, v in e.items() if k not in DROP and (k in KEEP or v not in ("", None, 0, False, [], {}))}
+    if isinstance(out.get("journey"), dict):
+        out["journey"] = {k: v for k, v in out["journey"].items() if v}
+        if out["journey"].get("completeness") == "Not reported" and len(out["journey"]) <= 1:
+            out.pop("journey")
     if isinstance(out.get("location"), dict):
         out["location"] = {k: v for k, v in out["location"].items() if v} or None
         if not out["location"]:
@@ -44,7 +49,10 @@ def slim(e):
 
 def csv_row(e):
     loc = e.get("location") or {}
-    flat = {**e, "cities": loc.get("cities", []), "ports": loc.get("ports", []), "crossings": loc.get("crossings", []),
+    j = e.get("journey") or {}
+    flat = {**e, "transit": j.get("transit", []), "interception": j.get("interception", ""),
+            "route_completeness": j.get("completeness", ""), "route_basis": j.get("basis", ""), "route_text": j.get("text", ""),
+            "cities": loc.get("cities", []), "ports": loc.get("ports", []), "crossings": loc.get("crossings", []),
             "specialist": [f"{sec}: " + ", ".join(f"{k} = {v or NR}" for k, v in rows) for sec, rows in e.get("specialist", [])],
             "sources": [f"{s.get('publisher', '')} {s.get('date', '')} {s.get('url', '')}".strip() for s in e.get("sources", [])]}
     if e.get("kind") == "Update":
@@ -86,7 +94,9 @@ def write_dashboard(out_dir, events, summary, cfg, new_today, demo=False):
         "method": _method(cfg),
         "region_countries": site.get("region_countries", []),
         "all_countries": sorted(COUNTRIES),
-        "centroids": {c: CENTROIDS[c] for c in {c for e in events for c in e.get("countries", [])} if c in CENTROIDS},
+        "centroids": {c: CENTROIDS[c] for c in {c for e in events for c in e.get("countries", []) + e.get("nationality", [])
+                                                + [(e.get("journey") or {}).get(k, "") for k in ("origin", "destination", "interception_country")]
+                                                + (e.get("journey") or {}).get("transit", [])} if c in CENTROIDS},
     }
     with open(os.path.join(HERE, "dashboard.html"), encoding="utf-8") as f:
         page = f.read()

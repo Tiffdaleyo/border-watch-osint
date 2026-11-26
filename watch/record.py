@@ -10,7 +10,7 @@ import re
 
 import yaml
 
-from . import extract
+from . import extract, journey
 from .places import COUNTRIES
 
 NR = "Not reported"
@@ -303,7 +303,8 @@ def load_reviews(path):
 
 
 EDITABLE = {"title", "primary_category", "categories", "event_date", "event_date_quality", "countries", "origin",
-            "destination", "transport_mode", "outcome", "agencies", "summary_text", "level", "note"}
+            "destination", "transit", "interception", "nationality", "transport_mode", "outcome", "agencies",
+            "summary_text", "level", "note"}
 
 
 def apply_review(ev, reviews):
@@ -396,7 +397,25 @@ def build(ev, site, reviews):
         ev.pop("victim_assistance", None)
     ev["specialist"] = _specialist(ev, art, text)
     ensure_sources(ev)
+    for k in ("transit", "interception"):
+        ev.pop(k, None)
+    ev["nationality"] = list(dict.fromkeys(journey.nationalities(text) + (art.get("nationality") or [])))[:5]
     apply_review(ev, reviews)
+    # the journey is built after the review, so a corrected origin, destination or transit shows up in it
+    j = journey.build(ev, text, bool(art.get("read")))
+    if art.get("read"):
+        j["transit"] = list(dict.fromkeys(j["transit"] + [c for c in art.get("transit", []) if c not in (ev.get("origin"), ev.get("destination"))]))[:4]
+        if not j["interception"] and art.get("interception"):
+            j["interception"], j["interception_country"] = art["interception"], art.get("interception_country", "")
+        if j["transit"] and j["completeness"] == "Not reported":
+            j["completeness"], j["basis"] = "Partial", "Explicitly stated in article"
+    if ev.get("transit"):
+        j["transit"] = ev["transit"] if isinstance(ev["transit"], list) else [ev["transit"]]
+    if ev.get("interception"):
+        j["interception"] = ev["interception"]
+        j["interception_country"] = extract._canonical(ev["interception"]) or j.get("interception_country", "")
+    j["text"] = journey.describe(j)
+    ev["journey"] = j
     from . import privacy
     privacy.apply(ev)
     return ev

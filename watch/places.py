@@ -1,8 +1,8 @@
 """Country and airport names the program recognises in headlines.
 
 Each country has its English name first, then other spellings (Spanish, French, Portuguese, short forms).
-To teach the program a new spelling, add it to the list. Names of people's nationality ("Jamaican",
-"Nigerian") are deliberately NOT here: the watch records places, not nationalities.
+To teach the program a new spelling, add it to the list. Nationality words ("Jamaican", "Nigerian") are NOT here,
+so a nationality is never mistaken for a place. Stated nationality is handled separately in watch/journey.py.
 """
 
 COUNTRIES = {

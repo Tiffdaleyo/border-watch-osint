@@ -16,7 +16,7 @@ Every morning (06:00 Jamaica time) GitHub runs it for you. It:
 
 **Team guide:** [TEAM-GUIDE.md](TEAM-GUIDE.md) explains everything in plain language (sources, topics, every field, scoring, privacy rules, reviews, limits) and keeps a change log.
 
-**Privacy:** ID and passport numbers, victims' names, private addresses and emails are removed from summaries before anything is saved or published (`watch/privacy.py`). Names of people charged or convicted, officials and agencies are kept as the source states them. Nationality is never recorded.
+**Privacy:** ID and passport numbers, victims' names, private addresses and emails are removed from summaries before anything is saved or published (`watch/privacy.py`). Names of people charged or convicted, officials and agencies are kept as the source states them. Nationality is recorded only when stated in words and is never used in the risk score.
 
 ## Files
 
@@ -62,7 +62,7 @@ python run.py --days 30   # real search, last 30 days
 
   Topic words live in `watch/extract.py` (CATEGORIES); the groups are in GROUPS in the same file.
 - **Reviewing reports:** open `reviews.yaml`, press the pencil, add the report's Event ID with `reviewed`, `corrected` or `excluded` (instructions are inside the file), then Commit changes. The site shows it after the next daily run. Excluded reports are hidden from the site but kept in the data.
-- **The event record:** every report has a permanent ID (BWO-2026-0001), primary category and tags, event date (exact, approximate or unknown) and publication date, first captured and last updated, location (country, city, airport, seaport, border crossing), Caribbean and Jamaica connection, transport mode, reporting agency, reported outcome, review status, all sources and related events. Anything the report does not state is shown as "Not reported": nothing is guessed from a headline, and nationality is never recorded. Open "Full record" under any report on the site, or download the CSV.
+- **The event record:** every report has a permanent ID (BWO-2026-0001), primary category and tags, event date (exact, approximate or unknown) and publication date, first captured and last updated, location (country, city, airport, seaport, border crossing), journey (origin, transit points, intended destination, interception, completeness, source basis), nationality only when stated in words (never inferred, never scored), Caribbean and Jamaica connection, transport mode, reporting agency, reported outcome, review status, all sources and related events. Anything the report does not state is shown as "Not reported": nothing is guessed from a headline. Open "Full record" under any report on the site, or download the CSV.
 - **Change your region:** edit `site > region_countries` and `region_words`.
 - **Change the risk points:** edit `risk > indicators`.
 - **Recognise a new airport or city:** add it in `watch/places.py`.
