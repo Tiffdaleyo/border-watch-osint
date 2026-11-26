@@ -59,6 +59,18 @@ def main():
         events, added = store.merge(events, new)
         print(f"  {added} new events added (the rest were repeats of stories already stored)")
 
+    if args.rebuild:
+        # re-read every stored headline with the current word lists, so changes apply to the whole history
+        focus = set(site.get("region_countries", [])) | {site.get("home_country", "")}
+        kept = []
+        for ev in events:
+            facts = extract.extract(ev, focus)
+            if facts:
+                ev.update(facts)
+                kept.append(ev)
+        print(f"Re-read {len(events)} stored events with the current word lists; {len(kept)} still on-topic.")
+        events = kept
+
     # Re-score everything, so a change to config.yaml applies to the whole history.
     for ev in events:
         ev.setdefault("kind", "Incident")

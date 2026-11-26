@@ -779,7 +779,7 @@
   "matched_words": [
    "pasaportes falsos"
   ],
-  "action": false,
+  "action": true,
   "document_types": [
    "Passport"
   ],
@@ -1580,7 +1580,7 @@
   "matched_words": [
    "pasaportes falsos"
   ],
-  "action": false,
+  "action": true,
   "document_types": [
    "Passport"
   ],
@@ -2259,6 +2259,7 @@
    "INTERPOL and watch lists"
   ],
   "matched_words": [
+   "alerta roja",
    "interpol"
   ],
   "action": false,
@@ -2812,40 +2813,6 @@
   "people_count": 0,
   "weight_kg": 0.0,
   "id": "6013836327d7",
-  "first_seen": "2026-11-26",
-  "other_sources": [],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
-  "watch": false,
-  "home": false,
-  "region": false
- },
- {
-  "title": "Ticketmaster Updates App With Watchlist, Personalized Recommendations and Smarter Search",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNa0twNXBlcmluWXZ5dVJsck9GSFRndGo1d2NRVE1ocUJHZTRWc3o0MEZwaHd3RGFfQ1Z3a2ItZ2FKaUdvQXBoOVhHakhZdzdsbUQtVXlGV2dBQUd6WUFWaThxSGMxZ0daS1NnZW9iLWd3dExCeE1hVVpKWGhTNkZxLWZMU3FQOGJXUHdXdFRsamdPXzlZb1lwLVl5N2ZvYmRiT2ZwV3h6c2doT2poNGdzLUdVejdYYV9aWmJlOG84elo?oc=5",
-  "date": "2026-11-25",
-  "source": "TicketNews",
-  "lang": "en",
-  "via": "Google News US",
-  "kind": "Update",
-  "categories": [
-   "INTERPOL and watch lists"
-  ],
-  "matched_words": [
-   "watchlist"
-  ],
-  "action": false,
-  "document_types": [],
-  "countries": [],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0.0,
-  "id": "5f618f7f7a3d",
   "first_seen": "2026-11-26",
   "other_sources": [],
   "score": 0,
@@ -3473,15 +3440,14 @@
   "source": "Pulzo",
   "lang": "es",
   "via": "Google News MX",
-  "kind": "Update",
+  "kind": "Incident",
   "categories": [
    "INTERPOL and watch lists"
   ],
   "matched_words": [
-   "interpol",
-   "notificacion roja"
+   "notificacion roja de interpol"
   ],
-  "action": false,
+  "action": true,
   "document_types": [],
   "countries": [
    "Colombia",
@@ -3496,9 +3462,11 @@
   "id": "424d28de80c1",
   "first_seen": "2026-11-26",
   "other_sources": [],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
+  "score": 15,
+  "level": "Low",
+  "reasons": [
+   "Wanted person or INTERPOL notice (+15: interpol, notificacion roja)"
+  ],
   "watch": false,
   "home": false,
   "region": false
@@ -3708,39 +3676,6 @@
   "id": "2d6f77074f80",
   "first_seen": "2026-11-26",
   "other_sources": [],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
-  "watch": false,
-  "home": false,
-  "region": false
- },
- {
-  "title": "Weekend Watchlist: What’s new in theaters, on streaming",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxPOGdFUlJVSHRNdnRqZnVlMVd6ZlRVeThhQTB5UmZabnNFT1c1bFYwLXUxWmdFN0xFbDBUVlNsTTBSWHJhOEZpd0VsaXBKMFhKUUhFVkFEajJuMlhRZFVrVmJNNHlHQnlSbC02dFdHVFVZSlFMZ2dYNHZwVXZPRDNpOWpn?oc=5",
-  "date": "2026-11-25",
-  "source": "WBAL News Radio",
-  "lang": "en",
-  "via": "Google News CA",
-  "kind": "Update",
-  "categories": [
-   "INTERPOL and watch lists"
-  ],
-  "matched_words": [
-   "watchlist"
-  ],
-  "action": false,
-  "document_types": [],
-  "countries": [],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0.0,
-  "id": "2b555c2a0bde",
-  "first_seen": "2026-11-26",
   "score": 0,
   "level": "Update",
   "reasons": [],
@@ -4572,7 +4507,7 @@
    "cocaina",
    "contenedor"
   ],
-  "action": false,
+  "action": true,
   "document_types": [],
   "countries": [],
   "airports": [],
@@ -6722,8 +6657,7 @@
    "INTERPOL and watch lists"
   ],
   "matched_words": [
-   "interpol",
-   "notificacion roja"
+   "notificacion roja de interpol"
   ],
   "action": false,
   "document_types": [],
@@ -6795,8 +6729,7 @@
    "INTERPOL and watch lists"
   ],
   "matched_words": [
-   "interpol",
-   "notificacion roja"
+   "notificacion roja de interpol"
   ],
   "action": false,
   "document_types": [],
@@ -7857,43 +7790,6 @@
    "Organised network or ring (+15: network)",
    "Detected at an airport or border post (+5: airport)"
   ],
-  "watch": false,
-  "home": false,
-  "region": false
- },
- {
-  "title": "Ukraine Sank a Russian Warship in Libya—Now a Senior Official Wants Zelenskyy on a Terrorism Watchlist",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOdmMzOVFodldKUnB0dEVqZVJUbUhfOEtjN3N2YVBGcnZmaGpSdnFwZWUxdFBnRjduaG1QZU12d2prTjExTkg1R0VYdEFmVU5LbFhmM25ZdnBOVHVadHRxTks3aUIweUpBNGZ6Ui1PMUNobEJHNHU5TGx0MFh2cnVNYXVRWGM0dW1tOUdKRjkzVVF5NHA5bHVkaVJEcjVXdGRaUzBrSWFfa2h4T0hGYjJFOEdvQ3F5bVNQQW1peHNjdXNzTXZTXzJRTFJzY2ZIWEpBc3FnaFUzRQ?oc=5",
-  "date": "2026-11-24",
-  "source": "UNITED24 Media",
-  "lang": "en",
-  "via": "Google News GB",
-  "kind": "Update",
-  "categories": [
-   "INTERPOL and watch lists"
-  ],
-  "matched_words": [
-   "watchlist"
-  ],
-  "action": false,
-  "document_types": [],
-  "countries": [
-   "Ukraine",
-   "Libya"
-  ],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0.0,
-  "id": "251d467019ed",
-  "first_seen": "2026-11-26",
-  "other_sources": [],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
   "watch": false,
   "home": false,
   "region": false
@@ -9040,6 +8936,7 @@
    "INTERPOL and watch lists"
   ],
   "matched_words": [
+   "alerta roja",
    "interpol"
   ],
   "action": false,
@@ -11494,6 +11391,7 @@
    "INTERPOL and watch lists"
   ],
   "matched_words": [
+   "alerta roja",
    "interpol"
   ],
   "action": false,
@@ -11673,8 +11571,7 @@
    "INTERPOL and watch lists"
   ],
   "matched_words": [
-   "interpol",
-   "notificacion roja"
+   "notificacion roja de interpol"
   ],
   "action": false,
   "document_types": [],
@@ -12557,15 +12454,14 @@
   "source": "Última Hora",
   "lang": "es",
   "via": "Google News MX",
-  "kind": "Update",
+  "kind": "Incident",
   "categories": [
    "INTERPOL and watch lists"
   ],
   "matched_words": [
-   "interpol",
-   "notificacion roja"
+   "notificacion roja de interpol"
   ],
-  "action": false,
+  "action": true,
   "document_types": [],
   "countries": [
    "Argentina"
@@ -12579,9 +12475,11 @@
   "id": "ecb45a4ac5b6",
   "first_seen": "2026-11-26",
   "other_sources": [],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
+  "score": 15,
+  "level": "Low",
+  "reasons": [
+   "Wanted person or INTERPOL notice (+15: interpol, notificacion roja)"
+  ],
   "watch": false,
   "home": false,
   "region": false
@@ -12924,14 +12822,15 @@
   "source": "AlbertoNews",
   "lang": "es",
   "via": "Google News MX",
-  "kind": "Update",
+  "kind": "Incident",
   "categories": [
    "INTERPOL and watch lists"
   ],
   "matched_words": [
+   "alerta roja",
    "interpol"
   ],
-  "action": false,
+  "action": true,
   "document_types": [],
   "countries": [
    "Peru",
@@ -12946,9 +12845,11 @@
   "id": "cff4eed2b5a3",
   "first_seen": "2026-11-26",
   "other_sources": [],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
+  "score": 15,
+  "level": "Low",
+  "reasons": [
+   "Wanted person or INTERPOL notice (+15: interpol)"
+  ],
   "watch": false,
   "home": false,
   "region": false
@@ -13167,40 +13068,6 @@
   "other_sources": [],
   "score": 0,
   "level": "Low",
-  "reasons": [],
-  "watch": false,
-  "home": false,
-  "region": false
- },
- {
-  "title": "Watchlist update: 5 movies to stream on Netflix, Prime Video and Paramount+ as new releases bring horror,",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMiqwJBVV95cUxOaEtNekpSTmhpT1NJTllaODl0WmViQTBqVVh5ODRReG1hdzRTTGhNbnB0WGFDTTBmWVYxa1RDNUppVW44SHVSc21mR1NNVjA3bThyUHRTTHppOFFXSDhpM3pZU09PVzlkZHNBb0QwbjNiTkdrRnFoTjdkSXdkUlNhUFdGcC04VmFQVF84WTVsUDFISTM0Xzk3LUJncDJBNV9JYTlCdXFMQmhZV3VBUzQyTzdtUVJqWkdtX2hpb2RCVG5vSW5KTFM4ek5iU2Myd01pNTY5SUZGZjZ5QnJwdkE0Y1FPcTdHbGtPbEcxRG5VVURHZlZNaDhab2FUbVJCeTV5aGVjMmdvX2Vfd2pmRjVVRGtYNEpYaXNEWUdEU2JVOS1FanhWWTliY2VsRdIBsAJBVV95cUxQZUQyVXR6S1JZc2ZObjhseDVSSFI3UTZGQ19tQVZzUGZrM0ZsQi1jV2stQUNxUzh4c2YzcGdtWWdSUERfUWwyMlhmNVdxcjdBVkNQZDM1MTIwTUZVdnd5bm9FRFV5Y1ZIQ19BcmRneHhURFdQMkpzaXUyOWtWcldhaENEaFJkUDJYS0dFQUs5Q1Z5WjE2QV82Nmh5bVFqdXh5bm1lYVhBdHBNRHFKNTRjajRSZlp0WC1oWHl4bmszXzJhOWx6YVd1SnMtVzFkX2dnMTQ0dWtsWWwxRjdfTlN6VzZmZi03X2RSMHYtLXBseDJwYU5US2dSTVpxQ3lWeFBWcWliTFZlVVRSV1NYVkhfWTk0a2NFVVIzOHB0S2M1RThMMXlIM0RmQXQxT2R0RTlG?oc=5",
-  "date": "2026-11-22",
-  "source": "The Economic Times",
-  "lang": "en",
-  "via": "Google News GB",
-  "kind": "Update",
-  "categories": [
-   "INTERPOL and watch lists"
-  ],
-  "matched_words": [
-   "watchlist"
-  ],
-  "action": false,
-  "document_types": [],
-  "countries": [],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0.0,
-  "id": "c1d0545eedc8",
-  "first_seen": "2026-11-26",
-  "other_sources": [],
-  "score": 0,
-  "level": "Update",
   "reasons": [],
   "watch": false,
   "home": false,
@@ -14697,40 +14564,6 @@
   "region": false
  },
  {
-  "title": "Four-year Wisconsin star on John R. Wooden Award preseason watchlist",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE01OVNVVU9LcDNZaGRoRDF2SDJBRHJseV9LSDFUU2pJT2Q4eXhPMWtaYmdfWEJBS2lvZjFUaDBVTEFXdGxRMXpJTFpIZzd6ekp3TG1BM1FlbGkxMEJJblA1azZIem1EVzhfMms1TnBiWXRrOTZFeFhVeWln?oc=5",
-  "date": "2026-11-22",
-  "source": "AOL.com",
-  "lang": "en",
-  "via": "Google News GB",
-  "kind": "Update",
-  "categories": [
-   "INTERPOL and watch lists"
-  ],
-  "matched_words": [
-   "watchlist"
-  ],
-  "action": false,
-  "document_types": [],
-  "countries": [],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0.0,
-  "id": "11fbe5af3e53",
-  "first_seen": "2026-11-26",
-  "other_sources": [],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
-  "watch": false,
-  "home": false,
-  "region": false
- },
- {
   "title": "Police uncover fake visa factory in Chittagong, arrest 1",
   "summary": "",
   "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQN3NpUVVQdGdCSWZiY3lDUEh6MG4ycTQ5ZzhWN1duRms3WFBsSFZfWVJpY2lmRXlwZzJiNEpwT2lhblY1MXFzLV95d3k4YUFORU5vU0JoYV9qR2RGSWtNdHExdHkybzJxMFRyb0hXd3VTYXJ6c3M2aWVOWDNBZ2VJSmpPRmRUYm9iMTdZT2NwV0pqZEl4Z1c5VWRQZnBlQzdfd0HSAacBQVVfeXFMT0dsLW1YQ01RTnVhS1ppa0FyblhfUkc3dDNHUXp1SThzUzlqWE5HQ2FJaWVwVG5xRG05UzQ0RVFnY3gyLV9ycmRqQmx0TmhFeGRzNnVkZTRObkZRRDVzT2xaOTY4V2lTSERyYTJvOEVYenktdUlzTUVXMkc0V2dmRGotWjcwdmZXZ1dvT3pVclY1SkJ3bm1wcmt5YkFXbEpkUXNrZWNmTkk?oc=5",
@@ -14884,14 +14717,15 @@
   "source": "2001 Online",
   "lang": "es",
   "via": "Google News MX",
-  "kind": "Update",
+  "kind": "Incident",
   "categories": [
    "INTERPOL and watch lists"
   ],
   "matched_words": [
+   "alerta roja",
    "interpol"
   ],
-  "action": false,
+  "action": true,
   "document_types": [],
   "countries": [
    "Chile"
@@ -14905,9 +14739,11 @@
   "id": "039f7d6012a6",
   "first_seen": "2026-11-26",
   "other_sources": [],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
+  "score": 15,
+  "level": "Low",
+  "reasons": [
+   "Wanted person or INTERPOL notice (+15: interpol)"
+  ],
   "watch": false,
   "home": false,
   "region": false
@@ -15144,7 +14980,7 @@
    "cargamento",
    "cocaina"
   ],
-  "action": false,
+  "action": true,
   "document_types": [],
   "countries": [
    "Dominican Republic"
@@ -16143,8 +15979,7 @@
    "INTERPOL and watch lists"
   ],
   "matched_words": [
-   "interpol",
-   "notificacion roja"
+   "notificacion roja de interpol"
   ],
   "action": true,
   "document_types": [],
@@ -17386,39 +17221,6 @@
   "region": false
  },
  {
-  "title": "Promising Outdoor Stocks To Add to Your Watchlist - November 20th",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNNEJGQ056R0xWcmtWbXNYT3lCMHM0LWJwZlY2RW0yZnluOVVYVHdLN0lxemxqSWZUMmcxM21PWWptajhaanJIaW91WnoyLXk3b3NqVWtaOGtXVHQwZ1c2anVrOXJMMnVzVlhWbG9XeUpweDNQRGFZcFN6RlN4UmNsdlduUlhQZkdURmdORHljclUwcUJwV1hNdXJjUng5QmZ1ak5sTUlZemY2SXZmNVZwQThwVVc4Ym8tcVVXZnozVQ?oc=5",
-  "date": "2026-11-20",
-  "source": "MarketBeat",
-  "lang": "en",
-  "via": "Google News NG",
-  "kind": "Update",
-  "categories": [
-   "INTERPOL and watch lists"
-  ],
-  "matched_words": [
-   "watchlist"
-  ],
-  "action": false,
-  "document_types": [],
-  "countries": [],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0.0,
-  "id": "d44fbd855938",
-  "first_seen": "2026-11-26",
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
-  "watch": false,
-  "home": false,
-  "region": false
- },
- {
   "title": "South Korean sexual offence fugitive arrested in Pattaya",
   "summary": "",
   "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOYjczeHNIbFloN1NHXzM0M0xDT2wtMHNndDVLaFY1Vlh1LWFoUXZXcTZ3eWw0aGVqTHhOaWJyYzkzZnJNVjVSNk9HUE5nOEZPOV9qMU90Vi1ON0o0b3VhaDVXd1BTV2FYLWF4Sjg1c2U4QnRLRi1TNFFNUG5mR2VkdmdIeXkwTzAxRmFRY2lUNjlab0RleHRReDhrRzVYd2VCSkowbk01YjBUN19Hanc?oc=5",
@@ -17462,15 +17264,14 @@
   "source": "Más Encarnación",
   "lang": "es",
   "via": "Google News MX",
-  "kind": "Update",
+  "kind": "Incident",
   "categories": [
    "INTERPOL and watch lists"
   ],
   "matched_words": [
-   "interpol",
-   "notificacion roja"
+   "notificacion roja de interpol"
   ],
-  "action": false,
+  "action": true,
   "document_types": [],
   "countries": [],
   "airports": [],
@@ -17482,9 +17283,11 @@
   "id": "d157951b7479",
   "first_seen": "2026-11-26",
   "other_sources": [],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
+  "score": 15,
+  "level": "Low",
+  "reasons": [
+   "Wanted person or INTERPOL notice (+15: interpol, notificacion roja)"
+  ],
   "watch": false,
   "home": false,
   "region": false
@@ -18115,14 +17918,14 @@
   "source": "Noticias Venevisión",
   "lang": "es",
   "via": "Google News MX",
-  "kind": "Update",
+  "kind": "Incident",
   "categories": [
    "INTERPOL and watch lists"
   ],
   "matched_words": [
    "interpol"
   ],
-  "action": false,
+  "action": true,
   "document_types": [],
   "countries": [
    "Colombia"
@@ -18136,9 +17939,11 @@
   "id": "a58ea586eba3",
   "first_seen": "2026-11-26",
   "other_sources": [],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
+  "score": 15,
+  "level": "Low",
+  "reasons": [
+   "Wanted person or INTERPOL notice (+15: interpol)"
+  ],
   "watch": false,
   "home": false,
   "region": false
@@ -18932,14 +18737,15 @@
   "source": "INFO7",
   "lang": "es",
   "via": "Google News MX",
-  "kind": "Update",
+  "kind": "Incident",
   "categories": [
    "INTERPOL and watch lists"
   ],
   "matched_words": [
+   "alerta roja",
    "interpol"
   ],
-  "action": false,
+  "action": true,
   "document_types": [],
   "countries": [],
   "airports": [],
@@ -18951,9 +18757,11 @@
   "id": "3e59c1d7c8b6",
   "first_seen": "2026-11-26",
   "other_sources": [],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
+  "score": 15,
+  "level": "Low",
+  "reasons": [
+   "Wanted person or INTERPOL notice (+15: interpol)"
+  ],
   "watch": false,
   "home": false,
   "region": false
@@ -21041,8 +20849,7 @@
    "INTERPOL and watch lists"
   ],
   "matched_words": [
-   "interpol",
-   "notificacion roja"
+   "notificacion roja de interpol"
   ],
   "action": false,
   "document_types": [],
@@ -24223,8 +24030,7 @@
    "INTERPOL and watch lists"
   ],
   "matched_words": [
-   "interpol",
-   "notificacion roja"
+   "notificacion roja de interpol"
   ],
   "action": false,
   "document_types": [],
@@ -24238,39 +24044,6 @@
   "id": "ec5b9e31f2f5",
   "first_seen": "2026-11-26",
   "other_sources": [],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
-  "watch": false,
-  "home": false,
-  "region": false
- },
- {
-  "title": "Prince, Sandfort Named to Wooden Award Watch Lists",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNSWgwVmVZc2stLXZGaURUYnFNbjhvNFUybG54Yk1Ca2E2X3dkdkVlZ0Z6c2VWdE54dmYtSFVKU1hPYWJuUzNGUXhmTjE5Zi1sYW9ISnBHSktMcjhlV3Q4b0ViV0ZRRjlQdGFfNjRkaUIwaWNhOGJfZWc5aV9uREpRclhUcVFnX21KbGZKNk12dk44V0xxNGw5dQ?oc=5",
-  "date": "2026-11-18",
-  "source": "Wisevoter",
-  "lang": "en",
-  "via": "Google News NG",
-  "kind": "Update",
-  "categories": [
-   "INTERPOL and watch lists"
-  ],
-  "matched_words": [
-   "watch lists"
-  ],
-  "action": false,
-  "document_types": [],
-  "countries": [],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0.0,
-  "id": "d34a0c55c683",
-  "first_seen": "2026-11-26",
   "score": 0,
   "level": "Update",
   "reasons": [],
@@ -24528,40 +24301,6 @@
   "region": false
  },
  {
-  "title": "Crooks, McGill named to Wooden Award Preseason Watch List",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQSWJoNm5nNTRtRXlPeGJ1Q0tsQ3BJbEM0UmszLUVOOEkwZ0Q5UWFneEw4Wm9OOVR3aXhNUzhVRUxDblVOLUtycUFIbUxmNU9LX0dUTVNBakRKekZjaDBSU2FtWTNNc1Nna3kxOEJVQ0ZFMzh6aVp6WnJLaWs2ZnF6OEZSUU1QdlR6VTN2Q0ZtVlpEbkJpclJTME5ibDdDdWJCdEpoY3Vzb2laNFhIUW9HQw?oc=5",
-  "date": "2026-11-18",
-  "source": "Oklahoma State University Athletics",
-  "lang": "en",
-  "via": "Google News US",
-  "kind": "Update",
-  "categories": [
-   "INTERPOL and watch lists"
-  ],
-  "matched_words": [
-   "watch list"
-  ],
-  "action": false,
-  "document_types": [],
-  "countries": [],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0.0,
-  "id": "bdb4f2ab69d5",
-  "first_seen": "2026-11-26",
-  "other_sources": [],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
-  "watch": false,
-  "home": false,
-  "region": false
- },
- {
   "title": "Canary Islands See More Than 11,000 Migrant Arrivals in Two Weeks",
   "summary": "",
   "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPdkdpZWNtcURqd3VSTlVRRDJuLXZSUFFZeURlaUk5S0dSOFlCN2VTeGdmM29VSjg0S2tHck56MHFyNFBMOGxxanFhOXVFS0tXRUdJbFRNRXhfY3Y2RTE2VFBqdTNqT0JxTXU1QmNSTXhUbkhfdlRJZmRnSWl1Smp6QXBJRmY0UlpRYmFybXFYdU5qdEd1YmpfOTJoT0lxejU2bWdZM0x5NVhoZw?oc=5",
@@ -24806,40 +24545,6 @@
   "region": false
  },
  {
-  "title": "Sandfort Names to Wooden Award Preseason Watch List - University of Nebraska - Official Athletics Website",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOSW9CWlJsZVFmbWsyUlVQZzdwS3E1YkNqRWhyUkZwcEJlUHkwMG1FUC1ONDMwM0JOUld2WDFWNC1FMC1iNVZ5RmJDVHJKbE41Qm1xOC00OGNzTF9Udkh1ZUtVaW5nZFFpWnYwSzZhbG9NLTlNMy1lYXRZLVluVGRFdWc2WjBFRTVxWUcySmxTa0w?oc=5",
-  "date": "2026-11-18",
-  "source": "huskers.com",
-  "lang": "en",
-  "via": "Google News US",
-  "kind": "Update",
-  "categories": [
-   "INTERPOL and watch lists"
-  ],
-  "matched_words": [
-   "watch list"
-  ],
-  "action": false,
-  "document_types": [],
-  "countries": [],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0.0,
-  "id": "b2798ccee34a",
-  "first_seen": "2026-11-26",
-  "other_sources": [],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
-  "watch": false,
-  "home": false,
-  "region": false
- },
- {
   "title": "Coast Guard offloads over $18M worth of cocaine at Miami Beach station; 3 detained",
   "summary": "",
   "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFByOFg1Q1J6R3BWTVdSaFdZbHZfOEYxaXl2VzBUVDBKTm1ZNjU0MThuVldyT2tISVBSYi16TnJhMTdQNnpjNWxQc3VvcVc1TS1FTUpiQ1dHREd5R05ieDJ1QjZTLWFhMVFHT09z?oc=5",
@@ -25062,7 +24767,7 @@
   "matched_words": [
    "cocaina"
   ],
-  "action": false,
+  "action": true,
   "document_types": [],
   "countries": [],
   "airports": [],
@@ -25829,40 +25534,6 @@
   "region": false
  },
  {
-  "title": "Prince Named to Wooden Watch List - University of Nebraska - Official Athletics Website",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1GQkxCckVDV3F3TXlBTFpFUV8tTld2LVpEcVpPN1lPZkhZNHozLWw4MlZfb0tzakZoa2xnd3F6RExrdlktU1YxN25xczQxU25mbURYTUVkTVdFdXJNQjRjdGstWDUzRWZmXzJlNGltNF9EalpoS2FQcA?oc=5",
-  "date": "2026-11-18",
-  "source": "huskers.com",
-  "lang": "en",
-  "via": "Google News US",
-  "kind": "Update",
-  "categories": [
-   "INTERPOL and watch lists"
-  ],
-  "matched_words": [
-   "watch list"
-  ],
-  "action": false,
-  "document_types": [],
-  "countries": [],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0.0,
-  "id": "624fc7095016",
-  "first_seen": "2026-11-26",
-  "other_sources": [],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
-  "watch": false,
-  "home": false,
-  "region": false
- },
- {
   "title": "IOM Reports 90% Drop in Darién Northbound Crossings",
   "summary": "",
   "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNZTNzTk1mdlRhQnlWTXhUa2xMYXZsZHBycXRFSVhUUEoyamktZl9nb1EyeVBIMmJCUFNMRGFIdVlGMFNRUTFSbEUzcVBiLWVXZ1JOSkJPVU5HNmNEaFVfd1BlR0VaTklzLUZGeGcxdkV0OGpUQjM4Tnc2SVJRd0V5Tw?oc=5",
@@ -26053,8 +25724,7 @@
    "INTERPOL and watch lists"
   ],
   "matched_words": [
-   "interpol",
-   "notificacion roja"
+   "notificacion roja de interpol"
   ],
   "action": false,
   "document_types": [],
@@ -27261,14 +26931,14 @@
   "source": "El Diario Ecuador",
   "lang": "es",
   "via": "Google News CO",
-  "kind": "Update",
+  "kind": "Incident",
   "categories": [
    "INTERPOL and watch lists"
   ],
   "matched_words": [
    "interpol"
   ],
-  "action": false,
+  "action": true,
   "document_types": [],
   "countries": [],
   "airports": [],
@@ -27280,9 +26950,11 @@
   "id": "ec9ea7d9ec39",
   "first_seen": "2026-11-26",
   "other_sources": [],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
+  "score": 15,
+  "level": "Low",
+  "reasons": [
+   "Wanted person or INTERPOL notice (+15: interpol)"
+  ],
   "watch": false,
   "home": false,
   "region": false
@@ -29623,15 +29295,14 @@
   "source": "El Universo",
   "lang": "es",
   "via": "Google News MX",
-  "kind": "Update",
+  "kind": "Incident",
   "categories": [
    "INTERPOL and watch lists"
   ],
   "matched_words": [
-   "interpol",
-   "notificacion roja"
+   "notificacion roja de interpol"
   ],
-  "action": false,
+  "action": true,
   "document_types": [],
   "countries": [],
   "airports": [],
@@ -29643,9 +29314,12 @@
   "id": "4da40536f0b8",
   "first_seen": "2026-11-26",
   "other_sources": [],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
+  "score": 20,
+  "level": "Medium",
+  "reasons": [
+   "Wanted person or INTERPOL notice (+15: interpol, notificacion roja)",
+   "Detected at an airport or border post (+5: aeropuerto)"
+  ],
   "watch": false,
   "home": false,
   "region": false
@@ -40788,40 +40462,6 @@
   "region": false
  },
  {
-  "title": "Stout named to Haskins Award Final Fall Watch List",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPSG8zeWMxQzJIaFUyekZSazJzck9jY1lZS1FyaUJlbEFrLXZibVg2Qm8xaVVWMHdXLV9wQnpGUmFtZmdDOGtkLTdLQmZtTGpHaldJZXBNT3RvSzRQRkFNZEdlTThLUzc3REhKRzMyeXhyZlJRTXFXTWk5elNRVUJaTU5GRmprX0JIellNaUd6YWxveVFDbFlTc1NWc2liNXM?oc=5",
-  "date": "2026-11-12",
-  "source": "Oklahoma State University Athletics",
-  "lang": "en",
-  "via": "Google News US",
-  "kind": "Update",
-  "categories": [
-   "INTERPOL and watch lists"
-  ],
-  "matched_words": [
-   "watch list"
-  ],
-  "action": false,
-  "document_types": [],
-  "countries": [],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0.0,
-  "id": "bc8dd79c61be",
-  "first_seen": "2026-11-26",
-  "other_sources": [],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
-  "watch": false,
-  "home": false,
-  "region": false
- },
- {
   "title": "Germany: Migrant smuggler sentenced to prison following fatal river crossing",
   "summary": "",
   "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPT0daeE9ydTZsUWZUbG1FemJXYUlYZGZMXzFKeDUxQXdaQUZja3FRWF9jTW5GRlM3YmFZd2pmR3dNWm9teDM1dGN3RVN2ellEak9XTFVXNWJmX1ZsRm9Ud1pIQ3RQcTFWUzJJS3NJYmxTQkJ6TWNlWHd0OVNISjlxeFY0VS1aWEZLRjMtb0J4d3VNbHU0WjB6c29tZlptOGJ5c1FPRlBWTlo1T29WTGJrb1VoTFJrcUswNWc?oc=5",
@@ -41122,14 +40762,14 @@
   "source": "La Razón de México",
   "lang": "es",
   "via": "Google News MX",
-  "kind": "Update",
+  "kind": "Incident",
   "categories": [
    "Irregular migration"
   ],
   "matched_words": [
    "migracion irregular"
   ],
-  "action": false,
+  "action": true,
   "document_types": [],
   "countries": [
    "Mexico"
@@ -41143,40 +40783,7 @@
   "id": "a18809e79753",
   "first_seen": "2026-11-26",
   "score": 0,
-  "level": "Update",
-  "reasons": [],
-  "watch": false,
-  "home": false,
-  "region": false
- },
- {
-  "title": "Meet the 25 golfers on the Haskins Award final fall watch list for 2026-27",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxPWTJXeEgxblczSjFNR0Z0T0h3eV8tcFlNaUtuYnRTVWJHTUNqMi02WFFwUHltT0hLNzhvY21sQkVDLTQtdnBoRDNsWjZvMWpaWFpMdGl6WEZkX1lQS2wzR3VJQjcwYWk5VXIzWWJIVG95WExFVjY0Ny00M0JsTnZvaS1JVzRPMDVuTnZ3M0cwSVBITDlMSkNBbFlYVG9iX1ZaU2hQZU5Wa1BSNzJwMWF0Z0t5R2Zaa29KZ195QlJFRldfQnVUMEROMHhVQXFhLVl5Q3RKdExZVFdQUXB4cm83d2RDZm9XeTI1MUNKZXpXUGg4TUxKT2NtYWVn?oc=5",
-  "date": "2026-11-12",
-  "source": "Central Oregon Daily",
-  "lang": "en",
-  "via": "Google News US",
-  "kind": "Update",
-  "categories": [
-   "INTERPOL and watch lists"
-  ],
-  "matched_words": [
-   "watch list"
-  ],
-  "action": false,
-  "document_types": [],
-  "countries": [],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0.0,
-  "id": "937fd2936522",
-  "first_seen": "2026-11-26",
-  "score": 0,
-  "level": "Update",
+  "level": "Low",
   "reasons": [],
   "watch": false,
   "home": false,
@@ -43210,12 +42817,14 @@
   "via": "Google News MX",
   "kind": "Incident",
   "categories": [
+   "Irregular migration",
    "Migrant smuggling"
   ],
   "matched_words": [
+   "migrants + cae",
    "trafico de migrantes"
   ],
-  "action": false,
+  "action": true,
   "document_types": [],
   "countries": [],
   "airports": [],
@@ -43428,12 +43037,14 @@
   "via": "Google News MX",
   "kind": "Incident",
   "categories": [
+   "Irregular migration",
    "Migrant smuggling"
   ],
   "matched_words": [
+   "migrants + detienen",
    "trafico de migrantes"
   ],
-  "action": false,
+  "action": true,
   "document_types": [],
   "countries": [
    "Mexico"
@@ -43462,15 +43073,14 @@
   "source": "Diario Digital Cronio de El Salvador",
   "lang": "es",
   "via": "Google News MX",
-  "kind": "Update",
+  "kind": "Incident",
   "categories": [
    "INTERPOL and watch lists"
   ],
   "matched_words": [
-   "interpol",
-   "notificacion roja"
+   "notificacion roja de interpol"
   ],
-  "action": false,
+  "action": true,
   "document_types": [],
   "countries": [],
   "airports": [],
@@ -43482,9 +43092,11 @@
   "id": "e8f05837d106",
   "first_seen": "2026-11-26",
   "other_sources": [],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
+  "score": 15,
+  "level": "Low",
+  "reasons": [
+   "Wanted person or INTERPOL notice (+15: interpol, notificacion roja)"
+  ],
   "watch": false,
   "home": false,
   "region": false
@@ -44761,40 +44373,6 @@
   "region": false
  },
  {
-  "title": "Saving tomorrow's memory: Korea names 6 modern artifacts to national preservation watchlist",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQcDVLOXZ4UG43QjhDUUNhdnhEOGEzOXJxS2NrcUVTMFE3SGg3eFJKOVhldzNGWDRibWtSd3o3UUtnMjhjaUNNbHY4S1ZTRzVZMXpzZjhpZ21mTUFOdlAxWXgwM2RRVFFYekZzaENkMDRBajI0TlhnckJ6MVdNWU8zcEFPbGVWQUhMemV0aGlKMmFzcEdvQ19BaU5BOXZhWE44d3I0WlpBRXYtZVNWVGhJRWVxTjd1dHdXbF8zZlhZUERieVZoQWhFOUlfWEpBQWR1WUcyODRlQjJZSVF1OGpIQTAyZWFXZUHSAewBQVVfeXFMTWVLVjV0T3FqM3FONkk5STBreDQxS1RuRDRjSDdyS0VadnVHNUhzOHVrdU8zTWFsckRYQ3RiTDdoNTZGbW5yQWhDU1VmbG1ILXM2aXhTclVYU3JFTU9FMEt5MHNfMTROeF9sYVNuWk9FSnFJOFVhcWdpWVB3eVZSZE53bG42c1hnMy1yWnVxMS1QOVpCSjBJS21KVTUtSmt6WVNPQnBNNld4QzhSZGVPVko4VDdTb185Mkk4QjVXbFh5YlphdkR3amZhNjBmbExtRGctelE5aDFScHVFN3UzN0lqdXNjY1lON3RuV2o?oc=5",
-  "date": "2026-11-11",
-  "source": "The Korea Times",
-  "lang": "en",
-  "via": "Google News GB",
-  "kind": "Update",
-  "categories": [
-   "INTERPOL and watch lists"
-  ],
-  "matched_words": [
-   "watchlist"
-  ],
-  "action": false,
-  "document_types": [],
-  "countries": [],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0.0,
-  "id": "6c2f6f3dd3f8",
-  "first_seen": "2026-11-26",
-  "other_sources": [],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
-  "watch": false,
-  "home": false,
-  "region": false
- },
- {
   "title": "‎Ghana, Slovakia to negotiate visa waiver agreement, deepen defence cooperation",
   "summary": "",
   "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNMnJIWHhmTUpQOWJJc0FHNWo5UUhlU2hlakMwVDZwZDhsc0N1aDU3cHNxV2ZzeG12b3E0MlU1bU9tRTRBWURWYkJqX2VBT2dRUERDU0E2a0p5X0lwUVh3enRfWDZTazc5ZWRoU1JLZmFpeXp1R2k2dXVuMHVPNHhRckZPNnBzRVZ2d0xFZUgyQTNzOUdHNi0tX2h30gGYAUFVX3lxTE1kSjVxQ0pPWk9DSnBfSF9aRy1JNzEzSjBKbEdqVWF0bEdQVGw3S2lJTXQ4d3NPMldxcmZoZGVMeGJRR0YtNVd2RVFDakNUSWYwSWliaEJyYmJtSUxYTDhRYWxhMkpFblRqWHZLSkZuZWRQQTJkRk9QWHBDZ1NzNGFvdTdVc1NXdVV6SmVtdzhqTVlRMkQ3U3Vq?oc=5",
@@ -45325,6 +44903,7 @@
    "INTERPOL and watch lists"
   ],
   "matched_words": [
+   "alerta roja",
    "interpol"
   ],
   "action": true,
@@ -47974,12 +47553,14 @@
   "via": "Google News MX",
   "kind": "Incident",
   "categories": [
+   "Irregular migration",
    "Migrant smuggling"
   ],
   "matched_words": [
+   "migrants + detienen",
    "trafico de migrantes"
   ],
-  "action": false,
+  "action": true,
   "document_types": [],
   "countries": [],
   "airports": [],
@@ -50568,7 +50149,7 @@
   "matched_words": [
    "cocaina"
   ],
-  "action": false,
+  "action": true,
   "document_types": [],
   "countries": [
    "Colombia"
@@ -51387,41 +50968,6 @@
   "people_count": 0,
   "weight_kg": 0.0,
   "id": "37d60be752da",
-  "first_seen": "2026-11-26",
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
-  "watch": false,
-  "home": false,
-  "region": false
- },
- {
-  "title": "Looking for a cosy night in? Add these new romance releases to your watchlist - Cosmopolitan India",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxOcmo0dGFCeVgwNFkya0E0Y0tJODdlX3oxMW1heWV2MHpHOEU0dERtZGJTNnh5QXZWY05WVVpiazd4MUJZRTZpcDVoUVRPbUl1TUNRaHk5dDM4M2pHRWpoeHh4VFU2Z2d1aC1jNS1uMFNlcU9sLVQwd091VWtCX25rR1ZCN3ZMYUFvdmZFQ20zcktYYlRpUUFJaGdVMFFZd0hxVnEtS1JvOS1OOW1LN3ExUUhIaHdIam5UVFhqc0NCM3QwZlB6RzJ1NjZHUXpuNVVTZ01WaEJqMGZGTTDSAeABQVVfeXFMTzhZcE03dUJNU0t4aExfYmxGYlgtd0g4TnoyTFhxN0txbUxENUdPWmkwVFlUa0xidktfeEhZdnNRWWszVmExc2tGQ1FZazJyR0g3aFFnaFdGM2xPME9qLXlSMTNTU0pCeUdENDZrdnpXei1QMHBvaHhaeVNEZ3RfLTVwNmQzMC1YWUM3eEl0cDZkMElzVVgtR3JsQndpSUc2YXVyelFtU1NUYTl3Y3dmLU15NUg1RTN6T2g3SHdydnd0cTlRUElSeVphUFE1c0ptUTZxWWhOZWhGWmZtbkpfSG4?oc=5",
-  "date": "2026-11-09",
-  "source": "Cosmopolitan India",
-  "lang": "en",
-  "via": "Google News NG",
-  "kind": "Update",
-  "categories": [
-   "INTERPOL and watch lists"
-  ],
-  "matched_words": [
-   "watchlist"
-  ],
-  "action": false,
-  "document_types": [],
-  "countries": [
-   "India"
-  ],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0.0,
-  "id": "356c8047b82e",
   "first_seen": "2026-11-26",
   "score": 0,
   "level": "Update",
@@ -52423,40 +51969,6 @@
   "region": false
  },
  {
-  "title": "Villa's Kamara on Chelsea watchlist - Monday's gossip",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxOQmZUNnU0Ry1wOFBBcW9wdWJvemFHWXAyanhIaTFBeVd6X1dmQmRZbnVWWUZidnVQWnFraHlnWWg4cVJVOTdQdlMtaV80MXNOT0hxWmpfUHRUREozLXRHMHZGWm82VUZNaUNCVDQ0aUtUUU1aLVE4QVpsUmVBMkl3U2dUUjZwSkVIeVk0?oc=5",
-  "date": "2026-11-08",
-  "source": "AOL.com",
-  "lang": "en",
-  "via": "Google News GB",
-  "kind": "Update",
-  "categories": [
-   "INTERPOL and watch lists"
-  ],
-  "matched_words": [
-   "watchlist"
-  ],
-  "action": false,
-  "document_types": [],
-  "countries": [],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0.0,
-  "id": "c2b96ac80496",
-  "first_seen": "2026-11-26",
-  "other_sources": [],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
-  "watch": false,
-  "home": false,
-  "region": false
- },
- {
   "title": "21 killed as migrant boat sinks off Senegal",
   "summary": "",
   "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOQXBhcENJakxZVXVMTzZIUHlXUjJMdXhka0tGVm9iZVg5TVdRdHB5czZGblA0UUJYSC0wSVNXWkxNNlJaMGJLUndYVDhuRk5OeVllQ2FxaEZkSm1YNWM0WGdDTG1hWEN0LUE1VE9OVG9hVnl5b3BMc1hkNTNWenpoek9xRUd0Mk1f?oc=5",
@@ -53296,8 +52808,7 @@
   ],
   "matched_words": [
    "deportado",
-   "interpol",
-   "notificacion roja"
+   "notificacion roja de interpol"
   ],
   "action": false,
   "document_types": [],
@@ -53478,6 +52989,7 @@
    "INTERPOL and watch lists"
   ],
   "matched_words": [
+   "alerta roja",
    "interpol"
   ],
   "action": true,
@@ -53698,6 +53210,7 @@
    "INTERPOL and watch lists"
   ],
   "matched_words": [
+   "alerta roja",
    "interpol"
   ],
   "action": false,
@@ -55854,40 +55367,6 @@
   "region": false
  },
  {
-  "title": "Baylor punter Palmer Williams named to Ray Guy Award midseason watch list",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNby0xQnh2bmN0cVZQQUdKbVJlcWJrbGhmMGZhNGN1dXoxNHlwdGFodWJsN21naUYtNjlDZVcxVGZzdVV5YlFCd2s1a2kzUHVPMzEwRU1aMy11dU1GN0JMdjFGVFVGejZyWF95aDYzbjIyQ2FCd19YemRVLVNSRVFfd0N1LXBUaWU1YnA1MGNLVFUxRHlQUFlB?oc=5",
-  "date": "2026-11-06",
-  "source": "Waco Tribune-Herald",
-  "lang": "en",
-  "via": "Google News GB",
-  "kind": "Update",
-  "categories": [
-   "INTERPOL and watch lists"
-  ],
-  "matched_words": [
-   "watch list"
-  ],
-  "action": false,
-  "document_types": [],
-  "countries": [],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0.0,
-  "id": "19bb0528863d",
-  "first_seen": "2026-11-26",
-  "other_sources": [],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
-  "watch": false,
-  "home": false,
-  "region": false
- },
- {
   "title": "Bhogapuram Airport News: Health Teams Deployed as Andhra Pradesh Issues High Alert for Ebola Virus",
   "summary": "",
   "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNY0kzS0drYVk0UzNxZXBRRVVTOWpQRTVjRTFWd09mRlJhb1NCSmN1WU9jM0tSejN0RERiWUpRYzBRMkZWMHllX08weDRvREhhM01uNmdQV2tfb3FzYUZtVlN0aEswRk13bzk1Y2lONldjYXpEdHJHSTAxWU5nWkNDZndrMmZyVWM5RWpnNnVrWHBab3g3d0RkLVN2NWVuNlpaNjAxWjNwV1oxN21PV1gySzhGNTIyVXcwX3FvU1hTRUI?oc=5",
@@ -56513,8 +55992,7 @@
    "INTERPOL and watch lists"
   ],
   "matched_words": [
-   "interpol",
-   "notificacion roja"
+   "notificacion roja de interpol"
   ],
   "action": false,
   "document_types": [],
@@ -57281,40 +56759,6 @@
   "region": false
  },
  {
-  "title": "Wilson Named to Ray Guy Award Midseason Watch List - University of Nebraska - Official Athletics Website",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQLXRuWFVDM3BUVWhLYkRUanFRMXBuVldSb1RDMWMxQW13djd3M1JzVmliRmROUHJPZzEtR0EyN0F5amNmM2dYdmtCT0IzSVIzYW4weFFfcGp2YkVOWUdXUkZ5TktjU0tGQ05yMHZkNVJndU4yLUh0N25WdHhWS2VobnB3bGN3bm5LdkVGWnd3QQ?oc=5",
-  "date": "2026-11-05",
-  "source": "huskers.com",
-  "lang": "en",
-  "via": "Google News US",
-  "kind": "Update",
-  "categories": [
-   "INTERPOL and watch lists"
-  ],
-  "matched_words": [
-   "watch list"
-  ],
-  "action": false,
-  "document_types": [],
-  "countries": [],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0.0,
-  "id": "53a6e5bfe558",
-  "first_seen": "2026-11-26",
-  "other_sources": [],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
-  "watch": false,
-  "home": false,
-  "region": false
- },
- {
   "title": "Con documentos falsos y fachada de motel: así operaba red que explotaba sexualmente a menores en Bogotá",
   "summary": "",
   "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQMkV4YkpXV1A3NDl0NUZnaHFVS19JQTJZSE96a3NnbW0wQWwwOVNwa3NJLU1GY1ZoZ2VVODlDOEtQMUV4bXhsQUo3UmVfRy1ZRjJtUENMSU9WXzRYSWFMWlhFSnMzd0pCTWlIeWRRZklvVVNIT0hUaV9UeC1LVURZNWZEcGx6dXlZYzFQdHhfU2RaN00wbzNDek1wNk1ienNkS1lMNlNwS09NVUZXazZCcE11NWtReVBuSVZNcHc2ZFltaWd6V0FWLTlueXdjUmNtbURHU2dMcGY?oc=5",
@@ -57936,40 +57380,6 @@
   "region": false
  },
  {
-  "title": "Bowick added to Biletnikoff Award Watch List",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPMjJ5VkYtSllNQ2xDUlJpdi1TN2xXemlHRG5acFN0UFBtWDFxRHlkdThyb2xJelJIaC1MZ2oxYlByLWRTcjJleGtkd29vQncxWHB6NVA5ZVdjRlNJUmhsR2lQcHNBMjBJdW5SLXlLdXl6VHpOSTZOYy1vb2dBVGo5R0pvVzBCVmRfMjE5NjVrd2FEZFdUXzE2NGlaNA?oc=5",
-  "date": "2026-11-05",
-  "source": "Oklahoma State University Athletics",
-  "lang": "en",
-  "via": "Google News US",
-  "kind": "Update",
-  "categories": [
-   "INTERPOL and watch lists"
-  ],
-  "matched_words": [
-   "watch list"
-  ],
-  "action": false,
-  "document_types": [],
-  "countries": [],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0.0,
-  "id": "165d092d349f",
-  "first_seen": "2026-11-26",
-  "other_sources": [],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
-  "watch": false,
-  "home": false,
-  "region": false
- },
- {
   "title": "Three sentenced to 47 years for smuggling £80million of cocaine into UK",
   "summary": "",
   "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPUWhSMG1pVzBIcDZmWFdvSE9oa2xsYjRwX2hEeXlNcXNQWVcwRzEtNUFSNTNyLWlYOVY3dFc0amZ3b2dvY0U4R3h4UVRSdUoxeWtUTEIwdW8tZlFMZHhRclVJXzhlcmFtcVNVMEQxNHFIa2hWLVc1Z3lIR1Vob0hORTdhaEdxS3ZUVUNnU2hNNTBkZlBIQm51WFJTR0FmOUlwc1FSVEZBN01FZnFSTmQ0c0lIYUxHY0FESlpDM0o1a0hWOW1valh0MG8yZ2ZiTXV5Znl4eU8yb3Y2cW1oX0xZ?oc=5",
@@ -58339,15 +57749,14 @@
   "source": "Metro Ecuador",
   "lang": "es",
   "via": "Google News MX",
-  "kind": "Update",
+  "kind": "Incident",
   "categories": [
    "INTERPOL and watch lists"
   ],
   "matched_words": [
-   "interpol",
-   "notificacion roja"
+   "notificacion roja de interpol"
   ],
-  "action": false,
+  "action": true,
   "document_types": [],
   "countries": [
    "United States"
@@ -58361,9 +57770,11 @@
   "id": "efe4dbd013f9",
   "first_seen": "2026-11-26",
   "other_sources": [],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
+  "score": 15,
+  "level": "Low",
+  "reasons": [
+   "Wanted person or INTERPOL notice (+15: interpol, notificacion roja)"
+  ],
   "watch": false,
   "home": false,
   "region": false
@@ -58740,40 +58151,6 @@
   "region": false
  },
  {
-  "title": "Crooks, McGill earn Wade Watch List nods",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNY2w5ZGJkSHRSYmNvMkFfQ3hMVDFlbm1ucGl6LThfeXU1Nk5DRGt0bFJoem82WEtWN1BBUnptdmNrY2dNWFlRUGFSblRiT3ZtSE5rRzNnRW5kVEw2aFUzdi00aDFHZHJyZnlUTFpjY2JCNm1fMU1wakVKSXJlUjhJclhNdG5mV2F2THZudTh2alNFOXhLQk1aag?oc=5",
-  "date": "2026-11-04",
-  "source": "Oklahoma State University Athletics",
-  "lang": "en",
-  "via": "Google News US",
-  "kind": "Update",
-  "categories": [
-   "INTERPOL and watch lists"
-  ],
-  "matched_words": [
-   "watch list"
-  ],
-  "action": false,
-  "document_types": [],
-  "countries": [],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0.0,
-  "id": "d3e84f150e61",
-  "first_seen": "2026-11-26",
-  "other_sources": [],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
-  "watch": false,
-  "home": false,
-  "region": false
- },
- {
   "title": "Mahadev App Co-Promoter Ravi Uppal Arrested In UAE, India Moves For Extradition",
   "summary": "",
   "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxNV3hURUtmZkIyMnNqeXMyZWp2LXZKZkYtSnl0LXoxSXlMMzhUZkY3MkFjMG4yQXZXWjM2NWZJYW1NblVuUHVHNlh4SGlkNWRqYVFkZlNROHFDNk9VSUlqOGlXY2JJcndRdjFxWlNpaFlKeGM2cUlRT1pjS013RGJPcmVEUmFfSURnbDVLb2plak52bDlOUkRQUTdsaERWLTZyOF82LU5oa3VtWk9ZNlBWODJ6dEswY1Bidzg3QmRMYWJiUHg4dGV5WVRGc2tBYjA5aFZSTNIB2gFBVV95cUxOc2t0RGdjY3RlWkNmMW42STRPNEJMakRQVnFpUmJOV3JCM2IwZ1lfZ2pvYVpnQWduQXZ2Wnp4OUtGZUdIWXE1bVU1RlBucHVjekFkWjd3MmFFVGJIVWMyNWhHd3o2NDdlM2ExdEdNbUhLUWtEVXNLMno3THZUZTVILTdhRXJIWGFsZXViVUJlalJoU00wb3M4clBQaXZBOEFkeWNGcllOQ0d2TzhLcXNUZm15ZE93Uk5iNi0yam9qc2hpUGxtOE5qM3VRWC1JZ21wWjNmVWh4cFVydw?oc=5",
@@ -59047,6 +58424,7 @@
    "INTERPOL and watch lists"
   ],
   "matched_words": [
+   "alerta roja",
    "interpol"
   ],
   "action": false,
@@ -59102,40 +58480,6 @@
    "Possible insider or corruption (+15: bribed)",
    "Detected at an airport or border post (+5: airport)"
   ],
-  "watch": false,
-  "home": false,
-  "region": false
- },
- {
-  "title": "Minto, Taylor Named Big Ten Watchlist Honorees - University of Nebraska - Official Athletics Website",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxORXdKbWZRUnRsdUQwRnB6N09QSnFUd1ZobFdEdEgxNmZWWjlFTU42aHlBdWNGWWNmQV9RcXZqR3RkejNJcjJlOEpFclJlRmNJa1RGQVVmeGdLUVRTQ3Fnbm5NVDVCTEllakpacnpOVHZWd2V3blp4SC16R1NMMHcxcHZQSjR4ZjA4?oc=5",
-  "date": "2026-11-04",
-  "source": "huskers.com",
-  "lang": "en",
-  "via": "Google News GB",
-  "kind": "Update",
-  "categories": [
-   "INTERPOL and watch lists"
-  ],
-  "matched_words": [
-   "watchlist"
-  ],
-  "action": false,
-  "document_types": [],
-  "countries": [],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0.0,
-  "id": "9b25098f6a46",
-  "first_seen": "2026-11-26",
-  "other_sources": [],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
   "watch": false,
   "home": false,
   "region": false
@@ -59219,15 +58563,14 @@
   "source": "FM Mundo",
   "lang": "es",
   "via": "Google News MX",
-  "kind": "Update",
+  "kind": "Incident",
   "categories": [
    "INTERPOL and watch lists"
   ],
   "matched_words": [
-   "interpol",
-   "notificacion roja"
+   "notificacion roja de interpol"
   ],
-  "action": false,
+  "action": true,
   "document_types": [],
   "countries": [
    "United States"
@@ -59241,9 +58584,11 @@
   "id": "841e5f8e84ea",
   "first_seen": "2026-11-26",
   "other_sources": [],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
+  "score": 15,
+  "level": "Low",
+  "reasons": [
+   "Wanted person or INTERPOL notice (+15: interpol, notificacion roja)"
+  ],
   "watch": false,
   "home": false,
   "region": false
@@ -59298,8 +58643,7 @@
    "INTERPOL and watch lists"
   ],
   "matched_words": [
-   "interpol",
-   "notificacion roja"
+   "notificacion roja de interpol"
   ],
   "action": false,
   "document_types": [],
@@ -59740,6 +59084,7 @@
    "INTERPOL and watch lists"
   ],
   "matched_words": [
+   "alerta roja",
    "extraditado",
    "interpol"
   ],
@@ -60566,14 +59911,14 @@
   "source": "Diario Extra",
   "lang": "es",
   "via": "Google News MX",
-  "kind": "Update",
+  "kind": "Incident",
   "categories": [
    "INTERPOL and watch lists"
   ],
   "matched_words": [
    "interpol"
   ],
-  "action": false,
+  "action": true,
   "document_types": [],
   "countries": [],
   "airports": [],
@@ -60585,9 +59930,11 @@
   "id": "e3ee5534c430",
   "first_seen": "2026-11-26",
   "other_sources": [],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
+  "score": 15,
+  "level": "Low",
+  "reasons": [
+   "Wanted person or INTERPOL notice (+15: interpol)"
+  ],
   "watch": false,
   "home": false,
   "region": false
@@ -62595,40 +61942,6 @@
   "region": false
  },
  {
-  "title": "Sandfort Named to Naismith Trophy Watch List - University of Nebraska - Official Athletics Website",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPcWZfU0VydXN3MFBZN1BzWkVtanVSVHhRNHBuMTB3QUc1VHhWWnh2dVJoY1ZFZ0I1ZndsLXlRRDFvUllDU282UkZVU2FPV2JidGhwSVJwdGhDeWhfU1A3b3NwTFZTOEJtcW96Wl9jTDVyT0VRZzB0RVJiOWhqSjM1OXFYdk0tZFk?oc=5",
-  "date": "2026-11-02",
-  "source": "huskers.com",
-  "lang": "en",
-  "via": "Google News US",
-  "kind": "Update",
-  "categories": [
-   "INTERPOL and watch lists"
-  ],
-  "matched_words": [
-   "watch list"
-  ],
-  "action": false,
-  "document_types": [],
-  "countries": [],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0.0,
-  "id": "f642aa21cbd9",
-  "first_seen": "2026-11-26",
-  "other_sources": [],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
-  "watch": false,
-  "home": false,
-  "region": false
- },
- {
   "title": "UK Home Office Issues Tougher Visa Rule for Foreigners Living in Great Britain",
   "summary": "",
   "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNTnVLRE5XVTByV2NRVnFvbnJPNHpFQUpCOEZDYUpTenpYanJLWjRFd2VtU3ZXMGpJQk5OYTdVSjB6T212Q0NGQ1dVd0swR3VjNmkxWGxmbmpQeGJFQ3l5MndjRFR3R2dhek91NWF1RDhDcGhTb0JMa2lFblhUTlVCejRiNUFlUXo2bmVlUngzRWZDZ1Y3b3VPbjVzaU1rUGVSOV91MlZ4X1o?oc=5",
@@ -62657,39 +61970,6 @@
   "people_count": 0,
   "weight_kg": 0.0,
   "id": "f2ff1dba28ad",
-  "first_seen": "2026-11-26",
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
-  "watch": false,
-  "home": false,
-  "region": false
- },
- {
-  "title": "Tennessee's Juke Harris Selected to Naismith Trophy Watch List",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxPOWdBY1djTnFCTzctM2NodVhkcDBYWUZXVVRrTzROTjRCM19oM1I5VjVrZE11LXVpUGt5Z29yZ1BhLXRwMWg3RHlmOTFxZHV2d3BRZ2l1d2ZyS0FTY1RCXzVTQWo1RGdKeVI4YTZYRjRDbUpOU1J1NURGSVJyNVNoZ3pOQjJFdVpPa3B3WjFGUVpPbWdMR19reE1pdmFnbkpBd3NudWZSUFhwVWJHOWdmbkw0OHhBU0dlZlBMVk9YNTFULWZqS0hwVDVLYkZTb2pxTi0yS0s1WW50aHlfdnBkbjNB?oc=5",
-  "date": "2026-11-02",
-  "source": "The Daily Times",
-  "lang": "en",
-  "via": "Google News US",
-  "kind": "Update",
-  "categories": [
-   "INTERPOL and watch lists"
-  ],
-  "matched_words": [
-   "watch list"
-  ],
-  "action": false,
-  "document_types": [],
-  "countries": [],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0.0,
-  "id": "f282dd509399",
   "first_seen": "2026-11-26",
   "score": 0,
   "level": "Update",
@@ -63470,6 +62750,7 @@
    "INTERPOL and watch lists"
   ],
   "matched_words": [
+   "alerta roja",
    "interpol"
   ],
   "action": false,
@@ -64354,6 +63635,7 @@
    "INTERPOL and watch lists"
   ],
   "matched_words": [
+   "alerta roja",
    "interpol"
   ],
   "action": false,
@@ -66613,14 +65895,14 @@
   "source": "Caracol Radio",
   "lang": "es",
   "via": "Google News MX",
-  "kind": "Update",
+  "kind": "Incident",
   "categories": [
    "INTERPOL and watch lists"
   ],
   "matched_words": [
    "interpol"
   ],
-  "action": false,
+  "action": true,
   "document_types": [],
   "countries": [
    "Peru"
@@ -66634,9 +65916,11 @@
   "id": "722b5b6ebc2d",
   "first_seen": "2026-11-26",
   "other_sources": [],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
+  "score": 15,
+  "level": "Low",
+  "reasons": [
+   "Wanted person or INTERPOL notice (+15: interpol)"
+  ],
   "watch": false,
   "home": false,
   "region": false
@@ -66728,6 +66012,7 @@
    "INTERPOL and watch lists"
   ],
   "matched_words": [
+   "alerta roja",
    "interpol"
   ],
   "action": false,
@@ -66873,6 +66158,7 @@
    "INTERPOL and watch lists"
   ],
   "matched_words": [
+   "alerta roja",
    "interpol"
   ],
   "action": true,
@@ -67530,8 +66816,7 @@
    "INTERPOL and watch lists"
   ],
   "matched_words": [
-   "interpol",
-   "notificacion roja"
+   "notificacion roja de interpol"
   ],
   "action": false,
   "document_types": [],
@@ -68678,40 +67963,6 @@
   "region": false
  },
  {
-  "title": "Crooks tabbed to Lisa Leslie Award Watch List",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxON29LYjZKV25zeWhfTi1JUGdEakNJelpGU29vdmdSdWo0TWdVVW5FcXhXUjByU0t1QU9pQmZEd0xFbVA5UDBhc0ZEUl9mWkZ5N2k5cXgzM3QzZGd1OGtndDdreGdpN3VXNkpXQ3VNUEFFWXFVVThPdWlSa0hrY3pHY183RngxSndEYWVCSWdremo2dUpWNjlmNjNRaEdydFZseUE?oc=5",
-  "date": "2026-10-30",
-  "source": "Oklahoma State University Athletics",
-  "lang": "en",
-  "via": "Google News US",
-  "kind": "Update",
-  "categories": [
-   "INTERPOL and watch lists"
-  ],
-  "matched_words": [
-   "watch list"
-  ],
-  "action": false,
-  "document_types": [],
-  "countries": [],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0.0,
-  "id": "54c38f87fbd6",
-  "first_seen": "2026-11-26",
-  "other_sources": [],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
-  "watch": false,
-  "home": false,
-  "region": false
- },
- {
   "title": "Ebola outbreak triggers further travel restrictions across Africa and worldwide",
   "summary": "",
   "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNU1FDdnp3VlRGaThzWm9hc0pGeGR6NEMxSjdicVBVSHZYN3N4ZmNLUTQyTlRKNWZXN0pNb0JyVmJLLU1vQU5jZ3B3ZGdLSExVcVNobE4xM3o4V2ZMeTBkR1VLQ2RwQ3dtQTlibmtZakNPN3AwU2Z5MF9jQ1RDZnhPSFI4anAzUFRGSjB6UDVGRjBhTEo3TUVjQjJuOVFjLVNZMDZ1ZENZZ04tc2c?oc=5",
@@ -68950,39 +68201,6 @@
   "other_sources": [],
   "score": 0,
   "level": "Low",
-  "reasons": [],
-  "watch": false,
-  "home": false,
-  "region": false
- },
- {
-  "title": "Lady Vols' forward named to Katrina McClain Award watch list",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOcXZzV0hqUEw3bk00RVc2RHh3clFHNnNPNFdrV2RqX29tWXFxWVJSaXRMYXBhaE9JSm9jQldkNUJzRjhEal9ENExKMWpUSUhDOGVYT0ppbEVXN3Q3ZFNQWHdiSzk0V1lyV21ONnp5dk5oVG5DWXR4bnVqMVFKbDRMNQ?oc=5",
-  "date": "2026-10-30",
-  "source": "AOL.com",
-  "lang": "en",
-  "via": "Google News US",
-  "kind": "Update",
-  "categories": [
-   "INTERPOL and watch lists"
-  ],
-  "matched_words": [
-   "watch list"
-  ],
-  "action": false,
-  "document_types": [],
-  "countries": [],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0.0,
-  "id": "21545308cd80",
-  "first_seen": "2026-11-26",
-  "score": 0,
-  "level": "Update",
   "reasons": [],
   "watch": false,
   "home": false,
@@ -69290,14 +68508,14 @@
   "source": "Diario La Nación – Lo dice siempre",
   "lang": "es",
   "via": "Google News MX",
-  "kind": "Update",
+  "kind": "Incident",
   "categories": [
    "INTERPOL and watch lists"
   ],
   "matched_words": [
    "notificacion roja"
   ],
-  "action": false,
+  "action": true,
   "document_types": [],
   "countries": [],
   "airports": [],
@@ -69309,9 +68527,11 @@
   "id": "1031831a9ea6",
   "first_seen": "2026-11-26",
   "other_sources": [],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
+  "score": 15,
+  "level": "Low",
+  "reasons": [
+   "Wanted person or INTERPOL notice (+15: notificacion roja)"
+  ],
   "watch": false,
   "home": false,
   "region": false
@@ -69359,14 +68579,15 @@
   "source": "El Informador Venezuela",
   "lang": "es",
   "via": "Google News MX",
-  "kind": "Update",
+  "kind": "Incident",
   "categories": [
    "INTERPOL and watch lists"
   ],
   "matched_words": [
+   "alerta roja",
    "interpol"
   ],
-  "action": false,
+  "action": true,
   "document_types": [],
   "countries": [],
   "airports": [],
@@ -69378,42 +68599,11 @@
   "id": "0a5629afd502",
   "first_seen": "2026-11-26",
   "other_sources": [],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
-  "watch": false,
-  "home": false,
-  "region": false
- },
- {
-  "title": "Cinema with Sawsha: Your Halloween weekend watchlist",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBITFduSUppQVpMRndfNlpyV3dZdVdZNTh5Z0loOUIwcnUyUnhOY0kwN0h6Z2RLdGdreUoxQ05xZjdJa3M0WUQ5RTlTSzMzaUpMLTV0cTNkRDR1RTBZaUZONEkxTzjSAWpBVV95cUxPTWxocGpmWUxqZlV4d3lYR0JlWmFpM2picXhYTFBTQlBuZmN4VC03Y3NIUS1DdkVFNmRyRlFnNlVwV1MzaEJXSVV0eTdiTVpKUGxRYTVLNzJmd2Fud0cwdUZ1VU9XRzg3cVZn?oc=5",
-  "date": "2026-10-30",
-  "source": "FOX 5 Atlanta",
-  "lang": "en",
-  "via": "Google News GB",
-  "kind": "Update",
-  "categories": [
-   "INTERPOL and watch lists"
+  "score": 15,
+  "level": "Low",
+  "reasons": [
+   "Wanted person or INTERPOL notice (+15: interpol)"
   ],
-  "matched_words": [
-   "watchlist"
-  ],
-  "action": false,
-  "document_types": [],
-  "countries": [],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0.0,
-  "id": "07705d0ed148",
-  "first_seen": "2026-11-26",
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
   "watch": false,
   "home": false,
   "region": false
@@ -69770,40 +68960,6 @@
   "other_sources": [],
   "score": 0,
   "level": "Low",
-  "reasons": [],
-  "watch": false,
-  "home": false,
-  "region": false
- },
- {
-  "title": "Prince Named to Naismith Trophy Watch List - University of Nebraska - Official Athletics Website",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNLUVHVmpjUXE2X0hJLUd1b19QSlhaMV9NT2FGbVd3X0szdlBORWxHVVFGaUxFQ0lxbTF6TEdlTXBNUXpWT1VpRGZHWHJVS0JJY1BITzFXNFFLd0lhcFlTQTFFOEwydWZGcnRRS3NIMnU0a2dWaF9Gbmkxd21BdXgtTmdlREQ?oc=5",
-  "date": "2026-10-29",
-  "source": "huskers.com",
-  "lang": "en",
-  "via": "Google News US",
-  "kind": "Update",
-  "categories": [
-   "INTERPOL and watch lists"
-  ],
-  "matched_words": [
-   "watch list"
-  ],
-  "action": false,
-  "document_types": [],
-  "countries": [],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0.0,
-  "id": "d6a450c35fe4",
-  "first_seen": "2026-11-26",
-  "other_sources": [],
-  "score": 0,
-  "level": "Update",
   "reasons": [],
   "watch": false,
   "home": false,
@@ -70351,40 +69507,6 @@
   "region": false
  },
  {
-  "title": "UConn's Sarah Strong on McClain Award preseason watch list",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNbFFaeWVYS3RhdHN5Sjg5OGlOTmpzTFZyb0stT0kwQml3R0NUR0pNbTlaZElmazNyR0VNcGdibFhrc1FPZF9tZUpwcEpic1JkQXotaXhYVXJMU2dycTZnM2p0dV94NlFkdURlZzBnbWc3Qk5iRmp1WllSbGFJZGxsUmw0enN5NG1WOWJiZGcydWxCemtpek1EdGdEdzFyTjlkb2hfZmxOR0pCTjZzdTVQWjdGS3ZvUFZuajJnVW5IUTI?oc=5",
-  "date": "2026-10-29",
-  "source": "CT Insider",
-  "lang": "en",
-  "via": "Google News US",
-  "kind": "Update",
-  "categories": [
-   "INTERPOL and watch lists"
-  ],
-  "matched_words": [
-   "watch list"
-  ],
-  "action": false,
-  "document_types": [],
-  "countries": [],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0.0,
-  "id": "9d1a7dd3b167",
-  "first_seen": "2026-11-26",
-  "other_sources": [],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
-  "watch": false,
-  "home": false,
-  "region": false
- },
- {
   "title": "Cocaína no casco de navio: 33 kg apreendidos em Santos",
   "summary": "",
   "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQQ3VZbmVvMFM5QkEzVE5TNXJ5SFJUUWFod2RkbUVEaVl2dEZDa1BlS2tTTXZ1M0M4TGJIWV9DSXJkNVVDeWZfc3ZRNzFyTmtxcmlTOHVhemM4X2w5bkQwMk5Bb3JQV0V1SlZQcExoS01DVnRURlRIWWN2WVBVbGt4MVVTX1FLVmVjTy1xSG85d1NyRVEzdmFqVw?oc=5",
@@ -70668,40 +69790,6 @@
   "reasons": [
    "Wanted person or INTERPOL notice (+15: interpol)"
   ],
-  "watch": false,
-  "home": false,
-  "region": false
- },
- {
-  "title": "Crooks and McGill receive Naismith Trophy Watch List recognition",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNaDF6M1ZNTm9oUXpKUW1pYjFheUZTY1V5V0E2VklUU2NOTmdaRVpsQ0JrSk13YUNSQWFsam5nYmlEakV3VG5kTGZ1RmstYWJYVjlrdkZjSmxxVGV0QTNlZkFJOXNYUjJFLU1sODc5NWhCOHR6NnQyaEpqQlZyQ3pHR1JKSEtpLVB0eThhUUFjRU9FZ0lOZ0hNejBqdlRzS2tPZjhkV2lacnQ4ZVY1YmVJNVBJQlFjanB6R0pz?oc=5",
-  "date": "2026-10-29",
-  "source": "Oklahoma State University Athletics",
-  "lang": "en",
-  "via": "Google News US",
-  "kind": "Update",
-  "categories": [
-   "INTERPOL and watch lists"
-  ],
-  "matched_words": [
-   "watch list"
-  ],
-  "action": false,
-  "document_types": [],
-  "countries": [],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0.0,
-  "id": "786fd61f9e08",
-  "first_seen": "2026-11-26",
-  "other_sources": [],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
   "watch": false,
   "home": false,
   "region": false
@@ -71512,12 +70600,14 @@
   "via": "Google News MX",
   "kind": "Incident",
   "categories": [
+   "Irregular migration",
    "Migrant smuggling"
   ],
   "matched_words": [
+   "migrants + caen",
    "trafico de migrantes"
   ],
-  "action": false,
+  "action": true,
   "document_types": [],
   "countries": [],
   "airports": [],
@@ -72306,40 +71396,6 @@
   "region": false
  },
  {
-  "title": "Marshall Named to Bednarik Award Watch List - University of Nebraska - Official Athletics Website",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNZEYzTWljbDdlT29fV2RKRkhqR1M4OGRGUFRYSWVXdVM4Tk5mMGFiUm8xQ1NaN2ZpSVUzbmRqRDNsOEtsS0xJeUhqaDFQekFsZHJEMDNOMzhGeUFucWxlaE9NMlpNS2FjbFV5RXlyVjNWc2w1aTBzUTlmejUzM2pXTld3R1VCUQ?oc=5",
-  "date": "2026-10-28",
-  "source": "huskers.com",
-  "lang": "en",
-  "via": "Google News US",
-  "kind": "Update",
-  "categories": [
-   "INTERPOL and watch lists"
-  ],
-  "matched_words": [
-   "watch list"
-  ],
-  "action": false,
-  "document_types": [],
-  "countries": [],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0.0,
-  "id": "e4d8cc1cf7c0",
-  "first_seen": "2026-11-26",
-  "other_sources": [],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
-  "watch": false,
-  "home": false,
-  "region": false
- },
- {
   "title": "Nine more US deportees leave Jamaica under TCN arrangement | News",
   "summary": "",
   "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPTHN6THRyRUZha1R3LXdpUlNUYW9NaGY2Mngzcjh4eVFlVURxMGRMYi1Xbk9jUmFjMDVOdlRlTkNXSnE0dk9BWWZPUEVXVmx5R1dFSnZ3Y1kwVGhMYWFoR0l1LWxDcnRSdVJqZHkyLTFyMUhGS2lvcUZJaTA0QVFCck9oWjQwNERVSFQtZ3picVNET1hpNzlUcEhTZW1sdnMwUUhCV3Brc012RTg?oc=5",
@@ -72408,40 +71464,6 @@
   "weight_kg": 0.0,
   "id": "dc37459fffee",
   "first_seen": "2026-11-26",
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
-  "watch": false,
-  "home": false,
-  "region": false
- },
- {
-  "title": "Sandfort Named to Julius Erving Award Watch List - University of Nebraska - Official Athletics Website",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNVzF6SDRmWmdtY0liRGQ4SGI5VWlaajNZRzdHMVNONV9EMkMtbzdmTUtZTzdubURoV1Zuci1RNmF6ZXdZY1BCYzhyNWlBTTgyQTlXcXFFTWlpNHk4WkVaVFgxdG12anZWRzkwZVltM05hREJicHVmSmRsdDlKaEdOd2JUUDR3VFk5MG9OdQ?oc=5",
-  "date": "2026-10-28",
-  "source": "huskers.com",
-  "lang": "en",
-  "via": "Google News US",
-  "kind": "Update",
-  "categories": [
-   "INTERPOL and watch lists"
-  ],
-  "matched_words": [
-   "watch list"
-  ],
-  "action": false,
-  "document_types": [],
-  "countries": [],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0.0,
-  "id": "cf091a55f130",
-  "first_seen": "2026-11-26",
-  "other_sources": [],
   "score": 0,
   "level": "Update",
   "reasons": [],
@@ -73619,40 +72641,6 @@
   "region": false
  },
  {
-  "title": "Potts Named to Miller Award Watch List - University of Nebraska - Official Athletics Website",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9NbGp6RlVqX2I0T1hiUUYyZWhTRzh0R2lfRnE1NzhHT2pzTDBCektuczdGZmM4ckZxOUdkOXNpbkxwczhvSmhyQkszdnJvWU9LUmxTdTlDdjRMZFk4azlBY0pmaXY1R0tOQ0paT2g2bWNkTll0dks3WWFuTnROSFk?oc=5",
-  "date": "2026-10-28",
-  "source": "huskers.com",
-  "lang": "en",
-  "via": "Google News US",
-  "kind": "Update",
-  "categories": [
-   "INTERPOL and watch lists"
-  ],
-  "matched_words": [
-   "watch list"
-  ],
-  "action": false,
-  "document_types": [],
-  "countries": [],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0.0,
-  "id": "46fbafa23bdc",
-  "first_seen": "2026-11-26",
-  "other_sources": [],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
-  "watch": false,
-  "home": false,
-  "region": false
- },
- {
   "title": "DRI busts wildlife smuggling racket at Trichy Airport; 45 live reptiles recovered; 2 arrested",
   "summary": "",
   "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5QMERHMHdnbUhjcjhQSTJWUm1SVDVHdnU3T2xtaVFfSXJIdDJ2aVBDM0Y1ZEx1WDlCMW5IRWhTeW5hWW1rS1o4NHdydkg2Skh1VFNoa1pXVFRMWEJraEdHaDJwRVJlVW1P?oc=5",
@@ -74124,73 +73112,6 @@
   "region": false
  },
  {
-  "title": "Heard named to Cheryl Miller Award Watch List",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOc1ZsSmxiMXFTQ2NYRFluSGVwYUVycFF2VnZJWjlUNjRkenNZaUJObnp6NDQxcTF5Slg3VG52OVJSZXYwS3d3bU1GSEp1bndnQkcyeFZNN3VIVGxQc2g4c0NzQnpHbWhlZVE0VW42UlUyb1M2S3dMY3VjSW1WMlh2LUtUMEhkX1dxZUd6VnpSdUEtY2xULWxGSkxxazA1R0hIREE?oc=5",
-  "date": "2026-10-28",
-  "source": "Oklahoma State University Athletics",
-  "lang": "en",
-  "via": "Google News US",
-  "kind": "Update",
-  "categories": [
-   "INTERPOL and watch lists"
-  ],
-  "matched_words": [
-   "watch list"
-  ],
-  "action": false,
-  "document_types": [],
-  "countries": [],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0.0,
-  "id": "08beb9f67d7a",
-  "first_seen": "2026-11-26",
-  "other_sources": [],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
-  "watch": false,
-  "home": false,
-  "region": false
- },
- {
-  "title": "UConn's Blanca Quiñonez on preseason watch list for Cheryl Miller Award",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPanRGRl9xTlZ6UXl2Q1N3dl9ELS1wamJNYk91WTh4U1BvWnVMQXYtNzJ6cm5MTFM3R2VTeTR3SlU5djNsb2RGNV9PUUhpR29Sbk4zNHlTZ0NvMzZKNm1meHVKVG5ZZ3Jyak5Rd3ZXTFVwQ0F3TVVtTzFvakxFcURxb2pJWTJydHF2SEJrdkl5eGNVUmxpcEUyS3JmUHpMR3MxSVpsbFl0Z2l0cmJ2NnBCbkdWM0VwOEFRQkc3elJJTmhWdw?oc=5",
-  "date": "2026-10-28",
-  "source": "CT Insider",
-  "lang": "en",
-  "via": "Google News US",
-  "kind": "Update",
-  "categories": [
-   "INTERPOL and watch lists"
-  ],
-  "matched_words": [
-   "watch list"
-  ],
-  "action": false,
-  "document_types": [],
-  "countries": [],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0.0,
-  "id": "08a763a95b14",
-  "first_seen": "2026-11-26",
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
-  "watch": false,
-  "home": false,
-  "region": false
- },
- {
   "title": "Colombiana era buscada por la Interpol por hacerse pasar por policía en Suecia para extorsionar ciudadanos: así la capturaron en Medellín",
   "summary": "",
   "url": "https://news.google.com/rss/articles/CBMijgJBVV95cUxQTDJJNEZhdGxuVlJmTTlMX0VJeC1tOXBWMlhIMFR2dVhuelQxS0tTRnYtSXE5VTNTNk5hdEFsbjktTDF2bC1hTHozTWJ1WmlxUlhDMUJld0VRSGY5XzliQmtSM0tidlc3OWFwQmlWamU3UExBSkplX0hER0VEZGhjQ0Q4NFN4X3NKUHhCVGVmckluS2hDbkRacDBHT3Z2MG5uY3hqSno1Wm9wVUJGaXE0VzJEbGV1MVFSQ2dTN0VqeFY1Q0dTTVZDeTVrY3cwNm1PUjhJanBSbklTTXV1VzMzdTZIVWN3enpaR2FVSC15SllTRHZjT1p5X0d3SVJwcVdtQU9HaGpWcE1MQjVNR2fSAagCQVVfeXFMTm10Z1ZhZXUycUttemtDLWtjTXFlblJIU3FyNlhxZHI5R3U2Vl9wLXZzTHpNTFZ3czRWeE5oUVpvUU4teFdkQXBGbTdseGJsLW5xTk45UEJsQlhHN013U2xfQVZGWU9TTUJOdTVPa0kybUhvakVzLXF1N0ZiMnVIUFFPY1NGejNJcEhGcjhaUHRVUWEwTjNPQzlfUHNYb3JXNjRaM0JVSzNoQk9manNZVURhbzU4VXBBdlJjdDk2OVp1a2xKT2dSNndaSGdUSHV0SWRQZjZPakdXQ0ZFUjVTV001U1BmcHhTbDFTRTVyZGRQRnJTUGdJZGIwNUVjQXNJckhWV1NROW5YeWpsV0FMVk5qTzltNmdqUW5XV2NHSW1uQWw4UkwtYWI?oc=5",
@@ -74593,12 +73514,14 @@
   "via": "Google News MX",
   "kind": "Incident",
   "categories": [
+   "Irregular migration",
    "Migrant smuggling"
   ],
   "matched_words": [
+   "migrants + caen",
    "trafico ilicito de migrantes"
   ],
-  "action": false,
+  "action": true,
   "document_types": [],
   "countries": [],
   "airports": [],
@@ -75552,74 +74475,6 @@
   "reasons": [
    "Many people involved: 76 (+10)"
   ],
-  "watch": false,
-  "home": false,
-  "region": false
- },
- {
-  "title": "Five Greyhounds Included on NHL Central Scouting Preliminary Players to Watch List",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQNWFBSVZ6bDVJcVFDb0VuWDdtWUUtb01STWM5WVlsRXRWWE16UFR3ZlBUaExtT2dLYi1xQTdvR2dPUHhjbnhmRDZsRzR6WHdvclFMbDcxWkNGajRZNHJMSmxQeTM2S05rZXlwYWFyY1RZcnUxNnFfU1VKalo3UkVIdm5lQjdvRWtCbV82QjExTHhsd0luVlpvYVphNEdEcXd5TmtSb0M3TXg5Y2VFdHAtQV9EYlhOOV9PcDRlXw?oc=5",
-  "date": "2026-10-27",
-  "source": "Canadian Hockey League",
-  "lang": "en",
-  "via": "Google News US",
-  "kind": "Update",
-  "categories": [
-   "INTERPOL and watch lists"
-  ],
-  "matched_words": [
-   "watch list"
-  ],
-  "action": false,
-  "document_types": [],
-  "countries": [],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0.0,
-  "id": "64ecc90747de",
-  "first_seen": "2026-11-26",
-  "other_sources": [],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
-  "watch": false,
-  "home": false,
-  "region": false
- },
- {
-  "title": "Two French nationals on watchlist over explicit content in Bali",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPMEc1WTRjRFQteldfNW1lNTBKMHh4eVBJa250ejFRZldxaEdkTHJDWG9zZmR2elc4Rk8taDhrbVpPT3gzdXlrRi04czhudWw4TE90UW1lQjJZRlRlQ0taU2xxMWZlUnBmTFRiV2ZuZXJKWlNMNk1EVUVZM2ZpZGhVenZ0MFVJM2JFZGNaa09JXy1ZM2IyZkczeVc2UExKZ2t0RzFj0gGoAUFVX3lxTFBUM1JVLUNVMi1pNjg2eV9JdlBvSXF1WDZfai1fNTY2U0wzcTFOakVLMFA3eWFMSE1sd3BzamdGWi1PQkJLZUNDMTZacWxjNk1CUUNzZHBxR3JvWS1RanJxTWhtbUpSU1VpOFdSX0htLVlmcWlXN2dsc2FZZWVpVjhIQnFHRVllNGhzXzhUUjludVRHVzFHZXRDZDdGNHE5Q1dDc3RVR3RHcQ?oc=5",
-  "date": "2026-10-27",
-  "source": "ANTARA News",
-  "lang": "en",
-  "via": "Google News GB",
-  "kind": "Update",
-  "categories": [
-   "INTERPOL and watch lists"
-  ],
-  "matched_words": [
-   "watchlist"
-  ],
-  "action": false,
-  "document_types": [],
-  "countries": [],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 2,
-  "weight_kg": 0.0,
-  "id": "64c23c24fec2",
-  "first_seen": "2026-11-26",
-  "other_sources": [],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
   "watch": false,
   "home": false,
   "region": false

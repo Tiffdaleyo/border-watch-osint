@@ -80,3 +80,7 @@ def test_tonnes_converted_to_kg():
 def test_health_travel_rule_is_update():
     f = extract({"title": "New entry requirements: airport health screening after outbreak"})
     assert "Health travel rules" in f["categories"] and f["kind"] == "Update"
+
+
+def test_sports_watch_list_is_not_border_news():
+    assert extract({"title": "Star guard named to preseason award watch list"}) is None

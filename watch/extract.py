@@ -83,7 +83,9 @@ CATEGORIES = {
     ],
     "INTERPOL and watch lists": [
         "Interpol", "red notice*", "yellow notice*", "blue notice*", "SLTD", "stolen and lost travel document*",
-        "watch list*", "watchlist*", "no-fly list*", "terror list", "terrorist list", "sanctions list",
+        "terror watch list*", "terror watchlist*", "terrorist watch list*", "terrorist watchlist*", "security watch list*",
+        "immigration watch list*", "border watch list*", "no-fly list*", "terror list", "terrorist list", "sanctions list",
+        "alerta roja", "notificacion roja de interpol",
         "wanted fugitive*", "fugitive arrested", "fugitive captured", "most wanted", "extradit*", "Europol",
         "Ameripol", "Frontex", "IMPACS", "advance passenger information", "passenger name record*",
         "notificacion roja", "difusion roja", "notice rouge", "difusao vermelha", "extradicion", "extradition",
@@ -191,7 +193,7 @@ ACTION_WORDS = [
     "dismantl*", "nabbed", "caught", "held", "raid*", "indicted", "pleaded guilty", "pleads guilty", "remanded",
     "uncovered", "foiled", "cracked down", "crackdown", "rescued", "stopped",
     "detenid*", "arrestad*", "capturad*", "incautad*", "decomisad*", "desarticulad*", "desmantelad*",
-    "aprehendid*", "interpellé*", "arrêté*", "démantelé*", "saisi*", "condamné*", "preso*", "presa*", "detido*",
+    "aprehendid*", "cae", "caen", "cayo", "capturan", "detienen", "arrestan", "interpellé*", "arrêté*", "démantelé*", "saisi*", "condamné*", "preso*", "presa*", "detido*",
     "apreendid*", "condenad*",
 ]
 
