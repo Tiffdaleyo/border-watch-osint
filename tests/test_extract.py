@@ -309,3 +309,15 @@ def test_repeats_are_one_source():
     assert p["independent"] == 1 and p["supporting"] == 2 and "not counted as separate confirmations" in p["relationship"]
     assert [s["role"] for s in p["sources"]][1] == "Original release"
     assert sources.guess_lang("Incautan cocaína en el puerto de Kingston con la policía") == "Spanish"
+
+
+def test_stowaways_topic():
+    from watch import extract
+    r = extract.extract({"title": "Stowaway found in wheel well of flight from Jamaica", "summary": ""})
+    assert "Stowaways" in r["categories"] and r["kind"] == "Incident"
+
+
+def test_english_decimal_not_thousands():
+    from watch import seizure
+    assert seizure.quantities("NDLEA seizes 13.795kg of cocaine")[0]["std_qty"] == 13.795
+    assert seizure.quantities("incautan 1.200 kilos de cocaína", "es")[0]["std_qty"] == 1200

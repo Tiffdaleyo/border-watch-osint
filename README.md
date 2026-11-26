@@ -10,7 +10,7 @@ Every morning (06:00 Jamaica time) GitHub runs it for you. It:
 2. **Sorts** each report into topics and marks it as an **Incident** (a crime: fraud, smuggling, an arrest) or an **Update** (a new visa rule, a policy change, a deportation flight, a border system).
 3. **Extracts** the facts: topic, document type, countries, airports, route (from → to), number of documents and people. It reads English, Spanish, French and Portuguese.
 4. **Scores** each incident from 0 to 100 using plain, visible indicators (organised network, document factory, insider, impostor, INTERPOL notice, transit route, scale...). High = worth a closer look, never proof. It never scores nationality.
-5. **Publishes** a website (`docs/index.html`) with a Caribbean-first list, a visa and policy changes list, your watch list hits, charts, filters and search, a CSV file for Excel and a weekly one-page bulletin (`docs/bulletin.html`).
+5. **Publishes** a website (`docs/index.html`) organised into sections (Passports & Documents, Immigration, Human Trafficking, Citizenship, Border Security, Seizures, Visa & Entry Rules, Official Updates), each with its own charts, filters, search and download, plus a full CSV file for Excel and a weekly one-page bulletin (`docs/bulletin.html`).
 
 > Leads from open-source news only. Verify every item against the original article and official sources before acting. This repository is public: never put case files, names from official systems or anything classified in it.
 

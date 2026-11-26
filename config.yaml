@@ -153,12 +153,20 @@ sources:
     - {name: "US Department of Homeland Security", type: page, url: "https://www.dhs.gov/news-releases/press-releases", link_contains: "/news/20", country: "United States"}
     - {name: "IOM (UN migration agency)", type: page, url: "https://www.iom.int/news", link_contains: "/news/", country: ""}
     - {name: "UNODC", type: page, url: "https://www.unodc.org/unodc/en/press/allpress.html", link_contains: "/press/releases/", country: ""}
+    - {name: "UK Visas and Immigration", url: "https://www.gov.uk/search/news-and-communications.atom?organisations%5B%5D=uk-visas-and-immigration", country: "United Kingdom"}
+    - {name: "EU Migration and Home Affairs", url: "https://home-affairs.ec.europa.eu/node/2/rss_en", country: "European Union"}
+    # Embassies, high commissions, consulates and foreign ministries (kind: mission). They show under
+    # "Official Updates > Embassies & high commissions". Only border-related releases are kept.
+    - {name: "US Department of State (travel)", kind: mission, url: "https://travel.state.gov/_res/rss/TAsTWs.xml", country: "United States"}
+    - {name: "UK government in the Caribbean", kind: mission, url: "https://www.gov.uk/search/news-and-communications.atom?world_locations%5B%5D=jamaica&world_locations%5B%5D=barbados&world_locations%5B%5D=trinidad-and-tobago&world_locations%5B%5D=the-bahamas&world_locations%5B%5D=guyana&world_locations%5B%5D=haiti&world_locations%5B%5D=dominican-republic&world_locations%5B%5D=belize", country: "United Kingdom"}
+    - {name: "UK Foreign Office (FCDO)", kind: mission, url: "https://www.gov.uk/search/news-and-communications.atom?organisations%5B%5D=foreign-commonwealth-development-office", country: "United Kingdom"}
+    - {name: "Global Affairs Canada", kind: mission, url: "https://api.io.canada.ca/io-server/gc/news/en/v2?dept=departmentofforeignaffairstradeanddevelopment&type=newsreleases&sort=publishedDate&orderBy=desc&pick=50&format=atom&atomtitle=GAC", country: "Canada"}
   # News-search results from these publishers are also marked official.
   official_publishers: ["INTERPOL", "Frontex", "Europol", "U.S. Customs and Border Protection (.gov)", "CBP.gov",
                         "GOV.UK", "Jamaica Information Service", "JIS", "Jamaica Constabulary Force", "PICA",
                         "Jamaica Customs Agency", "U.S. Immigration and Customs Enforcement (.gov)", "ICE.gov",
                         "Department of Justice (.gov)", "justice.gov", "National Crime Agency", "UNODC", "IOM",
-                        "Government of Canada", "canada.ca", "dhs.gov", "Homeland Security (.gov)"]
+                        "Government of Canada", "canada.ca", "dhs.gov", "Homeland Security (.gov)", "travel.state.gov", "U.S. Department of State (.gov)", "state.gov"]
 
 risk:
   # Only incidents (crimes) are scored. Policy, security and deportation news is shown as "Update".

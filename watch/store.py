@@ -49,6 +49,8 @@ def merge(existing, new):
                                    "date": old.get("date", "")}]
             if ev.get("official"):
                 old["official"] = True
+            if ev.get("mission"):
+                old["mission"] = True
             if ev.get("url") and all(s.get("url") != ev["url"] and s.get("publisher") != ev.get("source")
                                      for s in old["sources"]) and len(old["sources"]) < 10:
                 old["sources"].append({"publisher": ev.get("source", ""), "url": ev["url"], "date": ev.get("date", ""),

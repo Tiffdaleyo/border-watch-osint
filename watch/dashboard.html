@@ -39,6 +39,30 @@
   .reset { background:none; border:1px solid var(--line); color:var(--muted); border-radius:10px; padding:7px 12px; cursor:pointer; font-size:12.5px; }
   .reset:hover { color:var(--ink); border-color:var(--accent); }
 
+  .snav { background:#0a1324; border-bottom:1px solid var(--line); }
+  .snav .in { max-width:1480px; margin:0 auto; padding:0 22px; display:flex; gap:2px; flex-wrap:wrap; }
+  .snav a { display:flex; align-items:center; gap:6px; padding:11px 10px; color:var(--muted); font-size:12.5px; white-space:nowrap;
+            border-bottom:2px solid transparent; }
+  .snav a:hover { color:var(--ink); }
+  .snav a.on { color:var(--ink); border-bottom-color:var(--sc,var(--accent)); font-weight:600; }
+  .snav a .d { width:8px; height:8px; border-radius:50%; background:var(--sc,var(--accent)); }
+  .snav a .c { font-size:11px; color:var(--dim); font-variant-numeric:tabular-nums; }
+  .shead { display:flex; gap:14px; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; margin:0 0 14px; }
+  .shead h2 { margin:0; font-size:22px; } .shead p { margin:3px 0 0; color:var(--muted); font-size:13px; max-width:860px; }
+  .shead .acts { display:flex; gap:8px; flex-wrap:wrap; }
+  .shead .acts button, .shead .acts a { background:var(--panel); border:1px solid var(--line); color:var(--ink); border-radius:10px; padding:7px 12px; cursor:pointer; font-size:12.5px; }
+  .shead .acts button:hover, .shead .acts a:hover { border-color:var(--accent); }
+  .chips { display:flex; gap:6px; flex-wrap:wrap; margin:0 0 14px; }
+  .chips button { background:var(--panel); border:1px solid var(--line); color:var(--muted); border-radius:20px; padding:5px 11px; cursor:pointer; font-size:12.5px; }
+  .chips button b { color:var(--ink); font-weight:600; margin-left:4px; font-variant-numeric:tabular-nums; }
+  .chips button.on { background:var(--panel2); color:var(--ink); border-color:var(--sc,var(--accent)); }
+  .glance { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+  .glance a { display:block; background:var(--panel2); border:1px solid var(--line); border-left:4px solid var(--sc); border-radius:10px; padding:10px 12px; }
+  .glance a:hover { border-color:var(--sc); }
+  .glance .t { font-weight:600; font-size:13.5px; } .glance .x { font-size:12px; color:var(--muted); margin-top:3px; }
+  .glance .n { font-size:24px; font-weight:700; font-variant-numeric:tabular-nums; }
+  .grid { grid-auto-flow:dense; }
+  [data-hide] { display:none !important; }
   .wrap { max-width:1480px; margin:0 auto; padding:18px 22px 30px; }
   .demo { background:rgba(235,98,99,.1); border:1px solid rgba(235,98,99,.4); color:#ffd0d0; padding:9px 14px; border-radius:var(--r); margin-bottom:14px; font-size:13px; }
   .note { font-size:12px; color:var(--muted); margin:0 0 14px; }
@@ -128,7 +152,9 @@
     .kpis { grid-template-columns:repeat(3,1fr); }
     .s4, .s5 { grid-column:span 6; } .s7, .s8 { grid-column:span 12; }
   }
+  @media (max-width:1150px) { .glance { grid-template-columns:repeat(2,1fr); } }
   @media (max-width:720px) {
+    .snav .in { padding:0 8px; flex-wrap:nowrap; overflow-x:auto; } .glance { grid-template-columns:1fr; }
     .wrap, .hdr .in, .fbar .in { padding-left:12px; padding-right:12px; }
     .kpis { grid-template-columns:1fr 1fr; }
     .s4, .s5, .s6, .s7, .s8 { grid-column:span 12; }
@@ -148,6 +174,8 @@
   <span class="pill">Unofficial · open-source only</span>
   <span class="upd"><i></i>Updated <span id="updated"></span></span>
 </div></div>
+
+<nav class="snav" aria-label="Sections"><div class="in" id="snav"></div></nav>
 
 <div class="fbar"><div class="in">
   <div class="seg" id="period">
@@ -172,9 +200,17 @@
   <div id="demo" class="demo" hidden><b>Demo data.</b> Everything below is invented to show how the dashboard works. Real results replace it after the first daily run.</div>
   <p class="note"><b>Unofficial project, open-source news only.</b> Not a government service and not linked to any agency's official systems. Items are found automatically and are leads to verify against the original article and official sources. Risk scores flag what is worth a closer look; they are not evidence and never reflect nationality. Click any bar or map bubble to filter the whole dashboard.</p>
 
+  <div class="shead"><div><h2 id="stitle"></h2><p id="sdesc"></p></div>
+    <div class="acts"><button id="dlcsv" title="Spreadsheet of every report in this view">⬇ Download this view (CSV)</button>
+      <button id="dljson" title="The same reports as JSON, for analysts">⬇ JSON</button><button id="share" title="Copy a link to this section">🔗 Copy link</button></div></div>
+  <div class="chips" id="chips"></div>
   <div class="kpis" id="kpis"></div>
 
   <div class="grid">
+    <section class="card s12" data-sec="overview">
+      <h2>Sections at a glance</h2><div class="sub">Reports in the selected period and area · click a section to open it</div>
+      <div class="glance" id="glance"></div>
+    </section>
     <section class="card s8">
       <div class="head"><div><h2>Where it is happening</h2><div class="sub">Bubble size = reports naming the country · red pulse = has high-risk incidents</div></div>
         <div class="mapbtns"><button id="mWorld">World</button><button id="mCar">__REGION__</button></div></div>
@@ -185,7 +221,7 @@
       <ul class="feed" id="priority"></ul>
     </section>
 
-    <section class="card s12" id="lookup">
+    <section class="card s12" id="lookup" data-sec="overview migration trafficking documents">
       <div class="head"><div><h2>Trend lookup</h2><div class="sub">Research a travel route: what open sources say about movement from one country to another, the routes used, visa rules, and smuggling or document facilitation.</div></div></div>
       <div class="lk-form">
         <label>From (origin country)<select id="lkFrom"></select></label>
@@ -203,7 +239,7 @@
       <h2>Activity over time</h2><div class="sub">Reports per <span id="unit">week</span>, by main group (of the primary category)</div>
       <div id="trend" class="chart" style="height:300px"></div>
     </section>
-    <section class="card s4">
+    <section class="card s4" data-sec="overview">
       <h2>Risk mix by main group</h2><div class="sub">By primary category · click a group to filter</div>
       <div id="riskmix" class="chart" style="height:300px"></div>
     </section>
@@ -217,45 +253,49 @@
       <div id="countries" class="chart" style="height:420px"></div>
     </section>
 
-    <section class="card s8">
+    <section class="card s8" data-sec="overview documents migration trafficking seizures border">
       <div class="head"><div><h2>Reported journeys</h2><div class="sub">● origin · ◆ transit · ▲ intended destination · 📍 interception. A line shows a connection the report states between two places, not an actual flight or sailing path. Line width = number of reports.</div></div>
         <div class="mapbtns"><button id="jWorld">World</button><button id="jCar">__REGION__</button></div></div>
       <div id="jmap" class="chart" style="height:420px"></div>
     </section>
-    <section class="card s4">
+    <section class="card s4" data-sec="overview documents migration trafficking seizures border">
       <h2>Journeys</h2><div class="sub">As reported · incomplete journeys say what is missing · click to search</div>
       <div id="routes" class="chart" style="height:420px"></div>
     </section>
 
-    <section class="card s4">
+    <section class="card s4" data-sec="overview documents migration trafficking citizenship">
       <h2>Nationality (as stated)</h2><div class="sub">Only when the article says it in words · never inferred · not used in the risk score · click to filter</div>
       <div id="nats" class="chart" style="height:340px"></div>
     </section>
-    <section class="card s8">
+    <section class="card s8" data-sec="overview documents migration trafficking">
       <h2>Nationality by journey</h2><div class="sub">Reports that state both a nationality and a journey · darker = more reports</div>
       <div id="natroute" class="chart" style="height:340px"></div>
     </section>
 
-    <section class="card s7">
+    <section class="card s7" data-sec="overview seizures border">
       <h2>Seizures &amp; contraband</h2><div class="sub">Drugs, firearms, cash, wildlife and cargo incidents · totals by substance and unit · open "Full record" for seizure details</div>
       <table class="mini" id="sztotals" style="margin:4px 0 8px"></table>
       <div class="sub">Each substance and unit is totalled separately (kg, litres, tablets, plants and counts are never added together). Figures are as reported, not verified.</div>
       <ul class="feed" id="seizures" style="max-height:300px"></ul>
     </section>
-    <section class="card s5">
+    <section class="card s5" data-sec="overview documents migration trafficking seizures border">
       <h2>Transport mode</h2><div class="sub">As stated in the report · click to filter</div>
       <div id="modes" class="chart" style="height:330px"></div>
     </section>
 
-    <section class="card s4">
+    <section class="card s4" data-sec="overview documents border seizures">
       <h2>Airports named</h2><div class="sub">Top 10</div>
       <div id="airports" class="chart" style="height:330px"></div>
     </section>
-    <section class="card s4">
+    <section class="card s4" data-sec="overview policy citizenship official">
       <h2>Policy &amp; systems</h2><div class="sub">Visa requirements, entry rules, travel authorisations, border technology, health entry rules</div>
       <ul class="feed" id="policy" style="max-height:330px"></ul>
     </section>
-    <section class="card s4">
+    <section class="card s8" data-sec="official">
+      <h2>Who published</h2><div class="sub">Agencies, embassies and high commissions · click to search</div>
+      <div id="pubs" class="chart" style="height:330px"></div>
+    </section>
+    <section class="card s4" data-sec="overview">
       <h2>Watch list hits</h2><div class="sub">Terms on the watch list in config.yaml</div>
       <ul class="feed" id="watch" style="max-height:330px"></ul>
     </section>
@@ -289,6 +329,28 @@ const GCOL = ["--g1", "--g2", "--g3", "--g4", "--g5", "--g6", "--g7"].map(css);
 const topicGroup = {}; GROUPS.forEach(([g, ts], i) => ts.forEach(t => topicGroup[t] = i));
 const gi = name => GROUPS.findIndex(g => g[0] === name);
 const groupOf = e => topicGroup[e.primary_category] ?? Math.min(...e.categories.map(c => topicGroup[c] ?? 5));
+/* sections: each page of the site is one view of the same reports */
+const SECTIONS = [
+  {id: "overview", label: "Overview", desc: "Everything in one place: the latest high-risk and __HOME__-linked reports, and a summary of every section. Open a section above to see only that subject."},
+  {id: "documents", label: "Passports & Documents", group: "Document & Identity Fraud", desc: "Forged, fraudulent, altered or misused passports, visas, permits and identity documents; impostors (look-alike use of a genuine document); fake supporting documents; digital identity fraud."},
+  {id: "migration", nav: "Immigration", label: "Immigration & Irregular Movement", group: "Migration & Facilitation", desc: "Irregular movements and interceptions, migrant smuggling, immigration enforcement, deportations and returns."},
+  {id: "trafficking", nav: "Trafficking", label: "Human Trafficking", group: "Human Trafficking", desc: "Human trafficking and exploitation, kept separate from migrant smuggling. Victims are never named."},
+  {id: "citizenship", nav: "Citizenship", label: "Citizenship & Residence", group: "Citizenship & Residence", desc: "Citizenship and residence policy (including citizenship by investment), naturalisation, and fraudulent applications."},
+  {id: "border", label: "Border Security", group: "Border Integrity", desc: "Watch lists and INTERPOL notices, wanted-person interceptions, aviation security, stowaways, corruption and insider help, terrorism and sanctions."},
+  {id: "seizures", nav: "Seizures & Contraband", label: "Seizures & Contraband", group: "Seizures & Contraband", desc: "Narcotics, firearms and ammunition, cash couriers, wildlife and cargo seizures worldwide. Totals are kept separate by substance and unit."},
+  {id: "policy", label: "Visa & Entry Rules", group: "Policy & Systems", desc: "Changes to visa requirements and entry rules, travel authorisations (ESTA, ETA, ETIAS), border technology and health entry rules."},
+  {id: "official", label: "Official Updates", desc: "Press releases straight from agencies (police, customs, immigration, Europol, UNODC and others) and from embassies, high commissions, consulates and foreign ministries. Only border-related releases are kept.",
+   subs: [["", "All official"], ["agency", "Agencies"], ["mission", "Embassies & high commissions"]]},
+];
+SECTIONS.forEach(x => { x.gi = x.group ? GROUPS.findIndex(g => g[0] === x.group) : -1;
+  x.color = x.gi >= 0 ? GCOL[x.gi] : x.id === "official" ? css("--home") : css("--accent"); });
+const SEC = Object.fromEntries(SECTIONS.map(x => [x.id, x]));
+function inSection(e, id) {
+  const x = SEC[id];
+  if (!x || id === "overview") return true;
+  if (id === "official") return !!e.official;
+  return e.categories.some(c => topicGroup[c] === x.gi);
+}
 const NR = '<span class="nr">Not reported</span>';
 const val = v => (Array.isArray(v) ? v.length : v) ? esc(Array.isArray(v) ? v.join("; ") : v) : NR;
 const modeKey = m => (m || "").startsWith("Mixed") ? "Mixed" : (m || "Not reported");
@@ -302,7 +364,7 @@ const ev = DATA.events.map(e => ({tags: [], related: [], home: false, region: fa
   groups: GROUPS.filter(([g, ts]) => e.categories.some(c => ts.includes(c))).map(g => g[0]), g: groupOf(e)}));
 
 /* filters: every chart, list and number below follows these */
-const F = {period: 90, scope: "", group: "", topic: "", country: "", nat: "", level: "", mode: "", review: "", src: "", q: ""};
+const F = {section: "overview", sub: "", period: 90, scope: "", group: "", topic: "", country: "", nat: "", level: "", mode: "", review: "", src: "", q: ""};
 const jText = e => (e.journey || {}).text || "";
 GROUPS.forEach(([g], i) => $("fgroup").add(new Option(g, i)));
 [...new Set(ev.flatMap(e => e.categories))].sort().forEach(v => $("ftopic").add(new Option(v, v)));
@@ -333,7 +395,7 @@ function findEvent(id) { F.q = id.toLowerCase(); $("q").value = id; F.period = 0
 $("q").oninput = e => { F.q = e.target.value.toLowerCase(); update(); };
 $("fsort").onchange = () => renderTable(current);
 $("reset").onclick = () => {
-  Object.assign(F, {period: 90, scope: "", group: "", topic: "", country: "", nat: "", level: "", mode: "", review: "", src: "", q: ""});
+  Object.assign(F, {sub: "", period: 90, scope: "", group: "", topic: "", country: "", nat: "", level: "", mode: "", review: "", src: "", q: ""});
   ["fgroup", "ftopic", "fcountry", "fnat", "flevel", "fmode", "freview", "fsrc"].forEach(id => $(id).value = ""); $("q").value = "";
   document.querySelectorAll("#period button").forEach(b => b.classList.toggle("on", b.dataset.v === "90"));
   document.querySelectorAll("#scope button").forEach(b => b.classList.toggle("on", b.dataset.v === ""));
@@ -342,11 +404,12 @@ $("reset").onclick = () => {
 const setFilter = (key, val, sel) => { F[key] = F[key] === String(val) ? "" : String(val); if (sel) $(sel).value = F[key]; update(); };
 
 function since(days) { if (!days) return ""; const d = new Date(today); d.setDate(d.getDate() - days + 1); return d.toISOString().slice(0, 10); }
-function filtered(ignorePeriod) {
+function filtered(ignorePeriod, ignoreSection, ignoreTopic) {
   const from = ignorePeriod ? "" : since(F.period);
   return ev.filter(e => (!from || e.date >= from) && (!F.scope || e[F.scope])
+    && (ignoreSection || (inSection(e, F.section) && (!F.sub || (F.sub === "mission") === !!e.mission)))
     && (F.group === "" || e.categories.some(c => topicGroup[c] === +F.group))
-    && (!F.topic || e.categories.includes(F.topic)) && (!F.country || e.countries.includes(F.country))
+    && (ignoreTopic || !F.topic || e.categories.includes(F.topic)) && (!F.country || e.countries.includes(F.country))
     && (!F.level || e.level === F.level || e.kind === F.level)
     && (!F.nat || (e.nationality || []).includes(F.nat)) && (!F.src || (F.src === "official") === !!e.official) && (!F.mode || modeKey(e.transport_mode) === F.mode) && (!F.review || e.review_status === F.review)
     && (!F.q || (e.event_id + " " + jText(e) + " " + e.title + " " + (e.summary || "") + " " + (e.lead || "") + " " + e.source + " " + e.countries.join(" ") + " " + (e.terms || []).join(" ")).toLowerCase().includes(F.q)));
@@ -354,7 +417,7 @@ function filtered(ignorePeriod) {
 
 /* charts */
 const charts = {};
-["map", "jmap", "trend", "riskmix", "topics", "countries", "routes", "airports", "modes", "nats", "natroute"].forEach(id => charts[id] = echarts.init($(id)));
+["map", "jmap", "trend", "riskmix", "topics", "countries", "routes", "airports", "modes", "nats", "natroute", "pubs"].forEach(id => charts[id] = echarts.init($(id)));
 window.addEventListener("resize", () => Object.values(charts).forEach(c => c.resize()));
 const TT = {backgroundColor: "#0b1426", borderColor: "#2c3d61", textStyle: {color: INK, fontSize: 12}, extraCssText: "border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.4)"};
 const AX = {axisLine: {lineStyle: {color: LINE}}, axisTick: {show: false}, axisLabel: {color: MUTED, fontSize: 11}, splitLine: {lineStyle: {color: "#17233a"}}};
@@ -648,7 +711,10 @@ function update() {
   hbar(charts.modes, count(current.filter(e => e.kind === "Incident"), e => [modeKey(e.transport_mode)]), m => m === "Not reported" ? css("--upd") : css("--g7"), m => setFilter("mode", m, "fmode"), F.mode);
   feed("watch", current.filter(e => e.watch), "No hits. Add names or terms to the watch list in config.yaml.");
   renderTable(current);
-  const act = Object.entries(F).filter(([k, v]) => v !== "" && k !== "period").length;
+  hbar(charts.pubs, count(current.filter(e => e.official), e => [e.source]).slice(0, 15), p => current.find(e => e.source === p && e.mission) ? css("--home") : css("--g1"),
+       p => { F.q = p.toLowerCase(); $("q").value = p; update(); });
+  sectionUI();
+  const act = Object.entries(F).filter(([k, v]) => v !== "" && !["period", "section"].includes(k)).length;
   $("reset").textContent = act ? `Reset (${act})` : "Reset";
 }
 
@@ -780,6 +846,74 @@ $("trends").innerHTML = "<tr><th>Topic</th><th>This week</th><th>Usual week</th>
   (S.trends.length ? S.trends.map(t => `<tr><td>${esc(t.category)}</td><td>${t.this_week}</td><td>${t.usual_week}</td><td class="${t.note}">${t.note}</td></tr>`).join("")
    : '<tr><td colspan="4" class="empty">Needs a few weeks of history.</td></tr>');
 
+
+/* ---------------- Sections ---------------- */
+function sectionUI() {
+  const x = SEC[F.section];
+  const base = filtered(false, true, true);           // period, area and other filters, but every section
+  $("snav").innerHTML = SECTIONS.map(s => `<a href="#${s.id}" class="${s.id === F.section ? "on" : ""}" style="--sc:${s.color}">
+    ${s.id === "overview" ? "" : '<span class="d"></span>'}${esc(s.nav || s.label)}${s.id === "overview" ? "" : ` <span class="c">${base.filter(e => inSection(e, s.id)).length}</span>`}</a>`).join("");
+  $("stitle").textContent = x.label;
+  $("sdesc").textContent = x.desc;
+  document.title = (F.section === "overview" ? "" : x.label + " · ") + "__TITLE__";
+  document.documentElement.style.setProperty("--sc", x.color);
+  // quick buttons: the section's sub-topics (or, for official updates, agencies vs embassies)
+  const pool = base.filter(e => inSection(e, F.section));
+  let chips = "";
+  if (x.subs) chips = x.subs.map(([v, l]) => `<button data-sub="${v}" class="${F.sub === v ? "on" : ""}">${esc(l)}<b>${pool.filter(e => !v || (v === "mission") === !!e.mission).length}</b></button>`).join("");
+  else if (x.gi >= 0) chips = `<button data-topic="" class="${F.topic ? "" : "on"}">All<b>${pool.length}</b></button>` +
+    GROUPS[x.gi][1].map(t => [t, pool.filter(e => e.categories.includes(t)).length]).filter(([t, n]) => n || F.topic === t)
+      .map(([t, n]) => `<button data-topic="${esc(t)}" class="${F.topic === t ? "on" : ""}">${esc(t)}<b>${n}</b></button>`).join("");
+  $("chips").innerHTML = chips; $("chips").hidden = !chips;
+  $("chips").querySelectorAll("button").forEach(b => b.onclick = () => {
+    if (b.dataset.sub !== undefined) F.sub = b.dataset.sub; else { F.topic = b.dataset.topic; $("ftopic").value = F.topic; }
+    update(); });
+  // overview tiles
+  const wk = since(7);
+  $("glance").innerHTML = SECTIONS.filter(s => s.id !== "overview").map(s => {
+    const r = base.filter(e => inSection(e, s.id));
+    return `<a href="#${s.id}" style="--sc:${s.color}"><div class="t">${esc(s.label)}</div><div class="n">${r.length}</div>
+      <div class="x">${r.filter(e => e.level === "High").length} high-risk · ${r.filter(e => e.date >= wk).length} in the last 7 days · ${r.filter(e => e.home).length} __HOME__</div></a>`;
+  }).join("");
+}
+function showCards() {
+  document.querySelectorAll(".grid > section").forEach(c => {
+    const s = c.dataset.sec;
+    if (!s || s.split(" ").includes(F.section)) c.removeAttribute("data-hide"); else c.setAttribute("data-hide", "");
+  });
+  $("fgroup").style.display = F.section === "overview" ? "" : "none";
+  setTimeout(() => Object.values(charts).forEach(c => c.resize()), 0);
+}
+function goSection(id) {
+  if (!SEC[id]) id = "overview";
+  if (id !== F.section) { F.topic = ""; F.sub = ""; F.group = ""; $("ftopic").value = ""; $("fgroup").value = ""; }
+  F.section = id; showCards(); update();
+}
+window.addEventListener("hashchange", () => {
+  const h = location.hash.slice(1);
+  if (/^BWO-\d{4}-\d+$/.test(h)) { goSection("overview"); findEvent(h); } else { goSection(h); window.scrollTo({top: 0}); }
+});
+const CSV_COLS = [["Event ID", e => e.event_id], ["Published", e => e.date], ["Event date", e => e.event_date], ["Level", e => e.level],
+  ["Score", e => e.score], ["Type", e => e.kind], ["Primary category", e => e.primary_category], ["Topics", e => e.categories.join("; ")],
+  ["Headline", e => e.title], ["Summary", e => e.summary_text || e.lead || ""], ["Source", e => e.source], ["Official", e => e.official ? (e.mission ? "Embassy / mission" : "Agency") : ""],
+  ["Link", e => e.source_url || e.url], ["Countries", e => e.countries.join("; ")], ["Location", e => Object.values(e.location || {}).filter(Boolean).join(", ")],
+  ["Transport", e => e.transport_mode], ["Outcome", e => e.outcome], ["Journey", e => jText(e)], ["Nationality (as stated)", e => (e.nationality || []).join("; ")],
+  ["Seizures", e => (e.seizures || []).map(q => `${q.substance}: ${q.original}`).join("; ")], ["Review status", e => e.review_status]];
+function download(name, text, type) {
+  const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([text], {type})); a.download = name; a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
+const fileName = ext => `border-watch-${F.section}${F.topic ? "-" + F.topic.toLowerCase().replace(/[^a-z0-9]+/g, "-") : ""}-${today}.${ext}`;
+$("dlcsv").onclick = () => {
+  const q = v => { v = String(v ?? ""); return /[",\n]/.test(v) ? `"${v.replace(/"/g, '""')}"` : v; };
+  download(fileName("csv"), "﻿" + [CSV_COLS.map(c => c[0]).join(","), ...current.map(e => CSV_COLS.map(c => q(c[1](e))).join(","))].join("\r\n"), "text/csv");
+};
+$("dljson").onclick = () => download(fileName("json"), JSON.stringify(current, null, 1), "application/json");
+$("share").onclick = () => { const u = location.href.split("#")[0] + "#" + F.section;
+  (navigator.clipboard ? navigator.clipboard.writeText(u) : Promise.reject()).then(() => { $("share").textContent = "✓ Link copied"; setTimeout(() => $("share").textContent = "🔗 Copy link", 1500); }, () => prompt("Copy this link", u)); };
+
+F.section = SEC[location.hash.slice(1)] ? location.hash.slice(1) : "overview";
+showCards();
 update();
 /* a link ending in #BWO-2026-0123 (used in alert emails) opens that report */
 if (/^#BWO-\d{4}-\d+$/.test(location.hash)) setTimeout(() => findEvent(location.hash.slice(1)), 300);

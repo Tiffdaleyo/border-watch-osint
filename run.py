@@ -84,6 +84,8 @@ def main():
     for ev in events:
         ev.setdefault("kind", "Incident")
         fulltext.apply_article(ev)
+        if not set(ev.get("categories", [])) & record.SEIZURE_TOPICS:
+            ev["weight_kg"] = 0       # a weight only counts for a seizure (stops money or other figures being read as kg)
         analyze.score_event(ev, cfg.get("risk") or {}, site.get("home_places", []), site.get("region_countries", []),
                              site.get("region_words", []))
     # the full event record: ID, dates, location, connections, transport, outcome, review status, sources, related

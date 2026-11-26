@@ -49,7 +49,8 @@ To run it by hand: open the **Actions** tab, choose **daily-border-watch-osint**
 
 | Source | What it gives | Notes |
 |---|---|---|
-| **Official press releases** (read first, marked **OFFICIAL**) | Releases published by the agencies themselves | PICA, Jamaica Constabulary Force, Jamaica Information Service, US CBP, US ICE, US DHS, US Department of Justice, UK Border Force, UK Home Office, UK National Crime Agency, Canada Border Services Agency, Europol, Frontex, IOM and UNODC. Every release must still match a topic, since most police news is not border-related. |
+| **Official press releases** (read first, marked **OFFICIAL**) | Releases published by the agencies themselves | PICA, Jamaica Constabulary Force, Jamaica Information Service, US CBP, US ICE, US DHS, US Department of Justice, UK Border Force, UK Home Office, UK National Crime Agency, Canada Border Services Agency, Europol, Frontex, IOM, UNODC, UK Visas and Immigration and EU Migration and Home Affairs. Every release must still match a topic, since most police news is not border-related. |
+| **Embassies, high commissions and foreign ministries** (marked **OFFICIAL**, shown under *Official Updates → Embassies & high commissions*) | Releases from diplomatic missions and foreign ministries | US Department of State (travel), UK government news for Jamaica, Barbados, Trinidad and Tobago, the Bahamas, Guyana, Haiti, the Dominican Republic and Belize, UK Foreign Office (FCDO), Global Affairs Canada. Only border-related releases are kept. Add more in `config.yaml` with `kind: mission`. |
 | Google News | Headlines and links | 9 editions: US, UK, Canada and Nigeria (English); Mexico, Colombia and Spain (Spanish); France (French); Brazil (Portuguese). About 100 English searches plus Spanish, French and Portuguese ones, listed in `config.yaml`. |
 | GDELT | A free global news index | Extra coverage. If it is busy, the run skips it and carries on. |
 | Extra RSS feeds | Optional | Add any feed in `config.yaml` (`rss_feeds`, or `official_feeds` to mark it official). |
@@ -59,7 +60,11 @@ To run it by hand: open the **Actions** tab, choose **daily-border-watch-osint**
 - INTERPOL and the US Coast Guard block automated readers. INTERPOL news still arrives through Google News and is
   marked official.
 - The Jamaica Customs Agency website has a security-certificate error.
-- No CARICOM IMPACS news page was found.
+- No CARICOM IMPACS news page was found. The CARICOM website has a security-certificate error.
+- US embassy websites (Jamaica, Trinidad and Tobago, Barbados, the Bahamas, Haiti, the Dominican Republic and Guyana)
+  refuse automated readers. Their news still arrives through Google News.
+- The Canadian immigration department (IRCC) news feed returned nothing. The Jamaica Ministry of Foreign Affairs,
+  the EU Delegation to Jamaica and the ETIAS site have no readable news feed.
 
 To re-check which sources answer, open the **Actions** tab and run **check-sources**. It changes nothing.
 
@@ -81,7 +86,7 @@ smuggling network is in both Document & Identity Fraud and Migration & Facilitat
 | **Migration & Facilitation** | Irregular migration; migrant smuggling; immigration enforcement; deportation and returns |
 | **Human Trafficking** | Human trafficking (investigations, exploitation type, victim assistance, outcomes) |
 | **Citizenship & Residence** | Citizenship and naturalisation (including citizenship by investment); application fraud (sham marriage, false applications, fake consultants) |
-| **Border Integrity** | Corruption and insider facilitation; INTERPOL and watch lists (wanted persons); border security; aviation security; terrorism and sanctions |
+| **Border Integrity** | Corruption and insider facilitation; INTERPOL and watch lists (wanted persons); border security; aviation security; **stowaways** (people hidden on aircraft, ships or containers); terrorism and sanctions |
 | **Policy & Systems** | Visa and entry policy; border technology (ETIAS, EES, ETAs, e-gates, biometrics); health travel rules |
 | **Seizures & Contraband** | Drugs; firearms; cash couriers; wildlife; cargo operations |
 
@@ -292,11 +297,45 @@ is public.**
 
 ## 10. Using the website
 
-- **Filter bar (top):** choose the period, the scope (World, Caribbean or Jamaica), the main group, topic, country,
-  nationality, transport mode, news vs official releases, review status, or incidents and updates. You can also search headlines or an Event ID. Every
-  chart, list and number follows the filters. Click any bar or map bubble to filter by it.
-- **Key numbers:** reports, high-risk incidents, Caribbean, Jamaica, policy updates and weight seized, compared with
-  the previous period.
+The site is organised into **sections**, like the pages of a website. The menu bar at the top lists them, with a
+count of reports beside each one.
+
+| Section | What it covers |
+|---|---|
+| **Overview** | Everything in one place: key numbers, a "Sections at a glance" panel (reports, high-risk, last 7 days and Jamaica-linked for each section), the map, the priority feed and the trend lookup |
+| **Passports & Documents** | Document & Identity Fraud group |
+| **Immigration & Irregular Movement** | Migration & Facilitation group: irregular movements, smuggling, enforcement, deportations |
+| **Human Trafficking** | Human trafficking only (kept separate from smuggling) |
+| **Citizenship & Residence** | Citizenship policy, citizenship by investment, application fraud |
+| **Border Security** | Border Integrity group: watch lists and INTERPOL, aviation security, stowaways, corruption, terrorism |
+| **Seizures & Contraband** | Narcotics, firearms, cash, wildlife and cargo seizures worldwide, with totals by substance and unit |
+| **Visa & Entry Rules** | Policy & Systems group: visa and entry rules, travel authorisations, border technology, health rules |
+| **Official Updates** | Only official releases, with tabs for **Agencies** and **Embassies & high commissions**, plus a "Who published" chart |
+
+A report about several subjects appears in every section it belongs to. For example, a fake passport used by a
+smuggling ring appears in both Passports & Documents and Immigration.
+
+**How every section works:**
+- A heading and one line saying what the section covers.
+- **Quick buttons** for the section's sub-topics, with counts. For example, Seizures has Drug trafficking, Firearms,
+  Cash couriers, Wildlife and Cargo.
+- Only the charts that matter for that subject. Seizures shows the seizure totals, transport mode and airports;
+  Visa & Entry Rules shows the policy feed.
+- **⬇ Download this view (CSV)** saves exactly what is on screen, after every filter, as a spreadsheet that opens in
+  Excel. **⬇ JSON** gives the same reports for analysts. The file name says the section, the topic and the date.
+- **🔗 Copy link** copies a link straight to the section, for example `…/border-watch-osint/#seizures`. Bookmark it or
+  send it to the team.
+
+**Section links:** `#overview`, `#documents`, `#migration`, `#trafficking`, `#citizenship`, `#border`, `#seizures`,
+`#policy`, `#official`. A link ending in an Event ID (for example `#BWO-2026-0123`) still opens that report.
+
+**Everywhere on the site:**
+- **Filter bar:** choose the period, the scope (World, Caribbean or Jamaica), topic, country, nationality, transport
+  mode, news vs official releases, review status, or incidents and updates. You can also search headlines or an
+  Event ID. Every chart, list and number follows the filters, and the filters stay on when you change section.
+  Click any bar or map bubble to filter by it. **Reset** clears the filters but keeps you in the section.
+- **Key numbers:** reports, high-risk incidents, Caribbean, Jamaica, policy updates and the largest seizure total,
+  compared with the previous period.
 - **Map:** countries named. A red pulse means the country has high-risk incidents.
 - **Reported journeys map:** distinct markers for origin (●), transit (◆), intended destination (▲) and interception
   (📍). A line shows a connection the report states between two places. **It is not an actual flight or sailing
@@ -304,12 +343,12 @@ is public.**
   example, "Origin: Jamaica; destination not reported".
 - **Nationality (as stated)** and **Nationality by journey:** see the nationality rules in section 5.
 - **Priority feed:** high-risk incidents and anything naming Jamaica.
-- **Trend lookup:** research a route (origin → destination) with live news-index results and ready-made searches.
-- **Charts:** activity over time and risk mix by main group, topics, countries, routes, airports and transport mode.
-- **Seizures & Contraband** and **Policy & Systems** sections, plus watch-list hits.
+- **Trend lookup** (Overview, Immigration, Trafficking, Passports): research a route (origin → destination) with
+  live news-index results and ready-made searches.
 - **All reports:** a sortable table. Click **Full record** for every field, including specialist fields. Click
   **Why this score** to see the indicators matched.
-- **Downloads:** the CSV (opens in Excel, with every field) and the **weekly bulletin** (one page to print or email).
+- **Full downloads:** the complete CSV (every report, every field) and the **weekly bulletin** are linked above the
+  table.
 
 ## 11. Email: Monday bulletin and alerts
 
@@ -433,3 +472,4 @@ Privacy rules are in `watch/privacy.py`.
 | 2026-11-26 | Source panel on every record: source type, original or republished, language, supporting sources, independent vs repeated reporting, review note, uncertainty / conflict note, correction history. "Reviewed" defined as checked against sources, not proven. |
 | 2026-11-26 | Email switched on. Test bulletin sent successfully. A **test-email** button added to send a [TEST] alert email on demand. |
 | 2026-11-26 | Alerts limited to stories dated within the last 7 days, after the first live alert listed 145 incidents from the backlog. |
+| 2026-11-26 | Site organised into **sections** (Overview, Passports & Documents, Immigration & Irregular Movement, Human Trafficking, Citizenship & Residence, Border Security, Seizures & Contraband, Visa & Entry Rules, Official Updates), each with its own link, quick sub-topic buttons, relevant charts and a download of the current view. New **Stowaways** topic. Embassy, high commission and foreign-ministry sources added. Fixed: English figures such as "13.795 kg" were read as 13,795 kg. |

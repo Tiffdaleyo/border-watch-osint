@@ -22,7 +22,7 @@ PRIMARY_ORDER = [
     "Human trafficking", "Migrant smuggling", "Passport fraud", "Visa and permit fraud", "Impostors",
     "Digital identity fraud", "Supporting-document fraud", "Identity and document fraud", "Application fraud",
     "Corruption and insider facilitation", "Drug trafficking", "Firearms and ammunition", "Terrorism and sanctions",
-    "Cash couriers", "Wildlife smuggling", "Aviation security", "Cargo operations", "INTERPOL and watch lists",
+    "Cash couriers", "Wildlife smuggling", "Aviation security", "Stowaways", "Cargo operations", "INTERPOL and watch lists",
     "Irregular migration", "Immigration enforcement", "Deportation and returns", "Citizenship and naturalisation",
     "Border security", "Border technology", "Visa and entry policy", "Health travel rules",
 ]

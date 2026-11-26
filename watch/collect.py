@@ -159,6 +159,8 @@ def official_sources(cfg):
         for it in res:
             it["official"] = True
             it["agency_country"] = feed.get("country", "")
+            if feed.get("kind") == "mission":   # embassy, high commission, consulate or foreign ministry
+                it["mission"] = True
         items += res
         log(f"  Official {feed.get('name', feed['url'])}: {len(res)} items")
     return items

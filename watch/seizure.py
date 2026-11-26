@@ -68,11 +68,11 @@ QUAL = {"approximately": "Approximate", "approx": "Approximate", "approx.": "App
         "less than": "Less than", "under": "Less than"}
 
 
-def _num(s, mult):
+def _num(s, mult, lang="en"):
     s = s.replace(" ", "")
     if re.fullmatch(r"\d{1,3}(,\d{3})+(\.\d+)?", s):
         s = s.replace(",", "")
-    elif re.fullmatch(r"\d{1,3}(\.\d{3})+", s):          # 1.200 (Spanish thousands)
+    elif lang != "en" and re.fullmatch(r"\d{1,3}(\.\d{3})+", s):   # 1.200 (Spanish thousands; in English 13.795 kg is a decimal)
         s = s.replace(".", "")
     else:
         s = s.replace(",", ".")
@@ -107,12 +107,12 @@ def _substance_near(t, start, end):
     return ""
 
 
-def quantities(text):
+def quantities(text, lang="en"):
     """All stated quantities (first 3000 characters), each with its substance, unit and qualifier."""
     t = fold(text[:3000])
     out, seen = [], set()
     for m in _QTY_RE.finditer(t):
-        val = _num(m.group("num"), m.group("mult"))
+        val = _num(m.group("num"), m.group("mult"), lang)
         if not val:
             continue
         unit, kind, f = _unit(m.group("unit"))
@@ -212,7 +212,7 @@ _CASE_RE = [(n, extract.compile_words(w)) for n, w in CASE]
 def details(text, ev):
     """Rows for the 'Seizure' specialist section, and the structured quantities for totals."""
     t = fold(text[:3000])
-    qs = quantities(text)
+    qs = quantities(text, (ev.get("lang") or "en")[:2])
     conf = next((n for n, rx in _CONF_RE if rx.search(t)), "")
     concealment = ""
     m = _CONCEAL_RE.search(t)

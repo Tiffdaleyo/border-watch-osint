@@ -155,8 +155,13 @@ CATEGORIES = {
         "border agent* arrested", "officer* accepted", "colluding officer*", "corrupcion", "soborno*", "coima*",
         "funcionario* de aduana*", "funcionario* de migracion", "corruption", "pot-de-vin", "suborno*",
     ],
+    "Stowaways": [
+        "stowaway*", "stowed away", "stow away", "hidden in the wheel well", "wheel well", "landing gear compartment",
+        "hidden aboard", "hiding aboard", "hidden on board", "found hiding in a container", "polizon*",
+        "passager clandestin", "passagers clandestins", "clandestino em aviao", "clandestino a bordo",
+    ],
     "Aviation security": [
-        "stowaway*", "airport security breach", "security breach at", "unruly passenger*", "disruptive passenger*", "airside", "aviation security", "AVSEC", "bomb threat",
+        "airport security breach", "security breach at", "unruly passenger*", "disruptive passenger*", "airside", "aviation security", "AVSEC", "bomb threat",
         "suspicious package", "polizon*", "passager clandestin", "clandestino em aviao",
     ],
     "Wildlife smuggling": [
@@ -199,7 +204,7 @@ GROUPS = [
     ("Human Trafficking", ["Human trafficking"]),
     ("Citizenship & Residence", ["Citizenship and naturalisation", "Application fraud"]),
     ("Border Integrity", ["Corruption and insider facilitation", "INTERPOL and watch lists", "Border security",
-                          "Aviation security", "Terrorism and sanctions"]),
+                          "Aviation security", "Stowaways", "Terrorism and sanctions"]),
     ("Policy & Systems", ["Visa and entry policy", "Border technology", "Health travel rules"]),
     ("Seizures & Contraband", ["Drug trafficking", "Firearms and ammunition", "Cash couriers", "Wildlife smuggling",
                                "Cargo operations"]),
@@ -228,7 +233,7 @@ GOODS_TOPICS = {"Drug trafficking", "Cash couriers", "Firearms and ammunition", 
 CRIME_TOPICS = {"Passport fraud", "Visa and permit fraud", "Identity and document fraud", "Impostors",
                 "Supporting-document fraud", "Digital identity fraud", "Application fraud",
                 "Migrant smuggling", "Human trafficking", "Drug trafficking", "Cash couriers",
-                "Firearms and ammunition", "Wildlife smuggling"}
+                "Firearms and ammunition", "Wildlife smuggling", "Stowaways"}
 # These count as an incident only when something happened (arrest, seizure, interception...).
 ACTION_TOPICS = {"Citizenship and naturalisation", "INTERPOL and watch lists", "Irregular migration",
                  "Immigration enforcement", "Terrorism and sanctions", "Aviation security", "Cargo operations",
