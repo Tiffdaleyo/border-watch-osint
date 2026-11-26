@@ -10,7 +10,7 @@ def pick(events, today, home):
             and e.get("review_status") != "Excluded" and (e.get("level") == "High" or e.get("home"))]
 
 
-def send(events, today, site):
+def send(events, today, site, subject_prefix=""):
     home = site.get("home_country", "")
     new = pick(events, today, home)
     if not new:
@@ -41,7 +41,8 @@ def send(events, today, site):
                        for e in new[:25])
     subject = f"Border Watch alert: {len(new)} new " + ("high-risk / " if any(e.get('level') == 'High' for e in new) else "") \
               + f"{home} incident{'s' if len(new) != 1 else ''}"
-    if mailer.send(subject, body, text, kind="alerts"):
+    if mailer.send(subject_prefix + subject, body, text, kind="alerts"):
         for e in new:
             e["alerted"] = True
-    return len(new)
+        return len(new)
+    return 0

@@ -1,0 +1,23 @@
+# Run by hand to check the email set-up: sends a [TEST] alert to MAIL_ALERTS_TO (or MAIL_TO). Changes nothing.
+name: test-email
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pyyaml
+      - name: Send a test alert
+        run: python -u tools/test_alert.py
+        env:
+          MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
+          MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+          MAIL_ALERTS_TO: ${{ secrets.MAIL_ALERTS_TO }}
