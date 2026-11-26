@@ -104,7 +104,29 @@
    "text": ""
   },
   "last_updated": "2026-11-26",
-  "related": []
+  "related": [],
+  "corrections": [],
+  "review_uncertainty": "",
+  "source_panel": {
+   "sources": [
+    {
+     "publisher": "Europol",
+     "url": "https://www.europol.europa.eu/media-press/newsroom/news/five-tefaf-robbery-suspects-added-to-eu-most-wanted",
+     "date": "2026-11-26",
+     "type": "Official release",
+     "role": "Original release",
+     "lang": "Not reported"
+    }
+   ],
+   "type": "Official release",
+   "language": "Not reported",
+   "supporting": 0,
+   "independent": 1,
+   "relationship": "Single source"
+  },
+  "uncertainty": [
+   "Publication date not shown by the source; date found is used"
+  ]
  },
  {
   "title": "Frontex opens recruitment for up to 500 Standing Corps officers",
@@ -336,7 +358,38 @@
    "text": ""
   },
   "last_updated": "2026-11-26",
-  "related": []
+  "related": [],
+  "corrections": [
+   {
+    "field": "several",
+    "from": "headline only",
+    "to": "facts taken from the full article",
+    "by": "automatic",
+    "date": "2026-11-26"
+   }
+  ],
+  "review_uncertainty": "",
+  "source_panel": {
+   "sources": [
+    {
+     "publisher": "Frontex",
+     "url": "https://www.frontex.europa.eu/media-centre/news/news-release/frontex-opens-recruitment-for-up-to-500-standing-corps-officers-hdMC6R",
+     "date": "2026-11-26",
+     "type": "Official release",
+     "role": "Original release",
+     "lang": "English"
+    }
+   ],
+   "type": "Official release",
+   "language": "English",
+   "supporting": 0,
+   "independent": 1,
+   "relationship": "Single source"
+  },
+  "uncertainty": [
+   "Not stated in the report: when it happened, where it happened, outcome",
+   "Publication date not shown by the source; date found is used"
+  ]
  },
  {
   "title": "UNODC-INTERPOL global summit mobilizes action against fraud surge",
@@ -520,7 +573,37 @@
    "text": ""
   },
   "last_updated": "2026-11-26",
-  "related": []
+  "related": [],
+  "corrections": [
+   {
+    "field": "several",
+    "from": "headline only",
+    "to": "facts taken from the full article",
+    "by": "automatic",
+    "date": "2026-11-26"
+   }
+  ],
+  "review_uncertainty": "",
+  "source_panel": {
+   "sources": [
+    {
+     "publisher": "UNODC",
+     "url": "https://www.unodc.org/unodc/en/press/releases/2026/March/unodc-interpol-global-summit-mobilizes-action-against-fraud-surge.html",
+     "date": "2026-11-26",
+     "type": "Official release",
+     "role": "Original release",
+     "lang": "Not reported"
+    }
+   ],
+   "type": "Official release",
+   "language": "Not reported",
+   "supporting": 0,
+   "independent": 1,
+   "relationship": "Single source"
+  },
+  "uncertainty": [
+   "Publication date not shown by the source; date found is used"
+  ]
  },
  {
   "title": "Law enforcement follow crypto money trail behind billion-euro illegal streaming industry",
@@ -627,7 +710,29 @@
    "text": ""
   },
   "last_updated": "2026-11-26",
-  "related": []
+  "related": [],
+  "corrections": [],
+  "review_uncertainty": "",
+  "source_panel": {
+   "sources": [
+    {
+     "publisher": "Europol",
+     "url": "https://www.europol.europa.eu/media-press/newsroom/news/law-enforcement-follow-crypto-money-trail-behind-billion-euro-illegal-streaming-industry",
+     "date": "2026-11-26",
+     "type": "Official release",
+     "role": "Original release",
+     "lang": "Not reported"
+    }
+   ],
+   "type": "Official release",
+   "language": "Not reported",
+   "supporting": 0,
+   "independent": 1,
+   "relationship": "Single source"
+  },
+  "uncertainty": [
+   "Publication date not shown by the source; date found is used"
+  ]
  },
  {
   "title": "New Frontex officers graduate in Warsaw",
@@ -847,7 +952,37 @@
    "text": ""
   },
   "last_updated": "2026-11-26",
-  "related": []
+  "related": [],
+  "corrections": [
+   {
+    "field": "several",
+    "from": "headline only",
+    "to": "facts taken from the full article",
+    "by": "automatic",
+    "date": "2026-11-26"
+   }
+  ],
+  "review_uncertainty": "",
+  "source_panel": {
+   "sources": [
+    {
+     "publisher": "Frontex",
+     "url": "https://www.frontex.europa.eu/media-centre/news/news-release/new-frontex-officers-graduate-in-warsaw-vABW6m",
+     "date": "2026-11-26",
+     "type": "Official release",
+     "role": "Original release",
+     "lang": "Not reported"
+    }
+   ],
+   "type": "Official release",
+   "language": "Not reported",
+   "supporting": 0,
+   "independent": 1,
+   "relationship": "Single source"
+  },
+  "uncertainty": [
+   "Publication date not shown by the source; date found is used"
+  ]
  },
  {
   "title": "Not a game: Europol and partners target terrorist role-playing online",
@@ -954,7 +1089,29 @@
    "text": ""
   },
   "last_updated": "2026-11-26",
-  "related": []
+  "related": [],
+  "corrections": [],
+  "review_uncertainty": "",
+  "source_panel": {
+   "sources": [
+    {
+     "publisher": "Europol",
+     "url": "https://www.europol.europa.eu/media-press/newsroom/news/not-game-europol-and-partners-target-terrorist-role-playing-online",
+     "date": "2026-11-26",
+     "type": "Official release",
+     "role": "Original release",
+     "lang": "Not reported"
+    }
+   ],
+   "type": "Official release",
+   "language": "Not reported",
+   "supporting": 0,
+   "independent": 1,
+   "relationship": "Single source"
+  },
+  "uncertainty": [
+   "Publication date not shown by the source; date found is used"
+  ]
  },
  {
   "title": "354 dark web vendors and buyers arrested in Europol-coordinated global crackdown",
@@ -1027,6 +1184,71 @@
   "jamaica_connection": [],
   "specialist": [
    [
+    "Seizure",
+    [
+     [
+      "Substance / item (as reported)",
+      "Firearms"
+     ],
+     [
+      "Confirmation status",
+      ""
+     ],
+     [
+      "Quantity and unit (original)",
+      ""
+     ],
+     [
+      "Standardised quantity",
+      ""
+     ],
+     [
+      "Quantity qualifier",
+      ""
+     ],
+     [
+      "Concealment method",
+      ""
+     ],
+     [
+      "Shipment / transport type",
+      ""
+     ],
+     [
+      "Declared commodity",
+      ""
+     ],
+     [
+      "Origin",
+      ""
+     ],
+     [
+      "Transit",
+      ""
+     ],
+     [
+      "Destination",
+      ""
+     ],
+     [
+      "Seizing agency",
+      ""
+     ],
+     [
+      "Other seized items",
+      ""
+     ],
+     [
+      "Reported valuation",
+      ""
+     ],
+     [
+      "Case development",
+      "Arrest"
+     ]
+    ]
+   ],
+   [
     "Wanted-person interception",
     [
      [
@@ -1069,7 +1291,31 @@
    "text": ""
   },
   "last_updated": "2026-11-26",
-  "related": []
+  "related": [],
+  "corrections": [],
+  "review_uncertainty": "",
+  "seizures": [],
+  "source_panel": {
+   "sources": [
+    {
+     "publisher": "Europol",
+     "url": "https://www.europol.europa.eu/media-press/newsroom/news/354-dark-web-vendors-and-buyers-arrested-in-europol-coordinated-global-crackdown",
+     "date": "2026-11-26",
+     "type": "Official release",
+     "role": "Original release",
+     "lang": "English"
+    }
+   ],
+   "type": "Official release",
+   "language": "English",
+   "supporting": 0,
+   "independent": 1,
+   "relationship": "Single source"
+  },
+  "uncertainty": [
+   "Not stated in the report: when it happened, where it happened",
+   "Publication date not shown by the source; date found is used"
+  ]
  },
  {
   "title": "6.4 million victim datasets secured in international operation against malware networks",
@@ -1177,7 +1423,30 @@
    "text": ""
   },
   "last_updated": "2026-11-26",
-  "related": []
+  "related": [],
+  "corrections": [],
+  "review_uncertainty": "",
+  "source_panel": {
+   "sources": [
+    {
+     "publisher": "Europol",
+     "url": "https://www.europol.europa.eu/media-press/newsroom/news/64-million-victim-datasets-secured-in-international-operation-against-malware-networks",
+     "date": "2026-11-26",
+     "type": "Official release",
+     "role": "Original release",
+     "lang": "Not reported"
+    }
+   ],
+   "type": "Official release",
+   "language": "Not reported",
+   "supporting": 0,
+   "independent": 1,
+   "relationship": "Single source"
+  },
+  "uncertainty": [
+   "Not stated in the report: when it happened, where it happened",
+   "Publication date not shown by the source; date found is used"
+  ]
  },
  {
   "title": "Law enforcement dismantle cocaine network from Ecuador to Europe",
@@ -1253,6 +1522,71 @@
   "jamaica_connection": [],
   "specialist": [
    [
+    "Seizure",
+    [
+     [
+      "Substance / item (as reported)",
+      "Cocaine"
+     ],
+     [
+      "Confirmation status",
+      "Suspected"
+     ],
+     [
+      "Quantity and unit (original)",
+      "over 750 kilos (Cocaine)"
+     ],
+     [
+      "Standardised quantity",
+      "Same as original"
+     ],
+     [
+      "Quantity qualifier",
+      "More than"
+     ],
+     [
+      "Concealment method",
+      ""
+     ],
+     [
+      "Shipment / transport type",
+      ""
+     ],
+     [
+      "Declared commodity",
+      ""
+     ],
+     [
+      "Origin",
+      "Ecuador"
+     ],
+     [
+      "Transit",
+      ""
+     ],
+     [
+      "Destination",
+      ""
+     ],
+     [
+      "Seizing agency",
+      ""
+     ],
+     [
+      "Other seized items",
+      ""
+     ],
+     [
+      "Reported valuation",
+      ""
+     ],
+     [
+      "Case development",
+      "Investigation"
+     ]
+    ]
+   ],
+   [
     "Wanted-person interception",
     [
      [
@@ -1295,7 +1629,43 @@
    "text": "Origin: Ecuador; destination not reported"
   },
   "last_updated": "2026-11-26",
-  "related": []
+  "related": [],
+  "corrections": [],
+  "review_uncertainty": "",
+  "seizures": [
+   {
+    "substance": "Cocaine",
+    "suspected": false,
+    "original": "over 750 kilos",
+    "qty": 750.0,
+    "unit": "kg",
+    "std_qty": 750.0,
+    "std_unit": "kg",
+    "qualifier": "More than"
+   }
+  ],
+  "source_panel": {
+   "sources": [
+    {
+     "publisher": "Europol",
+     "url": "https://www.europol.europa.eu/media-press/newsroom/news/law-enforcement-dismantle-cocaine-network-ecuador-to-europe",
+     "date": "2026-11-26",
+     "type": "Official release",
+     "role": "Original release",
+     "lang": "English"
+    }
+   ],
+   "type": "Official release",
+   "language": "English",
+   "supporting": 0,
+   "independent": 1,
+   "relationship": "Single source"
+  },
+  "uncertainty": [
+   "Not stated in the report: when it happened",
+   "Journey only partly stated",
+   "Publication date not shown by the source; date found is used"
+  ]
  },
  {
   "title": "Frontex: Irregular border crossings into the EU down 29% in the first ten months of 2026",
@@ -1556,7 +1926,37 @@
    "text": "Iran → Italy"
   },
   "last_updated": "2026-11-26",
-  "related": []
+  "related": [],
+  "corrections": [
+   {
+    "field": "several",
+    "from": "headline only",
+    "to": "facts taken from the full article",
+    "by": "automatic",
+    "date": "2026-11-26"
+   }
+  ],
+  "review_uncertainty": "",
+  "source_panel": {
+   "sources": [
+    {
+     "publisher": "Frontex",
+     "url": "https://www.frontex.europa.eu/media-centre/news/news-release/frontex-irregular-border-crossings-into-the-eu-down-29-in-the-first-ten-months-of-2026-Yj3qp4",
+     "date": "2026-11-26",
+     "type": "Official release",
+     "role": "Original release",
+     "lang": "English"
+    }
+   ],
+   "type": "Official release",
+   "language": "English",
+   "supporting": 0,
+   "independent": 1,
+   "relationship": "Single source"
+  },
+  "uncertainty": [
+   "Publication date not shown by the source; date found is used"
+  ]
  },
  {
   "title": "EU Most Wanted: 19 fugitives wanted for targeting the vulnerable",
@@ -1661,7 +2061,29 @@
    "text": ""
   },
   "last_updated": "2026-11-26",
-  "related": []
+  "related": [],
+  "corrections": [],
+  "review_uncertainty": "",
+  "source_panel": {
+   "sources": [
+    {
+     "publisher": "Europol",
+     "url": "https://www.europol.europa.eu/media-press/newsroom/news/eu-most-wanted-19-fugitives-wanted-for-targeting-vulnerable",
+     "date": "2026-11-26",
+     "type": "Official release",
+     "role": "Original release",
+     "lang": "English"
+    }
+   ],
+   "type": "Official release",
+   "language": "English",
+   "supporting": 0,
+   "independent": 1,
+   "relationship": "Single source"
+  },
+  "uncertainty": [
+   "Publication date not shown by the source; date found is used"
+  ]
  },
  {
   "title": "ICE deports convicted sex abuser to Guatemala on weekend removal flight",
@@ -1792,7 +2214,38 @@
    "text": "Origin: Guatemala; destination not reported"
   },
   "last_updated": "2026-11-26",
-  "related": []
+  "related": [],
+  "corrections": [
+   {
+    "field": "several",
+    "from": "headline only",
+    "to": "facts taken from the full article",
+    "by": "automatic",
+    "date": "2026-11-26"
+   }
+  ],
+  "review_uncertainty": "",
+  "source_panel": {
+   "sources": [
+    {
+     "publisher": "US Immigration and Customs Enforcement",
+     "url": "https://www.ice.gov/news/releases/ice-deports-convicted-sex-abuser-guatemala-weekend-removal-flight",
+     "date": "2026-11-26",
+     "type": "Official release",
+     "role": "Original release",
+     "lang": "English"
+    }
+   ],
+   "type": "Official release",
+   "language": "English",
+   "supporting": 0,
+   "independent": 1,
+   "relationship": "Single source"
+  },
+  "uncertainty": [
+   "Journey only partly stated",
+   "Publication date not shown by the source; date found is used"
+  ]
  },
  {
   "title": "SEIZED SHABU. The Bureau of Customs on Thursday (Nov. 26, 2026) says it seized 42.884 kilos of suspected shabu worth an estimated PHP291.61 million in three shipments from Kenya and Malaysia. The largest haul came from a shipment from Kenya decl",
@@ -9400,7 +9853,29 @@
    "text": ""
   },
   "last_updated": "2026-11-26",
-  "related": []
+  "related": [],
+  "corrections": [],
+  "review_uncertainty": "",
+  "source_panel": {
+   "sources": [
+    {
+     "publisher": "US Department of Justice",
+     "url": "https://www.justice.gov/usao-wdny/pr/federal-jury-convicts-buffalo-man-hobbs-act-robbery-co-defendant-pleads-guilty-sex",
+     "date": "2026-11-25",
+     "type": "Official release",
+     "role": "Original release",
+     "lang": "English"
+    }
+   ],
+   "type": "Official release",
+   "language": "English",
+   "supporting": 0,
+   "independent": 1,
+   "relationship": "Single source"
+  },
+  "uncertainty": [
+   "Not stated in the report: when it happened"
+  ]
  },
  {
   "title": "EU Tells Schengen Countries to Stop Accepting Non-Biometric Russian Passports and Prepare Visa Ban on Ex-Combatants",
@@ -9733,7 +10208,35 @@
    "text": ""
   },
   "last_updated": "2026-11-26",
-  "related": []
+  "related": [],
+  "corrections": [
+   {
+    "field": "several",
+    "from": "headline only",
+    "to": "facts taken from the full article",
+    "by": "automatic",
+    "date": "2026-11-26"
+   }
+  ],
+  "review_uncertainty": "",
+  "source_panel": {
+   "sources": [
+    {
+     "publisher": "US Department of Justice",
+     "url": "https://www.justice.gov/opa/pr/los-angeles-man-sentenced-over-24-years-prison-sex-trafficking-0",
+     "date": "2026-11-25",
+     "type": "Official release",
+     "role": "Original release",
+     "lang": "English"
+    }
+   ],
+   "type": "Official release",
+   "language": "English",
+   "supporting": 0,
+   "independent": 1,
+   "relationship": "Single source"
+  },
+  "uncertainty": []
  },
  {
   "title": "China misusing Interpol to target dissidents, says leading UK lawyer",
@@ -10735,7 +11238,73 @@
   "summary_text": "A Billings man who trafficked significant amounts of methamphetamine and fentanyl was sentenced Tuesday to 10 years in prison, followed by five years of supervised release.",
   "caribbean_connection": [],
   "jamaica_connection": [],
-  "specialist": [],
+  "specialist": [
+   [
+    "Seizure",
+    [
+     [
+      "Substance / item (as reported)",
+      "Methamphetamine; Fentanyl"
+     ],
+     [
+      "Confirmation status",
+      ""
+     ],
+     [
+      "Quantity and unit (original)",
+      ""
+     ],
+     [
+      "Standardised quantity",
+      ""
+     ],
+     [
+      "Quantity qualifier",
+      ""
+     ],
+     [
+      "Concealment method",
+      ""
+     ],
+     [
+      "Shipment / transport type",
+      ""
+     ],
+     [
+      "Declared commodity",
+      ""
+     ],
+     [
+      "Origin",
+      ""
+     ],
+     [
+      "Transit",
+      ""
+     ],
+     [
+      "Destination",
+      ""
+     ],
+     [
+      "Seizing agency",
+      ""
+     ],
+     [
+      "Other seized items",
+      ""
+     ],
+     [
+      "Reported valuation",
+      ""
+     ],
+     [
+      "Case development",
+      "Court outcome"
+     ]
+    ]
+   ]
+  ],
   "sources": [
    {
     "publisher": "US Department of Justice",
@@ -10757,7 +11326,30 @@
    "text": ""
   },
   "last_updated": "2026-11-26",
-  "related": []
+  "related": [],
+  "corrections": [],
+  "review_uncertainty": "",
+  "seizures": [],
+  "source_panel": {
+   "sources": [
+    {
+     "publisher": "US Department of Justice",
+     "url": "https://www.justice.gov/usao-mt/pr/billings-man-sentenced-10-years-prison-trafficking-meth-fentanyl-out-his-storage-unit",
+     "date": "2026-11-25",
+     "type": "Official release",
+     "role": "Original release",
+     "lang": "English"
+    }
+   ],
+   "type": "Official release",
+   "language": "English",
+   "supporting": 0,
+   "independent": 1,
+   "relationship": "Single source"
+  },
+  "uncertainty": [
+   "Not stated in the report: when it happened, where it happened"
+  ]
  },
  {
   "title": "Entebbe Airport tests response to infectious disease outbreak",
@@ -14886,7 +15478,37 @@
    "interception_country": "",
    "nationality": []
   },
-  "lead": "Kilmar Abrego Garcia, who was returned to the U.S. after being mistakenly deported to a Salvadoran mega-prison, is in the process of self-deporting to Spain, sources familiar with the matter tell ABC News."
+  "lead": "Kilmar Abrego Garcia, who was returned to the U.S. after being mistakenly deported to a Salvadoran mega-prison, is in the process of self-deporting to Spain, sources familiar with the matter tell ABC News.",
+  "corrections": [
+   {
+    "field": "several",
+    "from": "headline only",
+    "to": "facts taken from the full article",
+    "by": "automatic",
+    "date": "2026-11-26"
+   }
+  ],
+  "review_uncertainty": "",
+  "source_panel": {
+   "sources": [
+    {
+     "publisher": "wtop.com",
+     "url": "https://wtop.com/national/2026/11/kilmar-abrego-garcia-leaves-the-us-self-deporting-to-spain/",
+     "date": "2026-11-25",
+     "type": "News report",
+     "role": "Original (earliest found)",
+     "lang": "English"
+    }
+   ],
+   "type": "News report",
+   "language": "English",
+   "supporting": 0,
+   "independent": 1,
+   "relationship": "Single source"
+  },
+  "uncertainty": [
+   "Journey only partly stated"
+  ]
  },
  {
   "title": "A US visa fee is about ₦258,000 for Nigerians. The pause and bond that can matter more",
@@ -18192,7 +18814,37 @@
     "El Salvador"
    ]
   },
-  "lead": "Kilmar Abrego Garcia, who fought his mistaken deportation, leaves the US voluntarily for Spain WASHINGTON (AP) — Kilmar Abrego Garcia, a Salvadoran national who fought his mistaken deportation, left the U.S."
+  "lead": "Kilmar Abrego Garcia, who fought his mistaken deportation, leaves the US voluntarily for Spain WASHINGTON (AP) — Kilmar Abrego Garcia, a Salvadoran national who fought his mistaken deportation, left the U.S.",
+  "corrections": [
+   {
+    "field": "several",
+    "from": "headline only",
+    "to": "facts taken from the full article",
+    "by": "automatic",
+    "date": "2026-11-26"
+   }
+  ],
+  "review_uncertainty": "",
+  "source_panel": {
+   "sources": [
+    {
+     "publisher": "isp.netscape.com",
+     "url": "https://isp.netscape.com:443/news/story/0001/20261125/790f160a85f279d7bb4105412f0ce367",
+     "date": "2026-11-25",
+     "type": "News report",
+     "role": "Original (earliest found)",
+     "lang": "English"
+    }
+   ],
+   "type": "News report",
+   "language": "English",
+   "supporting": 0,
+   "independent": 1,
+   "relationship": "Single source"
+  },
+  "uncertainty": [
+   "Journey only partly stated"
+  ]
  },
  {
   "title": "No more visa-free entry for Indians from Jan 1 as Malaysia tightens pre-arrival checks",
@@ -23122,7 +23774,37 @@
    "interception_country": "",
    "nationality": []
   },
-  "lead": "Kilmar Abrego Garcia arrives in Spain after leaving US amid deportation fight SPAIN (TNND) — Kilmar Abrego Garcia arrived in Spain on Tuesday after voluntarily leaving the United States, where he had spent months fighting the Trump administration’s efforts to…"
+  "lead": "Kilmar Abrego Garcia arrives in Spain after leaving US amid deportation fight SPAIN (TNND) — Kilmar Abrego Garcia arrived in Spain on Tuesday after voluntarily leaving the United States, where he had spent months fighting the Trump administration’s efforts to…",
+  "corrections": [
+   {
+    "field": "several",
+    "from": "headline only",
+    "to": "facts taken from the full article",
+    "by": "automatic",
+    "date": "2026-11-26"
+   }
+  ],
+  "review_uncertainty": "",
+  "source_panel": {
+   "sources": [
+    {
+     "publisher": "cnycentral.com",
+     "url": "https://cnycentral.com/news/nation-world/kilmar-abrego-garcia-arrives-in-spain-after-leaving-us-amid-deportation-fight-trump-administration-homeland-security-markwayne-mullin-baltimore-maryland-el-salvador-cecot-prison",
+     "date": "2026-11-25",
+     "type": "News report",
+     "role": "Original (earliest found)",
+     "lang": "English"
+    }
+   ],
+   "type": "News report",
+   "language": "English",
+   "supporting": 0,
+   "independent": 1,
+   "relationship": "Single source"
+  },
+  "uncertainty": [
+   "Journey only partly stated"
+  ]
  },
  {
   "title": "Father and son smuggled cannabis on flight from Thailand",
@@ -23274,6 +23956,71 @@
   "jamaica_connection": [],
   "specialist": [
    [
+    "Seizure",
+    [
+     [
+      "Substance / item (as reported)",
+      "Cannabis"
+     ],
+     [
+      "Confirmation status",
+      ""
+     ],
+     [
+      "Quantity and unit (original)",
+      ""
+     ],
+     [
+      "Standardised quantity",
+      ""
+     ],
+     [
+      "Quantity qualifier",
+      ""
+     ],
+     [
+      "Concealment method",
+      ""
+     ],
+     [
+      "Shipment / transport type",
+      ""
+     ],
+     [
+      "Declared commodity",
+      ""
+     ],
+     [
+      "Origin",
+      "Thailand"
+     ],
+     [
+      "Transit",
+      ""
+     ],
+     [
+      "Destination",
+      "United Kingdom"
+     ],
+     [
+      "Seizing agency",
+      "Border Force; NCA; National Crime Agency"
+     ],
+     [
+      "Other seized items",
+      ""
+     ],
+     [
+      "Reported valuation",
+      "£500,000 (source of the estimate not stated)"
+     ],
+     [
+      "Case development",
+      "Court outcome; Investigation"
+     ]
+    ]
+   ],
+   [
     "Border integrity",
     [
      [
@@ -23320,7 +24067,36 @@
    "BWO-2026-2120",
    "BWO-2026-1286",
    "BWO-2026-1139"
-  ]
+  ],
+  "corrections": [
+   {
+    "field": "several",
+    "from": "headline only",
+    "to": "facts taken from the full article",
+    "by": "automatic",
+    "date": "2026-11-26"
+   }
+  ],
+  "review_uncertainty": "",
+  "seizures": [],
+  "source_panel": {
+   "sources": [
+    {
+     "publisher": "UK National Crime Agency",
+     "url": "https://www.nationalcrimeagency.gov.uk/news/father-and-son-smuggled-cannabis-on-flight-from-thailand",
+     "date": "2026-11-25",
+     "type": "Official release",
+     "role": "Original release",
+     "lang": "English"
+    }
+   ],
+   "type": "Official release",
+   "language": "English",
+   "supporting": 0,
+   "independent": 1,
+   "relationship": "Single source"
+  },
+  "uncertainty": []
  },
  {
   "title": "Indian gang busted for cross-border cannabis smuggling and ransom extortion of two Indian",
@@ -23849,7 +24625,37 @@
     "El Salvador"
    ]
   },
-  "lead": "WASHINGTON (AP) — Kilmar Abrego Garcia, a Salvadoran national who fought his mistaken deportation, left the U.S."
+  "lead": "WASHINGTON (AP) — Kilmar Abrego Garcia, a Salvadoran national who fought his mistaken deportation, left the U.S.",
+  "corrections": [
+   {
+    "field": "several",
+    "from": "headline only",
+    "to": "facts taken from the full article",
+    "by": "automatic",
+    "date": "2026-11-26"
+   }
+  ],
+  "review_uncertainty": "",
+  "source_panel": {
+   "sources": [
+    {
+     "publisher": "2news.com",
+     "url": "https://www.2news.com/news/national/kilmar-abrego-garcia-who-fought-his-mistaken-deportation-leaves-the-us-voluntarily-for-spain/article_4b705656-1293-5380-94e7-da8af8da3fec.html",
+     "date": "2026-11-25",
+     "type": "News report",
+     "role": "Original (earliest found)",
+     "lang": "English"
+    }
+   ],
+   "type": "News report",
+   "language": "English",
+   "supporting": 0,
+   "independent": 1,
+   "relationship": "Single source"
+  },
+  "uncertainty": [
+   "Journey only partly stated"
+  ]
  },
  {
   "title": "Ce pays ouest africain et la Tunisie s’apprêtent à supprimer l’obligation de visa",
@@ -27312,7 +28118,35 @@
     "El Salvador"
    ]
   },
-  "lead": "It comes nearly two years after he was mistakenly sent to a Salvadoran prison. Kilmar Abrego Garcia, who was returned to the U.S."
+  "lead": "It comes nearly two years after he was mistakenly sent to a Salvadoran prison. Kilmar Abrego Garcia, who was returned to the U.S.",
+  "corrections": [
+   {
+    "field": "several",
+    "from": "headline only",
+    "to": "facts taken from the full article",
+    "by": "automatic",
+    "date": "2026-11-26"
+   }
+  ],
+  "review_uncertainty": "",
+  "source_panel": {
+   "sources": [
+    {
+     "publisher": "abc30.com",
+     "url": "https://abc30.com/story/kilmar-abrego-garcia-leaves-us-deporting-spain/20076629/",
+     "date": "2026-11-25",
+     "type": "News report",
+     "role": "Original (earliest found)",
+     "lang": "English"
+    }
+   ],
+   "type": "News report",
+   "language": "English",
+   "supporting": 0,
+   "independent": 1,
+   "relationship": "Single source"
+  },
+  "uncertainty": []
  },
  {
   "title": "Homeland security is \"delighted\" about wrongly deported man from US arriving in Spain",
@@ -43351,7 +44185,37 @@
    "text": "United States → Spain"
   },
   "last_updated": "2026-11-26",
-  "related": []
+  "related": [],
+  "corrections": [
+   {
+    "field": "several",
+    "from": "headline only",
+    "to": "facts taken from the full article",
+    "by": "automatic",
+    "date": "2026-11-26"
+   }
+  ],
+  "review_uncertainty": "",
+  "source_panel": {
+   "sources": [
+    {
+     "publisher": "US Department of Homeland Security",
+     "url": "https://www.dhs.gov/news/2026/11/24/human-trafficker-wife-beater-and-ms-13-gang-member-kilmar-garcia-self-deports",
+     "date": "2026-11-24",
+     "type": "Official release",
+     "role": "Original release",
+     "lang": "English"
+    }
+   ],
+   "type": "Official release",
+   "language": "English",
+   "supporting": 0,
+   "independent": 1,
+   "relationship": "Single source"
+  },
+  "uncertainty": [
+   "Not stated in the report: when it happened"
+  ]
  },
  {
   "title": "Juez solicita una notificación roja de Interpol contra la exreina de Guayaquil en el caso La Reina",
@@ -46306,7 +47170,37 @@
    "text": ""
   },
   "last_updated": "2026-11-26",
-  "related": []
+  "related": [],
+  "corrections": [
+   {
+    "field": "several",
+    "from": "headline only",
+    "to": "facts taken from the full article",
+    "by": "automatic",
+    "date": "2026-11-26"
+   }
+  ],
+  "review_uncertainty": "",
+  "source_panel": {
+   "sources": [
+    {
+     "publisher": "US Customs and Border Protection",
+     "url": "https://www.cbp.gov/newsroom/local-media-release/winter-approaches-us-border-patrol-warns-dangers",
+     "date": "2026-11-24",
+     "type": "Official release",
+     "role": "Original release",
+     "lang": "English"
+    }
+   ],
+   "type": "Official release",
+   "language": "English",
+   "supporting": 0,
+   "independent": 1,
+   "relationship": "Single source"
+  },
+  "uncertainty": [
+   "Not stated in the report: when it happened, outcome"
+  ]
  },
  {
   "title": "How to Get to Ukraine from the Netherlands: Convenient Routes and Entry Requirements",
@@ -59016,7 +59910,73 @@
   "summary_text": "Customs and Border Protection officers at the Eagle Pass Port of Entry, working alongside Anti-Terrorism Contraband Enforcement Team members conducting outbound operations, seized 18 firearms, 35 magazines, and firearm accessories concealed in a cargo shipment aboard an outbound commercial bus on Nov. The seizure occurred at 4 a.m. 15 at the Camino Real International Bridge II outbound inspection lot.",
   "caribbean_connection": [],
   "jamaica_connection": [],
-  "specialist": [],
+  "specialist": [
+   [
+    "Seizure",
+    [
+     [
+      "Substance / item (as reported)",
+      "Firearms"
+     ],
+     [
+      "Confirmation status",
+      ""
+     ],
+     [
+      "Quantity and unit (original)",
+      "18 firearms (Firearms)"
+     ],
+     [
+      "Standardised quantity",
+      "Same as original"
+     ],
+     [
+      "Quantity qualifier",
+      "Exact"
+     ],
+     [
+      "Concealment method",
+      "concealed in a cargo"
+     ],
+     [
+      "Shipment / transport type",
+      "Vehicle; Sea cargo (port)"
+     ],
+     [
+      "Declared commodity",
+      ""
+     ],
+     [
+      "Origin",
+      ""
+     ],
+     [
+      "Transit",
+      ""
+     ],
+     [
+      "Destination",
+      "United States"
+     ],
+     [
+      "Seizing agency",
+      "CBP; HSI; Customs"
+     ],
+     [
+      "Other seized items",
+      "Firearms: 18 firearms"
+     ],
+     [
+      "Reported valuation",
+      ""
+     ],
+     [
+      "Case development",
+      ""
+     ]
+    ]
+   ]
+  ],
   "sources": [
    {
     "publisher": "US Customs and Border Protection",
@@ -59040,7 +60000,49 @@
    "text": "Destination: United States; origin not reported"
   },
   "last_updated": "2026-11-26",
-  "related": []
+  "related": [],
+  "corrections": [
+   {
+    "field": "several",
+    "from": "headline only",
+    "to": "facts taken from the full article",
+    "by": "automatic",
+    "date": "2026-11-26"
+   }
+  ],
+  "review_uncertainty": "",
+  "seizures": [
+   {
+    "substance": "Firearms",
+    "suspected": false,
+    "original": "18 firearms",
+    "qty": 18.0,
+    "unit": "firearms",
+    "std_qty": 18.0,
+    "std_unit": "firearms",
+    "qualifier": "Exact"
+   }
+  ],
+  "source_panel": {
+   "sources": [
+    {
+     "publisher": "US Customs and Border Protection",
+     "url": "https://www.cbp.gov/newsroom/national-media-release/cbp-officers-seize-18-firearms-concealed-commercial-bus-eagle-pass",
+     "date": "2026-11-23",
+     "type": "Official release",
+     "role": "Original release",
+     "lang": "English"
+    }
+   ],
+   "type": "Official release",
+   "language": "English",
+   "supporting": 0,
+   "independent": 1,
+   "relationship": "Single source"
+  },
+  "uncertainty": [
+   "Journey only partly stated"
+  ]
  },
  {
   "title": "Llegan a Canarias otros siete cayucos con más de 800 migrantes a bordo interceptados cerca de El Hierro y Tenerife",
@@ -60274,7 +61276,38 @@
    "text": "Destination: United States; origin not reported"
   },
   "last_updated": "2026-11-26",
-  "related": []
+  "related": [],
+  "corrections": [
+   {
+    "field": "several",
+    "from": "headline only",
+    "to": "facts taken from the full article",
+    "by": "automatic",
+    "date": "2026-11-26"
+   }
+  ],
+  "review_uncertainty": "",
+  "source_panel": {
+   "sources": [
+    {
+     "publisher": "US Customs and Border Protection",
+     "url": "https://www.cbp.gov/newsroom/local-media-release/buffalo-cbp-reminds-travelers-tips-improve-their-cross-border-0",
+     "date": "2026-11-23",
+     "type": "Official release",
+     "role": "Original release",
+     "lang": "English"
+    }
+   ],
+   "type": "Official release",
+   "language": "English",
+   "supporting": 0,
+   "independent": 1,
+   "relationship": "Single source"
+  },
+  "uncertainty": [
+   "Not stated in the report: when it happened, outcome",
+   "Journey only partly stated"
+  ]
  },
  {
   "title": "New Zealand moves graduate work visa applications online, extends post-study work rights for Indian PhD g",
@@ -100304,15 +101337,15 @@
      ],
      [
       "Quantity and unit (original)",
-      ""
+      "58 cocaine pellets (Cocaine)"
      ],
      [
       "Standardised quantity",
-      ""
+      "Same as original"
      ],
      [
       "Quantity qualifier",
-      ""
+      "Exact"
      ],
      [
       "Concealment method",
@@ -100390,7 +101423,18 @@
   "uncertainty": [
    "Not stated in the report: when it happened, where it happened, outcome"
   ],
-  "seizures": []
+  "seizures": [
+   {
+    "substance": "Cocaine",
+    "suspected": false,
+    "original": "58 cocaine pellets",
+    "qty": 58.0,
+    "unit": "pellets",
+    "std_qty": 58.0,
+    "std_unit": "pellets",
+    "qualifier": "Exact"
+   }
+  ]
  },
  {
   "title": "Malaysia is ending visa-free travel for Indians",
@@ -115227,15 +116271,15 @@
      ],
      [
       "Quantity and unit (original)",
-      ""
+      "over 6,000 drug parcels"
      ],
      [
       "Standardised quantity",
-      ""
+      "Same as original"
      ],
      [
       "Quantity qualifier",
-      ""
+      "More than"
      ],
      [
       "Concealment method",
@@ -115313,7 +116357,18 @@
   "uncertainty": [
    "Not stated in the report: when it happened, where it happened, outcome"
   ],
-  "seizures": []
+  "seizures": [
+   {
+    "substance": "Not reported",
+    "suspected": false,
+    "original": "over 6,000 drug parcels",
+    "qty": 6000.0,
+    "unit": "packages",
+    "std_qty": 6000.0,
+    "std_unit": "packages",
+    "qualifier": "More than"
+   }
+  ]
  },
  {
   "title": "Kazakhstan changes visa-free entry rules: What travelers need to know about QazETA",
@@ -121878,15 +122933,15 @@
      ],
      [
       "Quantity and unit (original)",
-      ""
+      "634 cocaine pellets (Cocaine)"
      ],
      [
       "Standardised quantity",
-      ""
+      "Same as original"
      ],
      [
       "Quantity qualifier",
-      ""
+      "Exact"
      ],
      [
       "Concealment method",
@@ -121964,7 +123019,18 @@
   "uncertainty": [
    "Not stated in the report: when it happened, outcome"
   ],
-  "seizures": []
+  "seizures": [
+   {
+    "substance": "Cocaine",
+    "suspected": false,
+    "original": "634 cocaine pellets",
+    "qty": 634.0,
+    "unit": "pellets",
+    "std_qty": 634.0,
+    "std_unit": "pellets",
+    "qualifier": "Exact"
+   }
+  ]
  },
  {
   "title": "Defesa de Zambelli pede retirada do nome da ex-deputada da lista da Interpol",
@@ -122303,15 +123369,15 @@
      ],
      [
       "Quantity and unit (original)",
-      ""
+      "58 cocaine pellets (Cocaine)"
      ],
      [
       "Standardised quantity",
-      ""
+      "Same as original"
      ],
      [
       "Quantity qualifier",
-      ""
+      "Exact"
      ],
      [
       "Concealment method",
@@ -122389,7 +123455,18 @@
   "uncertainty": [
    "Not stated in the report: when it happened, where it happened"
   ],
-  "seizures": []
+  "seizures": [
+   {
+    "substance": "Cocaine",
+    "suspected": false,
+    "original": "58 cocaine pellets",
+    "qty": 58.0,
+    "unit": "pellets",
+    "std_qty": 58.0,
+    "std_unit": "pellets",
+    "qualifier": "Exact"
+   }
+  ]
  },
  {
   "title": "NDLEA busts cocaine syndicate, arrests eight swallowers in Lagos, Kano",
@@ -137313,15 +138390,15 @@
      ],
      [
       "Quantity and unit (original)",
-      ""
+      "58 cocaine pellets (Cocaine)"
      ],
      [
       "Standardised quantity",
-      ""
+      "Same as original"
      ],
      [
       "Quantity qualifier",
-      ""
+      "Exact"
      ],
      [
       "Concealment method",
@@ -137399,7 +138476,18 @@
   "uncertainty": [
    "Not stated in the report: when it happened, outcome"
   ],
-  "seizures": []
+  "seizures": [
+   {
+    "substance": "Cocaine",
+    "suspected": false,
+    "original": "58 cocaine pellets",
+    "qty": 58.0,
+    "unit": "pellets",
+    "std_qty": 58.0,
+    "std_unit": "pellets",
+    "qualifier": "Exact"
+   }
+  ]
  },
  {
   "title": "Cocaine gang offer family free holidays to smuggle £8m of drugs into UK",
@@ -139999,15 +141087,15 @@
      ],
      [
       "Quantity and unit (original)",
-      ""
+      "58 cocaine pellets (Cocaine)"
      ],
      [
       "Standardised quantity",
-      ""
+      "Same as original"
      ],
      [
       "Quantity qualifier",
-      ""
+      "Exact"
      ],
      [
       "Concealment method",
@@ -140086,7 +141174,18 @@
    "Not stated in the report: when it happened, outcome",
    "Journey only partly stated"
   ],
-  "seizures": []
+  "seizures": [
+   {
+    "substance": "Cocaine",
+    "suspected": false,
+    "original": "58 cocaine pellets",
+    "qty": 58.0,
+    "unit": "pellets",
+    "std_qty": 58.0,
+    "std_unit": "pellets",
+    "qualifier": "Exact"
+   }
+  ]
  },
  {
   "title": "Man faces charges after boat with Chinese, Dominican migrants intercepted off Miami, feds say",
@@ -143051,15 +144150,15 @@
      ],
      [
       "Quantity and unit (original)",
-      ""
+      "58 cocaine pellets (Cocaine)"
      ],
      [
       "Standardised quantity",
-      ""
+      "Same as original"
      ],
      [
       "Quantity qualifier",
-      ""
+      "Exact"
      ],
      [
       "Concealment method",
@@ -143137,7 +144236,18 @@
   "uncertainty": [
    "Not stated in the report: when it happened, outcome"
   ],
-  "seizures": []
+  "seizures": [
+   {
+    "substance": "Cocaine",
+    "suspected": false,
+    "original": "58 cocaine pellets",
+    "qty": 58.0,
+    "unit": "pellets",
+    "std_qty": 58.0,
+    "std_unit": "pellets",
+    "qualifier": "Exact"
+   }
+  ]
  },
  {
   "title": "Fined €2,509 after being caught working as a taxi driver using another migrant’s documents",
@@ -144450,7 +145560,27 @@
    "basis": "",
    "text": ""
   },
-  "official": true
+  "official": true,
+  "corrections": [],
+  "review_uncertainty": "",
+  "source_panel": {
+   "sources": [
+    {
+     "publisher": "Frontex",
+     "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxQQ0NXcjBfb0c0T2tEcjV5VnFKY2ZFVXk3andmZzM5X1Y4TUM0Nzh5MHNieUE4M01TU2U5cE8tY2VNbTlEblNhY1Vyc2hEX0FBRVJzdVpGQ1VjaV9rWVp1WmNZOXo0SURGd2tFRDVuZEdsODdPODV2TDRKMFBOZm0xREJXWWg2Z055SmJSTmpTclI1dGVIMjhqOWtxTktvWXpoeTcyd2lrSUpxT2FpcFlhTzJMWWpkSjZBbXJwVkZvb0dreUljY1FFb3c3b1NEQlpZZDR3NnBEOWhOQ3FuWFE?oc=5",
+     "date": "2026-11-16",
+     "type": "News report",
+     "role": "Original (earliest found)",
+     "lang": "English"
+    }
+   ],
+   "type": "News report",
+   "language": "English",
+   "supporting": 0,
+   "independent": 1,
+   "relationship": "Single source"
+  },
+  "uncertainty": []
  },
  {
   "title": "Defesa de Carla Zambelli pede retirada de nome da Interpol",
@@ -163053,15 +164183,15 @@
      ],
      [
       "Quantity and unit (original)",
-      ""
+      "500 grammes (Cocaine)"
      ],
      [
       "Standardised quantity",
-      ""
+      "Cocaine: 0.5 kg"
      ],
      [
       "Quantity qualifier",
-      ""
+      "Exact"
      ],
      [
       "Concealment method",
@@ -163139,7 +164269,18 @@
   "uncertainty": [
    "Not stated in the report: when it happened, where it happened, outcome"
   ],
-  "seizures": []
+  "seizures": [
+   {
+    "substance": "Cocaine",
+    "suspected": false,
+    "original": "500 grammes",
+    "qty": 500.0,
+    "unit": "g",
+    "std_qty": 0.5,
+    "std_unit": "kg",
+    "qualifier": "Exact"
+   }
+  ]
  },
  {
   "title": "Interpol Arrests 262 in Mediterranean Migrant Smuggling Crackdown",
@@ -189522,7 +190663,7 @@
      ],
      [
       "Quantity and unit (original)",
-      "15.036 kilograms"
+      "12 abandoned parcels; 15.036 kilograms"
      ],
      [
       "Standardised quantity",
@@ -189609,6 +190750,16 @@
    "Not stated in the report: where it happened, outcome"
   ],
   "seizures": [
+   {
+    "substance": "Not reported",
+    "suspected": false,
+    "original": "12 abandoned parcels",
+    "qty": 12.0,
+    "unit": "packages",
+    "std_qty": 12.0,
+    "std_unit": "packages",
+    "qualifier": "Exact"
+   },
    {
     "substance": "Not reported",
     "suspected": true,
@@ -206001,15 +207152,15 @@
      ],
      [
       "Quantity and unit (original)",
-      ""
+      "100 grams (Cocaine)"
      ],
      [
       "Standardised quantity",
-      ""
+      "Cocaine: 0.1 kg"
      ],
      [
       "Quantity qualifier",
-      ""
+      "Exact"
      ],
      [
       "Concealment method",
@@ -206087,7 +207238,18 @@
   "uncertainty": [
    "Not stated in the report: when it happened, where it happened"
   ],
-  "seizures": []
+  "seizures": [
+   {
+    "substance": "Cocaine",
+    "suspected": false,
+    "original": "100 grams",
+    "qty": 100.0,
+    "unit": "g",
+    "std_qty": 0.1,
+    "std_unit": "kg",
+    "qualifier": "Exact"
+   }
+  ]
  },
  {
   "title": "Saint Lucia Makes Decision on Citizenship by Investment Programme Amid EU Pressure",
@@ -251677,7 +252839,59 @@
    "basis": "Explicitly stated in article",
    "text": "Germany → Tunisia"
   },
-  "official": true
+  "official": true,
+  "corrections": [],
+  "review_uncertainty": "",
+  "seizures": [
+   {
+    "substance": "Cocaine",
+    "suspected": false,
+    "original": "more than 7.4 tonnes",
+    "qty": 7.4,
+    "unit": "tonnes",
+    "std_qty": 7400.0,
+    "std_unit": "kg",
+    "qualifier": "More than"
+   },
+   {
+    "substance": "Tobacco",
+    "suspected": false,
+    "original": "10.6 million cigarettes",
+    "qty": 10600000.0,
+    "unit": "cigarettes",
+    "std_qty": 10600000.0,
+    "std_unit": "cigarettes",
+    "qualifier": "Exact"
+   }
+  ],
+  "source_panel": {
+   "sources": [
+    {
+     "publisher": "World Border Security Congress",
+     "url": "https://world-border-congress.com/more-than-700-vehicles-and-34-boats-seized-334-arrested-in-europe-wide-operation-led-by-frontex/",
+     "date": "2026-11-03",
+     "type": "News report",
+     "role": "Republished (same headline) of the official release",
+     "lang": "English"
+    },
+    {
+     "publisher": "Frontex",
+     "url": "https://www.frontex.europa.eu/media-centre/news/news-release/more-than-700-vehicles-and-34-boats-seized-334-arrested-in-europe-wide-operation-led-by-frontex-GnxPHE",
+     "date": "2026-11-26",
+     "type": "Official release",
+     "role": "Original release",
+     "lang": "English"
+    }
+   ],
+   "type": "Official release",
+   "language": "English",
+   "supporting": 1,
+   "independent": 1,
+   "relationship": "1 independent source; 1 republication of the same report (not counted as separate confirmations)"
+  },
+  "uncertainty": [
+   "Not stated in the report: when it happened"
+  ]
  },
  {
   "title": "Health Ministry introduces Ebola screening for all arriving travelers at Accra Airport",
@@ -281005,7 +282219,27 @@
    "basis": "",
    "text": ""
   },
-  "official": true
+  "official": true,
+  "corrections": [],
+  "review_uncertainty": "",
+  "source_panel": {
+   "sources": [
+    {
+     "publisher": "Frontex",
+     "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPeEF0SV80V04xdzhkSmlMclJJWWlkSVI3Vmkwc1RJNDdDbEYycWstZnQzOHowZ09zSnZmX3l4ajVWQzRWUllacFVEVWpqSnRFMm5DcWpDS3c0OVlrUzZyUGFYbjVmS3lOblJ5SmdZQmRxMVptYW9Zd00xNHZ3VE9idlFQUDhkRHBva1gyLXJrbGtQNjdIb3dTTnJKS0IxM25Jc3hqRHpzd2N1b2lrdEFKRHZQaw?oc=5",
+     "date": "2026-10-30",
+     "type": "News report",
+     "role": "Original (earliest found)",
+     "lang": "English"
+    }
+   ],
+   "type": "News report",
+   "language": "English",
+   "supporting": 0,
+   "independent": 1,
+   "relationship": "Single source"
+  },
+  "uncertainty": []
  },
  {
   "title": "Retienen en Colombia a coronel venezolano solicitado por Interpol: presuntamente usaba una cédula falsa",
