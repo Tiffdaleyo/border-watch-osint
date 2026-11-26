@@ -334,8 +334,13 @@ smuggling ring appears in both Passports & Documents and Immigration.
   mode, news vs official releases, review status, or incidents and updates. You can also search headlines or an
   Event ID. Every chart, list and number follows the filters, and the filters stay on when you change section.
   Click any bar or map bubble to filter by it. **Reset** clears the filters but keeps you in the section.
-- **Key numbers:** reports, high-risk incidents, Caribbean, Jamaica, policy updates and the largest seizure total,
-  compared with the previous period.
+- **Key numbers (clickable):** reports, high-risk incidents, Caribbean, Jamaica, policy updates and the largest
+  seizure total, compared with the previous period. Click a card to open its list: **Reports** jumps to the table;
+  **High-risk**, **Caribbean**, **Jamaica** and **Policy & other updates** filter to just those reports (click again
+  to remove); **Largest seizure total** opens the Seizures section.
+- **"Filters on" line:** every filter that is switched on is listed under the section heading, each with a ✕ to
+  remove it, plus **Clear all**. If a section shows fewer reports than you expect, look here first. A link from an
+  alert email opens one report by its Event ID; opening any section from the menu clears that search.
 - **Map:** countries named. A red pulse means the country has high-risk incidents.
 - **Reported journeys map:** distinct markers for origin (●), transit (◆), intended destination (▲) and interception
   (📍). A line shows a connection the report states between two places. **It is not an actual flight or sailing
@@ -473,3 +478,4 @@ Privacy rules are in `watch/privacy.py`.
 | 2026-11-26 | Email switched on. Test bulletin sent successfully. A **test-email** button added to send a [TEST] alert email on demand. |
 | 2026-11-26 | Alerts limited to stories dated within the last 7 days, after the first live alert listed 145 incidents from the backlog. |
 | 2026-11-26 | Site organised into **sections** (Overview, Passports & Documents, Immigration & Irregular Movement, Human Trafficking, Citizenship & Residence, Border Security, Seizures & Contraband, Visa & Entry Rules, Official Updates), each with its own link, quick sub-topic buttons, relevant charts and a download of the current view. New **Stowaways** and **Travel advisories** topics. Embassy, high commission and foreign-ministry sources added. Fixed: English figures such as "13.795 kg" were read as 13,795 kg. |
+| 2026-11-26 | Key-number cards are clickable. A "Filters on" line shows every active filter with a ✕. An Event ID search from an alert link now clears when you open a section. |

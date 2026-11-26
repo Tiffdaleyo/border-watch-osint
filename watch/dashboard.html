@@ -78,7 +78,14 @@
   .chart { width:100%; }
 
   .kpis { display:grid; grid-template-columns:repeat(6,1fr); gap:14px; margin-bottom:14px; }
-  .kpi { background:var(--panel); border:1px solid var(--line); border-radius:var(--r); padding:14px 16px; }
+  .kpi { background:var(--panel); border:1px solid var(--line); border-radius:var(--r); padding:14px 16px; cursor:pointer; text-align:left; color:inherit; font:inherit; transition:border-color .15s, transform .15s; }
+  .kpi:hover { border-color:var(--c); transform:translateY(-1px); }
+  .kpi.on { border-color:var(--c); box-shadow:inset 0 0 0 1px var(--c); }
+  .kpi .go { font-size:11.5px; color:var(--accent); margin-top:6px; }
+  .active { display:flex; gap:6px; flex-wrap:wrap; align-items:center; margin:0 0 12px; font-size:12.5px; color:var(--muted); }
+  .active button { background:rgba(51,140,237,.12); border:1px solid rgba(51,140,237,.45); color:var(--ink); border-radius:20px; padding:4px 10px; cursor:pointer; font-size:12.5px; }
+  .active button:hover { border-color:var(--accent); }
+  .active button.clear { background:none; border-color:var(--line); color:var(--muted); }
   .kpi .l { font-size:11.5px; color:var(--muted); letter-spacing:.06em; text-transform:uppercase; }
   .kpi .n { font-size:30px; font-weight:700; margin-top:4px; font-variant-numeric:tabular-nums; line-height:1.1; }
   .kpi .d { font-size:12px; color:var(--dim); margin-top:4px; }
@@ -203,6 +210,7 @@
   <div class="shead"><div><h2 id="stitle"></h2><p id="sdesc"></p></div>
     <div class="acts"><button id="dlcsv" title="Spreadsheet of every report in this view">⬇ Download this view (CSV)</button>
       <button id="dljson" title="The same reports as JSON, for analysts">⬇ JSON</button><button id="share" title="Copy a link to this section">🔗 Copy link</button></div></div>
+  <div class="active" id="active" hidden></div>
   <div class="chips" id="chips"></div>
   <div class="kpis" id="kpis"></div>
 
@@ -606,15 +614,51 @@ function kpis(rows) {
     return `${d > 0 ? "▲ " + d : d < 0 ? "▼ " + (-d) : "no change"} vs previous ${F.period} days`; };
   const n = fn => rows.filter(fn).length;
   const tot = seizureTotals(rows)[0];
+  // each card opens the matching list: [label, value, detail, colour, action, is-on, hint]
   const items = [
-    ["Reports", rows.length, delta(rows.length, () => true), css("--accent")],
-    ["High-risk incidents", n(e => e.level === "High"), delta(n(e => e.level === "High"), e => e.level === "High"), LV.High],
-    [DATA.region, n(e => e.region), delta(n(e => e.region), e => e.region), css("--g3")],
-    [DATA.home, n(e => e.home), delta(n(e => e.home), e => e.home), css("--home")],
-    ["Policy & other updates", n(e => e.kind === "Update"), "visa, entry, citizenship, health", LV.Update],
-    ["Largest seizure total", tot ? fmtQty(tot.qty, tot.unit) : "–", tot ? `${tot.sub} · totals are kept per substance and unit` : "no quantities stated", css("--g4")],
+    ["Reports", rows.length, delta(rows.length, () => true), css("--accent"), "all", false, "See the list"],
+    ["High-risk incidents", n(e => e.level === "High"), delta(n(e => e.level === "High"), e => e.level === "High"), LV.High, "high", F.level === "High", "Show only these"],
+    [DATA.region, n(e => e.region), delta(n(e => e.region), e => e.region), css("--g3"), "region", F.scope === "region", "Show only these"],
+    [DATA.home, n(e => e.home), delta(n(e => e.home), e => e.home), css("--home"), "home", F.scope === "home", "Show only these"],
+    ["Policy & other updates", n(e => e.kind === "Update"), "visa, entry, citizenship, health", LV.Update, "updates", F.level === "Update", "Show only these"],
+    ["Largest seizure total", tot ? fmtQty(tot.qty, tot.unit) : "–", tot ? `${tot.sub} · totals are kept per substance and unit` : "no quantities stated", css("--g4"), "seizures", false, F.section === "seizures" ? "See seizure totals" : "Open Seizures"],
   ];
-  $("kpis").innerHTML = items.map(([l, v, d, c]) => `<div class="kpi"><div class="l">${esc(l)}</div><div class="n">${v}</div><div class="d">${esc(d)}</div><div class="bar" style="--c:${c}"></div></div>`).join("");
+  $("kpis").innerHTML = items.map(([l, v, d, c, a, on, hint]) => `<button class="kpi${on ? " on" : ""}" data-act="${a}" style="--c:${c}" title="${on ? "Click again to remove this filter" : hint}">
+    <div class="l">${esc(l)}</div><div class="n">${v}</div><div class="d">${esc(d)}</div><div class="go">${on ? "✓ Filter on · click to remove" : hint + " →"}</div><div class="bar"></div></button>`).join("");
+  $("kpis").querySelectorAll(".kpi").forEach(b => b.onclick = () => kpiClick(b.dataset.act));
+}
+const toTable = () => setTimeout(() => document.querySelector(".tablewrap").scrollIntoView({behavior: "smooth", block: "start"}), 50);
+function setScope(v) { F.scope = v; document.querySelectorAll("#scope button").forEach(b => b.classList.toggle("on", b.dataset.v === v)); }
+function kpiClick(a) {
+  if (a === "all") { toTable(); return; }
+  if (a === "seizures") {
+    if (F.section !== "seizures") { location.hash = "seizures"; return; }
+    $("sztotals").scrollIntoView({behavior: "smooth", block: "center"}); return;
+  }
+  if (a === "high") F.level = F.level === "High" ? "" : "High";
+  if (a === "updates") F.level = F.level === "Update" ? "" : "Update";
+  if (a === "region" || a === "home") setScope(F.scope === a ? "" : a);
+  $("flevel").value = F.level; update(); toTable();
+}
+/* the filters that are on, each with a ✕, so a short list is never a mystery */
+function activeFilters() {
+  const names = {scope: v => v === "region" ? DATA.region : DATA.home, group: v => GROUPS[+v][0], topic: v => v, country: v => v,
+    nat: v => "Nationality: " + v, level: v => v === "Incident" ? "Incidents only" : v === "Update" ? "Updates only" : v + " risk",
+    mode: v => "Transport: " + v, review: v => v, src: v => v === "official" ? "Official only" : "News only", q: v => `Search: "${v}"`,
+    sub: v => v === "mission" ? "Embassies & high commissions" : "Agencies"};
+  const on = Object.keys(names).filter(k => F[k] !== "");
+  $("active").hidden = !on.length;
+  if (!on.length) return;
+  $("active").innerHTML = "Filters on:" + on.map(k => `<button data-k="${k}" title="Remove this filter">${esc(names[k](F[k]))} ✕</button>`).join("")
+    + (on.length > 1 ? '<button class="clear" data-k="all">Clear all</button>' : "");
+  $("active").querySelectorAll("button").forEach(b => b.onclick = () => {
+    if (b.dataset.k === "all") { $("reset").click(); return; }
+    const k = b.dataset.k; F[k] = "";
+    if (k === "scope") setScope("");
+    const sel = {group: "fgroup", topic: "ftopic", country: "fcountry", nat: "fnat", level: "flevel", mode: "fmode", review: "freview", src: "fsrc", q: "q"}[k];
+    if (sel) $(sel).value = "";
+    update();
+  });
 }
 
 const chip = e => `<span class="chip ${e.level}">${e.level === "Update" ? "Update" : e.watch ? "Watch list" : e.level + " " + e.score}</span>`
@@ -713,7 +757,7 @@ function update() {
   renderTable(current);
   hbar(charts.pubs, count(current.filter(e => e.official), e => [e.source]).slice(0, 15), p => current.find(e => e.source === p && e.mission) ? css("--home") : css("--g1"),
        p => { F.q = p.toLowerCase(); $("q").value = p; update(); });
-  sectionUI();
+  sectionUI(); activeFilters();
   const act = Object.entries(F).filter(([k, v]) => v !== "" && !["period", "section"].includes(k)).length;
   $("reset").textContent = act ? `Reset (${act})` : "Reset";
 }
@@ -887,6 +931,9 @@ function showCards() {
 function goSection(id) {
   if (!SEC[id]) id = "overview";
   if (id !== F.section) { F.topic = ""; F.sub = ""; F.group = ""; $("ftopic").value = ""; $("fgroup").value = ""; }
+  // an Event ID search (from an alert-email link) ends when you open a section, and the usual 90 days come back
+  if (/^bwo-\d{4}-\d+$/.test(F.q)) { F.q = ""; $("q").value = ""; F.period = 90;
+    document.querySelectorAll("#period button").forEach(b => b.classList.toggle("on", b.dataset.v === "90")); }
   F.section = id; showCards(); update();
 }
 window.addEventListener("hashchange", () => {
