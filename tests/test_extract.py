@@ -277,3 +277,35 @@ def test_no_email_without_secrets(monkeypatch):
     for k in ("MAIL_USERNAME", "MAIL_PASSWORD", "MAIL_TO", "MAIL_ALERTS_TO"):
         monkeypatch.delenv(k, raising=False)
     assert mailer.send("s", "<p>h</p>", "t") is False
+
+
+# ---- seizures and source panel --------------------------------------------------------------
+from watch import seizure, sources  # noqa: E402
+
+
+def test_seizure_units_never_combined():
+    qs = seizure.quantities("Police seized more than 25 pounds of suspected marijuana, 40 cannabis plants and 2 litres of liquid cocaine")
+    by = {(q["substance"], q["std_unit"]): q for q in qs}
+    assert by[("Cannabis", "kg")]["std_qty"] == 11.34 and by[("Cannabis", "kg")]["qualifier"] == "More than"
+    assert by[("Cannabis", "kg")]["suspected"]
+    assert ("Cannabis", "plants") in by and ("Cocaine", "litres") in by
+
+
+def test_seizure_details():
+    rows, _ = seizure.details("Officers seized 300 kg of cocaine hidden inside a shipment of bananas, worth an estimated "
+                              "US$9 million according to police. Two men were charged.", {"agencies": ["JCF"]})
+    r = dict(rows)
+    assert r["Declared commodity"] == "bananas" and "police" in r["Reported valuation"]
+    assert r["Case development"].startswith("Charged") and "300 kg" in r["Quantity and unit (original)"]
+
+
+def test_repeats_are_one_source():
+    ev = {"title": "Cocaine seized at port", "sources": [
+        {"publisher": "Paper A", "url": "https://a.example/x", "date": "2026-11-20"},
+        {"publisher": "Jamaica Constabulary Force", "url": "https://jcf.gov.jm/x", "date": "2026-11-21", "official": True},
+        {"publisher": "Paper B", "url": "https://b.example/x", "date": "2026-11-22"}]}
+    sources.panel(ev)
+    p = ev["source_panel"]
+    assert p["independent"] == 1 and p["supporting"] == 2 and "not counted as separate confirmations" in p["relationship"]
+    assert [s["role"] for s in p["sources"]][1] == "Original release"
+    assert sources.guess_lang("Incautan cocaína en el puerto de Kingston con la policía") == "Spanish"

@@ -237,8 +237,10 @@
     </section>
 
     <section class="card s7">
-      <h2>Seizures &amp; contraband</h2><div class="sub">Drugs, firearms, cash, wildlife and cargo incidents · weight and outcome as stated</div>
-      <ul class="feed" id="seizures" style="max-height:330px"></ul>
+      <h2>Seizures &amp; contraband</h2><div class="sub">Drugs, firearms, cash, wildlife and cargo incidents · totals by substance and unit · open "Full record" for seizure details</div>
+      <table class="mini" id="sztotals" style="margin:4px 0 8px"></table>
+      <div class="sub">Each substance and unit is totalled separately (kg, litres, tablets, plants and counts are never added together). Figures are as reported, not verified.</div>
+      <ul class="feed" id="seizures" style="max-height:300px"></ul>
     </section>
     <section class="card s5">
       <h2>Transport mode</h2><div class="sub">As stated in the report · click to filter</div>
@@ -296,7 +298,8 @@ const INK = css("--ink"), MUTED = css("--muted"), LINE = css("--line");
 $("updated").textContent = DATA.updated;
 $("demo").hidden = !DATA.demo;
 const today = DATA.updated.slice(0, 10);
-const ev = DATA.events.map(e => ({tags: [], groups: [], related: [], home: false, region: false, watch: false, review_status: "Automatically collected", ...e, g: groupOf(e)}));
+const ev = DATA.events.map(e => ({tags: [], related: [], home: false, region: false, watch: false, review_status: "Automatically collected", ...e,
+  groups: GROUPS.filter(([g, ts]) => e.categories.some(c => ts.includes(c))).map(g => g[0]), g: groupOf(e)}));
 
 /* filters: every chart, list and number below follows these */
 const F = {period: 90, scope: "", group: "", topic: "", country: "", nat: "", level: "", mode: "", review: "", src: "", q: ""};
@@ -509,20 +512,44 @@ function drawNatRoute(rows) {
   charts.natroute.off("click"); charts.natroute.on("click", p => setFilter("nat", nats[p.value[1]], "fnat"));
 }
 
+/* seizure totals: one line per substance and compatible unit; kilograms, litres, tablets and plants are never added up */
+function seizureTotals(rows) {
+  const m = new Map();
+  rows.forEach(e => (e.seizures || []).forEach(q => {
+    if (!q.std_qty || q.substance === "Not reported") return;
+    const k = q.substance + "|" + q.std_unit;
+    const t = m.get(k) || {sub: q.substance, unit: q.std_unit, qty: 0, n: 0, approx: false, suspected: false};
+    t.qty += q.std_qty; t.n++; t.approx ||= q.qualifier !== "Exact"; t.suspected ||= q.suspected; m.set(k, t);
+  }));
+  const w = {kg: 3, litres: 2};
+  return [...m.values()].sort((a, b) => ((w[b.unit] || 1) - (w[a.unit] || 1)) || b.qty - a.qty);
+}
+function fmtQty(q, unit) {
+  if (unit === "kg" && q >= 1000) return (q / 1000).toLocaleString(undefined, {maximumFractionDigits: 1}) + " t";
+  return q.toLocaleString(undefined, {maximumFractionDigits: q < 10 ? 2 : 0}) + " " + unit;
+}
+function drawSeizureTotals(rows) {
+  const t = seizureTotals(rows.filter(e => e.kind === "Incident"));
+  $("sztotals").innerHTML = t.length ? `<tr><th>Substance / item</th><th>Total as reported</th><th>Reports</th><th></th></tr>` +
+    t.slice(0, 10).map(x => `<tr><td>${esc(x.sub)}</td><td><b>${esc(fmtQty(x.qty, x.unit))}</b></td><td>${x.n}</td>
+      <td style="color:${MUTED}">${[x.approx ? "includes approximate figures" : "", x.suspected ? "includes suspected" : ""].filter(Boolean).join(" · ")}</td></tr>`).join("")
+    : `<tr><td class="empty">No quantities stated in this view.</td></tr>`;
+}
+
 function kpis(rows) {
   const prevFrom = F.period ? (() => { const d = new Date(since(F.period)); d.setDate(d.getDate() - F.period); return d.toISOString().slice(0, 10); })() : null;
   const prev = prevFrom ? filtered(true).filter(e => e.date >= prevFrom && e.date < since(F.period)) : null;
   const delta = (now, fn) => { if (!prev) return "all dates"; const d = now - prev.filter(fn).length;
     return `${d > 0 ? "▲ " + d : d < 0 ? "▼ " + (-d) : "no change"} vs previous ${F.period} days`; };
   const n = fn => rows.filter(fn).length;
-  const kg = rows.reduce((s, e) => s + (e.weight_kg || 0), 0);
+  const tot = seizureTotals(rows)[0];
   const items = [
     ["Reports", rows.length, delta(rows.length, () => true), css("--accent")],
     ["High-risk incidents", n(e => e.level === "High"), delta(n(e => e.level === "High"), e => e.level === "High"), LV.High],
     [DATA.region, n(e => e.region), delta(n(e => e.region), e => e.region), css("--g3")],
     [DATA.home, n(e => e.home), delta(n(e => e.home), e => e.home), css("--home")],
     ["Policy & other updates", n(e => e.kind === "Update"), "visa, entry, citizenship, health", LV.Update],
-    ["Weight reported seized", kg >= 1000 ? (kg / 1000).toFixed(1) + " t" : Math.round(kg) + " kg", "as stated in the reports", css("--g4")],
+    ["Largest seizure total", tot ? fmtQty(tot.qty, tot.unit) : "–", tot ? `${tot.sub} · totals are kept per substance and unit` : "no quantities stated", css("--g4")],
   ];
   $("kpis").innerHTML = items.map(([l, v, d, c]) => `<div class="kpi"><div class="l">${esc(l)}</div><div class="n">${v}</div><div class="d">${esc(d)}</div><div class="bar" style="--c:${c}"></div></div>`).join("");
 }
@@ -530,7 +557,7 @@ function kpis(rows) {
 const chip = e => `<span class="chip ${e.level}">${e.level === "Update" ? "Update" : e.watch ? "Watch list" : e.level + " " + e.score}</span>`
   + (e.official ? ' <span class="chip off" title="Published by an official agency">OFFICIAL</span>' : "");
 const feedItem = e => `<li><a class="t" href="${esc(e.source_url || e.url)}" target="_blank" rel="noopener">${esc(e.title)}</a>
-  <div class="meta">${chip(e)}${e.home ? `<span class="jm">${esc(DATA.home.toUpperCase())}</span>` : ""}<span>${esc(e.date)}</span><span>${esc(e.source)}</span>${e.weight_kg ? `<span>${e.weight_kg} kg</span>` : ""}${e.outcome ? `<span>${esc(e.outcome)}</span>` : ""}<a class="eid" href="javascript:void 0" onclick="findEvent('${esc(e.event_id)}')">${esc(e.event_id)}</a></div></li>`;
+  <div class="meta">${chip(e)}${e.home ? `<span class="jm">${esc(DATA.home.toUpperCase())}</span>` : ""}<span>${esc(e.date)}</span><span>${esc(e.source)}</span>${(e.seizures || []).length ? `<span>${esc(e.seizures.slice(0, 2).map(q => q.original + (q.substance !== "Not reported" ? " " + q.substance.toLowerCase() : "")).join(", "))}</span>` : e.weight_kg ? `<span>${e.weight_kg} kg</span>` : ""}${e.outcome ? `<span>${esc(e.outcome)}</span>` : ""}<a class="eid" href="javascript:void 0" onclick="findEvent('${esc(e.event_id)}')">${esc(e.event_id)}</a></div></li>`;
 const feed = (id, rows, empty) => $(id).innerHTML = rows.length ? rows.slice(0, 25).map(feedItem).join("") : `<li class="empty">${empty}</li>`;
 const rank = {High: 0, Medium: 1, Low: 2, Update: 3};
 
@@ -538,7 +565,12 @@ const rank = {High: 0, Medium: 1, Low: 2, Update: 3};
 function record(e) {
   const loc = e.location || {}, j = e.journey || {};
   const q = e.event_date ? `${esc(e.event_date)} <span class="nr">(${esc(e.event_date_quality)})</span>` : `${NR} <span class="nr">(unknown)</span>`;
-  const src = (e.sources || [{publisher: e.source, url: e.source_url || e.url, date: e.date, official: e.official}]).map(s => `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.publisher || "link")}</a> <span class="nr">${esc(s.date || "")}${s.official ? " · official release" : ""}</span>`).join("<br>");
+  const sp = e.source_panel || {};
+  const list = sp.sources || [{publisher: e.source, url: e.source_url || e.url, date: e.date, type: sp.type || (e.official ? "Official release" : "News report"),
+                               role: e.official ? "Original release" : "Original (earliest found)", lang: sp.lang || sp.language}];
+  const src = list.map(s => `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.publisher || "link")}</a>
+    <span class="nr">${esc([s.date, s.type, s.role, s.lang].filter(Boolean).join(" · "))}</span>`).join("<br>");
+  const corr = (e.corrections || []).map(c => `${esc(c.date || "")} ${c.by === "automatic" ? "Automatic: " + esc(c.to) : `<b>${esc(c.field)}</b>: ${esc(Array.isArray(c.from) ? c.from.join(", ") : c.from)} → ${esc(Array.isArray(c.to) ? c.to.join(", ") : c.to)}${c.by ? " (" + esc(c.by) + ")" : ""}`}`).join("<br>");
   const rel = (e.related || []).filter(id => byEid[id]).map(id => `<a class="rel" onclick="findEvent('${esc(id)}')" title="${esc(byEid[id].title)}">${esc(id)}</a>`).join("");
   const rows = [
     ["Event ID", esc(e.event_id)], ["Title", esc(e.title)], ["Summary", val(e.summary_text || e.lead)],
@@ -555,12 +587,23 @@ function record(e) {
     ["Transport mode", val(e.transport_mode)], ["Document types", val(e.document_types)], ["Reporting agency", val(e.agencies)],
     ["Reported outcome", e.kind === "Update" ? '<span class="nr">Not applicable (update, not an incident)</span>' : val(e.outcome)],
   ];
-  (e.specialist || []).forEach(([name, items]) => {
+  (e.specialist || []).forEach(([name, filled]) => {
     rows.push([`<span style="color:var(--accent)">${esc(name)} details</span>`, ""]);
-    items.forEach(([k, v]) => rows.push([esc(k), /^https?:/.test(v) ? v.split("; ").map(u => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(u)}</a>`).join("<br>") : val(v)]));
+    (DATA.spec_labels[name] || Object.keys(filled)).map(k => [k, filled[k] || ""]).forEach(([k, v]) => rows.push([esc(k), /^https?:/.test(v) ? v.split("; ").map(u => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(u)}</a>`).join("<br>") : val(v)]));
   });
-  rows.push(["Review status", esc(e.review_status) + (e.review_note ? ` <span class="nr">· ${esc(e.review_note)}</span>` : "")],
-            ["Sources", src || NR], ["Related events", rel || '<span class="nr">None found</span>']);
+  rows.push([`<span style="color:var(--accent)">Source panel</span>`, ""],
+            ["Publisher and URL", src || NR],
+            ["Source type", val(sp.type || (e.official ? "Official release" : "News report"))],
+            ["Original or republished", esc(list[0].role || "Original (earliest found)") + (list.length > 1 ? ` <span class="nr">· ${list.length - 1} other site(s) republished it</span>` : "")],
+            ["Source language", val(sp.language || sp.lang)],
+            ["Supporting sources", sp.supporting ? `${sp.supporting} (repeats of the same report)` : "None found"],
+            ["Source relationship", val(sp.relationship || "Single source")],
+            ["Review status", esc(e.review_status) + (e.review_by ? ` <span class="nr">by ${esc(e.review_by)}${e.review_date ? " on " + esc(e.review_date) : ""}</span>` : "")
+              + '<br><span class="nr">"Reviewed" means the record was checked against its sources, not that the allegations are proven.</span>'],
+            ["Review note", val(e.review_note)],
+            ["Uncertainty / conflict note", (e.uncertainty || []).length ? e.uncertainty.map(esc).join("<br>") : '<span class="nr">None recorded</span>'],
+            ["Correction history", corr || '<span class="nr">No changes</span>'],
+            ["Related events", rel || '<span class="nr">None found</span>']);
   return `<details class="rec"><summary>Full record</summary><table class="recT">${rows.map(([k, v]) => `<tr><th>${k}</th><td>${v}</td></tr>`).join("")}</table></details>`;
 }
 
@@ -577,7 +620,7 @@ function renderTable(rows) {
     return `<tr class="${e.home ? "home" : ""}"><td style="white-space:nowrap;color:${MUTED}">${esc(e.date)}</td><td>${chip(e)}</td>
       <td><a href="${esc(e.source_url || e.url)}" target="_blank" rel="noopener">${esc(e.title)}</a>
       ${e.lead ? `<div style="font-size:12.5px;color:${MUTED};margin-top:3px">${esc(e.lead)}</div>` : ""}
-      <div class="meta"><span class="eid">${esc(e.event_id)}</span><span class="rv ${esc((e.review_status || "").split(" ")[0])}">${esc(e.review_status)}</span><span>${esc(e.source)}${(e.sources || []).length > 1 ? ` +${e.sources.length - 1} more` : ""}</span>${e.read ? '<span title="Facts taken from the full article" style="color:#00a888">✓ full article read</span>' : ""}${e.outcome ? `<span>Outcome: ${esc(e.outcome)}${e.sentence ? " (" + esc(e.sentence) + ")" : ""}</span>` : ""}${extra ? `<span>${extra}</span>` : ""}</div>
+      <div class="meta"><span class="eid">${esc(e.event_id)}</span><span class="rv ${esc((e.review_status || "").split(" ")[0])}">${esc(e.review_status)}</span><span>${esc(e.source)}${(e.source_panel || {}).supporting ? ` · 1 independent source + ${e.source_panel.supporting} repeat${e.source_panel.supporting > 1 ? "s" : ""}` : ""}</span>${e.read ? '<span title="Facts taken from the full article" style="color:#00a888">✓ full article read</span>' : ""}${e.outcome ? `<span>Outcome: ${esc(e.outcome)}${e.sentence ? " (" + esc(e.sentence) + ")" : ""}</span>` : ""}${extra ? `<span>${extra}</span>` : ""}</div>
       ${e.reasons.length ? `<details class="why"><summary>Why this score</summary>${e.reasons.map(esc).join("<br>")}</details>` : ""}
       ${record(e)}</td>
       <td class="hide-m">${e.categories.map(c => `<span class="tag"><span class="gdot" style="background:${GCOL[topicGroup[c] ?? 5]}"></span>${esc(c)}</span>`).join("")}</td>
@@ -600,6 +643,7 @@ function update() {
   hbar(charts.airports, count(current, e => e.airports).slice(0, 10), () => css("--g1"));
   feed("priority", current.filter(e => e.level === "High" || e.home).sort((a, b) => (rank[a.level] - rank[b.level]) || b.date.localeCompare(a.date)), "Nothing high-risk in this view.");
   feed("policy", current.filter(e => e.kind === "Update" && (e.groups || []).includes("Policy & Systems")).sort((a, b) => b.date.localeCompare(a.date)), "No policy changes in this view.");
+  drawSeizureTotals(current);
   feed("seizures", current.filter(e => e.kind === "Incident" && (e.groups || []).includes("Seizures & Contraband")).sort((a, b) => (b.home - a.home) || (rank[a.level] - rank[b.level]) || b.date.localeCompare(a.date)), "No seizures in this view.");
   hbar(charts.modes, count(current.filter(e => e.kind === "Incident"), e => [modeKey(e.transport_mode)]), m => m === "Not reported" ? css("--upd") : css("--g7"), m => setFilter("mode", m, "fmode"), F.mode);
   feed("watch", current.filter(e => e.watch), "No hits. Add names or terms to the watch list in config.yaml.");

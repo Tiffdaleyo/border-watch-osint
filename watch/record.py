@@ -289,7 +289,8 @@ def assign_ids(events, prefix="BWO"):
 def ensure_sources(ev):
     if not ev.get("sources"):
         ev["sources"] = [{"publisher": ev.get("source", ""), "url": ev.get("source_url") or ev.get("url", ""),
-                          "date": ev.get("date", ""), **({"official": True} if ev.get("official") else {})}]
+                          "date": ev.get("date", ""), "lang": ev.get("lang", ""),
+                          **({"official": True} if ev.get("official") else {})}]
     elif ev.get("source_url"):
         ev["sources"][0]["url"] = ev["source_url"]
 
@@ -310,13 +311,20 @@ EDITABLE = {"title", "primary_category", "categories", "event_date", "event_date
 def apply_review(ev, reviews):
     r = reviews.get(ev.get("event_id")) or {}
     status = str(r.get("status", "")).lower()
+    ev["corrections"] = []
+    ev["review_uncertainty"] = ""
     if status in ("reviewed", "corrected", "excluded"):
         ev["review_status"] = status.capitalize()
         ev["review_note"] = r.get("note", "")
         ev["review_by"] = r.get("by", "")
+        ev["review_date"] = str(r.get("date", "") or "")
+        ev["review_uncertainty"] = r.get("uncertainty", "")
         for k, v in (r.get("corrections") or {}).items():
             if k in EDITABLE:
+                before = ev.get(k)
                 ev[k] = v
+                ev["corrections"].append({"field": k, "from": before if before not in (None, "", []) else "Not reported",
+                                          "to": v, "by": r.get("by", ""), "date": ev["review_date"]})
         if r.get("corrections"):
             ev["review_status"] = "Corrected"
             c = r["corrections"]
@@ -416,9 +424,37 @@ def build(ev, site, reviews):
         j["interception_country"] = extract._canonical(ev["interception"]) or j.get("interception_country", "")
     j["text"] = journey.describe(j)
     ev["journey"] = j
+    _seizure(ev, art, text)
+    from . import sources
+    sources.panel(ev)
+    ev["uncertainty"] = ([ev["review_uncertainty"]] if ev.get("review_uncertainty") else []) + sources.uncertainty(ev)
+    if art.get("read") and art.get("read_on"):
+        ev["corrections"].insert(0, {"field": "several", "from": "headline only", "to": "facts taken from the full article",
+                                     "by": "automatic", "date": art["read_on"]})
     from . import privacy
     privacy.apply(ev)
     return ev
+
+
+SEIZURE_TOPICS = {"Drug trafficking", "Firearms and ammunition", "Cash couriers", "Wildlife smuggling", "Cargo operations"}
+
+
+def _seizure(ev, art, text):
+    """Seizure fields for seizure incidents; the article's figures are preferred over the headline's."""
+    ev.pop("seizures", None)
+    ev["specialist"] = [s for s in ev.get("specialist", []) if s[0] != "Seizure"]
+    if ev.get("kind") != "Incident" or not set(ev.get("categories", [])) & SEIZURE_TOPICS:
+        return
+    from . import seizure
+    rows, qs = seizure.details(text, ev)
+    full = dict(art.get("seizure_rows") or [])
+    for row in rows:
+        if row[0] in ("Origin", "Transit", "Destination", "Seizing agency"):
+            continue          # these come from the final journey and agency fields
+        if full.get(row[0]):
+            row[1] = full[row[0]]
+    ev["specialist"].insert(0, ["Seizure", rows])
+    ev["seizures"] = art.get("seizures") if art.get("seizure_rows") is not None else qs
 
 
 def _specialist(ev, art, text):

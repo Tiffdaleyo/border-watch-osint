@@ -52,7 +52,7 @@ def merge(existing, new):
             if ev.get("url") and all(s.get("url") != ev["url"] and s.get("publisher") != ev.get("source")
                                      for s in old["sources"]) and len(old["sources"]) < 10:
                 old["sources"].append({"publisher": ev.get("source", ""), "url": ev["url"], "date": ev.get("date", ""),
-                                       **({"official": True} if ev.get("official") else {})})
+                                       "lang": ev.get("lang", ""), **({"official": True} if ev.get("official") else {})})
                 old["last_updated"] = ev.get("first_seen", "")
             continue
         by_id[ev["id"]] = ev

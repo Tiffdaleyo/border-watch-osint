@@ -10,7 +10,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import requests
 
-from . import extract, journey, record, specialist
+from . import extract, journey, record, seizure, specialist
 
 HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
                          "Chrome/124.0 Safari/537.36"}
@@ -122,7 +122,7 @@ def article_facts(ev, text, risk_words, focus):
         "summary_text": lead(text, limit=520),
         "exploitation": record.exploitation(text[:4000]),
         "victim_assistance": record.victim_assistance(text[:4000]),
-        "v": 3,
+        "v": 4,
         "sentence": (lambda m: f"{m.group(1)} {m.group(2)}" if m else "")(_SENT_RE.search(text)),
     }
     # specialist details from the full text (the article text itself is never stored)
@@ -137,6 +137,7 @@ def article_facts(ev, text, risk_words, focus):
     facts["transit"] = journey.transit_points(text[:4000])
     facts["interception"], facts["interception_country"] = journey.interception(text[:3000], tmp)
     facts["nationality"] = journey.nationalities(text[:4000])
+    facts["seizure_rows"], facts["seizures"] = seizure.details(text[:3000], tmp)
     return facts
 
 
@@ -167,7 +168,7 @@ def read_articles(events, cfg, risk_words, focus, budget_minutes=8, limit=400, w
     # unread reports, plus reports read before the fuller record existed (version 1), read again once
     todo = [e for e in events if e.get("date", "") >= cutoff and "example.org" not in e.get("url", "")
             and (not (e.get("article") or {}).get("tried")
-                 or ((e.get("article") or {}).get("read") and (e.get("article") or {}).get("v", 1) < 3))]
+                 or ((e.get("article") or {}).get("read") and (e.get("article") or {}).get("v", 1) < 4))]
     if only_direct:      # skip Google News links (used when Google is limiting requests)
         todo = [e for e in todo if "news.google.com" not in e.get("url", "")]
     todo.sort(key=lambda e: (bool((e.get("article") or {}).get("tried")), not e.get("home"), not e.get("region"), e.get("kind") == "Update", e.get("date", "")), reverse=False)
@@ -205,7 +206,7 @@ def read_articles(events, cfg, risk_words, focus, budget_minutes=8, limit=400, w
                 # could not re-read: keep the facts we already have; give up re-reading after 3 tries
                 old["refails"] = old.get("refails", 0) + 1
                 if old["refails"] >= 3:
-                    old["v"] = 3
+                    old["v"] = 4
             else:
                 # failed (blocked, busy or no link): try again on later runs, up to 3 times
                 fails = old.get("fails", 0) + 1

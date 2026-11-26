@@ -170,10 +170,17 @@ reports in that category. Each field still shows "Not reported" unless the artic
 | Citizenship / residence fraud | Programme involved; application stage; alleged misrepresentation; documents involved; administrative or court outcome |
 | Border integrity | Organisation or role implicated (only in corruption or insider reports); alleged conduct; location; investigation, disciplinary or criminal outcome |
 | Wanted-person interception | Notice or warrant (Red Notice, arrest warrant, extradition request…); agency reporting it; stated basis; reported outcome (arrested, extradited, deported…) |
+| Seizure (drugs, firearms, cash, wildlife, cargo incidents) | Substance or item as reported (keeps "suspected"); confirmation status (suspected, field-tested, laboratory-confirmed); quantity and unit as written ("more than 1,100 kg"); standardised quantity (pounds and tonnes to kg, gallons to litres; counts stay counts); quantity qualifier (exact, approximate, more than, up to); concealment method; shipment or transport type (container, baggage, on the body, courier parcel, air cargo, vessel, vehicle, barrel, sea cargo); declared commodity ("declared as bananas"); origin, transit and destination; seizing agency; other seized items (firearms, ammunition, cash, kept separate); reported valuation, with who gave the estimate, kept apart from quantity; case development (investigation, arrest, charge, court outcome, correction) |
 | Policy update | Issuing authority; affected travellers or documents; announcement date; effective date; exceptions; status (proposed, active, delayed or withdrawn); official guidance link (that country's official immigration site) |
 
 These fields fill in best when the full article was read. Most older reports were captured from headlines only.
 They fill in as articles are re-read, up to 400 per day.
+
+**Seizure totals.** The Seizures & Contraband section on the site shows **one total per substance and unit**, for
+example "Cocaine 2.3 t", "Cannabis 340 plants" or "Ammunition 532 rounds". Kilograms, litres, tablets, plants and
+counts are **never added together**, and the old single "weight seized" number has been replaced. Totals are as
+reported, not verified. They can include approximate figures or totals quoted in background paragraphs, and the
+table says when they do.
 
 ## 7. Risk score
 
@@ -222,6 +229,28 @@ The site republishes public news, but it is itself public. So it follows the sam
 The filter works by word matching, so it can miss a name or remove a harmless one. If you spot a name that should
 not be there, mark the report **excluded** or **corrected** in `reviews.yaml`.
 
+## 8b. Source panel: how reliable is the sourcing?
+
+Every Full record ends with a **source panel**:
+
+| Field | What it shows |
+|---|---|
+| Publisher and URL | Every site that carried the story, with date, type, role and language. |
+| Source type | Official release, court publication, news report, or other (social media or blog). |
+| Original or republished | The earliest copy found, or the official release if there is one, is the *original*. Every later copy of the same headline is *republished*. |
+| Source language | English, Spanish, French or Portuguese, detected from the text. |
+| Supporting sources | How many other sites repeated it. |
+| Source relationship | For example "1 independent source; 4 republications of the same report (not counted as separate confirmations)". It also notes when a news report says it is based on an official statement. |
+| Review note | What the reviewer checked (from `reviews.yaml`). |
+| Uncertainty / conflict note | Automatic notes, such as different quantities stated for the same substance, details the report doesn't state, or a journey only partly stated. A reviewer can add their own. |
+| Correction history | Every change: reviewer corrections (field, old value → new value, by whom, when) and the automatic update when the full article was read. |
+
+**Five websites repeating one police release count as one source, not five confirmations.** In the reports table
+this shows as "1 independent source + 4 repeats".
+
+**What "Reviewed" means:** a person checked the record against its sources and found it matches them. It does
+**not** mean the allegations are proven. People named are suspects unless a court outcome is recorded.
+
 ## 9. Reviewing and correcting reports (`reviews.yaml`)
 
 Every report starts as **Automatically collected**. High-risk reports and those naming Jamaica start as
@@ -234,7 +263,8 @@ To record a review:
    - `reviewed`: checked, and it is right.
    - `corrected`: you fixed fields. List them under `corrections:`.
    - `excluded`: off-topic or wrong. It is hidden from the site and the counts, but kept in the data file.
-3. You can add a `note` (a short public reason) and `by` (your initials).
+3. You can add a `note` (what you checked), `by` (your initials), `date` (for example 2026-11-27) and
+   `uncertainty` (anything missing or contradictory). Corrections appear in the record's correction history.
 4. Click **Commit changes**. The site shows the result after the next daily run, or straight away if you run the
    workflow by hand.
 
@@ -394,3 +424,5 @@ Privacy rules are in `watch/privacy.py`.
 | 2026-11-26 | Specialist fields per category, and the privacy filter (ID numbers, victims' names, private addresses and emails removed; charged or convicted names kept as reported). This team guide started. |
 | 2026-11-26 | Structured journeys (origin, transit points in order, intended destination, interception location, route completeness, source basis), with a journey map using distinct markers. Incomplete journeys are shown as "Origin: X; destination not reported". Nationality is now recorded when stated in words (never inferred, never scored), with a filter and two charts. |
 | 2026-11-26 | Official press releases added as sources (PICA, JCF, JIS, CBP, ICE, DHS, DOJ, UK Border Force, Home Office, NCA, CBSA, Europol, Frontex, IOM, UNODC), read first and marked OFFICIAL, with a filter. A Monday one-page PDF bulletin by email and daily alert emails for new high-risk or Jamaica-linked incidents (ready; they start once the email secrets are added). Articles that fail to load are now retried instead of skipped. |
+| 2026-11-26 | Seizure fields (substance, confirmation, quantity and unit, standardised quantity, qualifier, concealment, shipment type, declared commodity, route, agency, other items, valuation, case development). Seizure totals now shown per substance and unit, never combined. |
+| 2026-11-26 | Source panel on every record: source type, original or republished, language, supporting sources, independent vs repeated reporting, review note, uncertainty / conflict note, correction history. "Reviewed" defined as checked against sources, not proven. |

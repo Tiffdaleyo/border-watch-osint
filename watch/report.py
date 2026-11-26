@@ -17,7 +17,8 @@ FIELDS = ["event_id", "title", "summary_text", "primary_category", "tags", "grou
           "route_completeness", "route_basis", "route_text", "nationality",
           "caribbean_connection", "jamaica_connection", "transport_mode", "document_types", "documents_count",
           "people_count", "weight_kg", "agencies", "outcome", "exploitation", "victim_assistance",
-          "specialist", "review_status", "review_note", "source", "source_url", "url", "sources", "related", "reasons"]
+          "seizure_quantities", "specialist", "review_status", "review_note", "uncertainty", "corrections", "source_type", "source_language",
+          "independent_sources", "republications", "source_relationship", "source", "source_url", "url", "sources", "related", "reasons"]
 # fields the website needs (the stored file keeps more, e.g. the raw article facts)
 DROP = {"article", "matched_words", "other_sources", "action", "lang", "via", "id", "published"}
 KEEP = {"categories", "countries", "airports", "reasons", "title", "date", "level", "score", "kind", "source", "url", "event_id"}
@@ -34,8 +35,22 @@ def slim(e):
         out["location"] = {k: v for k, v in out["location"].items() if v} or None
         if not out["location"]:
             out.pop("location")
-    if len(out.get("sources", [])) == 1 and out["sources"][0].get("url") in (e.get("url"), e.get("source_url")):
-        out.pop("sources")   # the page builds the single source from source/url/date
+    out.pop("sources", None)          # the source panel carries them
+    sp = out.get("source_panel")
+    if sp and not sp.get("supporting"):
+        # single source: the page rebuilds the panel from source/url/date; keep only what differs from the default
+        small = {"language": sp.get("language")}
+        if sp.get("type") != "News report":
+            small["type"] = sp["type"]
+        if sp.get("relationship") != "Single source":
+            small["relationship"] = sp["relationship"]
+        out["source_panel"] = small
+    # specialist sections: only the filled values are sent; the page knows every label and shows "Not reported"
+    if out.get("specialist"):
+        out["specialist"] = [[name, {k: v for k, v in rows if v}] for name, rows in out["specialist"]]
+    if out.get("review_status") == "Automatically collected":
+        out.pop("review_status")
+    out.pop("groups", None)           # the page works these out from the topics
     a = e.get("article") or {}
     if a.get("read"):
         out["read"] = True
@@ -47,14 +62,30 @@ def slim(e):
     return out
 
 
+def spec_labels(events):
+    out = {}
+    for e in events:
+        for name, rows in e.get("specialist") or []:
+            out.setdefault(name, [k for k, _ in rows])
+    return out
+
+
 def csv_row(e):
     loc = e.get("location") or {}
     j = e.get("journey") or {}
     flat = {**e, "transit": j.get("transit", []), "interception": j.get("interception", ""),
             "route_completeness": j.get("completeness", ""), "route_basis": j.get("basis", ""), "route_text": j.get("text", ""),
             "cities": loc.get("cities", []), "ports": loc.get("ports", []), "crossings": loc.get("crossings", []),
+            "seizure_quantities": [f"{q['original']} ({q['substance']}" + (", suspected" if q.get("suspected") else "")
+                                   + f"; standardised {q['std_qty']:g} {q['std_unit']}; {q['qualifier']})" for q in e.get("seizures", [])],
             "specialist": [f"{sec}: " + ", ".join(f"{k} = {v or NR}" for k, v in rows) for sec, rows in e.get("specialist", [])],
             "sources": [f"{s.get('publisher', '')} {s.get('date', '')} {s.get('url', '')}".strip() for s in e.get("sources", [])]}
+    sp = e.get("source_panel") or {}
+    flat.update({"source_type": sp.get("type", ""), "source_language": sp.get("language", ""),
+                 "independent_sources": sp.get("independent", 1), "republications": sp.get("supporting", 0),
+                 "source_relationship": sp.get("relationship", ""),
+                 "corrections": [f"{c.get('date', '')} {c['field']}: {c['from']} -> {c['to']} ({c.get('by', '')})"
+                                 for c in e.get("corrections", [])]})
     if e.get("kind") == "Update":
         flat["outcome"] = flat.get("outcome") or "Not applicable (update)"
     row = {}
@@ -88,7 +119,8 @@ def write_dashboard(out_dir, events, summary, cfg, new_today, demo=False):
     site = cfg.get("site") or {}
     data = {
         "updated": dt.datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC"),
-        "demo": demo, "events": [slim(e) for e in events], "summary": summary, "groups": GROUPS, "new_today": new_today,
+        "demo": demo, "events": [slim(e) for e in events], "summary": summary, "groups": GROUPS,
+        "spec_labels": spec_labels(events), "new_today": new_today,
         "report_days": (cfg.get("run") or {}).get("report_days", 180),
         "home": site.get("home_country", ""), "region": site.get("region_name", "Region"),
         "method": _method(cfg),
@@ -151,6 +183,14 @@ def write_bulletin(out_dir, events, summary, cfg, today=None):
 
     rising = [t for t in summary.get("trends", []) if t["note"] == "Rising"]
     url = site.get("url", "")
+    totals = {}
+    for e in incidents:
+        for q in e.get("seizures") or []:
+            if q.get("std_qty") and q.get("substance") != "Not reported":
+                k = (q["substance"], q["std_unit"])
+                totals[k] = totals.get(k, 0) + q["std_qty"]
+    tot_txt = "; ".join(f"{s} {v / 1000:,.1f} t" if u == "kg" and v >= 1000 else f"{s} {v:,.0f} {u}"
+                        for (s, u), v in sorted(totals.items(), key=lambda x: -x[1])[:6]) or "no quantities stated"
     body = f"""<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Weekly bulletin {today.isoformat()}</title>
 <style>@page{{size:A4;margin:11mm 12mm}}
 body{{font-family:Arial,Helvetica,sans-serif;font-size:10.6px;line-height:1.32;color:#1d2430;max-width:820px;margin:16px auto;padding:0 14px}}
@@ -168,6 +208,7 @@ h1{{color:#13294b;margin:0;font-size:18px}} h2{{color:#13294b;font-size:12px;bor
 <span class="k"><b>{sum(1 for e in week if e.get('region'))}</b> {esc(region)}</span><span class="k"><b>{sum(1 for e in week if e.get('home'))}</b> {esc(home)}</span>
 <span class="k"><b>{len([e for e in week if e.get('kind') == 'Update'])}</b> policy &amp; updates</span><span class="k"><b>{official}</b> official releases</span><br>
 <b>By main group:</b> {esc(' · '.join(f'{k} {v}' for k, v in sorted(groups.items(), key=lambda x: -x[1])) or 'none')}<br>
+<b>Seizure totals (as reported, by substance and unit):</b> {esc(tot_txt)}<br>
 <b>Rising this week:</b> {esc(', '.join(t['category'] for t in rising) or 'nothing unusual')}</div>
 <h2>Top incidents to review</h2><ol>{''.join(li(e) for e in top) or '<li>None this week.</li>'}</ol>
 <div class="cols"><div><h2>{esc(region)} and {esc(home)}</h2><ul>{''.join(li(e) for e in regional) or '<li>None this week.</li>'}</ul></div>
