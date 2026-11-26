@@ -1,5 +1,1800 @@
 [
  {
+  "title": "Five TEFAF robbery suspects added to EU Most Wanted",
+  "summary": "As of 29 October 2026, five new fugitives, four men and one woman, have been added to the EU Most Wanted list. According to the Limburg Public Prosecutor's Office (Openbaar Ministerie) and the Dutch Police (Politie), all five suspects are involved in the European Fine Art Fair (TEFAF) robbery that took place on 28 June 2022 in Maastricht, the Netherlands.",
+  "url": "https://www.europol.europa.eu/media-press/newsroom/news/five-tefaf-robbery-suspects-added-to-eu-most-wanted",
+  "date": "2026-11-26",
+  "source": "Europol",
+  "lang": "",
+  "via": "RSS",
+  "official": true,
+  "agency_country": "European Union",
+  "kind": "Update",
+  "categories": [
+   "INTERPOL and watch lists"
+  ],
+  "matched_words": [
+   "most wanted"
+  ],
+  "action": false,
+  "document_types": [],
+  "countries": [
+   "Netherlands"
+  ],
+  "airports": [],
+  "origin": "",
+  "destination": "",
+  "documents_count": 0,
+  "people_count": 5,
+  "weight_kg": 0.0,
+  "id": "edd45f8a49a7",
+  "first_seen": "2026-11-26",
+  "date_basis": "First seen (the source page shows no date)",
+  "article": {
+   "fails": 1,
+   "tried": false
+  },
+  "score": 0,
+  "level": "Update",
+  "reasons": [],
+  "watch": false,
+  "home": false,
+  "region": false,
+  "event_id": "BWO-2026-2208",
+  "primary_category": "INTERPOL and watch lists",
+  "tags": [],
+  "groups": [
+   "Border Integrity"
+  ],
+  "published": "2026-11-26",
+  "event_date": "2026-10-29",
+  "event_date_quality": "exact",
+  "location": {
+   "cities": [],
+   "ports": [],
+   "crossings": []
+  },
+  "transport_mode": "",
+  "outcome": "",
+  "agencies": [],
+  "summary_text": "As of 29 October 2026, five new fugitives, four men and one woman, have been added to the EU Most Wanted list. According to the Limburg Public Prosecutor's Office (Openbaar Ministerie) and the Dutch Police (Politie), all five suspects are involved in the European Fine Art Fair (TEFAF) robbery that took place on 28 June 2022 in Maastricht, the Netherlands.",
+  "caribbean_connection": [],
+  "jamaica_connection": [],
+  "specialist": [
+   [
+    "Wanted-person interception",
+    [
+     [
+      "Notice or warrant",
+      ""
+     ],
+     [
+      "Agency reporting it",
+      ""
+     ],
+     [
+      "Stated basis",
+      ""
+     ],
+     [
+      "Reported outcome",
+      ""
+     ]
+    ]
+   ]
+  ],
+  "sources": [
+   {
+    "publisher": "Europol",
+    "url": "https://www.europol.europa.eu/media-press/newsroom/news/five-tefaf-robbery-suspects-added-to-eu-most-wanted",
+    "date": "2026-11-26",
+    "official": true
+   }
+  ],
+  "nationality": [],
+  "review_status": "Automatically collected",
+  "journey": {
+   "origin": "",
+   "transit": [],
+   "destination": "",
+   "interception": "",
+   "interception_country": "",
+   "completeness": "Not reported",
+   "basis": "",
+   "text": ""
+  },
+  "last_updated": "2026-11-26",
+  "related": []
+ },
+ {
+  "title": "Frontex opens recruitment for up to 500 Standing Corps officers",
+  "summary": "",
+  "url": "https://www.frontex.europa.eu/media-centre/news/news-release/frontex-opens-recruitment-for-up-to-500-standing-corps-officers-hdMC6R",
+  "date": "2026-11-26",
+  "source": "Frontex",
+  "lang": "",
+  "via": "Official page",
+  "official": true,
+  "agency_country": "European Union",
+  "kind": "Incident",
+  "categories": [
+   "Human trafficking",
+   "INTERPOL and watch lists"
+  ],
+  "matched_words": [
+   "frontex"
+  ],
+  "action": false,
+  "document_types": [],
+  "countries": [],
+  "airports": [],
+  "origin": "",
+  "destination": "",
+  "documents_count": 0,
+  "people_count": 0,
+  "weight_kg": 0,
+  "id": "d5980ab0c9ac",
+  "first_seen": "2026-11-26",
+  "date_basis": "First seen (the source page shows no date)",
+  "source_url": "https://www.frontex.europa.eu/media-centre/news/news-release/frontex-opens-recruitment-for-up-to-500-standing-corps-officers-hdMC6R",
+  "article": {
+   "tried": true,
+   "read_on": "2026-11-26",
+   "event_date": "",
+   "event_date_quality": "unknown",
+   "read": true,
+   "kind": "Incident",
+   "lead": "Frontex is recruiting up to 500 new officers to join its Standing Corps, the EU’s first and only uniformed service.",
+   "categories": [
+    "Human trafficking",
+    "INTERPOL and watch lists"
+   ],
+   "countries": [],
+   "airports": [],
+   "document_types": [],
+   "documents_count": 0,
+   "people_count": 0,
+   "weight_kg": 0,
+   "origin": "",
+   "destination": "",
+   "terms": [
+    "human trafficking",
+    "victims"
+   ],
+   "agencies": [
+    "Frontex",
+    "Coast Guard"
+   ],
+   "outcome": "",
+   "transport": "",
+   "location": {
+    "cities": [],
+    "ports": [],
+    "crossings": []
+   },
+   "summary_text": "Frontex is recruiting up to 500 new officers to join its Standing Corps, the EU’s first and only uniformed service. Deployed alongside national authorities at Europe's external land, sea and air borders, officers carry out a wide range of tasks, from checking travel documents and detecting smuggled goods to identifying potential victims of human trafficking and supporting the return of people who have no legal right to remain in the EU.",
+   "exploitation": [],
+   "victim_assistance": false,
+   "v": 3,
+   "sentence": "",
+   "specialist": [
+    [
+     "Human trafficking",
+     [
+      [
+       "Reported exploitation type",
+       ""
+      ],
+      [
+       "Potential / suspected victims (as stated)",
+       ""
+      ],
+      [
+       "Identified / rescued victims (as stated)",
+       ""
+      ],
+      [
+       "Assistance or referral reported",
+       ""
+      ],
+      [
+       "Proceedings",
+       ""
+      ]
+     ]
+    ],
+    [
+     "Wanted-person interception",
+     [
+      [
+       "Notice or warrant",
+       ""
+      ],
+      [
+       "Agency reporting it",
+       "Frontex; Coast Guard"
+      ],
+      [
+       "Stated basis",
+       ""
+      ],
+      [
+       "Reported outcome",
+       ""
+      ]
+     ]
+    ]
+   ],
+   "transit": [],
+   "interception": "",
+   "interception_country": "",
+   "nationality": []
+  },
+  "lead": "Frontex is recruiting up to 500 new officers to join its Standing Corps, the EU’s first and only uniformed service.",
+  "score": 15,
+  "level": "Low",
+  "reasons": [
+   "Exploitation or trafficking indicators (+15: human trafficking, victims)"
+  ],
+  "watch": false,
+  "home": false,
+  "region": false,
+  "event_id": "BWO-2026-2207",
+  "primary_category": "Human trafficking",
+  "tags": [
+   "INTERPOL and watch lists"
+  ],
+  "groups": [
+   "Human Trafficking",
+   "Border Integrity"
+  ],
+  "published": "2026-11-26",
+  "event_date": "",
+  "event_date_quality": "unknown",
+  "location": {
+   "cities": [],
+   "ports": [],
+   "crossings": []
+  },
+  "transport_mode": "",
+  "outcome": "",
+  "agencies": [
+   "Frontex",
+   "Coast Guard"
+  ],
+  "summary_text": "Frontex is recruiting up to 500 new officers to join its Standing Corps, the EU’s first and only uniformed service. Deployed alongside national authorities at Europe's external land, sea and air borders, officers carry out a wide range of tasks, from checking travel documents and detecting smuggled goods to identifying potential victims of human trafficking and supporting the return of people who have no legal right to remain in the EU.",
+  "caribbean_connection": [],
+  "jamaica_connection": [],
+  "exploitation": [],
+  "victim_assistance": "",
+  "specialist": [
+   [
+    "Human trafficking",
+    [
+     [
+      "Reported exploitation type",
+      ""
+     ],
+     [
+      "Potential / suspected victims (as stated)",
+      ""
+     ],
+     [
+      "Identified / rescued victims (as stated)",
+      ""
+     ],
+     [
+      "Assistance or referral reported",
+      ""
+     ],
+     [
+      "Proceedings",
+      ""
+     ]
+    ]
+   ],
+   [
+    "Wanted-person interception",
+    [
+     [
+      "Notice or warrant",
+      ""
+     ],
+     [
+      "Agency reporting it",
+      "Frontex; Coast Guard"
+     ],
+     [
+      "Stated basis",
+      ""
+     ],
+     [
+      "Reported outcome",
+      ""
+     ]
+    ]
+   ]
+  ],
+  "sources": [
+   {
+    "publisher": "Frontex",
+    "url": "https://www.frontex.europa.eu/media-centre/news/news-release/frontex-opens-recruitment-for-up-to-500-standing-corps-officers-hdMC6R",
+    "date": "2026-11-26",
+    "official": true
+   }
+  ],
+  "nationality": [],
+  "review_status": "Automatically collected",
+  "journey": {
+   "origin": "",
+   "transit": [],
+   "destination": "",
+   "interception": "",
+   "interception_country": "",
+   "completeness": "Not reported",
+   "basis": "",
+   "text": ""
+  },
+  "last_updated": "2026-11-26",
+  "related": []
+ },
+ {
+  "title": "UNODC-INTERPOL global summit mobilizes action against fraud surge",
+  "summary": "",
+  "url": "https://www.unodc.org/unodc/en/press/releases/2026/March/unodc-interpol-global-summit-mobilizes-action-against-fraud-surge.html",
+  "date": "2026-11-26",
+  "source": "UNODC",
+  "lang": "",
+  "via": "Official page",
+  "official": true,
+  "agency_country": "",
+  "kind": "Update",
+  "categories": [
+   "INTERPOL and watch lists"
+  ],
+  "matched_words": [
+   "interpol"
+  ],
+  "action": false,
+  "document_types": [],
+  "countries": [
+   "Canada",
+   "Singapore",
+   "United Kingdom"
+  ],
+  "airports": [],
+  "origin": "",
+  "destination": "",
+  "documents_count": 0,
+  "people_count": 0,
+  "weight_kg": 0,
+  "id": "ce9436997e26",
+  "first_seen": "2026-11-26",
+  "date_basis": "First seen (the source page shows no date)",
+  "source_url": "https://www.unodc.org/unodc/en/press/releases/2026/March/unodc-interpol-global-summit-mobilizes-action-against-fraud-surge.html",
+  "article": {
+   "tried": true,
+   "read_on": "2026-11-26",
+   "event_date": "2026-03-17",
+   "event_date_quality": "exact",
+   "read": true,
+   "kind": "Update",
+   "lead": "Closer cooperation between governments and the private sector is critical to tackling the rising global threat of fraud, according to a joint statement released today at the Global Fraud Summit.",
+   "categories": [
+    "INTERPOL and watch lists"
+   ],
+   "countries": [
+    "Canada",
+    "Singapore",
+    "United Kingdom"
+   ],
+   "airports": [],
+   "document_types": [],
+   "documents_count": 0,
+   "people_count": 0,
+   "weight_kg": 0,
+   "origin": "",
+   "destination": "",
+   "terms": [
+    "deepfake",
+    "interpol",
+    "networks",
+    "organized crime",
+    "victims"
+   ],
+   "agencies": [
+    "INTERPOL",
+    "UNODC"
+   ],
+   "outcome": "",
+   "transport": "",
+   "location": {
+    "cities": [],
+    "ports": [],
+    "crossings": []
+   },
+   "summary_text": "Closer cooperation between governments and the private sector is critical to tackling the rising global threat of fraud, according to a joint statement released today at the Global Fraud Summit.",
+   "exploitation": [],
+   "victim_assistance": false,
+   "v": 3,
+   "sentence": "",
+   "specialist": [
+    [
+     "Wanted-person interception",
+     [
+      [
+       "Notice or warrant",
+       ""
+      ],
+      [
+       "Agency reporting it",
+       "INTERPOL; UNODC"
+      ],
+      [
+       "Stated basis",
+       ""
+      ],
+      [
+       "Reported outcome",
+       "Released"
+      ]
+     ]
+    ]
+   ],
+   "transit": [],
+   "interception": "",
+   "interception_country": "",
+   "nationality": []
+  },
+  "lead": "Closer cooperation between governments and the private sector is critical to tackling the rising global threat of fraud, according to a joint statement released today at the Global Fraud Summit.",
+  "score": 0,
+  "level": "Update",
+  "reasons": [],
+  "watch": false,
+  "home": false,
+  "region": false,
+  "event_id": "BWO-2026-2206",
+  "primary_category": "INTERPOL and watch lists",
+  "tags": [],
+  "groups": [
+   "Border Integrity"
+  ],
+  "published": "2026-11-26",
+  "event_date": "2026-03-17",
+  "event_date_quality": "exact",
+  "location": {
+   "cities": [],
+   "ports": [],
+   "crossings": []
+  },
+  "transport_mode": "",
+  "outcome": "",
+  "agencies": [
+   "INTERPOL",
+   "UNODC"
+  ],
+  "summary_text": "Closer cooperation between governments and the private sector is critical to tackling the rising global threat of fraud, according to a joint statement released today at the Global Fraud Summit.",
+  "caribbean_connection": [],
+  "jamaica_connection": [],
+  "specialist": [
+   [
+    "Wanted-person interception",
+    [
+     [
+      "Notice or warrant",
+      ""
+     ],
+     [
+      "Agency reporting it",
+      "INTERPOL; UNODC"
+     ],
+     [
+      "Stated basis",
+      ""
+     ],
+     [
+      "Reported outcome",
+      "Released"
+     ]
+    ]
+   ]
+  ],
+  "sources": [
+   {
+    "publisher": "UNODC",
+    "url": "https://www.unodc.org/unodc/en/press/releases/2026/March/unodc-interpol-global-summit-mobilizes-action-against-fraud-surge.html",
+    "date": "2026-11-26",
+    "official": true
+   }
+  ],
+  "nationality": [],
+  "review_status": "Automatically collected",
+  "journey": {
+   "origin": "",
+   "transit": [],
+   "destination": "",
+   "interception": "",
+   "interception_country": "",
+   "completeness": "Not reported",
+   "basis": "",
+   "text": ""
+  },
+  "last_updated": "2026-11-26",
+  "related": []
+ },
+ {
+  "title": "Law enforcement follow crypto money trail behind billion-euro illegal streaming industry",
+  "summary": "Police from 11 countries have joined forces to go after the money behind Europe's illegal streaming industry, tracing cryptocurrency payments used to finance criminal networks profiting from digital piracy.During a five-day operation coordinated by Europol in Seville, Spain, from 16 to 20 November 2026, investigators worked with cryptocurrency industry to identify the financial networks behind illegal IPTV services.The operation resulted...",
+  "url": "https://www.europol.europa.eu/media-press/newsroom/news/law-enforcement-follow-crypto-money-trail-behind-billion-euro-illegal-streaming-industry",
+  "date": "2026-11-26",
+  "source": "Europol",
+  "lang": "",
+  "via": "RSS",
+  "official": true,
+  "agency_country": "European Union",
+  "kind": "Update",
+  "categories": [
+   "INTERPOL and watch lists"
+  ],
+  "matched_words": [
+   "europol"
+  ],
+  "action": false,
+  "document_types": [],
+  "countries": [
+   "Spain"
+  ],
+  "airports": [],
+  "origin": "",
+  "destination": "",
+  "documents_count": 0,
+  "people_count": 0,
+  "weight_kg": 0.0,
+  "id": "c39c6c42c00b",
+  "first_seen": "2026-11-26",
+  "date_basis": "First seen (the source page shows no date)",
+  "article": {
+   "fails": 1,
+   "tried": false
+  },
+  "score": 0,
+  "level": "Update",
+  "reasons": [],
+  "watch": false,
+  "home": false,
+  "region": false,
+  "event_id": "BWO-2026-2205",
+  "primary_category": "INTERPOL and watch lists",
+  "tags": [],
+  "groups": [
+   "Border Integrity"
+  ],
+  "published": "2026-11-26",
+  "event_date": "2026-11-20",
+  "event_date_quality": "exact",
+  "location": {
+   "cities": [],
+   "ports": [],
+   "crossings": []
+  },
+  "transport_mode": "",
+  "outcome": "",
+  "agencies": [],
+  "summary_text": "Police from 11 countries have joined forces to go after the money behind Europe's illegal streaming industry, tracing cryptocurrency payments used to finance criminal networks profiting from digital piracy.During a five-day operation coordinated by Europol in Seville, Spain, from 16 to 20 November 2026, investigators worked with cryptocurrency industry to identify the financial networks behind illegal IPTV services.The operation resulted...",
+  "caribbean_connection": [],
+  "jamaica_connection": [],
+  "specialist": [
+   [
+    "Wanted-person interception",
+    [
+     [
+      "Notice or warrant",
+      ""
+     ],
+     [
+      "Agency reporting it",
+      ""
+     ],
+     [
+      "Stated basis",
+      ""
+     ],
+     [
+      "Reported outcome",
+      ""
+     ]
+    ]
+   ]
+  ],
+  "sources": [
+   {
+    "publisher": "Europol",
+    "url": "https://www.europol.europa.eu/media-press/newsroom/news/law-enforcement-follow-crypto-money-trail-behind-billion-euro-illegal-streaming-industry",
+    "date": "2026-11-26",
+    "official": true
+   }
+  ],
+  "nationality": [],
+  "review_status": "Automatically collected",
+  "journey": {
+   "origin": "",
+   "transit": [],
+   "destination": "",
+   "interception": "",
+   "interception_country": "",
+   "completeness": "Not reported",
+   "basis": "",
+   "text": ""
+  },
+  "last_updated": "2026-11-26",
+  "related": []
+ },
+ {
+  "title": "New Frontex officers graduate in Warsaw",
+  "summary": "",
+  "url": "https://www.frontex.europa.eu/media-centre/news/news-release/new-frontex-officers-graduate-in-warsaw-vABW6m",
+  "date": "2026-11-26",
+  "source": "Frontex",
+  "lang": "",
+  "via": "Official page",
+  "official": true,
+  "agency_country": "European Union",
+  "kind": "Update",
+  "categories": [
+   "Border security",
+   "INTERPOL and watch lists"
+  ],
+  "matched_words": [
+   "frontex"
+  ],
+  "action": false,
+  "document_types": [],
+  "countries": [
+   "Poland"
+  ],
+  "airports": [],
+  "origin": "",
+  "destination": "",
+  "documents_count": 0,
+  "people_count": 0,
+  "weight_kg": 0,
+  "id": "b707aa5a5f55",
+  "first_seen": "2026-11-26",
+  "date_basis": "First seen (the source page shows no date)",
+  "source_url": "https://www.frontex.europa.eu/media-centre/news/news-release/new-frontex-officers-graduate-in-warsaw-vABW6m",
+  "article": {
+   "tried": true,
+   "read_on": "2026-11-26",
+   "event_date": "2026-10-21",
+   "event_date_quality": "exact",
+   "read": true,
+   "kind": "Update",
+   "lead": "A new class of 203 officers has completed training and joined the ranks of the Frontex Standing Corps, the European Union’s first uniformed service, at a graduation ceremony at the Royal Castle in Warsaw.",
+   "categories": [
+    "Border security",
+    "INTERPOL and watch lists"
+   ],
+   "countries": [
+    "Poland"
+   ],
+   "airports": [],
+   "document_types": [],
+   "documents_count": 0,
+   "people_count": 0,
+   "weight_kg": 0,
+   "origin": "",
+   "destination": "",
+   "terms": [],
+   "agencies": [
+    "Frontex",
+    "Coast Guard"
+   ],
+   "outcome": "",
+   "transport": "",
+   "location": {
+    "cities": [],
+    "ports": [],
+    "crossings": []
+   },
+   "summary_text": "A new class of 203 officers has completed training and joined the ranks of the Frontex Standing Corps, the European Union’s first uniformed service, at a graduation ceremony at the Royal Castle in Warsaw. Their training with Frontex, the European Border and Coast Guard Agency, combined practical border guard skills with EU and international law, including fundamental rights.",
+   "exploitation": [],
+   "victim_assistance": false,
+   "v": 3,
+   "sentence": "",
+   "specialist": [
+    [
+     "Border integrity",
+     [
+      [
+       "Organisation or role implicated",
+       ""
+      ],
+      [
+       "Alleged conduct",
+       ""
+      ],
+      [
+       "Location",
+       "Poland"
+      ],
+      [
+       "Investigation / disciplinary / criminal outcome",
+       ""
+      ]
+     ]
+    ],
+    [
+     "Wanted-person interception",
+     [
+      [
+       "Notice or warrant",
+       ""
+      ],
+      [
+       "Agency reporting it",
+       "Frontex; Coast Guard"
+      ],
+      [
+       "Stated basis",
+       ""
+      ],
+      [
+       "Reported outcome",
+       ""
+      ]
+     ]
+    ]
+   ],
+   "transit": [],
+   "interception": "",
+   "interception_country": "",
+   "nationality": []
+  },
+  "lead": "A new class of 203 officers has completed training and joined the ranks of the Frontex Standing Corps, the European Union’s first uniformed service, at a graduation ceremony at the Royal Castle in Warsaw.",
+  "score": 0,
+  "level": "Update",
+  "reasons": [],
+  "watch": false,
+  "home": false,
+  "region": false,
+  "event_id": "BWO-2026-2204",
+  "primary_category": "INTERPOL and watch lists",
+  "tags": [
+   "Border security"
+  ],
+  "groups": [
+   "Border Integrity"
+  ],
+  "published": "2026-11-26",
+  "event_date": "2026-10-21",
+  "event_date_quality": "exact",
+  "location": {
+   "cities": [],
+   "ports": [],
+   "crossings": []
+  },
+  "transport_mode": "",
+  "outcome": "",
+  "agencies": [
+   "Frontex",
+   "Coast Guard"
+  ],
+  "summary_text": "A new class of 203 officers has completed training and joined the ranks of the Frontex Standing Corps, the European Union’s first uniformed service, at a graduation ceremony at the Royal Castle in Warsaw. Their training with Frontex, the European Border and Coast Guard Agency, combined practical border guard skills with EU and international law, including fundamental rights.",
+  "caribbean_connection": [],
+  "jamaica_connection": [],
+  "specialist": [
+   [
+    "Border integrity",
+    [
+     [
+      "Organisation or role implicated",
+      ""
+     ],
+     [
+      "Alleged conduct",
+      ""
+     ],
+     [
+      "Location",
+      "Poland"
+     ],
+     [
+      "Investigation / disciplinary / criminal outcome",
+      ""
+     ]
+    ]
+   ],
+   [
+    "Wanted-person interception",
+    [
+     [
+      "Notice or warrant",
+      ""
+     ],
+     [
+      "Agency reporting it",
+      "Frontex; Coast Guard"
+     ],
+     [
+      "Stated basis",
+      ""
+     ],
+     [
+      "Reported outcome",
+      ""
+     ]
+    ]
+   ]
+  ],
+  "sources": [
+   {
+    "publisher": "Frontex",
+    "url": "https://www.frontex.europa.eu/media-centre/news/news-release/new-frontex-officers-graduate-in-warsaw-vABW6m",
+    "date": "2026-11-26",
+    "official": true
+   }
+  ],
+  "nationality": [],
+  "review_status": "Automatically collected",
+  "journey": {
+   "origin": "",
+   "transit": [],
+   "destination": "",
+   "interception": "",
+   "interception_country": "",
+   "completeness": "Not reported",
+   "basis": "",
+   "text": ""
+  },
+  "last_updated": "2026-11-26",
+  "related": []
+ },
+ {
+  "title": "Not a game: Europol and partners target terrorist role-playing online",
+  "summary": "Europol’s European Union Internet Referral Unit (EU IRU) coordinated together with Spain a Referral Action Day targeting violent extremist and terrorist live action role-playing (LARPing) in online gaming environments. Specialised units from 16 countries participated in the action.",
+  "url": "https://www.europol.europa.eu/media-press/newsroom/news/not-game-europol-and-partners-target-terrorist-role-playing-online",
+  "date": "2026-11-26",
+  "source": "Europol",
+  "lang": "",
+  "via": "RSS",
+  "official": true,
+  "agency_country": "European Union",
+  "kind": "Update",
+  "categories": [
+   "INTERPOL and watch lists"
+  ],
+  "matched_words": [
+   "europol"
+  ],
+  "action": false,
+  "document_types": [],
+  "countries": [
+   "Spain"
+  ],
+  "airports": [],
+  "origin": "",
+  "destination": "",
+  "documents_count": 0,
+  "people_count": 0,
+  "weight_kg": 0.0,
+  "id": "a38add1a8bd6",
+  "first_seen": "2026-11-26",
+  "date_basis": "First seen (the source page shows no date)",
+  "article": {
+   "fails": 1,
+   "tried": false
+  },
+  "score": 0,
+  "level": "Update",
+  "reasons": [],
+  "watch": false,
+  "home": false,
+  "region": false,
+  "event_id": "BWO-2026-2203",
+  "primary_category": "INTERPOL and watch lists",
+  "tags": [],
+  "groups": [
+   "Border Integrity"
+  ],
+  "published": "2026-11-26",
+  "event_date": "",
+  "event_date_quality": "unknown",
+  "location": {
+   "cities": [],
+   "ports": [],
+   "crossings": []
+  },
+  "transport_mode": "",
+  "outcome": "",
+  "agencies": [],
+  "summary_text": "Europol’s European Union Internet Referral Unit (EU IRU) coordinated together with Spain a Referral Action Day targeting violent extremist and terrorist live action role-playing (LARPing) in online gaming environments. Specialised units from 16 countries participated in the action.",
+  "caribbean_connection": [],
+  "jamaica_connection": [],
+  "specialist": [
+   [
+    "Wanted-person interception",
+    [
+     [
+      "Notice or warrant",
+      ""
+     ],
+     [
+      "Agency reporting it",
+      ""
+     ],
+     [
+      "Stated basis",
+      ""
+     ],
+     [
+      "Reported outcome",
+      ""
+     ]
+    ]
+   ]
+  ],
+  "sources": [
+   {
+    "publisher": "Europol",
+    "url": "https://www.europol.europa.eu/media-press/newsroom/news/not-game-europol-and-partners-target-terrorist-role-playing-online",
+    "date": "2026-11-26",
+    "official": true
+   }
+  ],
+  "nationality": [],
+  "review_status": "Automatically collected",
+  "journey": {
+   "origin": "",
+   "transit": [],
+   "destination": "",
+   "interception": "",
+   "interception_country": "",
+   "completeness": "Not reported",
+   "basis": "",
+   "text": ""
+  },
+  "last_updated": "2026-11-26",
+  "related": []
+ },
+ {
+  "title": "354 dark web vendors and buyers arrested in Europol-coordinated global crackdown",
+  "summary": "Europol, in collaboration with law enforcement agencies from 14 countries across the globe, have successfully identified vendors and buyers from major dark marketplaces as part of Operation TorNado, a coordinated international effort targeting cybercrime, drug trafficking, and firearms offences. The operation, which spanned from May 2025 to October 2026, resulted in 354 arrests and hundreds of house searches worldwide.",
+  "url": "https://www.europol.europa.eu/media-press/newsroom/news/354-dark-web-vendors-and-buyers-arrested-in-europol-coordinated-global-crackdown",
+  "date": "2026-11-26",
+  "source": "Europol",
+  "lang": "",
+  "via": "RSS",
+  "official": true,
+  "agency_country": "European Union",
+  "kind": "Incident",
+  "categories": [
+   "Drug trafficking",
+   "Firearms and ammunition",
+   "INTERPOL and watch lists"
+  ],
+  "matched_words": [
+   "drug trafficking",
+   "europol",
+   "firearms"
+  ],
+  "action": true,
+  "document_types": [],
+  "countries": [],
+  "airports": [],
+  "origin": "",
+  "destination": "",
+  "documents_count": 0,
+  "people_count": 0,
+  "weight_kg": 0.0,
+  "id": "9a1215050664",
+  "first_seen": "2026-11-26",
+  "date_basis": "First seen (the source page shows no date)",
+  "article": {
+   "fails": 1,
+   "tried": false
+  },
+  "score": 10,
+  "level": "Low",
+  "reasons": [
+   "Weapons involved (+10: firearms)"
+  ],
+  "watch": false,
+  "home": false,
+  "region": false,
+  "event_id": "BWO-2026-2202",
+  "primary_category": "Drug trafficking",
+  "tags": [
+   "Firearms and ammunition",
+   "INTERPOL and watch lists"
+  ],
+  "groups": [
+   "Border Integrity",
+   "Seizures & Contraband"
+  ],
+  "published": "2026-11-26",
+  "event_date": "",
+  "event_date_quality": "unknown",
+  "location": {
+   "cities": [],
+   "ports": [],
+   "crossings": []
+  },
+  "transport_mode": "",
+  "outcome": "Arrested",
+  "agencies": [],
+  "summary_text": "Europol, in collaboration with law enforcement agencies from 14 countries across the globe, have successfully identified vendors and buyers from major dark marketplaces as part of Operation TorNado, a coordinated international effort targeting cybercrime, drug trafficking, and firearms offences. The operation, which spanned from May 2025 to October 2026, resulted in 354 arrests and hundreds of house searches worldwide.",
+  "caribbean_connection": [],
+  "jamaica_connection": [],
+  "specialist": [
+   [
+    "Wanted-person interception",
+    [
+     [
+      "Notice or warrant",
+      ""
+     ],
+     [
+      "Agency reporting it",
+      ""
+     ],
+     [
+      "Stated basis",
+      ""
+     ],
+     [
+      "Reported outcome",
+      "Arrested"
+     ]
+    ]
+   ]
+  ],
+  "sources": [
+   {
+    "publisher": "Europol",
+    "url": "https://www.europol.europa.eu/media-press/newsroom/news/354-dark-web-vendors-and-buyers-arrested-in-europol-coordinated-global-crackdown",
+    "date": "2026-11-26",
+    "official": true
+   }
+  ],
+  "nationality": [],
+  "review_status": "Automatically collected",
+  "journey": {
+   "origin": "",
+   "transit": [],
+   "destination": "",
+   "interception": "",
+   "interception_country": "",
+   "completeness": "Not reported",
+   "basis": "",
+   "text": ""
+  },
+  "last_updated": "2026-11-26",
+  "related": []
+ },
+ {
+  "title": "6.4 million victim datasets secured in international operation against malware networks",
+  "summary": "Europol, alongside global partners, has dismantled the criminal infrastructure behind Gootloader, CastleRAT, and StealC malware. In coordinated actions, law enforcement seized 235 servers and 257 domains, severely crippling these malware distribution networks.",
+  "url": "https://www.europol.europa.eu/media-press/newsroom/news/64-million-victim-datasets-secured-in-international-operation-against-malware-networks",
+  "date": "2026-11-26",
+  "source": "Europol",
+  "lang": "",
+  "via": "RSS",
+  "official": true,
+  "agency_country": "European Union",
+  "kind": "Incident",
+  "categories": [
+   "INTERPOL and watch lists"
+  ],
+  "matched_words": [
+   "europol"
+  ],
+  "action": true,
+  "document_types": [],
+  "countries": [],
+  "airports": [],
+  "origin": "",
+  "destination": "",
+  "documents_count": 0,
+  "people_count": 64,
+  "weight_kg": 0.0,
+  "id": "943d83539415",
+  "first_seen": "2026-11-26",
+  "date_basis": "First seen (the source page shows no date)",
+  "article": {
+   "fails": 1,
+   "tried": false
+  },
+  "score": 25,
+  "level": "Medium",
+  "reasons": [
+   "Organised network or ring (+15: networks)",
+   "Many people involved: 64 (+10)"
+  ],
+  "watch": false,
+  "home": false,
+  "region": false,
+  "event_id": "BWO-2026-2201",
+  "primary_category": "INTERPOL and watch lists",
+  "tags": [],
+  "groups": [
+   "Border Integrity"
+  ],
+  "published": "2026-11-26",
+  "event_date": "",
+  "event_date_quality": "unknown",
+  "location": {
+   "cities": [],
+   "ports": [],
+   "crossings": []
+  },
+  "transport_mode": "",
+  "outcome": "Seized / intercepted",
+  "agencies": [],
+  "summary_text": "Europol, alongside global partners, has dismantled the criminal infrastructure behind Gootloader, CastleRAT, and StealC malware. In coordinated actions, law enforcement seized 235 servers and 257 domains, severely crippling these malware distribution networks.",
+  "caribbean_connection": [],
+  "jamaica_connection": [],
+  "specialist": [
+   [
+    "Wanted-person interception",
+    [
+     [
+      "Notice or warrant",
+      ""
+     ],
+     [
+      "Agency reporting it",
+      ""
+     ],
+     [
+      "Stated basis",
+      ""
+     ],
+     [
+      "Reported outcome",
+      ""
+     ]
+    ]
+   ]
+  ],
+  "sources": [
+   {
+    "publisher": "Europol",
+    "url": "https://www.europol.europa.eu/media-press/newsroom/news/64-million-victim-datasets-secured-in-international-operation-against-malware-networks",
+    "date": "2026-11-26",
+    "official": true
+   }
+  ],
+  "nationality": [],
+  "review_status": "Automatically collected",
+  "journey": {
+   "origin": "",
+   "transit": [],
+   "destination": "",
+   "interception": "",
+   "interception_country": "",
+   "completeness": "Not reported",
+   "basis": "",
+   "text": ""
+  },
+  "last_updated": "2026-11-26",
+  "related": []
+ },
+ {
+  "title": "Law enforcement dismantle cocaine network from Ecuador to Europe",
+  "summary": "An international investigation supported by Europol and Eurojust has dismantled a criminal network suspected of importing cocaine into Europe from Ecuador and other Latin American countries. Investigators link the network to large quantities of seized cocaine, including a recent seizure of over 750 kilos in Antwerp, Belgium.",
+  "url": "https://www.europol.europa.eu/media-press/newsroom/news/law-enforcement-dismantle-cocaine-network-ecuador-to-europe",
+  "date": "2026-11-26",
+  "source": "Europol",
+  "lang": "",
+  "via": "RSS",
+  "official": true,
+  "agency_country": "European Union",
+  "kind": "Incident",
+  "categories": [
+   "Drug trafficking",
+   "INTERPOL and watch lists"
+  ],
+  "matched_words": [
+   "cocaine",
+   "europol"
+  ],
+  "action": true,
+  "document_types": [],
+  "countries": [
+   "Ecuador",
+   "Belgium"
+  ],
+  "airports": [],
+  "origin": "Ecuador",
+  "destination": "",
+  "documents_count": 0,
+  "people_count": 0,
+  "weight_kg": 750.0,
+  "id": "631f02de2808",
+  "first_seen": "2026-11-26",
+  "date_basis": "First seen (the source page shows no date)",
+  "article": {
+   "fails": 1,
+   "tried": false
+  },
+  "score": 35,
+  "level": "Medium",
+  "reasons": [
+   "Organised network or ring (+15: network)",
+   "Very large quantity: about 750 kg (+20)"
+  ],
+  "watch": false,
+  "home": false,
+  "region": false,
+  "event_id": "BWO-2026-2200",
+  "primary_category": "Drug trafficking",
+  "tags": [
+   "INTERPOL and watch lists"
+  ],
+  "groups": [
+   "Border Integrity",
+   "Seizures & Contraband"
+  ],
+  "published": "2026-11-26",
+  "event_date": "",
+  "event_date_quality": "unknown",
+  "location": {
+   "cities": [
+    "Antwerp (Belgium)"
+   ],
+   "ports": [],
+   "crossings": []
+  },
+  "transport_mode": "",
+  "outcome": "Seized / intercepted",
+  "agencies": [],
+  "summary_text": "An international investigation supported by Europol and Eurojust has dismantled a criminal network suspected of importing cocaine into Europe from Ecuador and other Latin American countries. Investigators link the network to large quantities of seized cocaine, including a recent seizure of over 750 kilos in Antwerp, Belgium.",
+  "caribbean_connection": [],
+  "jamaica_connection": [],
+  "specialist": [
+   [
+    "Wanted-person interception",
+    [
+     [
+      "Notice or warrant",
+      ""
+     ],
+     [
+      "Agency reporting it",
+      ""
+     ],
+     [
+      "Stated basis",
+      ""
+     ],
+     [
+      "Reported outcome",
+      ""
+     ]
+    ]
+   ]
+  ],
+  "sources": [
+   {
+    "publisher": "Europol",
+    "url": "https://www.europol.europa.eu/media-press/newsroom/news/law-enforcement-dismantle-cocaine-network-ecuador-to-europe",
+    "date": "2026-11-26",
+    "official": true
+   }
+  ],
+  "nationality": [],
+  "review_status": "Automatically collected",
+  "journey": {
+   "origin": "Ecuador",
+   "transit": [],
+   "destination": "",
+   "interception": "",
+   "interception_country": "",
+   "completeness": "Partial",
+   "basis": "Stated in headline or summary",
+   "text": "Origin: Ecuador; destination not reported"
+  },
+  "last_updated": "2026-11-26",
+  "related": []
+ },
+ {
+  "title": "Frontex: Irregular border crossings into the EU down 29% in the first ten months of 2026",
+  "summary": "",
+  "url": "https://www.frontex.europa.eu/media-centre/news/news-release/frontex-irregular-border-crossings-into-the-eu-down-29-in-the-first-ten-months-of-2026-Yj3qp4",
+  "date": "2026-11-26",
+  "source": "Frontex",
+  "lang": "",
+  "via": "Official page",
+  "official": true,
+  "agency_country": "European Union",
+  "kind": "Update",
+  "categories": [
+   "Border technology",
+   "INTERPOL and watch lists",
+   "Irregular migration"
+  ],
+  "matched_words": [
+   "border crossings",
+   "frontex"
+  ],
+  "action": false,
+  "document_types": [],
+  "countries": [],
+  "airports": [],
+  "origin": "Iran",
+  "destination": "Italy",
+  "documents_count": 0,
+  "people_count": 2,
+  "weight_kg": 0,
+  "id": "2bd35cbfd5dd",
+  "first_seen": "2026-11-26",
+  "date_basis": "First seen (the source page shows no date)",
+  "source_url": "https://www.frontex.europa.eu/media-centre/news/news-release/frontex-irregular-border-crossings-into-the-eu-down-29-in-the-first-ten-months-of-2026-Yj3qp4",
+  "article": {
+   "tried": true,
+   "read_on": "2026-11-26",
+   "event_date": "",
+   "event_date_quality": "unknown",
+   "read": true,
+   "kind": "Update",
+   "lead": "The number of irregular border crossings into the European Union continued to fall in the first ten months of 2026, with detections down by 29% compared with the same period last year.",
+   "categories": [
+    "Border technology",
+    "INTERPOL and watch lists",
+    "Irregular migration"
+   ],
+   "countries": [],
+   "airports": [],
+   "document_types": [],
+   "documents_count": 0,
+   "people_count": 2,
+   "weight_kg": 0,
+   "origin": "Iran",
+   "destination": "Italy",
+   "terms": [
+    "biometric",
+    "networks"
+   ],
+   "agencies": [
+    "Frontex"
+   ],
+   "outcome": "",
+   "transport": "Mixed: Small vessel, Land",
+   "location": {
+    "cities": [
+     "Türkiye (Turkey)"
+    ],
+    "ports": [],
+    "crossings": [
+     "Canary Islands route"
+    ]
+   },
+   "summary_text": "The number of irregular border crossings into the European Union continued to fall in the first ten months of 2026, with detections down by 29% compared with the same period last year. Almost 110 000 crossings were recorded, according to preliminary data collected by Frontex. The decline on nearly all of the major migratory routes reflects sustained cooperation with partner countries and preventive measures in key departure states, which continue to reduce the number of boats setting out towards Europe.",
+   "exploitation": [],
+   "victim_assistance": false,
+   "v": 3,
+   "sentence": "",
+   "specialist": [
+    [
+     "Wanted-person interception",
+     [
+      [
+       "Notice or warrant",
+       ""
+      ],
+      [
+       "Agency reporting it",
+       "Frontex"
+      ],
+      [
+       "Stated basis",
+       ""
+      ],
+      [
+       "Reported outcome",
+       ""
+      ]
+     ]
+    ],
+    [
+     "Policy update",
+     [
+      [
+       "Issuing authority",
+       "European Union; Frontex"
+      ],
+      [
+       "Affected travellers / documents",
+       ""
+      ],
+      [
+       "Announcement date (publication)",
+       "2026-11-26"
+      ],
+      [
+       "Effective date",
+       ""
+      ],
+      [
+       "Exceptions",
+       ""
+      ],
+      [
+       "Status",
+       ""
+      ],
+      [
+       "Official guidance link",
+       "https://travel-europe.europa.eu/"
+      ]
+     ]
+    ]
+   ],
+   "transit": [],
+   "interception": "",
+   "interception_country": "",
+   "nationality": [
+    "Afghanistan",
+    "Iran"
+   ]
+  },
+  "lead": "The number of irregular border crossings into the European Union continued to fall in the first ten months of 2026, with detections down by 29% compared with the same period last year.",
+  "score": 0,
+  "level": "Update",
+  "reasons": [],
+  "watch": false,
+  "home": false,
+  "region": false,
+  "event_id": "BWO-2026-2199",
+  "primary_category": "INTERPOL and watch lists",
+  "tags": [
+   "Border technology",
+   "Irregular migration"
+  ],
+  "groups": [
+   "Migration & Facilitation",
+   "Border Integrity",
+   "Policy & Systems"
+  ],
+  "published": "2026-11-26",
+  "event_date": "",
+  "event_date_quality": "unknown",
+  "location": {
+   "cities": [
+    "Türkiye (Turkey)"
+   ],
+   "ports": [],
+   "crossings": [
+    "Canary Islands route"
+   ]
+  },
+  "transport_mode": "Mixed: Small vessel, Land",
+  "outcome": "",
+  "agencies": [
+   "Frontex"
+  ],
+  "summary_text": "The number of irregular border crossings into the European Union continued to fall in the first ten months of 2026, with detections down by 29% compared with the same period last year. Almost 110 000 crossings were recorded, according to preliminary data collected by Frontex. The decline on nearly all of the major migratory routes reflects sustained cooperation with partner countries and preventive measures in key departure states, which continue to reduce the number of boats setting out towards Europe.",
+  "caribbean_connection": [],
+  "jamaica_connection": [],
+  "specialist": [
+   [
+    "Wanted-person interception",
+    [
+     [
+      "Notice or warrant",
+      ""
+     ],
+     [
+      "Agency reporting it",
+      "Frontex"
+     ],
+     [
+      "Stated basis",
+      ""
+     ],
+     [
+      "Reported outcome",
+      ""
+     ]
+    ]
+   ],
+   [
+    "Policy update",
+    [
+     [
+      "Issuing authority",
+      "European Union; Frontex"
+     ],
+     [
+      "Affected travellers / documents",
+      ""
+     ],
+     [
+      "Announcement date (publication)",
+      "2026-11-26"
+     ],
+     [
+      "Effective date",
+      ""
+     ],
+     [
+      "Exceptions",
+      ""
+     ],
+     [
+      "Status",
+      ""
+     ],
+     [
+      "Official guidance link",
+      "https://travel-europe.europa.eu/"
+     ]
+    ]
+   ]
+  ],
+  "sources": [
+   {
+    "publisher": "Frontex",
+    "url": "https://www.frontex.europa.eu/media-centre/news/news-release/frontex-irregular-border-crossings-into-the-eu-down-29-in-the-first-ten-months-of-2026-Yj3qp4",
+    "date": "2026-11-26",
+    "official": true
+   }
+  ],
+  "nationality": [
+   "Afghanistan",
+   "Iran"
+  ],
+  "review_status": "Automatically collected",
+  "journey": {
+   "origin": "Iran",
+   "transit": [],
+   "destination": "Italy",
+   "interception": "",
+   "interception_country": "",
+   "completeness": "Complete",
+   "basis": "Explicitly stated in article",
+   "text": "Iran → Italy"
+  },
+  "last_updated": "2026-11-26",
+  "related": []
+ },
+ {
+  "title": "EU Most Wanted: 19 fugitives wanted for targeting the vulnerable",
+  "summary": "Nineteen fugitives wanted for crimes against children and older people are the focus of a new EU Most Wanted appeal launched on 12 November. Featuring cases from 14 countries, the appeal includes individuals sought for child sexual exploitation and fraud targeting older people.",
+  "url": "https://www.europol.europa.eu/media-press/newsroom/news/eu-most-wanted-19-fugitives-wanted-for-targeting-vulnerable",
+  "date": "2026-11-26",
+  "source": "Europol",
+  "lang": "",
+  "via": "RSS",
+  "official": true,
+  "agency_country": "European Union",
+  "kind": "Update",
+  "categories": [
+   "INTERPOL and watch lists"
+  ],
+  "matched_words": [
+   "most wanted"
+  ],
+  "action": false,
+  "document_types": [],
+  "countries": [],
+  "airports": [],
+  "origin": "",
+  "destination": "",
+  "documents_count": 0,
+  "people_count": 0,
+  "weight_kg": 0.0,
+  "id": "235760e11f38",
+  "first_seen": "2026-11-26",
+  "date_basis": "First seen (the source page shows no date)",
+  "article": {
+   "fails": 1,
+   "tried": false
+  },
+  "score": 0,
+  "level": "Update",
+  "reasons": [],
+  "watch": false,
+  "home": false,
+  "region": false,
+  "event_id": "BWO-2026-2198",
+  "primary_category": "INTERPOL and watch lists",
+  "tags": [],
+  "groups": [
+   "Border Integrity"
+  ],
+  "published": "2026-11-26",
+  "event_date": "2026-11-12",
+  "event_date_quality": "exact",
+  "location": {
+   "cities": [],
+   "ports": [],
+   "crossings": []
+  },
+  "transport_mode": "",
+  "outcome": "",
+  "agencies": [],
+  "summary_text": "Nineteen fugitives wanted for crimes against children and older people are the focus of a new EU Most Wanted appeal launched on 12 November. Featuring cases from 14 countries, the appeal includes individuals sought for child sexual exploitation and fraud targeting older people.",
+  "caribbean_connection": [],
+  "jamaica_connection": [],
+  "specialist": [
+   [
+    "Wanted-person interception",
+    [
+     [
+      "Notice or warrant",
+      ""
+     ],
+     [
+      "Agency reporting it",
+      ""
+     ],
+     [
+      "Stated basis",
+      "targeting the vulnerable"
+     ],
+     [
+      "Reported outcome",
+      ""
+     ]
+    ]
+   ]
+  ],
+  "sources": [
+   {
+    "publisher": "Europol",
+    "url": "https://www.europol.europa.eu/media-press/newsroom/news/eu-most-wanted-19-fugitives-wanted-for-targeting-vulnerable",
+    "date": "2026-11-26",
+    "official": true
+   }
+  ],
+  "nationality": [],
+  "review_status": "Automatically collected",
+  "journey": {
+   "origin": "",
+   "transit": [],
+   "destination": "",
+   "interception": "",
+   "interception_country": "",
+   "completeness": "Not reported",
+   "basis": "",
+   "text": ""
+  },
+  "last_updated": "2026-11-26",
+  "related": []
+ },
+ {
+  "title": "ICE deports convicted sex abuser to Guatemala on weekend removal flight",
+  "summary": "",
+  "url": "https://www.ice.gov/news/releases/ice-deports-convicted-sex-abuser-guatemala-weekend-removal-flight",
+  "date": "2026-11-26",
+  "source": "US Immigration and Customs Enforcement",
+  "lang": "",
+  "via": "Official page",
+  "official": true,
+  "agency_country": "United States",
+  "kind": "Update",
+  "categories": [
+   "Deportation and returns"
+  ],
+  "matched_words": [
+   "deports",
+   "removal flight"
+  ],
+  "action": true,
+  "document_types": [],
+  "countries": [
+   "Guatemala",
+   "United States"
+  ],
+  "airports": [],
+  "origin": "Guatemala",
+  "destination": "Guatemala",
+  "documents_count": 0,
+  "people_count": 0,
+  "weight_kg": 0,
+  "id": "1e2e4a5e0df6",
+  "first_seen": "2026-11-26",
+  "date_basis": "First seen (the source page shows no date)",
+  "source_url": "https://www.ice.gov/news/releases/ice-deports-convicted-sex-abuser-guatemala-weekend-removal-flight",
+  "article": {
+   "tried": true,
+   "read_on": "2026-11-26",
+   "event_date": "2026-11-14",
+   "event_date_quality": "exact",
+   "read": true,
+   "kind": "Update",
+   "lead": "ICE deports convicted sex abuser to Guatemala on weekend removal flight WASHINGTON — ICE removed Felipe Pablo Menchu Yax, a 67-year-old criminal illegal alien from Guatemala convicted of two counts of aggravated sexual battery, to Guatemala Nov.",
+   "categories": [
+    "Deportation and returns"
+   ],
+   "countries": [
+    "Guatemala",
+    "United States"
+   ],
+   "airports": [],
+   "document_types": [],
+   "documents_count": 0,
+   "people_count": 0,
+   "weight_kg": 0,
+   "origin": "Guatemala",
+   "destination": "",
+   "terms": [],
+   "agencies": [
+    "ICE"
+   ],
+   "outcome": "Sentenced",
+   "transport": "",
+   "location": {
+    "cities": [],
+    "ports": [],
+    "crossings": []
+   },
+   "summary_text": "ICE deports convicted sex abuser to Guatemala on weekend removal flight WASHINGTON — ICE removed Felipe Pablo Menchu Yax, a 67-year-old criminal illegal alien from Guatemala convicted of two counts of aggravated sexual battery, to Guatemala Nov. 14 as part of its nationwide efforts to make America safe again. “Tennessee’s Trousdale Turner Correctional Center understands the assignment,” said ICE Assistant Director of Public Affairs Micah Bock.",
+   "exploitation": [],
+   "victim_assistance": false,
+   "v": 3,
+   "sentence": "",
+   "specialist": [],
+   "transit": [],
+   "interception": "",
+   "interception_country": "",
+   "nationality": []
+  },
+  "lead": "ICE deports convicted sex abuser to Guatemala on weekend removal flight WASHINGTON — ICE removed Felipe Pablo Menchu Yax, a 67-year-old criminal illegal alien from Guatemala convicted of two counts of aggravated sexual battery, to Guatemala Nov.",
+  "score": 0,
+  "level": "Update",
+  "reasons": [],
+  "watch": false,
+  "home": false,
+  "region": false,
+  "event_id": "BWO-2026-2197",
+  "primary_category": "Deportation and returns",
+  "tags": [],
+  "groups": [
+   "Migration & Facilitation"
+  ],
+  "published": "2026-11-26",
+  "event_date": "2026-11-14",
+  "event_date_quality": "exact",
+  "location": {
+   "cities": [],
+   "ports": [],
+   "crossings": []
+  },
+  "transport_mode": "",
+  "outcome": "",
+  "agencies": [
+   "ICE"
+  ],
+  "summary_text": "ICE deports convicted sex abuser to Guatemala on weekend removal flight WASHINGTON — ICE removed Felipe Pablo Menchu Yax, a 67-year-old criminal illegal alien from Guatemala convicted of two counts of aggravated sexual battery, to Guatemala Nov. 14 as part of its nationwide efforts to make America safe again. “Tennessee’s Trousdale Turner Correctional Center understands the assignment,” said ICE Assistant Director of Public Affairs Micah Bock.",
+  "caribbean_connection": [],
+  "jamaica_connection": [],
+  "specialist": [],
+  "sources": [
+   {
+    "publisher": "US Immigration and Customs Enforcement",
+    "url": "https://www.ice.gov/news/releases/ice-deports-convicted-sex-abuser-guatemala-weekend-removal-flight",
+    "date": "2026-11-26",
+    "official": true
+   }
+  ],
+  "nationality": [],
+  "review_status": "Automatically collected",
+  "journey": {
+   "origin": "Guatemala",
+   "transit": [],
+   "destination": "",
+   "interception": "",
+   "interception_country": "",
+   "completeness": "Partial",
+   "basis": "Explicitly stated in article",
+   "text": "Origin: Guatemala; destination not reported"
+  },
+  "last_updated": "2026-11-26",
+  "related": []
+ },
+ {
   "title": "SEIZED SHABU. The Bureau of Customs on Thursday (Nov. 26, 2026) says it seized 42.884 kilos of suspected shabu worth an estimated PHP291.61 million in three shipments from Kenya and Malaysia. The largest haul came from a shipment from Kenya decl",
   "summary": "",
   "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxPTzYwdkI3ejFOUU5qa0psemNmTFYybF9RWFZSa1BfWEk4Q1hxNXRUUmgwNExkR2xkbDVoMjZuMjU2NXk0eWZnNDBTREIzNm5lOTJfcl9ETExiVWEyZVhrRTNOYWZBYnpqa1NXMDB1UHo4SWhMNWRzajAxcWZPZ0FTQ3BGdUpDYUd2aGtNMHpWdlBaYkhPS2RuU1B3b1hFV1FEVXBEeThEalpyS1dJeUFXNC1Sdzk5QkRaTWM2MUg2LXNzSERFSi1jMmdUamlUbjc1MVVv?oc=5",
@@ -7494,6 +9289,120 @@
   "uncertainty": []
  },
  {
+  "title": "Federal jury convicts Buffalo man of Hobbs Act Robbery, co-defendant pleads guilty to sex trafficking",
+  "summary": "U.S. Attorney Michael DiGiacomo announced today that a federal jury has convicted Zemen Kesete, 26, of Buffalo, NY, of Hobbs Act Robbery, which carries a maximum penalty of 20 years in prison.",
+  "url": "https://www.justice.gov/usao-wdny/pr/federal-jury-convicts-buffalo-man-hobbs-act-robbery-co-defendant-pleads-guilty-sex",
+  "date": "2026-11-25",
+  "source": "US Department of Justice",
+  "lang": "",
+  "via": "RSS",
+  "official": true,
+  "agency_country": "United States",
+  "kind": "Incident",
+  "categories": [
+   "Human trafficking"
+  ],
+  "matched_words": [
+   "sex trafficking"
+  ],
+  "action": true,
+  "document_types": [],
+  "countries": [
+   "United States"
+  ],
+  "airports": [],
+  "origin": "",
+  "destination": "",
+  "documents_count": 0,
+  "people_count": 0,
+  "weight_kg": 0.0,
+  "id": "b8d936a98125",
+  "first_seen": "2026-11-26",
+  "article": {
+   "fails": 1,
+   "tried": false
+  },
+  "score": 0,
+  "level": "Low",
+  "reasons": [],
+  "watch": false,
+  "home": false,
+  "region": false,
+  "event_id": "BWO-2026-2196",
+  "primary_category": "Human trafficking",
+  "tags": [],
+  "groups": [
+   "Human Trafficking"
+  ],
+  "published": "2026-11-25",
+  "event_date": "",
+  "event_date_quality": "unknown",
+  "location": {
+   "cities": [],
+   "ports": [],
+   "crossings": []
+  },
+  "transport_mode": "",
+  "outcome": "Convicted",
+  "agencies": [],
+  "summary_text": "U.S. Attorney Michael DiGiacomo announced today that a federal jury has convicted Zemen Kesete, 26, of Buffalo, NY, of Hobbs Act Robbery, which carries a maximum penalty of 20 years in prison.",
+  "caribbean_connection": [],
+  "jamaica_connection": [],
+  "exploitation": [
+   "Sexual exploitation"
+  ],
+  "victim_assistance": "",
+  "specialist": [
+   [
+    "Human trafficking",
+    [
+     [
+      "Reported exploitation type",
+      "Sexual exploitation"
+     ],
+     [
+      "Potential / suspected victims (as stated)",
+      ""
+     ],
+     [
+      "Identified / rescued victims (as stated)",
+      ""
+     ],
+     [
+      "Assistance or referral reported",
+      ""
+     ],
+     [
+      "Proceedings",
+      "Convicted"
+     ]
+    ]
+   ]
+  ],
+  "sources": [
+   {
+    "publisher": "US Department of Justice",
+    "url": "https://www.justice.gov/usao-wdny/pr/federal-jury-convicts-buffalo-man-hobbs-act-robbery-co-defendant-pleads-guilty-sex",
+    "date": "2026-11-25",
+    "official": true
+   }
+  ],
+  "nationality": [],
+  "review_status": "Automatically collected",
+  "journey": {
+   "origin": "",
+   "transit": [],
+   "destination": "",
+   "interception": "",
+   "interception_country": "",
+   "completeness": "Not reported",
+   "basis": "",
+   "text": ""
+  },
+  "last_updated": "2026-11-26",
+  "related": []
+ },
+ {
   "title": "EU Tells Schengen Countries to Stop Accepting Non-Biometric Russian Passports and Prepare Visa Ban on Ex-Combatants",
   "summary": "",
   "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxPSk04VS1pMWUyZ1hoaVFhODdMTWYxTkhma0lzaWhmSnQzeVMwX0x3UFFXQ25vcGlzbVEta3BJcTFNc1hSWlN6cDY4OFVaaWtJWFJpRVBndGdqaXJSUnkxd1lwdEYxTnRJd2ZiNjhoclc3eVQ4eVZiOXJlX2JMeG1DS3RfZGNZcVJzOTJPSFVZYWxwV3hoLWt5ZmtMOEk0R3pGdzBRM1o2TUgzcTl3MjRqdEZpTXNRZ2t3Z1B2U2FYVmpGWGFRNkkyQlVYS0NEdThZT2JDdTJqYTBhemtCaFJqSmpCTDA?oc=5",
@@ -7625,6 +9534,206 @@
    "relationship": "Single source"
   },
   "uncertainty": []
+ },
+ {
+  "title": "Los Angeles Man Sentenced to Over 24 Years in Prison for Sex Trafficking",
+  "summary": "Elias Shabazz, 33, of Los Angeles, was sentenced in the U.S. District Court for the Central District of California to 292 months in prison and five years of supervised release after being found guilty by a jury on June 26 of sex trafficking by force, fraud, or coercion.",
+  "url": "https://www.justice.gov/opa/pr/los-angeles-man-sentenced-over-24-years-prison-sex-trafficking-0",
+  "date": "2026-11-25",
+  "source": "US Department of Justice",
+  "lang": "",
+  "via": "RSS",
+  "official": true,
+  "agency_country": "United States",
+  "kind": "Incident",
+  "categories": [
+   "Human trafficking"
+  ],
+  "matched_words": [
+   "sex trafficking"
+  ],
+  "action": true,
+  "document_types": [],
+  "countries": [
+   "United States"
+  ],
+  "airports": [],
+  "origin": "",
+  "destination": "",
+  "documents_count": 0,
+  "people_count": 0,
+  "weight_kg": 0,
+  "id": "b509174e4610",
+  "first_seen": "2026-11-26",
+  "source_url": "https://www.justice.gov/opa/pr/los-angeles-man-sentenced-over-24-years-prison-sex-trafficking-0",
+  "article": {
+   "tried": true,
+   "read_on": "2026-11-26",
+   "event_date": "2026-06-26",
+   "event_date_quality": "exact",
+   "read": true,
+   "kind": "Incident",
+   "lead": "Los Angeles Man Sentenced to Over 24 Years in Prison for Sex Trafficking Elias Shabazz, 33, of Los Angeles, was sentenced in the U.S.",
+   "categories": [
+    "Human trafficking"
+   ],
+   "countries": [
+    "United States"
+   ],
+   "airports": [],
+   "document_types": [],
+   "documents_count": 0,
+   "people_count": 0,
+   "weight_kg": 0,
+   "origin": "",
+   "destination": "",
+   "terms": [
+    "exploitation",
+    "gun",
+    "human trafficking",
+    "pistol",
+    "terror",
+    "terrorized",
+    "victims"
+   ],
+   "agencies": [
+    "HSI"
+   ],
+   "outcome": "Sentenced",
+   "transport": "",
+   "location": {
+    "cities": [
+     "California (United States)"
+    ],
+    "ports": [],
+    "crossings": []
+   },
+   "summary_text": "Los Angeles Man Sentenced to Over 24 Years in Prison for Sex Trafficking Elias Shabazz, 33, of Los Angeles, was sentenced in the U.S. District Court for the Central District of California to 292 months in prison and five years of supervised release after being found guilty by a jury on June 26 of sex trafficking by force, fraud, or coercion. He was also ordered to pay $108,000 in restitution.",
+   "exploitation": [
+    "Sexual exploitation"
+   ],
+   "victim_assistance": false,
+   "v": 3,
+   "sentence": "24 Years",
+   "specialist": [
+    [
+     "Human trafficking",
+     [
+      [
+       "Reported exploitation type",
+       "Sexual exploitation"
+      ],
+      [
+       "Potential / suspected victims (as stated)",
+       ""
+      ],
+      [
+       "Identified / rescued victims (as stated)",
+       ""
+      ],
+      [
+       "Assistance or referral reported",
+       ""
+      ],
+      [
+       "Proceedings",
+       "Sentenced"
+      ]
+     ]
+    ]
+   ],
+   "transit": [],
+   "interception": "",
+   "interception_country": "",
+   "nationality": []
+  },
+  "score": 45,
+  "level": "High",
+  "reasons": [
+   "Exploitation or trafficking indicators (+15: exploitation, human trafficking, victims)",
+   "Weapons involved (+10: gun, pistol)",
+   "Terrorism link (+20: terror, terrorized)"
+  ],
+  "watch": false,
+  "home": false,
+  "region": false,
+  "event_id": "BWO-2026-2195",
+  "primary_category": "Human trafficking",
+  "tags": [],
+  "groups": [
+   "Human Trafficking"
+  ],
+  "published": "2026-11-25",
+  "event_date": "2026-06-26",
+  "event_date_quality": "exact",
+  "location": {
+   "cities": [
+    "California (United States)"
+   ],
+   "ports": [],
+   "crossings": []
+  },
+  "transport_mode": "",
+  "outcome": "Sentenced",
+  "agencies": [
+   "HSI"
+  ],
+  "summary_text": "Los Angeles Man Sentenced to Over 24 Years in Prison for Sex Trafficking Elias Shabazz, 33, of Los Angeles, was sentenced in the U.S. District Court for the Central District of California to 292 months in prison and five years of supervised release after being found guilty by a jury on June 26 of sex trafficking by force, fraud, or coercion. He was also ordered to pay $108,000 in restitution.",
+  "caribbean_connection": [],
+  "jamaica_connection": [],
+  "exploitation": [
+   "Sexual exploitation"
+  ],
+  "victim_assistance": "",
+  "specialist": [
+   [
+    "Human trafficking",
+    [
+     [
+      "Reported exploitation type",
+      "Sexual exploitation"
+     ],
+     [
+      "Potential / suspected victims (as stated)",
+      ""
+     ],
+     [
+      "Identified / rescued victims (as stated)",
+      ""
+     ],
+     [
+      "Assistance or referral reported",
+      ""
+     ],
+     [
+      "Proceedings",
+      "Sentenced"
+     ]
+    ]
+   ]
+  ],
+  "sources": [
+   {
+    "publisher": "US Department of Justice",
+    "url": "https://www.justice.gov/opa/pr/los-angeles-man-sentenced-over-24-years-prison-sex-trafficking-0",
+    "date": "2026-11-25",
+    "official": true
+   }
+  ],
+  "nationality": [],
+  "review_status": "Awaiting review",
+  "journey": {
+   "origin": "",
+   "transit": [],
+   "destination": "",
+   "interception": "",
+   "interception_country": "",
+   "completeness": "Not reported",
+   "basis": "",
+   "text": ""
+  },
+  "last_updated": "2026-11-26",
+  "related": []
  },
  {
   "title": "China misusing Interpol to target dissidents, says leading UK lawyer",
@@ -8566,6 +10675,91 @@
   ]
  },
  {
+  "title": "Billings man sentenced to 10 years in prison for trafficking meth, fentanyl out of his storage unit",
+  "summary": "A Billings man who trafficked significant amounts of methamphetamine and fentanyl was sentenced Tuesday to 10 years in prison, followed by five years of supervised release.",
+  "url": "https://www.justice.gov/usao-mt/pr/billings-man-sentenced-10-years-prison-trafficking-meth-fentanyl-out-his-storage-unit",
+  "date": "2026-11-25",
+  "source": "US Department of Justice",
+  "lang": "",
+  "via": "RSS",
+  "official": true,
+  "agency_country": "United States",
+  "kind": "Incident",
+  "categories": [
+   "Drug trafficking"
+  ],
+  "matched_words": [
+   "fentanyl",
+   "methamphetamine"
+  ],
+  "action": true,
+  "document_types": [],
+  "countries": [],
+  "airports": [],
+  "origin": "",
+  "destination": "",
+  "documents_count": 0,
+  "people_count": 0,
+  "weight_kg": 0.0,
+  "id": "ac52316378ef",
+  "first_seen": "2026-11-26",
+  "article": {
+   "fails": 1,
+   "tried": false
+  },
+  "score": 15,
+  "level": "Low",
+  "reasons": [
+   "Exploitation or trafficking indicators (+15: trafficked)"
+  ],
+  "watch": false,
+  "home": false,
+  "region": false,
+  "event_id": "BWO-2026-2194",
+  "primary_category": "Drug trafficking",
+  "tags": [],
+  "groups": [
+   "Seizures & Contraband"
+  ],
+  "published": "2026-11-25",
+  "event_date": "",
+  "event_date_quality": "unknown",
+  "location": {
+   "cities": [],
+   "ports": [],
+   "crossings": []
+  },
+  "transport_mode": "",
+  "outcome": "Sentenced",
+  "agencies": [],
+  "summary_text": "A Billings man who trafficked significant amounts of methamphetamine and fentanyl was sentenced Tuesday to 10 years in prison, followed by five years of supervised release.",
+  "caribbean_connection": [],
+  "jamaica_connection": [],
+  "specialist": [],
+  "sources": [
+   {
+    "publisher": "US Department of Justice",
+    "url": "https://www.justice.gov/usao-mt/pr/billings-man-sentenced-10-years-prison-trafficking-meth-fentanyl-out-his-storage-unit",
+    "date": "2026-11-25",
+    "official": true
+   }
+  ],
+  "nationality": [],
+  "review_status": "Automatically collected",
+  "journey": {
+   "origin": "",
+   "transit": [],
+   "destination": "",
+   "interception": "",
+   "interception_country": "",
+   "completeness": "Not reported",
+   "basis": "",
+   "text": ""
+  },
+  "last_updated": "2026-11-26",
+  "related": []
+ },
+ {
   "title": "Entebbe Airport tests response to infectious disease outbreak",
   "summary": "",
   "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPVVRueWtJeHg2dzhqcTdnLXpicllJWHE1WUwxYVZidnh2MjlzdHFRb3pCNG8xdXpieWlOcjhNd0hnVXFPbUM2U01mUHJvTkgzTXVVeVFvLW0tdElBWk9sVFZ5T3FlQUhHXzYwZlhJeFpQUS1URExiemNmRnNVbHl5SzZuTkROcmZrcTRjWjYwWmVDa0R3WmJ3ZVJWWjlLQktMVkJ3akN1ck9BWUl4N01TcUdlbzkwREU?oc=5",
@@ -9394,9 +11588,9 @@
   "review_status": "Automatically collected",
   "last_updated": "2026-11-26",
   "related": [
+   "BWO-2026-2193",
    "BWO-2026-2016",
-   "BWO-2026-1224",
-   "BWO-2026-2105"
+   "BWO-2026-1224"
   ],
   "specialist": [
    [
@@ -12514,6 +14708,7 @@
   "via": "GDELT",
   "kind": "Update",
   "categories": [
+   "Border security",
    "Deportation and returns"
   ],
   "matched_words": [
@@ -12522,14 +14717,16 @@
   "action": false,
   "document_types": [],
   "countries": [
-   "Spain"
+   "Spain",
+   "United States",
+   "El Salvador"
   ],
   "airports": [],
   "origin": "",
   "destination": "Spain",
   "documents_count": 0,
   "people_count": 0,
-  "weight_kg": 0.0,
+  "weight_kg": 0,
   "id": "8400d607df66",
   "first_seen": "2026-11-26",
   "score": 0,
@@ -12540,22 +14737,30 @@
   "region": false,
   "event_id": "BWO-2026-2096",
   "primary_category": "Deportation and returns",
-  "tags": [],
+  "tags": [
+   "Border security"
+  ],
   "groups": [
-   "Migration & Facilitation"
+   "Migration & Facilitation",
+   "Border Integrity"
   ],
   "published": "2026-11-25",
-  "event_date": "",
-  "event_date_quality": "unknown",
+  "event_date": "2026-11-24",
+  "event_date_quality": "approximate",
   "location": {
-   "cities": [],
+   "cities": [
+    "Madrid (Spain)"
+   ],
    "ports": [],
    "crossings": []
   },
-  "transport_mode": "",
+  "transport_mode": "Air passenger",
   "outcome": "",
-  "agencies": [],
-  "summary_text": "",
+  "agencies": [
+   "ICE",
+   "Customs"
+  ],
+  "summary_text": "Kilmar Abrego Garcia, who was returned to the U.S. after being mistakenly deported to a Salvadoran mega-prison, is in the process of self-deporting to Spain, sources familiar with the matter tell ABC News. ABC News observed Abrego Garcia boarding a flight from a Washington, D.C.-area airport to Madrid, Spain, on Tuesday. His departure marks a major development nearly two years after the Trump administration deported him to El Salvador’s CECOT mega-prison as part of its ongoing immigration crackdown.",
   "caribbean_connection": [],
   "jamaica_connection": [],
   "sources": [
@@ -12571,7 +14776,29 @@
    "BWO-2026-2004",
    "BWO-2026-2030"
   ],
-  "specialist": [],
+  "specialist": [
+   [
+    "Border integrity",
+    [
+     [
+      "Organisation or role implicated",
+      ""
+     ],
+     [
+      "Alleged conduct",
+      ""
+     ],
+     [
+      "Location",
+      "Spain; United States"
+     ],
+     [
+      "Investigation / disciplinary / criminal outcome",
+      "Dismissed"
+     ]
+    ]
+   ]
+  ],
   "nationality": [],
   "journey": {
    "origin": "",
@@ -12580,31 +14807,86 @@
    "interception": "",
    "interception_country": "",
    "completeness": "Partial",
-   "basis": "Stated in headline or summary",
+   "basis": "Explicitly stated in article",
    "text": "Destination: Spain; origin not reported"
   },
-  "corrections": [],
-  "review_uncertainty": "",
-  "source_panel": {
-   "sources": [
-    {
-     "publisher": "wtop.com",
-     "url": "https://wtop.com/national/2026/11/kilmar-abrego-garcia-leaves-the-us-self-deporting-to-spain/",
-     "date": "2026-11-25",
-     "type": "News report",
-     "role": "Original (earliest found)",
-     "lang": "English"
-    }
+  "source_url": "https://wtop.com/national/2026/11/kilmar-abrego-garcia-leaves-the-us-self-deporting-to-spain/",
+  "article": {
+   "tried": true,
+   "read_on": "2026-11-26",
+   "event_date": "2026-11-24",
+   "event_date_quality": "approximate",
+   "read": true,
+   "kind": "Update",
+   "lead": "Kilmar Abrego Garcia, who was returned to the U.S. after being mistakenly deported to a Salvadoran mega-prison, is in the process of self-deporting to Spain, sources familiar with the matter tell ABC News.",
+   "categories": [
+    "Border security",
+    "Deportation and returns"
    ],
-   "type": "News report",
-   "language": "English",
-   "supporting": 0,
-   "independent": 1,
-   "relationship": "Single source"
+   "countries": [
+    "Spain",
+    "United States",
+    "El Salvador"
+   ],
+   "airports": [],
+   "document_types": [],
+   "documents_count": 0,
+   "people_count": 0,
+   "weight_kg": 0,
+   "origin": "",
+   "destination": "United States",
+   "terms": [
+    "airport",
+    "gang",
+    "wanted"
+   ],
+   "agencies": [
+    "ICE",
+    "Customs"
+   ],
+   "outcome": "",
+   "transport": "Air passenger",
+   "location": {
+    "cities": [
+     "Madrid (Spain)"
+    ],
+    "ports": [],
+    "crossings": []
+   },
+   "summary_text": "Kilmar Abrego Garcia, who was returned to the U.S. after being mistakenly deported to a Salvadoran mega-prison, is in the process of self-deporting to Spain, sources familiar with the matter tell ABC News. ABC News observed Abrego Garcia boarding a flight from a Washington, D.C.-area airport to Madrid, Spain, on Tuesday. His departure marks a major development nearly two years after the Trump administration deported him to El Salvador’s CECOT mega-prison as part of its ongoing immigration crackdown.",
+   "exploitation": [],
+   "victim_assistance": false,
+   "v": 3,
+   "sentence": "",
+   "specialist": [
+    [
+     "Border integrity",
+     [
+      [
+       "Organisation or role implicated",
+       ""
+      ],
+      [
+       "Alleged conduct",
+       ""
+      ],
+      [
+       "Location",
+       "Spain; United States"
+      ],
+      [
+       "Investigation / disciplinary / criminal outcome",
+       "Dismissed"
+      ]
+     ]
+    ]
+   ],
+   "transit": [],
+   "interception": "",
+   "interception_country": "",
+   "nationality": []
   },
-  "uncertainty": [
-   "Journey only partly stated"
-  ]
+  "lead": "Kilmar Abrego Garcia, who was returned to the U.S. after being mistakenly deported to a Salvadoran mega-prison, is in the process of self-deporting to Spain, sources familiar with the matter tell ABC News."
  },
  {
   "title": "A US visa fee is about ₦258,000 for Nigerians. The pause and bond that can matter more",
@@ -15788,14 +18070,15 @@
   "action": false,
   "document_types": [],
   "countries": [
-   "Spain"
+   "Spain",
+   "United States"
   ],
   "airports": [],
   "origin": "",
-  "destination": "",
+  "destination": "Spain",
   "documents_count": 0,
   "people_count": 0,
-  "weight_kg": 0.0,
+  "weight_kg": 0,
   "id": "69bd8bb89284",
   "first_seen": "2026-11-26",
   "other_sources": [
@@ -15814,8 +18097,8 @@
    "Migration & Facilitation"
   ],
   "published": "2026-11-25",
-  "event_date": "",
-  "event_date_quality": "unknown",
+  "event_date": "2026-11-24",
+  "event_date_quality": "approximate",
   "location": {
    "cities": [],
    "ports": [],
@@ -15823,8 +18106,11 @@
   },
   "transport_mode": "",
   "outcome": "",
-  "agencies": [],
-  "summary_text": "",
+  "agencies": [
+   "Customs",
+   "Immigration"
+  ],
+  "summary_text": "Kilmar Abrego Garcia, who fought his mistaken deportation, leaves the US voluntarily for Spain WASHINGTON (AP) — Kilmar Abrego Garcia, a Salvadoran national who fought his mistaken deportation, left the U.S. voluntarily for Spain on Tuesday, officials and his attorneys said, in what could bring an end to a defining saga of the Trump administration's immigration crackdown.",
   "caribbean_connection": [],
   "jamaica_connection": [],
   "sources": [
@@ -15839,40 +18125,74 @@
   "related": [
    "BWO-2026-2034",
    "BWO-2026-2030",
-   "BWO-2026-2061"
+   "BWO-2026-2045"
   ],
   "specialist": [],
-  "nationality": [],
+  "nationality": [
+   "El Salvador"
+  ],
   "journey": {
    "origin": "",
    "transit": [],
-   "destination": "",
+   "destination": "Spain",
    "interception": "",
    "interception_country": "",
-   "completeness": "Not reported",
-   "basis": "",
-   "text": ""
+   "completeness": "Partial",
+   "basis": "Explicitly stated in article",
+   "text": "Destination: Spain; origin not reported"
   },
-  "corrections": [],
-  "review_uncertainty": "",
-  "source_panel": {
-   "sources": [
-    {
-     "publisher": "isp.netscape.com",
-     "url": "https://isp.netscape.com:443/news/story/0001/20261125/790f160a85f279d7bb4105412f0ce367",
-     "date": "2026-11-25",
-     "type": "News report",
-     "role": "Original (earliest found)",
-     "lang": "English"
-    }
+  "source_url": "https://isp.netscape.com:443/news/story/0001/20261125/790f160a85f279d7bb4105412f0ce367",
+  "article": {
+   "tried": true,
+   "read_on": "2026-11-26",
+   "event_date": "2026-11-24",
+   "event_date_quality": "approximate",
+   "read": true,
+   "kind": "Update",
+   "lead": "Kilmar Abrego Garcia, who fought his mistaken deportation, leaves the US voluntarily for Spain WASHINGTON (AP) — Kilmar Abrego Garcia, a Salvadoran national who fought his mistaken deportation, left the U.S.",
+   "categories": [
+    "Deportation and returns"
    ],
-   "type": "News report",
-   "language": "English",
-   "supporting": 0,
-   "independent": 1,
-   "relationship": "Single source"
+   "countries": [
+    "Spain",
+    "United States"
+   ],
+   "airports": [],
+   "document_types": [],
+   "documents_count": 0,
+   "people_count": 0,
+   "weight_kg": 0,
+   "origin": "",
+   "destination": "Spain",
+   "terms": [
+    "airport",
+    "gang"
+   ],
+   "agencies": [
+    "Customs",
+    "Immigration"
+   ],
+   "outcome": "Arrested",
+   "transport": "",
+   "location": {
+    "cities": [],
+    "ports": [],
+    "crossings": []
+   },
+   "summary_text": "Kilmar Abrego Garcia, who fought his mistaken deportation, leaves the US voluntarily for Spain WASHINGTON (AP) — Kilmar Abrego Garcia, a Salvadoran national who fought his mistaken deportation, left the U.S. voluntarily for Spain on Tuesday, officials and his attorneys said, in what could bring an end to a defining saga of the Trump administration's immigration crackdown.",
+   "exploitation": [],
+   "victim_assistance": false,
+   "v": 3,
+   "sentence": "",
+   "specialist": [],
+   "transit": [],
+   "interception": "",
+   "interception_country": "",
+   "nationality": [
+    "El Salvador"
+   ]
   },
-  "uncertainty": []
+  "lead": "Kilmar Abrego Garcia, who fought his mistaken deportation, leaves the US voluntarily for Spain WASHINGTON (AP) — Kilmar Abrego Garcia, a Salvadoran national who fought his mistaken deportation, left the U.S."
  },
  {
   "title": "No more visa-free entry for Indians from Jan 1 as Malaysia tightens pre-arrival checks",
@@ -19336,7 +21656,7 @@
   "related": [
    "BWO-2026-2034",
    "BWO-2026-2072",
-   "BWO-2026-2061"
+   "BWO-2026-2030"
   ],
   "specialist": [],
   "nationality": [],
@@ -20683,14 +23003,15 @@
   "action": false,
   "document_types": [],
   "countries": [
-   "Spain"
+   "Spain",
+   "United States"
   ],
   "airports": [],
   "origin": "",
-  "destination": "",
+  "destination": "United States",
   "documents_count": 0,
   "people_count": 0,
-  "weight_kg": 0.0,
+  "weight_kg": 0,
   "id": "419bc45aff75",
   "first_seen": "2026-11-26",
   "other_sources": [
@@ -20711,8 +23032,8 @@
    "Migration & Facilitation"
   ],
   "published": "2026-11-25",
-  "event_date": "",
-  "event_date_quality": "unknown",
+  "event_date": "2026-11-24",
+  "event_date_quality": "approximate",
   "location": {
    "cities": [],
    "ports": [],
@@ -20720,8 +23041,11 @@
   },
   "transport_mode": "",
   "outcome": "",
-  "agencies": [],
-  "summary_text": "",
+  "agencies": [
+   "Customs",
+   "Immigration"
+  ],
+  "summary_text": "Kilmar Abrego Garcia arrives in Spain after leaving US amid deportation fight SPAIN (TNND) — Kilmar Abrego Garcia arrived in Spain on Tuesday after voluntarily leaving the United States, where he had spent months fighting the Trump administration’s efforts to deport him to a third country, officials and his attorney said. Chris Van Hollen, who met with Abrego Garcia while pressing for his release from a Salvadoran prison, described him as a “free man” traveling to a country of his choice.",
   "caribbean_connection": [],
   "jamaica_connection": [],
   "sources": [
@@ -20736,40 +23060,267 @@
   "related": [
    "BWO-2026-2072",
    "BWO-2026-2045",
-   "BWO-2026-2061"
+   "BWO-2026-2030"
   ],
   "specialist": [],
   "nationality": [],
   "journey": {
    "origin": "",
    "transit": [],
-   "destination": "",
+   "destination": "United States",
    "interception": "",
    "interception_country": "",
-   "completeness": "Not reported",
-   "basis": "",
-   "text": ""
+   "completeness": "Partial",
+   "basis": "Explicitly stated in article",
+   "text": "Destination: United States; origin not reported"
   },
-  "corrections": [],
-  "review_uncertainty": "",
-  "source_panel": {
-   "sources": [
-    {
-     "publisher": "cnycentral.com",
-     "url": "https://cnycentral.com/news/nation-world/kilmar-abrego-garcia-arrives-in-spain-after-leaving-us-amid-deportation-fight-trump-administration-homeland-security-markwayne-mullin-baltimore-maryland-el-salvador-cecot-prison",
-     "date": "2026-11-25",
-     "type": "News report",
-     "role": "Original (earliest found)",
-     "lang": "English"
-    }
+  "source_url": "https://cnycentral.com/news/nation-world/kilmar-abrego-garcia-arrives-in-spain-after-leaving-us-amid-deportation-fight-trump-administration-homeland-security-markwayne-mullin-baltimore-maryland-el-salvador-cecot-prison",
+  "article": {
+   "tried": true,
+   "read_on": "2026-11-26",
+   "event_date": "2026-11-24",
+   "event_date_quality": "approximate",
+   "read": true,
+   "kind": "Update",
+   "lead": "Kilmar Abrego Garcia arrives in Spain after leaving US amid deportation fight SPAIN (TNND) — Kilmar Abrego Garcia arrived in Spain on Tuesday after voluntarily leaving the United States, where he had spent months fighting the Trump administration’s efforts to…",
+   "categories": [
+    "Deportation and returns"
    ],
-   "type": "News report",
-   "language": "English",
-   "supporting": 0,
-   "independent": 1,
-   "relationship": "Single source"
+   "countries": [
+    "Spain",
+    "United States"
+   ],
+   "airports": [],
+   "document_types": [],
+   "documents_count": 0,
+   "people_count": 0,
+   "weight_kg": 0,
+   "origin": "",
+   "destination": "United States",
+   "terms": [
+    "gang"
+   ],
+   "agencies": [
+    "Customs",
+    "Immigration"
+   ],
+   "outcome": "Charged",
+   "transport": "",
+   "location": {
+    "cities": [],
+    "ports": [],
+    "crossings": []
+   },
+   "summary_text": "Kilmar Abrego Garcia arrives in Spain after leaving US amid deportation fight SPAIN (TNND) — Kilmar Abrego Garcia arrived in Spain on Tuesday after voluntarily leaving the United States, where he had spent months fighting the Trump administration’s efforts to deport him to a third country, officials and his attorney said. Chris Van Hollen, who met with Abrego Garcia while pressing for his release from a Salvadoran prison, described him as a “free man” traveling to a country of his choice.",
+   "exploitation": [],
+   "victim_assistance": false,
+   "v": 3,
+   "sentence": "",
+   "specialist": [],
+   "transit": [],
+   "interception": "",
+   "interception_country": "",
+   "nationality": []
   },
-  "uncertainty": []
+  "lead": "Kilmar Abrego Garcia arrives in Spain after leaving US amid deportation fight SPAIN (TNND) — Kilmar Abrego Garcia arrived in Spain on Tuesday after voluntarily leaving the United States, where he had spent months fighting the Trump administration’s efforts to…"
+ },
+ {
+  "title": "Father and son smuggled cannabis on flight from Thailand",
+  "summary": "A father and son who plotted together to smuggle around £500,000 worth of cannabis from Thailand to the United Kingdom have been sentenced following a National Crime Agency investigation.",
+  "url": "https://www.nationalcrimeagency.gov.uk/news/father-and-son-smuggled-cannabis-on-flight-from-thailand",
+  "date": "2026-11-25",
+  "source": "UK National Crime Agency",
+  "lang": "",
+  "via": "RSS",
+  "official": true,
+  "agency_country": "United Kingdom",
+  "kind": "Incident",
+  "categories": [
+   "Border security",
+   "Drug trafficking"
+  ],
+  "matched_words": [
+   "cannabis"
+  ],
+  "action": true,
+  "document_types": [],
+  "countries": [
+   "Thailand",
+   "United Kingdom"
+  ],
+  "airports": [
+   "London Heathrow (LHR)"
+  ],
+  "origin": "Thailand",
+  "destination": "United Kingdom",
+  "documents_count": 0,
+  "people_count": 600,
+  "weight_kg": 33.5,
+  "id": "4099baf69466",
+  "first_seen": "2026-11-26",
+  "source_url": "https://www.nationalcrimeagency.gov.uk/news/father-and-son-smuggled-cannabis-on-flight-from-thailand",
+  "article": {
+   "tried": true,
+   "read_on": "2026-11-26",
+   "event_date": "2026-07-15",
+   "event_date_quality": "exact",
+   "read": true,
+   "kind": "Incident",
+   "lead": "A father and son who plotted together to smuggle around £500,000 worth of cannabis from Thailand to the United Kingdom have been sentenced following a National Crime Agency investigation.",
+   "categories": [
+    "Border security",
+    "Drug trafficking"
+   ],
+   "countries": [
+    "Thailand",
+    "United Kingdom"
+   ],
+   "airports": [
+    "London Heathrow (LHR)"
+   ],
+   "document_types": [],
+   "documents_count": 0,
+   "people_count": 600,
+   "weight_kg": 33.5,
+   "origin": "Thailand",
+   "destination": "United Kingdom",
+   "terms": [
+    "airport",
+    "airports",
+    "organised crime"
+   ],
+   "agencies": [
+    "Border Force",
+    "NCA",
+    "National Crime Agency"
+   ],
+   "outcome": "Sentenced",
+   "transport": "Air passenger",
+   "location": {
+    "cities": [],
+    "ports": [],
+    "crossings": []
+   },
+   "summary_text": "A father and son who plotted together to smuggle around £500,000 worth of cannabis from Thailand to the United Kingdom have been sentenced following a National Crime Agency investigation. Alec Peter Chadwick, 39, and Riley Peter Emerson-Chadwick, 20, were arrested by Border Force officers at Heathrow Airport on 15 July having flown in from Bangkok, Thailand. Alec Chadwick (L); Riley Emerson-Chadwick (R) There were 33.5kg of the Class B drug inside Emerson-Chadwick’s luggage and 16.75kg inside his father’s luggage.",
+   "exploitation": [],
+   "victim_assistance": false,
+   "v": 3,
+   "sentence": "",
+   "specialist": [
+    [
+     "Border integrity",
+     [
+      [
+       "Organisation or role implicated",
+       ""
+      ],
+      [
+       "Alleged conduct",
+       ""
+      ],
+      [
+       "Location",
+       "London Heathrow (LHR)"
+      ],
+      [
+       "Investigation / disciplinary / criminal outcome",
+       "Convicted / sentenced; Arrested"
+      ]
+     ]
+    ]
+   ],
+   "transit": [],
+   "interception": "London Heathrow (LHR) (United Kingdom)",
+   "interception_country": "United Kingdom",
+   "nationality": []
+  },
+  "score": 40,
+  "level": "High",
+  "reasons": [
+   "Organised network or ring (+15: organised crime)",
+   "Detected at an airport or border post (+5: airport, airports)",
+   "Many people involved: 600 (+10)",
+   "Large quantity: about 33.5 kg (+10)"
+  ],
+  "watch": false,
+  "home": false,
+  "region": false,
+  "event_id": "BWO-2026-2193",
+  "primary_category": "Drug trafficking",
+  "tags": [
+   "Border security"
+  ],
+  "groups": [
+   "Border Integrity",
+   "Seizures & Contraband"
+  ],
+  "published": "2026-11-25",
+  "event_date": "2026-07-15",
+  "event_date_quality": "exact",
+  "location": {
+   "cities": [],
+   "ports": [],
+   "crossings": []
+  },
+  "transport_mode": "Air passenger",
+  "outcome": "Sentenced",
+  "agencies": [
+   "Border Force",
+   "NCA",
+   "National Crime Agency"
+  ],
+  "summary_text": "A father and son who plotted together to smuggle around £500,000 worth of cannabis from Thailand to the United Kingdom have been sentenced following a National Crime Agency investigation. Alec Peter Chadwick, 39, and Riley Peter Emerson-Chadwick, 20, were arrested by Border Force officers at Heathrow Airport on 15 July having flown in from Bangkok, Thailand. Alec Chadwick (L); Riley Emerson-Chadwick (R) There were 33.5kg of the Class B drug inside Emerson-Chadwick’s luggage and 16.75kg inside his father’s luggage.",
+  "caribbean_connection": [],
+  "jamaica_connection": [],
+  "specialist": [
+   [
+    "Border integrity",
+    [
+     [
+      "Organisation or role implicated",
+      ""
+     ],
+     [
+      "Alleged conduct",
+      ""
+     ],
+     [
+      "Location",
+      "London Heathrow (LHR)"
+     ],
+     [
+      "Investigation / disciplinary / criminal outcome",
+      "Convicted / sentenced; Arrested"
+     ]
+    ]
+   ]
+  ],
+  "sources": [
+   {
+    "publisher": "UK National Crime Agency",
+    "url": "https://www.nationalcrimeagency.gov.uk/news/father-and-son-smuggled-cannabis-on-flight-from-thailand",
+    "date": "2026-11-25",
+    "official": true
+   }
+  ],
+  "nationality": [],
+  "review_status": "Awaiting review",
+  "journey": {
+   "origin": "Thailand",
+   "transit": [],
+   "destination": "United Kingdom",
+   "interception": "London Heathrow (LHR) (United Kingdom)",
+   "interception_country": "United Kingdom",
+   "completeness": "Complete",
+   "basis": "Explicitly stated in article",
+   "text": "Thailand → United Kingdom"
+  },
+  "last_updated": "2026-11-26",
+  "related": [
+   "BWO-2026-2120",
+   "BWO-2026-1286",
+   "BWO-2026-1139"
+  ]
  },
  {
   "title": "Indian gang busted for cross-border cannabis smuggling and ransom extortion of two Indian",
@@ -21172,14 +23723,15 @@
   "action": false,
   "document_types": [],
   "countries": [
-   "Spain"
+   "Spain",
+   "United States"
   ],
   "airports": [],
   "origin": "",
-  "destination": "",
+  "destination": "Spain",
   "documents_count": 0,
   "people_count": 0,
-  "weight_kg": 0.0,
+  "weight_kg": 0,
   "id": "35eae70bcde4",
   "first_seen": "2026-11-26",
   "other_sources": [
@@ -21202,8 +23754,8 @@
    "Migration & Facilitation"
   ],
   "published": "2026-11-25",
-  "event_date": "",
-  "event_date_quality": "unknown",
+  "event_date": "2026-11-24",
+  "event_date_quality": "approximate",
   "location": {
    "cities": [],
    "ports": [],
@@ -21211,8 +23763,11 @@
   },
   "transport_mode": "",
   "outcome": "",
-  "agencies": [],
-  "summary_text": "",
+  "agencies": [
+   "Customs",
+   "Immigration"
+  ],
+  "summary_text": "WASHINGTON (AP) — Kilmar Abrego Garcia, a Salvadoran national who fought his mistaken deportation, left the U.S. voluntarily for Spain on Tuesday, officials and his attorneys said, in what could bring an end to a defining saga of the Trump administration's immigration crackdown.",
   "caribbean_connection": [],
   "jamaica_connection": [],
   "sources": [
@@ -21230,37 +23785,71 @@
    "BWO-2026-2096"
   ],
   "specialist": [],
-  "nationality": [],
+  "nationality": [
+   "El Salvador"
+  ],
   "journey": {
    "origin": "",
    "transit": [],
-   "destination": "",
+   "destination": "Spain",
    "interception": "",
    "interception_country": "",
-   "completeness": "Not reported",
-   "basis": "",
-   "text": ""
+   "completeness": "Partial",
+   "basis": "Explicitly stated in article",
+   "text": "Destination: Spain; origin not reported"
   },
-  "corrections": [],
-  "review_uncertainty": "",
-  "source_panel": {
-   "sources": [
-    {
-     "publisher": "2news.com",
-     "url": "https://www.2news.com/news/national/kilmar-abrego-garcia-who-fought-his-mistaken-deportation-leaves-the-us-voluntarily-for-spain/article_4b705656-1293-5380-94e7-da8af8da3fec.html",
-     "date": "2026-11-25",
-     "type": "News report",
-     "role": "Original (earliest found)",
-     "lang": "English"
-    }
+  "source_url": "https://www.2news.com/news/national/kilmar-abrego-garcia-who-fought-his-mistaken-deportation-leaves-the-us-voluntarily-for-spain/article_4b705656-1293-5380-94e7-da8af8da3fec.html",
+  "article": {
+   "tried": true,
+   "read_on": "2026-11-26",
+   "event_date": "2026-11-24",
+   "event_date_quality": "approximate",
+   "read": true,
+   "kind": "Update",
+   "lead": "WASHINGTON (AP) — Kilmar Abrego Garcia, a Salvadoran national who fought his mistaken deportation, left the U.S.",
+   "categories": [
+    "Deportation and returns"
    ],
-   "type": "News report",
-   "language": "English",
-   "supporting": 0,
-   "independent": 1,
-   "relationship": "Single source"
+   "countries": [
+    "Spain",
+    "United States"
+   ],
+   "airports": [],
+   "document_types": [],
+   "documents_count": 0,
+   "people_count": 0,
+   "weight_kg": 0,
+   "origin": "",
+   "destination": "Spain",
+   "terms": [
+    "airport",
+    "gang"
+   ],
+   "agencies": [
+    "Customs",
+    "Immigration"
+   ],
+   "outcome": "Arrested",
+   "transport": "",
+   "location": {
+    "cities": [],
+    "ports": [],
+    "crossings": []
+   },
+   "summary_text": "WASHINGTON (AP) — Kilmar Abrego Garcia, a Salvadoran national who fought his mistaken deportation, left the U.S. voluntarily for Spain on Tuesday, officials and his attorneys said, in what could bring an end to a defining saga of the Trump administration's immigration crackdown.",
+   "exploitation": [],
+   "victim_assistance": false,
+   "v": 3,
+   "sentence": "",
+   "specialist": [],
+   "transit": [],
+   "interception": "",
+   "interception_country": "",
+   "nationality": [
+    "El Salvador"
+   ]
   },
-  "uncertainty": []
+  "lead": "WASHINGTON (AP) — Kilmar Abrego Garcia, a Salvadoran national who fought his mistaken deportation, left the U.S."
  },
  {
   "title": "Ce pays ouest africain et la Tunisie s’apprêtent à supprimer l’obligation de visa",
@@ -24585,14 +27174,16 @@
   "action": false,
   "document_types": [],
   "countries": [
-   "Spain"
+   "Spain",
+   "United States",
+   "Liberia"
   ],
   "airports": [],
-  "origin": "",
+  "origin": "United States",
   "destination": "Spain",
   "documents_count": 0,
   "people_count": 0,
-  "weight_kg": 0.0,
+  "weight_kg": 0,
   "id": "127a2e72d8a7",
   "first_seen": "2026-11-26",
   "other_sources": [
@@ -24617,14 +27208,21 @@
   "event_date": "",
   "event_date_quality": "unknown",
   "location": {
-   "cities": [],
+   "cities": [
+    "Madrid (Spain)"
+   ],
    "ports": [],
    "crossings": []
   },
-  "transport_mode": "",
+  "transport_mode": "Air passenger",
   "outcome": "",
-  "agencies": [],
-  "summary_text": "",
+  "agencies": [
+   "CBP",
+   "ICE",
+   "Customs",
+   "Immigration"
+  ],
+  "summary_text": "It comes nearly two years after he was mistakenly sent to a Salvadoran prison. Kilmar Abrego Garcia, who was returned to the U.S. after being mistakenly deported to a Salvadoran mega-prison, has arrived in Spain after self-deporting from the U.S., according to his attorney. Earlier Tuesday, ABC News observed Abrego Garcia boarding a flight from a Washington, D.C.-area airport to Madrid, Spain. His flight took off late Tuesday, four hours after his originally scheduled departure time.",
   "caribbean_connection": [],
   "jamaica_connection": [],
   "sources": [
@@ -24642,39 +27240,79 @@
    "BWO-2026-2072"
   ],
   "specialist": [],
-  "nationality": [],
+  "nationality": [
+   "United States",
+   "El Salvador"
+  ],
   "journey": {
-   "origin": "",
+   "origin": "United States",
    "transit": [],
    "destination": "Spain",
    "interception": "",
    "interception_country": "",
-   "completeness": "Partial",
-   "basis": "Stated in headline or summary",
-   "text": "Destination: Spain; origin not reported"
+   "completeness": "Complete",
+   "basis": "Explicitly stated in article",
+   "text": "United States → Spain"
   },
-  "corrections": [],
-  "review_uncertainty": "",
-  "source_panel": {
-   "sources": [
-    {
-     "publisher": "abc30.com",
-     "url": "https://abc30.com/story/kilmar-abrego-garcia-leaves-us-deporting-spain/20076629/",
-     "date": "2026-11-25",
-     "type": "News report",
-     "role": "Original (earliest found)",
-     "lang": "English"
-    }
+  "source_url": "https://abc30.com/story/kilmar-abrego-garcia-leaves-us-deporting-spain/20076629/",
+  "article": {
+   "tried": true,
+   "read_on": "2026-11-26",
+   "event_date": "",
+   "event_date_quality": "unknown",
+   "read": true,
+   "kind": "Update",
+   "lead": "It comes nearly two years after he was mistakenly sent to a Salvadoran prison. Kilmar Abrego Garcia, who was returned to the U.S.",
+   "categories": [
+    "Deportation and returns"
    ],
-   "type": "News report",
-   "language": "English",
-   "supporting": 0,
-   "independent": 1,
-   "relationship": "Single source"
+   "countries": [
+    "Spain",
+    "United States",
+    "Liberia"
+   ],
+   "airports": [],
+   "document_types": [],
+   "documents_count": 0,
+   "people_count": 0,
+   "weight_kg": 0,
+   "origin": "United States",
+   "destination": "",
+   "terms": [
+    "airport",
+    "gang",
+    "wanted"
+   ],
+   "agencies": [
+    "CBP",
+    "ICE",
+    "Customs",
+    "Immigration"
+   ],
+   "outcome": "Arrested",
+   "transport": "Air passenger",
+   "location": {
+    "cities": [
+     "Madrid (Spain)"
+    ],
+    "ports": [],
+    "crossings": []
+   },
+   "summary_text": "It comes nearly two years after he was mistakenly sent to a Salvadoran prison. Kilmar Abrego Garcia, who was returned to the U.S. after being mistakenly deported to a Salvadoran mega-prison, has arrived in Spain after self-deporting from the U.S., according to his attorney. Earlier Tuesday, ABC News observed Abrego Garcia boarding a flight from a Washington, D.C.-area airport to Madrid, Spain. His flight took off late Tuesday, four hours after his originally scheduled departure time.",
+   "exploitation": [],
+   "victim_assistance": false,
+   "v": 3,
+   "sentence": "",
+   "specialist": [],
+   "transit": [],
+   "interception": "",
+   "interception_country": "",
+   "nationality": [
+    "United States",
+    "El Salvador"
+   ]
   },
-  "uncertainty": [
-   "Journey only partly stated"
-  ]
+  "lead": "It comes nearly two years after he was mistakenly sent to a Salvadoran prison. Kilmar Abrego Garcia, who was returned to the U.S."
  },
  {
   "title": "Homeland security is \"delighted\" about wrongly deported man from US arriving in Spain",
@@ -40500,6 +43138,222 @@
   "uncertainty": []
  },
  {
+  "title": "Human Trafficker, Wife Beater, and MS-13 Gang Member Kilmar Garcia Self-Deports from the United States",
+  "summary": "",
+  "url": "https://www.dhs.gov/news/2026/11/24/human-trafficker-wife-beater-and-ms-13-gang-member-kilmar-garcia-self-deports",
+  "date": "2026-11-24",
+  "source": "US Department of Homeland Security",
+  "lang": "",
+  "via": "Official page",
+  "official": true,
+  "agency_country": "United States",
+  "kind": "Incident",
+  "categories": [
+   "Deportation and returns",
+   "Migrant smuggling",
+   "Terrorism and sanctions"
+  ],
+  "matched_words": [
+   "deports"
+  ],
+  "action": false,
+  "document_types": [],
+  "countries": [
+   "United States",
+   "El Salvador",
+   "Spain"
+  ],
+  "airports": [],
+  "origin": "United States",
+  "destination": "Spain",
+  "documents_count": 0,
+  "people_count": 8,
+  "weight_kg": 0,
+  "id": "56930c1e49db",
+  "first_seen": "2026-11-26",
+  "source_url": "https://www.dhs.gov/news/2026/11/24/human-trafficker-wife-beater-and-ms-13-gang-member-kilmar-garcia-self-deports",
+  "article": {
+   "tried": true,
+   "read_on": "2026-11-26",
+   "event_date": "",
+   "event_date_quality": "unknown",
+   "read": true,
+   "kind": "Incident",
+   "lead": "The mainstream media and sanctuary politicians repeatedly tried to peddle a sob story about this illegal alien, falsely portraying him as a “Maryland man” WASHINGTON – The United States Department of Homeland Security (DHS) released the following statement…",
+   "categories": [
+    "Deportation and returns",
+    "Migrant smuggling",
+    "Terrorism and sanctions"
+   ],
+   "countries": [
+    "United States",
+    "El Salvador",
+    "Spain"
+   ],
+   "airports": [],
+   "document_types": [],
+   "documents_count": 0,
+   "people_count": 8,
+   "weight_kg": 0,
+   "origin": "El Salvador",
+   "destination": "Spain",
+   "terms": [
+    "gang",
+    "terrorist",
+    "terrorize"
+   ],
+   "agencies": [],
+   "outcome": "Arrested",
+   "transport": "Air passenger",
+   "location": {
+    "cities": [],
+    "ports": [],
+    "crossings": []
+   },
+   "summary_text": "The mainstream media and sanctuary politicians repeatedly tried to peddle a sob story about this illegal alien, falsely portraying him as a “Maryland man” WASHINGTON – The United States Department of Homeland Security (DHS) released the following statement confirming that Kilmar Abrego Garcia, an illegal alien from El Salvador and human smuggler, wife beater, gang member, and child predator, has self-deported from the United States to Spain.",
+   "exploitation": [],
+   "victim_assistance": false,
+   "v": 3,
+   "sentence": "",
+   "specialist": [
+    [
+     "Migrant smuggling",
+     [
+      [
+       "Reported origin",
+       "El Salvador"
+      ],
+      [
+       "Reported transit",
+       ""
+      ],
+      [
+       "Reported destination",
+       "Spain"
+      ],
+      [
+       "Transport mode",
+       "Air passenger"
+      ],
+      [
+       "People intercepted",
+       "8"
+      ],
+      [
+       "Alleged facilitators (role)",
+       "Smuggling network / ring; Smugglers / guides"
+      ],
+      [
+       "Reported fees and currency",
+       ""
+      ]
+     ]
+    ]
+   ],
+   "transit": [],
+   "interception": "",
+   "interception_country": "",
+   "nationality": [
+    "United States",
+    "El Salvador"
+   ]
+  },
+  "lead": "The mainstream media and sanctuary politicians repeatedly tried to peddle a sob story about this illegal alien, falsely portraying him as a “Maryland man” WASHINGTON – The United States Department of Homeland Security (DHS) released the following statement…",
+  "score": 35,
+  "level": "Medium",
+  "reasons": [
+   "Organised network or ring (+15: gang)",
+   "Terrorism link (+20: terrorist, terrorize)"
+  ],
+  "watch": false,
+  "home": false,
+  "region": false,
+  "event_id": "BWO-2026-2192",
+  "primary_category": "Migrant smuggling",
+  "tags": [
+   "Deportation and returns",
+   "Terrorism and sanctions"
+  ],
+  "groups": [
+   "Migration & Facilitation",
+   "Border Integrity"
+  ],
+  "published": "2026-11-24",
+  "event_date": "",
+  "event_date_quality": "unknown",
+  "location": {
+   "cities": [],
+   "ports": [],
+   "crossings": []
+  },
+  "transport_mode": "Air passenger",
+  "outcome": "Arrested",
+  "agencies": [],
+  "summary_text": "The mainstream media and sanctuary politicians repeatedly tried to peddle a sob story about this illegal alien, falsely portraying him as a “Maryland man” WASHINGTON – The United States Department of Homeland Security (DHS) released the following statement confirming that Kilmar Abrego Garcia, an illegal alien from El Salvador and human smuggler, wife beater, gang member, and child predator, has self-deported from the United States to Spain.",
+  "caribbean_connection": [],
+  "jamaica_connection": [],
+  "specialist": [
+   [
+    "Migrant smuggling",
+    [
+     [
+      "Reported origin",
+      "El Salvador"
+     ],
+     [
+      "Reported transit",
+      ""
+     ],
+     [
+      "Reported destination",
+      "Spain"
+     ],
+     [
+      "Transport mode",
+      "Air passenger"
+     ],
+     [
+      "People intercepted",
+      "8"
+     ],
+     [
+      "Alleged facilitators (role)",
+      "Smuggling network / ring; Smugglers / guides"
+     ],
+     [
+      "Reported fees and currency",
+      ""
+     ]
+    ]
+   ]
+  ],
+  "sources": [
+   {
+    "publisher": "US Department of Homeland Security",
+    "url": "https://www.dhs.gov/news/2026/11/24/human-trafficker-wife-beater-and-ms-13-gang-member-kilmar-garcia-self-deports",
+    "date": "2026-11-24",
+    "official": true
+   }
+  ],
+  "nationality": [
+   "United States",
+   "El Salvador"
+  ],
+  "review_status": "Automatically collected",
+  "journey": {
+   "origin": "United States",
+   "transit": [],
+   "destination": "Spain",
+   "interception": "",
+   "interception_country": "",
+   "completeness": "Complete",
+   "basis": "Explicitly stated in article",
+   "text": "United States → Spain"
+  },
+  "last_updated": "2026-11-26",
+  "related": []
+ },
+ {
   "title": "Juez solicita una notificación roja de Interpol contra la exreina de Guayaquil en el caso La Reina",
   "summary": "",
   "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPSlZYTkNJQXFkRHhlS0lxMjFKTDNmWFJfT0lINVNsbWF1YlNvNW1IM3JnQmxMNm1FSGN6aDdSU21PSDd2M28tbi1vQWNOSjFITUU5dDNfd0NpVE0tYVQxOE50OXQ3MzBoREllVlhzQ2FkRXQ2UEs0MS1zcGk2aW5SVU15Umw4U1p0UzFRb3oxeUhwb1ZZZGVILWFFTlkyeEduRTBwMlZ1NFVIcWRtMGF4MkxXc0xOdXp1b0J3QXh5eTI3MmdsVF9r?oc=5",
@@ -43212,6 +46066,247 @@
    "relationship": "Single source"
   },
   "uncertainty": []
+ },
+ {
+  "title": "As winter approaches, the U.S. Border Patrol warns of dangers",
+  "summary": "GRAND FORKS, N.D. – As below freezing temperatures are on its way U.S. Border Patrol’s Grand Forks Sector wants to remind illegal crossers the dangers of trying to cross the border during these cold winter months. Grand Forks Sector…",
+  "url": "https://www.cbp.gov/newsroom/local-media-release/winter-approaches-us-border-patrol-warns-dangers",
+  "date": "2026-11-24",
+  "source": "US Customs and Border Protection",
+  "lang": "",
+  "via": "RSS",
+  "official": true,
+  "agency_country": "United States",
+  "kind": "Incident",
+  "categories": [
+   "Border security",
+   "Migrant smuggling"
+  ],
+  "matched_words": [
+   "border patrol"
+  ],
+  "action": false,
+  "document_types": [],
+  "countries": [
+   "United States"
+  ],
+  "airports": [],
+  "origin": "",
+  "destination": "",
+  "documents_count": 0,
+  "people_count": 0,
+  "weight_kg": 0,
+  "id": "3bf1dfe7e7da",
+  "first_seen": "2026-11-26",
+  "source_url": "https://www.cbp.gov/newsroom/local-media-release/winter-approaches-us-border-patrol-warns-dangers",
+  "article": {
+   "tried": true,
+   "read_on": "2026-11-26",
+   "event_date": "",
+   "event_date_quality": "unknown",
+   "read": true,
+   "kind": "Incident",
+   "lead": "– As below freezing temperatures are on its way U.S. Border Patrol’s Grand Forks Sector wants to remind illegal crossers the dangers of trying to cross the border during these cold winter months.",
+   "categories": [
+    "Border security",
+    "Migrant smuggling"
+   ],
+   "countries": [
+    "United States"
+   ],
+   "airports": [],
+   "document_types": [],
+   "documents_count": 0,
+   "people_count": 0,
+   "weight_kg": 0,
+   "origin": "",
+   "destination": "",
+   "terms": [],
+   "agencies": [
+    "Customs"
+   ],
+   "outcome": "",
+   "transport": "",
+   "location": {
+    "cities": [],
+    "ports": [],
+    "crossings": []
+   },
+   "summary_text": "– As below freezing temperatures are on its way U.S. Border Patrol’s Grand Forks Sector wants to remind illegal crossers the dangers of trying to cross the border during these cold winter months. Grand Forks Sector encompasses the border states of North Dakota and Minnesota and is responsible for 866 linear miles of the border. Each year, people from around the world travel to the northern border, seeking to enter the United States illegally.",
+   "exploitation": [],
+   "victim_assistance": false,
+   "v": 3,
+   "sentence": "",
+   "specialist": [
+    [
+     "Migrant smuggling",
+     [
+      [
+       "Reported origin",
+       ""
+      ],
+      [
+       "Reported transit",
+       ""
+      ],
+      [
+       "Reported destination",
+       ""
+      ],
+      [
+       "Transport mode",
+       ""
+      ],
+      [
+       "People intercepted",
+       ""
+      ],
+      [
+       "Alleged facilitators (role)",
+       "Smugglers / guides"
+      ],
+      [
+       "Reported fees and currency",
+       ""
+      ]
+     ]
+    ],
+    [
+     "Border integrity",
+     [
+      [
+       "Organisation or role implicated",
+       ""
+      ],
+      [
+       "Alleged conduct",
+       ""
+      ],
+      [
+       "Location",
+       "United States"
+      ],
+      [
+       "Investigation / disciplinary / criminal outcome",
+       ""
+      ]
+     ]
+    ]
+   ],
+   "transit": [],
+   "interception": "",
+   "interception_country": "",
+   "nationality": []
+  },
+  "score": 0,
+  "level": "Low",
+  "reasons": [],
+  "watch": false,
+  "home": false,
+  "region": false,
+  "event_id": "BWO-2026-2191",
+  "primary_category": "Migrant smuggling",
+  "tags": [
+   "Border security"
+  ],
+  "groups": [
+   "Migration & Facilitation",
+   "Border Integrity"
+  ],
+  "published": "2026-11-24",
+  "event_date": "",
+  "event_date_quality": "unknown",
+  "location": {
+   "cities": [],
+   "ports": [],
+   "crossings": []
+  },
+  "transport_mode": "",
+  "outcome": "",
+  "agencies": [
+   "Customs"
+  ],
+  "summary_text": "– As below freezing temperatures are on its way U.S. Border Patrol’s Grand Forks Sector wants to remind illegal crossers the dangers of trying to cross the border during these cold winter months. Grand Forks Sector encompasses the border states of North Dakota and Minnesota and is responsible for 866 linear miles of the border. Each year, people from around the world travel to the northern border, seeking to enter the United States illegally.",
+  "caribbean_connection": [],
+  "jamaica_connection": [],
+  "specialist": [
+   [
+    "Migrant smuggling",
+    [
+     [
+      "Reported origin",
+      ""
+     ],
+     [
+      "Reported transit",
+      ""
+     ],
+     [
+      "Reported destination",
+      ""
+     ],
+     [
+      "Transport mode",
+      ""
+     ],
+     [
+      "People intercepted",
+      ""
+     ],
+     [
+      "Alleged facilitators (role)",
+      "Smugglers / guides"
+     ],
+     [
+      "Reported fees and currency",
+      ""
+     ]
+    ]
+   ],
+   [
+    "Border integrity",
+    [
+     [
+      "Organisation or role implicated",
+      ""
+     ],
+     [
+      "Alleged conduct",
+      ""
+     ],
+     [
+      "Location",
+      "United States"
+     ],
+     [
+      "Investigation / disciplinary / criminal outcome",
+      ""
+     ]
+    ]
+   ]
+  ],
+  "sources": [
+   {
+    "publisher": "US Customs and Border Protection",
+    "url": "https://www.cbp.gov/newsroom/local-media-release/winter-approaches-us-border-patrol-warns-dangers",
+    "date": "2026-11-24",
+    "official": true
+   }
+  ],
+  "nationality": [],
+  "review_status": "Automatically collected",
+  "journey": {
+   "origin": "",
+   "transit": [],
+   "destination": "",
+   "interception": "",
+   "interception_country": "",
+   "completeness": "Not reported",
+   "basis": "",
+   "text": ""
+  },
+  "last_updated": "2026-11-26",
+  "related": []
  },
  {
   "title": "How to Get to Ukraine from the Netherlands: Convenient Routes and Entry Requirements",
@@ -55785,6 +58880,169 @@
   "seizures": []
  },
  {
+  "title": "CBP officers seize 18 firearms concealed on commercial bus at Eagle Pass Port of Entry",
+  "summary": "EAGLE PASS, Texas — U.S. Customs and Border Protection officers at the Eagle Pass Port of Entry, working alongside Anti-Terrorism Contraband Enforcement Team members conducting outbound operations, seized 18 firearms, 35 magazines, and firearm…",
+  "url": "https://www.cbp.gov/newsroom/national-media-release/cbp-officers-seize-18-firearms-concealed-commercial-bus-eagle-pass",
+  "date": "2026-11-23",
+  "source": "US Customs and Border Protection",
+  "lang": "",
+  "via": "RSS",
+  "official": true,
+  "agency_country": "United States",
+  "kind": "Incident",
+  "categories": [
+   "Cargo operations",
+   "Firearms and ammunition"
+  ],
+  "matched_words": [
+   "contraband",
+   "firearm",
+   "firearms"
+  ],
+  "action": true,
+  "document_types": [],
+  "countries": [
+   "United States",
+   "Mexico"
+  ],
+  "airports": [],
+  "origin": "",
+  "destination": "United States",
+  "documents_count": 0,
+  "people_count": 40,
+  "weight_kg": 0,
+  "id": "8b41f43c677b",
+  "first_seen": "2026-11-26",
+  "source_url": "https://www.cbp.gov/newsroom/national-media-release/cbp-officers-seize-18-firearms-concealed-commercial-bus-eagle-pass",
+  "article": {
+   "tried": true,
+   "read_on": "2026-11-26",
+   "event_date": "2026-11-15",
+   "event_date_quality": "exact",
+   "read": true,
+   "kind": "Incident",
+   "lead": "Customs and Border Protection officers at the Eagle Pass Port of Entry, working alongside Anti-Terrorism Contraband Enforcement Team members conducting outbound operations, seized 18 firearms, 35 magazines, and firearm accessories concealed in a cargo…",
+   "categories": [
+    "Cargo operations",
+    "Firearms and ammunition"
+   ],
+   "countries": [
+    "United States",
+    "Mexico"
+   ],
+   "airports": [],
+   "document_types": [],
+   "documents_count": 0,
+   "people_count": 40,
+   "weight_kg": 0,
+   "origin": "",
+   "destination": "United States",
+   "terms": [
+    "concealed in",
+    "firearm",
+    "firearms",
+    "networks",
+    "pistol",
+    "pistols",
+    "port of entry",
+    "rifle",
+    "terrorism"
+   ],
+   "agencies": [
+    "CBP",
+    "HSI",
+    "Customs"
+   ],
+   "outcome": "Seized / intercepted",
+   "transport": "Mixed: Maritime cargo, Air passenger, Land",
+   "location": {
+    "cities": [
+     "Texas (United States)"
+    ],
+    "ports": [],
+    "crossings": []
+   },
+   "summary_text": "Customs and Border Protection officers at the Eagle Pass Port of Entry, working alongside Anti-Terrorism Contraband Enforcement Team members conducting outbound operations, seized 18 firearms, 35 magazines, and firearm accessories concealed in a cargo shipment aboard an outbound commercial bus on Nov. The seizure occurred at 4 a.m. 15 at the Camino Real International Bridge II outbound inspection lot.",
+   "exploitation": [],
+   "victim_assistance": false,
+   "v": 3,
+   "sentence": "",
+   "specialist": [],
+   "transit": [],
+   "interception": "",
+   "interception_country": "",
+   "nationality": [
+    "United States"
+   ]
+  },
+  "score": 75,
+  "level": "High",
+  "reasons": [
+   "Organised network or ring (+15: networks)",
+   "Concealment method (body, luggage, cargo) (+15: concealed in)",
+   "Weapons involved (+10: firearm, firearms, pistol)",
+   "Terrorism link (+20: terrorism)",
+   "Detected at an airport or border post (+5: port of entry)",
+   "Many people involved: 40 (+10)"
+  ],
+  "watch": false,
+  "home": false,
+  "region": false,
+  "event_id": "BWO-2026-2190",
+  "primary_category": "Firearms and ammunition",
+  "tags": [
+   "Cargo operations"
+  ],
+  "groups": [
+   "Seizures & Contraband"
+  ],
+  "published": "2026-11-23",
+  "event_date": "2026-11-15",
+  "event_date_quality": "exact",
+  "location": {
+   "cities": [
+    "Texas (United States)"
+   ],
+   "ports": [],
+   "crossings": []
+  },
+  "transport_mode": "Mixed: Maritime cargo, Air passenger, Land",
+  "outcome": "Seized / intercepted",
+  "agencies": [
+   "CBP",
+   "HSI",
+   "Customs"
+  ],
+  "summary_text": "Customs and Border Protection officers at the Eagle Pass Port of Entry, working alongside Anti-Terrorism Contraband Enforcement Team members conducting outbound operations, seized 18 firearms, 35 magazines, and firearm accessories concealed in a cargo shipment aboard an outbound commercial bus on Nov. The seizure occurred at 4 a.m. 15 at the Camino Real International Bridge II outbound inspection lot.",
+  "caribbean_connection": [],
+  "jamaica_connection": [],
+  "specialist": [],
+  "sources": [
+   {
+    "publisher": "US Customs and Border Protection",
+    "url": "https://www.cbp.gov/newsroom/national-media-release/cbp-officers-seize-18-firearms-concealed-commercial-bus-eagle-pass",
+    "date": "2026-11-23",
+    "official": true
+   }
+  ],
+  "nationality": [
+   "United States"
+  ],
+  "review_status": "Awaiting review",
+  "journey": {
+   "origin": "",
+   "transit": [],
+   "destination": "United States",
+   "interception": "",
+   "interception_country": "",
+   "completeness": "Partial",
+   "basis": "Explicitly stated in article",
+   "text": "Destination: United States; origin not reported"
+  },
+  "last_updated": "2026-11-26",
+  "related": []
+ },
+ {
   "title": "Llegan a Canarias otros siete cayucos con más de 800 migrantes a bordo interceptados cerca de El Hierro y Tenerife",
   "summary": "",
   "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxPM3FTc0JQWjV5TW9zcXM1ZXFnV2hFTzRKak9kZzNXWlVENUVGMk9Cekt0RndiSFZnSHRXMTd6YnhQOW5zTHkwWW9BcmhvSzBCa004MzJQem1yTHpZRThfQ0FuR3JoYXkyUThTWjlZdTlqeFgwbmZZaXJ4OUVXdk9vUF8zVUdINUpyLV83Sm9WSE8wdm5FVFFwblA0dVRMWDA2U29hS0pfWC1IYnVSZW9QWE1DMXR0aTlEMks0Q0QzMGV4dmtiNldyTzRlQm02WGRpclRRdF9aTmhKMjM1SW1wS013?oc=5",
@@ -56878,6 +60136,145 @@
    "Not stated in the report: when it happened, where it happened, outcome"
   ],
   "seizures": []
+ },
+ {
+  "title": "Buffalo CBP reminds travelers of tips to improve their cross-border experience",
+  "summary": "BUFFALO, N.Y. — As the holiday season approaches, U.S. Customs and Border Protection is reminding travelers who are planning trips to the United States through land border crossings to be sure to plan accordingly. Travelers looking for…",
+  "url": "https://www.cbp.gov/newsroom/local-media-release/buffalo-cbp-reminds-travelers-tips-improve-their-cross-border-0",
+  "date": "2026-11-23",
+  "source": "US Customs and Border Protection",
+  "lang": "",
+  "via": "RSS",
+  "official": true,
+  "agency_country": "United States",
+  "kind": "Incident",
+  "categories": [
+   "Irregular migration",
+   "Visa and entry policy"
+  ],
+  "matched_words": [
+   "border crossings"
+  ],
+  "action": false,
+  "document_types": [
+   "Passport",
+   "Visa"
+  ],
+  "countries": [
+   "United States"
+  ],
+  "airports": [],
+  "origin": "",
+  "destination": "United States",
+  "documents_count": 0,
+  "people_count": 0,
+  "weight_kg": 0,
+  "id": "76be3708af43",
+  "first_seen": "2026-11-26",
+  "source_url": "https://www.cbp.gov/newsroom/local-media-release/buffalo-cbp-reminds-travelers-tips-improve-their-cross-border-0",
+  "article": {
+   "tried": true,
+   "read_on": "2026-11-26",
+   "event_date": "",
+   "event_date_quality": "unknown",
+   "read": true,
+   "kind": "Incident",
+   "lead": "— As the holiday season approaches, U.S. Customs and Border Protection is reminding travelers who are planning trips to the United States through land border crossings to be sure to plan accordingly.",
+   "categories": [
+    "Irregular migration",
+    "Visa and entry policy"
+   ],
+   "countries": [
+    "United States"
+   ],
+   "airports": [],
+   "document_types": [
+    "Passport",
+    "Visa"
+   ],
+   "documents_count": 0,
+   "people_count": 0,
+   "weight_kg": 0,
+   "origin": "",
+   "destination": "United States",
+   "terms": [],
+   "agencies": [
+    "CBP",
+    "Customs"
+   ],
+   "outcome": "",
+   "transport": "Mixed: Maritime cargo, Land",
+   "location": {
+    "cities": [],
+    "ports": [],
+    "crossings": []
+   },
+   "summary_text": "— As the holiday season approaches, U.S. Customs and Border Protection is reminding travelers who are planning trips to the United States through land border crossings to be sure to plan accordingly. Travelers looking for ways to improve their travel experience should consider the following: - Check travel documents. Ensure passports, visas, and other required travel documents are unexpired and valid before departure. Visa Waiver Program travelers should have an approved ESTA authorization before travel.",
+   "exploitation": [],
+   "victim_assistance": false,
+   "v": 3,
+   "sentence": "",
+   "specialist": [],
+   "transit": [],
+   "interception": "",
+   "interception_country": "",
+   "nationality": []
+  },
+  "score": 0,
+  "level": "Low",
+  "reasons": [],
+  "watch": false,
+  "home": false,
+  "region": false,
+  "event_id": "BWO-2026-2189",
+  "primary_category": "Irregular migration",
+  "tags": [
+   "Visa and entry policy"
+  ],
+  "groups": [
+   "Migration & Facilitation",
+   "Policy & Systems"
+  ],
+  "published": "2026-11-23",
+  "event_date": "",
+  "event_date_quality": "unknown",
+  "location": {
+   "cities": [],
+   "ports": [],
+   "crossings": []
+  },
+  "transport_mode": "Mixed: Maritime cargo, Land",
+  "outcome": "",
+  "agencies": [
+   "CBP",
+   "Customs"
+  ],
+  "summary_text": "— As the holiday season approaches, U.S. Customs and Border Protection is reminding travelers who are planning trips to the United States through land border crossings to be sure to plan accordingly. Travelers looking for ways to improve their travel experience should consider the following: - Check travel documents. Ensure passports, visas, and other required travel documents are unexpired and valid before departure. Visa Waiver Program travelers should have an approved ESTA authorization before travel.",
+  "caribbean_connection": [],
+  "jamaica_connection": [],
+  "specialist": [],
+  "sources": [
+   {
+    "publisher": "US Customs and Border Protection",
+    "url": "https://www.cbp.gov/newsroom/local-media-release/buffalo-cbp-reminds-travelers-tips-improve-their-cross-border-0",
+    "date": "2026-11-23",
+    "official": true
+   }
+  ],
+  "nationality": [],
+  "review_status": "Automatically collected",
+  "journey": {
+   "origin": "",
+   "transit": [],
+   "destination": "United States",
+   "interception": "",
+   "interception_country": "",
+   "completeness": "Partial",
+   "basis": "Explicitly stated in article",
+   "text": "Destination: United States; origin not reported"
+  },
+  "last_updated": "2026-11-26",
+  "related": []
  },
  {
   "title": "New Zealand moves graduate work visa applications online, extends post-study work rights for Indian PhD g",
@@ -121883,8 +125280,8 @@
   "last_updated": "2026-11-26",
   "related": [
    "BWO-2026-1139",
-   "BWO-2026-2120",
-   "BWO-2026-1266"
+   "BWO-2026-2193",
+   "BWO-2026-2120"
   ],
   "specialist": [
    [
@@ -141053,26 +144450,7 @@
    "basis": "",
    "text": ""
   },
-  "corrections": [],
-  "review_uncertainty": "",
-  "source_panel": {
-   "sources": [
-    {
-     "publisher": "Frontex",
-     "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxQQ0NXcjBfb0c0T2tEcjV5VnFKY2ZFVXk3andmZzM5X1Y4TUM0Nzh5MHNieUE4M01TU2U5cE8tY2VNbTlEblNhY1Vyc2hEX0FBRVJzdVpGQ1VjaV9rWVp1WmNZOXo0SURGd2tFRDVuZEdsODdPODV2TDRKMFBOZm0xREJXWWg2Z055SmJSTmpTclI1dGVIMjhqOWtxTktvWXpoeTcyd2lrSUpxT2FpcFlhTzJMWWpkSjZBbXJwVkZvb0dreUljY1FFb3c3b1NEQlpZZDR3NnBEOWhOQ3FuWFE?oc=5",
-     "date": "2026-11-16",
-     "type": "News report",
-     "role": "Original (earliest found)",
-     "lang": "English"
-    }
-   ],
-   "type": "News report",
-   "language": "English",
-   "supporting": 0,
-   "independent": 1,
-   "relationship": "Single source"
-  },
-  "uncertainty": []
+  "official": true
  },
  {
   "title": "Defesa de Carla Zambelli pede retirada de nome da Interpol",
@@ -143190,8 +146568,8 @@
   "last_updated": "2026-11-26",
   "related": [
    "BWO-2026-1286",
-   "BWO-2026-2120",
-   "BWO-2026-1266"
+   "BWO-2026-2193",
+   "BWO-2026-2120"
   ],
   "specialist": [
    [
@@ -248097,7 +251475,9 @@
   "weight_kg": 7400.0,
   "id": "f1bd24a0f248",
   "first_seen": "2026-11-26",
-  "other_sources": [],
+  "other_sources": [
+   "Frontex"
+  ],
   "score": 95,
   "level": "High",
   "reasons": [
@@ -248187,6 +251567,12 @@
     "publisher": "World Border Security Congress",
     "url": "https://world-border-congress.com/more-than-700-vehicles-and-34-boats-seized-334-arrested-in-europe-wide-operation-led-by-frontex/",
     "date": "2026-11-03"
+   },
+   {
+    "publisher": "Frontex",
+    "url": "https://www.frontex.europa.eu/media-centre/news/news-release/more-than-700-vehicles-and-34-boats-seized-334-arrested-in-europe-wide-operation-led-by-frontex-GnxPHE",
+    "date": "2026-11-26",
+    "official": true
    }
   ],
   "review_status": "Awaiting review",
@@ -248291,50 +251677,7 @@
    "basis": "Explicitly stated in article",
    "text": "Germany → Tunisia"
   },
-  "corrections": [],
-  "review_uncertainty": "",
-  "source_panel": {
-   "sources": [
-    {
-     "publisher": "World Border Security Congress",
-     "url": "https://world-border-congress.com/more-than-700-vehicles-and-34-boats-seized-334-arrested-in-europe-wide-operation-led-by-frontex/",
-     "date": "2026-11-03",
-     "type": "News report",
-     "role": "Original (earliest found)",
-     "lang": "English"
-    }
-   ],
-   "type": "News report",
-   "language": "English",
-   "supporting": 0,
-   "independent": 1,
-   "relationship": "Single source"
-  },
-  "uncertainty": [
-   "Not stated in the report: when it happened"
-  ],
-  "seizures": [
-   {
-    "substance": "Cocaine",
-    "suspected": false,
-    "original": "more than 7.4 tonnes",
-    "qty": 7.4,
-    "unit": "tonnes",
-    "std_qty": 7400.0,
-    "std_unit": "kg",
-    "qualifier": "More than"
-   },
-   {
-    "substance": "Tobacco",
-    "suspected": false,
-    "original": "10.6 million cigarettes",
-    "qty": 10600000.0,
-    "unit": "cigarettes",
-    "std_qty": 10600000.0,
-    "std_unit": "cigarettes",
-    "qualifier": "Exact"
-   }
-  ]
+  "official": true
  },
  {
   "title": "Health Ministry introduces Ebola screening for all arriving travelers at Accra Airport",
@@ -277662,26 +281005,7 @@
    "basis": "",
    "text": ""
   },
-  "corrections": [],
-  "review_uncertainty": "",
-  "source_panel": {
-   "sources": [
-    {
-     "publisher": "Frontex",
-     "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPeEF0SV80V04xdzhkSmlMclJJWWlkSVI3Vmkwc1RJNDdDbEYycWstZnQzOHowZ09zSnZmX3l4ajVWQzRWUllacFVEVWpqSnRFMm5DcWpDS3c0OVlrUzZyUGFYbjVmS3lOblJ5SmdZQmRxMVptYW9Zd00xNHZ3VE9idlFQUDhkRHBva1gyLXJrbGtQNjdIb3dTTnJKS0IxM25Jc3hqRHpzd2N1b2lrdEFKRHZQaw?oc=5",
-     "date": "2026-10-30",
-     "type": "News report",
-     "role": "Original (earliest found)",
-     "lang": "English"
-    }
-   ],
-   "type": "News report",
-   "language": "English",
-   "supporting": 0,
-   "independent": 1,
-   "relationship": "Single source"
-  },
-  "uncertainty": []
+  "official": true
  },
  {
   "title": "Retienen en Colombia a coronel venezolano solicitado por Interpol: presuntamente usaba una cédula falsa",
