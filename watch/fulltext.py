@@ -191,12 +191,24 @@ def read_articles(events, cfg, risk_words, focus, budget_minutes=8, limit=400, w
             if status == "skipped":
                 continue
             done += 1
-            a = {"tried": True, "read_on": dt.date.today().isoformat()}
+            old = ev.get("article") or {}
             if res and status == "ok":
                 url, text = res
+                a = {"tried": True, "read_on": dt.date.today().isoformat()}
                 a.update(article_facts(ev, text, risk_words, focus))
                 ev["source_url"] = url
+                ev["article"] = a
                 ok += 1
-            ev["article"] = a
+            elif old.get("read"):
+                # could not re-read: keep the facts we already have; give up re-reading after 3 tries
+                old["refails"] = old.get("refails", 0) + 1
+                if old["refails"] >= 3:
+                    old["v"] = 3
+            else:
+                # failed (blocked, busy or no link): try again on later runs, up to 3 times
+                fails = old.get("fails", 0) + 1
+                ev["article"] = {"fails": fails, "tried": fails >= 3}
     log(f"  read {ok} of {done} articles attempted ({len(todo) - done} left for the next run)")
+    if done >= 20 and ok == 0:
+        log("  note: no article could be read; the news sites are probably limiting requests. They will be retried next run.")
     return ok
