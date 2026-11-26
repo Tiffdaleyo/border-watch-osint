@@ -345,6 +345,9 @@ put in Bcc, so they don't see each other's addresses.
 5. **Send a test:** open Actions, then **weekly-bulletin**, then **Run workflow**. Everyone in `MAIL_TO` should get
    the PDF within 2 minutes. If nothing arrives, open that run's log. It says what went wrong, for example a wrong
    password.
+6. **Test the alert email:** open Actions, then **test-email**, then **Run workflow**. It sends one alert email,
+   marked **[TEST]**, with the 3 most recent high-risk or Jamaica-linked reports. It does not mark anything as
+   alerted, so the real daily alerts are unaffected.
 
 To add or remove people later, edit the `MAIL_TO` secret. Until the secrets exist, the site works normally and
 simply sends nothing.
@@ -401,6 +404,7 @@ Privacy rules are in `watch/privacy.py`.
 | `watch/journey.py` | Structured journeys and stated nationality |
 | `watch/mailer.py`, `watch/alerts.py`, `tools/send_weekly.py` | Email: alerts and the Monday PDF |
 | `.github/workflows/weekly-bulletin.yml` | Sends the Monday bulletin |
+| `.github/workflows/test-email.yml`, `tools/test_alert.py` | Sends a [TEST] alert email on demand |
 | `.github/workflows/check-sources.yml`, `tools/check_sources.py` | Checks which official sources answer |
 | `watch/analyze.py` | Risk score and trends |
 | `watch/report.py`, `watch/dashboard.html` | Website, CSV and bulletin |
@@ -426,3 +430,4 @@ Privacy rules are in `watch/privacy.py`.
 | 2026-11-26 | Official press releases added as sources (PICA, JCF, JIS, CBP, ICE, DHS, DOJ, UK Border Force, Home Office, NCA, CBSA, Europol, Frontex, IOM, UNODC), read first and marked OFFICIAL, with a filter. A Monday one-page PDF bulletin by email and daily alert emails for new high-risk or Jamaica-linked incidents (ready; they start once the email secrets are added). Articles that fail to load are now retried instead of skipped. |
 | 2026-11-26 | Seizure fields (substance, confirmation, quantity and unit, standardised quantity, qualifier, concealment, shipment type, declared commodity, route, agency, other items, valuation, case development). Seizure totals now shown per substance and unit, never combined. |
 | 2026-11-26 | Source panel on every record: source type, original or republished, language, supporting sources, independent vs repeated reporting, review note, uncertainty / conflict note, correction history. "Reviewed" defined as checked against sources, not proven. |
+| 2026-11-26 | Email switched on. Test bulletin sent successfully. A **test-email** button added to send a [TEST] alert email on demand. |
