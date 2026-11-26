@@ -4,6 +4,27 @@ import sys
 import requests
 
 CANDIDATES = [
+    # --- embassies, high commissions, consulates and foreign ministries ---
+    ("US State travel", ["https://travel.state.gov/_res/rss/TAsTWs.xml"]),
+    ("US Emb Jamaica", ["https://jm.usembassy.gov/feed/", "https://jm.usembassy.gov/news-events/feed/"]),
+    ("US Emb T&T", ["https://tt.usembassy.gov/feed/"]),
+    ("US Emb Barbados", ["https://bb.usembassy.gov/feed/"]),
+    ("US Emb Bahamas", ["https://bs.usembassy.gov/feed/"]),
+    ("US Emb Haiti", ["https://ht.usembassy.gov/feed/"]),
+    ("US Emb DomRep", ["https://do.usembassy.gov/feed/"]),
+    ("US Emb Guyana", ["https://gy.usembassy.gov/feed/"]),
+    ("BHC Kingston", ["https://www.gov.uk/world/organisations/british-high-commission-kingston.atom",
+                      "https://www.gov.uk/search/news-and-communications.atom?world_locations%5B%5D=jamaica"]),
+    ("UKVI", ["https://www.gov.uk/search/news-and-communications.atom?organisations%5B%5D=uk-visas-and-immigration"]),
+    ("FCDO", ["https://www.gov.uk/search/news-and-communications.atom?organisations%5B%5D=foreign-commonwealth-development-office"]),
+    ("IRCC", ["https://api.io.canada.ca/io-server/gc/news/en/v2?dept=immigrationrefugeescitizenshipcanada&type=newsreleases&sort=publishedDate&orderBy=desc&pick=50&format=atom&atomtitle=IRCC"]),
+    ("Global Affairs CA", ["https://api.io.canada.ca/io-server/gc/news/en/v2?dept=departmentofforeignaffairstradeanddevelopment&type=newsreleases&sort=publishedDate&orderBy=desc&pick=50&format=atom&atomtitle=GAC"]),
+    ("EU Home Affairs", ["https://home-affairs.ec.europa.eu/node/2/rss_en", "https://home-affairs.ec.europa.eu/news_en"]),
+    ("EU Delegation JM", ["https://www.eeas.europa.eu/delegations/jamaica/news_en", "https://www.eeas.europa.eu/delegations/jamaica_en"]),
+    ("ETIAS/EES", ["https://travel-europe.europa.eu/news_en", "https://travel-europe.europa.eu/etias/news_en"]),
+    ("CARICOM", ["https://caricom.org/feed/", "https://caricom.org/category/press-releases/feed/"]),
+    ("Jamaica MFAFT", ["https://mfaft.gov.jm/feed/", "https://mfaft.gov.jm/jm/feed/", "https://mfaft.gov.jm/"]),
+    ("Can HC Jamaica", ["https://www.international.gc.ca/country-pays/jamaica-jamaique/kingston.aspx?lang=eng"]),
     ("US CBP", ["https://www.cbp.gov/rss/newsroom/national-media-release", "https://www.cbp.gov/rss/newsroom/media-releases",
                 "https://www.cbp.gov/newsroom/rss-feeds", "https://www.cbp.gov/newsroom/media-releases/all"]),
     ("UK Border Force", ["https://www.gov.uk/search/news-and-communications.atom?organisations%5B%5D=border-force"]),
@@ -32,6 +53,10 @@ CANDIDATES = [
               "https://api.io.canada.ca/io-server/gc/news/en/v2?dept=canadaborderservicesagency&type=newsreleases&sort=publishedDate&orderBy=desc&pick=50&format=atom&atomtitle=CBSA"]),
 ]
 PAGES = [
+    ("EU Home Affairs", "https://home-affairs.ec.europa.eu/news_en", "/news/"),
+    ("EU Delegation JM", "https://www.eeas.europa.eu/delegations/jamaica/news_en", "/delegations/jamaica/"),
+    ("ETIAS/EES", "https://travel-europe.europa.eu/news_en", "/news/"),
+    ("Jamaica MFAFT", "https://mfaft.gov.jm/", "/news"),
     ("Frontex", "https://www.frontex.europa.eu/media-centre/news/news-release/", "/media-centre/news/news-release/"),
     ("US ICE", "https://www.ice.gov/newsroom", "/news/releases/"),
     ("US DHS", "https://www.dhs.gov/news-releases/press-releases", "/news/20"),
