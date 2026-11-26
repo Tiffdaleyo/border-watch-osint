@@ -50,7 +50,7 @@ To run it by hand: open the **Actions** tab, choose **daily-border-watch-osint**
 | Source | What it gives | Notes |
 |---|---|---|
 | **Official press releases** (read first, marked **OFFICIAL**) | Releases published by the agencies themselves | PICA, Jamaica Constabulary Force, Jamaica Information Service, US CBP, US ICE, US DHS, US Department of Justice, UK Border Force, UK Home Office, UK National Crime Agency, Canada Border Services Agency, Europol, Frontex, IOM, UNODC, UK Visas and Immigration and EU Migration and Home Affairs. Every release must still match a topic, since most police news is not border-related. |
-| **Embassies, high commissions and foreign ministries** (marked **OFFICIAL**, shown under *Official Updates → Embassies & high commissions*) | Releases from diplomatic missions and foreign ministries | US Department of State (travel), UK government news for Jamaica, Barbados, Trinidad and Tobago, the Bahamas, Guyana, Haiti, the Dominican Republic and Belize, UK Foreign Office (FCDO), Global Affairs Canada. Only border-related releases are kept. Add more in `config.yaml` with `kind: mission`. |
+| **Embassies, high commissions and foreign ministries** (marked **OFFICIAL**, shown under *Official Updates → Embassies & high commissions*) | Releases from diplomatic missions and foreign ministries | US Department of State travel advisories (sorted by their title only, because the long advisory text mentions many unrelated topics), UK government news for Jamaica, Barbados, Trinidad and Tobago, the Bahamas, Guyana, Haiti, the Dominican Republic and Belize, UK Foreign Office (FCDO), Global Affairs Canada. Only border-related releases are kept. Add more in `config.yaml` with `kind: mission`. |
 | Google News | Headlines and links | 9 editions: US, UK, Canada and Nigeria (English); Mexico, Colombia and Spain (Spanish); France (French); Brazil (Portuguese). About 100 English searches plus Spanish, French and Portuguese ones, listed in `config.yaml`. |
 | GDELT | A free global news index | Extra coverage. If it is busy, the run skips it and carries on. |
 | Extra RSS feeds | Optional | Add any feed in `config.yaml` (`rss_feeds`, or `official_feeds` to mark it official). |
@@ -87,7 +87,7 @@ smuggling network is in both Document & Identity Fraud and Migration & Facilitat
 | **Human Trafficking** | Human trafficking (investigations, exploitation type, victim assistance, outcomes) |
 | **Citizenship & Residence** | Citizenship and naturalisation (including citizenship by investment); application fraud (sham marriage, false applications, fake consultants) |
 | **Border Integrity** | Corruption and insider facilitation; INTERPOL and watch lists (wanted persons); border security; aviation security; **stowaways** (people hidden on aircraft, ships or containers); terrorism and sanctions |
-| **Policy & Systems** | Visa and entry policy; border technology (ETIAS, EES, ETAs, e-gates, biometrics); health travel rules |
+| **Policy & Systems** | Visa and entry policy; **travel advisories** (for example the US State Department's Level 1 to 4 advisories); border technology (ETIAS, EES, ETAs, e-gates, biometrics); health travel rules |
 | **Seizures & Contraband** | Drugs; firearms; cash couriers; wildlife; cargo operations |
 
 **Choices to explain to the team:**
@@ -309,7 +309,7 @@ count of reports beside each one.
 | **Citizenship & Residence** | Citizenship policy, citizenship by investment, application fraud |
 | **Border Security** | Border Integrity group: watch lists and INTERPOL, aviation security, stowaways, corruption, terrorism |
 | **Seizures & Contraband** | Narcotics, firearms, cash, wildlife and cargo seizures worldwide, with totals by substance and unit |
-| **Visa & Entry Rules** | Policy & Systems group: visa and entry rules, travel authorisations, border technology, health rules |
+| **Visa & Entry Rules** | Policy & Systems group: visa and entry rules, travel advisories, travel authorisations, border technology, health rules |
 | **Official Updates** | Only official releases, with tabs for **Agencies** and **Embassies & high commissions**, plus a "Who published" chart |
 
 A report about several subjects appears in every section it belongs to. For example, a fake passport used by a
@@ -472,4 +472,4 @@ Privacy rules are in `watch/privacy.py`.
 | 2026-11-26 | Source panel on every record: source type, original or republished, language, supporting sources, independent vs repeated reporting, review note, uncertainty / conflict note, correction history. "Reviewed" defined as checked against sources, not proven. |
 | 2026-11-26 | Email switched on. Test bulletin sent successfully. A **test-email** button added to send a [TEST] alert email on demand. |
 | 2026-11-26 | Alerts limited to stories dated within the last 7 days, after the first live alert listed 145 incidents from the backlog. |
-| 2026-11-26 | Site organised into **sections** (Overview, Passports & Documents, Immigration & Irregular Movement, Human Trafficking, Citizenship & Residence, Border Security, Seizures & Contraband, Visa & Entry Rules, Official Updates), each with its own link, quick sub-topic buttons, relevant charts and a download of the current view. New **Stowaways** topic. Embassy, high commission and foreign-ministry sources added. Fixed: English figures such as "13.795 kg" were read as 13,795 kg. |
+| 2026-11-26 | Site organised into **sections** (Overview, Passports & Documents, Immigration & Irregular Movement, Human Trafficking, Citizenship & Residence, Border Security, Seizures & Contraband, Visa & Entry Rules, Official Updates), each with its own link, quick sub-topic buttons, relevant charts and a download of the current view. New **Stowaways** and **Travel advisories** topics. Embassy, high commission and foreign-ministry sources added. Fixed: English figures such as "13.795 kg" were read as 13,795 kg. |

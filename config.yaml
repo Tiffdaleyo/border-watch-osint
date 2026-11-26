@@ -157,7 +157,7 @@ sources:
     - {name: "EU Migration and Home Affairs", url: "https://home-affairs.ec.europa.eu/node/2/rss_en", country: "European Union"}
     # Embassies, high commissions, consulates and foreign ministries (kind: mission). They show under
     # "Official Updates > Embassies & high commissions". Only border-related releases are kept.
-    - {name: "US Department of State (travel)", kind: mission, url: "https://travel.state.gov/_res/rss/TAsTWs.xml", country: "United States"}
+    - {name: "US Department of State (travel advisories)", kind: mission, title_only: true, url: "https://travel.state.gov/_res/rss/TAsTWs.xml", country: "United States"}
     - {name: "UK government in the Caribbean", kind: mission, url: "https://www.gov.uk/search/news-and-communications.atom?world_locations%5B%5D=jamaica&world_locations%5B%5D=barbados&world_locations%5B%5D=trinidad-and-tobago&world_locations%5B%5D=the-bahamas&world_locations%5B%5D=guyana&world_locations%5B%5D=haiti&world_locations%5B%5D=dominican-republic&world_locations%5B%5D=belize", country: "United Kingdom"}
     - {name: "UK Foreign Office (FCDO)", kind: mission, url: "https://www.gov.uk/search/news-and-communications.atom?organisations%5B%5D=foreign-commonwealth-development-office", country: "United Kingdom"}
     - {name: "Global Affairs Canada", kind: mission, url: "https://api.io.canada.ca/io-server/gc/news/en/v2?dept=departmentofforeignaffairstradeanddevelopment&type=newsreleases&sort=publishedDate&orderBy=desc&pick=50&format=atom&atomtitle=GAC", country: "Canada"}

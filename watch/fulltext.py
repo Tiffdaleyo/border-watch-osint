@@ -166,7 +166,7 @@ def read_articles(events, cfg, risk_words, focus, budget_minutes=8, limit=400, w
     """Reads up to `limit` unread reports from the last 30 days, Caribbean and incidents first, within the time budget."""
     cutoff = (dt.date.today() - dt.timedelta(days=30)).isoformat()
     # unread reports, plus reports read before the fuller record existed (version 1), read again once
-    todo = [e for e in events if e.get("date", "") >= cutoff and "example.org" not in e.get("url", "")
+    todo = [e for e in events if e.get("date", "") >= cutoff and "example.org" not in e.get("url", "") and not e.get("title_only")
             and (not (e.get("article") or {}).get("tried")
                  or ((e.get("article") or {}).get("read") and (e.get("article") or {}).get("v", 1) < 4))]
     if only_direct:      # skip Google News links (used when Google is limiting requests)

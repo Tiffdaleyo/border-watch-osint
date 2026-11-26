@@ -24,7 +24,7 @@ PRIMARY_ORDER = [
     "Corruption and insider facilitation", "Drug trafficking", "Firearms and ammunition", "Terrorism and sanctions",
     "Cash couriers", "Wildlife smuggling", "Aviation security", "Stowaways", "Cargo operations", "INTERPOL and watch lists",
     "Irregular migration", "Immigration enforcement", "Deportation and returns", "Citizenship and naturalisation",
-    "Border security", "Border technology", "Visa and entry policy", "Health travel rules",
+    "Border security", "Border technology", "Visa and entry policy", "Travel advisories", "Health travel rules",
 ]
 
 

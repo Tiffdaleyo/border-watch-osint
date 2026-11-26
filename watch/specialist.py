@@ -366,7 +366,7 @@ SECTIONS = [
     ("Citizenship / residence fraud", {"Citizenship and naturalisation", "Application fraud"}),
     ("Border integrity", {"Corruption and insider facilitation", "Border security", "Aviation security", "Stowaways"}),
     ("Wanted-person interception", {"INTERPOL and watch lists"}),
-    ("Policy update", {"Visa and entry policy", "Border technology", "Health travel rules", "Citizenship and naturalisation"}),
+    ("Policy update", {"Visa and entry policy", "Travel advisories", "Border technology", "Health travel rules", "Citizenship and naturalisation"}),
 ]
 
 

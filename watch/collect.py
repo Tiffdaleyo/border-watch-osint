@@ -159,6 +159,9 @@ def official_sources(cfg):
         for it in res:
             it["official"] = True
             it["agency_country"] = feed.get("country", "")
+            if feed.get("title_only"):          # the summary is long boilerplate (e.g. travel advisories): sort by title
+                it["summary"] = ""
+                it["title_only"] = True
             if feed.get("kind") == "mission":   # embassy, high commission, consulate or foreign ministry
                 it["mission"] = True
         items += res

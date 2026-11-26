@@ -155,6 +155,11 @@ CATEGORIES = {
         "border agent* arrested", "officer* accepted", "colluding officer*", "corrupcion", "soborno*", "coima*",
         "funcionario* de aduana*", "funcionario* de migracion", "corruption", "pot-de-vin", "suborno*",
     ],
+    "Travel advisories": [
+        "travel advisory", "travel advisories", "travel advice", "do not travel", "reconsider travel",
+        "exercise increased caution", "exercise normal precautions", "advises against all travel",
+        "advises against all but essential travel",
+    ],
     "Stowaways": [
         "stowaway*", "stowed away", "stow away", "hidden in the wheel well", "wheel well", "landing gear compartment",
         "hidden aboard", "hiding aboard", "hidden on board", "found hiding in a container", "polizon*",
@@ -205,7 +210,7 @@ GROUPS = [
     ("Citizenship & Residence", ["Citizenship and naturalisation", "Application fraud"]),
     ("Border Integrity", ["Corruption and insider facilitation", "INTERPOL and watch lists", "Border security",
                           "Aviation security", "Stowaways", "Terrorism and sanctions"]),
-    ("Policy & Systems", ["Visa and entry policy", "Border technology", "Health travel rules"]),
+    ("Policy & Systems", ["Visa and entry policy", "Travel advisories", "Border technology", "Health travel rules"]),
     ("Seizures & Contraband", ["Drug trafficking", "Firearms and ammunition", "Cash couriers", "Wildlife smuggling",
                                "Cargo operations"]),
 ]
