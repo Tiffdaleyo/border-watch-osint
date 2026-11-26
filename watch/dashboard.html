@@ -9,7 +9,7 @@
   :root {
     --bg:#070d1a; --panel:#0e1729; --panel2:#132036; --line:#1e2b45; --ink:#e8edf6; --muted:#93a1bb; --dim:#64738f;
     --accent:#338ced; --high:#eb6263; --med:#d28e05; --low:#0aac23; --upd:#7d8aa5; --home:#f2c14e;
-    --g1:#338ced; --g2:#e76624; --g3:#00a888; --g4:#d28e05; --g5:#e24d8b; --g6:#9887ef;
+    --g1:#338ced; --g2:#e76624; --g3:#00a888; --g4:#d28e05; --g5:#e24d8b; --g6:#9887ef; --g7:#9fb43c;
     --r:14px;
   }
   * { box-sizing:border-box; }
@@ -111,6 +111,16 @@
   .lk-note { font-size:12px; color:var(--dim); margin-top:10px; }
   @media (max-width:1150px) { .lk-grid > * { grid-column:span 12 !important; } }
 
+  .nr { color:var(--dim); font-style:italic; }
+  .rv { font-size:10.5px; padding:1px 7px; border-radius:20px; background:var(--panel2); border:1px solid var(--line); color:var(--muted); white-space:nowrap; }
+  .rv.Reviewed, .rv.Corrected { color:#00a888; border-color:#00a888; } .rv.Awaiting { color:var(--home); border-color:#6b5a26; }
+  .eid { font-family:ui-monospace,Menlo,Consolas,monospace; font-size:11px; color:var(--muted); }
+  details.rec { font-size:12.5px; margin-top:6px; }
+  details.rec summary { cursor:pointer; color:var(--accent); font-size:12px; }
+  table.recT { border-collapse:collapse; margin-top:6px; width:100%; max-width:760px; }
+  table.recT th { text-align:left; color:var(--dim); font-weight:600; font-size:11.5px; padding:4px 10px 4px 0; vertical-align:top; white-space:nowrap; width:190px; }
+  table.recT td { padding:4px 0; color:#cfd8ea; vertical-align:top; }
+  table.recT a.rel { color:var(--accent); cursor:pointer; margin-right:8px; }
   footer { max-width:1480px; margin:0 auto; padding:0 22px 30px; font-size:11.5px; color:var(--dim); }
 
   @media (max-width:1150px) {
@@ -148,8 +158,10 @@
   <select id="fgroup"><option value="">All areas</option></select>
   <select id="ftopic"><option value="">All topics</option></select>
   <select id="fcountry"><option value="">All countries</option></select>
+  <select id="fmode"><option value="">All transport</option></select>
+  <select id="freview"><option value="">Any review status</option></select>
   <select id="flevel"><option value="">Incidents + updates</option><option value="Incident">Incidents only</option><option>High</option><option>Medium</option><option>Low</option><option value="Update">Updates only</option></select>
-  <input type="search" id="q" placeholder="Search headlines…">
+  <input type="search" id="q" placeholder="Search headlines or event ID…">
   <button class="reset" id="reset">Reset</button>
 </div></div>
 
@@ -185,16 +197,16 @@
     </section>
 
     <section class="card s8">
-      <h2>Activity over time</h2><div class="sub">Reports per <span id="unit">week</span>, by area</div>
+      <h2>Activity over time</h2><div class="sub">Reports per <span id="unit">week</span>, by main group (of the primary category)</div>
       <div id="trend" class="chart" style="height:300px"></div>
     </section>
     <section class="card s4">
-      <h2>Risk mix by area</h2><div class="sub">Click an area to filter</div>
+      <h2>Risk mix by main group</h2><div class="sub">By primary category · click a group to filter</div>
       <div id="riskmix" class="chart" style="height:300px"></div>
     </section>
 
     <section class="card s5">
-      <h2>Topics</h2><div class="sub">Coloured by area · click to filter</div>
+      <h2>Topics</h2><div class="sub">Coloured by main group · a report can carry several topics · click to filter</div>
       <div id="topics" class="chart" style="height:420px"></div>
     </section>
     <section class="card s7">
@@ -211,8 +223,17 @@
       <div id="airports" class="chart" style="height:300px"></div>
     </section>
 
+    <section class="card s7">
+      <h2>Seizures &amp; contraband</h2><div class="sub">Drugs, firearms, cash, wildlife and cargo incidents · weight and outcome as stated</div>
+      <ul class="feed" id="seizures" style="max-height:330px"></ul>
+    </section>
+    <section class="card s5">
+      <h2>Transport mode</h2><div class="sub">As stated in the report · click to filter</div>
+      <div id="modes" class="chart" style="height:330px"></div>
+    </section>
+
     <section class="card s6">
-      <h2>Visa, entry &amp; policy changes</h2><div class="sub">New rules, visa requirements, travel bans, health entry rules, citizenship policy</div>
+      <h2>Policy &amp; systems</h2><div class="sub">Visa requirements, entry rules, travel authorisations, border technology, health entry rules</div>
       <ul class="feed" id="policy" style="max-height:330px"></ul>
     </section>
     <section class="card s6">
@@ -224,7 +245,7 @@
       <div class="head"><div><h2>All reports</h2><div class="sub" id="shown"></div></div>
         <div class="dl"><select id="fsort"><option value="region">__REGION__ first</option><option value="date">Newest first</option><option value="risk">Highest risk first</option></select>
           <a href="events.csv">⬇ CSV</a><a href="bulletin.html">Weekly bulletin</a></div></div>
-      <div class="tablewrap"><table class="rep"><thead><tr><th>Date</th><th>Risk</th><th>Report</th><th class="hide-m">Topics</th><th class="hide-m">Places</th></tr></thead><tbody id="rows"></tbody></table></div>
+      <div class="tablewrap"><table class="rep"><thead><tr><th>Published</th><th>Risk</th><th>Report</th><th class="hide-m">Topics</th><th class="hide-m">Places</th></tr></thead><tbody id="rows"></tbody></table></div>
     </section>
   </div>
 
@@ -243,31 +264,31 @@ const $ = id => document.getElementById(id);
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 
-/* areas (groups of topics) with fixed colours: colour follows the area, never its rank */
-const GROUPS = [
-  ["Documents & identity", ["Passport fraud", "Visa and permit fraud", "Identity and document fraud", "Impostors"]],
-  ["Migration", ["Irregular migration", "Migrant smuggling", "Immigration enforcement", "Deportation and returns"]],
-  ["Human trafficking", ["Human trafficking"]],
-  ["Drugs & contraband", ["Drug trafficking", "Cash couriers", "Wildlife smuggling", "Cargo operations"]],
-  ["Security & watch lists", ["Firearms and ammunition", "Terrorism and sanctions", "Aviation security", "Border security", "INTERPOL and watch lists"]],
-  ["Policy & citizenship", ["Visa and entry policy", "Citizenship and naturalisation", "Health travel rules"]],
-];
-const GCOL = ["--g1", "--g2", "--g3", "--g4", "--g5", "--g6"].map(css);
+/* the seven main groups (set in watch/extract.py) with fixed colours: colour follows the group, never its rank */
+const GROUPS = DATA.groups;
+const GCOL = ["--g1", "--g2", "--g3", "--g4", "--g5", "--g6", "--g7"].map(css);
 const topicGroup = {}; GROUPS.forEach(([g, ts], i) => ts.forEach(t => topicGroup[t] = i));
-const groupOf = e => Math.min(...e.categories.map(c => topicGroup[c] ?? 5));
+const gi = name => GROUPS.findIndex(g => g[0] === name);
+const groupOf = e => topicGroup[e.primary_category] ?? Math.min(...e.categories.map(c => topicGroup[c] ?? 5));
+const NR = '<span class="nr">Not reported</span>';
+const val = v => (Array.isArray(v) ? v.length : v) ? esc(Array.isArray(v) ? v.join("; ") : v) : NR;
+const modeKey = m => (m || "").startsWith("Mixed") ? "Mixed" : (m || "Not reported");
 const LV = {High: css("--high"), Medium: css("--med"), Low: css("--low"), Update: css("--upd")};
 const INK = css("--ink"), MUTED = css("--muted"), LINE = css("--line");
 
 $("updated").textContent = DATA.updated;
 $("demo").hidden = !DATA.demo;
 const today = DATA.updated.slice(0, 10);
-const ev = DATA.events.map(e => ({...e, g: groupOf(e)}));
+const ev = DATA.events.map(e => ({tags: [], groups: [], related: [], home: false, region: false, watch: false, review_status: "Automatically collected", ...e, g: groupOf(e)}));
 
 /* filters: every chart, list and number below follows these */
-const F = {period: 90, scope: "", group: "", topic: "", country: "", level: "", q: ""};
+const F = {period: 90, scope: "", group: "", topic: "", country: "", level: "", mode: "", review: "", q: ""};
 GROUPS.forEach(([g], i) => $("fgroup").add(new Option(g, i)));
 [...new Set(ev.flatMap(e => e.categories))].sort().forEach(v => $("ftopic").add(new Option(v, v)));
 [...new Set(ev.flatMap(e => e.countries))].sort().forEach(v => $("fcountry").add(new Option(v, v)));
+["Air passenger", "Air cargo", "Maritime cargo", "Small vessel", "Land", "Postal / courier", "Mixed", "Not reported"].forEach(v => $("fmode").add(new Option(v, v)));
+["Automatically collected", "Awaiting review", "Reviewed", "Corrected"].forEach(v => $("freview").add(new Option(v, v)));
+const byEid = Object.fromEntries(ev.map(e => [e.event_id, e]));
 
 function segment(id, key) {
   $(id).querySelectorAll("button").forEach(b => b.onclick = () => {
@@ -280,11 +301,16 @@ $("fgroup").onchange = e => { F.group = e.target.value; update(); };
 $("ftopic").onchange = e => { F.topic = e.target.value; update(); };
 $("fcountry").onchange = e => { F.country = e.target.value; update(); };
 $("flevel").onchange = e => { F.level = e.target.value; update(); };
+$("fmode").onchange = e => { F.mode = e.target.value; update(); };
+$("freview").onchange = e => { F.review = e.target.value; update(); };
+function findEvent(id) { F.q = id.toLowerCase(); $("q").value = id; F.period = 0;
+  document.querySelectorAll("#period button").forEach(b => b.classList.toggle("on", b.dataset.v === "0")); update();
+  document.querySelector(".tablewrap").scrollIntoView({behavior: "smooth"}); }
 $("q").oninput = e => { F.q = e.target.value.toLowerCase(); update(); };
 $("fsort").onchange = () => renderTable(current);
 $("reset").onclick = () => {
-  Object.assign(F, {period: 90, scope: "", group: "", topic: "", country: "", level: "", q: ""});
-  ["fgroup", "ftopic", "fcountry", "flevel"].forEach(id => $(id).value = ""); $("q").value = "";
+  Object.assign(F, {period: 90, scope: "", group: "", topic: "", country: "", level: "", mode: "", review: "", q: ""});
+  ["fgroup", "ftopic", "fcountry", "flevel", "fmode", "freview"].forEach(id => $(id).value = ""); $("q").value = "";
   document.querySelectorAll("#period button").forEach(b => b.classList.toggle("on", b.dataset.v === "90"));
   document.querySelectorAll("#scope button").forEach(b => b.classList.toggle("on", b.dataset.v === ""));
   update();
@@ -298,12 +324,13 @@ function filtered(ignorePeriod) {
     && (F.group === "" || e.categories.some(c => topicGroup[c] === +F.group))
     && (!F.topic || e.categories.includes(F.topic)) && (!F.country || e.countries.includes(F.country))
     && (!F.level || e.level === F.level || e.kind === F.level)
-    && (!F.q || (e.title + " " + e.summary + " " + (e.lead || "") + " " + e.source + " " + e.countries.join(" ") + " " + ((e.article || {}).terms || []).join(" ")).toLowerCase().includes(F.q)));
+    && (!F.mode || modeKey(e.transport_mode) === F.mode) && (!F.review || e.review_status === F.review)
+    && (!F.q || (e.event_id + " " + e.title + " " + (e.summary || "") + " " + (e.lead || "") + " " + e.source + " " + e.countries.join(" ") + " " + (e.terms || []).join(" ")).toLowerCase().includes(F.q)));
 }
 
 /* charts */
 const charts = {};
-["map", "trend", "riskmix", "topics", "countries", "routes", "airports"].forEach(id => charts[id] = echarts.init($(id)));
+["map", "trend", "riskmix", "topics", "countries", "routes", "airports", "modes"].forEach(id => charts[id] = echarts.init($(id)));
 window.addEventListener("resize", () => Object.values(charts).forEach(c => c.resize()));
 const TT = {backgroundColor: "#0b1426", borderColor: "#2c3d61", textStyle: {color: INK, fontSize: 12}, extraCssText: "border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.4)"};
 const AX = {axisLine: {lineStyle: {color: LINE}}, axisTick: {show: false}, axisLabel: {color: MUTED, fontSize: 11}, splitLine: {lineStyle: {color: "#17233a"}}};
@@ -397,7 +424,7 @@ function drawRiskMix(rows) {
       itemStyle: {color: LV[l], borderColor: "#0e1729", borderWidth: 1},
       data: names.map(n => rows.filter(e => GROUPS[e.g][0] === n && e.level === l).length)})),
   }, true);
-  charts.riskmix.off("click"); charts.riskmix.on("click", p => setFilter("group", GROUPS.findIndex(g => g[0] === p.name), "fgroup"));
+  charts.riskmix.off("click"); charts.riskmix.on("click", p => setFilter("group", gi(p.name), "fgroup"));
 }
 
 function kpis(rows) {
@@ -420,9 +447,32 @@ function kpis(rows) {
 
 const chip = e => `<span class="chip ${e.level}">${e.level === "Update" ? "Update" : e.watch ? "Watch list" : e.level + " " + e.score}</span>`;
 const feedItem = e => `<li><a class="t" href="${esc(e.source_url || e.url)}" target="_blank" rel="noopener">${esc(e.title)}</a>
-  <div class="meta">${chip(e)}${e.home ? `<span class="jm">${esc(DATA.home.toUpperCase())}</span>` : ""}<span>${esc(e.date)}</span><span>${esc(e.source)}</span></div></li>`;
+  <div class="meta">${chip(e)}${e.home ? `<span class="jm">${esc(DATA.home.toUpperCase())}</span>` : ""}<span>${esc(e.date)}</span><span>${esc(e.source)}</span>${e.weight_kg ? `<span>${e.weight_kg} kg</span>` : ""}${e.outcome ? `<span>${esc(e.outcome)}</span>` : ""}<a class="eid" href="javascript:void 0" onclick="findEvent('${esc(e.event_id)}')">${esc(e.event_id)}</a></div></li>`;
 const feed = (id, rows, empty) => $(id).innerHTML = rows.length ? rows.slice(0, 25).map(feedItem).join("") : `<li class="empty">${empty}</li>`;
 const rank = {High: 0, Medium: 1, Low: 2, Update: 3};
+
+/* the full event record; anything the report does not state shows as "Not reported" */
+function record(e) {
+  const loc = e.location || {};
+  const q = e.event_date ? `${esc(e.event_date)} <span class="nr">(${esc(e.event_date_quality)})</span>` : `${NR} <span class="nr">(unknown)</span>`;
+  const src = (e.sources || [{publisher: e.source, url: e.source_url || e.url, date: e.date}]).map(s => `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.publisher || "link")}</a> <span class="nr">${esc(s.date || "")}</span>`).join("<br>");
+  const rel = (e.related || []).filter(id => byEid[id]).map(id => `<a class="rel" onclick="findEvent('${esc(id)}')" title="${esc(byEid[id].title)}">${esc(id)}</a>`).join("");
+  const rows = [
+    ["Event ID", esc(e.event_id)], ["Title", esc(e.title)], ["Summary", val(e.summary_text || e.lead)],
+    ["Primary category", val(e.primary_category)], ["Additional tags", val(e.tags)], ["Main group(s)", val(e.groups)],
+    ["Event date", q], ["Publication date", val(e.date)], ["First captured", val(e.first_seen)], ["Last updated", val(e.last_updated)],
+    ["Country / territory", val(e.countries)], ["City", val(loc.cities)], ["Airport", val(e.airports)], ["Seaport", val(loc.ports)],
+    ["Border crossing", val(loc.crossings)], ["Route (as stated)", (e.origin || e.destination) ? `${val(e.origin)} → ${val(e.destination)}` : NR],
+    ["Caribbean connection", (e.caribbean_connection || []).length ? val(e.caribbean_connection) : "None identified"],
+    ["Jamaica connection", (e.jamaica_connection || []).length ? val(e.jamaica_connection) : "None identified"],
+    ["Transport mode", val(e.transport_mode)], ["Document types", val(e.document_types)], ["Reporting agency", val(e.agencies)],
+    ["Reported outcome", e.kind === "Update" ? '<span class="nr">Not applicable (update, not an incident)</span>' : val(e.outcome)],
+  ];
+  if (e.categories.includes("Human trafficking")) rows.push(["Exploitation type", val(e.exploitation)], ["Victim assistance", val(e.victim_assistance)]);
+  rows.push(["Review status", esc(e.review_status) + (e.review_note ? ` <span class="nr">· ${esc(e.review_note)}</span>` : "")],
+            ["Sources", src || NR], ["Related events", rel || '<span class="nr">None found</span>']);
+  return `<details class="rec"><summary>Full record</summary><table class="recT">${rows.map(([k, v]) => `<tr><th>${k}</th><td>${v}</td></tr>`).join("")}</table></details>`;
+}
 
 function renderTable(rows) {
   const so = $("fsort").value;
@@ -437,8 +487,9 @@ function renderTable(rows) {
     return `<tr class="${e.home ? "home" : ""}"><td style="white-space:nowrap;color:${MUTED}">${esc(e.date)}</td><td>${chip(e)}</td>
       <td><a href="${esc(e.source_url || e.url)}" target="_blank" rel="noopener">${esc(e.title)}</a>
       ${e.lead ? `<div style="font-size:12.5px;color:${MUTED};margin-top:3px">${esc(e.lead)}</div>` : ""}
-      <div class="meta"><span>${esc(e.source)}</span>${(e.article || {}).read ? '<span title="Facts taken from the full article" style="color:#00a888">✓ full article read</span>' : ""}${(e.article || {}).outcome && e.kind !== "Update" ? `<span>Outcome: ${esc(e.article.outcome)}${e.article.sentence ? " (" + esc(e.article.sentence) + ")" : ""}</span>` : ""}${((e.article || {}).agencies || []).length ? `<span>Agencies: ${esc(e.article.agencies.join(", "))}</span>` : ""}${extra ? `<span>${extra}</span>` : ""}</div>
-      ${e.reasons.length ? `<details class="why"><summary>Why this score</summary>${e.reasons.map(esc).join("<br>")}</details>` : ""}</td>
+      <div class="meta"><span class="eid">${esc(e.event_id)}</span><span class="rv ${esc((e.review_status || "").split(" ")[0])}">${esc(e.review_status)}</span><span>${esc(e.source)}${(e.sources || []).length > 1 ? ` +${e.sources.length - 1} more` : ""}</span>${e.read ? '<span title="Facts taken from the full article" style="color:#00a888">✓ full article read</span>' : ""}${e.outcome ? `<span>Outcome: ${esc(e.outcome)}${e.sentence ? " (" + esc(e.sentence) + ")" : ""}</span>` : ""}${extra ? `<span>${extra}</span>` : ""}</div>
+      ${e.reasons.length ? `<details class="why"><summary>Why this score</summary>${e.reasons.map(esc).join("<br>")}</details>` : ""}
+      ${record(e)}</td>
       <td class="hide-m">${e.categories.map(c => `<span class="tag"><span class="gdot" style="background:${GCOL[topicGroup[c] ?? 5]}"></span>${esc(c)}</span>`).join("")}</td>
       <td class="hide-m">${[...e.countries, ...e.airports].map(p => `<span class="tag">${esc(p)}</span>`).join("")}</td></tr>`;
   }).join("") || `<tr><td colspan="5" class="empty">No reports match these filters.</td></tr>`;
@@ -455,7 +506,9 @@ function update() {
   hbar(charts.routes, count(current.filter(e => e.origin || e.destination), e => [`${e.origin || "?"} → ${e.destination || "?"}`]).slice(0, 10), () => css("--g6"));
   hbar(charts.airports, count(current, e => e.airports).slice(0, 10), () => css("--g1"));
   feed("priority", current.filter(e => e.level === "High" || e.home).sort((a, b) => (rank[a.level] - rank[b.level]) || b.date.localeCompare(a.date)), "Nothing high-risk in this view.");
-  feed("policy", current.filter(e => e.kind === "Update" && GROUPS[5][1].some(t => e.categories.includes(t))).sort((a, b) => b.date.localeCompare(a.date)), "No policy changes in this view.");
+  feed("policy", current.filter(e => e.kind === "Update" && (e.groups || []).includes("Policy & Systems")).sort((a, b) => b.date.localeCompare(a.date)), "No policy changes in this view.");
+  feed("seizures", current.filter(e => e.kind === "Incident" && (e.groups || []).includes("Seizures & Contraband")).sort((a, b) => (b.home - a.home) || (rank[a.level] - rank[b.level]) || b.date.localeCompare(a.date)), "No seizures in this view.");
+  hbar(charts.modes, count(current.filter(e => e.kind === "Incident"), e => [modeKey(e.transport_mode)]), m => m === "Not reported" ? css("--upd") : css("--g7"), m => setFilter("mode", m, "fmode"), F.mode);
   feed("watch", current.filter(e => e.watch), "No hits. Add names or terms to the watch list in config.yaml.");
   renderTable(current);
   const act = Object.entries(F).filter(([k, v]) => v !== "" && k !== "period").length;

@@ -81,7 +81,17 @@ sources:
            "outbreak travel restrictions", "airport health screening", "entry requirements vaccination",
            # cargo operations
            "air cargo drugs seized", "container seized cocaine", "misdeclared shipment customs", "contraband seized customs Jamaica",
-           "Kingston Wharves seized", "courier package drugs seized", "free zone transshipment seized"]
+           "Kingston Wharves seized", "courier package drugs seized", "free zone transshipment seized",
+           # supporting-document, digital identity and application fraud
+           "fake bank statements visa", "fake supporting documents visa application", "deepfake identity fraud passport",
+           "face morphing passport photo", "fake e-visa website scam", "sham marriage immigration arrested",
+           "fake immigration consultant arrested",
+           # corruption and insider facilitation
+           "customs officer arrested bribe", "immigration officer arrested bribery", "corrupt border officials smuggling",
+           # human trafficking investigations and victim assistance
+           "human trafficking victims rescued", "forced labour trafficking arrested", "trafficking Caribbean victims",
+           # border technology
+           "e-gates airport biometric", "biometric border control"]
       es: ["cocaína incautada aeropuerto", "contenedor cocaína incautado", "armas incautadas aduana",
            "dinero no declarado aeropuerto", "migración irregular", "nuevos requisitos de visa", "exigencia de visa", "notificación roja Interpol",
            "migrantes interceptados", "pasaportes falsos detenido", "pasaporte falso aeropuerto", "red de falsificación de documentos",

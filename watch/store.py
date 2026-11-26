@@ -43,6 +43,14 @@ def merge(existing, new):
             srcs.discard(old.get("source", ""))
             srcs.discard("")
             old["other_sources"] = sorted(srcs)
+            # keep every publisher's link and date (up to 10) so the record lists all sources
+            if old.get("sources") is None:
+                old["sources"] = [{"publisher": old.get("source", ""), "url": old.get("source_url") or old.get("url", ""),
+                                   "date": old.get("date", "")}]
+            if ev.get("url") and all(s.get("url") != ev["url"] and s.get("publisher") != ev.get("source")
+                                     for s in old["sources"]) and len(old["sources"]) < 10:
+                old["sources"].append({"publisher": ev.get("source", ""), "url": ev["url"], "date": ev.get("date", "")})
+                old["last_updated"] = ev.get("first_seen", "")
             continue
         by_id[ev["id"]] = ev
         added += 1

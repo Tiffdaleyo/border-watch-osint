@@ -17,7 +17,7 @@ import yaml
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 
-from watch import analyze, collect, demo, extract, fulltext, report, store  # noqa: E402
+from watch import analyze, collect, demo, extract, fulltext, record, report, store  # noqa: E402
 
 
 def main():
@@ -84,10 +84,27 @@ def main():
         fulltext.apply_article(ev)
         analyze.score_event(ev, cfg.get("risk") or {}, site.get("home_places", []), site.get("region_countries", []),
                              site.get("region_words", []))
+    # the full event record: ID, dates, location, connections, transport, outcome, review status, sources, related
+    reviews = record.load_reviews(os.path.join(HERE, "reviews.yaml"))
+    record.assign_ids(events)
+    today = dt.date.today().isoformat()
+    for ev in events:
+        before = (ev.get("review_status"), ev.get("outcome"), ev.get("transport_mode"), ev.get("event_date"))
+        record.build(ev, site, reviews)
+        after = (ev.get("review_status"), ev.get("outcome"), ev.get("transport_mode"), ev.get("event_date"))
+        if not ev.get("last_updated"):
+            ev["last_updated"] = ev.get("first_seen", today)
+        elif before[0] is not None and before != after:
+            ev["last_updated"] = today
+        if (ev.get("article") or {}).get("read_on", "") > ev["last_updated"]:
+            ev["last_updated"] = ev["article"]["read_on"]
+    record.related(events)
     store.save(db_path, events)
 
     keep_from = (dt.date.today() - dt.timedelta(days=(cfg.get("run") or {}).get("report_days", 180))).isoformat()
-    shown = sorted([e for e in events if e.get("date", "") >= keep_from], key=lambda e: e["date"], reverse=True)
+    # reports marked "excluded" in reviews.yaml stay in the data file but are not shown or counted
+    shown = sorted([e for e in events if e.get("date", "") >= keep_from and e.get("review_status") != "Excluded"],
+                   key=lambda e: e["date"], reverse=True)
     summary = analyze.summarise(shown, cfg)
     report.write_dashboard(out_dir, shown, summary, cfg, added, demo=args.demo)
     report.write_csv(out_dir, shown)

@@ -23,7 +23,7 @@ CATEGORIES = {
     "Visa and permit fraud": [
         "visa fraud", "fake visa*", "forged visa*", "fraudulent visa*", "counterfeit visa*", "visa scam*",
         "fake work permit*", "fake residence permit*", "forged residence permit*", "fake green card*",
-        "sham marriage*", "marriage fraud", "fake visa stamp*", "visa racket", "visa* falsa*",
+        "fake visa stamp*", "visa racket", "visa* falsa*",
         "faux visa*", "fraude de visa*", "permiso* de residencia falso*",
     ],
     "Identity and document fraud": [
@@ -37,11 +37,27 @@ CATEGORIES = {
         "impostor*", "imposter*", "look-alike*", "lookalike*", "someone else's passport",
         "another person's passport", "suplantación de identidad", "usurpation d'identité",
     ],
+    "Supporting-document fraud": [
+        "fake bank statement*", "forged bank statement*", "fraudulent bank statement*", "fake employment letter*",
+        "fake job offer*", "fake invitation letter*", "fake sponsorship letter*", "fake supporting document*",
+        "forged supporting document*", "fraudulent supporting document*", "fake marriage certificate*",
+        "fake degree*", "fake diploma*", "fake academic certificate*", "forged academic certificate*",
+        "fake police certificate*", "fake police clearance*", "fake medical certificate*", "fake vaccination card*",
+        "fake vaccination certificate*", "fake COVID certificate*", "fake hotel booking*", "fake travel insurance",
+        "fake certificate of employment", "fake admission letter*", "fake acceptance letter*",
+    ],
+    "Digital identity fraud": [
+        "digital identity fraud", "synthetic identit*", "deepfake*", "deep fake*", "face morphing", "morphed photo*",
+        "morphing attack*", "biometric spoofing", "biometric fraud", "fake e-visa*", "fraudulent e-visa*",
+        "fake ESTA", "fake eTA", "fake ETIAS", "fake online visa*", "fraudulent online visa*", "fake visa website*",
+        "fake visa application website*", "visa website scam*", "fake digital ID*", "hacked visa system",
+        "fingerprint fraud", "fake biometric*",
+    ],
     "Migrant smuggling": [
         "migrant smuggl*", "human smuggl*", "people smuggl*", "smuggling of migrants", "smuggling migrants",
         "smuggled migrants", "alien smuggling", "tráfico de migrantes", "tráfico ilícito de migrantes",
-        "trafic de migrants", "passeur*", "filière d'immigration", "immigration clandestine", "contrabando de migrantes",
-        "illegal immigrants arrested", "irregular migrants intercepted", "undocumented migrants",
+        "trafic de migrants", "passeur*", "filière d'immigration", "contrabando de migrantes", "coyote*",
+        "smuggling network*", "smuggling ring*", "smuggling syndicate*",
     ],
     "Human trafficking": [
         "human trafficking", "people trafficking", "trafficking in persons", "trafficking victims", "sex trafficking",
@@ -65,9 +81,7 @@ CATEGORIES = {
         "visa requirement*", "new visa rule*", "visa rule*", "visa policy", "visa policies", "visa-free", "visa free",
         "visa waiver*", "visa exemption*", "visa on arrival", "visa ban*", "visa restriction*", "visa suspension",
         "suspends visa*", "suspended visa*", "visa fee*", "visa regime", "entry requirement*", "entry rule*",
-        "entry ban*", "travel ban*", "border closure", "closes border*", "reopens border*", "ETIAS", "Entry/Exit System",
-        "entry-exit system", "electronic travel authori*ation", "ETA scheme", "ESTA application*", "ESTA program*", "e-visa", "evisa",
-        "immigration policy", "immigration rules", "immigration law", "asylum policy", "work visa*", "student visa*",
+        "entry ban*", "travel ban*", "border closure", "closes border*", "reopens border*", "immigration policy", "immigration rules", "immigration law", "asylum policy", "work visa*", "student visa*",
         "requisito* de visa", "requisitos de entrada", "exencion de visa", "exigencia de visa", "visado* obligatorio*",
         "nuevas reglas migratorias", "regimen de visas", "obligation de visa", "exemption de visa", "regles d'entree",
         "exigencia de visto", "isencao de visto", "regras de entrada",
@@ -81,13 +95,21 @@ CATEGORIES = {
         "sale of passports", "birthright citizenship", "dual citizenship", "nacionalidad fraudulenta",
         "ciudadania falsa", "nationalite frauduleuse", "cidadania falsa",
     ],
+    "Application fraud": [
+        "sham marriage*", "marriage fraud", "marriage of convenience", "marriages of convenience", "asylum fraud",
+        "fraudulent application*", "false application*", "visa application fraud", "immigration application fraud",
+        "citizenship application fraud", "misrepresentation on", "fake immigration consultant*", "ghost consultant*",
+        "unlicensed immigration consultant*", "immigration scam*", "visa consultant* arrested", "fake job scheme*",
+        "matrimonio* de conveniencia", "matrimonio* falso*", "mariage* blanc*", "mariage* de complaisance",
+        "casamento* falso*",
+    ],
     "INTERPOL and watch lists": [
         "Interpol", "red notice*", "yellow notice*", "blue notice*", "SLTD", "stolen and lost travel document*",
         "terror watch list*", "terror watchlist*", "terrorist watch list*", "terrorist watchlist*", "security watch list*",
         "immigration watch list*", "border watch list*", "no-fly list*", "terror list", "terrorist list", "sanctions list",
         "alerta roja", "notificacion roja de interpol",
         "wanted fugitive*", "fugitive arrested", "fugitive captured", "most wanted", "extradit*", "Europol",
-        "Ameripol", "Frontex", "IMPACS", "advance passenger information", "passenger name record*",
+        "Ameripol", "Frontex", "IMPACS",
         "notificacion roja", "difusion roja", "notice rouge", "difusao vermelha", "extradicion", "extradition",
     ],
     "Deportation and returns": [
@@ -96,8 +118,7 @@ CATEGORIES = {
     ],
     "Border security": [
         "border security", "border control*", "border guard*", "border patrol", "border agency", "border force",
-        "border officer*", "coast guard", "e-gate*", "egate*", "biometric border*", "facial recognition",
-        "immigration officer*", "immigration officials", "PICA", "seguridad fronteriza", "control fronterizo",
+        "border officer*", "coast guard", "border breach*", "breach of the border", "immigration officer*", "immigration officials", "PICA", "seguridad fronteriza", "control fronterizo",
         "controle aux frontieres", "police aux frontieres", "seguranca de fronteira",
     ],
     "Drug trafficking": [
@@ -125,10 +146,17 @@ CATEGORIES = {
         "al-Qaeda", "radicali*ed", "sanctions list", "sanctioned individual*", "sanctions evasion", "OFAC",
         "terrorista*", "terroriste*",
     ],
+    "Corruption and insider facilitation": [
+        "corrupt customs", "corrupt immigration", "corrupt border", "corrupt officer*", "corrupt official*",
+        "bribe*", "bribery", "kickback*", "insider conspirac*", "insider threat", "insider help", "inside job",
+        "airport worker*", "airport employee*", "airport staff", "baggage handler*", "airline employee*",
+        "airline staff", "ramp agent*", "customs officer* arrested", "customs officer* charged",
+        "immigration officer* arrested", "immigration officer* charged", "border officer* arrested",
+        "border agent* arrested", "officer* accepted", "colluding officer*", "corrupcion", "soborno*", "coima*",
+        "funcionario* de aduana*", "funcionario* de migracion", "corruption", "pot-de-vin", "suborno*",
+    ],
     "Aviation security": [
-        "stowaway*", "airport security breach", "security breach at", "airport worker*", "airport employee*",
-        "airport staff", "baggage handler*", "airline employee*", "airline staff", "ramp agent*", "insider threat",
-        "unruly passenger*", "disruptive passenger*", "airside", "aviation security", "AVSEC", "bomb threat",
+        "stowaway*", "airport security breach", "security breach at", "unruly passenger*", "disruptive passenger*", "airside", "aviation security", "AVSEC", "bomb threat",
         "suspicious package", "polizon*", "passager clandestin", "clandestino em aviao",
     ],
     "Wildlife smuggling": [
@@ -136,6 +164,15 @@ CATEGORIES = {
         "exotic animal*", "exotic bird*", "protected species", "endangered species", "CITES", "parrots smuggled",
         "smuggled birds", "smuggled reptiles", "shark fins", "trafico de fauna", "trafico de especies",
         "trafic d'especes", "trafico de animais",
+    ],
+    "Border technology": [
+        "ETIAS", "Entry/Exit System", "entry-exit system", "electronic travel authori*ation*", "ETA scheme",
+        "ESTA application*", "ESTA program*", "e-visa", "evisa", "e-gate*", "egate*", "biometric border*",
+        "biometric screening", "biometric data", "facial recognition", "advance passenger information",
+        "passenger name record*", "digital travel credential*", "e-passport*", "biometric passport*",
+        "automated border control", "border management system", "travel authori*ation", "biometric entry",
+        "biometric exit", "fingerprint* at the border", "sistema biometrico", "pasaporte electronico",
+        "passeport biometrique",
     ],
     "Health travel rules": [
         "travel restriction*", "travel advisory", "travel advisories", "health screening", "entry screening",
@@ -153,6 +190,27 @@ CATEGORIES = {
     ],
 }
 
+# The seven main groups shown on the website. An event can carry several topics, so it can sit in several groups.
+GROUPS = [
+    ("Document & Identity Fraud", ["Passport fraud", "Visa and permit fraud", "Identity and document fraud", "Impostors",
+                                   "Supporting-document fraud", "Digital identity fraud"]),
+    ("Migration & Facilitation", ["Irregular migration", "Migrant smuggling", "Immigration enforcement",
+                                  "Deportation and returns"]),
+    ("Human Trafficking", ["Human trafficking"]),
+    ("Citizenship & Residence", ["Citizenship and naturalisation", "Application fraud"]),
+    ("Border Integrity", ["Corruption and insider facilitation", "INTERPOL and watch lists", "Border security",
+                          "Aviation security", "Terrorism and sanctions"]),
+    ("Policy & Systems", ["Visa and entry policy", "Border technology", "Health travel rules"]),
+    ("Seizures & Contraband", ["Drug trafficking", "Firearms and ammunition", "Cash couriers", "Wildlife smuggling",
+                               "Cargo operations"]),
+]
+TOPIC_GROUP = {t: g for g, ts in GROUPS for t in ts}
+
+
+def groups_of(categories):
+    return [g for g, ts in GROUPS if any(c in ts for c in categories)]
+
+
 # Goods topics are kept only when the report is about a border, a journey or a shipment (not a street-level police
 # story), or when it names a country we focus on (the Caribbean, by default).
 BORDER_CONTEXT = [
@@ -163,15 +221,18 @@ BORDER_CONTEXT = [
     "douane*", "frontiere*", "vol", "aeroporto*", "alfandega*", "fronteira*", "navio*", "travel*", "entry",
 ]
 GOODS_TOPICS = {"Drug trafficking", "Cash couriers", "Firearms and ammunition", "Wildlife smuggling",
-                "Terrorism and sanctions", "Health travel rules", "Cargo operations"}
+                "Terrorism and sanctions", "Health travel rules", "Cargo operations",
+                "Corruption and insider facilitation", "Border technology"}
 
 # Topics that describe crime. Anything else (policy, security, deportation news) is an "Update", not an incident.
 CRIME_TOPICS = {"Passport fraud", "Visa and permit fraud", "Identity and document fraud", "Impostors",
+                "Supporting-document fraud", "Digital identity fraud", "Application fraud",
                 "Migrant smuggling", "Human trafficking", "Drug trafficking", "Cash couriers",
                 "Firearms and ammunition", "Wildlife smuggling"}
 # These count as an incident only when something happened (arrest, seizure, interception...).
 ACTION_TOPICS = {"Citizenship and naturalisation", "INTERPOL and watch lists", "Irregular migration",
-                 "Immigration enforcement", "Terrorism and sanctions", "Aviation security", "Cargo operations"}
+                 "Immigration enforcement", "Terrorism and sanctions", "Aviation security", "Cargo operations",
+                 "Corruption and insider facilitation"}
 # Broad topics: kept on their own only when something happened (arrest, interception...) or a place we watch is named.
 BROAD_TOPICS = {"Immigration enforcement", "Deportation and returns", "Border security"}
 
@@ -371,6 +432,10 @@ def find_count(rx, text):
 # main entry point
 # ---------------------------------------------------------------------------------------------
 _CONTEXT_RE = compile_words(BORDER_CONTEXT)
+_STRICT_RE = compile_words(["customs", "immigration", "airport*", "port", "ports", "seaport", "border*", "wharf",
+                            "wharves", "passport*", "visa*", "aduana*", "migracion", "aeropuerto*", "frontera*", "douane*",
+                            "aeroport*", "frontiere*", "alfandega*", "aeroporto*", "fronteira*", "ETIAS", "ESTA",
+                            "Entry/Exit System", "e-gate*", "traveller*", "traveler*", "passenger*"])
 _KG_RE = re.compile(r"(?<!\w)(\d[\d,\.]*)\s*(?:-\s*)?(kg|kgs|kilo|kilos|kilogram|kilograms|kilogrammes|tonnes?|tons?|"
                     r"lbs?|pounds)(?!\w)")
 
@@ -411,6 +476,10 @@ def extract(item, focus_countries=()):
     if not _CONTEXT_RE.search(folded) and not (set(countries) & set(focus_countries)):
         for k in GOODS_TOPICS:
             cats.pop(k, None)
+    # corruption or border technology on its own needs a clear border agency or place, not just "travel"
+    for k in ("Corruption and insider facilitation", "Border technology"):
+        if k in cats and len(cats) == 1 and not _STRICT_RE.search(folded):
+            cats.pop(k)
     # "Cargo operations" on its own needs something that happened or a crime word
     if set(cats) == {"Cargo operations"} and not actions:
         return None

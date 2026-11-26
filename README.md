@@ -47,7 +47,18 @@ python run.py --days 30   # real search, last 30 days
 - **Add a search phrase:** add it under `sources > google_news > queries` (and `gdelt > queries`) in `config.yaml`.
 - **Add an agency feed:** add `- {name: "Agency", url: "https://.../rss"}` under `rss_feeds`.
 - **Flag a name, company, vessel or route:** add it under `risk > watchlist`. Any matching report becomes High and appears in the "Watch list hits" box. The site is public, so only list things that are already public.
-- **Topics now covered:** passport, visa and document fraud; impostors; irregular migration; visa and entry rules; citizenship; INTERPOL and watch lists; deportations; border security; drug trafficking; cash couriers; firearms; terrorism and sanctions; aviation security; wildlife smuggling; health travel rules; cargo operations; migrant smuggling and human trafficking. Topic words live in `watch/extract.py` (CATEGORIES).
+- **Topics now covered**, in seven main groups (a report can carry several topics; human trafficking and migrant smuggling are separate and both are applied only when the report supports each):
+  - *Document & Identity Fraud*: passport fraud, visa and permit fraud, identity and document fraud (altered, counterfeit), impostors, supporting-document fraud, digital identity fraud
+  - *Migration & Facilitation*: irregular migration, migrant smuggling, immigration enforcement, deportation and returns
+  - *Human Trafficking*: trafficking investigations, with exploitation type and victim assistance when reported
+  - *Citizenship & Residence*: citizenship and naturalisation (incl. citizenship by investment), application fraud (sham marriage, false applications, fake consultants)
+  - *Border Integrity*: corruption and insider facilitation, INTERPOL and watch lists, border security, aviation security, terrorism and sanctions
+  - *Policy & Systems*: visa and entry policy, border technology (ETIAS, EES, ETAs, e-gates, biometrics), health travel rules
+  - *Seizures & Contraband*: drugs, firearms, cash couriers, wildlife, cargo operations
+
+  Topic words live in `watch/extract.py` (CATEGORIES); the groups are in GROUPS in the same file.
+- **Reviewing reports:** open `reviews.yaml`, press the pencil, add the report's Event ID with `reviewed`, `corrected` or `excluded` (instructions are inside the file), then Commit changes. The site shows it after the next daily run. Excluded reports are hidden from the site but kept in the data.
+- **The event record:** every report has a permanent ID (BWO-2026-0001), primary category and tags, event date (exact, approximate or unknown) and publication date, first captured and last updated, location (country, city, airport, seaport, border crossing), Caribbean and Jamaica connection, transport mode, reporting agency, reported outcome, review status, all sources and related events. Anything the report does not state is shown as "Not reported": nothing is guessed from a headline, and nationality is never recorded. Open "Full record" under any report on the site, or download the CSV.
 - **Change your region:** edit `site > region_countries` and `region_words`.
 - **Change the risk points:** edit `risk > indicators`.
 - **Recognise a new airport or city:** add it in `watch/places.py`.

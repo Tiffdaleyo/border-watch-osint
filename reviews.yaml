@@ -1,0 +1,33 @@
+# Review status file
+# ------------------
+# Every report starts as "Automatically collected" (or "Awaiting review" when it is High risk or names Jamaica).
+# To record your own check, add the report's Event ID below (you see it on the website, e.g. BWO-2026-0042),
+# then press "Commit changes". The website shows your status after the next daily run.
+#
+# status:       reviewed  = you checked it and it is right
+#               corrected = you fixed one or more fields (list them under corrections)
+#               excluded  = not relevant or wrong; it is hidden from the website and the counts (kept in the data file)
+# note:         optional, a short reason (shown in the full record). Never put case details or personal data here:
+#               this file is public.
+# by:           optional, your initials
+# corrections:  optional. Fields you may correct: title, primary_category, categories, event_date,
+#               event_date_quality, countries, origin, destination, transport_mode, outcome, agencies,
+#               summary_text, level
+#
+# Example (remove the # at the start of each line to use it, and keep the spaces at the start of lines):
+#
+# reviews:
+#   BWO-2026-0042:
+#     status: reviewed
+#     by: RR
+#   BWO-2026-0107:
+#     status: corrected
+#     note: Route was Kingston to Toronto, not London
+#     corrections:
+#       destination: Canada
+#       transport_mode: Air passenger
+#   BWO-2026-0200:
+#     status: excluded
+#     note: Sports story, not border related
+
+reviews: {}

@@ -5,11 +5,55 @@ import html
 import json
 import os
 
+from .extract import GROUPS
 from .places import CENTROIDS, COUNTRIES
+from .record import NR
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-FIELDS = ["date", "kind", "level", "score", "title", "lead", "source", "source_url", "url", "categories", "document_types", "countries",
-          "airports", "origin", "destination", "documents_count", "people_count", "weight_kg", "reasons", "via"]
+# CSV columns, in the order of the event record. Empty values are written as "Not reported".
+FIELDS = ["event_id", "title", "summary_text", "primary_category", "tags", "groups", "kind", "level", "score",
+          "event_date", "event_date_quality", "published", "first_seen", "last_updated",
+          "countries", "cities", "airports", "ports", "crossings", "origin", "destination",
+          "caribbean_connection", "jamaica_connection", "transport_mode", "document_types", "documents_count",
+          "people_count", "weight_kg", "agencies", "outcome", "exploitation", "victim_assistance",
+          "review_status", "review_note", "source", "source_url", "url", "sources", "related", "reasons"]
+# fields the website needs (the stored file keeps more, e.g. the raw article facts)
+DROP = {"article", "matched_words", "other_sources", "action", "lang", "via", "id", "published"}
+KEEP = {"categories", "countries", "airports", "reasons", "title", "date", "level", "score", "kind", "source", "url", "event_id"}
+
+
+def slim(e):
+    # empty values are left out to keep the page small; the page shows them as "Not reported"
+    out = {k: v for k, v in e.items() if k not in DROP and (k in KEEP or v not in ("", None, 0, False, [], {}))}
+    if isinstance(out.get("location"), dict):
+        out["location"] = {k: v for k, v in out["location"].items() if v} or None
+        if not out["location"]:
+            out.pop("location")
+    if len(out.get("sources", [])) == 1 and out["sources"][0].get("url") in (e.get("url"), e.get("source_url")):
+        out.pop("sources")   # the page builds the single source from source/url/date
+    a = e.get("article") or {}
+    if a.get("read"):
+        out["read"] = True
+        out["terms"] = a.get("terms", [])
+        if a.get("sentence") and e.get("outcome"):
+            out["sentence"] = a["sentence"]
+    if out.get("summary_text") and out.get("summary_text") == out.get("summary"):
+        out.pop("summary")
+    return out
+
+
+def csv_row(e):
+    loc = e.get("location") or {}
+    flat = {**e, "cities": loc.get("cities", []), "ports": loc.get("ports", []), "crossings": loc.get("crossings", []),
+            "sources": [f"{s.get('publisher', '')} {s.get('date', '')} {s.get('url', '')}".strip() for s in e.get("sources", [])]}
+    if e.get("kind") == "Update":
+        flat["outcome"] = flat.get("outcome") or "Not applicable (update)"
+    row = {}
+    for k in FIELDS:
+        v = flat.get(k, "")
+        v = "; ".join(map(str, v)) if isinstance(v, list) else v
+        row[k] = NR if v in ("", None, 0) and k not in ("score",) else v
+    return row
 
 
 def _method(cfg):
@@ -35,7 +79,7 @@ def write_dashboard(out_dir, events, summary, cfg, new_today, demo=False):
     site = cfg.get("site") or {}
     data = {
         "updated": dt.datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC"),
-        "demo": demo, "events": events, "summary": summary, "new_today": new_today,
+        "demo": demo, "events": [slim(e) for e in events], "summary": summary, "groups": GROUPS, "new_today": new_today,
         "report_days": (cfg.get("run") or {}).get("report_days", 180),
         "home": site.get("home_country", ""), "region": site.get("region_name", "Region"),
         "method": _method(cfg),
@@ -63,8 +107,7 @@ def write_csv(out_dir, events):
         w = csv.DictWriter(f, fieldnames=FIELDS, extrasaction="ignore")
         w.writeheader()
         for e in events:
-            row = {k: ("; ".join(e[k]) if isinstance(e.get(k), list) else e.get(k, "")) for k in FIELDS}
-            w.writerow(row)
+            w.writerow(csv_row(e))
 
 
 def write_bulletin(out_dir, events, summary, cfg, today=None):

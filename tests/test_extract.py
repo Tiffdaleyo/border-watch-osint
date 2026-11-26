@@ -101,3 +101,57 @@ def test_article_facts_and_merge():
     ev["article"] = a
     fulltext.apply_article(ev)
     assert ev["weight_kg"] == 2 and ev.get("destination") == "United Kingdom" and ev["lead"]
+
+
+# ---- full event record ----------------------------------------------------------------------
+from watch import extract as X, record  # noqa: E402
+
+
+def test_transport_mode():
+    assert record.transport_mode("Passenger arrested with cocaine in suitcase at Norman Manley") == "Air passenger"
+    assert record.transport_mode("Guns found in barrel shipped to Kingston Wharves") == "Maritime cargo"
+    assert record.transport_mode("Police held a meeting") == ""
+
+
+def test_event_date_only_from_text():
+    assert record.event_date("Officers seized the drugs on November 20 at the airport", "2026-11-24") == ("2026-11-20", "exact")
+    assert record.event_date("The suspect was arrested on Monday", "2026-11-26")[1] == "approximate"
+    assert record.event_date("Passports seized at airport", "2026-11-24") == ("", "unknown")
+
+
+def test_assign_ids_permanent():
+    evs = [{"id": "a", "date": "2026-11-01", "first_seen": "2026-11-01"}, {"id": "b", "date": "2026-11-02", "first_seen": "2026-11-02"}]
+    record.assign_ids(evs)
+    assert [e["event_id"] for e in evs] == ["BWO-2026-0001", "BWO-2026-0002"]
+    evs.append({"id": "c", "date": "2026-11-03", "first_seen": "2026-11-03"})
+    record.assign_ids(evs)
+    assert evs[0]["event_id"] == "BWO-2026-0001" and evs[2]["event_id"] == "BWO-2026-0003"
+
+
+def test_review_status_and_corrections():
+    ev = {"event_id": "BWO-2026-0001", "categories": ["Passport fraud"], "level": "Low"}
+    record.apply_review(ev, {})
+    assert ev["review_status"] == "Automatically collected"
+    record.apply_review(ev, {"BWO-2026-0001": {"status": "reviewed", "corrections": {"destination": "Canada"}}})
+    assert ev["review_status"] == "Corrected" and ev["destination"] == "Canada"
+
+
+def test_trafficking_and_smuggling_kept_separate():
+    sm = X.extract({"title": "Police dismantle migrant smuggling ring at border"})
+    assert "Migrant smuggling" in sm["categories"] and "Human trafficking" not in sm["categories"]
+    ht = X.extract({"title": "Human trafficking victims rescued from forced labour farm"})
+    assert "Human trafficking" in ht["categories"] and "Migrant smuggling" not in ht["categories"]
+    assert record.exploitation("victims of forced labour were rescued") == ["Forced labour"]
+
+
+def test_groups():
+    assert X.groups_of(["Passport fraud", "Drug trafficking"]) == ["Document & Identity Fraud", "Seizures & Contraband"]
+    assert all(t in X.TOPIC_GROUP for t in X.CATEGORIES)
+
+
+def test_jamaica_connection_role():
+    site = {"region_countries": ["Jamaica", "Haiti"], "home_country": "Jamaica", "home_places": ["Kingston"]}
+    ev = {"title": "Woman held at Norman Manley with cocaine bound for London", "countries": ["Jamaica", "United Kingdom"],
+          "origin": "Jamaica", "destination": "United Kingdom", "airports": ["Norman Manley (KIN)"]}
+    car, jm = record.connections(ev, site)
+    assert car == ["Origin (Jamaica)"] and any("airport" in j for j in jm)
