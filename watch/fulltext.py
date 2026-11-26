@@ -48,15 +48,22 @@ def article_text(url, timeout=15, max_chars=12000):
         return ""
 
 
+JUNK = ("cookie", "navegacion", "navegación", "javascript", "loading", "subscribe", "suscrib", "newsletter", "sign up",
+        "advertisement", "all rights reserved", "click here", "read more", "accept")
+
+
 def lead(text, limit=260):
-    """The first sentence or two, as a short summary."""
+    """The first sentence or two, as a short summary (skipping cookie notices and page clutter)."""
     text = " ".join(text.split())
     out = ""
-    for part in text.replace("? ", "?|").replace("! ", "!|").replace(". ", ".|").split("|"):
+    parts = [p for p in text.replace("? ", "?|").replace("! ", "!|").replace(". ", ".|").split("|")
+             if len(p) > 25 and not any(j in p.lower() for j in JUNK)]
+    text = " ".join(parts)
+    for part in parts:
         if len(out) + len(part) > limit:
             break
         out = (out + " " + part).strip()
-    return out or text[:limit].rsplit(" ", 1)[0] + "…"
+    return out or (text[:limit].rsplit(" ", 1)[0] + "…" if text else "")
 
 
 AGENCIES = ["INTERPOL", "Europol", "Frontex", "UNODC", "AIRCOP", "WCO", "IOM", "UNHCR", "PICA", "JCF", "Jamaica Customs",
@@ -67,11 +74,20 @@ AGENCIES = ["INTERPOL", "Europol", "Frontex", "UNODC", "AIRCOP", "WCO", "IOM", "
 OUTCOMES = [("Sentenced", ["sentenced", "jailed", "imprisoned", "condenad*", "condamne*"]),
             ("Convicted", ["convicted", "found guilty", "pleaded guilty", "pleads guilty"]),
             ("Charged", ["charged", "indicted", "prosecuted", "imputad*", "mis en examen"]),
-            ("Arrested", ["arrested", "detained", "held", "apprehended", "detenid*", "arrestad*", "interpelle*", "preso*", "detido*"]),
-            ("Seized / intercepted", ["seized", "intercepted", "confiscated", "incautad*", "decomisad*", "saisi*", "apreendid*"])]
+            ("Arrested", ["arrested", "detained", "apprehended", "taken into custody", "detenid*", "arrestad*", "captur*", "aprehend*",
+                          "interpelle*", "preso*", "presa*", "detido*", "prende*"]),
+            ("Seized / intercepted", ["seized", "intercepted", "confiscated", "incaut*", "decomis*", "saisi*", "apreend*"])]
 _OUT_RE = [(name, extract.compile_words(words)) for name, words in OUTCOMES]
 _AG_RE = [(a, re.compile(r"(?<!\w)" + re.escape(a) + r"(?!\w)")) for a in AGENCIES]
 _SENT_RE = re.compile(r"(?<!\w)(\d{1,3})\s*(?:-|\s)?(years?|months?)\b[^.]{0,40}?(?:prison|jail|imprisonment|sentence)", re.I)
+
+
+def first_weight(text):
+    for m in extract._KG_RE.finditer(extract.fold(text[:4000])):
+        w = extract.find_weight_kg(m.group(0))
+        if w:
+            return w
+    return 0
 
 
 def article_facts(ev, text, risk_words, focus):
@@ -90,9 +106,10 @@ def article_facts(ev, text, risk_words, focus):
         "countries": top.get("countries", []),
         "airports": extract.find_airports(text),
         "document_types": top.get("document_types", []),
-        "documents_count": extract.find_count(extract._DOC_COUNT_RE, text),
-        "people_count": extract.find_count(extract._PEOPLE_COUNT_RE, text),
-        "weight_kg": extract.find_weight_kg(text),
+        # the first figure mentioned is usually the event itself; later ones are often background or other cases
+        "documents_count": extract.find_count(extract._DOC_COUNT_RE, text[:2500]),
+        "people_count": extract.find_count(extract._PEOPLE_COUNT_RE, text[:2500]),
+        "weight_kg": first_weight(text),
         "origin": origin, "destination": dest,
         "terms": terms,
         "agencies": [a for a, rx in _AG_RE if rx.search(text)][:6],
