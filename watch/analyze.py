@@ -10,7 +10,8 @@ from .extract import compile_words, find_words, fold
 
 
 def score_event(ev, risk_cfg, home_places, region_countries, region_words=()):
-    folded = fold(f"{ev.get('title', '')}. {ev.get('summary', '')}")
+    art = ev.get("article") or {}
+    folded = fold(f"{ev.get('title', '')}. {ev.get('summary', '')}. {art.get('lead', '')}. {'. '.join(art.get('terms', []))}")
     reasons, score = [], 0
     for key, ind in (risk_cfg.get("indicators") or {}).items():
         hits = find_words(compile_words(ind.get("words") or []), folded)

@@ -1,2 +1,4 @@
 requests>=2.31
 pyyaml>=6.0
+trafilatura>=1.8          # reads the article text from a web page
+googlenewsdecoder>=0.2    # turns Google News links into the publisher's real link

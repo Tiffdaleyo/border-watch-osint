@@ -17,7 +17,7 @@ import yaml
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 
-from watch import analyze, collect, demo, extract, report, store  # noqa: E402
+from watch import analyze, collect, demo, extract, fulltext, report, store  # noqa: E402
 
 
 def main():
@@ -58,6 +58,13 @@ def main():
         print(f"  {len(new)} are on-topic")
         events, added = store.merge(events, new)
         print(f"  {added} new events added (the rest were repeats of stories already stored)")
+        rc = cfg.get("run") or {}
+        if not args.demo and rc.get("read_full_articles", True):
+            risk_words = [extract.compile_words(i.get("words") or [])
+                          for i in ((cfg.get("risk") or {}).get("indicators") or {}).values()]
+            fulltext.read_articles(events, cfg, risk_words, focus,
+                                   budget_minutes=float(rc.get("read_budget_minutes", 8)),
+                                   limit=int(rc.get("read_limit", 400)))
 
     if args.rebuild:
         # re-read every stored headline with the current word lists, so changes apply to the whole history
@@ -65,8 +72,8 @@ def main():
         kept = []
         for ev in events:
             facts = extract.extract(ev, focus)
-            if facts:
-                ev.update(facts)
+            if facts or (ev.get("article") or {}).get("categories"):
+                ev.update(facts or {})
                 kept.append(ev)
         print(f"Re-read {len(events)} stored events with the current word lists; {len(kept)} still on-topic.")
         events = kept
@@ -74,6 +81,7 @@ def main():
     # Re-score everything, so a change to config.yaml applies to the whole history.
     for ev in events:
         ev.setdefault("kind", "Incident")
+        fulltext.apply_article(ev)
         analyze.score_event(ev, cfg.get("risk") or {}, site.get("home_places", []), site.get("region_countries", []),
                              site.get("region_words", []))
     store.save(db_path, events)

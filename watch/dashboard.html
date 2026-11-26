@@ -298,7 +298,7 @@ function filtered(ignorePeriod) {
     && (F.group === "" || e.categories.some(c => topicGroup[c] === +F.group))
     && (!F.topic || e.categories.includes(F.topic)) && (!F.country || e.countries.includes(F.country))
     && (!F.level || e.level === F.level || e.kind === F.level)
-    && (!F.q || (e.title + " " + e.summary + " " + e.source + " " + e.countries.join(" ")).toLowerCase().includes(F.q)));
+    && (!F.q || (e.title + " " + e.summary + " " + (e.lead || "") + " " + e.source + " " + e.countries.join(" ") + " " + ((e.article || {}).terms || []).join(" ")).toLowerCase().includes(F.q)));
 }
 
 /* charts */
@@ -419,7 +419,7 @@ function kpis(rows) {
 }
 
 const chip = e => `<span class="chip ${e.level}">${e.level === "Update" ? "Update" : e.watch ? "Watch list" : e.level + " " + e.score}</span>`;
-const feedItem = e => `<li><a class="t" href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.title)}</a>
+const feedItem = e => `<li><a class="t" href="${esc(e.source_url || e.url)}" target="_blank" rel="noopener">${esc(e.title)}</a>
   <div class="meta">${chip(e)}${e.home ? `<span class="jm">${esc(DATA.home.toUpperCase())}</span>` : ""}<span>${esc(e.date)}</span><span>${esc(e.source)}</span></div></li>`;
 const feed = (id, rows, empty) => $(id).innerHTML = rows.length ? rows.slice(0, 25).map(feedItem).join("") : `<li class="empty">${empty}</li>`;
 const rank = {High: 0, Medium: 1, Low: 2, Update: 3};
@@ -435,7 +435,9 @@ function renderTable(rows) {
     const extra = [e.documents_count ? e.documents_count + " documents" : "", e.people_count ? e.people_count + " people" : "",
                    e.weight_kg ? e.weight_kg + " kg" : "", (e.origin || e.destination) ? `${esc(e.origin || "?")} → ${esc(e.destination || "?")}` : ""].filter(Boolean).join(" · ");
     return `<tr class="${e.home ? "home" : ""}"><td style="white-space:nowrap;color:${MUTED}">${esc(e.date)}</td><td>${chip(e)}</td>
-      <td><a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.title)}</a><div class="meta"><span>${esc(e.source)}</span>${extra ? `<span>${extra}</span>` : ""}</div>
+      <td><a href="${esc(e.source_url || e.url)}" target="_blank" rel="noopener">${esc(e.title)}</a>
+      ${e.lead ? `<div style="font-size:12.5px;color:${MUTED};margin-top:3px">${esc(e.lead)}</div>` : ""}
+      <div class="meta"><span>${esc(e.source)}</span>${(e.article || {}).read ? '<span title="Facts taken from the full article" style="color:#00a888">✓ full article read</span>' : ""}${(e.article || {}).outcome ? `<span>Outcome: ${esc(e.article.outcome)}${e.article.sentence ? " (" + esc(e.article.sentence) + ")" : ""}</span>` : ""}${((e.article || {}).agencies || []).length ? `<span>Agencies: ${esc(e.article.agencies.join(", "))}</span>` : ""}${extra ? `<span>${extra}</span>` : ""}</div>
       ${e.reasons.length ? `<details class="why"><summary>Why this score</summary>${e.reasons.map(esc).join("<br>")}</details>` : ""}</td>
       <td class="hide-m">${e.categories.map(c => `<span class="tag"><span class="gdot" style="background:${GCOL[topicGroup[c] ?? 5]}"></span>${esc(c)}</span>`).join("")}</td>
       <td class="hide-m">${[...e.countries, ...e.airports].map(p => `<span class="tag">${esc(p)}</span>`).join("")}</td></tr>`;

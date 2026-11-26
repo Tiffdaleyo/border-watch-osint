@@ -84,3 +84,20 @@ def test_health_travel_rule_is_update():
 
 def test_sports_watch_list_is_not_border_news():
     assert extract({"title": "Star guard named to preseason award watch list"}) is None
+
+
+def test_article_facts_and_merge():
+    from watch import fulltext
+    from watch.extract import compile_words
+    ev = {"title": "Passenger held at Norman Manley airport", "summary": "", "categories": ["Drug trafficking"],
+          "countries": ["Jamaica"], "airports": [], "document_types": [], "kind": "Incident"}
+    text = ("Police at Norman Manley International Airport arrested a passenger bound for London after he swallowed "
+            "pellets containing 2 kg of cocaine. Jamaica Customs and the JCF said he was charged and later sentenced "
+            "to 3 years in prison. ") * 3
+    a = fulltext.article_facts(ev, text, [compile_words(["swallowed", "pellets"])], {"Jamaica"})
+    assert a["weight_kg"] == 2 and "swallowed" in a["terms"]
+    assert a["outcome"] == "Sentenced" and a["sentence"] == "3 years"
+    assert "Jamaica Customs" in a["agencies"]
+    ev["article"] = a
+    fulltext.apply_article(ev)
+    assert ev["weight_kg"] == 2 and ev.get("destination") == "United Kingdom" and ev["lead"]

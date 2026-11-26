@@ -22,6 +22,9 @@ run:
   report_days: 180       # how much history the website shows
   delay_seconds: 1.5     # pause between searches, to be polite to the news services
   search_budget_minutes: 20   # stop starting new searches after this, so the run always finishes and saves
+  read_full_articles: true    # open each report's article and pull out the facts (only facts are kept, never the text)
+  read_budget_minutes: 8      # time allowed for reading articles in each run
+  read_limit: 400             # most articles read per run; older unread ones are caught up in later runs
 
 sources:
   google_news:

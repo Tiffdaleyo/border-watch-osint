@@ -8,7 +8,7 @@ import os
 from .places import CENTROIDS, COUNTRIES
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-FIELDS = ["date", "kind", "level", "score", "title", "source", "url", "categories", "document_types", "countries",
+FIELDS = ["date", "kind", "level", "score", "title", "lead", "source", "source_url", "url", "categories", "document_types", "countries",
           "airports", "origin", "destination", "documents_count", "people_count", "weight_kg", "reasons", "via"]
 
 
