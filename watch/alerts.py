@@ -1,12 +1,23 @@
 """Alert email: new high-risk or Jamaica-linked incidents found in this run (one email per run, not one per report)."""
+import datetime as dt
 import html
 
 from . import mailer
 
 
+RECENT_DAYS = 7  # older stories found for the first time are on the site, but not emailed
+
+
+def _recent(e, today):
+    try:
+        return (dt.date.fromisoformat(today) - dt.date.fromisoformat((e.get("date") or "")[:10])).days <= RECENT_DAYS
+    except ValueError:
+        return True
+
+
 def pick(events, today, home):
     return [e for e in events
-            if e.get("first_seen") == today and not e.get("alerted") and e.get("kind") == "Incident"
+            if e.get("first_seen") == today and _recent(e, today) and not e.get("alerted") and e.get("kind") == "Incident"
             and e.get("review_status") != "Excluded" and (e.get("level") == "High" or e.get("home"))]
 
 

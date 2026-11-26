@@ -320,7 +320,8 @@ is public.**
 - **Alerts:** one email after each daily run (about **6:30 AM Jamaica time**). It lists every **new** incident that
   is High risk or linked to Jamaica, each with a link to its full record. No new incidents means no email, and a
   report is never alerted twice. Alerts come once a day, when the daily run finishes. They can't be truly instant,
-  because the site only collects news once a day.
+  because the site only collects news once a day. Only stories dated within the **last 7 days** are emailed; an
+  older story found for the first time still goes on the site, but not in the alert. One email shows at most 25.
 
 **Who receives them:** the list is stored privately as a GitHub "secret", not in the public files. Team members are
 put in Bcc, so they don't see each other's addresses.
@@ -431,3 +432,4 @@ Privacy rules are in `watch/privacy.py`.
 | 2026-11-26 | Seizure fields (substance, confirmation, quantity and unit, standardised quantity, qualifier, concealment, shipment type, declared commodity, route, agency, other items, valuation, case development). Seizure totals now shown per substance and unit, never combined. |
 | 2026-11-26 | Source panel on every record: source type, original or republished, language, supporting sources, independent vs repeated reporting, review note, uncertainty / conflict note, correction history. "Reviewed" defined as checked against sources, not proven. |
 | 2026-11-26 | Email switched on. Test bulletin sent successfully. A **test-email** button added to send a [TEST] alert email on demand. |
+| 2026-11-26 | Alerts limited to stories dated within the last 7 days, after the first live alert listed 145 incidents from the backlog. |
