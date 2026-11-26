@@ -1294,7 +1294,6 @@
   "related": [],
   "corrections": [],
   "review_uncertainty": "",
-  "seizures": [],
   "source_panel": {
    "sources": [
     {
@@ -1315,7 +1314,8 @@
   "uncertainty": [
    "Not stated in the report: when it happened, where it happened",
    "Publication date not shown by the source; date found is used"
-  ]
+  ],
+  "seizures": []
  },
  {
   "title": "6.4 million victim datasets secured in international operation against malware networks",
@@ -1632,18 +1632,6 @@
   "related": [],
   "corrections": [],
   "review_uncertainty": "",
-  "seizures": [
-   {
-    "substance": "Cocaine",
-    "suspected": false,
-    "original": "over 750 kilos",
-    "qty": 750.0,
-    "unit": "kg",
-    "std_qty": 750.0,
-    "std_unit": "kg",
-    "qualifier": "More than"
-   }
-  ],
   "source_panel": {
    "sources": [
     {
@@ -1665,6 +1653,18 @@
    "Not stated in the report: when it happened",
    "Journey only partly stated",
    "Publication date not shown by the source; date found is used"
+  ],
+  "seizures": [
+   {
+    "substance": "Cocaine",
+    "suspected": false,
+    "original": "over 750 kilos",
+    "qty": 750.0,
+    "unit": "kg",
+    "std_qty": 750.0,
+    "std_unit": "kg",
+    "qualifier": "More than"
+   }
   ]
  },
  {
@@ -11329,7 +11329,6 @@
   "related": [],
   "corrections": [],
   "review_uncertainty": "",
-  "seizures": [],
   "source_panel": {
    "sources": [
     {
@@ -11349,7 +11348,8 @@
   },
   "uncertainty": [
    "Not stated in the report: when it happened, where it happened"
-  ]
+  ],
+  "seizures": []
  },
  {
   "title": "Entebbe Airport tests response to infectious disease outbreak",
@@ -24078,7 +24078,6 @@
    }
   ],
   "review_uncertainty": "",
-  "seizures": [],
   "source_panel": {
    "sources": [
     {
@@ -24096,7 +24095,8 @@
    "independent": 1,
    "relationship": "Single source"
   },
-  "uncertainty": []
+  "uncertainty": [],
+  "seizures": []
  },
  {
   "title": "Indian gang busted for cross-border cannabis smuggling and ransom extortion of two Indian",
@@ -60011,18 +60011,6 @@
    }
   ],
   "review_uncertainty": "",
-  "seizures": [
-   {
-    "substance": "Firearms",
-    "suspected": false,
-    "original": "18 firearms",
-    "qty": 18.0,
-    "unit": "firearms",
-    "std_qty": 18.0,
-    "std_unit": "firearms",
-    "qualifier": "Exact"
-   }
-  ],
   "source_panel": {
    "sources": [
     {
@@ -60042,6 +60030,18 @@
   },
   "uncertainty": [
    "Journey only partly stated"
+  ],
+  "seizures": [
+   {
+    "substance": "Firearms",
+    "suspected": false,
+    "original": "18 firearms",
+    "qty": 18.0,
+    "unit": "firearms",
+    "std_qty": 18.0,
+    "std_unit": "firearms",
+    "qualifier": "Exact"
+   }
   ]
  },
  {
@@ -252842,28 +252842,6 @@
   "official": true,
   "corrections": [],
   "review_uncertainty": "",
-  "seizures": [
-   {
-    "substance": "Cocaine",
-    "suspected": false,
-    "original": "more than 7.4 tonnes",
-    "qty": 7.4,
-    "unit": "tonnes",
-    "std_qty": 7400.0,
-    "std_unit": "kg",
-    "qualifier": "More than"
-   },
-   {
-    "substance": "Tobacco",
-    "suspected": false,
-    "original": "10.6 million cigarettes",
-    "qty": 10600000.0,
-    "unit": "cigarettes",
-    "std_qty": 10600000.0,
-    "std_unit": "cigarettes",
-    "qualifier": "Exact"
-   }
-  ],
   "source_panel": {
    "sources": [
     {
@@ -252891,6 +252869,28 @@
   },
   "uncertainty": [
    "Not stated in the report: when it happened"
+  ],
+  "seizures": [
+   {
+    "substance": "Cocaine",
+    "suspected": false,
+    "original": "more than 7.4 tonnes",
+    "qty": 7.4,
+    "unit": "tonnes",
+    "std_qty": 7400.0,
+    "std_unit": "kg",
+    "qualifier": "More than"
+   },
+   {
+    "substance": "Tobacco",
+    "suspected": false,
+    "original": "10.6 million cigarettes",
+    "qty": 10600000.0,
+    "unit": "cigarettes",
+    "std_qty": 10600000.0,
+    "std_unit": "cigarettes",
+    "qualifier": "Exact"
+   }
   ]
  },
  {
