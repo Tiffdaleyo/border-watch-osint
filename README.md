@@ -6,7 +6,7 @@ A free, automatic open-source news monitor for **anything that affects the movem
 
 Every morning (06:00 Jamaica time) GitHub runs it for you. It:
 
-1. **Collects** headlines from Google News (9 country/language editions), the GDELT global news index and any agency RSS feeds you add.
+1. **Collects** official press releases first (PICA, JCF, CBP, ICE, UK Border Force, Home Office, NCA, CBSA, Europol, Frontex, IOM, UNODC and others, marked OFFICIAL), then headlines from Google News (9 country/language editions) and the GDELT global news index.
 2. **Sorts** each report into topics and marks it as an **Incident** (a crime: fraud, smuggling, an arrest) or an **Update** (a new visa rule, a policy change, a deportation flight, a border system).
 3. **Extracts** the facts: topic, document type, countries, airports, route (from → to), number of documents and people. It reads English, Spanish, French and Portuguese.
 4. **Scores** each incident from 0 to 100 using plain, visible indicators (organised network, document factory, insider, impostor, INTERPOL notice, transit route, scale...). High = worth a closer look, never proof. It never scores nationality.
@@ -17,6 +17,8 @@ Every morning (06:00 Jamaica time) GitHub runs it for you. It:
 **Team guide:** [TEAM-GUIDE.md](TEAM-GUIDE.md) explains everything in plain language (sources, topics, every field, scoring, privacy rules, reviews, limits) and keeps a change log.
 
 **Privacy:** ID and passport numbers, victims' names, private addresses and emails are removed from summaries before anything is saved or published (`watch/privacy.py`). Names of people charged or convicted, officials and agencies are kept as the source states them. Nationality is recorded only when stated in words and is never used in the risk score.
+
+**Email:** a one-page PDF bulletin every Monday and alert emails for new high-risk or Jamaica-linked incidents, once the email secrets are added (see TEAM-GUIDE.md, section 11).
 
 ## Files
 

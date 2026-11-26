@@ -289,7 +289,7 @@ def assign_ids(events, prefix="BWO"):
 def ensure_sources(ev):
     if not ev.get("sources"):
         ev["sources"] = [{"publisher": ev.get("source", ""), "url": ev.get("source_url") or ev.get("url", ""),
-                          "date": ev.get("date", "")}]
+                          "date": ev.get("date", ""), **({"official": True} if ev.get("official") else {})}]
     elif ev.get("source_url"):
         ev["sources"][0]["url"] = ev["source_url"]
 

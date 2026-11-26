@@ -161,13 +161,15 @@ def apply_article(ev):
     return ev
 
 
-def read_articles(events, cfg, risk_words, focus, budget_minutes=8, limit=400, workers=8):
+def read_articles(events, cfg, risk_words, focus, budget_minutes=8, limit=400, workers=8, only_direct=False):
     """Reads up to `limit` unread reports from the last 30 days, Caribbean and incidents first, within the time budget."""
     cutoff = (dt.date.today() - dt.timedelta(days=30)).isoformat()
     # unread reports, plus reports read before the fuller record existed (version 1), read again once
     todo = [e for e in events if e.get("date", "") >= cutoff and "example.org" not in e.get("url", "")
             and (not (e.get("article") or {}).get("tried")
                  or ((e.get("article") or {}).get("read") and (e.get("article") or {}).get("v", 1) < 3))]
+    if only_direct:      # skip Google News links (used when Google is limiting requests)
+        todo = [e for e in todo if "news.google.com" not in e.get("url", "")]
     todo.sort(key=lambda e: (bool((e.get("article") or {}).get("tried")), not e.get("home"), not e.get("region"), e.get("kind") == "Update", e.get("date", "")), reverse=False)
     todo = todo[:limit]
     if not todo:

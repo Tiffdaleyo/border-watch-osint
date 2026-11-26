@@ -17,7 +17,7 @@ import yaml
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 
-from watch import analyze, collect, demo, extract, fulltext, record, report, store  # noqa: E402
+from watch import alerts, analyze, collect, demo, extract, fulltext, record, report, store  # noqa: E402
 
 
 def main():
@@ -25,6 +25,7 @@ def main():
     ap.add_argument("--days", type=int, default=None, help="how many days back to search")
     ap.add_argument("--demo", action="store_true", help="use invented sample data (no internet)")
     ap.add_argument("--rebuild", action="store_true", help="only rebuild the website from stored data")
+    ap.add_argument("--official-only", action="store_true", help="only read the official press-release feeds (no news search)")
     args = ap.parse_args()
 
     with open(os.path.join(HERE, "config.yaml"), encoding="utf-8") as f:
@@ -44,7 +45,7 @@ def main():
             items = demo.sample_items()
         else:
             print(f"Searching the news for the last {days} days...")
-            items = collect.collect(cfg, days)
+            items = collect.collect(cfg, days, official_only=args.official_only)
         print(f"  {len(items)} headlines found in total")
         new = []
         focus = set(site.get("region_countries", [])) | {site.get("home_country", "")}
@@ -53,7 +54,8 @@ def main():
             if not facts:
                 continue
             ev = {**it, **facts, "id": store.make_id(it), "first_seen": dt.date.today().isoformat()}
-            ev["date"] = ev.get("date") or ev["first_seen"]
+            if not ev.get("date"):           # some official pages show no date: use the day it was found
+                ev["date"], ev["date_basis"] = ev["first_seen"], "First seen (the source page shows no date)"
             new.append(ev)
         print(f"  {len(new)} are on-topic")
         events, added = store.merge(events, new)
@@ -64,7 +66,7 @@ def main():
                           for i in ((cfg.get("risk") or {}).get("indicators") or {}).values()]
             fulltext.read_articles(events, cfg, risk_words, focus,
                                    budget_minutes=float(rc.get("read_budget_minutes", 8)),
-                                   limit=int(rc.get("read_limit", 400)))
+                                   limit=int(rc.get("read_limit", 400)), only_direct=args.official_only)
 
     if args.rebuild:
         # re-read every stored headline with the current word lists, so changes apply to the whole history
@@ -99,6 +101,9 @@ def main():
         if (ev.get("article") or {}).get("read_on", "") > ev["last_updated"]:
             ev["last_updated"] = ev["article"]["read_on"]
     record.related(events)
+    # alert email for new high-risk or home-country incidents (only on a real search run, and only if email is set up)
+    if not args.rebuild and not args.demo:
+        alerts.send(events, today, site)
     store.save(db_path, events)
 
     keep_from = (dt.date.today() - dt.timedelta(days=(cfg.get("run") or {}).get("report_days", 180))).isoformat()

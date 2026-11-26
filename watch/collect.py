@@ -124,12 +124,54 @@ def rss_feed(feed):
     return out
 
 
-def collect(cfg, days, budget_minutes=None):
+def page_links(feed):
+    """Press-release pages without RSS: takes the links whose address contains `link_contains`."""
+    import urllib.parse
+    r = _get(feed["url"])
+    if not r:
+        return []
+    out, seen = [], set()
+    for m in re.finditer(r'<a\s[^>]*href="([^"]+)"[^>]*>(.*?)</a>', r.text, re.S):
+        href = urllib.parse.urljoin(feed["url"], m.group(1))
+        text = strip_html(m.group(2))
+        # a date written in the link ("News 25 November 2026 Title") or in the address (/2026/11/25/)
+        date = ""
+        dm = re.search(r"(\d{1,2}) (January|February|March|April|May|June|July|August|September|October|November|December) (20\d\d)", text)
+        if dm:
+            date = dt.datetime.strptime(" ".join(dm.groups()), "%d %B %Y").date().isoformat()
+            text = text[dm.end():].strip() if dm.start() < 15 else text
+        um = re.search(r"/(20\d\d)/(\d\d)/(\d\d)/", href)
+        if um and not date:
+            date = "-".join(um.groups())
+        if (feed.get("link_contains", "") in href and href.rstrip("/") != feed["url"].rstrip("/")
+                and 25 <= len(text) <= 220 and href not in seen):
+            seen.add(href)
+            out.append({"title": text, "summary": "", "url": href, "date": date, "source": feed.get("name", ""),
+                        "lang": "", "via": "Official page"})
+    return out[: int(feed.get("max", 15))]
+
+
+def official_sources(cfg):
+    """Official press releases (agency RSS feeds and news pages). Collected first, so Google limits never block them."""
+    items = []
+    for feed in (cfg.get("sources") or {}).get("official_feeds") or []:
+        res = page_links(feed) if feed.get("type") == "page" else rss_feed(feed)
+        for it in res:
+            it["official"] = True
+            it["agency_country"] = feed.get("country", "")
+        items += res
+        log(f"  Official {feed.get('name', feed['url'])}: {len(res)} items")
+    return items
+
+
+def collect(cfg, days, budget_minutes=None, official_only=False):
     src = cfg.get("sources") or {}
     budget = budget_minutes or float((cfg.get("run") or {}).get("search_budget_minutes", 20))
     DEADLINE[0] = time.monotonic() + budget * 60
     delay = float((cfg.get("run") or {}).get("delay_seconds", 1.5))
-    items = []
+    items = official_sources(cfg)
+    if official_only:
+        src = {k: v for k, v in src.items() if k not in ("google_news", "gdelt", "rss_feeds")}
     gn = src.get("google_news") or {}
     if gn.get("enabled"):
         def one_edition(ed):
@@ -167,4 +209,8 @@ def collect(cfg, days, budget_minutes=None):
     if THROTTLED[0]:
         log(f"  note: news services asked us to slow down {THROTTLED[0]} times")
     cutoff = (dt.date.today() - dt.timedelta(days=days + 1)).isoformat()
+    official_names = {n.lower() for n in src.get("official_publishers") or []}
+    for i in items:          # a news-search result published by an agency itself is official too
+        if i.get("source", "").lower() in official_names:
+            i["official"] = True
     return [i for i in items if i["title"] and i["url"] and (not i["date"] or i["date"] >= cutoff)]

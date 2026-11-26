@@ -7,6 +7,7 @@
 site:
   title: "Border Watch OSINT"
   subtitle: "Open-source news on migration, travel documents, trafficking, smuggling, cargo and border security, worldwide with a Caribbean focus"
+  url: "https://tiffdaleyo.github.io/border-watch-osint/"   # used for links in emails
   home_country: "Jamaica"          # events mentioning this country are highlighted
   home_places: ["Jamaica", "Kingston", "Montego Bay", "Norman Manley", "Sangster", "Ocho Rios", "Negril", "PICA"]
   region_name: "Caribbean"
@@ -129,6 +130,35 @@ sources:
   # Add RSS feeds from agencies you trust (press-release pages that offer RSS).
   # Example:  - {name: "Agency name", url: "https://example.org/news/rss"}
   rss_feeds: []
+
+  # Official press releases, read first on every run and marked OFFICIAL on the site.
+  # type: rss (an RSS/Atom feed) or page (a news page without RSS: links whose address contains link_contains).
+  # Every release still has to match a topic to be kept (most police news is not border related).
+  # Checked from GitHub on 2026-11-26. Not reachable: INTERPOL and US Coast Guard (block automated readers),
+  # Jamaica Customs (security certificate error), CARICOM IMPACS (no news page found). INTERPOL news still
+  # arrives through Google News and is marked official (official_publishers below).
+  official_feeds:
+    - {name: "PICA (Jamaica)", url: "https://www.pica.gov.jm/rss.xml", country: "Jamaica"}
+    - {name: "Jamaica Constabulary Force", url: "https://jcf.gov.jm/feed/", country: "Jamaica"}
+    - {name: "Jamaica Information Service", url: "https://jis.gov.jm/feed/", country: "Jamaica"}
+    - {name: "US Customs and Border Protection", url: "https://www.cbp.gov/rss/newsroom/media-releases", country: "United States"}
+    - {name: "US Department of Justice", url: "https://www.justice.gov/news/rss?type=press_release", country: "United States"}
+    - {name: "UK Border Force", url: "https://www.gov.uk/search/news-and-communications.atom?organisations%5B%5D=border-force", country: "United Kingdom"}
+    - {name: "UK Home Office", url: "https://www.gov.uk/search/news-and-communications.atom?organisations%5B%5D=home-office", country: "United Kingdom"}
+    - {name: "UK National Crime Agency", url: "https://www.nationalcrimeagency.gov.uk/news?format=feed&type=rss", country: "United Kingdom"}
+    - {name: "Canada Border Services Agency", url: "https://api.io.canada.ca/io-server/gc/news/en/v2?dept=canadaborderservicesagency&type=newsreleases&sort=publishedDate&orderBy=desc&pick=50&format=atom&atomtitle=CBSA", country: "Canada"}
+    - {name: "Europol", url: "https://www.europol.europa.eu/rss.xml", country: "European Union"}
+    - {name: "Frontex", type: page, url: "https://www.frontex.europa.eu/media-centre/news/news-release/", link_contains: "/media-centre/news/news-release/", country: "European Union"}
+    - {name: "US Immigration and Customs Enforcement", type: page, url: "https://www.ice.gov/newsroom", link_contains: "/news/releases/", country: "United States"}
+    - {name: "US Department of Homeland Security", type: page, url: "https://www.dhs.gov/news-releases/press-releases", link_contains: "/news/20", country: "United States"}
+    - {name: "IOM (UN migration agency)", type: page, url: "https://www.iom.int/news", link_contains: "/news/", country: ""}
+    - {name: "UNODC", type: page, url: "https://www.unodc.org/unodc/en/press/allpress.html", link_contains: "/press/releases/", country: ""}
+  # News-search results from these publishers are also marked official.
+  official_publishers: ["INTERPOL", "Frontex", "Europol", "U.S. Customs and Border Protection (.gov)", "CBP.gov",
+                        "GOV.UK", "Jamaica Information Service", "JIS", "Jamaica Constabulary Force", "PICA",
+                        "Jamaica Customs Agency", "U.S. Immigration and Customs Enforcement (.gov)", "ICE.gov",
+                        "Department of Justice (.gov)", "justice.gov", "National Crime Agency", "UNODC", "IOM",
+                        "Government of Canada", "canada.ca", "dhs.gov", "Homeland Security (.gov)"]
 
 risk:
   # Only incidents (crimes) are scored. Policy, security and deportation news is shown as "Update".

@@ -28,7 +28,8 @@ Everything runs automatically on GitHub, free of charge. No one needs to switch 
 
 1. **06:00 Jamaica time, every day:** GitHub starts the run (`.github/workflows/daily.yml`). A run takes about
    30 minutes.
-2. **Collect:** it searches the news from the last 2 days (see section 3).
+2. **Collect:** it reads the official press releases first, then searches the news from the last 2 days
+   (section 3).
 3. **Sort and extract:** it reads each headline and summary, decides which topics it belongs to, and pulls out the
    facts (section 5).
 4. **Read full articles:** it opens up to 400 articles per run (about 8 minutes), Jamaica, the Caribbean and
@@ -37,8 +38,10 @@ Everything runs automatically on GitHub, free of charge. No one needs to switch 
 5. **Score:** each incident gets a risk score (section 7).
 6. **Apply reviews:** it applies the team's review decisions from `reviews.yaml` (section 9).
 7. **Privacy filter:** it removes ID numbers and victims' names (section 8).
-8. **Publish:** it rebuilds the website, the CSV download and the weekly bulletin, then saves everything to the
+8. **Alerts:** it emails any new high-risk or Jamaica-linked incidents (section 11).
+9. **Publish:** it rebuilds the website, the CSV download and the weekly bulletin, then saves everything to the
    repository. A commit called "Daily update" appears each day.
+10. **Mondays, 07:00 Jamaica time:** a second workflow emails the weekly bulletin as a one-page PDF.
 
 To run it by hand: open the **Actions** tab, choose **daily-border-watch-osint**, then click **Run workflow**.
 
@@ -46,10 +49,23 @@ To run it by hand: open the **Actions** tab, choose **daily-border-watch-osint**
 
 | Source | What it gives | Notes |
 |---|---|---|
+| **Official press releases** (read first, marked **OFFICIAL**) | Releases published by the agencies themselves | PICA, Jamaica Constabulary Force, Jamaica Information Service, US CBP, US ICE, US DHS, US Department of Justice, UK Border Force, UK Home Office, UK National Crime Agency, Canada Border Services Agency, Europol, Frontex, IOM and UNODC. Every release must still match a topic, since most police news is not border-related. |
 | Google News | Headlines and links | 9 editions: US, UK, Canada and Nigeria (English); Mexico, Colombia and Spain (Spanish); France (French); Brazil (Portuguese). About 100 English searches plus Spanish, French and Portuguese ones, listed in `config.yaml`. |
 | GDELT | A free global news index | Extra coverage. If it is busy, the run skips it and carries on. |
-| Agency RSS feeds | Optional | You can add official press-release feeds in `config.yaml` (`rss_feeds`). |
+| Extra RSS feeds | Optional | Add any feed in `config.yaml` (`rss_feeds`, or `official_feeds` to mark it official). |
 | The full article | Facts in more detail | Opened from the link. Only the facts are kept. |
+
+**Not reachable automatically (checked 26 Nov 2026):**
+- INTERPOL and the US Coast Guard block automated readers. INTERPOL news still arrives through Google News and is
+  marked official.
+- The Jamaica Customs Agency website has a security-certificate error.
+- No CARICOM IMPACS news page was found.
+
+To re-check which sources answer, open the **Actions** tab and run **check-sources**. It changes nothing.
+
+Why official sources matter: the agency's own wording is more reliable than a news summary. The site always reads
+them first, so they still arrive on days when Google limits requests. On those days you can also run the daily
+workflow with **official_only** ticked.
 
 The same story from several papers is stored **once**. Every publisher's link and date is kept under "Sources"
 (up to 10).
@@ -98,7 +114,8 @@ download. **Anything the report does not state is shown as "Not reported".** Not
 | Additional tags | Its other topics. |
 | Main group(s) | Which of the 7 groups the topics fall in. |
 | Event date | When it happened, **only if the article says so**. It is marked *exact* (a date is written), *approximate* (for example "on Monday" or "last week") or *unknown*. |
-| Publication date | When the article was published. |
+| Publication date | When the article was published. A few official pages show no date; then it says "First seen (the source page shows no date)". |
+| Source type | *Official release (agency)* or *News report*. |
 | First captured / Last updated | When the site first found the report, and when its record last changed (a new source, a full read or a review). |
 | Incident location: countries named, City, Airport, Seaport, Border crossing | The places named in the report (where it happened, or places mentioned). |
 | Journey: origin | Where the journey started, only when stated ("from Jamaica"). |
@@ -246,7 +263,7 @@ is public.**
 ## 10. Using the website
 
 - **Filter bar (top):** choose the period, the scope (World, Caribbean or Jamaica), the main group, topic, country,
-  nationality, transport mode, review status, or incidents and updates. You can also search headlines or an Event ID. Every
+  nationality, transport mode, news vs official releases, review status, or incidents and updates. You can also search headlines or an Event ID. Every
   chart, list and number follows the filters. Click any bar or map bubble to filter by it.
 - **Key numbers:** reports, high-risk incidents, Caribbean, Jamaica, policy updates and weight seized, compared with
   the previous period.
@@ -264,7 +281,48 @@ is public.**
   **Why this score** to see the indicators matched.
 - **Downloads:** the CSV (opens in Excel, with every field) and the **weekly bulletin** (one page to print or email).
 
-## 11. Known limits
+## 11. Email: Monday bulletin and alerts
+
+**What the team receives:**
+- **Weekly bulletin:** a one-page PDF every **Monday at 7:00 AM Jamaica time**. It covers the past 7 days: key
+  numbers, top incidents, Caribbean and Jamaica, policy, and watch-list hits. The same page is on the website
+  ("Weekly bulletin"), and the PDF is saved as `docs/bulletin.pdf`.
+- **Alerts:** one email after each daily run (about **6:30 AM Jamaica time**). It lists every **new** incident that
+  is High risk or linked to Jamaica, each with a link to its full record. No new incidents means no email, and a
+  report is never alerted twice. Alerts come once a day, when the daily run finishes. They can't be truly instant,
+  because the site only collects news once a day.
+
+**Who receives them:** the list is stored privately as a GitHub "secret", not in the public files. Team members are
+put in Bcc, so they don't see each other's addresses.
+
+**One-time setup (about 15 minutes):**
+1. **Create a sending Gmail account** just for the site, for example `borderwatch.yourteam@gmail.com`. Don't use a
+   work or personal account.
+2. **Turn on 2-Step Verification** for that account: Google Account, then Security, then 2-Step Verification. Gmail
+   requires it before you can make an app password.
+3. **Create an app password:** go to https://myaccount.google.com/apppasswords, type a name such as "Border Watch",
+   then click Create. Copy the 16-letter password it shows.
+4. **Add the secrets to GitHub.** Open the repository, then Settings, then Secrets and variables, then Actions, then
+   **New repository secret**. Add each of these:
+
+   | Name | Value |
+   |---|---|
+   | `MAIL_USERNAME` | the Gmail address from step 1 |
+   | `MAIL_PASSWORD` | the 16-letter app password from step 3 (no spaces) |
+   | `MAIL_TO` | who gets the weekly bulletin, separated by commas: `a@example.com, b@example.com` |
+   | `MAIL_ALERTS_TO` | optional: who gets alerts, if different (otherwise `MAIL_TO` is used) |
+
+5. **Send a test:** open Actions, then **weekly-bulletin**, then **Run workflow**. Everyone in `MAIL_TO` should get
+   the PDF within 2 minutes. If nothing arrives, open that run's log. It says what went wrong, for example a wrong
+   password.
+
+To add or remove people later, edit the `MAIL_TO` secret. Until the secrets exist, the site works normally and
+simply sends nothing.
+
+**Note:** alerts and the bulletin come from public news and are leads to verify. Don't reply to them with case
+details.
+
+## 12. Known limits
 
 - It works by **word matching, not AI**. Expect some off-topic items and some misses. Use `excluded`, and tell the
   maintainer which words cause trouble.
@@ -277,7 +335,7 @@ is public.**
 - The **Trend lookup** live results depend on GDELT being reachable from your browser.
 - The site shows the last **180 days**. Older data stays in `data/events.json`.
 
-## 12. Changing settings
+## 13. Changing settings
 
 Everything adjustable is in `config.yaml`. Edit it on GitHub with the pencil icon, then commit.
 
@@ -285,7 +343,9 @@ Everything adjustable is in `config.yaml`. Edit it on GitHub with the pencil ico
 |---|---|
 | Search words | `sources: google_news: queries:` (per language) and `sources: gdelt: queries:` |
 | News editions | `sources: google_news: editions:` |
-| Add an agency RSS feed | `sources: rss_feeds:` |
+| Official sources | `sources: official_feeds:` (and `official_publishers:`) |
+| Add any RSS feed | `sources: rss_feeds:` |
+| Email recipients | GitHub secrets `MAIL_TO` and `MAIL_ALERTS_TO` (never in the files) |
 | Home country and region | `site: home_country`, `home_places`, `region_countries` |
 | Risk points and bands | `risk: indicators:`, `risk: bands:` |
 | Watch list | `risk: watchlist:` |
@@ -295,7 +355,7 @@ Everything adjustable is in `config.yaml`. Edit it on GitHub with the pencil ico
 Topic words and the seven groups are in `watch/extract.py`. Specialist-field words are in `watch/specialist.py`.
 Privacy rules are in `watch/privacy.py`.
 
-## 13. Files at a glance
+## 14. Files at a glance
 
 | File | Purpose |
 |---|---|
@@ -309,6 +369,9 @@ Privacy rules are in `watch/privacy.py`.
 | `watch/specialist.py` | Category-specific fields |
 | `watch/privacy.py` | Privacy filter |
 | `watch/journey.py` | Structured journeys and stated nationality |
+| `watch/mailer.py`, `watch/alerts.py`, `tools/send_weekly.py` | Email: alerts and the Monday PDF |
+| `.github/workflows/weekly-bulletin.yml` | Sends the Monday bulletin |
+| `.github/workflows/check-sources.yml`, `tools/check_sources.py` | Checks which official sources answer |
 | `watch/analyze.py` | Risk score and trends |
 | `watch/report.py`, `watch/dashboard.html` | Website, CSV and bulletin |
 | `data/events.json` | All stored reports |
@@ -330,3 +393,4 @@ Privacy rules are in `watch/privacy.py`.
 | 2026-11-26 | Topics reorganised into seven main groups. New topics: supporting-document fraud, digital identity fraud, application fraud, corruption and insider facilitation, border technology. Trafficking and smuggling kept separate. Seizures & Contraband section and transport-mode chart added. |
 | 2026-11-26 | Specialist fields per category, and the privacy filter (ID numbers, victims' names, private addresses and emails removed; charged or convicted names kept as reported). This team guide started. |
 | 2026-11-26 | Structured journeys (origin, transit points in order, intended destination, interception location, route completeness, source basis), with a journey map using distinct markers. Incomplete journeys are shown as "Origin: X; destination not reported". Nationality is now recorded when stated in words (never inferred, never scored), with a filter and two charts. |
+| 2026-11-26 | Official press releases added as sources (PICA, JCF, JIS, CBP, ICE, DHS, DOJ, UK Border Force, Home Office, NCA, CBSA, Europol, Frontex, IOM, UNODC), read first and marked OFFICIAL, with a filter. A Monday one-page PDF bulletin by email and daily alert emails for new high-risk or Jamaica-linked incidents (ready; they start once the email secrets are added). Articles that fail to load are now retried instead of skipped. |

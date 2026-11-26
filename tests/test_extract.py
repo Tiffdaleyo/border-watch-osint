@@ -239,3 +239,41 @@ def test_nationality_not_in_score():
     b = dict(ev, nationality=[])
     analyze.score_event(b, {"indicators": {}, "bands": {"high": 40, "medium": 20}}, [], [], [])
     assert a["score"] == b["score"]
+
+
+# ---- email alerts ---------------------------------------------------------------------------
+from watch import alerts, mailer  # noqa: E402
+
+
+def test_alert_pick_and_send(monkeypatch):
+    evs = [{"event_id": "BWO-2026-0001", "first_seen": "2026-11-26", "kind": "Incident", "level": "High", "score": 45,
+            "title": "Fake passports seized", "url": "https://example.org/a"},
+           {"event_id": "BWO-2026-0002", "first_seen": "2026-11-26", "kind": "Incident", "level": "Low", "home": True,
+            "title": "Jamaica arrest", "url": "https://example.org/b"},
+           {"event_id": "BWO-2026-0003", "first_seen": "2026-11-26", "kind": "Update", "level": "Update", "home": True,
+            "title": "Visa rule", "url": "https://example.org/c"},
+           {"event_id": "BWO-2026-0004", "first_seen": "2026-11-25", "kind": "Incident", "level": "High",
+            "title": "Old", "url": "https://example.org/d"}]
+    assert [e["event_id"] for e in alerts.pick(evs, "2026-11-26", "Jamaica")] == ["BWO-2026-0001", "BWO-2026-0002"]
+    sent = []
+
+    class FakeSMTP:
+        def __init__(self, *a, **k): pass
+        def __enter__(self): return self
+        def __exit__(self, *a): pass
+        def login(self, u, p): sent.append(("login", u))
+        def send_message(self, m): sent.append(("msg", m["Bcc"], m["Subject"]))
+
+    monkeypatch.setattr(mailer.smtplib, "SMTP_SSL", FakeSMTP)
+    monkeypatch.setenv("MAIL_USERNAME", "sender@example.org")
+    monkeypatch.setenv("MAIL_PASSWORD", "x")
+    monkeypatch.setenv("MAIL_TO", "a@example.org, b@example.org")
+    assert alerts.send(evs, "2026-11-26", {"home_country": "Jamaica", "url": "https://x/"}) == 2
+    assert sent[1][1] == "a@example.org, b@example.org" and evs[0]["alerted"] and not evs[3].get("alerted")
+    assert alerts.pick(evs, "2026-11-26", "Jamaica") == []          # never alerted twice
+
+
+def test_no_email_without_secrets(monkeypatch):
+    for k in ("MAIL_USERNAME", "MAIL_PASSWORD", "MAIL_TO", "MAIL_ALERTS_TO"):
+        monkeypatch.delenv(k, raising=False)
+    assert mailer.send("s", "<p>h</p>", "t") is False

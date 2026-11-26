@@ -122,45 +122,58 @@ def write_csv(out_dir, events):
 
 
 def write_bulletin(out_dir, events, summary, cfg, today=None):
-    """A one-page weekly summary you can print, save as PDF or paste into an email."""
+    """A one-page weekly summary (A4) to print, save as PDF or email. Emailed as a PDF every Monday."""
     today = today or dt.date.today()
     start = (today - dt.timedelta(days=7)).isoformat()
     week = [e for e in events if e.get("date", "") >= start]
     site = cfg.get("site") or {}
     home, region = site.get("home_country", ""), site.get("region_name", "Region")
     order = {"High": 0, "Medium": 1, "Low": 2, "Update": 3}
-    top = sorted([e for e in week if e.get("kind") != "Update"], key=lambda e: (order[e["level"]], -e["score"]))[:10]
-    policy = [e for e in week if e.get("kind") == "Update"][:12]
-    watch = [e for e in week if e.get("watch")]
-    regional = sorted([e for e in week if e.get("region")], key=lambda e: not e.get("home"))[:12]
-    cats = {}
+    incidents = [e for e in week if e.get("kind") != "Update"]
+    top = sorted(incidents, key=lambda e: (order[e["level"]], -e["score"]))[:7]
+    policy = [e for e in week if e.get("kind") == "Update" and "Policy & Systems" in (e.get("groups") or [])][:5]
+    watch = [e for e in week if e.get("watch")][:4]
+    regional = sorted([e for e in week if e.get("region")], key=lambda e: (not e.get("home"), order[e["level"]]))[:7]
+    official = sum(1 for e in week if e.get("official"))
+    groups = {}
     for e in week:
-        for c in e["categories"]:
-            cats[c] = cats.get(c, 0) + 1
+        for g in e.get("groups") or []:
+            groups[g] = groups.get(g, 0) + 1
+    esc = html.escape
 
     def li(e):
-        lvl = "Update" if e["level"] == "Update" else f"{e['level']} ({e['score']})"
-        return (f"<li><b>{html.escape(lvl)}</b> · {html.escape(e['date'])} · "
-                f"<a href='{html.escape(e['url'])}'>{html.escape(e['title'])}</a> "
-                f"<span class='s'>({html.escape(e.get('source', ''))})</span></li>")
+        lvl = "Update" if e["level"] == "Update" else f"{e['level']} {e['score']}"
+        j = (e.get("journey") or {}).get("text", "")
+        extra = " · ".join(x for x in [e.get("event_id", ""), e.get("date", ""), e.get("source", ""), j, e.get("outcome", "")] if x)
+        off = " <b class='o'>OFFICIAL</b>" if e.get("official") else ""
+        return (f"<li><b class='l{esc(e['level'])}'>{esc(lvl)}</b>{off} <a href='{esc(e.get('source_url') or e['url'])}'>"
+                f"{esc(e['title'][:140])}</a><br><span class='s'>{esc(extra)}</span></li>")
 
     rising = [t for t in summary.get("trends", []) if t["note"] == "Rising"]
-    body = f"""<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Weekly bulletin</title>
-<style>body{{font-family:system-ui,Arial,sans-serif;max-width:820px;margin:24px auto;padding:0 16px;color:#1d2430}}
-h1{{color:#13294b;margin-bottom:0}} h2{{color:#13294b;border-bottom:2px solid #dde2ea;padding-bottom:4px}}
-.s{{color:#5b6575;font-size:13px}} li{{margin:6px 0}} .box{{background:#f4f6f9;padding:10px 14px;border-radius:8px}}</style>
+    url = site.get("url", "")
+    body = f"""<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Weekly bulletin {today.isoformat()}</title>
+<style>@page{{size:A4;margin:11mm 12mm}}
+body{{font-family:Arial,Helvetica,sans-serif;font-size:10.6px;line-height:1.32;color:#1d2430;max-width:820px;margin:16px auto;padding:0 14px}}
+@media print{{body{{margin:0;padding:0;max-width:none}}}}
+h1{{color:#13294b;margin:0;font-size:18px}} h2{{color:#13294b;font-size:12px;border-bottom:1.5px solid #dde2ea;padding-bottom:2px;margin:9px 0 4px;text-transform:uppercase;letter-spacing:.04em}}
+.s{{color:#5b6575;font-size:9.6px}} ul,ol{{margin:0;padding-left:16px}} li{{margin:0 0 4px}} a{{color:#13294b;text-decoration:none}}
+.box{{background:#f4f6f9;padding:6px 9px;border-radius:6px;margin-top:6px}} .cols{{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}}
+.lHigh{{color:#b42318}} .lMedium{{color:#b54708}} .lLow{{color:#067647}} .lUpdate{{color:#475467}} .o{{color:#067647;font-size:9px}}
+.k{{display:inline-block;margin-right:12px}} .k b{{font-size:14px;color:#13294b}}</style>
 </head><body>
-<h1>{html.escape(site.get('title', 'Border Watch OSINT'))}: weekly bulletin</h1>
-<p class="s">{start} to {today.isoformat()} · open-source news only · leads to verify, not confirmed intelligence</p>
-<div class="box"><b>Key numbers.</b> {len(week)} reports this week; {sum(1 for e in week if e['level'] == 'High')} High-risk incidents; {len(policy)} policy and other updates;
-{len(regional)} in the {html.escape(region)}; {sum(1 for e in week if e.get('home'))} mention {html.escape(home)}.<br>
-<b>Topics:</b> {html.escape(', '.join(f'{k} {v}' for k, v in sorted(cats.items(), key=lambda x: -x[1])) or 'none')}.<br>
-<b>Rising this week:</b> {html.escape(', '.join(t['category'] for t in rising) or 'nothing unusual')}.</div>
-<h2>Watch list hits</h2><ul>{''.join(li(e) for e in watch) or '<li>None this week.</li>'}</ul>
+<h1>{esc(site.get('title', 'Border Watch OSINT'))}: weekly bulletin</h1>
+<div class="s">{start} to {today.isoformat()} · open-source news only · leads to verify, not confirmed intelligence{(' · ' + esc(url)) if url else ''}</div>
+<div class="box">
+<span class="k"><b>{len(week)}</b> reports</span><span class="k"><b>{sum(1 for e in week if e['level'] == 'High')}</b> high-risk</span>
+<span class="k"><b>{sum(1 for e in week if e.get('region'))}</b> {esc(region)}</span><span class="k"><b>{sum(1 for e in week if e.get('home'))}</b> {esc(home)}</span>
+<span class="k"><b>{len([e for e in week if e.get('kind') == 'Update'])}</b> policy &amp; updates</span><span class="k"><b>{official}</b> official releases</span><br>
+<b>By main group:</b> {esc(' · '.join(f'{k} {v}' for k, v in sorted(groups.items(), key=lambda x: -x[1])) or 'none')}<br>
+<b>Rising this week:</b> {esc(', '.join(t['category'] for t in rising) or 'nothing unusual')}</div>
 <h2>Top incidents to review</h2><ol>{''.join(li(e) for e in top) or '<li>None this week.</li>'}</ol>
-<h2>{html.escape(region)} and {html.escape(home)}</h2><ul>{''.join(li(e) for e in regional) or '<li>None this week.</li>'}</ul>
-<h2>Visa, entry, citizenship and other updates</h2><ul>{''.join(li(e) for e in policy) or '<li>None this week.</li>'}</ul>
-<p class="s">Unofficial project, open-source news only; not a government service. Generated automatically. Check every item against the original article and official sources before acting.</p>
+<div class="cols"><div><h2>{esc(region)} and {esc(home)}</h2><ul>{''.join(li(e) for e in regional) or '<li>None this week.</li>'}</ul></div>
+<div><h2>Policy &amp; systems</h2><ul>{''.join(li(e) for e in policy) or '<li>None this week.</li>'}</ul>
+<h2>Watch list hits</h2><ul>{''.join(li(e) for e in watch) or '<li>None this week.</li>'}</ul></div></div>
+<p class="s" style="margin-top:8px">Unofficial project, open-source news only; not a government service. Generated automatically. Check every item against the original article and official sources before acting. Risk scores never use nationality.</p>
 </body></html>"""
     with open(os.path.join(out_dir, "bulletin.html"), "w", encoding="utf-8") as f:
         f.write(body)

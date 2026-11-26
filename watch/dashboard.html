@@ -112,6 +112,7 @@
   @media (max-width:1150px) { .lk-grid > * { grid-column:span 12 !important; } }
 
   .nr { color:var(--dim); font-style:italic; }
+  .chip.off { color:#00a888; }
   .rv { font-size:10.5px; padding:1px 7px; border-radius:20px; background:var(--panel2); border:1px solid var(--line); color:var(--muted); white-space:nowrap; }
   .rv.Reviewed, .rv.Corrected { color:#00a888; border-color:#00a888; } .rv.Awaiting { color:var(--home); border-color:#6b5a26; }
   .eid { font-family:ui-monospace,Menlo,Consolas,monospace; font-size:11px; color:var(--muted); }
@@ -160,6 +161,7 @@
   <select id="fcountry"><option value="">All countries</option></select>
   <select id="fnat"><option value="">Any nationality</option></select>
   <select id="fmode"><option value="">All transport</option></select>
+  <select id="fsrc"><option value="">News + official</option><option value="official">Official releases only</option><option value="news">News only</option></select>
   <select id="freview"><option value="">Any review status</option></select>
   <select id="flevel"><option value="">Incidents + updates</option><option value="Incident">Incidents only</option><option>High</option><option>Medium</option><option>Low</option><option value="Update">Updates only</option></select>
   <input type="search" id="q" placeholder="Search headlines or event ID…">
@@ -297,7 +299,7 @@ const today = DATA.updated.slice(0, 10);
 const ev = DATA.events.map(e => ({tags: [], groups: [], related: [], home: false, region: false, watch: false, review_status: "Automatically collected", ...e, g: groupOf(e)}));
 
 /* filters: every chart, list and number below follows these */
-const F = {period: 90, scope: "", group: "", topic: "", country: "", nat: "", level: "", mode: "", review: "", q: ""};
+const F = {period: 90, scope: "", group: "", topic: "", country: "", nat: "", level: "", mode: "", review: "", src: "", q: ""};
 const jText = e => (e.journey || {}).text || "";
 GROUPS.forEach(([g], i) => $("fgroup").add(new Option(g, i)));
 [...new Set(ev.flatMap(e => e.categories))].sort().forEach(v => $("ftopic").add(new Option(v, v)));
@@ -320,6 +322,7 @@ $("fcountry").onchange = e => { F.country = e.target.value; update(); };
 $("flevel").onchange = e => { F.level = e.target.value; update(); };
 $("fmode").onchange = e => { F.mode = e.target.value; update(); };
 $("fnat").onchange = e => { F.nat = e.target.value; update(); };
+$("fsrc").onchange = e => { F.src = e.target.value; update(); };
 $("freview").onchange = e => { F.review = e.target.value; update(); };
 function findEvent(id) { F.q = id.toLowerCase(); $("q").value = id; F.period = 0;
   document.querySelectorAll("#period button").forEach(b => b.classList.toggle("on", b.dataset.v === "0")); update();
@@ -327,8 +330,8 @@ function findEvent(id) { F.q = id.toLowerCase(); $("q").value = id; F.period = 0
 $("q").oninput = e => { F.q = e.target.value.toLowerCase(); update(); };
 $("fsort").onchange = () => renderTable(current);
 $("reset").onclick = () => {
-  Object.assign(F, {period: 90, scope: "", group: "", topic: "", country: "", nat: "", level: "", mode: "", review: "", q: ""});
-  ["fgroup", "ftopic", "fcountry", "fnat", "flevel", "fmode", "freview"].forEach(id => $(id).value = ""); $("q").value = "";
+  Object.assign(F, {period: 90, scope: "", group: "", topic: "", country: "", nat: "", level: "", mode: "", review: "", src: "", q: ""});
+  ["fgroup", "ftopic", "fcountry", "fnat", "flevel", "fmode", "freview", "fsrc"].forEach(id => $(id).value = ""); $("q").value = "";
   document.querySelectorAll("#period button").forEach(b => b.classList.toggle("on", b.dataset.v === "90"));
   document.querySelectorAll("#scope button").forEach(b => b.classList.toggle("on", b.dataset.v === ""));
   update();
@@ -342,7 +345,7 @@ function filtered(ignorePeriod) {
     && (F.group === "" || e.categories.some(c => topicGroup[c] === +F.group))
     && (!F.topic || e.categories.includes(F.topic)) && (!F.country || e.countries.includes(F.country))
     && (!F.level || e.level === F.level || e.kind === F.level)
-    && (!F.nat || (e.nationality || []).includes(F.nat)) && (!F.mode || modeKey(e.transport_mode) === F.mode) && (!F.review || e.review_status === F.review)
+    && (!F.nat || (e.nationality || []).includes(F.nat)) && (!F.src || (F.src === "official") === !!e.official) && (!F.mode || modeKey(e.transport_mode) === F.mode) && (!F.review || e.review_status === F.review)
     && (!F.q || (e.event_id + " " + jText(e) + " " + e.title + " " + (e.summary || "") + " " + (e.lead || "") + " " + e.source + " " + e.countries.join(" ") + " " + (e.terms || []).join(" ")).toLowerCase().includes(F.q)));
 }
 
@@ -524,7 +527,8 @@ function kpis(rows) {
   $("kpis").innerHTML = items.map(([l, v, d, c]) => `<div class="kpi"><div class="l">${esc(l)}</div><div class="n">${v}</div><div class="d">${esc(d)}</div><div class="bar" style="--c:${c}"></div></div>`).join("");
 }
 
-const chip = e => `<span class="chip ${e.level}">${e.level === "Update" ? "Update" : e.watch ? "Watch list" : e.level + " " + e.score}</span>`;
+const chip = e => `<span class="chip ${e.level}">${e.level === "Update" ? "Update" : e.watch ? "Watch list" : e.level + " " + e.score}</span>`
+  + (e.official ? ' <span class="chip off" title="Published by an official agency">OFFICIAL</span>' : "");
 const feedItem = e => `<li><a class="t" href="${esc(e.source_url || e.url)}" target="_blank" rel="noopener">${esc(e.title)}</a>
   <div class="meta">${chip(e)}${e.home ? `<span class="jm">${esc(DATA.home.toUpperCase())}</span>` : ""}<span>${esc(e.date)}</span><span>${esc(e.source)}</span>${e.weight_kg ? `<span>${e.weight_kg} kg</span>` : ""}${e.outcome ? `<span>${esc(e.outcome)}</span>` : ""}<a class="eid" href="javascript:void 0" onclick="findEvent('${esc(e.event_id)}')">${esc(e.event_id)}</a></div></li>`;
 const feed = (id, rows, empty) => $(id).innerHTML = rows.length ? rows.slice(0, 25).map(feedItem).join("") : `<li class="empty">${empty}</li>`;
@@ -534,12 +538,12 @@ const rank = {High: 0, Medium: 1, Low: 2, Update: 3};
 function record(e) {
   const loc = e.location || {}, j = e.journey || {};
   const q = e.event_date ? `${esc(e.event_date)} <span class="nr">(${esc(e.event_date_quality)})</span>` : `${NR} <span class="nr">(unknown)</span>`;
-  const src = (e.sources || [{publisher: e.source, url: e.source_url || e.url, date: e.date}]).map(s => `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.publisher || "link")}</a> <span class="nr">${esc(s.date || "")}</span>`).join("<br>");
+  const src = (e.sources || [{publisher: e.source, url: e.source_url || e.url, date: e.date, official: e.official}]).map(s => `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.publisher || "link")}</a> <span class="nr">${esc(s.date || "")}${s.official ? " · official release" : ""}</span>`).join("<br>");
   const rel = (e.related || []).filter(id => byEid[id]).map(id => `<a class="rel" onclick="findEvent('${esc(id)}')" title="${esc(byEid[id].title)}">${esc(id)}</a>`).join("");
   const rows = [
     ["Event ID", esc(e.event_id)], ["Title", esc(e.title)], ["Summary", val(e.summary_text || e.lead)],
     ["Primary category", val(e.primary_category)], ["Additional tags", val(e.tags)], ["Main group(s)", val(e.groups)],
-    ["Event date", q], ["Publication date", val(e.date)], ["First captured", val(e.first_seen)], ["Last updated", val(e.last_updated)],
+    ["Event date", q], ["Publication date", e.date_basis ? `${esc(e.date)} <span class="nr">(${esc(e.date_basis)})</span>` : val(e.date)], ["Source type", e.official ? "Official release (agency)" : "News report"], ["First captured", val(e.first_seen)], ["Last updated", val(e.last_updated)],
     ["Incident location: countries named", val(e.countries)], ["City", val(loc.cities)], ["Airport", val(e.airports)], ["Seaport", val(loc.ports)],
     ["Border crossing", val(loc.crossings)],
     ["Journey: origin", val(j.origin)], ["Transit points, in order", val(j.transit)], ["Intended destination", val(j.destination)],
@@ -733,6 +737,8 @@ $("trends").innerHTML = "<tr><th>Topic</th><th>This week</th><th>Usual week</th>
    : '<tr><td colspan="4" class="empty">Needs a few weeks of history.</td></tr>');
 
 update();
+/* a link ending in #BWO-2026-0123 (used in alert emails) opens that report */
+if (/^#BWO-\d{4}-\d+$/.test(location.hash)) setTimeout(() => findEvent(location.hash.slice(1)), 300);
 </script>
 </body>
 </html>
