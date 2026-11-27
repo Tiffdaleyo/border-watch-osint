@@ -1,7 +1,7 @@
 # Border Watch OSINT: team guide
 
 This guide explains what the site is, where its information comes from, how it sorts and scores reports, what each field
-means, how we protect privacy, and how the team reviews and corrects reports. It is updated with every change to
+means, how privacy is protected, and how the team reviews and corrects reports. It is updated with every change to
 the site. The change log is at the end.
 
 - **Website:** https://tiffdaleyo.github.io/border-watch-osint/
@@ -35,7 +35,7 @@ Everything runs automatically on GitHub, free of charge. No one needs to switch 
 4. **Read full articles:** it opens up to 400 articles per run (about 8 minutes), Jamaica, the Caribbean and
    incidents first. It takes more precise facts from the article text. **The article text itself is never stored.**
    Only the extracted facts and a short summary are kept.
-5. **Score:** each incident gets a risk score (section 7).
+5. **Score:** each incident gets a review-priority score (section 7).
 6. **Apply reviews:** it applies the team's review decisions from `reviews.yaml` (section 9).
 7. **Privacy filter:** it removes ID numbers and victims' names (section 8).
 8. **Draft, not live:** it builds a **draft** and emails the reviewer a "Daily draft for review" (section 2b).
@@ -48,18 +48,18 @@ Everything runs automatically on GitHub, free of charge. No one needs to switch 
 
 To run it by hand: open the **Actions** tab, choose **daily-border-watch-osint**, then click **Run workflow**.
 
-## 2b. Review before anything goes live (agreed with Ray, 27 Nov 2026)
+## 2b. Review before anything goes live
 
-Nothing new reaches the public site, the alert emails or the team's bulletin until the reviewer (Ray) has read it.
+Nothing new reaches the public site, the alert emails or the team's bulletin until the designated reviewer has read and approved it.
 
 **Every morning**
 1. At about 06:30 Jamaica time, an email arrives: **"DRAFT for review: N new Border Watch reports"**. It lists
    every report not yet live: Jamaica and the Caribbean first, then by review priority. Reports whose headline and
    article disagree on the outcome are marked **CHECK OUTCOME**.
-2. **To fix or remove a report,** tell Claude in the Border Watch project, for example "remove BWO-2026-1234" or
-   "BWO-2026-1234 is Charged, not Convicted". Claude writes the change into `reviews.yaml` (section 9).
-3. **To publish:** open **Actions → publish → Run workflow** (the email has a direct link), or reply "publish" to
-   Claude. The site updates within about 2 minutes.
+2. **To fix or remove a report,** record the decision in `reviews.yaml` by its Event ID (section 9), for example
+   `excluded` to remove it, or `corrected` with the right outcome.
+3. **To publish:** open **Actions → publish → Run workflow** (the email has a direct link). The site updates within
+   about 2 minutes.
 
 **What publishing does**
 - The reports go live.
@@ -69,8 +69,7 @@ Nothing new reaches the public site, the alert emails or the team's bulletin unt
 
 **Mondays**
 - The **draft bulletin** (PDF, with charts and analysis) is emailed to the reviewer only.
-- After any corrections, **publish** first, then press **Actions → send-bulletin → Run workflow** (or reply "send
-  the bulletin"). The team receives it, and its PDF is saved on the website.
+- After any corrections, **publish** first, then press **Actions → send-bulletin → Run workflow**. The team receives it, and its PDF is saved on the website.
 
 **Who gets the drafts:** the address in the `MAIL_REVIEW_TO` secret. If that is not set, the `MAIL_ALERTS_TO`
 address is used, and failing that `MAIL_TO`.
@@ -78,7 +77,7 @@ address is used, and failing that `MAIL_TO`.
 **If no one publishes:** the drafts keep piling up, and the next draft email lists everything not yet live. Nothing
 is lost.
 
-**Reports live before 27 Nov 2026** were published before this review began. They are not marked reviewed, and
+**Reports live before 27 Nov 2026** were published before the review step began. They are not marked reviewed, and
 they are listed as "baseline" in `data/published.json`.
 
 **Good to know:** the GitHub repository itself is public. The collected data file (`data/events.json`) can be seen
@@ -90,7 +89,7 @@ there before review, but the website, the alerts and the bulletin cannot.
 |---|---|---|
 | **Official press releases** (read first, marked **OFFICIAL**) | Releases published by the agencies themselves | PICA, Jamaica Constabulary Force, Jamaica Information Service, US CBP, US ICE, US DHS, US Department of Justice, UK Border Force, UK Home Office, UK National Crime Agency, Canada Border Services Agency, Europol, Frontex, IOM, UNODC, UK Visas and Immigration and EU Migration and Home Affairs. Every release must still match a topic, since most police news is not border-related. |
 | **Embassies, high commissions and foreign ministries** (marked **OFFICIAL**, shown under *Official Updates → Embassies & high commissions*) | Releases from diplomatic missions and foreign ministries | US Department of State travel advisories (sorted by their title only, because the long advisory text mentions many unrelated topics), UK government news for Jamaica, Barbados, Trinidad and Tobago, the Bahamas, Guyana, Haiti, the Dominican Republic and Belize, UK Foreign Office (FCDO), Global Affairs Canada. Only border-related releases are kept. Add more in `config.yaml` with `kind: mission`. |
-| Google News | Headlines and links | 9 editions: US, UK, Canada and Nigeria (English); Mexico, Colombia and Spain (Spanish); France (French); Brazil (Portuguese). About 100 English searches plus Spanish, French and Portuguese ones, listed in `config.yaml`. |
+| Google News | Headlines and links | 12 editions: US, UK, Canada and Nigeria (English); Mexico, Colombia and Spain (Spanish); France (French); Brazil (Portuguese); the Netherlands (Dutch, which also covers news from Aruba, Curaçao, Sint Maarten and Suriname); Germany (German); Italy (Italian). About 100 English searches plus searches in the other languages, listed in `config.yaml`. |
 | GDELT | A free global news index | Extra coverage. If it is busy, the run skips it and carries on. |
 | Extra RSS feeds | Optional | Add any feed in `config.yaml` (`rss_feeds`, or `official_feeds` to mark it official). |
 | The full article | Facts in more detail | Opened from the link. Only the facts are kept. |
@@ -194,7 +193,7 @@ download. **Anything the report does not state is shown as "Not reported".** Not
   Haiti", "ciudadano venezolano".
 - It is **never inferred** from a name, a route, an origin or a document's issuing country.
 - "Jamaican police" or "UK student visa" do not count, because the word does not describe a person.
-- It is **never used in the risk score**. A tested rule checks that the score stays the same with or without it.
+- It is **never used in the review-priority score**. A tested rule checks that the score stays the same with or without it.
 - It can be used as a filter (Any nationality) and appears in two charts: *Nationality (as stated)* and
   *Nationality by journey*.
 - A pattern in the data is a lead for analysis. It is never a reason to treat an individual traveller differently.
@@ -314,7 +313,7 @@ this shows as "1 independent source + 4 repeats".
 
 ## 9. Reviewing and correcting reports (`reviews.yaml`)
 
-Every report starts as **Automatically collected**. High-risk reports and those naming Jamaica start as
+Every report starts as **Automatically collected**. High review-priority reports and those naming Jamaica start as
 **Awaiting review**.
 
 To record a review:
@@ -397,20 +396,20 @@ smuggling ring appears in both Passports & Documents and Immigration.
 - **Filter bar:** choose the period, the scope (World, Caribbean or Jamaica), topic, country, nationality, transport
   mode, news vs official releases, review status, or incidents and updates. Every chart, list and number follows the filters, and the filters stay on when you change section.
   Click any bar or map bubble to filter by it. **Reset** clears the filters but keeps you in the section.
-- **Key numbers (clickable):** reports, high-risk incidents, Caribbean, Jamaica, policy updates and the largest
+- **Key numbers (clickable):** reports collected, reviewed by a person, review priority high, Caribbean, Jamaica, policy updates and the largest
   seizure total, compared with the previous period. Click a card to open its list: **Reports** jumps to the table;
-  **High-risk**, **Caribbean**, **Jamaica** and **Policy & other updates** filter to just those reports (click again
+  **Review priority: high**, **Caribbean**, **Jamaica** and **Policy & other updates** filter to just those reports (click again
   to remove); **Largest seizure total** opens the Seizures section.
 - **"Filters on" line:** every filter that is switched on is listed under the section heading, each with a ✕ to
   remove it, plus **Clear all**. If a section shows fewer reports than you expect, look here first. A link from an
   alert email opens one report by its Event ID; opening any section from the menu clears that search.
-- **Map:** countries named. A red pulse means the country has high-risk incidents.
+- **Map:** countries named. A red pulse means the country has high review-priority incidents.
 - **Reported journeys map:** distinct markers for origin (●), transit (◆), intended destination (▲) and interception
   (📍). A line shows a connection the report states between two places. **It is not an actual flight or sailing
   path.** Line width = number of reports. Next to it, the **Journeys** list shows incomplete journeys as, for
   example, "Origin: Jamaica; destination not reported".
 - **Nationality (as stated)** and **Nationality by journey:** see the nationality rules in section 5.
-- **Priority feed:** high-risk incidents and anything naming Jamaica.
+- **Priority feed:** high review-priority incidents and anything naming Jamaica.
 - **Seizures section extras:** reports over time by drug, top corridors, hotspots, a concealment × drug table,
   insider signals (with % cards), concealment trends and cover loads.
 - **Trend lookup** (Immigration, Trafficking, Passports): research a route (origin → destination) with
@@ -422,15 +421,14 @@ smuggling ring appears in both Passports & Documents and Immigration.
 
 ## 10b. Tools (side menu)
 
-All of these are our own code and use only our collected news and public reference lists. The site does not link
-to or copy anyone else's investigation tools.
+All tools are part of this site and use only the collected news and public reference lists.
 
 | Tool | What it does |
 |---|---|
 | **Port lookup** | Type a port name or UN/LOCODE (e.g. Kingston or JMKIN). It shows the reports and seizures linked to that port, with the substances and hiding methods. It covers 179 world ports and uses every date, not only the chosen period |
 | **Route lookup** | Research a journey from one country to another (the Trend lookup) |
 | **Repeat links** | The same route, cover cargo, hiding method, port, document type, container, vessel or flight showing up in separate cases. These are **leads to check, not proof** |
-| **Language coverage** | A map of where we can and cannot see. Green means reports were found. Light green means reports were found, but only through other languages. Yellow means we read the main language but found nothing. Red means a **blind spot**: we do not search the main language yet. Languages searched: English, Spanish, French, Portuguese, Dutch, German and Italian |
+| **Language coverage** | A map of where the site can and cannot see. Green means reports were found. Light green means reports were found, but only through other languages. Yellow means the main language is searched but nothing was found. Red means a **blind spot**: the main language is not searched yet. Languages searched: English, Spanish, French, Portuguese, Dutch, German and Italian |
 | **Any-selector search** | Jumps to the search box at the top |
 
 **Good to know:** don't type case details into outside websites (Flightradar24, MarineTraffic). Follow your agency's
@@ -510,7 +508,7 @@ put in Bcc, so they don't see each other's addresses.
    the PDF within 2 minutes. If nothing arrives, open that run's log. It says what went wrong, for example a wrong
    password.
 6. **Test the alert email:** open Actions, then **test-email**, then **Run workflow**. It sends one alert email,
-   marked **[TEST]**, with the 3 most recent high-risk or Jamaica-linked reports. It does not mark anything as
+   marked **[TEST]**, with the 3 most recent high review-priority or Jamaica-linked reports. It does not mark anything as
    alerted, so the real daily alerts are unaffected.
 
 To add or remove people later, edit the `MAIL_TO` secret. Until the secrets exist, the site works normally and
@@ -519,7 +517,7 @@ simply sends nothing.
 **Note:** alerts and the bulletin come from public news and are leads to verify. Don't reply to them with case
 details.
 
-## 11b. Data quality rules (added after an outside review, 27 Nov 2026)
+## 11b. Data quality rules
 
 - **Money is never a count.** "11,500 riyal work visa", "€22,000 for fake passports" and "$21,000 per person" are
   sums of money, so they are not counted as documents or people. Weapon models ("AK-47", "M-16", "Glock 19") are not
@@ -527,7 +525,7 @@ details.
 - **Repeat coverage is one event.** When several outlets report the same case within 4 days (same kind of event,
   same numbers, same countries, several distinctive headline words in common), the earliest report keeps its
   Event ID and the others become extra sources. Their old Event IDs still find it in the search box. Cases reported
-  in two languages are not always matched; tell the maintainer if you spot one.
+  in two languages are not always matched; report any you spot to the site administrator.
 - **Charged is not convicted.** Phrases like "if convicted" or "faces up to 10 years" are ignored. If the headline
   says charged or arrested but the article text says convicted or sentenced, the headline's stage is shown and the
   report is marked **Awaiting review** with the note "Outcome needs checking".
@@ -544,8 +542,8 @@ details.
 
 ## 12. Known limits
 
-- It works by **word matching, not AI**. Expect some off-topic items and some misses. Use `excluded`, and tell the
-  maintainer which words cause trouble.
+- It works by **word matching, not AI**. Expect some off-topic items and some misses. Use `excluded`, and report to the
+  site administrator which words cause trouble.
 - **Weights and seizure totals** follow the rules in section 11b. Some background figures can still slip through.
 - **Event dates, transport mode, outcomes and specialist fields** depend on the full article. Paywalled or blocked
   sites cannot be read, so those reports show more "Not reported".
@@ -592,7 +590,7 @@ Privacy rules are in `watch/privacy.py`.
 | `.github/workflows/weekly-bulletin.yml` | Sends the Monday bulletin |
 | `.github/workflows/test-email.yml`, `tools/test_alert.py` | Sends a [TEST] alert email on demand |
 | `.github/workflows/check-sources.yml`, `tools/check_sources.py` | Checks which official sources answer |
-| `watch/analyze.py` | Risk score and trends |
+| `watch/analyze.py` | Review-priority score and trends |
 | `watch/report.py`, `watch/dashboard.html` | Website, CSV and bulletin |
 | `data/events.json` | All stored reports |
 | `docs/` | The published website |
@@ -621,10 +619,10 @@ Privacy rules are in `watch/privacy.py`.
 | 2026-11-26 | Site organised into **sections** (Overview, Passports & Documents, Immigration & Irregular Movement, Human Trafficking, Citizenship & Residence, Border Security, Seizures & Contraband, Visa & Entry Rules, Official Updates), each with its own link, quick sub-topic buttons, relevant charts and a download of the current view. New **Stowaways** and **Travel advisories** topics. Embassy, high commission and foreign-ministry sources added. Fixed: English figures such as "13.795 kg" were read as 13,795 kg. |
 | 2026-11-26 | Key-number cards are clickable. A "Filters on" line shows every active filter with a ✕. An Event ID search from an alert link now clears when you open a section. |
 | 2026-11-26 | Light theme by default, with a Light / Dark button that each device remembers. |
-| 2026-11-26 | Side menu on the left. Big **Any selector** box that searches the reports, detects the selector type and opens it in the Investigation Desk. **Investigation tools** link to the LE OSINT Framework's Investigation Desk (its own site, credited): flow chart, any-selector run sheet, world ports and UN/LOCODE, flight tracker, shipping lines, air cargo, visas, HS codes, precursors, playbooks, toolbox. |
+| 2026-11-26 | Side menu on the left. Big **Any selector** box that searches the reports, detects the selector type. |
 | 2026-11-27 | Concealment and cover loads recorded in standard categories on every seizure, with charts, filters and a weekly concealment trend in the Seizures section, and columns in the CSV. |
 | 2026-11-27 | Data-quality fixes: money and weapon models no longer read as counts; repeat coverage grouped into one event (about 730 repeats merged); charged vs convicted conflicts flagged; personal court travel bans out of policy; "Insufficient comparison history"; seizure totals audited and labelled unverified (cocaine fell from 354 t to about 70 t). |
 | 2026-11-27 | Presentation: the site opens on the Caribbean (World and Jamaica one click away); "High-risk" renamed "Review priority"; shorter Overview (key numbers, map, priority feed, latest developments, section tiles), with detailed charts inside each section; new "Reviewed by a person" card next to "Reports collected". |
-| 2026-11-27 | Seizure charts (by drug over time, corridors, hotspots, concealment × drug, insider signals with %), Port lookup (name or UN/LOCODE), Repeat links table, Language coverage map, "What this suggests" analysis in every section. Dutch, German and Italian news searched. Links to the trainer's Investigation Desk removed at Ray's request: the side menu now lists our own tools only. |
-| 2026-11-27 | **Weekly bulletin** button in the site heading: a web page for the last 7 days with highlights, plus a page for every past week and an "All bulletins" list. It prints on one A4 page. |
+| 2026-11-27 | Seizure charts (by drug over time, corridors, hotspots, concealment × drug, insider signals with %), Port lookup (name or UN/LOCODE), Repeat links table, Language coverage map, "What this suggests" analysis in every section. Dutch, German and Italian news searched. The side menu lists the site's own tools only (links to outside investigation tools removed). |
+| 2026-11-27 | **Weekly bulletin** button in the site heading: a web page for the last 7 days with highlights, plus a page for every past week and an "All bulletins" list. It prints cleanly on A4. |
 | 2026-11-27 | Bulletin now has charts and a written analysis for each area. **Review before publishing:** the daily run makes a draft emailed to the reviewer; the live site, alerts and the team bulletin wait for the reviewer's Publish / Send bulletin (section 2b). |
