@@ -182,6 +182,8 @@
   details.about summary { cursor:pointer; color:var(--muted); font-size:13px; }
   table.mini { width:100%; border-collapse:collapse; font-size:12.5px; margin-top:8px; }
   table.mini td, table.mini th { padding:6px; border-bottom:1px solid var(--line); text-align:left; }
+  .suggest ul { margin:8px 0 0; padding-left:20px; } .suggest li { margin:6px 0; line-height:1.5; font-size:13.5px; }
+  .suggest li b { color:var(--ink); }
   table.xtab td.hc { text-align:center; font-weight:600; border-left:1px solid var(--line); }
   table.mini th { color:var(--dim); font-size:11px; text-transform:uppercase; letter-spacing:.06em; }
   .Rising { color:var(--high); font-weight:600; } .Falling { color:var(--low); font-weight:600; } .Steady { color:var(--dim); }
@@ -238,21 +240,14 @@
   <div class="brand"><div class="logo">BW</div><div><b>Border Watch</b><small>OSINT monitor</small></div></div>
   <div class="sgl">Sections</div>
   <nav id="snav"></nav>
-  <div class="sgl">Investigation tools</div>
+  <div class="sgl">Tools</div>
   <nav class="tools">
-    <a target="_blank" rel="noopener" href="https://glretief-ux.github.io/LE-OSINT-Framework/#flow"><span class="i">⟶</span>Flow chart</a>
-    <a target="_blank" rel="noopener" href="https://glretief-ux.github.io/LE-OSINT-Framework/#desk"><span class="i">⌕</span>Any-selector search</a>
-    <a target="_blank" rel="noopener" href="https://glretief-ux.github.io/LE-OSINT-Framework/#ports"><span class="i">⚓</span>World ports</a>
-    <a target="_blank" rel="noopener" href="https://glretief-ux.github.io/LE-OSINT-Framework/#flights"><span class="i">✈</span>Flight tracker</a>
-    <a target="_blank" rel="noopener" href="https://glretief-ux.github.io/LE-OSINT-Framework/#lines"><span class="i">▦</span>Shipping lines</a>
-    <a target="_blank" rel="noopener" href="https://glretief-ux.github.io/LE-OSINT-Framework/#air"><span class="i">✉</span>Air cargo</a>
-    <a target="_blank" rel="noopener" href="https://glretief-ux.github.io/LE-OSINT-Framework/#visas"><span class="i">⎙</span>Visa requirements</a>
-    <a target="_blank" rel="noopener" href="https://glretief-ux.github.io/LE-OSINT-Framework/#hs"><span class="i">#</span>HS codes</a>
-    <a target="_blank" rel="noopener" href="https://glretief-ux.github.io/LE-OSINT-Framework/#precursors"><span class="i">⚗</span>Drug precursors</a>
-    <a target="_blank" rel="noopener" href="https://glretief-ux.github.io/LE-OSINT-Framework/#playbooks"><span class="i">☰</span>Case playbooks</a>
-    <a target="_blank" rel="noopener" href="https://glretief-ux.github.io/LE-OSINT-Framework/#toolbox"><span class="i">⚙</span>Toolbox &amp; case log</a>
+    <a href="javascript:void 0" data-go="border:portlk"><span class="i">⚓</span>Port lookup</a>
+    <a href="javascript:void 0" data-go="migration:lookup"><span class="i">⟶</span>Route lookup</a>
+    <a href="javascript:void 0" data-go="seizures:links"><span class="i">⛓</span>Repeat links</a>
+    <a href="javascript:void 0" data-go="border:langmap"><span class="i">◐</span>Language coverage</a>
+    <a href="javascript:void 0" data-go="overview:q"><span class="i">⌕</span>Any-selector search</a>
   </nav>
-  <div class="credit">These open the <a href="https://github.com/glretief-ux/LE-OSINT-Framework" target="_blank" rel="noopener">LE OSINT Framework</a> Investigation Desk in a new tab (its own site, MIT licence).</div>
   <div class="foot"><button class="themebtn" id="theme" title="Switch between light and dark"></button></div>
 </aside>
 <div class="main">
@@ -301,6 +296,10 @@
   <div class="kpis" id="kpis"></div>
 
   <div class="grid">
+    <section class="card s12 suggest" data-sec="documents migration trafficking citizenship border seizures policy official">
+      <h2>What this suggests</h2><div class="sub">Written automatically from the reports in this view · patterns to look into, not findings · open the charts below to check each point</div>
+      <ul id="suggest"></ul>
+    </section>
     <section class="card s12" data-sec="overview">
       <h2>Sections at a glance</h2><div class="sub">Reports in the selected period and area · click a section to open it</div>
       <div class="glance" id="glance"></div>
@@ -445,6 +444,11 @@
       <ul class="feed" id="watch" style="max-height:330px"></ul>
     </section>
 
+    <section class="card s12" data-sec="documents migration trafficking citizenship border seizures policy official">
+      <div class="head"><div><h2>Language coverage: where we can and cannot see</h2><div class="sub">A country with no reports is not always quiet: we may not read its language · <b style="color:#2e9e5b">green</b> = reports found · <b style="color:#6fb582">light green</b> = found, but only through other languages (local news not read) · <b style="color:#c9a227">yellow</b> = we search its main language but found nothing · <b style="color:#d64545">red</b> = blind spot, its main language is not searched yet · hover a country for details</div></div></div>
+      <div id="langmap" class="chart" style="height:400px"></div>
+      <p class="lk-note" id="langnote"></p>
+    </section>
     <section class="card s12">
       <div class="head"><div><h2>All reports</h2><div class="sub" id="shown"></div></div>
         <div class="dl"><select id="fsort"><option value="region">__REGION__ first</option><option value="date">Newest first</option><option value="risk">Review priority first</option></select>
@@ -460,7 +464,7 @@
     <table class="mini" id="trends" style="margin-top:16px"></table>
   </details>
 </div>
-<footer>Investigation tools link to the <a href="https://github.com/glretief-ux/LE-OSINT-Framework">LE OSINT Framework</a> Investigation Desk (© LE OSINT Framework contributors, MIT licence). Open-source news only. Only headlines, short summaries and links are stored, never full articles. Map outlines: Natural Earth via world-atlas. Charts: Apache ECharts.</footer>
+<footer>Open-source news only. Only headlines, short summaries and links are stored, never full articles. Map outlines: Natural Earth via world-atlas. Charts: Apache ECharts.</footer>
 
 <script>
 const DATA = __DATA__;
@@ -566,7 +570,7 @@ function filtered(ignorePeriod, ignoreSection, ignoreTopic) {
 
 /* charts */
 const charts = {};
-["map", "jmap", "trend", "riskmix", "topics", "countries", "routes", "airports", "modes", "nats", "natroute", "pubs", "conceal", "cover", "ctrend", "dtrend", "corr", "hot", "insider"].forEach(id => charts[id] = echarts.init($(id)));
+["map", "jmap", "trend", "riskmix", "topics", "countries", "routes", "airports", "modes", "nats", "natroute", "pubs", "conceal", "cover", "ctrend", "dtrend", "corr", "hot", "insider", "langmap"].forEach(id => charts[id] = echarts.init($(id)));
 window.addEventListener("resize", () => Object.values(charts).forEach(c => c.resize()));
 const TT = {backgroundColor: css("--tt"), borderColor: css("--line"), textStyle: {color: INK, fontSize: 12}, extraCssText: "border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.18)"};
 const AX = {axisLine: {lineStyle: {color: LINE}}, axisTick: {show: false}, axisLabel: {color: MUTED, fontSize: 11}, splitLine: {lineStyle: {color: css("--split")}}};
@@ -595,7 +599,7 @@ const fixDateline = w => { w.features.forEach(f => { const g = f.geometry; if (!
   const polys = g.type === "Polygon" ? [g.coordinates] : g.type === "MultiPolygon" ? g.coordinates : [];
   polys.forEach(poly => poly.forEach(ring => { const xs = ring.map(p => p[0]);
     if (Math.max(...xs) - Math.min(...xs) > 180) ring.forEach(p => { if (p[0] < 0) p[0] += 360; }); })); }); return w; };
-fetch("vendor/world.json").then(r => r.json()).then(fixDateline).then(w => { echarts.registerMap("world", w); geoReady = true; drawMap(current); drawJourneys(current); })
+fetch("vendor/world.json").then(r => r.json()).then(fixDateline).then(w => { echarts.registerMap("world", w); geoReady = true; drawMap(current); drawJourneys(current); drawLangMap(current); })
   .catch(() => charts.map.setOption({title: {text: "Map could not load", left: "center", top: "middle", textStyle: {color: css("--dim"), fontSize: 13}}}));
 $("mWorld").onclick = () => { mapView = {center: null, zoom: 1}; drawMap(current); };
 $("mCar").onclick = () => { mapView = {center: [-72, 17], zoom: 5.5}; drawMap(current); };
@@ -954,6 +958,8 @@ function update() {
   drawConcealTrend(sz);
   drawSeizureCharts(current.filter(isSeizure));
   drawLinks(current);
+  drawLangMap(current);
+  drawSuggest(current);
   sectionUI(); activeFilters(); if (typeof selHint === "function") selHint();
   const act = Object.entries(F).filter(([k, v]) => v !== "" && !["period", "section"].includes(k)).length;
   $("reset").textContent = act ? `Reset (${act})` : "Reset";
@@ -1139,6 +1145,102 @@ function drawSeizureCharts(sz) {
   $("cxd").querySelectorAll("td.hc").forEach(td => td.onclick = () => { if (!td.textContent) return; F.conceal = td.dataset.m; searchFor(td.dataset.d); });
 }
 
+/* ---------------- What this suggests ---------------- */
+// plain-language bullets built from counts in the current view; each one says how many reports it rests on
+function drawSuggest(rows) {
+  if (F.section === "overview") return;
+  const inc = rows.filter(e => e.kind === "Incident"), out = [];
+  const pct = (a, b) => b ? Math.round(100 * a / b) + "%" : "0%";
+  const top = (list, fn, k = 3) => count(list, fn).slice(0, k);
+  const names = pairs => pairs.map(([k, n]) => `<b>${esc(k)}</b> (${n})`).join(", ");
+  const few = n => n < 5 ? ` <span style="color:${MUTED}">Only ${n} report${n === 1 ? "" : "s"}, so treat this as a very early signal.</span>` : "";
+  // rising: last 14 days against the 14 before, only when collection covered both
+  const d14 = since(14), d28 = since(28), canCompare = DATA.coverage_from && d28 >= DATA.coverage_from;
+  const rising = (list, fn) => { if (!canCompare) return [];
+    const now = count(list.filter(e => e.date >= d14), fn), before = new Map(count(list.filter(e => e.date >= d28 && e.date < d14), fn));
+    return now.filter(([k, n]) => n >= 3 && n >= 2 * (before.get(k) || 0) + 1).slice(0, 2).map(([k, n]) => [k, n, before.get(k) || 0]); };
+  const riseText = (list, fn, what) => rising(list, fn).forEach(([k, n, b]) => out.push(`<b>${esc(k)}</b> is rising as a ${what}: ${n} reports in the last 14 days against ${b} in the 14 days before. Worth watching.`));
+  const routes = list => top(list, corridor);
+  const sec = F.section;
+  if (sec === "seizures") {
+    const sz = rows.filter(isSeizure), hid = sz.filter(e => (e.concealment_types || []).length);
+    if (!sz.length) { out.push("No seizure reports in this view."); }
+    else {
+      const c = top(hid, e => e.concealment_types || [], 3);
+      if (c.length) out.push(`<b>Concealment:</b> ${pct(hid.length, sz.length)} of seizure reports say how the goods were hidden. The most common methods are ${names(c)}. Screening that targets ${esc(c[0][0].toLowerCase())} would have covered the most cases in this view.${few(hid.length)}`);
+      const cv = top(sz, e => e.cover_goods || [], 2);
+      if (cv.length) { const r = top(sz.filter(e => (e.cover_goods || []).includes(cv[0][0])), corridor, 2);
+        out.push(`<b>Cover loads:</b> contraband most often travelled as or among ${names(cv)}${r.length ? `, mostly on ${names(r)}` : ""}. Consignments of these goods on these routes are the ones the news points to.${few(cv[0][1])}`); }
+      const tr = top(sz, e => [modeKey(e.transport_mode)].filter(m => m !== "Not reported"), 3);
+      if (tr.length) out.push(`<b>Transport:</b> ${names(tr)}.`);
+      const hs = top(sz, hotspots, 3); if (hs.length) out.push(`<b>Hotspots:</b> ${names(hs)} appear most often.`);
+      const ins = sz.filter(e => (e.insider_roles || []).length);
+      out.push(`<b>Insider signals:</b> ${ins.length} of ${sz.length} seizure reports (${pct(ins.length, sz.length)}) name staff as involved${ins.length ? `, mostly ${names(top(ins, e => e.insider_roles, 2))}` : ""}. These are allegations in the news, not findings.`);
+      riseText(hid, e => e.concealment_types || [], "hiding method"); riseText(sz, e => e.substances || [], "substance");
+    }
+  } else if (sec === "documents") {
+    const dt = top(inc, e => e.document_types || [], 3); if (dt.length) out.push(`<b>Documents:</b> the documents named most are ${names(dt)}.`);
+    const m = top(inc, e => (spec(e, "Document fraud", "Reported fraud method") || "").split("; ").filter(Boolean), 3);
+    if (m.length) out.push(`<b>Methods:</b> the fraud methods reported most are ${names(m)}.`);
+    const st = top(inc, e => (spec(e, "Document fraud", "Detection stage") || "").split("; ").filter(Boolean), 2);
+    if (st.length) out.push(`<b>Where it was caught:</b> ${names(st)}. Stages that rarely appear may be where fraud goes unnoticed.`);
+    const ic = top(inc, e => (spec(e, "Document fraud", "Issuing country of the document") || "").split("; ").filter(Boolean), 3);
+    if (ic.length) out.push(`<b>Documents claimed to be from:</b> ${names(ic)}.`);
+    const r = routes(inc); if (r.length) out.push(`<b>Routes:</b> ${names(r)}.`);
+    riseText(inc, e => e.document_types || [], "document type");
+  } else if (sec === "migration") {
+    const r = routes(inc); if (r.length) out.push(`<b>Routes:</b> the journeys reported most are ${names(r)}.`);
+    const tr = top(inc, e => [modeKey(e.transport_mode)].filter(m => m !== "Not reported"), 3); if (tr.length) out.push(`<b>Transport:</b> ${names(tr)}.`);
+    const ic = top(inc, e => [(e.journey || {}).interception_country].filter(Boolean), 3); if (ic.length) out.push(`<b>Intercepted in:</b> ${names(ic)}.`);
+    const f = top(inc, e => (spec(e, "Migrant smuggling", "Alleged facilitators (role)") || "").split("; ").filter(Boolean), 3);
+    if (f.length) out.push(`<b>Facilitators:</b> the roles named most are ${names(f)}.`);
+    const fee = inc.filter(e => spec(e, "Migrant smuggling", "Reported fees and currency")).length; if (fee) out.push(`<b>Fees:</b> ${fee} report${fee === 1 ? "" : "s"} state a smuggling fee. Open the full record to compare the amounts.`);
+    riseText(inc, corridor, "route");
+  } else if (sec === "trafficking") {
+    const x = top(inc, e => e.exploitation || [], 3); if (x.length) out.push(`<b>Exploitation:</b> the types reported most are ${names(x)}.`);
+    const r = routes(inc); if (r.length) out.push(`<b>Routes:</b> ${names(r)}.`);
+    const va = inc.filter(e => e.victim_assistance).length; out.push(`<b>Victim support:</b> ${va} of ${inc.length} reports (${pct(va, inc.length)}) mention assistance or referral for victims.`);
+    riseText(inc, e => e.countries, "country");
+  } else if (sec === "policy" || sec === "citizenship") {
+    const up = rows.filter(e => e.kind === "Update"), t = e => (e.title + " " + (e.summary || "")).toLowerCase();
+    const tight = up.filter(e => /suspend|ban|restrict|end visa-free|ends visa-free|to end|tighten|new requirement|require|revok|stricter/.test(t(e))).length;
+    const ease = up.filter(e => /visa-free|visa free|waiver|exempt|eas(e|ing)|lift|extend/.test(t(e)) && !/suspend|ban|end /.test(t(e))).length;
+    out.push(`<b>Direction of change:</b> ${tight} update${tight === 1 ? "" : "s"} tighten entry rules and ${ease} ease them. This is based on wording, so check the source.`);
+    const c = top(up, e => e.countries, 4); if (c.length) out.push(`<b>Countries in the news:</b> ${names(c)}.`);
+    const hm = up.filter(e => (e.countries || []).includes(DATA.home)); if (hm.length) out.push(`<b>${esc(DATA.home)}:</b> ${hm.length} update${hm.length === 1 ? "" : "s"} name ${esc(DATA.home)}. Check whether they affect ${esc(DATA.home)} passport holders or arrivals.`);
+  } else if (sec === "border") {
+    const cor = inc.filter(e => e.categories.includes("Corruption and insider facilitation") || (e.insider_roles || []).length);
+    out.push(`<b>Insider risk:</b> ${cor.length} of ${inc.length} incidents (${pct(cor.length, inc.length)}) involve staff or corruption${cor.length ? `, mostly ${names(top(cor, e => e.insider_roles || [], 2)) || "unspecified roles"}` : ""}.`);
+    const t = top(inc, e => e.categories, 4); if (t.length) out.push(`<b>Main topics:</b> ${names(t)}.`);
+    const ap = top(inc, e => e.airports || [], 3); if (ap.length) out.push(`<b>Airports named:</b> ${names(ap)}.`);
+    riseText(inc, e => e.categories, "topic");
+  } else {
+    const t = top(rows, e => e.countries, 4); if (t.length) out.push(`<b>Countries named most:</b> ${names(t)}.`);
+    const p = top(rows, e => [e.source], 3); if (p.length) out.push(`<b>Publishing most:</b> ${names(p)}.`);
+  }
+  if (!canCompare) out.push(`<span style="color:${MUTED}">Rising and falling trends will appear once at least four weeks have been collected.</span>`);
+  $("suggest").innerHTML = out.length ? out.map(x => `<li>${x}</li>`).join("") : '<li>Not enough reports in this view to suggest a pattern.</li>';
+}
+
+/* ---------------- Language coverage ---------------- */
+function drawLangMap(rows) {
+  const L = DATA.langs; if (!L) return;
+  const read = new Set(L.searched), nm = c => L.names[c] || c;
+  $("langnote").innerHTML = `<b>Languages searched:</b> ${L.searched.map(nm).join(", ")}. Official feeds and the GDELT index add some reports in other languages, but they are not searched for every topic. `
+    + `<b>Not searched yet</b> (main languages of red countries): ${[...new Set(Object.values(L.table).map(x => x[0]).filter(c => !read.has(c)))].map(nm).slice(0, 25).join(", ")}. Haitian news is mostly in French, which we read; Haitian Creole itself is not searched.`;
+  if (!geoReady) return;
+  const per = {}; rows.forEach(e => e.countries.forEach(c => per[c] = (per[c] || 0) + 1));
+  const data = Object.entries(L.table).map(([map, langs]) => {
+    const n = per[L.alias[map] || map] || 0, main = langs[0], ok = read.has(main);
+    return {name: map, value: n ? (ok ? 2 : 3) : ok ? 1 : 0, n, langs, ok};
+  });
+  charts.langmap.setOption({tooltip: {...TT, trigger: "item", formatter: p => { const d = p.data; if (!d) return esc(p.name);
+      return `<b>${esc(p.name)}</b><br>${d.n} report${d.n === 1 ? "" : "s"} in this view<br>Main language${d.langs.length > 1 ? "s" : ""}: ${d.langs.map(c => nm(c) + (read.has(c) ? " ✓" : " ✗")).join(", ")}<br><span style="color:${MUTED}">${d.n ? (d.ok ? "Reports found" : "Reports found, but only through other languages: local news is not searched") : d.ok ? "Searched, nothing found" : "Blind spot: main language not searched"}</span>`; }},
+    visualMap: {show: false, type: "piecewise", pieces: [{value: 0, color: "#d64545"}, {value: 1, color: "#e3c04d"}, {value: 2, color: "#2e9e5b"}, {value: 3, color: "#9bd1a9"}]},
+    series: [{type: "map", map: "world", roam: true, zoom: 1.15, itemStyle: {borderColor: css("--panel"), borderWidth: .5, areaColor: css("--split")},
+      emphasis: {label: {show: false}, itemStyle: {areaColor: css("--accent")}}, select: {disabled: true}, data}]}, true);
+}
+
 /* ---------------- Repeat links ---------------- */
 const spec = (e, sec, label) => { const x = (e.specialist || []).find(([n]) => n === sec); return x ? (x[1][label] || "") : ""; };
 const portsOf = e => ((e.location || {}).ports || []).map(p => p.replace(/ \([A-Z]{5}\)$/, ""));
@@ -1187,7 +1289,7 @@ function portLookup() {
   const last = hits[0] ? hits[0].date : "";
   $("pkOut").innerHTML = `<p class="lk-note"><b>${esc(p[0])}</b> · ${esc(p[1])} · UN/LOCODE <b>${esc(p[2])}</b> · ${hits.length} report${hits.length === 1 ? "" : "s"} linked, ${sz.length} seizure${sz.length === 1 ? "" : "s"}${last ? " · latest " + esc(last) : ""}
     ${subs.length ? "<br>Substances: " + subs.map(([k, n]) => `${esc(k)} (${n})`).join(", ") : ""}${how.length ? "<br>Hidden: " + how.map(([k, n]) => `${esc(k)} (${n})`).join(", ") : ""}
-    <br><a href="javascript:void 0" id="pkAll">Show these in the report list</a> · <a href="https://glretief-ux.github.io/LE-OSINT-Framework/#ports" target="_blank" rel="noopener">Port tools on the Investigation Desk ↗</a></p>
+    <br><a href="javascript:void 0" id="pkAll">Show these in the report list</a></p>
     ${hits.length ? `<ul class="feed" style="max-height:320px">${hits.slice(0, 25).map(feedItem).join("")}</ul>` : `<p class="lk-note">No reports in the collected news name this port yet. Only reports that name the port itself are linked, not the city alone.</p>`}`;
   const a = $("pkAll"); if (a) a.onclick = () => { setScope(""); F.period = 0; document.querySelectorAll("#period button").forEach(b => b.classList.toggle("on", b.dataset.v === "0")); searchFor(name); };
 }
@@ -1264,22 +1366,20 @@ $("share").onclick = () => { const u = location.href.split("#")[0] + "#" + F.sec
   (navigator.clipboard ? navigator.clipboard.writeText(u) : Promise.reject()).then(() => { $("share").textContent = "✓ Link copied"; setTimeout(() => $("share").textContent = "🔗 Copy link", 1500); }, () => prompt("Copy this link", u)); };
 
 /* ---------------- Any selector ---------------- */
-// The Investigation Desk is the LE OSINT Framework's own site (MIT licence); its search box can't be filled from a
-// link, so the selector is copied to the clipboard and the desk's source list opens, ready to paste.
-const DESK_Q = () => "https://glretief-ux.github.io/LE-OSINT-Framework/#desk";
+// works out what was pasted and searches our own reports; a few public lookups are offered where one fits
 const SEL = [
-  ["Event ID", /^BWO-\d{4}-\d+$/i, null],
-  ["Container number", /^[A-Z]{3}[UJZ]\s?\d{6}\s?-?\d$/i, v => DESK_Q(v)],
-  ["Air waybill", /^\d{3}[-\s]?\d{8}$/, v => `https://glretief-ux.github.io/LE-OSINT-Framework/#air=${encodeURIComponent(v)}`],
-  ["IMO ship number", /^(IMO\s?)?\d{7}$/i, v => DESK_Q(v)],
-  ["MMSI", /^\d{9}$/, v => DESK_Q(v)],
-  ["Email address", /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i, v => DESK_Q(v)],
-  ["IP address", /^(\d{1,3}\.){3}\d{1,3}$/, v => DESK_Q(v)],
-  ["Phone number", /^\+?[\d][\d\s().-]{6,}$/, v => DESK_Q(v)],
-  ["Port code (UN/LOCODE)", /^[A-Z]{2}\s?[A-Z]{3}$/, () => "https://glretief-ux.github.io/LE-OSINT-Framework/#ports"],
-  ["Flight number", /^[A-Z0-9]{2}\s?\d{1,4}[A-Z]?$/i, v => `https://glretief-ux.github.io/LE-OSINT-Framework/#flights=${encodeURIComponent(v.replace(/\s/g, ""))}`],
-  ["Website / domain", /^(https?:\/\/)?[a-z0-9-]+(\.[a-z0-9-]+)+(\/\S*)?$/i, v => DESK_Q(v)],
-  ["Social media handle", /^@\w{2,}$/, v => DESK_Q(v)],
+  ["Event ID", /^BWO-\d{4}-\d+$/i],
+  ["Container number", /^[A-Z]{3}[UJZ]\s?\d{6}\s?-?\d$/i],
+  ["Air waybill", /^\d{3}[-\s]?\d{8}$/],
+  ["IMO ship number", /^(IMO\s?)?\d{7}$/i],
+  ["MMSI", /^\d{9}$/],
+  ["Email address", /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i],
+  ["IP address", /^(\d{1,3}\.){3}\d{1,3}$/],
+  ["Phone number", /^\+?[\d][\d\s().-]{6,}$/],
+  ["Port code (UN/LOCODE)", /^[A-Z]{2}\s?[A-Z]{3}$/],
+  ["Flight number", /^[A-Z0-9]{2}\s?\d{1,4}[A-Z]?$/i],
+  ["Website / domain", /^(https?:\/\/)?[a-z0-9-]+(\.[a-z0-9-]+)+(\/\S*)?$/i],
+  ["Social media handle", /^@\w{2,}$/],
 ];
 function selHint() {
   const v = $("q").value.trim();
@@ -1287,14 +1387,20 @@ function selHint() {
   if (!v) return;
   const hit = SEL.find(([, re]) => re.test(v));
   const kind = hit ? hit[0] : (/^[A-Za-z][A-Za-z'’.-]+(\s+[A-Za-z][A-Za-z'’.-]+){1,3}$/.test(v) ? "Name or phrase" : "Word or phrase");
-  const n = current.length;
-  const desk = hit && hit[2] ? hit[2](v) : DESK_Q(v);
+  const n = current.length, c = v.replace(/\s/g, "");
+  const port = kind.startsWith("Port") && DATA.ports.find(p => p[2] === c.toUpperCase());
   $("selhint").innerHTML = `Detected: <b>${esc(kind)}</b> · ${n ? `<b>${n}</b> report${n > 1 ? "s" : ""} below mention it` : "no report on this site mentions it"}`
-    + (kind === "Event ID" ? "" : ` · <a href="${desk}" target="_blank" rel="noopener" id="deskgo" title="Opens the Investigation Desk in a new tab; the selector is copied so you can paste it there">Look it up in the Investigation Desk ↗</a>`)
-    + (kind.startsWith("Port") ? ` <a class="alt" target="_blank" rel="noopener" href="https://glretief-ux.github.io/LE-OSINT-Framework/#ports">World ports</a>` : "")
-    + (kind === "Flight number" ? ` <a class="alt" href="https://www.flightradar24.com/data/flights/${encodeURIComponent(v.replace(/\s/g, "").toLowerCase())}" target="_blank" rel="noopener">Flightradar24 ↗</a>` : "");
-  const g = $("deskgo"); if (g) g.onclick = () => { try { navigator.clipboard.writeText(v); } catch (e) { /* ignore */ } };
+    + (port ? ` · <a href="javascript:void 0" id="selport">Open ${esc(port[0])} in Port lookup</a>` : "")
+    + (kind === "Flight number" ? ` · <a class="alt" href="https://www.flightradar24.com/data/flights/${encodeURIComponent(c.toLowerCase())}" target="_blank" rel="noopener">Flight history on Flightradar24 ↗</a>` : "")
+    + (kind === "IMO ship number" || kind === "MMSI" ? ` · <a class="alt" href="https://www.marinetraffic.com/en/ais/index/search/all/keyword:${encodeURIComponent(c.replace(/^imo/i, ""))}" target="_blank" rel="noopener">Ship position on MarineTraffic ↗</a>` : "");
+  const sp = $("selport"); if (sp) sp.onclick = () => goTool("border", "portlk", port[0]);
 }
+function goTool(sec, id, portName) {
+  if (F.section !== sec) location.hash = sec;
+  setTimeout(() => { if (portName) { $("pkIn").value = portName; portLookup(); }
+    const el = $(id); if (el) { el.scrollIntoView({behavior: "smooth", block: "start"}); if (id === "q") el.focus(); } }, 350);
+}
+document.querySelectorAll(".tools a[data-go]").forEach(a => a.onclick = () => { const [sec, id] = a.dataset.go.split(":"); goTool(sec, id); });
 $("q").addEventListener("input", () => setTimeout(selHint, 0));
 $("qclear").onclick = () => { $("q").value = ""; F.q = ""; update(); $("q").focus(); };
 document.querySelectorAll(".selbox .try button").forEach(b => b.onclick = () => { $("q").value = b.textContent; F.q = b.textContent.toLowerCase(); update(); });

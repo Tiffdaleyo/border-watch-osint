@@ -41,6 +41,9 @@ sources:
       - {lang: es, hl: es,     gl: ES, ceid: "ES:es"}
       - {lang: fr, hl: fr,     gl: FR, ceid: "FR:fr"}
       - {lang: pt, hl: pt-BR,  gl: BR, ceid: "BR:pt-419"}
+      - {lang: nl, hl: nl,     gl: NL, ceid: "NL:nl"}      # Netherlands, and Dutch news from Aruba, Curacao, Sint Maarten, Suriname
+      - {lang: de, hl: de,     gl: DE, ceid: "DE:de"}
+      - {lang: it, hl: it,     gl: IT, ceid: "IT:it"}
     queries:
       en: ["fake passports seized", "forged passport arrested airport", "fraudulent passport arrested",
            "passport fraud ring", "counterfeit visas seized", "visa fraud arrested", "identity fraud passport",
@@ -100,6 +103,12 @@ sources:
       fr: ["cocaïne saisie aéroport", "mule cocaïne interpellée", "migration irrégulière", "obligation de visa", "notice rouge Interpol", "faux passeports interpellé", "passeport falsifié aéroport", "filière d'immigration clandestine démantelée",
            "fraude documentaire aéroport"]
       pt: ["cocaína apreendida aeroporto", "contêiner cocaína apreendido", "migração irregular", "exigência de visto", "difusão vermelha Interpol", "passaportes falsos preso", "passaporte falso aeroporto", "tráfico de migrantes preso"]
+      nl: ["cocaïne onderschept haven", "bolletjesslikker Schiphol", "vals paspoort aangehouden", "mensensmokkel aangehouden",
+           "mensenhandel", "Curaçao cocaïne", "Aruba drugs aangehouden", "Sint Maarten douane", "Suriname cocaïne"]
+      de: ["Kokain sichergestellt Hafen", "Schleuser festgenommen", "gefälschter Reisepass Flughafen", "Menschenhandel festgenommen",
+           "Drogenkurier Flughafen", "Bundespolizei Flughafen festgenommen"]
+      it: ["cocaina sequestrata porto", "scafisti arrestati", "passaporto falso aeroporto", "tratta di esseri umani arresti",
+           "ovuli di cocaina aeroporto", "Guardia di Finanza cocaina"]
 
   gdelt:                 # a free global news index; no key needed
     enabled: true

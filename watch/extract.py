@@ -224,6 +224,7 @@ def groups_of(categories):
 # Goods topics are kept only when the report is about a border, a journey or a shipment (not a street-level police
 # story), or when it names a country we focus on (the Caribbean, by default).
 BORDER_CONTEXT = [
+    "haven", "luchthaven", "schiphol", "douane", "hafen", "flughafen", "zoll", "porto", "dogana", "frontiera", "grenze", "grens",
     "airport*", "flight*", "passenger*", "luggage", "suitcase*", "baggage", "carry-on", "traveller*", "traveler*",
     "port", "ports", "seaport", "container*", "cargo", "shipment*", "consignment*", "vessel*", "ship", "boat*",
     "border*", "customs", "courier*", "parcel*", "mule*", "swallow*", "smuggl*", "traffick*", "import*", "export*",
@@ -319,6 +320,33 @@ def find_words(compiled, text):
     return sorted({m.group(0) for m in compiled.finditer(text)})
 
 
+
+# Dutch, German and Italian words (Aruba, Curacao, Sint Maarten, Suriname, Bonaire and Europe's main ports)
+MORE_LANGUAGES = {
+    "Passport fraud": ["vals paspoort", "valse paspoorten", "paspoortfraude", "vervalst paspoort", "gefalschte* reisepass*",
+                       "gefalschte* pass", "passfalschung", "passaporto falso", "passaporti falsi"],
+    "Identity and document fraud": ["valse documenten", "vervalste documenten", "identiteitsfraude", "gefalschte* dokumente",
+                                    "urkundenfalschung", "documenti falsi", "falsi documenti"],
+    "Visa and permit fraud": ["visumfraude", "vals visum", "visabetrug", "visti falsi", "visto falso"],
+    "Migrant smuggling": ["mensensmokkel", "mensensmokkelaar*", "schleuser*", "schleusung", "scafisti", "scafista",
+                          "traffico di migranti", "favoreggiamento dell'immigrazione clandestina"],
+    "Human trafficking": ["mensenhandel", "menschenhandel", "tratta di esseri umani"],
+    "Irregular migration": ["illegale migratie", "irreguliere migratie", "irregulare migration", "irregulare migranten",
+                            "migranti irregolari", "sbarchi"],
+    "Visa and entry policy": ["visumplicht", "visumvrij", "inreisregels", "visumpflicht", "visafrei", "einreiseregeln",
+                              "obbligo di visto", "esenzione dal visto"],
+    "Drug trafficking": ["cocaine onderschept", "cocaine in beslag", "drugssmokkel", "drugskoerier*", "bolletjesslikker*",
+                         "kokain sichergestellt", "drogenschmuggel", "drogenkurier*", "cocaina sequestrata",
+                         "traffico di droga", "narcotraffico", "ovuli di cocaina"],
+    "Firearms and ammunition": ["wapensmokkel", "vuurwapens in beslag", "waffenschmuggel", "traffico di armi"],
+    "Cash couriers": ["contant geld in beslag", "bargeldschmuggel", "contanti non dichiarati"],
+    "Deportation and returns": ["uitzetting", "abschiebung*", "rimpatri*", "espulsione"],
+    "Border security": ["grensbewaking", "marechaussee", "kmar", "kustwacht", "bundespolizei", "grenzkontrolle*",
+                        "guardia di finanza", "controlli alle frontiere"],
+    "INTERPOL and watch lists": ["internationaal gesignaleerd", "internationale fahndung", "mandato di arresto internazionale"],
+}
+for _k, _w in MORE_LANGUAGES.items():
+    CATEGORIES[_k] = CATEGORIES[_k] + _w
 _CAT_RE = {name: compile_words(words) for name, words in CATEGORIES.items()}
 _FAKE = "|".join(re.escape(fold(w)).replace(r"\ ", r"\s+") for w in FAKE_WORDS)
 _PROX_RE = {name: re.compile(r"(?<!\w)(?:" + _FAKE + r")(?:\s+[\w'-]+){0,2}?\s+(?:"

@@ -352,9 +352,9 @@ smuggling ring appears in both Passports & Documents and Immigration.
   **☀ Light** switches back). Each computer or phone remembers its own choice.
 - **Any selector box (top):** type or paste anything: a word, a name, an email, a phone number, a flight number, an
   IMO ship number, a container number, a port code, a website or an Event ID. The site searches its own reports at
-  once and says what kind of selector it detected. Then a button opens the same selector in the Investigation Desk,
-  which lists every free source that can check it (flight numbers go to the flight tracker, air waybills to Air
-  cargo, port codes to World ports). The "Try" examples show the idea.
+  once and says what kind of selector it detected. A port code (e.g. JMKIN) opens in **Port lookup**. A flight number
+  offers its flight history on Flightradar24, and an IMO or MMSI number offers the ship's position on MarineTraffic.
+  The "Try" examples show the idea.
 - **Filter bar:** choose the period, the scope (World, Caribbean or Jamaica), topic, country, nationality, transport
   mode, news vs official releases, review status, or incidents and updates. Every chart, list and number follows the filters, and the filters stay on when you change section.
   Click any bar or map bubble to filter by it. **Reset** clears the filters but keeps you in the section.
@@ -372,6 +372,8 @@ smuggling ring appears in both Passports & Documents and Immigration.
   example, "Origin: Jamaica; destination not reported".
 - **Nationality (as stated)** and **Nationality by journey:** see the nationality rules in section 5.
 - **Priority feed:** high-risk incidents and anything naming Jamaica.
+- **Seizures section extras:** reports over time by drug, top corridors, hotspots, a concealment × drug table,
+  insider signals (with % cards), concealment trends and cover loads.
 - **Trend lookup** (Immigration, Trafficking, Passports): research a route (origin → destination) with
   live news-index results and ready-made searches.
 - **All reports:** a sortable table. Click **Full record** for every field, including specialist fields. Click
@@ -379,31 +381,35 @@ smuggling ring appears in both Passports & Documents and Immigration.
 - **Full downloads:** the complete CSV (every report, every field) and the **weekly bulletin** are linked above the
   table.
 
-## 10b. Investigation tools (LE OSINT Framework)
+## 10b. Tools (side menu)
 
-The **Investigation tools** in the side menu open the **Investigation Desk** of the LE OSINT Framework
-(https://glretief-ux.github.io/LE-OSINT-Framework/), shown to us by our trainer. It is its authors' own site
-(MIT licence) and opens in a new tab, so it is always their latest version and they keep the credit.
+All of these are our own code and use only our collected news and public reference lists. The site does not link
+to or copy anyone else's investigation tools.
 
 | Tool | What it does |
 |---|---|
-| **Flow chart** | Lines of enquiry (person, communications, goods and transport, money, digital, places) opening into categories and free sources. Click a card to open the next step |
-| **Any-selector search** | Paste one selector; every free source that accepts it is listed as a run sheet, with ticks and a case log |
-| **World ports** | 3,802 seaports from the NGA World Port Index plus 14,700 UN/LOCODE port locations: search by country, name or code, with map and sea chart links, CSV export |
-| **Flight tracker** | Flight number, callsign, registration or ICAO hex: route on a map, aircraft details, and a link to the free live map |
-| **Shipping lines** | 109 carriers with SCAC codes and container prefixes; identifies the line from a container or bill-of-lading number |
-| **Air cargo** | Air waybill check digit, airline and tracking; cargo airlines; airport codes |
-| **Visa requirements** | Passport country + destination: visa free, on arrival, eTA, e-visa or visa required; always confirm with the embassy |
-| **HS codes**, **Drug precursors** | Customs commodity codes; INCB precursor tables |
-| **Case playbooks**, **Toolbox & case log** | Step-by-step guides by case type; validators (container, IMO, VIN, IBAN), hashes, metadata, case log |
+| **Port lookup** | Type a port name or UN/LOCODE (e.g. Kingston or JMKIN). It shows the reports and seizures linked to that port, with the substances and hiding methods. It covers 179 world ports and uses every date, not only the chosen period |
+| **Route lookup** | Research a journey from one country to another (the Trend lookup) |
+| **Repeat links** | The same route, cover cargo, hiding method, port, document type, container, vessel or flight showing up in separate cases. These are **leads to check, not proof** |
+| **Language coverage** | A map of where we can and cannot see. Green means reports were found. Light green means reports were found, but only through other languages. Yellow means we read the main language but found nothing. Red means a **blind spot**: we do not search the main language yet. Languages searched: English, Spanish, French, Portuguese, Dutch, German and Italian |
+| **Any-selector search** | Jumps to the search box at the top |
 
-**From the Any selector box:** flight numbers open straight in the flight tracker and air waybills in Air cargo.
-For anything else the selector is **copied** and the desk's source list opens: paste it (Ctrl+V) into the desk's
-own selector box.
+**Good to know:** don't type case details into outside websites (Flightradar24, MarineTraffic). Follow your agency's
+rules for online enquiries.
 
-**Good to know:** the desk runs in your browser; nothing typed there reaches Border Watch. Some sources it opens may
-**alert the subject** (marked `A`) or need privacy care (`P`). Follow your agency's rules for online enquiries and
-don't type case details into outside websites.
+## 10c. "What this suggests"
+
+Each section opens with a short written analysis, worked out from the reports in the current view. It covers:
+
+- **Seizures:** concealment, cover loads and routes, transport, hotspots, insider signals, and rising methods or substances.
+- **Passports & Documents:** document types, fraud methods, where fraud was caught, and claimed issuing countries.
+- **Immigration:** routes, transport, interception countries, facilitators and fees.
+- **Trafficking:** exploitation types, routes and victim support.
+- **Visa & Entry Rules and Citizenship:** whether rules are tightening or easing, and the countries in the news.
+- **Border Security:** insider risk, main topics and airports.
+
+"Rising" appears only once four weeks have been collected. Every point is a pattern to look into, not a finding.
+Small numbers are marked as early signals.
 
 ## 11. Email: Monday bulletin and alerts
 
@@ -556,3 +562,4 @@ Privacy rules are in `watch/privacy.py`.
 | 2026-11-27 | Concealment and cover loads recorded in standard categories on every seizure, with charts, filters and a weekly concealment trend in the Seizures section, and columns in the CSV. |
 | 2026-11-27 | Data-quality fixes: money and weapon models no longer read as counts; repeat coverage grouped into one event (about 730 repeats merged); charged vs convicted conflicts flagged; personal court travel bans out of policy; "Insufficient comparison history"; seizure totals audited and labelled unverified (cocaine fell from 354 t to about 70 t). |
 | 2026-11-27 | Presentation: the site opens on the Caribbean (World and Jamaica one click away); "High-risk" renamed "Review priority"; shorter Overview (key numbers, map, priority feed, latest developments, section tiles), with detailed charts inside each section; new "Reviewed by a person" card next to "Reports collected". |
+| 2026-11-27 | Seizure charts (by drug over time, corridors, hotspots, concealment × drug, insider signals with %), Port lookup (name or UN/LOCODE), Repeat links table, Language coverage map, "What this suggests" analysis in every section. Dutch, German and Italian news searched. Links to the trainer's Investigation Desk removed at Ray's request: the side menu now lists our own tools only. |

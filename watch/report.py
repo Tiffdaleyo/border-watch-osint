@@ -8,6 +8,7 @@ import os
 from .extract import GROUPS
 from .places import CENTROIDS, COUNTRIES
 from .record import NR, port_label
+from . import languages
 from .ports import PORTS as PORT_LIST
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -151,6 +152,8 @@ def write_dashboard(out_dir, events, summary, cfg, new_today, demo=False):
         "demo": demo, "events": [slim(e) for e in events], "summary": summary, "groups": GROUPS,
         "ports": [[port_label(p), p["country"], p["code"]] for p in PORT_LIST],
         "coverage_from": coverage_from(events),
+        "langs": {"searched": sorted({e["lang"] for e in ((cfg.get("sources") or {}).get("google_news") or {}).get("editions", [])}),
+                  "table": languages.table(), "names": languages.NAMES, "alias": languages.MAP_TO_REPORT},
         "spec_labels": spec_labels(events), "new_today": new_today,
         "report_days": (cfg.get("run") or {}).get("report_days", 180),
         "home": site.get("home_country", ""), "region": site.get("region_name", "Region"),
