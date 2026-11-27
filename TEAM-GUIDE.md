@@ -41,13 +41,14 @@ Everything runs automatically on GitHub, free of charge. No one needs to switch 
 7. **Privacy filter:** it removes ID numbers and victims' names (section 8).
 8. **Publish:** it rebuilds the website, the CSV and the bulletin page, and emails alerts for new high-priority or
    Jamaica incidents. Nothing waits for a review.
-9. **Mondays, 07:00 Jamaica time:** the weekly bulletin (PDF, with charts and analysis) is emailed to the team.
+9. **Mondays, 07:00 Jamaica time:** a **draft** of the weekly bulletin (PDF, with charts and analysis) is emailed to
+   the designated reviewer only. The team receives it after the reviewer presses **Send bulletin** (section 2b).
 
 To run it by hand: open the **Actions** tab, choose **daily-border-watch-osint**, then click **Run workflow**.
 
-## 2b. Review marks
+## 2b. Review marks and the bulletin check
 
-Everything collected goes on the site automatically. A review is optional and is done report by report.
+**Daily reports** go on the site automatically. A review is optional and is done report by report.
 
 - **Automatically collected:** the normal state. The report was found and processed by the system and has not been
   checked by a person. Treat it as a lead.
@@ -60,6 +61,16 @@ To review a report, fix it or remove it, add its Event ID to `reviews.yaml` (sec
 next morning's run. To see it at once, open **Actions → publish → Run workflow**, which rebuilds the site (and sends any of today's alerts not yet sent) in about
 2 minutes.
 
+**The weekly bulletin is checked before the team gets it.**
+1. Every Monday at about 07:00 Jamaica time, an email arrives for the reviewer only: **"DRAFT for review: Border
+   Watch weekly bulletin"**, with the PDF attached. It covers the 7 days up to that Monday.
+2. To correct or remove a report in it, record the decision in `reviews.yaml` by its Event ID (section 9).
+3. To send it, open **Actions → send-bulletin → Run workflow** (the draft email has a direct link). The same week is
+   rebuilt with any corrections, emailed to the team, and its PDF saved on the website as `docs/bulletin.pdf`.
+   To send an older week, type its date in the box before pressing the button.
+
+Who gets the draft: the address in the `MAIL_REVIEW_TO` secret; if that is not set, `MAIL_ALERTS_TO`, and failing
+that `MAIL_TO`. If no one presses Send bulletin, the team receives nothing that week.
 
 ## 3. Where the information comes from
 
@@ -459,9 +470,10 @@ same page (section 2b).
 ## 11. Email: Monday bulletin and alerts
 
 **What the team receives:**
-- **Weekly bulletin:** a one-page PDF every **Monday at 7:00 AM Jamaica time**. It covers the past 7 days: key
-  numbers, top incidents, Caribbean and Jamaica, policy, and watch-list hits. The same page is on the website
-  ("Weekly bulletin"), and the PDF is saved as `docs/bulletin.pdf`.
+- **Weekly bulletin:** a one-page PDF covering the 7 days up to Monday: key numbers, top incidents, Caribbean and
+  Jamaica, policy, and watch-list hits. A draft goes to the reviewer at 7:00 AM Jamaica time on Monday, and the team
+  receives it once the reviewer presses **Send bulletin** (section 2b). The sent PDF is saved as `docs/bulletin.pdf`.
+  The website's "Weekly bulletin" page shows the latest 7 days and updates every day.
 - **Alerts:** one email after each daily run (about **6:30 AM Jamaica time**). It lists every **new** incident that
   is High risk or linked to Jamaica, each with a link to its full record. No new incidents means no email, and a
   report is never alerted twice. Alerts come once a day, when the daily run finishes. They can't be truly instant,
@@ -615,4 +627,5 @@ Privacy rules are in `watch/privacy.py`.
 | 2026-11-27 | New tools in the side menu: **Suspect profile** (one-page profile with open-source searches for each identifier) and **Case summary** (one-page airport case summary with indicator tick lists). Both work only in the browser. |
 | 2026-11-27 | New tool: **Case playbooks** for four airport case types, linked to the other tools and to the Case summary. |
 | 2026-11-27 | Wider embassy and high commission coverage: 2 new feeds, plus Google News searches of the websites of 23 embassies, high commissions, consulates and foreign ministries (including Jamaica's own missions abroad) and 4 searches for news about missions. |
-| 2026-11-27 | **Automatic publishing restored:** the daily run updates the site and sends alerts straight away, and the weekly bulletin goes to the team every Monday. Only reports recorded in `reviews.yaml` carry the **Reviewed** mark; the rest show as Automatically collected or Awaiting review (section 2b). |
+| 2026-11-27 | **Automatic publishing restored:** the daily run updates the site and sends alerts straight away. Only reports recorded in `reviews.yaml` carry the **Reviewed** mark; the rest show as Automatically collected or Awaiting review (section 2b). |
+| 2026-11-27 | **Weekly bulletin checked before sending:** the Monday bulletin is a draft for the reviewer; the team receives it after **Send bulletin**. Daily reports still go live automatically (section 2b). |

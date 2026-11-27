@@ -1,7 +1,8 @@
 """Turns the weekly bulletin into a PDF and emails it.
 
   python tools/send_weekly.py --draft   Monday: the DRAFT bulletin (draft/bulletin.html) goes to the reviewer only
-  python tools/send_weekly.py           after the reviewer checked and published: the live bulletin goes to the team
+  python tools/send_weekly.py --team    after the reviewer pressed Send bulletin: the same week, rebuilt in draft/ with
+                                        any corrections from reviews.yaml, goes to the team; its PDF is saved in docs/
 """
 import datetime as dt
 import os
@@ -15,7 +16,8 @@ sys.path.insert(0, HERE)
 from watch import mailer  # noqa: E402
 
 DRAFT = "--draft" in sys.argv
-folder = os.path.join(HERE, "draft" if DRAFT else "docs")
+TEAM = "--team" in sys.argv
+folder = os.path.join(HERE, "draft" if (DRAFT or TEAM) else "docs")
 src = os.path.join(folder, "bulletin.html")
 pdf = os.path.join(folder, "bulletin.pdf")
 
@@ -33,14 +35,14 @@ make_pdf(src, pdf)
 with open(src, encoding="utf-8") as f:
     page = f.read()
 page = re.sub(r"<!--nav-->.*?<!--/nav-->", "", page, flags=re.S)     # the website's menus mean nothing in an email
-week = dt.date.today().isoformat()
+week = os.environ.get("BULLETIN_DATE") or dt.date.today().isoformat()
 repo = os.environ.get("GITHUB_REPOSITORY", "")
 send_link = f"https://github.com/{repo}/actions/workflows/send-bulletin.yml" if repo else ""
 if DRAFT:
     intro = ("<div style='font-family:Arial,sans-serif;background:#fff4e5;border:1px solid #f5c27a;padding:10px 12px;border-radius:8px'>"
-             "<b>DRAFT for your review: not sent to the team yet.</b><br>Read it, then tell Claude in the Border Watch project "
-             "what to correct or remove (for example \"remove BWO-2026-1234\"). When it is right, first publish the site, "
-             "then send the bulletin" + (f" with the green <b>Run workflow</b> button here: <a href='{send_link}'>Send bulletin</a>" if send_link else "")
+             "<b>DRAFT for your review: not sent to the team yet.</b><br>Read it, then reply in the Border Watch project "
+             "with anything to correct or remove (for example \"remove BWO-2026-1234\"). When it is right, "
+             "send it to the team" + (f" with the green <b>Run workflow</b> button here: <a href='{send_link}'>Send bulletin</a>" if send_link else "")
              + ", or just reply \"send the bulletin\".</div>")
     subject, kind = f"DRAFT for review: Border Watch weekly bulletin, week to {week}", "review"
 else:
@@ -52,4 +54,6 @@ with open(pdf, "rb") as f:
     data = f.read()
 ok = mailer.send(subject, intro + page, text, kind=kind,
                  attachments=[(f"border-watch-bulletin-{week}{'-DRAFT' if DRAFT else ''}.pdf", data, "application/pdf")])
+if TEAM and ok:
+    shutil.copy(pdf, os.path.join(HERE, "docs", "bulletin.pdf"))     # the sent PDF is kept on the website
 sys.exit(0 if ok or not mailer.configured(kind) else 1)

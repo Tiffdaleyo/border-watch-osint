@@ -25,6 +25,8 @@ def main():
     ap.add_argument("--days", type=int, default=None, help="how many days back to search")
     ap.add_argument("--demo", action="store_true", help="use invented sample data (no internet)")
     ap.add_argument("--rebuild", action="store_true", help="only rebuild the website from stored data")
+    ap.add_argument("--bulletin-date", default=None,
+                    help="make the weekly bulletin for the 7 days ending on this date (YYYY-MM-DD)")
     ap.add_argument("--draft", action="store_true",
                     help="build a test copy in draft/ (the live site in docs/ is not changed, no alerts sent)")
     ap.add_argument("--publish", action="store_true",
@@ -129,7 +131,8 @@ def main():
     report.write_dashboard(out_dir, shown, summary, cfg, added, demo=args.demo)
     report.write_csv(out_dir, shown)
     report.write_tools(out_dir)
-    report.write_bulletin(out_dir, shown, summary, cfg)
+    report.write_bulletin(out_dir, shown, summary, cfg,
+                          today=dt.date.fromisoformat(args.bulletin_date) if args.bulletin_date else None)
     if args.publish:
         # a manual rebuild of the live site that also sends today's alerts not yet sent (nothing is marked reviewed)
         alerts.send(events, today, site)
