@@ -477,6 +477,9 @@
 
 <script>
 const DATA = __DATA__;
+/* the first day with collected reports (charts over time start here, not at the start of the chosen period) */
+const DATA_FROM = DATA.events.reduce((m, e) => e.date && e.date.slice(0, 10) < m ? e.date.slice(0, 10) : m, "9999-12-31");
+
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
@@ -665,7 +668,8 @@ function drawTrend(rows) {
   $("unit").textContent = daily ? "day" : "week";
   const key = d => { if (daily) return d; const x = new Date(d); x.setDate(x.getDate() - ((x.getDay() + 6) % 7)); return x.toISOString().slice(0, 10); };
   const keys = [];
-  const first = F.period ? since(F.period) : (rows.length ? rows.reduce((m, e) => e.date < m ? e.date : m, today) : since(90));
+  // start at the first day the site was collecting: earlier days would look like "no reports" when nothing was collected yet
+  const first = [F.period ? since(F.period) : (rows.length ? rows.reduce((m, e) => e.date < m ? e.date : m, today) : since(90)), DATA_FROM].sort().pop();
   for (let d = new Date(first); d <= new Date(today); d.setDate(d.getDate() + 1)) { const k = key(d.toISOString().slice(0, 10)); if (keys[keys.length - 1] !== k) keys.push(k); }
   const series = GROUPS.map(([g], i) => {
     const m = {}; rows.filter(e => e.g === i).forEach(e => { const k = key(e.date); m[k] = (m[k] || 0) + 1; });

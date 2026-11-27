@@ -635,3 +635,4 @@ Privacy rules are in `watch/privacy.py`.
 | 2026-11-27 | The site now states plainly: "Review priority = what to read first. It never means a person, country or region is risky." |
 | 2026-11-27 | No ship tracking: the outside ship-position link was removed from the search box. IMO and MMSI numbers are still recognised in reports and Repeat links. The ship example in "Try" was replaced with a flight number. |
 | 2026-11-27 | The "Where it is happening" map now carries a caution: it shows where countries are named in the news read, not how much happens there; quiet areas may be ones the site cannot read (see Language coverage). |
+| 2026-11-27 | Charts over time start on the first day the site collected reports (26 Oct 2026), not at the start of the chosen period, so weeks before collection no longer look like "no reports". |
