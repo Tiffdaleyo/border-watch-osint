@@ -521,7 +521,7 @@ def find_weight_kg(text):
 
 _PERSONAL_BAN_RE = re.compile(r"\b(?:court|judge|magistrate|bail|tribunal|defie[sd]|defying|flees?|fled|plea|request to lift|"
                               r"bid to lift|lifts? (?:his|her) |(?:his|her) (?:overseas |foreign )?travel ban|"
-                              r"barred from leaving|banned from leaving|surrender(?:ed)? (?:his|her) passport)")
+                              r"barred from leaving|freed with|released with|released on bail|banned from leaving|surrender(?:ed)? (?:his|her) passport)")
 _GROUP_BAN_RE = re.compile(r"\b(?:nationals|citizens of|countries|proclamation|executive order|travellers from|travelers from)\b")
 
 

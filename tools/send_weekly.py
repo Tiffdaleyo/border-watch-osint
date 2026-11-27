@@ -1,6 +1,7 @@
 """Turns docs/bulletin.html into a one-page PDF and emails it (run every Monday by the weekly-bulletin workflow)."""
 import datetime as dt
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -20,6 +21,7 @@ print(f"PDF made: {os.path.getsize(pdf)} bytes")
 
 with open(src, encoding="utf-8") as f:
     page = f.read()
+page = re.sub(r"<!--nav-->.*?<!--/nav-->", "", page, flags=re.S)     # the website's menus mean nothing in an email
 week = dt.date.today().isoformat()
 html = ("<p style='font-family:Arial,sans-serif'>This week's Border Watch OSINT bulletin is attached as a PDF "
         "(also below). Open-source news only: leads to verify, not confirmed intelligence.</p>" + page)

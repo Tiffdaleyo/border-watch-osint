@@ -188,25 +188,46 @@ def write_csv(out_dir, events):
             w.writerow(csv_row(e))
 
 
-def write_bulletin(out_dir, events, summary, cfg, today=None):
-    """A one-page weekly summary (A4) to print, save as PDF or email. Emailed as a PDF every Monday."""
-    today = today or dt.date.today()
-    start = (today - dt.timedelta(days=7)).isoformat()
-    week = [e for e in events if e.get("date", "") >= start]
-    site = cfg.get("site") or {}
+def seizure_totals(incidents):
+    """Same rules as the website: one main figure per report, the same large figure within 30 days counted once."""
+    totals, seen = {}, {}
+    for e in sorted(incidents, key=lambda x: x.get("date", "")):
+        for q in e.get("seizures") or []:
+            if not q.get("std_qty") or q.get("substance") == "Not reported" or not q.get("main"):
+                continue
+            k = (q["substance"], q["std_unit"])
+            if q["std_qty"] >= 50:
+                key = k + (round(q["std_qty"]),)
+                last = seen.get(key)
+                if last and (dt.date.fromisoformat(e["date"][:10]) - dt.date.fromisoformat(last[:10])).days <= 30:
+                    continue
+                seen[key] = e["date"]
+            totals[k] = totals.get(k, 0) + q["std_qty"]
+    return totals
+
+
+def _top(items, n=3):
+    c = {}
+    for x in items:
+        c[x] = c.get(x, 0) + 1
+    return sorted(c.items(), key=lambda kv: -kv[1])[:n]
+
+
+def bulletin_html(week, start, end, site, trends, root="", archive=(), latest=True):
+    """One weekly bulletin page: reads well on screen, and prints on one A4 page (the links and menus are hidden)."""
+    esc = html.escape
     home, region = site.get("home_country", ""), site.get("region_name", "Region")
     order = {"High": 0, "Medium": 1, "Low": 2, "Update": 3}
     incidents = [e for e in week if e.get("kind") != "Update"]
     top = sorted(incidents, key=lambda e: (order[e["level"]], -e["score"]))[:7]
-    policy = [e for e in week if e.get("kind") == "Update" and "Policy & Systems" in (e.get("groups") or [])][:5]
+    pol = [e for e in week if e.get("kind") == "Update" and "Policy & Systems" in (e.get("groups") or [])]
+    # entry-rule changes first (Caribbean and home country first); State Department advisories only fill the gaps
+    policy = sorted(pol, key=lambda e: (e.get("primary_category") == "Travel advisories", not e.get("home"), not e.get("region")))[:5]
     watch = [e for e in week if e.get("watch")][:4]
     regional = sorted([e for e in week if e.get("region")], key=lambda e: (not e.get("home"), order[e["level"]]))[:7]
+    seiz = [e for e in incidents if "Seizures & Contraband" in (e.get("groups") or [])]
     official = sum(1 for e in week if e.get("official"))
-    groups = {}
-    for e in week:
-        for g in e.get("groups") or []:
-            groups[g] = groups.get(g, 0) + 1
-    esc = html.escape
+    groups = _top([g for e in week for g in e.get("groups") or []], 8)
 
     def li(e):
         lvl = "Update" if e["level"] == "Update" else f"{e['level']} {e['score']}"
@@ -216,40 +237,103 @@ def write_bulletin(out_dir, events, summary, cfg, today=None):
         return (f"<li><b class='l{esc(e['level'])}'>{esc(lvl)}</b>{off} <a href='{esc(e.get('source_url') or e['url'])}'>"
                 f"{esc(e['title'][:140])}</a><br><span class='s'>{esc(extra)}</span></li>")
 
-    rising = [t for t in summary.get("trends", []) if t["note"] == "Rising"]
-    url = site.get("url", "")
-    totals = {}
-    for e in incidents:
-        for q in e.get("seizures") or []:
-            if q.get("std_qty") and q.get("substance") != "Not reported":
-                k = (q["substance"], q["std_unit"])
-                totals[k] = totals.get(k, 0) + q["std_qty"]
+    totals = seizure_totals(seiz)
     tot_txt = "; ".join(f"{s} {v / 1000:,.1f} t" if u == "kg" and v >= 1000 else f"{s} {v:,.0f} {u}"
                         for (s, u), v in sorted(totals.items(), key=lambda x: -x[1])[:6]) or "no quantities stated"
-    body = f"""<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Weekly bulletin {today.isoformat()}</title>
+    # highlights: plain-language points from the week's counts
+    hl = []
+    if groups:
+        hl.append(f"Most reports were about <b>{esc(groups[0][0])}</b> ({groups[0][1]})" +
+                  (f", then {esc(groups[1][0])} ({groups[1][1]})." if len(groups) > 1 else "."))
+    conc = _top([c for e in seiz for c in e.get("concealment_types") or []], 2)
+    if conc:
+        hl.append("Seizures were most often hidden as " + " and ".join(f"<b>{esc(k.lower())}</b> ({n})" for k, n in conc) + ".")
+    routes = _top([f"{(e.get('journey') or {}).get('origin')} → {(e.get('journey') or {}).get('destination')}" for e in incidents
+                   if (e.get("journey") or {}).get("origin") and (e.get("journey") or {}).get("destination")], 2)
+    if routes:
+        hl.append("Routes reported most: " + ", ".join(f"<b>{esc(k)}</b> ({n})" for k, n in routes) + ".")
+    ins = [e for e in seiz if e.get("insider_roles")]
+    if ins:
+        hl.append(f"<b>{len(ins)}</b> seizure report{'s' if len(ins) > 1 else ''} named staff as involved (allegations, not findings).")
+    home_n = sum(1 for e in week if e.get("home"))
+    hl.append(f"<b>{home_n}</b> report{'' if home_n == 1 else 's'} named {esc(home)}." if home_n else f"No report named {esc(home)} this week.")
+    rising = [t["category"] for t in trends if t.get("note") == "Rising"] if latest else []
+    if rising:
+        hl.append("Rising compared with a usual week: <b>" + esc(", ".join(rising)) + "</b>.")
+    nav_arch = "".join(f"<a href='{root}bulletins/{d}.html'>{esc(label)}</a>" for d, label in archive[:8])
+    title = site.get("title", "Border Watch OSINT")
+    return f"""<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Weekly bulletin {start} to {end} · {esc(title)}</title>
 <style>@page{{size:A4;margin:11mm 12mm}}
-body{{font-family:Arial,Helvetica,sans-serif;font-size:10.6px;line-height:1.32;color:#1d2430;max-width:820px;margin:16px auto;padding:0 14px}}
-@media print{{body{{margin:0;padding:0;max-width:none}}}}
-h1{{color:#13294b;margin:0;font-size:18px}} h2{{color:#13294b;font-size:12px;border-bottom:1.5px solid #dde2ea;padding-bottom:2px;margin:9px 0 4px;text-transform:uppercase;letter-spacing:.04em}}
-.s{{color:#5b6575;font-size:9.6px}} ul,ol{{margin:0;padding-left:16px}} li{{margin:0 0 4px}} a{{color:#13294b;text-decoration:none}}
-.box{{background:#f4f6f9;padding:6px 9px;border-radius:6px;margin-top:6px}} .cols{{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}}
-.lHigh{{color:#b42318}} .lMedium{{color:#b54708}} .lLow{{color:#067647}} .lUpdate{{color:#475467}} .o{{color:#067647;font-size:9px}}
-.k{{display:inline-block;margin-right:12px}} .k b{{font-size:14px;color:#13294b}}</style>
+body{{font-family:Inter,Arial,Helvetica,sans-serif;font-size:13px;line-height:1.45;color:#1d2430;background:#f3f5f9;margin:0}}
+.top{{background:#13294b;color:#fff}} .top .in{{max-width:900px;margin:0 auto;padding:14px 18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}}
+.top a{{color:#cfe0ff;text-decoration:none;font-size:13px}} .top .sp{{flex:1}} .top button{{background:#fff;color:#13294b;border:0;border-radius:8px;padding:7px 12px;font-weight:600;cursor:pointer}}
+.page{{max-width:900px;margin:18px auto;background:#fff;border:1px solid #dde2ea;border-radius:14px;padding:22px 26px}}
+h1{{color:#13294b;margin:0;font-size:22px}} h2{{color:#13294b;font-size:12.5px;border-bottom:1.5px solid #dde2ea;padding-bottom:3px;margin:16px 0 6px;text-transform:uppercase;letter-spacing:.05em}}
+.s{{color:#5b6575;font-size:11.5px}} ul,ol{{margin:0;padding-left:18px}} li{{margin:0 0 6px}} a{{color:#13294b}}
+.kp{{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-top:12px}} .kp div{{background:#f4f6f9;border-radius:10px;padding:8px 10px}} .kp b{{display:block;font-size:20px;color:#13294b}}
+.box{{background:#f4f6f9;padding:8px 12px;border-radius:10px;margin-top:8px}} .cols{{display:grid;grid-template-columns:1fr 1fr;gap:0 20px}}
+.lHigh{{color:#b42318}} .lMedium{{color:#b54708}} .lLow{{color:#067647}} .lUpdate{{color:#475467}} .o{{color:#067647;font-size:10px}}
+.arch{{max-width:900px;margin:0 auto 24px;padding:0 18px;font-size:12.5px}} .arch a{{display:inline-block;margin:0 10px 6px 0;color:#13294b}}
+@media (max-width:700px){{.cols{{grid-template-columns:1fr}} .page{{padding:16px}}}}
+@media print{{body{{background:#fff;font-size:10.4px;line-height:1.3}} .top,.arch,.noprint{{display:none}} .page{{border:0;margin:0;padding:0;max-width:none}}
+ h1{{font-size:17px}} h2{{font-size:11.5px;margin:8px 0 4px}} .kp b{{font-size:14px}} .kp div{{padding:4px 7px}} .s{{font-size:9.4px}} li{{margin-bottom:3px}}}}</style>
 </head><body>
-<h1>{esc(site.get('title', 'Border Watch OSINT'))}: weekly bulletin</h1>
-<div class="s">{start} to {today.isoformat()} · open-source news only · leads to verify, not confirmed intelligence{(' · ' + esc(url)) if url else ''}</div>
-<div class="box">
-<span class="k"><b>{len(week)}</b> reports</span><span class="k"><b>{sum(1 for e in week if e['level'] == 'High')}</b> high review priority</span>
-<span class="k"><b>{sum(1 for e in week if e.get('region'))}</b> {esc(region)}</span><span class="k"><b>{sum(1 for e in week if e.get('home'))}</b> {esc(home)}</span>
-<span class="k"><b>{len([e for e in week if e.get('kind') == 'Update'])}</b> policy &amp; updates</span><span class="k"><b>{official}</b> official releases</span><br>
-<b>By main group:</b> {esc(' · '.join(f'{k} {v}' for k, v in sorted(groups.items(), key=lambda x: -x[1])) or 'none')}<br>
-<b>Seizure totals (as reported, by substance and unit):</b> {esc(tot_txt)}<br>
-<b>Rising this week:</b> {esc(', '.join(t['category'] for t in rising) or 'nothing unusual')}</div>
+<!--nav--><div class="top"><div class="in"><a href="{root}index.html">← Back to the dashboard</a><span class="sp"></span>
+<a href="{root}bulletins/index.html">All bulletins</a><a href="{root}bulletin.pdf">PDF</a><button onclick="print()">Print / save as PDF</button></div></div><!--/nav-->
+<div class="page">
+<h1>{esc(title)}: weekly bulletin</h1>
+<div class="s">{"Last 7 days, " if latest else "Week of "}{start} to {end} · open-source news only · leads to verify, not confirmed intelligence</div>
+<div class="kp"><div><b>{len(week)}</b>reports</div><div><b>{sum(1 for e in week if e['level'] == 'High')}</b>high review priority</div>
+<div><b>{sum(1 for e in week if e.get('region'))}</b>{esc(region)}</div><div><b>{home_n}</b>{esc(home)}</div>
+<div><b>{len(seiz)}</b>seizures</div><div><b>{len([e for e in week if e.get('kind') == 'Update'])}</b>policy &amp; updates</div><div><b>{official}</b>official releases</div></div>
+<h2>Highlights</h2><ul>{''.join(f'<li>{x}</li>' for x in hl)}</ul>
+<div class="box"><b>Seizure totals (unverified, one figure per report):</b> {esc(tot_txt)}<br>
+<b>By main group:</b> {esc(' · '.join(f'{k} {v}' for k, v in groups) or 'none')}</div>
 <h2>Top incidents to review</h2><ol>{''.join(li(e) for e in top) or '<li>None this week.</li>'}</ol>
 <div class="cols"><div><h2>{esc(region)} and {esc(home)}</h2><ul>{''.join(li(e) for e in regional) or '<li>None this week.</li>'}</ul></div>
-<div><h2>Policy &amp; systems</h2><ul>{''.join(li(e) for e in policy) or '<li>None this week.</li>'}</ul>
+<div><h2>Policy &amp; entry rules</h2><ul>{''.join(li(e) for e in policy) or '<li>None this week.</li>'}</ul>
 <h2>Watch list hits</h2><ul>{''.join(li(e) for e in watch) or '<li>None this week.</li>'}</ul></div></div>
-<p class="s" style="margin-top:8px">Unofficial project, open-source news only; not a government service. Generated automatically. Check every item against the original article and official sources before acting. Risk scores never use nationality.</p>
+<p class="s" style="margin-top:12px">Unofficial project, open-source news only; not a government service. Generated automatically. Check every item against the original article and official sources before acting. Review priority never uses nationality.</p>
+</div>
+<!--nav--><div class="arch noprint">{('<b>Past weeks:</b> ' + nav_arch) if nav_arch else ''}</div><!--/nav-->
 </body></html>"""
+
+
+def write_bulletin(out_dir, events, summary, cfg, today=None):
+    """The latest bulletin (last 7 days) at docs/bulletin.html, which is emailed as a PDF every Monday, plus one page
+    for each finished week (Monday to Sunday) in docs/bulletins/, and a list of them all."""
+    today = today or dt.date.today()
+    site = cfg.get("site") or {}
+    arch_dir = os.path.join(out_dir, "bulletins")
+    os.makedirs(arch_dir, exist_ok=True)
+    first = min((e.get("date", "")[:10] for e in events if e.get("date")), default=today.isoformat())
+    monday = today - dt.timedelta(days=today.weekday())          # this week's Monday; earlier weeks are finished
+    weeks = []
+    m = monday - dt.timedelta(days=7)
+    while m.isoformat() >= (dt.date.fromisoformat(first) - dt.timedelta(days=6)).isoformat() and len(weeks) < 26:
+        weeks.append(m)
+        m -= dt.timedelta(days=7)
+    archive = [(w.isoformat(), f"{w.strftime('%d %b')} to {(w + dt.timedelta(days=6)).strftime('%d %b %Y')}") for w in weeks]
+    for w in weeks:
+        s, e = w.isoformat(), (w + dt.timedelta(days=6)).isoformat()
+        wk = [x for x in events if s <= x.get("date", "")[:10] <= e]
+        with open(os.path.join(arch_dir, f"{s}.html"), "w", encoding="utf-8") as f:
+            f.write(bulletin_html(wk, s, e, site, [], root="../", archive=archive, latest=False))
+    start = (today - dt.timedelta(days=6)).isoformat()
+    week = [e for e in events if e.get("date", "")[:10] >= start]
     with open(os.path.join(out_dir, "bulletin.html"), "w", encoding="utf-8") as f:
-        f.write(body)
+        f.write(bulletin_html(week, start, today.isoformat(), site, summary.get("trends", []), archive=archive))
+    rows = "".join(f"<li><a href='{d}.html'>Week of {esc_label}</a> · {n} reports</li>" for (d, esc_label), n in
+                   ((a, sum(1 for x in events if a[0] <= x.get("date", "")[:10] <= (dt.date.fromisoformat(a[0]) + dt.timedelta(days=6)).isoformat()))
+                    for a in archive))
+    with open(os.path.join(arch_dir, "index.html"), "w", encoding="utf-8") as f:
+        f.write(f"""<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>All weekly bulletins</title><style>body{{font-family:Inter,Arial,sans-serif;background:#f3f5f9;color:#1d2430;margin:0}}
+.top{{background:#13294b}} .top a{{color:#cfe0ff;text-decoration:none;display:inline-block;padding:14px 18px;font-size:13px}}
+.page{{max-width:700px;margin:18px auto;background:#fff;border:1px solid #dde2ea;border-radius:14px;padding:22px 26px}}
+h1{{color:#13294b;font-size:22px;margin:0 0 12px}} li{{margin:8px 0}} a{{color:#13294b}}</style></head><body>
+<div class="top"><a href="../index.html">← Back to the dashboard</a><a href="../bulletin.html">Latest bulletin</a></div>
+<div class="page"><h1>All weekly bulletins</h1><p><a href="../bulletin.html"><b>Latest: the last 7 days</b></a></p>
+<ul>{rows or '<li>No finished weeks yet.</li>'}</ul>
+<p style="color:#5b6575;font-size:12px">Each week runs Monday to Sunday. Bulletins are rebuilt from the collected news every day, so a late report or a correction updates past weeks too.</p></div></body></html>""")

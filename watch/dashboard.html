@@ -40,6 +40,8 @@
   .ttl h1 { margin:0; font-size:20px; letter-spacing:.01em; }
   .ttl p { margin:1px 0 0; color:var(--muted); font-size:12.5px; }
   .grow { flex:1; }
+  .bullbtn { background:var(--accent); color:#fff; text-decoration:none; font-weight:600; font-size:13px; padding:8px 14px; border-radius:10px; white-space:nowrap; box-shadow:0 2px 8px rgba(0,0,0,.12); }
+  .bullbtn:hover { filter:brightness(1.08); }
   .pill { font-size:11px; letter-spacing:.08em; text-transform:uppercase; border:1px solid var(--pill); color:var(--pillc); padding:5px 10px; border-radius:30px; white-space:nowrap; }
   .upd { font-size:12px; color:var(--muted); display:flex; align-items:center; gap:8px; white-space:nowrap; }
   .upd i { width:8px; height:8px; border-radius:50%; background:#0aac23; box-shadow:0 0 0 4px rgba(10,172,35,.18); }
@@ -254,6 +256,7 @@
 <div class="hdr"><div class="in">
   <div class="ttl"><h1>__TITLE__</h1><p>__SUBTITLE__</p></div>
 
+  <a class="bullbtn" href="bulletin.html" title="A one-page summary of the last 7 days, with past weeks">📰 Weekly bulletin</a>
   <span class="pill">Unofficial · open-source only</span>
   <span class="upd"><i></i>Updated <span id="updated"></span></span>
 </div></div>

@@ -411,6 +411,26 @@ Each section opens with a short written analysis, worked out from the reports in
 "Rising" appears only once four weeks have been collected. Every point is a pattern to look into, not a finding.
 Small numbers are marked as early signals.
 
+## 10d. Weekly bulletin (web page)
+
+The blue **📰 Weekly bulletin** button at the top of the site opens a one-page summary of the last 7 days. It has:
+
+- key numbers;
+- **Highlights** written from the week's counts (main topics, how seizures were hidden, routes, insider signals,
+  Jamaica, and what is rising);
+- unverified seizure totals;
+- the top incidents to review;
+- Caribbean and Jamaica;
+- policy and entry rules;
+- watch list hits.
+
+**Past weeks:** each finished week (Monday to Sunday) has its own page, linked at the bottom and under
+**All bulletins**. The last 26 weeks are kept. Pages are rebuilt every day, so a late report or a correction also
+updates past weeks.
+
+**Print / save as PDF** gives a clean one-page A4: the menus are left out. The Monday email still sends the latest
+bulletin as a PDF.
+
 ## 11. Email: Monday bulletin and alerts
 
 **What the team receives:**
@@ -563,3 +583,4 @@ Privacy rules are in `watch/privacy.py`.
 | 2026-11-27 | Data-quality fixes: money and weapon models no longer read as counts; repeat coverage grouped into one event (about 730 repeats merged); charged vs convicted conflicts flagged; personal court travel bans out of policy; "Insufficient comparison history"; seizure totals audited and labelled unverified (cocaine fell from 354 t to about 70 t). |
 | 2026-11-27 | Presentation: the site opens on the Caribbean (World and Jamaica one click away); "High-risk" renamed "Review priority"; shorter Overview (key numbers, map, priority feed, latest developments, section tiles), with detailed charts inside each section; new "Reviewed by a person" card next to "Reports collected". |
 | 2026-11-27 | Seizure charts (by drug over time, corridors, hotspots, concealment × drug, insider signals with %), Port lookup (name or UN/LOCODE), Repeat links table, Language coverage map, "What this suggests" analysis in every section. Dutch, German and Italian news searched. Links to the trainer's Investigation Desk removed at Ray's request: the side menu now lists our own tools only. |
+| 2026-11-27 | **Weekly bulletin** button in the site heading: a web page for the last 7 days with highlights, plus a page for every past week and an "All bulletins" list. It prints on one A4 page. |
