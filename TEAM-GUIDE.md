@@ -232,6 +232,8 @@ table says when they do.
 
 ## 7. Review priority (the score)
 
+> **Review priority = what to read first. It never means a person, country or region is risky.** The site says this under the filter bar, in "About the data" and in every "Why this score".
+
 On the site this is called **Review priority** (it was "High-risk" before). It tells a reviewer what to look at first;
 it is not a judgement about any person or country. Only **incidents** are scored, from 0 to 100. **High** means 40 points or more, and **Medium** means 20 or more.
 A high score means "worth a closer look", never proof. The score **never** uses nationality (section 5). Click "Why this score"
@@ -629,3 +631,4 @@ Privacy rules are in `watch/privacy.py`.
 | 2026-11-27 | Wider embassy and high commission coverage: 2 new feeds, plus Google News searches of the websites of 23 embassies, high commissions, consulates and foreign ministries (including Jamaica's own missions abroad) and 4 searches for news about missions. |
 | 2026-11-27 | **Automatic publishing restored:** the daily run updates the site and sends alerts straight away. Only reports recorded in `reviews.yaml` carry the **Reviewed** mark; the rest show as Automatically collected or Awaiting review (section 2b). |
 | 2026-11-27 | **Weekly bulletin checked before sending:** the Monday bulletin is a draft for the reviewer; the team receives it after **Send bulletin**. Daily reports still go live automatically (section 2b). |
+| 2026-11-27 | The site now states plainly: "Review priority = what to read first. It never means a person, country or region is risky." |
