@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Visa requirements · Border Watch OSINT</title>
+<style>
+  :root { --ink:#1d2430; --muted:#5b6575; --line:#dde2ea; --bg:#f3f5f9; --panel:#fff; --navy:#13294b; --ok:#067647; --bad:#b42318; --warn:#b54708; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:Inter,Segoe UI,Arial,sans-serif; background:var(--bg); color:var(--ink); font-size:14px; line-height:1.5; }
+  .top { background:var(--navy); color:#fff; } .top .in { max-width:1100px; margin:0 auto; padding:12px 18px; display:flex; gap:16px; align-items:center; flex-wrap:wrap; }
+  .top a { color:#cfe0ff; text-decoration:none; font-size:13px; } .top a.on { color:#fff; font-weight:600; border-bottom:2px solid #fff; padding-bottom:2px; } .top .sp { flex:1; }
+  .wrap { max-width:1100px; margin:18px auto; padding:0 18px; }
+  h1 { margin:0 0 4px; font-size:24px; color:var(--navy); } .sub { color:var(--muted); font-size:13px; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:18px 20px; margin-top:14px; }
+  h2 { font-size:12.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--navy); margin:0 0 10px; }
+  select, input { font:inherit; padding:8px 10px; border:1px solid var(--line); border-radius:8px; min-width:240px; background:#fff; }
+  label { display:inline-flex; flex-direction:column; gap:4px; font-size:12px; color:var(--muted); margin-right:12px; }
+  .row { display:flex; gap:10px; flex-wrap:wrap; align-items:flex-end; }
+  button { font:inherit; border:1px solid var(--line); background:#fff; border-radius:8px; padding:8px 12px; cursor:pointer; }
+  .big { font-size:22px; font-weight:700; margin:6px 0; }
+  .F { color:var(--ok); } .T,.E,.A { color:var(--warn); } .R,.N { color:var(--bad); }
+  .tag { display:inline-block; padding:2px 8px; border-radius:20px; font-size:12px; font-weight:600; }
+  .tag.F { background:#e7f6ec; } .tag.T,.tag.E,.tag.A { background:#fff4e5; } .tag.R,.tag.N { background:#fdecea; }
+  .note { background:#fff4e5; border:1px solid #f5c27a; border-radius:10px; padding:10px 12px; font-size:13px; }
+  .tabs button.on { background:var(--navy); color:#fff; border-color:var(--navy); }
+  .cols { columns:3 240px; column-gap:18px; } .cols div { break-inside:avoid; padding:2px 0; font-size:13px; }
+  .sum { display:flex; gap:8px; flex-wrap:wrap; margin:8px 0; } .sum span { background:#f4f6f9; border-radius:8px; padding:6px 10px; font-size:13px; }
+</style></head><body>
+<div class="top"><div class="in"><a href="../index.html">← Border Watch dashboard</a><span class="sp"></span>
+  <a href="travel-document.html">Travel document check</a><a href="visa.html" class="on">Visa requirements</a><a href="flight.html">Flight tracker</a></div></div>
+<div class="wrap">
+  <h1>Visa requirements</h1>
+  <div class="sub">Does a holder of this passport need a visa for that country? Start with arrivals into Jamaica, or check any passport and destination.</div>
+  <div class="note" style="margin-top:12px"><b>Reference only, and it may be out of date.</b> <span id="asof"></span> Visa rules change often (see the Visa &amp; Entry Rules section of the dashboard for recent changes). Always confirm with the destination's official immigration authority or your agency's systems before deciding anything. Residence permits, other visas held and the purpose of travel can change the answer.</div>
+
+  <div class="card">
+    <div class="tabs row" style="margin-bottom:12px"><button data-t="pair" class="on">Passport → destination</button><button data-t="into">Who needs a visa to enter…</button><button data-t="from">Where can this passport go…</button></div>
+    <div id="pair">
+      <div class="row"><label>Passport (nationality)<select id="pp"></select></label><label>Travelling to<select id="dest"></select></label><button id="swap" title="Swap">⇄ Swap</button></div>
+      <div id="pairOut" style="margin-top:14px"></div>
+    </div>
+    <div id="into" hidden>
+      <div class="row"><label>Arriving in<select id="intoC"></select></label><label>Filter<input id="intoQ" placeholder="type a country"></label></div>
+      <div id="intoOut" style="margin-top:12px"></div>
+    </div>
+    <div id="from" hidden>
+      <div class="row"><label>Passport<select id="fromC"></select></label><label>Filter<input id="fromQ" placeholder="type a country"></label></div>
+      <div id="fromOut" style="margin-top:12px"></div>
+    </div>
+  </div>
+  <div class="card"><h2>Meaning of the answers</h2>
+    <div><span class="tag F">Visa free</span> no visa needed (with the allowed stay in days, where known) · <span class="tag T">eTA</span> an electronic travel authorisation is needed before travel ·
+    <span class="tag E">e-Visa</span> an online visa before travel · <span class="tag A">Visa on arrival</span> issued at the border · <span class="tag R">Visa required</span> a visa from an embassy or consulate before travel · <span class="tag N">No admission</span> holders are not admitted.</div>
+    <p class="sub" style="margin-top:8px" id="src"></p></div>
+  <p class="sub">Unofficial tool, part of Border Watch OSINT (open-source only, not a government service). Runs in your browser; nothing you choose is sent anywhere.</p>
+</div>
+<script>
+const V = __VISA_DATA__;
+const ICAO = __ICAO__;
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const name = c => ICAO[c] || c;
+const IX = Object.fromEntries(V.codes.map((c, i) => [c, i]));
+const M = Object.fromEntries(Object.entries(V.m).map(([k, v]) => [k, v.split(",")]));
+const LABEL = {F: "Visa free", T: "eTA needed", E: "e-Visa", A: "Visa on arrival", R: "Visa required", N: "No admission", "-": "Own country", "?": "No data"};
+const NOTE = {F: "No visa needed for a short visit.", T: "An electronic travel authorisation must be obtained online before travel.", E: "An electronic visa must be obtained online before travel.",
+  A: "A visa can be obtained on arrival at the border (fees and conditions apply).", R: "A visa must be obtained from an embassy or consulate before travel.",
+  N: "Holders of this passport are not admitted.", "-": "This is the holder's own country.", "?": "No information in the dataset."};
+function req(p, d) { const t = (M[p] || [])[IX[d]] || "?"; return {k: t[0], days: t.length > 1 ? +t.slice(1) : null}; }
+const tag = r => `<span class="tag ${r.k}">${LABEL[r.k]}${r.days ? ` · ${r.days} days` : ""}</span>`;
+const sorted = V.codes.slice().sort((a, b) => name(a).localeCompare(name(b)));
+const opts = (sel, def) => { $(sel).innerHTML = sorted.map(c => `<option value="${c}"${c === def ? " selected" : ""}>${esc(name(c))}</option>`).join(""); };
+opts("pp", "USA"); opts("dest", "JAM"); opts("intoC", "JAM"); opts("fromC", "JAM");
+$("asof").textContent = `The table reflects the public Passport Index dataset as of ${V.asof}.`;
+$("src").textContent = "Source: " + V.source + ".";
+const news = c => `<a href="../index.html?q=${encodeURIComponent(name(c))}#policy">Recent visa and entry news naming ${esc(name(c))} on the dashboard →</a>`;
+function pair() {
+  const p = $("pp").value, d = $("dest").value, r = req(p, d), back = req(d, p);
+  $("pairOut").innerHTML = `<div class="big ${r.k}">${LABEL[r.k]}${r.days ? `, up to ${r.days} days` : ""}</div>
+    <div>${esc(name(p))} passport → ${esc(name(d))}. ${NOTE[r.k]}</div>
+    <div class="sub" style="margin-top:6px">The other way round, a ${esc(name(d))} passport going to ${esc(name(p))}: ${tag(back)}</div>
+    <div style="margin-top:8px" class="sub">${news(d)}</div>`;
+}
+function listInto() {
+  const d = $("intoC").value, q = $("intoQ").value.toLowerCase();
+  const groups = {};
+  sorted.forEach(p => { if (p === d || !M[p]) return; if (q && !name(p).toLowerCase().includes(q)) return; const r = req(p, d); (groups[r.k] ||= []).push([p, r]); });
+  $("intoOut").innerHTML = `<div class="sum">${"RNEATF".split("").filter(k => groups[k]).map(k => `<span class="${k}"><b>${groups[k].length}</b> ${LABEL[k].toLowerCase()}</span>`).join("")}</div>` +
+    "RNEATF".split("").filter(k => groups[k]).map(k => `<h2 style="margin-top:14px" class="${k}">${LABEL[k]} to enter ${esc(name(d))}</h2><div class="cols">${groups[k].map(([p, r]) => `<div>${esc(name(p))}${r.days ? ` <span class="sub">${r.days} days</span>` : ""}</div>`).join("")}</div>`).join("");
+}
+function listFrom() {
+  const p = $("fromC").value, q = $("fromQ").value.toLowerCase();
+  const groups = {};
+  sorted.forEach(d => { if (d === p) return; if (q && !name(d).toLowerCase().includes(q)) return; const r = req(p, d); if (r.k === "?") return; (groups[r.k] ||= []).push([d, r]); });
+  $("fromOut").innerHTML = `<div class="sum">${"FTAERN".split("").filter(k => groups[k]).map(k => `<span class="${k}"><b>${groups[k].length}</b> ${LABEL[k].toLowerCase()}</span>`).join("")}</div>` +
+    "FTAERN".split("").filter(k => groups[k]).map(k => `<h2 style="margin-top:14px" class="${k}">${LABEL[k]} with a ${esc(name(p))} passport</h2><div class="cols">${groups[k].map(([d, r]) => `<div>${esc(name(d))}${r.days ? ` <span class="sub">${r.days} days</span>` : ""}</div>`).join("")}</div>`).join("");
+}
+["pp", "dest"].forEach(id => $(id).onchange = pair);
+$("swap").onclick = () => { const a = $("pp").value; $("pp").value = $("dest").value; $("dest").value = a; pair(); };
+$("intoC").onchange = listInto; $("intoQ").oninput = listInto; $("fromC").onchange = listFrom; $("fromQ").oninput = listFrom;
+document.querySelectorAll(".tabs button").forEach(b => b.onclick = () => {
+  document.querySelectorAll(".tabs button").forEach(x => x.classList.toggle("on", x === b));
+  ["pair", "into", "from"].forEach(t => $(t).hidden = t !== b.dataset.t);
+  ({pair, into: listInto, from: listFrom})[b.dataset.t]();
+});
+pair();
+</script>
+</body></html>

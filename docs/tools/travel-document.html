@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Travel document check · Border Watch OSINT</title>
+<style>
+  :root { --ink:#1d2430; --muted:#5b6575; --line:#dde2ea; --bg:#f3f5f9; --panel:#fff; --navy:#13294b; --ok:#067647; --bad:#b42318; --warn:#b54708; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:Inter,Segoe UI,Arial,sans-serif; background:var(--bg); color:var(--ink); font-size:14px; line-height:1.5; }
+  .top { background:var(--navy); color:#fff; } .top .in { max-width:1100px; margin:0 auto; padding:12px 18px; display:flex; gap:16px; align-items:center; flex-wrap:wrap; }
+  .top a { color:#cfe0ff; text-decoration:none; font-size:13px; } .top a.on { color:#fff; font-weight:600; border-bottom:2px solid #fff; padding-bottom:2px; } .top .sp { flex:1; }
+  .wrap { max-width:1100px; margin:18px auto; padding:0 18px; }
+  h1 { margin:0 0 4px; font-size:24px; color:var(--navy); } .sub { color:var(--muted); font-size:13px; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:18px 20px; margin-top:14px; }
+  h2 { font-size:12.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--navy); margin:0 0 10px; }
+  textarea { width:100%; font-family:"OCR B","OCR-B",Consolas,"Courier New",monospace; font-size:17px; letter-spacing:.08em; padding:12px; border:2px solid var(--navy); border-radius:10px; text-transform:uppercase; resize:vertical; min-height:96px; }
+  button { font:inherit; border:1px solid var(--line); background:#fff; border-radius:8px; padding:6px 12px; cursor:pointer; }
+  button.go { background:var(--navy); color:#fff; border-color:var(--navy); font-weight:600; }
+  .row { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-top:10px; }
+  table { width:100%; border-collapse:collapse; font-size:13.5px; } td, th { padding:7px 8px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+  th { color:var(--muted); font-size:11px; text-transform:uppercase; letter-spacing:.06em; }
+  .ok { color:var(--ok); font-weight:600; } .bad { color:var(--bad); font-weight:600; } .warn { color:var(--warn); font-weight:600; }
+  .mono { font-family:Consolas,"Courier New",monospace; }
+  .flags li { margin:6px 0; } .pill { display:inline-block; padding:2px 8px; border-radius:20px; font-size:12px; font-weight:600; }
+  .pill.ok { background:#e7f6ec; } .pill.bad { background:#fdecea; } .pill.warn { background:#fff4e5; }
+  .note { background:#eef4ff; border:1px solid #b2ccff; border-radius:10px; padding:10px 12px; font-size:13px; }
+  .grid { display:grid; grid-template-columns:1.2fr 1fr; gap:14px; } @media (max-width:850px) { .grid { grid-template-columns:1fr; } }
+  ol.steps li { margin:6px 0; }
+</style></head><body>
+<div class="top"><div class="in"><a href="../index.html">← Border Watch dashboard</a><span class="sp"></span>
+  <a href="travel-document.html" class="on">Travel document check</a><a href="visa.html">Visa requirements</a><a href="flight.html">Flight tracker</a></div></div>
+<div class="wrap">
+  <h1>Travel document check</h1>
+  <div class="sub">Reads the machine-readable zone (MRZ) of a passport, ID card or visa and checks it against the ICAO Doc 9303 rules: check digits, dates, codes and layout.</div>
+  <div class="note" style="margin-top:12px"><b>Works only in your browser.</b> Nothing you type is saved, sent or logged; the page has no server behind it. A passing check only means the MRZ is internally consistent: forgers can compute check digits too. Always compare with the printed page, the chip and official systems.</div>
+
+  <div class="card">
+    <h2>1. Type or paste the MRZ</h2>
+    <textarea id="mrz" spellcheck="false" placeholder="P&lt;UTOERIKSSON&lt;&lt;ANNA&lt;MARIA&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&#10;L898902C36UTO7408122F1204159ZE184226B&lt;&lt;&lt;&lt;&lt;10"></textarea>
+    <div class="row"><button class="go" id="go">Check</button><button id="clr">Clear</button>
+      <span class="sub">Specimens from ICAO Doc 9303 (fictional "Utopia"):</span>
+      <button data-s="td3">Passport</button><button data-s="td1">ID card</button><button data-s="mrva">Visa</button></div>
+    <div class="sub" style="margin-top:6px">Passports have 2 lines of 44 characters; ID cards 3 lines of 30; some cards and visas 2 lines of 36. Use &lt; for the filler character. Letter O and digit 0 are often confused: the check digits will catch it.</div>
+  </div>
+
+  <div id="out"></div>
+
+  <div class="card">
+    <h2>What to check next (whatever the result)</h2>
+    <ol class="steps">
+      <li><b>Visual zone vs MRZ:</b> name, number, dates and nationality on the printed page must match the MRZ exactly.</li>
+      <li><b>Chip:</b> if the passport has a chip (the camera-like symbol on the cover), read it; chip data must match the page and the photo.</li>
+      <li><b>Lost and stolen documents:</b> check the number through your agency's official systems (for example INTERPOL SLTD through the national bureau).</li>
+      <li><b>Security features:</b> compare with genuine specimens in a public reference such as <a href="https://www.consilium.europa.eu/prado/en/search-by-document-country.html" target="_blank" rel="noopener">PRADO (EU Council)</a>: laminate, printing, page numbering, perforations, ultraviolet features.</li>
+      <li><b>The holder:</b> compare the photo and features; ask about the stated travel history and check stamps and visas against it.</li>
+      <li><b>Record</b> what you checked and the result, following your agency's procedure.</li>
+    </ol>
+  </div>
+  <p class="sub">Unofficial tool, part of Border Watch OSINT (open-source only, not a government service). Rules: ICAO Doc 9303, Machine Readable Travel Documents, 8th edition.</p>
+</div>
+<script>
+const ICAO = {"ABW": "Aruba", "AFG": "Afghanistan", "AGO": "Angola", "AIA": "Anguilla", "ALA": "Åland Islands", "ALB": "Albania", "AND": "Andorra", "ARE": "United Arab Emirates", "ARG": "Argentina", "ARM": "Armenia", "ASM": "American Samoa", "ATA": "Antarctica", "ATF": "French Southern Territories", "ATG": "Antigua and Barbuda", "AUS": "Australia", "AUT": "Austria", "AZE": "Azerbaijan", "BDI": "Burundi", "BEL": "Belgium", "BEN": "Benin", "BES": "Bonaire, Sint Eustatius and Saba", "BFA": "Burkina Faso", "BGD": "Bangladesh", "BGR": "Bulgaria", "BHR": "Bahrain", "BHS": "Bahamas", "BIH": "Bosnia and Herzegovina", "BLM": "Saint Barthélemy", "BLR": "Belarus", "BLZ": "Belize", "BMU": "Bermuda", "BOL": "Bolivia", "BRA": "Brazil", "BRB": "Barbados", "BRN": "Brunei Darussalam", "BTN": "Bhutan", "BVT": "Bouvet Island", "BWA": "Botswana", "CAF": "Central African Republic", "CAN": "Canada", "CCK": "Cocos (Keeling) Islands", "CHE": "Switzerland", "CHL": "Chile", "CHN": "China", "CIV": "Côte d'Ivoire", "CMR": "Cameroon", "COD": "Congo, The Democratic Republic of the", "COG": "Congo", "COK": "Cook Islands", "COL": "Colombia", "COM": "Comoros", "CPV": "Cabo Verde", "CRI": "Costa Rica", "CUB": "Cuba", "CUW": "Curaçao", "CXR": "Christmas Island", "CYM": "Cayman Islands", "CYP": "Cyprus", "CZE": "Czechia", "D": "Germany", "DEU": "Germany", "DJI": "Djibouti", "DMA": "Dominica", "DNK": "Denmark", "DOM": "Dominican Republic", "DZA": "Algeria", "ECU": "Ecuador", "EGY": "Egypt", "ERI": "Eritrea", "ESH": "Western Sahara", "ESP": "Spain", "EST": "Estonia", "ETH": "Ethiopia", "EUE": "European Union", "FIN": "Finland", "FJI": "Fiji", "FLK": "Falkland Islands (Malvinas)", "FRA": "France", "FRO": "Faroe Islands", "FSM": "Micronesia, Federated States of", "GAB": "Gabon", "GBD": "United Kingdom (British Overseas Territories Citizen)", "GBN": "United Kingdom (British National Overseas)", "GBO": "United Kingdom (British Overseas Citizen)", "GBP": "United Kingdom (British Protected Person)", "GBR": "United Kingdom", "GBS": "United Kingdom (British Subject)", "GEO": "Georgia", "GGY": "Guernsey", "GHA": "Ghana", "GIB": "Gibraltar", "GIN": "Guinea", "GLP": "Guadeloupe", "GMB": "Gambia", "GNB": "Guinea-Bissau", "GNQ": "Equatorial Guinea", "GRC": "Greece", "GRD": "Grenada", "GRL": "Greenland", "GTM": "Guatemala", "GUF": "French Guiana", "GUM": "Guam", "GUY": "Guyana", "HKG": "Hong Kong", "HMD": "Heard Island and McDonald Islands", "HND": "Honduras", "HRV": "Croatia", "HTI": "Haiti", "HUN": "Hungary", "IDN": "Indonesia", "IMN": "Isle of Man", "IND": "India", "IOT": "British Indian Ocean Territory", "IRL": "Ireland", "IRN": "Iran", "IRQ": "Iraq", "ISL": "Iceland", "ISR": "Israel", "ITA": "Italy", "JAM": "Jamaica", "JEY": "Jersey", "JOR": "Jordan", "JPN": "Japan", "KAZ": "Kazakhstan", "KEN": "Kenya", "KGZ": "Kyrgyzstan", "KHM": "Cambodia", "KIR": "Kiribati", "KNA": "Saint Kitts and Nevis", "KOR": "South Korea", "KWT": "Kuwait", "LAO": "Laos", "LBN": "Lebanon", "LBR": "Liberia", "LBY": "Libya", "LCA": "Saint Lucia", "LIE": "Liechtenstein", "LKA": "Sri Lanka", "LSO": "Lesotho", "LTU": "Lithuania", "LUX": "Luxembourg", "LVA": "Latvia", "MAC": "Macao", "MAF": "Saint Martin (French part)", "MAR": "Morocco", "MCO": "Monaco", "MDA": "Moldova", "MDG": "Madagascar", "MDV": "Maldives", "MEX": "Mexico", "MHL": "Marshall Islands", "MKD": "North Macedonia", "MLI": "Mali", "MLT": "Malta", "MMR": "Myanmar", "MNE": "Montenegro", "MNG": "Mongolia", "MNP": "Northern Mariana Islands", "MOZ": "Mozambique", "MRT": "Mauritania", "MSR": "Montserrat", "MTQ": "Martinique", "MUS": "Mauritius", "MWI": "Malawi", "MYS": "Malaysia", "MYT": "Mayotte", "NAM": "Namibia", "NCL": "New Caledonia", "NER": "Niger", "NFK": "Norfolk Island", "NGA": "Nigeria", "NIC": "Nicaragua", "NIU": "Niue", "NLD": "Netherlands", "NOR": "Norway", "NPL": "Nepal", "NRU": "Nauru", "NZL": "New Zealand", "OMN": "Oman", "PAK": "Pakistan", "PAN": "Panama", "PCN": "Pitcairn", "PER": "Peru", "PHL": "Philippines", "PLW": "Palau", "PNG": "Papua New Guinea", "POL": "Poland", "PRI": "Puerto Rico", "PRK": "North Korea", "PRT": "Portugal", "PRY": "Paraguay", "PSE": "Palestine, State of", "PYF": "French Polynesia", "QAT": "Qatar", "REU": "Réunion", "RKS": "Kosovo", "ROU": "Romania", "RUS": "Russian Federation", "RWA": "Rwanda", "SAU": "Saudi Arabia", "SDN": "Sudan", "SEN": "Senegal", "SGP": "Singapore", "SGS": "South Georgia and the South Sandwich Islands", "SHN": "Saint Helena, Ascension and Tristan da Cunha", "SJM": "Svalbard and Jan Mayen", "SLB": "Solomon Islands", "SLE": "Sierra Leone", "SLV": "El Salvador", "SMR": "San Marino", "SOM": "Somalia", "SPM": "Saint Pierre and Miquelon", "SRB": "Serbia", "SSD": "South Sudan", "STP": "Sao Tome and Principe", "SUR": "Suriname", "SVK": "Slovakia", "SVN": "Slovenia", "SWE": "Sweden", "SWZ": "Eswatini", "SXM": "Sint Maarten (Dutch part)", "SYC": "Seychelles", "SYR": "Syria", "TCA": "Turks and Caicos Islands", "TCD": "Chad", "TGO": "Togo", "THA": "Thailand", "TJK": "Tajikistan", "TKL": "Tokelau", "TKM": "Turkmenistan", "TLS": "Timor-Leste", "TON": "Tonga", "TTO": "Trinidad and Tobago", "TUN": "Tunisia", "TUR": "Türkiye", "TUV": "Tuvalu", "TWN": "Taiwan", "TZA": "Tanzania", "UGA": "Uganda", "UKR": "Ukraine", "UMI": "United States Minor Outlying Islands", "UNA": "United Nations specialised agency", "UNK": "Kosovo (UN mission)", "UNO": "United Nations (official)", "URY": "Uruguay", "USA": "United States", "UTO": "Utopia (ICAO specimen country)", "UZB": "Uzbekistan", "VAT": "Holy See (Vatican City State)", "VCT": "Saint Vincent and the Grenadines", "VEN": "Venezuela", "VGB": "Virgin Islands, British", "VIR": "Virgin Islands, U.S.", "VNM": "Vietnam", "VUT": "Vanuatu", "WLF": "Wallis and Futuna", "WSM": "Samoa", "XBA": "African Development Bank", "XCC": "Caribbean Community (CARICOM)", "XES": "Organisation of Eastern Caribbean States", "XIM": "African Export-Import Bank", "XOM": "Sovereign Military Order of Malta", "XPO": "INTERPOL", "XXA": "Stateless person", "XXB": "Refugee (1951 Convention)", "XXC": "Refugee (other)", "XXX": "Nationality unspecified", "YEM": "Yemen", "ZAF": "South Africa", "ZMB": "Zambia", "ZWE": "Zimbabwe"};
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const SPEC = {
+  td3: "P<UTOERIKSSON<<ANNA<MARIA<<<<<<<<<<<<<<<<<<<\nL898902C36UTO7408122F1204159ZE184226B<<<<<10",
+  td1: "I<UTOD231458907<<<<<<<<<<<<<<<\n7408122F1204159UTO<<<<<<<<<<<6\nERIKSSON<<ANNA<MARIA<<<<<<<<<<",
+  mrva: "V<UTOERIKSSON<<ANNA<MARIA<<<<<<<<<<<<<<<<<<<\nL8988901C4XXX4009078F96121096ZE184226B<<<<<<"
+};
+// ICAO check digit: weights 7,3,1; 0-9 as is, A-Z = 10-35, < = 0
+function cd(s) { const w = [7, 3, 1]; let t = 0;
+  for (let i = 0; i < s.length; i++) { const c = s[i]; const v = c === "<" ? 0 : /\d/.test(c) ? +c : /[A-Z]/.test(c) ? c.charCodeAt(0) - 55 : NaN; if (isNaN(v)) return null; t += v * w[i % 3]; }
+  return t % 10; }
+const today = new Date(); const yy = today.getFullYear() % 100;
+function date(s, kind) {
+  if (!/^\d{6}$/.test(s)) return null;
+  let y = +s.slice(0, 2), m = +s.slice(2, 4), d = +s.slice(4, 6);
+  y += kind === "dob" ? (y > yy ? 1900 : 2000) : (y >= 70 ? 1900 : 2000);
+  const dt = new Date(Date.UTC(y, m - 1, d));
+  if (dt.getUTCMonth() !== m - 1 || dt.getUTCDate() !== d) return {bad: true, txt: s};
+  return {dt, txt: dt.toISOString().slice(0, 10)};
+}
+const country = c => { const k = c.replace(/<+$/, "") || c; return ICAO[k] ? `${k} · ${ICAO[k]}` : `${c} · <span class="bad">not a known ICAO code</span>`; };
+const clean = s => s.replace(/<+$/, "").replace(/</g, " ").trim();
+function names(s) { const [sur, giv = ""] = s.split("<<"); return {sur: clean(sur), giv: clean(giv.replace(/<<+.*$/, m => m.replace(/</g, " ")))}; }
+
+function parse(raw) {
+  const lines = raw.toUpperCase().replace(/[ \t]/g, "").split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+  const L = lines.map(l => l.length);
+  let fmt = "";
+  if (lines.length === 3 && L.every(n => n === 30)) fmt = "TD1";
+  else if (lines.length === 2 && L.every(n => n === 44)) fmt = lines[0][0] === "V" ? "MRV-A" : "TD3";
+  else if (lines.length === 2 && L.every(n => n === 36)) fmt = lines[0][0] === "V" ? "MRV-B" : "TD2";
+  if (!fmt) return {error: `Layout not recognised: ${lines.length} line(s) of ${L.join(", ")} characters. Expected 2 × 44 (passport, visa A), 3 × 30 (ID card) or 2 × 36 (card, visa B). Check for missing or extra filler characters (<).`};
+  const bad = lines.join("").match(/[^A-Z0-9<]/); if (bad) return {error: `Character "${bad[0]}" is not allowed in an MRZ (only A–Z, 0–9 and <).`};
+  const r = {fmt, lines, checks: [], fields: []};
+  const chk = (label, data, digit) => { const c = cd(data); const ok = c !== null && String(c) === digit; r.checks.push({label, ok, want: c, got: digit}); return ok; };
+  let docType, issuer, nm, num, numCd, nat, dob, dobCd, sex, exp, expCd, opt, optCd, comp, compData;
+  if (fmt === "TD3" || fmt === "MRV-A" || fmt === "TD2" || fmt === "MRV-B") {
+    const [a, b] = lines, n = a.length;
+    docType = a.slice(0, 2); issuer = a.slice(2, 5); nm = names(a.slice(5));
+    num = b.slice(0, 9); numCd = b[9]; nat = b.slice(10, 13); dob = b.slice(13, 19); dobCd = b[19]; sex = b[20]; exp = b.slice(21, 27); expCd = b[27];
+    if (fmt === "TD3") { opt = b.slice(28, 42); optCd = b[42]; comp = b[43]; compData = b.slice(0, 10) + b.slice(13, 20) + b.slice(21, 43); }
+    else if (fmt === "TD2") { opt = b.slice(28, 35); comp = b[35]; compData = b.slice(0, 10) + b.slice(13, 20) + b.slice(21, 35); }
+    else opt = b.slice(28);
+  } else {
+    const [a, b, c] = lines;
+    docType = a.slice(0, 2); issuer = a.slice(2, 5); num = a.slice(5, 14); numCd = a[14]; opt = a.slice(15, 30);
+    dob = b.slice(0, 6); dobCd = b[6]; sex = b[7]; exp = b.slice(8, 14); expCd = b[14]; nat = b.slice(15, 18); comp = b[29];
+    compData = a.slice(5, 30) + b.slice(0, 7) + b.slice(8, 15) + b.slice(18, 29); nm = names(c);
+    if (numCd === "<") r.long = true;   // long document numbers continue in the optional field (ICAO rule)
+  }
+  chk("Document number", num, numCd);
+  chk("Date of birth", dob, dobCd);
+  chk("Date of expiry", exp, expCd);
+  if (fmt === "TD3" && opt.replace(/</g, "")) chk("Personal / optional number", opt, optCd);
+  else if (fmt === "TD3") r.checks.push({label: "Personal / optional number", ok: optCd === "<" || optCd === "0", want: "< or 0", got: optCd, blank: true});
+  if (compData) chk("Composite (whole line)", compData, comp);
+  const kinds = {P: "Passport", I: "Identity card", A: "Identity card", C: "Identity card", V: "Visa"};
+  r.kind = kinds[docType[0]] || "Other travel document";
+  r.fields = [
+    ["Format", `${fmt} (${{"TD3": "passport booklet", "TD1": "ID card", "TD2": "card", "MRV-A": "visa (full size)", "MRV-B": "visa (small)"}[fmt]})`],
+    ["Document type", `${esc(docType.replace(/</g, ""))} · ${r.kind}${docType[1] && docType[1] !== "<" ? ` <span class="sub">(subtype ${esc(docType[1])}: e.g. D diplomatic, S service, E emergency, varies by state)</span>` : ""}`],
+    ["Issuing state", country(issuer)],
+    ["Surname", esc(nm.sur) || '<span class="warn">empty</span>'],
+    ["Given names", esc(nm.giv) || '<span class="sub">none in MRZ</span>'],
+    ["Document number", `<span class="mono">${esc(num.replace(/</g, ""))}</span>`],
+    ["Nationality", country(nat)],
+    ["Date of birth", (() => { const d = date(dob, "dob"); return !d ? "not stated" : d.bad ? `<span class="bad">${dob}: not a real date</span>` : d.txt; })()],
+    ["Sex", {M: "Male", F: "Female", X: "Unspecified", "<": "Unspecified"}[sex] || `<span class="bad">${esc(sex)}: invalid</span>`],
+    ["Date of expiry", (() => { const d = date(exp, "exp"); return !d ? "not stated" : d.bad ? `<span class="bad">${exp}: not a real date</span>` : d.txt; })()],
+  ];
+  if (opt && opt.replace(/</g, "")) r.fields.push(["Optional data", `<span class="mono">${esc(opt.replace(/<+$/, ""))}</span>`]);
+  // points to look at: plain flags, never conclusions
+  const f = [];
+  const failed = r.checks.filter(c => !c.ok);
+  if (failed.length) f.push(["bad", `${failed.length} check digit${failed.length > 1 ? "s" : ""} failed (${failed.map(c => c.label.toLowerCase()).join(", ")}). Retype carefully first (O/0, I/1, B/8, S/5). If it still fails on the real document, that is a strong reason for examination.`]);
+  else f.push(["ok", "All check digits are correct. This only shows the MRZ is internally consistent."]);
+  const e = date(exp, "exp"), b = date(dob, "dob");
+  if (e && !e.bad) { const days = Math.floor((e.dt - today) / 864e5);
+    if (days < 0) f.push(["bad", `Expired ${-days} day${days === -1 ? "" : "s"} ago (${e.txt}).`]);
+    else if (days < 183) f.push(["warn", `Expires in ${days} days (${e.txt}). Many countries require 6 months' validity on entry.`]);
+    else f.push(["ok", `Valid until ${e.txt}.`]); }
+  if (b && !b.bad) { const age = Math.floor((today - b.dt) / (365.25 * 864e5));
+    if (age < 0) f.push(["bad", "Date of birth is in the future."]);
+    else if (age < 18) f.push(["warn", `Holder is a minor (age ${age}). Check who is accompanying the child and the consent documents; unaccompanied or oddly accompanied minors are a trafficking indicator.`]);
+    else f.push(["ok", `Holder's age: ${age}.`]);
+    if (e && !e.bad) { const yrs = (e.dt - b.dt) / (365.25 * 864e5); if (yrs < 0) f.push(["bad", "Expiry date is before the date of birth."]); } }
+  const iss = issuer.replace(/<+$/, ""), nt = nat.replace(/<+$/, "");
+  if (!ICAO[iss]) f.push(["bad", `Issuing state code "${issuer}" is not a known ICAO code.`]);
+  if (!ICAO[nt]) f.push(["bad", `Nationality code "${nat}" is not a known ICAO code.`]);
+  if (ICAO[iss] && ICAO[nt] && iss !== nt && !(iss === "D" && nt === "D") && !["XXA", "XXB", "XXC"].includes(nt))
+    f.push(["warn", `Issuing state (${iss}) differs from nationality (${nt}). Normal for some documents (residence cards, refugee or stateless travel documents, some territories); otherwise ask why.`]);
+  if (["XXA", "XXB", "XXC"].includes(nt)) f.push(["warn", `Nationality code ${nt}: ${ICAO[nt]}. Check the travel document type matches (Convention travel document, stateless document).`]);
+  if (/^(UTO|XXX)$/.test(iss) || /ERIKSSON|SPECIMEN|MUSTERMANN/.test(lines.join(""))) f.push(["warn", "This looks like a specimen or test document."]);
+  const nameZone = fmt === "TD1" ? lines[2] : lines[0].slice(5);
+  if (!nameZone.endsWith("<")) f.push(["warn", "The name field is full to the last character, so the name may be truncated. Compare with the printed name."]);
+  if (/[0-9]/.test(nm.sur + nm.giv)) f.push(["bad", "There are digits in the name field."]);
+  if (r.long) f.push(["warn", "Document number is longer than 9 characters (continued in the optional field, as ICAO allows for ID cards)."]);
+  r.flags = f;
+  return r;
+}
+function show() {
+  const raw = $("mrz").value; if (!raw.trim()) { $("out").innerHTML = ""; return; }
+  const r = parse(raw);
+  if (r.error) { $("out").innerHTML = `<div class="card"><h2>Result</h2><p class="bad">${esc(r.error)}</p></div>`; return; }
+  const allOk = r.checks.every(c => c.ok);
+  $("out").innerHTML = `<div class="grid">
+    <div class="card"><h2>2. What the MRZ says</h2><table>${r.fields.map(([k, v]) => `<tr><th style="width:38%">${k}</th><td>${v}</td></tr>`).join("")}</table></div>
+    <div class="card"><h2>3. Checks</h2>
+      <p><span class="pill ${allOk ? "ok" : "bad"}">${allOk ? "All check digits correct" : "Check digit failure"}</span></p>
+      <table><tr><th>Check digit</th><th>On document</th><th>Should be</th><th></th></tr>${r.checks.map(c => `<tr><td>${c.label}</td><td class="mono">${esc(c.got)}</td><td class="mono">${esc(c.want ?? "?")}</td><td class="${c.ok ? "ok" : "bad"}">${c.ok ? "✓" : "✗"}</td></tr>`).join("")}</table>
+      <h2 style="margin-top:14px">Points to look at</h2><ul class="flags">${r.flags.map(([k, t]) => `<li class="${k}">${k === "ok" ? "✓" : k === "bad" ? "✗" : "!"} <span style="color:var(--ink);font-weight:400">${t}</span></li>`).join("")}</ul></div></div>`;
+}
+$("go").onclick = show;
+$("mrz").addEventListener("input", () => { clearTimeout(window._t); window._t = setTimeout(show, 250); });
+$("clr").onclick = () => { $("mrz").value = ""; show(); };
+document.querySelectorAll("[data-s]").forEach(b => b.onclick = () => { $("mrz").value = SPEC[b.dataset.s]; show(); });
+</script>
+</body></html>

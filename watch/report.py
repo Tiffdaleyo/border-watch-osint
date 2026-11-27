@@ -146,6 +146,29 @@ def _method(cfg):
     return out
 
 
+def write_tools(out_dir):
+    """The investigation tool pages (watch/tools/*.html) are copied to docs/tools/; they run in the browser only."""
+    src = os.path.join(os.path.dirname(__file__), "tools")
+    dst = os.path.join(out_dir, "tools")
+    os.makedirs(dst, exist_ok=True)
+    with open(os.path.join(src, "icao_codes.json"), encoding="utf-8") as f:
+        icao = f.read()
+    extra = {}
+    for name in ("visa_data.json", "airlines.json", "airports.json"):
+        path = os.path.join(src, name)
+        if os.path.exists(path):
+            with open(path, encoding="utf-8") as f:
+                extra[name] = f.read()
+    for fn in os.listdir(src):
+        if fn.endswith(".html"):
+            with open(os.path.join(src, fn), encoding="utf-8") as f:
+                page = f.read().replace("__ICAO__", icao)
+            for name, data in extra.items():
+                page = page.replace("__" + name.split(".")[0].upper() + "__", data)
+            with open(os.path.join(dst, fn), "w", encoding="utf-8") as f:
+                f.write(page)
+
+
 def write_dashboard(out_dir, events, summary, cfg, new_today, demo=False):
     site = cfg.get("site") or {}
     data = {

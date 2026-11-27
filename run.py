@@ -125,6 +125,7 @@ def main():
     summary = analyze.summarise(shown, cfg)
     report.write_dashboard(out_dir, shown, summary, cfg, added, demo=args.demo)
     report.write_csv(out_dir, shown)
+    report.write_tools(out_dir)
     report.write_bulletin(out_dir, shown, summary, cfg)
     if args.publish:
         # everything now live was approved by the reviewer; alerts held since the last publish go out now

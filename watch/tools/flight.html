@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Flight tracker · Border Watch OSINT</title>
+<script src="../vendor/echarts.min.js"></script>
+<style>
+  :root { --ink:#1d2430; --muted:#5b6575; --line:#dde2ea; --bg:#f3f5f9; --panel:#fff; --navy:#13294b; --ok:#067647; --bad:#b42318; --warn:#b54708; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:Inter,Segoe UI,Arial,sans-serif; background:var(--bg); color:var(--ink); font-size:14px; line-height:1.5; }
+  .top { background:var(--navy); color:#fff; } .top .in { max-width:1100px; margin:0 auto; padding:12px 18px; display:flex; gap:16px; align-items:center; flex-wrap:wrap; }
+  .top a { color:#cfe0ff; text-decoration:none; font-size:13px; } .top a.on { color:#fff; font-weight:600; border-bottom:2px solid #fff; padding-bottom:2px; } .top .sp { flex:1; }
+  .wrap { max-width:1100px; margin:18px auto; padding:0 18px; }
+  h1 { margin:0 0 4px; font-size:24px; color:var(--navy); } .sub { color:var(--muted); font-size:13px; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:18px 20px; margin-top:14px; }
+  h2 { font-size:12.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--navy); margin:0 0 10px; }
+  input { font:inherit; font-size:18px; padding:10px 12px; border:2px solid var(--navy); border-radius:10px; width:260px; text-transform:uppercase; }
+  button { font:inherit; border:1px solid var(--line); background:#fff; border-radius:8px; padding:8px 12px; cursor:pointer; }
+  button.go { background:var(--navy); color:#fff; border-color:var(--navy); font-weight:600; }
+  .row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+  table { width:100%; border-collapse:collapse; font-size:13.5px; } td, th { padding:7px 8px; border-bottom:1px solid var(--line); text-align:left; }
+  th { color:var(--muted); font-size:11px; text-transform:uppercase; letter-spacing:.06em; width:38%; }
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; } @media (max-width:850px) { .grid { grid-template-columns:1fr; } }
+  .links a { display:inline-block; margin:4px 8px 4px 0; padding:6px 10px; border:1px solid var(--line); border-radius:8px; text-decoration:none; color:var(--navy); background:#fff; }
+  .note { background:#eef4ff; border:1px solid #b2ccff; border-radius:10px; padding:10px 12px; font-size:13px; }
+  .ok { color:var(--ok); font-weight:600; } .bad { color:var(--bad); font-weight:600; } .warn { color:var(--warn); font-weight:600; }
+  #map { height:380px; }
+</style></head><body>
+<div class="top"><div class="in"><a href="../index.html">← Border Watch dashboard</a><span class="sp"></span>
+  <a href="travel-document.html">Travel document check</a><a href="visa.html">Visa requirements</a><a href="flight.html" class="on">Flight tracker</a></div></div>
+<div class="wrap">
+  <h1>Flight tracker</h1>
+  <div class="sub">Type a flight number (BW2591, AA1415), an airline callsign (BWA2591) or an airport code (KIN, MKJP). The page decodes it, shows the airline or airport, and looks for the aircraft live on the free ADS-B network.</div>
+  <div class="note" style="margin-top:12px"><b>Public data only.</b> Live positions come from volunteer ADS-B receivers (adsb.lol), so coverage over the sea and some islands has gaps, and a flight on the ground or not yet departed will not show. Airline and airport details: OpenFlights and OurAirports public data. The flight number you type is sent to adsb.lol to look it up; do not type anything else here.</div>
+
+  <div class="card">
+    <div class="row"><input id="q" placeholder="BW2591" autocomplete="off"><button class="go" id="go">Look up</button>
+      <span class="sub">Try</span><button data-t="BW2591">BW2591</button><button data-t="JBU1">JBU1</button><button data-t="KIN">KIN</button><button data-t="MBJ">MBJ</button></div>
+  </div>
+  <div id="out"></div>
+  <p class="sub">Unofficial tool, part of Border Watch OSINT (open-source only, not a government service).</p>
+</div>
+<script>
+const AL = __AIRLINES__;
+const AP = __AIRPORTS__;
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const apLabel = a => a ? `${esc(a[0])}, ${esc(a[1])} (${esc(a[2])}) · ${esc([a[5], a[6]].filter(Boolean).join(" / "))}` : "";
+function decode(v) {
+  v = v.toUpperCase().replace(/\s+/g, "");
+  if (/^[A-Z]{3}$/.test(v) && AP[v] && !AL[v]) return {kind: "airport", ap: AP[v], code: v};
+  if (/^[A-Z]{4}$/.test(v) && AP[v]) return {kind: "airport", ap: AP[v], code: v};
+  let m = v.match(/^([A-Z]{3})(\d{1,4}[A-Z]?)$/);                       // ICAO callsign, e.g. BWA2591
+  if (m && AL[m[1]]) return {kind: "flight", al: AL[m[1]], num: m[2], callsign: v, iata: (AL[m[1]][1] || "") + m[2]};
+  m = v.match(/^([A-Z0-9]{2})(\d{1,4}[A-Z]?)$/);                         // IATA flight number, e.g. BW2591
+  if (m && AL[m[1]]) { const a = AL[m[1]]; return {kind: "flight", al: a, num: m[2], callsign: a[2] ? a[2] + m[2] : "", iata: v}; }
+  if (/^[A-Z]{3}$/.test(v) && AP[v]) return {kind: "airport", ap: AP[v], code: v};
+  return {kind: "unknown", v};
+}
+const link = (href, text) => `<a href="${href}" target="_blank" rel="noopener">${esc(text)} ↗</a>`;
+let chart = null, geo = null;
+async function world() { if (geo) return geo; geo = await (await fetch("../vendor/world.json")).json(); echarts.registerMap("world", geo); return geo; }
+async function drawMap(points, lines) {
+  await world();
+  if (!chart) chart = echarts.init($("map"));
+  const lons = points.map(p => p.value[0]), lats = points.map(p => p.value[1]);
+  const c = [(Math.min(...lons) + Math.max(...lons)) / 2, (Math.min(...lats) + Math.max(...lats)) / 2];
+  const span = Math.max(Math.max(...lons) - Math.min(...lons), (Math.max(...lats) - Math.min(...lats)) * 1.6, 8);
+  chart.setOption({geo: {map: "world", roam: true, center: c, zoom: Math.min(14, Math.max(1.2, 300 / span)), itemStyle: {areaColor: "#e8edf4", borderColor: "#fff"}, emphasis: {disabled: true}},
+    tooltip: {trigger: "item", formatter: p => p.data && p.data.name ? esc(p.data.name) : ""},
+    series: [{type: "lines", coordinateSystem: "geo", data: lines, lineStyle: {color: "#2a7de1", width: 2, type: "dashed", curveness: .2}},
+             {type: "scatter", coordinateSystem: "geo", data: points, symbolSize: p => 12, itemStyle: {color: d => d.data.plane ? "#b42318" : "#13294b"},
+              label: {show: true, position: "right", formatter: p => p.data.short || "", color: "#1d2430", fontSize: 11}}]}, true);
+}
+async function live(callsign) {
+  // free ADS-B network (adsb.lol, open data); a flight not airborne or out of receiver range will not be found
+  const r = await fetch(`https://api.adsb.lol/v2/callsign/${encodeURIComponent(callsign)}`, {cache: "no-store"});
+  if (!r.ok) throw new Error("HTTP " + r.status);
+  const j = await r.json(); return (j.ac || [])[0] || null;
+}
+async function route(callsign, ac) {
+  try {
+    const r = await fetch("https://api.adsb.lol/api/0/routeset", {method: "POST", headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({planes: [{callsign, lat: ac ? ac.lat : 0, lng: ac ? ac.lon : 0}]})});
+    if (!r.ok) return null; const j = await r.json(); const x = Array.isArray(j) ? j[0] : null;
+    return x && x._airport_codes_iata ? x._airport_codes_iata.split("-") : (x && x.airport_codes ? x.airport_codes.split("-") : null);
+  } catch (e) { return null; }
+}
+async function look(v) {
+  const d = decode(v); const out = $("out");
+  if (d.kind === "unknown") { out.innerHTML = `<div class="card"><p class="bad">"${esc(d.v)}" is not a known flight number, callsign or airport code.</p><p class="sub">Flight numbers start with the airline's 2-character code (BW, AA, B6) or 3-letter code (BWA, AAL, JBU). Airports: 3-letter IATA (KIN) or 4-letter ICAO (MKJP).</p></div>`; return; }
+  if (d.kind === "airport") {
+    const a = d.ap;
+    out.innerHTML = `<div class="grid"><div class="card"><h2>Airport</h2><table>
+      <tr><th>Name</th><td>${esc(a[0])}</td></tr><tr><th>City</th><td>${esc(a[1])}</td></tr><tr><th>Country</th><td>${esc(a[2])}</td></tr>
+      <tr><th>Codes</th><td>IATA ${esc(a[5] || "–")} · ICAO ${esc(a[6] || "–")}</td></tr><tr><th>Position</th><td>${a[3]}, ${a[4]}</td></tr></table>
+      <h2 style="margin-top:14px">Live traffic and boards</h2><div class="links">
+      ${link(`https://globe.adsb.lol/?lat=${a[3]}&lon=${a[4]}&zoom=9`, "Live map around the airport (adsb.lol)")}
+      ${a[6] ? link(`https://www.flightaware.com/live/airport/${a[6]}`, "Arrivals and departures (FlightAware)") : ""}
+      ${a[5] ? link(`https://www.flightradar24.com/data/airports/${a[5].toLowerCase()}`, "Airport page (Flightradar24)") : ""}
+      </div></div><div class="card"><h2>Map</h2><div id="map"></div></div></div>`;
+    drawMap([{name: a[0], short: a[5] || a[6], value: [a[4], a[3]]}], []); return;
+  }
+  const al = d.al;
+  out.innerHTML = `<div class="grid"><div class="card"><h2>Flight</h2><table>
+    <tr><th>Airline</th><td>${esc(al[0])}${al[4] ? ` <span class="sub">(${esc(al[4])})</span>` : ""}</td></tr>
+    <tr><th>Flight number</th><td>${esc(d.iata)}</td></tr>
+    <tr><th>Radio callsign</th><td>${esc(d.callsign || "not known")}${al[3] ? ` <span class="sub">spoken "${esc(al[3])} ${esc(d.num)}"</span>` : ""}</td></tr></table>
+    <h2 style="margin-top:14px">Live position</h2><div id="liveOut" class="sub">Looking for ${esc(d.callsign || d.iata)} on the ADS-B network…</div>
+    <h2 style="margin-top:14px">Flight history and schedules</h2><div class="links">
+      ${link(`https://www.flightradar24.com/data/flights/${d.iata.toLowerCase()}`, "Recent history (Flightradar24)")}
+      ${d.callsign ? link(`https://www.flightaware.com/live/flight/${d.callsign}`, "Flight page (FlightAware)") : ""}
+      ${d.callsign ? link(`https://globe.adsb.lol/?callsign=${d.callsign}`, "Live map (adsb.lol)") : ""}
+    </div></div><div class="card"><h2>Map</h2><div id="map"></div><div class="sub" id="mapnote">Red = the aircraft now · dark blue = airports on the route.</div></div></div>`;
+  if (!d.callsign) { $("liveOut").innerHTML = "This airline has no known ICAO callsign prefix, so the live search is not possible. Use the links below."; return; }
+  let ac = null, err = "";
+  try { ac = await live(d.callsign); } catch (e) { err = e.message; }
+  const rt = await route(d.callsign, ac);
+  const pts = [], lns = [];
+  const ends = (rt || []).map(c => AP[c]).filter(Boolean);
+  ends.forEach(a => pts.push({name: a[0], short: a[5] || a[6], value: [a[4], a[3]]}));
+  for (let i = 1; i < ends.length; i++) lns.push({coords: [[ends[i - 1][4], ends[i - 1][3]], [ends[i][4], ends[i][3]]]});
+  if (ac) {
+    pts.push({name: `${d.callsign} now`, short: d.callsign, plane: true, value: [ac.lon, ac.lat]});
+    const alt = ac.alt_baro === "ground" ? "on the ground" : (ac.alt_baro ? ac.alt_baro.toLocaleString() + " ft" : "–");
+    $("liveOut").innerHTML = `<table><tr><th>Status</th><td class="ok">Seen live ${ac.seen != null ? `(${Math.round(ac.seen)} s ago)` : ""}</td></tr>
+      ${rt ? `<tr><th>Route (published)</th><td>${rt.map(c => esc(c) + (AP[c] ? ` <span class="sub">${esc(AP[c][1])}</span>` : "")).join(" → ")}</td></tr>` : ""}
+      <tr><th>Position</th><td>${ac.lat?.toFixed(3)}, ${ac.lon?.toFixed(3)}</td></tr><tr><th>Altitude</th><td>${alt}</td></tr>
+      <tr><th>Ground speed · heading</th><td>${ac.gs ? Math.round(ac.gs) + " kt" : "–"} · ${ac.track != null ? Math.round(ac.track) + "°" : "–"}</td></tr>
+      <tr><th>Aircraft</th><td>${esc(ac.r || "–")} · ${esc(ac.t || "")} ${ac.desc ? `<span class="sub">${esc(ac.desc)}</span>` : ""}</td></tr>
+      <tr><th>Transponder (hex)</th><td>${esc(ac.hex || "–")}${ac.squawk ? ` · squawk ${esc(ac.squawk)}${["7500", "7600", "7700"].includes(ac.squawk) ? ' <span class="bad">emergency code</span>' : ""}` : ""}</td></tr></table>`;
+  } else {
+    $("liveOut").innerHTML = (err ? `<span class="warn">The live service could not be reached from this browser (${esc(err)}).</span> ` : `<span class="warn">Not seen live right now.</span> `)
+      + "The flight may not be airborne, may be out of receiver range, or may use a different callsign today. Use the history links below."
+      + (rt ? `<br>Published route: ${rt.map(esc).join(" → ")}` : "");
+  }
+  if (pts.length) drawMap(pts, lns); else $("mapnote").textContent = "No position or route to show.";
+}
+$("go").onclick = () => look($("q").value);
+$("q").onkeydown = e => { if (e.key === "Enter") look($("q").value); };
+document.querySelectorAll("[data-t]").forEach(b => b.onclick = () => { $("q").value = b.dataset.t; look(b.dataset.t); });
+const pre = new URLSearchParams(location.search).get("q"); if (pre) { $("q").value = pre; look(pre); }
+</script>
+</body></html>

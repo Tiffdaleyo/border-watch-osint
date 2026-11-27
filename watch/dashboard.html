@@ -244,6 +244,9 @@
   <nav id="snav"></nav>
   <div class="sgl">Tools</div>
   <nav class="tools">
+    <a href="tools/travel-document.html"><span class="i">▤</span>Travel document check</a>
+    <a href="tools/visa.html"><span class="i">⎙</span>Visa requirements</a>
+    <a href="tools/flight.html"><span class="i">✈</span>Flight tracker</a>
     <a href="javascript:void 0" data-go="border:portlk"><span class="i">⚓</span>Port lookup</a>
     <a href="javascript:void 0" data-go="migration:lookup"><span class="i">⟶</span>Route lookup</a>
     <a href="javascript:void 0" data-go="seizures:links"><span class="i">⛓</span>Repeat links</a>
@@ -1395,7 +1398,7 @@ function selHint() {
   const port = kind.startsWith("Port") && DATA.ports.find(p => p[2] === c.toUpperCase());
   $("selhint").innerHTML = `Detected: <b>${esc(kind)}</b> · ${n ? `<b>${n}</b> report${n > 1 ? "s" : ""} below mention it` : "no report on this site mentions it"}`
     + (port ? ` · <a href="javascript:void 0" id="selport">Open ${esc(port[0])} in Port lookup</a>` : "")
-    + (kind === "Flight number" ? ` · <a class="alt" href="https://www.flightradar24.com/data/flights/${encodeURIComponent(c.toLowerCase())}" target="_blank" rel="noopener">Flight history on Flightradar24 ↗</a>` : "")
+    + (kind === "Flight number" ? ` · <a href="tools/flight.html?q=${encodeURIComponent(c)}">Open in Flight tracker</a>` : "")
     + (kind === "IMO ship number" || kind === "MMSI" ? ` · <a class="alt" href="https://www.marinetraffic.com/en/ais/index/search/all/keyword:${encodeURIComponent(c.replace(/^imo/i, ""))}" target="_blank" rel="noopener">Ship position on MarineTraffic ↗</a>` : "");
   const sp = $("selport"); if (sp) sp.onclick = () => goTool("border", "portlk", port[0]);
 }
@@ -1410,6 +1413,9 @@ $("qclear").onclick = () => { $("q").value = ""; F.q = ""; update(); $("q").focu
 document.querySelectorAll(".selbox .try button").forEach(b => b.onclick = () => { $("q").value = b.textContent; F.q = b.textContent.toLowerCase(); update(); });
 
 F.section = SEC[location.hash.slice(1)] ? location.hash.slice(1) : "overview";
+// a link from a tool page can open the dashboard with a search already filled in (?q=...), worldwide
+{ const uq = new URLSearchParams(location.search).get("q"); if (uq) { $("q").value = uq; F.q = uq.toLowerCase(); F.scope = "";
+  document.querySelectorAll("#scope button").forEach(b => b.classList.toggle("on", b.dataset.v === "")); } }
 showCards();
 update();
 /* a link ending in #BWO-2026-0123 (used in alert emails) opens that report */
