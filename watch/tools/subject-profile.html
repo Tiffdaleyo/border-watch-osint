@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Subject profile · Border Watch OSINT</title>
+<style>
+  :root { --ink:#1d2430; --muted:#5b6575; --line:#dde2ea; --bg:#f3f5f9; --panel:#fff; --navy:#13294b; --ok:#067647; --bad:#b42318; --warn:#b54708; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:Inter,Segoe UI,Arial,sans-serif; background:var(--bg); color:var(--ink); font-size:14px; line-height:1.5; }
+  .top { background:var(--navy); color:#fff; } .top .in { max-width:1100px; margin:0 auto; padding:12px 18px; display:flex; gap:16px; align-items:center; flex-wrap:wrap; }
+  .top a { color:#cfe0ff; text-decoration:none; font-size:13px; } .top a.on { color:#fff; font-weight:600; border-bottom:2px solid #fff; padding-bottom:2px; } .top .sp { flex:1; }
+  .wrap { max-width:1100px; margin:18px auto; padding:0 18px; }
+  h1 { margin:0 0 4px; font-size:24px; color:var(--navy); } .sub { color:var(--muted); font-size:13px; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:18px 20px; margin-top:14px; }
+  h2 { font-size:12.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--navy); margin:0 0 10px; }
+  textarea { width:100%; font-family:"OCR B","OCR-B",Consolas,"Courier New",monospace; font-size:17px; letter-spacing:.08em; padding:12px; border:2px solid var(--navy); border-radius:10px; text-transform:uppercase; resize:vertical; min-height:96px; }
+  button { font:inherit; border:1px solid var(--line); background:#fff; border-radius:8px; padding:6px 12px; cursor:pointer; }
+  button.go { background:var(--navy); color:#fff; border-color:var(--navy); font-weight:600; }
+  .row { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-top:10px; }
+  table { width:100%; border-collapse:collapse; font-size:13.5px; } td, th { padding:7px 8px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+  th { color:var(--muted); font-size:11px; text-transform:uppercase; letter-spacing:.06em; }
+  .ok { color:var(--ok); font-weight:600; } .bad { color:var(--bad); font-weight:600; } .warn { color:var(--warn); font-weight:600; }
+  .mono { font-family:Consolas,"Courier New",monospace; }
+  .flags li { margin:6px 0; } .pill { display:inline-block; padding:2px 8px; border-radius:20px; font-size:12px; font-weight:600; }
+  .pill.ok { background:#e7f6ec; } .pill.bad { background:#fdecea; } .pill.warn { background:#fff4e5; }
+  .note { background:#eef4ff; border:1px solid #b2ccff; border-radius:10px; padding:10px 12px; font-size:13px; }
+  .grid { display:grid; grid-template-columns:1.2fr 1fr; gap:14px; } @media (max-width:850px) { .grid { grid-template-columns:1fr; } }
+  ol.steps li { margin:6px 0; }
+  input, select { font:inherit; padding:7px 9px; border:1px solid #c7cfdb; border-radius:8px; background:#fff; width:100%; }
+  label { display:block; font-size:12px; color:var(--muted); margin:8px 0 3px; font-weight:600; }
+  .f3 { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; } @media (max-width:850px) { .f3 { grid-template-columns:1fr; } }
+  .idrow { display:grid; grid-template-columns:150px 1fr 1fr 130px 34px; gap:6px; margin-top:6px; } @media (max-width:850px) { .idrow { grid-template-columns:1fr 1fr; } }
+  .links a { display:inline-block; margin:3px 6px 3px 0; padding:3px 9px; border:1px solid var(--line); border-radius:16px; text-decoration:none; color:var(--navy); font-size:12.5px; background:#f8fafc; }
+  .links a.in { background:#e7f6ec; border-color:#b7e1c4; }
+  .sheet h3 { margin:14px 0 6px; font-size:14px; color:var(--navy); border-bottom:2px solid var(--navy); padding-bottom:3px; }
+  .sheet td:first-child { width:30%; color:var(--muted); }
+  .stamp { border:2px solid var(--bad); color:var(--bad); font-weight:700; padding:4px 10px; display:inline-block; border-radius:6px; font-size:12px; letter-spacing:.06em; }
+  @media print { .top, .noprint, .note { display:none !important; } body { background:#fff; } .card { border:none; padding:0; } }
+</style></head><body>
+<div class="top"><div class="in"><a href="../index.html">← Border Watch dashboard</a><span class="sp"></span>
+  <a href="travel-document.html">Travel document check</a><a href="visa.html">Visa requirements</a><a href="flight.html">Flight tracker</a><a href="subject-profile.html" class="on">Subject profile</a><a href="case-summary.html">Case summary</a></div></div>
+<div class="wrap">
+  <h1>Subject profile</h1>
+  <div class="sub">Build a one-page profile of a person of interest from what is known, with ready-made open-source searches for each name, phone, email, username or document.</div>
+  <div class="note" style="margin-top:12px"><b>Works only in your browser.</b> Nothing you type is saved, sent or logged, and it is gone when you close or reload the page. Print or save the profile as PDF to keep it, and store it under your agency's rules. <b>The search buttons open outside websites and send them the search words:</b> use them only where your agency's rules for online enquiries allow, and never type case details into those sites. Green buttons search this site's own reports.</div>
+
+  <div class="card noprint">
+    <h2>1. The person</h2>
+    <div class="f3">
+      <div><label>Full name (as on the document)</label><input id="name" placeholder="e.g. John Michael Doe"></div>
+      <div><label>Other names and spellings (comma between)</label><input id="aliases" placeholder="e.g. Johnny Doe, J. M. Doe"></div>
+      <div><label>Date of birth</label><input id="dob" type="date"></div>
+      <div><label>Sex</label><select id="sex"><option></option><option>Female</option><option>Male</option><option>Not stated</option></select></div>
+      <div><label>Nationality (as stated on the document)</label><input id="nat" list="countries" placeholder="e.g. Jamaica"></div>
+      <div><label>Role in the case</label><select id="role"><option></option><option>Traveller</option><option>Suspected facilitator</option><option>Possible victim</option><option>Associate</option><option>Sponsor or contact in Jamaica</option><option>Other</option></select></div>
+    </div>
+  </div>
+
+  <div class="card noprint">
+    <h2>2. Identifiers</h2>
+    <div class="sub">Add each document, phone, email, username, address, company or vehicle. Mark where it came from and whether it is confirmed.</div>
+    <div id="ids"></div>
+    <div class="row"><button id="add">+ Add identifier</button></div>
+  </div>
+
+  <div class="card noprint">
+    <h2>3. Travel and notes</h2>
+    <div class="f3">
+      <div><label>Flight number</label><input id="flight" placeholder="e.g. BW600"></div>
+      <div><label>Travel date</label><input id="tdate" type="date"></div>
+      <div><label>Route (from → via → to)</label><input id="route" placeholder="e.g. Lagos → Panama City → Kingston"></div>
+    </div>
+    <label>Known associates (names, comma between)</label><input id="assoc">
+    <label>Notes (facts only: what was seen, said or found, and by whom)</label><textarea id="notes" style="font-family:inherit;font-size:14px;letter-spacing:0;text-transform:none;min-height:80px;border-width:1px"></textarea>
+    <div class="row"><button class="go" id="build">Build profile</button><button id="print">🖨 Print or save as PDF</button><button id="copy">Copy as text</button><button id="clr">Clear all</button><span id="msg" class="sub"></span></div>
+  </div>
+
+  <div id="out"></div>
+  <p class="sub">Unofficial tool, part of Border Watch OSINT (open-source only, not a government service). A search result is a lead to check, not proof: people share names, and online profiles can be false.</p>
+</div>
+<datalist id="countries"></datalist>
+<script>
+const ICAO = __ICAO__;
+const $ = id => document.getElementById(id);
+const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const enc = encodeURIComponent;
+$("countries").innerHTML = [...new Set(Object.values(ICAO))].sort().map(n => `<option value="${esc(n)}">`).join("");
+const TYPES = ["Passport", "ID card", "Visa or permit", "Phone", "Email", "Username or social media", "Website", "Address (town and country)", "Company", "Vehicle registration", "Bank or payment", "Other"];
+const SOURCES = ["Document seen", "Stated by the person", "System check", "Open source", "Other agency", "Unknown"];
+function addRow(t = "Phone", v = "", s = "", c = "Unconfirmed") {
+  const d = document.createElement("div"); d.className = "idrow";
+  d.innerHTML = `<select>${TYPES.map(x => `<option${x === t ? " selected" : ""}>${x}</option>`).join("")}</select>
+    <input placeholder="Value" value="${esc(v)}"><select>${SOURCES.map(x => `<option${x === s ? " selected" : ""}>${x}</option>`).join("")}</select>
+    <select><option${c === "Unconfirmed" ? " selected" : ""}>Unconfirmed</option><option${c === "Confirmed" ? " selected" : ""}>Confirmed</option></select>
+    <button title="Remove">✕</button>`;
+  d.querySelector("button").onclick = () => d.remove();
+  $("ids").appendChild(d);
+}
+addRow("Passport"); addRow("Phone");
+const G = q => "https://www.google.com/search?q=" + enc(q);
+const L = (label, url, inside) => `<a href="${esc(url)}" target="_blank" rel="noopener noreferrer"${inside ? ' class="in"' : ""}>${esc(label)}</a>`;
+const SITE = q => L("This site's reports", "../index.html?q=" + enc(q), true);
+function searches(type, v) {
+  const q = `"${v}"`;
+  switch (type) {
+    case "Name": return [SITE(v), L("Google", G(q)), L("Google News", "https://news.google.com/search?q=" + enc(q)),
+      L("Facebook", "https://www.facebook.com/search/people/?q=" + enc(v)), L("Instagram (via Google)", G(q + " site:instagram.com")),
+      L("X", "https://x.com/search?q=" + enc(q) + "&f=user"), L("LinkedIn (via Google)", G(q + " site:linkedin.com")),
+      L("TikTok", "https://www.tiktok.com/search/user?q=" + enc(v)), L("Sanctions and wanted lists (OpenSanctions)", "https://www.opensanctions.org/search/?q=" + enc(v)),
+      L("INTERPOL red notices", "https://www.interpol.int/How-we-work/Notices/Red-Notices/View-Red-Notices"), L("Court and news (Jamaica)", G(q + " (court OR charged OR arrested) Jamaica"))];
+    case "Phone": { const d = v.replace(/[^\d+]/g, ""), n = d.replace(/^\+/, "");
+      return [SITE(d), L("Google", G(`"${d}" OR "${n}"`)), L("WhatsApp profile", "https://wa.me/" + n), L("Facebook (via Google)", G(`"${n}" site:facebook.com`)),
+        L("Truecaller", "https://www.truecaller.com/search/jm/" + enc(n)), L("Telegram (via Google)", G(`"${n}" site:t.me`))]; }
+    case "Email": { const user = v.split("@")[0], dom = v.split("@")[1] || "";
+      return [SITE(v), L("Google", G(q)), L("Username (" + user + ")", G(`"${user}"`)), L("Data breaches (Have I Been Pwned)", "https://haveibeenpwned.com/account/" + enc(v)),
+        dom ? L("Domain owner (" + dom + ")", "https://who.is/whois/" + enc(dom)) : ""]; }
+    case "Username or social media": { const u = v.replace(/^@/, "").replace(/^https?:\/\/[^/]+\//, "").replace(/\/.*$/, "");
+      return [SITE(u), L("Google", G(`"${u}"`)), L("Instagram", "https://www.instagram.com/" + enc(u)), L("TikTok", "https://www.tiktok.com/@" + enc(u)),
+        L("X", "https://x.com/" + enc(u)), L("Facebook", "https://www.facebook.com/" + enc(u)), L("Telegram", "https://t.me/" + enc(u)),
+        L("Same username on 600+ sites (WhatsMyName)", "https://whatsmyname.app/?q=" + enc(u))]; }
+    case "Website": { const dom = v.replace(/^https?:\/\//, "").replace(/\/.*$/, "");
+      return [SITE(dom), L("Domain owner", "https://who.is/whois/" + enc(dom)), L("Old copies (Wayback Machine)", "https://web.archive.org/web/*/" + enc(dom)),
+        L("Mentions", G(`"${dom}" -site:${dom}`))]; }
+    case "Company": return [SITE(v), L("Company registers (OpenCorporates)", "https://opencorporates.com/companies?q=" + enc(v)),
+      L("Sanctions (OpenSanctions)", "https://www.opensanctions.org/search/?q=" + enc(v)), L("Google", G(q)), L("Offshore leaks (ICIJ)", "https://offshoreleaks.icij.org/search?q=" + enc(v))];
+    case "Address (town and country)": return [SITE(v), L("Map", "https://www.google.com/maps/search/" + enc(v)), L("Google", G(q))];
+    case "Passport": case "ID card": case "Visa or permit":
+      return [SITE(v), L("Google (leaked or posted online)", G(q)), L("Check the MRZ", "travel-document.html", true)];
+    default: return [SITE(v), L("Google", G(q))];
+  }
+}
+function collect() {
+  const ids = [...$("ids").children].map(r => { const [t, v, s, c] = r.querySelectorAll("select,input"); return {type: t.value, value: v.value.trim(), source: s.value, conf: c.value}; }).filter(x => x.value);
+  const g = k => $(k).value.trim();
+  return {name: g("name"), aliases: g("aliases").split(",").map(s => s.trim()).filter(Boolean), dob: g("dob"), sex: g("sex"), nat: g("nat"), role: g("role"),
+    flight: g("flight"), tdate: g("tdate"), route: g("route"), assoc: g("assoc").split(",").map(s => s.trim()).filter(Boolean), notes: g("notes"), ids};
+}
+function age(dob) { if (!dob) return ""; const b = new Date(dob), n = new Date(); let a = n.getFullYear() - b.getFullYear(); if (n < new Date(n.getFullYear(), b.getMonth(), b.getDate())) a--; return a; }
+function build() {
+  const p = collect();
+  if (!p.name && !p.ids.length) { $("out").innerHTML = '<div class="card"><span class="warn">Type at least a name or one identifier.</span></div>'; return; }
+  const now = new Date().toLocaleString("en-GB", {dateStyle: "medium", timeStyle: "short"});
+  const row = (k, v) => v ? `<tr><td>${esc(k)}</td><td>${v}</td></tr>` : "";
+  const a = age(p.dob);
+  let h = `<div class="card sheet"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+    <h2 style="margin:0;font-size:15px">Subject profile: ${esc(p.name || "(name not given)")}</h2><span class="stamp">HANDLE UNDER AGENCY RULES</span></div>
+    <div class="sub">Prepared ${esc(now)}. Facts as recorded; open-source results are leads, not proof.</div>
+    <h3>Person</h3><table>${row("Full name", esc(p.name))}${row("Other names", esc(p.aliases.join("; ")))}
+    ${row("Date of birth", p.dob ? esc(p.dob) + (a !== "" ? ` (age ${a}${a < 18 ? ' <span class="bad">MINOR</span>' : ""})` : "") : "")}
+    ${row("Sex", esc(p.sex))}${row("Nationality (stated on document)", esc(p.nat))}${row("Role in the case", esc(p.role))}</table>`;
+  if (p.ids.length) h += `<h3>Identifiers</h3><table><tr><th>Type</th><th>Value</th><th>Source</th><th>Status</th></tr>${p.ids.map(x =>
+    `<tr><td>${esc(x.type)}</td><td class="mono">${esc(x.value)}</td><td>${esc(x.source)}</td><td class="${x.conf === "Confirmed" ? "ok" : "warn"}">${esc(x.conf)}</td></tr>`).join("")}</table>`;
+  if (p.flight || p.route || p.tdate) h += `<h3>Travel</h3><table>${row("Flight", esc(p.flight))}${row("Date", esc(p.tdate))}${row("Route", esc(p.route))}</table>`;
+  if (p.assoc.length) h += `<h3>Known associates</h3><table>${p.assoc.map(x => row("Associate", esc(x))).join("")}</table>`;
+  if (p.notes) h += `<h3>Notes</h3><div style="white-space:pre-wrap">${esc(p.notes)}</div>`;
+  h += `<h3>Open-source checks done</h3><table><tr><th>Search</th><th>Result</th></tr>${[1,2,3,4].map(() => "<tr><td>&nbsp;</td><td></td></tr>").join("")}</table></div>`;
+  const list = [];
+  if (p.name) list.push(["Name", p.name]);
+  p.aliases.forEach(x => list.push(["Name", x]));
+  p.ids.forEach(x => list.push([x.type, x.value]));
+  p.assoc.forEach(x => list.push(["Name", x]));
+  if (p.flight) list.push(["Flight", p.flight]);
+  h += `<div class="card noprint"><h2>Open-source searches</h2><div class="sub">Each button opens a new tab. Green buttons stay on this site.</div><table>${list.map(([t, v]) =>
+    `<tr><td style="width:28%"><b>${esc(t)}</b><br><span class="mono">${esc(v)}</span></td><td class="links">${(t === "Flight" ? [L("Flight tracker", "flight.html?q=" + enc(v), true), SITE(v)] : searches(t, v)).join("")}</td></tr>`).join("")}</table></div>`;
+  $("out").innerHTML = h;
+  $("out").scrollIntoView({behavior: "smooth"});
+}
+function asText() {
+  const p = collect(), L2 = [];
+  L2.push("SUBJECT PROFILE (handle under agency rules)", "Prepared: " + new Date().toLocaleString("en-GB"), "");
+  [["Full name", p.name], ["Other names", p.aliases.join("; ")], ["Date of birth", p.dob], ["Sex", p.sex], ["Nationality (stated on document)", p.nat], ["Role", p.role]].forEach(([k, v]) => v && L2.push(k + ": " + v));
+  if (p.ids.length) { L2.push("", "IDENTIFIERS"); p.ids.forEach(x => L2.push(`- ${x.type}: ${x.value} (${x.source}; ${x.conf})`)); }
+  if (p.flight || p.route || p.tdate) L2.push("", "TRAVEL", [p.flight, p.tdate, p.route].filter(Boolean).join(" | "));
+  if (p.assoc.length) L2.push("", "KNOWN ASSOCIATES", ...p.assoc.map(x => "- " + x));
+  if (p.notes) L2.push("", "NOTES", p.notes);
+  return L2.join("\n");
+}
+$("add").onclick = () => addRow();
+$("build").onclick = build;
+$("print").onclick = () => { build(); setTimeout(() => window.print(), 100); };
+$("copy").onclick = () => navigator.clipboard.writeText(asText()).then(() => { $("msg").textContent = "Copied."; setTimeout(() => $("msg").textContent = "", 2000); });
+$("clr").onclick = () => { document.querySelectorAll(".wrap input, .wrap textarea").forEach(e => e.value = ""); document.querySelectorAll(".wrap select").forEach(e => { if (!e.closest(".idrow")) e.selectedIndex = 0; }); $("ids").innerHTML = ""; addRow("Passport"); addRow("Phone"); $("out").innerHTML = ""; };
+</script>
+</body></html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Case summary · Border Watch OSINT</title>
+<style>
+  :root { --ink:#1d2430; --muted:#5b6575; --line:#dde2ea; --bg:#f3f5f9; --panel:#fff; --navy:#13294b; --ok:#067647; --bad:#b42318; --warn:#b54708; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:Inter,Segoe UI,Arial,sans-serif; background:var(--bg); color:var(--ink); font-size:14px; line-height:1.5; }
+  .top { background:var(--navy); color:#fff; } .top .in { max-width:1100px; margin:0 auto; padding:12px 18px; display:flex; gap:16px; align-items:center; flex-wrap:wrap; }
+  .top a { color:#cfe0ff; text-decoration:none; font-size:13px; } .top a.on { color:#fff; font-weight:600; border-bottom:2px solid #fff; padding-bottom:2px; } .top .sp { flex:1; }
+  .wrap { max-width:1100px; margin:18px auto; padding:0 18px; }
+  h1 { margin:0 0 4px; font-size:24px; color:var(--navy); } .sub { color:var(--muted); font-size:13px; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:18px 20px; margin-top:14px; }
+  h2 { font-size:12.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--navy); margin:0 0 10px; }
+  textarea { width:100%; font-family:"OCR B","OCR-B",Consolas,"Courier New",monospace; font-size:17px; letter-spacing:.08em; padding:12px; border:2px solid var(--navy); border-radius:10px; text-transform:uppercase; resize:vertical; min-height:96px; }
+  button { font:inherit; border:1px solid var(--line); background:#fff; border-radius:8px; padding:6px 12px; cursor:pointer; }
+  button.go { background:var(--navy); color:#fff; border-color:var(--navy); font-weight:600; }
+  .row { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-top:10px; }
+  table { width:100%; border-collapse:collapse; font-size:13.5px; } td, th { padding:7px 8px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+  th { color:var(--muted); font-size:11px; text-transform:uppercase; letter-spacing:.06em; }
+  .ok { color:var(--ok); font-weight:600; } .bad { color:var(--bad); font-weight:600; } .warn { color:var(--warn); font-weight:600; }
+  .mono { font-family:Consolas,"Courier New",monospace; }
+  .flags li { margin:6px 0; } .pill { display:inline-block; padding:2px 8px; border-radius:20px; font-size:12px; font-weight:600; }
+  .pill.ok { background:#e7f6ec; } .pill.bad { background:#fdecea; } .pill.warn { background:#fff4e5; }
+  .note { background:#eef4ff; border:1px solid #b2ccff; border-radius:10px; padding:10px 12px; font-size:13px; }
+  .grid { display:grid; grid-template-columns:1.2fr 1fr; gap:14px; } @media (max-width:850px) { .grid { grid-template-columns:1fr; } }
+  ol.steps li { margin:6px 0; }
+  input, select { font:inherit; padding:7px 9px; border:1px solid #c7cfdb; border-radius:8px; background:#fff; width:100%; }
+  textarea.t { font-family:inherit; font-size:14px; letter-spacing:0; text-transform:none; min-height:70px; border-width:1px; }
+  label { display:block; font-size:12px; color:var(--muted); margin:8px 0 3px; font-weight:600; }
+  .f3 { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; } @media (max-width:850px) { .f3 { grid-template-columns:1fr; } }
+  .chk { display:grid; grid-template-columns:repeat(2,1fr); gap:2px 16px; } @media (max-width:850px) { .chk { grid-template-columns:1fr; } }
+  .chk label { font-weight:400; color:var(--ink); font-size:13.5px; display:flex; gap:7px; align-items:flex-start; margin:3px 0; }
+  .chk input { width:auto; margin-top:4px; }
+  .prow { display:grid; grid-template-columns:1fr 170px 1fr 34px; gap:6px; margin-top:6px; } @media (max-width:850px) { .prow { grid-template-columns:1fr 1fr; } }
+  .sheet h3 { margin:14px 0 6px; font-size:14px; color:var(--navy); border-bottom:2px solid var(--navy); padding-bottom:3px; }
+  .sheet td:first-child { width:30%; color:var(--muted); }
+  .stamp { border:2px solid var(--bad); color:var(--bad); font-weight:700; padding:4px 10px; display:inline-block; border-radius:6px; font-size:12px; letter-spacing:.06em; }
+  @media print { .top, .noprint, .note { display:none !important; } body { background:#fff; } .card { border:none; padding:0; } }
+</style></head><body>
+<div class="top"><div class="in"><a href="../index.html">← Border Watch dashboard</a><span class="sp"></span>
+  <a href="travel-document.html">Travel document check</a><a href="visa.html">Visa requirements</a><a href="flight.html">Flight tracker</a><a href="subject-profile.html">Subject profile</a><a href="case-summary.html" class="on">Case summary</a></div></div>
+<div class="wrap">
+  <h1>Case summary</h1>
+  <div class="sub">Turn the facts of an airport case into a clear, one-page summary for a supervisor, a referral or a hand-over.</div>
+  <div class="note" style="margin-top:12px"><b>Works only in your browser.</b> Nothing you type is saved, sent or logged, and it is gone when you close or reload the page. Print or save the summary as PDF, or copy it as text, and store it under your agency's rules. This page does not replace your agency's official forms.</div>
+
+  <div class="card noprint">
+    <h2>1. The case</h2>
+    <div class="f3">
+      <div><label>Your reference</label><input id="ref" placeholder="Your own case number"></div>
+      <div><label>Date and time</label><input id="when" type="datetime-local"></div>
+      <div><label>Place</label><select id="where"><option>Norman Manley International Airport (KIN)</option><option>Sangster International Airport (MBJ)</option><option>Ian Fleming International Airport (OCJ)</option><option>Seaport</option><option>Other</option></select></div>
+      <div><label>Case type</label><select id="type"></select></div>
+      <div><label>Direction</label><select id="dir"><option>Arrival</option><option>Departure</option><option>Transit</option></select></div>
+      <div><label>Prepared by</label><input id="by" placeholder="Name or number"></div>
+      <div><label>Flight number</label><input id="flight" placeholder="e.g. BW600"></div>
+      <div><label>Route (from → via → to)</label><input id="route" placeholder="e.g. Lagos → Panama City → Kingston"></div>
+      <div><label>How it came to notice</label><select id="how"><option>Primary inspection</option><option>Secondary inspection</option><option>Document examination</option><option>System alert or watch list</option><option>Airline or ground staff</option><option>Tip-off</option><option>Other</option></select></div>
+    </div>
+  </div>
+
+  <div class="card noprint">
+    <h2>2. People</h2>
+    <div class="sub">Name, role and stated nationality. For a full profile of one person use the <a href="subject-profile.html">Subject profile</a>.</div>
+    <div id="people"></div>
+    <div class="row"><button id="addp">+ Add person</button></div>
+  </div>
+
+  <div class="card noprint">
+    <h2>3. What happened</h2>
+    <label>Facts in order (what was seen, said and found, and by whom)</label><textarea id="facts" class="t" style="min-height:110px"></textarea>
+    <label>Documents examined and the result</label><textarea id="docs" class="t" placeholder="e.g. Passport, issuing state shown as ..., MRZ check digits fail on date of birth; photo substitution suspected"></textarea>
+    <h2 style="margin-top:16px">Indicators observed</h2><div class="sub">The list changes with the case type. Tick only what was actually observed.</div>
+    <div id="ind" class="chk" style="margin-top:6px"></div>
+    <label>Other indicators</label><input id="indx">
+  </div>
+
+  <div class="card noprint">
+    <h2>4. Action and next steps</h2>
+    <div id="act" class="chk"></div>
+    <label>Referred to (unit or agency)</label><input id="ref2" placeholder="e.g. Counter-trafficking unit, police, airline">
+    <label>Open-source checks done and results</label><textarea id="osint" class="t"></textarea>
+    <label>Next steps and who does them</label><textarea id="next" class="t"></textarea>
+    <div class="row"><button class="go" id="build">Build summary</button><button id="print">🖨 Print or save as PDF</button><button id="copy">Copy as text</button><button id="clr">Clear all</button><span id="msg" class="sub"></span></div>
+  </div>
+
+  <div id="out"></div>
+  <p class="sub">Unofficial tool, part of Border Watch OSINT (open-source only, not a government service). Indicator lists are general awareness prompts drawn from public guidance (ICAO, IOM, UNODC); they are not a legal test.</p>
+</div>
+<datalist id="countries"></datalist>
+<script>
+const ICAO = {"ABW": "Aruba", "AFG": "Afghanistan", "AGO": "Angola", "AIA": "Anguilla", "ALA": "Åland Islands", "ALB": "Albania", "AND": "Andorra", "ARE": "United Arab Emirates", "ARG": "Argentina", "ARM": "Armenia", "ASM": "American Samoa", "ATA": "Antarctica", "ATF": "French Southern Territories", "ATG": "Antigua and Barbuda", "AUS": "Australia", "AUT": "Austria", "AZE": "Azerbaijan", "BDI": "Burundi", "BEL": "Belgium", "BEN": "Benin", "BES": "Bonaire, Sint Eustatius and Saba", "BFA": "Burkina Faso", "BGD": "Bangladesh", "BGR": "Bulgaria", "BHR": "Bahrain", "BHS": "Bahamas", "BIH": "Bosnia and Herzegovina", "BLM": "Saint Barthélemy", "BLR": "Belarus", "BLZ": "Belize", "BMU": "Bermuda", "BOL": "Bolivia", "BRA": "Brazil", "BRB": "Barbados", "BRN": "Brunei Darussalam", "BTN": "Bhutan", "BVT": "Bouvet Island", "BWA": "Botswana", "CAF": "Central African Republic", "CAN": "Canada", "CCK": "Cocos (Keeling) Islands", "CHE": "Switzerland", "CHL": "Chile", "CHN": "China", "CIV": "Côte d'Ivoire", "CMR": "Cameroon", "COD": "Congo, The Democratic Republic of the", "COG": "Congo", "COK": "Cook Islands", "COL": "Colombia", "COM": "Comoros", "CPV": "Cabo Verde", "CRI": "Costa Rica", "CUB": "Cuba", "CUW": "Curaçao", "CXR": "Christmas Island", "CYM": "Cayman Islands", "CYP": "Cyprus", "CZE": "Czechia", "D": "Germany", "DEU": "Germany", "DJI": "Djibouti", "DMA": "Dominica", "DNK": "Denmark", "DOM": "Dominican Republic", "DZA": "Algeria", "ECU": "Ecuador", "EGY": "Egypt", "ERI": "Eritrea", "ESH": "Western Sahara", "ESP": "Spain", "EST": "Estonia", "ETH": "Ethiopia", "EUE": "European Union", "FIN": "Finland", "FJI": "Fiji", "FLK": "Falkland Islands (Malvinas)", "FRA": "France", "FRO": "Faroe Islands", "FSM": "Micronesia, Federated States of", "GAB": "Gabon", "GBD": "United Kingdom (British Overseas Territories Citizen)", "GBN": "United Kingdom (British National Overseas)", "GBO": "United Kingdom (British Overseas Citizen)", "GBP": "United Kingdom (British Protected Person)", "GBR": "United Kingdom", "GBS": "United Kingdom (British Subject)", "GEO": "Georgia", "GGY": "Guernsey", "GHA": "Ghana", "GIB": "Gibraltar", "GIN": "Guinea", "GLP": "Guadeloupe", "GMB": "Gambia", "GNB": "Guinea-Bissau", "GNQ": "Equatorial Guinea", "GRC": "Greece", "GRD": "Grenada", "GRL": "Greenland", "GTM": "Guatemala", "GUF": "French Guiana", "GUM": "Guam", "GUY": "Guyana", "HKG": "Hong Kong", "HMD": "Heard Island and McDonald Islands", "HND": "Honduras", "HRV": "Croatia", "HTI": "Haiti", "HUN": "Hungary", "IDN": "Indonesia", "IMN": "Isle of Man", "IND": "India", "IOT": "British Indian Ocean Territory", "IRL": "Ireland", "IRN": "Iran", "IRQ": "Iraq", "ISL": "Iceland", "ISR": "Israel", "ITA": "Italy", "JAM": "Jamaica", "JEY": "Jersey", "JOR": "Jordan", "JPN": "Japan", "KAZ": "Kazakhstan", "KEN": "Kenya", "KGZ": "Kyrgyzstan", "KHM": "Cambodia", "KIR": "Kiribati", "KNA": "Saint Kitts and Nevis", "KOR": "South Korea", "KWT": "Kuwait", "LAO": "Laos", "LBN": "Lebanon", "LBR": "Liberia", "LBY": "Libya", "LCA": "Saint Lucia", "LIE": "Liechtenstein", "LKA": "Sri Lanka", "LSO": "Lesotho", "LTU": "Lithuania", "LUX": "Luxembourg", "LVA": "Latvia", "MAC": "Macao", "MAF": "Saint Martin (French part)", "MAR": "Morocco", "MCO": "Monaco", "MDA": "Moldova", "MDG": "Madagascar", "MDV": "Maldives", "MEX": "Mexico", "MHL": "Marshall Islands", "MKD": "North Macedonia", "MLI": "Mali", "MLT": "Malta", "MMR": "Myanmar", "MNE": "Montenegro", "MNG": "Mongolia", "MNP": "Northern Mariana Islands", "MOZ": "Mozambique", "MRT": "Mauritania", "MSR": "Montserrat", "MTQ": "Martinique", "MUS": "Mauritius", "MWI": "Malawi", "MYS": "Malaysia", "MYT": "Mayotte", "NAM": "Namibia", "NCL": "New Caledonia", "NER": "Niger", "NFK": "Norfolk Island", "NGA": "Nigeria", "NIC": "Nicaragua", "NIU": "Niue", "NLD": "Netherlands", "NOR": "Norway", "NPL": "Nepal", "NRU": "Nauru", "NZL": "New Zealand", "OMN": "Oman", "PAK": "Pakistan", "PAN": "Panama", "PCN": "Pitcairn", "PER": "Peru", "PHL": "Philippines", "PLW": "Palau", "PNG": "Papua New Guinea", "POL": "Poland", "PRI": "Puerto Rico", "PRK": "North Korea", "PRT": "Portugal", "PRY": "Paraguay", "PSE": "Palestine, State of", "PYF": "French Polynesia", "QAT": "Qatar", "REU": "Réunion", "RKS": "Kosovo", "ROU": "Romania", "RUS": "Russian Federation", "RWA": "Rwanda", "SAU": "Saudi Arabia", "SDN": "Sudan", "SEN": "Senegal", "SGP": "Singapore", "SGS": "South Georgia and the South Sandwich Islands", "SHN": "Saint Helena, Ascension and Tristan da Cunha", "SJM": "Svalbard and Jan Mayen", "SLB": "Solomon Islands", "SLE": "Sierra Leone", "SLV": "El Salvador", "SMR": "San Marino", "SOM": "Somalia", "SPM": "Saint Pierre and Miquelon", "SRB": "Serbia", "SSD": "South Sudan", "STP": "Sao Tome and Principe", "SUR": "Suriname", "SVK": "Slovakia", "SVN": "Slovenia", "SWE": "Sweden", "SWZ": "Eswatini", "SXM": "Sint Maarten (Dutch part)", "SYC": "Seychelles", "SYR": "Syria", "TCA": "Turks and Caicos Islands", "TCD": "Chad", "TGO": "Togo", "THA": "Thailand", "TJK": "Tajikistan", "TKL": "Tokelau", "TKM": "Turkmenistan", "TLS": "Timor-Leste", "TON": "Tonga", "TTO": "Trinidad and Tobago", "TUN": "Tunisia", "TUR": "Türkiye", "TUV": "Tuvalu", "TWN": "Taiwan", "TZA": "Tanzania", "UGA": "Uganda", "UKR": "Ukraine", "UMI": "United States Minor Outlying Islands", "UNA": "United Nations specialised agency", "UNK": "Kosovo (UN mission)", "UNO": "United Nations (official)", "URY": "Uruguay", "USA": "United States", "UTO": "Utopia (ICAO specimen country)", "UZB": "Uzbekistan", "VAT": "Holy See (Vatican City State)", "VCT": "Saint Vincent and the Grenadines", "VEN": "Venezuela", "VGB": "Virgin Islands, British", "VIR": "Virgin Islands, U.S.", "VNM": "Vietnam", "VUT": "Vanuatu", "WLF": "Wallis and Futuna", "WSM": "Samoa", "XBA": "African Development Bank", "XCC": "Caribbean Community (CARICOM)", "XES": "Organisation of Eastern Caribbean States", "XIM": "African Export-Import Bank", "XOM": "Sovereign Military Order of Malta", "XPO": "INTERPOL", "XXA": "Stateless person", "XXB": "Refugee (1951 Convention)", "XXC": "Refugee (other)", "XXX": "Nationality unspecified", "YEM": "Yemen", "ZAF": "South Africa", "ZMB": "Zambia", "ZWE": "Zimbabwe"};
+const $ = id => document.getElementById(id);
+const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+$("countries").innerHTML = [...new Set(Object.values(ICAO))].sort().map(n => `<option value="${esc(n)}">`).join("");
+const IND = {
+  "Suspected impostor (look-alike)": ["Face does not match the photo on close comparison", "Unsure of personal details on the document (date of birth, place of birth)", "Signature differs from the document", "Height, age or eye colour differs from the document", "Cannot answer questions about the issuing country or language", "Document belongs to a relative or friend (stated or suspected)", "Travelling with a document recently issued or recently reported lost"],
+  "Fraudulent or altered document": ["MRZ check digits fail or MRZ does not match the printed page", "Photo substitution signs (raised edges, damaged laminate)", "Page substitution or missing pages", "Printing or security features differ from a genuine specimen", "Erasures or altered data", "Counterfeit visa, stamp or permit", "Chip missing, unreadable or data differs from the page"],
+  "Possible trafficking victim": ["Someone else holds the documents or answers for the person", "Unsure of destination address or employer", "Job offer that seems too good, or vague", "Signs of fear, control or being coached", "Ticket bought by a third party; little money or luggage", "Story inconsistent with travel documents or purpose", "Travelling in a group with one person in control", "Minor travelling without a parent or with an unrelated adult"],
+  "Irregular migrant or refused entry": ["Purpose of visit not credible", "No return or onward ticket", "Insufficient funds", "No visa or visa not valid for the purpose", "Previous refusal, overstay or removal", "Route unusual for the stated purpose", "Address in Jamaica false or not known", "Possible use of Jamaica as a transit point to a third country"],
+  "Other": []
+};
+const ACT = ["Admitted", "Refused entry", "Documents retained", "Person held for further examination", "Interview carried out", "Supervisor informed", "Referred to another unit or agency", "Victim support or welfare referral", "Airline informed (return or carrier liability)", "Embassy or consulate notified (with consent where required)", "Evidence photographed or recorded", "Report filed in the official system"];
+$("type").innerHTML = Object.keys(IND).map(k => `<option>${esc(k)}</option>`).join("");
+const tick = (box, list) => { box.innerHTML = list.map((x, i) => `<label><input type="checkbox" value="${esc(x)}">${esc(x)}</label>`).join("") || '<span class="sub">Describe the indicators below.</span>'; };
+$("type").onchange = () => tick($("ind"), IND[$("type").value]);
+tick($("ind"), IND[$("type").value]); tick($("act"), ACT);
+const ROLES = ["Traveller", "Possible victim", "Suspected facilitator", "Accompanying person", "Sponsor or contact in Jamaica", "Witness", "Other"];
+function addP() {
+  const d = document.createElement("div"); d.className = "prow";
+  d.innerHTML = `<input placeholder="Name"><select>${ROLES.map(r => `<option>${r}</option>`).join("")}</select><input list="countries" placeholder="Nationality (as stated on the document)"><button title="Remove">✕</button>`;
+  d.querySelector("button").onclick = () => d.remove(); $("people").appendChild(d);
+}
+addP();
+const vals = sel => [...document.querySelectorAll(sel + " input:checked")].map(x => x.value);
+function collect() {
+  const g = k => $(k).value.trim();
+  return {ref: g("ref"), when: g("when").replace("T", " "), where: g("where"), type: g("type"), dir: g("dir"), by: g("by"), flight: g("flight"), route: g("route"), how: g("how"),
+    people: [...$("people").children].map(r => { const [n, ro, na] = r.querySelectorAll("input,select"); return {name: n.value.trim(), role: ro.value, nat: na.value.trim()}; }).filter(x => x.name),
+    facts: g("facts"), docs: g("docs"), ind: vals("#ind").concat(g("indx") ? [g("indx")] : []), act: vals("#act"), ref2: g("ref2"), osint: g("osint"), next: g("next")};
+}
+function build() {
+  const c = collect(), row = (k, v) => v ? `<tr><td>${esc(k)}</td><td>${esc(v)}</td></tr>` : "";
+  const block = (t, v) => v ? `<h3>${t}</h3><div style="white-space:pre-wrap">${esc(v)}</div>` : "";
+  const list = (t, a) => a.length ? `<h3>${t}</h3><ul>${a.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : "";
+  $("out").innerHTML = `<div class="card sheet"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+    <h2 style="margin:0;font-size:15px">Case summary${c.ref ? ": " + esc(c.ref) : ""}</h2><span class="stamp">HANDLE UNDER AGENCY RULES</span></div>
+    <div class="sub">Prepared ${esc(new Date().toLocaleString("en-GB", {dateStyle: "medium", timeStyle: "short"}))}${c.by ? " by " + esc(c.by) : ""}.</div>
+    <h3>Case</h3><table>${row("Case type", c.type)}${row("Date and time", c.when)}${row("Place", c.where)}${row("Direction", c.dir)}${row("Flight", c.flight)}${row("Route", c.route)}${row("How it came to notice", c.how)}</table>
+    ${c.people.length ? `<h3>People</h3><table><tr><th>Name</th><th>Role</th><th>Nationality (stated)</th></tr>${c.people.map(p => `<tr><td>${esc(p.name)}</td><td>${esc(p.role)}</td><td>${esc(p.nat)}</td></tr>`).join("")}</table>` : ""}
+    ${block("What happened", c.facts)}${block("Documents examined", c.docs)}${list("Indicators observed", c.ind)}${list("Action taken", c.act)}
+    ${c.ref2 ? `<h3>Referred to</h3><div>${esc(c.ref2)}</div>` : ""}${block("Open-source checks", c.osint)}${block("Next steps", c.next)}
+    <table style="margin-top:18px"><tr><td>Reviewed by (supervisor)</td><td>&nbsp;</td></tr><tr><td>Date</td><td>&nbsp;</td></tr></table></div>`;
+  $("out").scrollIntoView({behavior: "smooth"});
+}
+function asText() {
+  const c = collect(), o = ["CASE SUMMARY" + (c.ref ? ": " + c.ref : "") + " (handle under agency rules)", "Prepared: " + new Date().toLocaleString("en-GB") + (c.by ? " by " + c.by : ""), ""];
+  [["Case type", c.type], ["Date and time", c.when], ["Place", c.where], ["Direction", c.dir], ["Flight", c.flight], ["Route", c.route], ["How it came to notice", c.how]].forEach(([k, v]) => v && o.push(k + ": " + v));
+  if (c.people.length) o.push("", "PEOPLE", ...c.people.map(p => `- ${p.name} (${p.role}${p.nat ? "; " + p.nat : ""})`));
+  [["WHAT HAPPENED", c.facts], ["DOCUMENTS EXAMINED", c.docs]].forEach(([k, v]) => v && o.push("", k, v));
+  if (c.ind.length) o.push("", "INDICATORS OBSERVED", ...c.ind.map(x => "- " + x));
+  if (c.act.length) o.push("", "ACTION TAKEN", ...c.act.map(x => "- " + x));
+  [["REFERRED TO", c.ref2], ["OPEN-SOURCE CHECKS", c.osint], ["NEXT STEPS", c.next]].forEach(([k, v]) => v && o.push("", k, v));
+  return o.join("\n");
+}
+$("addp").onclick = addP; $("build").onclick = build;
+$("print").onclick = () => { build(); setTimeout(() => window.print(), 100); };
+$("copy").onclick = () => navigator.clipboard.writeText(asText()).then(() => { $("msg").textContent = "Copied."; setTimeout(() => $("msg").textContent = "", 2000); });
+$("clr").onclick = () => { document.querySelectorAll(".wrap input:not([type=checkbox]), .wrap textarea").forEach(e => e.value = ""); document.querySelectorAll(".wrap input[type=checkbox]").forEach(e => e.checked = false); $("people").innerHTML = ""; addP(); $("out").innerHTML = ""; };
+</script>
+</body></html>
