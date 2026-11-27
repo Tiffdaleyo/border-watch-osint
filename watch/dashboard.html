@@ -121,7 +121,7 @@
   .head { display:flex; justify-content:space-between; align-items:flex-start; gap:8px; flex-wrap:wrap; }
   .chart { width:100%; }
 
-  .kpis { display:grid; grid-template-columns:repeat(7,1fr); gap:10px; margin-bottom:14px; }
+  .kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(132px,1fr)); gap:10px; margin-bottom:14px; }
   .kpi { background:var(--panel); border:1px solid var(--line); border-radius:var(--r); padding:14px 16px; cursor:pointer; text-align:left; color:inherit; font:inherit; transition:border-color .15s, transform .15s; }
   .kpi:hover { border-color:var(--c); transform:translateY(-1px); }
   .kpi.on { border-color:var(--c); box-shadow:inset 0 0 0 1px var(--c); }
@@ -809,6 +809,7 @@ function kpis(rows) {
   if (F.section === "seizures") {
     const sz = rows.filter(isSeizure), pc = k => sz.length ? Math.round(100 * k / sz.length) + "%" : "–";
     const ins = sz.filter(e => (e.insider_roles || []).length).length, hid = sz.filter(e => (e.concealment_types || []).length).length;
+    items.splice(items.findIndex(x => x[4] === "updates"), 1);
     items.splice(2, 0, ["Insider signal", pc(ins), `${ins} of ${sz.length} seizures name staff as involved`, css("--high"), "insider", false, "See insider signals"],
                        ["Concealment stated", pc(hid), `${hid} of ${sz.length} seizures say how it was hidden`, css("--g2"), "conceal", false, "See methods"]);
   }
