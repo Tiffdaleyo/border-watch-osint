@@ -39,50 +39,27 @@ Everything runs automatically on GitHub, free of charge. No one needs to switch 
 5. **Score:** each incident gets a review-priority score (section 7).
 6. **Apply reviews:** it applies the team's review decisions from `reviews.yaml` (section 9).
 7. **Privacy filter:** it removes ID numbers and victims' names (section 8).
-8. **Draft, not live:** it builds a **draft** and emails the reviewer a "Daily draft for review" (section 2b).
-   The live site does **not** change, and no alert goes out yet. Only the collected data is saved, in a commit
-   called "Daily collection (draft, awaiting review)".
-9. **Publish (after review):** when the reviewer presses **Publish**, the website, the CSV and the bulletin are
-   rebuilt with the reviewer's corrections. Held alerts go out at the same time.
-10. **Mondays, 07:00 Jamaica time:** the **draft** weekly bulletin is emailed to the reviewer only. The team gets
-    it after the reviewer presses **Send bulletin**.
+8. **Publish:** it rebuilds the website, the CSV and the bulletin page, and emails alerts for new high-priority or
+   Jamaica incidents. Nothing waits for a review.
+9. **Mondays, 07:00 Jamaica time:** the weekly bulletin (PDF, with charts and analysis) is emailed to the team.
 
 To run it by hand: open the **Actions** tab, choose **daily-border-watch-osint**, then click **Run workflow**.
 
-## 2b. Review before anything goes live
+## 2b. Review marks
 
-Nothing new reaches the public site, the alert emails or the team's bulletin until the designated reviewer has read and approved it.
+Everything collected goes on the site automatically. A review is optional and is done report by report.
 
-**Every morning**
-1. Usually by about 06:00 Jamaica time (later if GitHub delays the run), an email arrives: **"DRAFT for review: N new Border Watch reports"**. It lists
-   every report not yet live: Jamaica and the Caribbean first, then by review priority. Reports whose headline and
-   article disagree on the outcome are marked **CHECK OUTCOME**.
-2. **To fix or remove a report,** record the decision in `reviews.yaml` by its Event ID (section 9), for example
-   `excluded` to remove it, or `corrected` with the right outcome.
-3. **To publish:** open **Actions → publish → Run workflow** (the email has a direct link). The site updates within
-   about 2 minutes.
+- **Automatically collected:** the normal state. The report was found and processed by the system and has not been
+  checked by a person. Treat it as a lead.
+- **Awaiting review:** the system found a reason to look again, for example the headline and the article disagree
+  on the outcome.
+- **Reviewed:** a person checked this report against its sources and recorded it in `reviews.yaml` (section 9).
+  Only the reports listed there carry this mark, and the "Reviewed by a person" card counts them.
 
-**What publishing does**
-- The reports go live.
-- Each one is marked **Reviewed** ("Approved in the daily review before publishing"). The "Reviewed by a person"
-  card counts them.
-- Alerts held since the last publish are emailed.
+To review a report, fix it or remove it, add its Event ID to `reviews.yaml` (section 9). The change appears at the
+next morning's run. To see it at once, open **Actions → publish → Run workflow**, which rebuilds the site (and sends any of today's alerts not yet sent) in about
+2 minutes.
 
-**Mondays**
-- The **draft bulletin** (PDF, with charts and analysis) is emailed to the reviewer only.
-- After any corrections, **publish** first, then press **Actions → send-bulletin → Run workflow**. The team receives it, and its PDF is saved on the website.
-
-**Who gets the drafts:** the address in the `MAIL_REVIEW_TO` secret. If that is not set, the `MAIL_ALERTS_TO`
-address is used, and failing that `MAIL_TO`.
-
-**If no one publishes:** the drafts keep piling up, and the next draft email lists everything not yet live. Nothing
-is lost.
-
-**Reports live before 27 Nov 2026** were published before the review step began. They are not marked reviewed, and
-they are listed as "baseline" in `data/published.json`.
-
-**Good to know:** the GitHub repository itself is public. The collected data file (`data/events.json`) can be seen
-there before review, but the website, the alerts and the bulletin cannot.
 
 ## 3. Where the information comes from
 
@@ -638,3 +615,4 @@ Privacy rules are in `watch/privacy.py`.
 | 2026-11-27 | New tools in the side menu: **Suspect profile** (one-page profile with open-source searches for each identifier) and **Case summary** (one-page airport case summary with indicator tick lists). Both work only in the browser. |
 | 2026-11-27 | New tool: **Case playbooks** for four airport case types, linked to the other tools and to the Case summary. |
 | 2026-11-27 | Wider embassy and high commission coverage: 2 new feeds, plus Google News searches of the websites of 23 embassies, high commissions, consulates and foreign ministries (including Jamaica's own missions abroad) and 4 searches for news about missions. |
+| 2026-11-27 | **Automatic publishing restored:** the daily run updates the site and sends alerts straight away, and the weekly bulletin goes to the team every Monday. Only reports recorded in `reviews.yaml` carry the **Reviewed** mark; the rest show as Automatically collected or Awaiting review (section 2b). |

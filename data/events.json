@@ -339,13 +339,6 @@
    "basis": "",
    "text": ""
   },
-  "insider_roles": [],
-  "substances": [
-   "Methamphetamine"
-  ],
-  "concealment_types": [],
-  "cover_goods": [],
-  "seizures": [],
   "source_panel": {
    "sources": [
     {
@@ -365,7 +358,14 @@
   },
   "uncertainty": [],
   "last_updated": "2026-11-27",
-  "related": []
+  "related": [],
+  "insider_roles": [],
+  "substances": [
+   "Methamphetamine"
+  ],
+  "concealment_types": [],
+  "cover_goods": [],
+  "seizures": []
  },
  {
   "title": "La Türkiye suspend l’exemption de visa pour les Monténégrins titulaires d’un passeport ordinaire",
@@ -745,7 +745,7 @@
   "outcome": "Charged",
   "outcome_note": "",
   "agencies": [],
-  "summary_text": "Epstein's longtime lawyer claims 'no knowledge whatsoever' of sex trafficking in deposition Darren Indyke served as Epstein's longtime attorney since the mid-1990s. In his opening statement to the House Oversight Committee, Jeffrey Epstein's longtime attorney Darren Indyke claimed that he had \"no knowledge whatsoever\" of the late financier's crimes and categorically denied facilitating the sex trafficking of women.",
+  "summary_text": "Epstein's longtime lawyer claims 'no knowledge whatsoever' of sex trafficking in deposition Darren Indyke served as Epstein's longtime attorney since the mid-1990s. In his opening statement to the House Oversight Committee, [name withheld] longtime attorney [name withheld] claimed that he had \"no knowledge whatsoever\" of the late financier's crimes and categorically denied facilitating the sex trafficking of women.",
   "caribbean_connection": [],
   "jamaica_connection": [],
   "exploitation": [
@@ -5335,6 +5335,28 @@
    "basis": "Stated in headline or summary",
    "text": "Origin: Thailand; destination not reported"
   },
+  "source_panel": {
+   "sources": [
+    {
+     "publisher": "Facebook",
+     "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxNMHNYWXE0QnM1SUV1LWZrRExNY0VndlNCZXpkY1BSWjVBTU1hOWhiUWk2Mzk5NmJET1R3cE1pRTUzcDh4b0N1d3pvY3ltZ3ZqTllaSFY4ZkR3TEdoUVNzWldhbzhSaUhGMDRHS09XaUVNUjJILURxTXMxRVp5Y1NrX1ZWSkEtS19laWd1ejBOWDQxU0pfTkF6RDlDSG5Lanc0eDRoSm1xT0c1SE5rMlViLV9aMnBORVdGM1E0bWNYdmpDSGtrcDQ0dzdPNVJaX09vZ0txeg?oc=5",
+     "date": "2026-11-27",
+     "type": "Other (social media or blog)",
+     "role": "Original (earliest found)",
+     "lang": "English"
+    }
+   ],
+   "type": "Other (social media or blog)",
+   "language": "English",
+   "supporting": 0,
+   "independent": 1,
+   "relationship": "Single source"
+  },
+  "uncertainty": [
+   "Journey only partly stated"
+  ],
+  "last_updated": "2026-11-27",
+  "related": [],
   "insider_roles": [],
   "substances": [
    "Cannabis"
@@ -5366,29 +5388,7 @@
     "background": false,
     "main": true
    }
-  ],
-  "source_panel": {
-   "sources": [
-    {
-     "publisher": "Facebook",
-     "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxNMHNYWXE0QnM1SUV1LWZrRExNY0VndlNCZXpkY1BSWjVBTU1hOWhiUWk2Mzk5NmJET1R3cE1pRTUzcDh4b0N1d3pvY3ltZ3ZqTllaSFY4ZkR3TEdoUVNzWldhbzhSaUhGMDRHS09XaUVNUjJILURxTXMxRVp5Y1NrX1ZWSkEtS19laWd1ejBOWDQxU0pfTkF6RDlDSG5Lanc0eDRoSm1xT0c1SE5rMlViLV9aMnBORVdGM1E0bWNYdmpDSGtrcDQ0dzdPNVJaX09vZ0txeg?oc=5",
-     "date": "2026-11-27",
-     "type": "Other (social media or blog)",
-     "role": "Original (earliest found)",
-     "lang": "English"
-    }
-   ],
-   "type": "Other (social media or blog)",
-   "language": "English",
-   "supporting": 0,
-   "independent": 1,
-   "relationship": "Single source"
-  },
-  "uncertainty": [
-   "Journey only partly stated"
-  ],
-  "last_updated": "2026-11-27",
-  "related": []
+  ]
  },
  {
   "title": "Federated States of Micronesia - Level 1: Exercise Normal Precautions",
@@ -10286,6 +10286,26 @@
    "basis": "",
    "text": ""
   },
+  "source_panel": {
+   "sources": [
+    {
+     "publisher": "AsiaOne.com",
+     "url": "https://www.asiaone.com/malaysia/not-just-airports-anymore-malaysia-widens-anti-narcotics-checks-military-sites",
+     "date": "2026-11-27",
+     "type": "News report",
+     "role": "Original (earliest found)",
+     "lang": "English"
+    }
+   ],
+   "type": "News report",
+   "language": "English",
+   "supporting": 0,
+   "independent": 1,
+   "relationship": "Single source"
+  },
+  "uncertainty": [],
+  "last_updated": "2026-11-27",
+  "related": [],
   "insider_roles": [
    "Airline crew or staff",
    "Airport staff"
@@ -10320,27 +10340,7 @@
     "background": false,
     "main": false
    }
-  ],
-  "source_panel": {
-   "sources": [
-    {
-     "publisher": "AsiaOne.com",
-     "url": "https://www.asiaone.com/malaysia/not-just-airports-anymore-malaysia-widens-anti-narcotics-checks-military-sites",
-     "date": "2026-11-27",
-     "type": "News report",
-     "role": "Original (earliest found)",
-     "lang": "English"
-    }
-   ],
-   "type": "News report",
-   "language": "English",
-   "supporting": 0,
-   "independent": 1,
-   "relationship": "Single source"
-  },
-  "uncertainty": [],
-  "last_updated": "2026-11-27",
-  "related": []
+  ]
  },
  {
   "title": "Romania - Level 1: Exercise Normal Precautions",
@@ -13290,11 +13290,6 @@
    "basis": "",
    "text": ""
   },
-  "insider_roles": [],
-  "substances": [],
-  "concealment_types": [],
-  "cover_goods": [],
-  "seizures": [],
   "source_panel": {
    "sources": [
     {
@@ -13316,7 +13311,12 @@
    "Not stated in the report: when it happened, where it happened, outcome"
   ],
   "last_updated": "2026-11-27",
-  "related": []
+  "related": [],
+  "insider_roles": [],
+  "substances": [],
+  "concealment_types": [],
+  "cover_goods": [],
+  "seizures": []
  },
  {
   "title": "Migration irrégulière au Sénégal : prévenir les drames, agir sur les causes",
@@ -13578,24 +13578,6 @@
    "basis": "",
    "text": ""
   },
-  "insider_roles": [],
-  "substances": [],
-  "concealment_types": [],
-  "cover_goods": [],
-  "seizures": [
-   {
-    "substance": "Not reported",
-    "suspected": false,
-    "original": "19kg",
-    "qty": 19.0,
-    "unit": "kg",
-    "std_qty": 19.0,
-    "std_unit": "kg",
-    "qualifier": "Exact",
-    "background": false,
-    "main": false
-   }
-  ],
   "source_panel": {
    "sources": [
     {
@@ -13619,6 +13601,24 @@
   "last_updated": "2026-11-27",
   "related": [
    "BWO-2026-0779"
+  ],
+  "insider_roles": [],
+  "substances": [],
+  "concealment_types": [],
+  "cover_goods": [],
+  "seizures": [
+   {
+    "substance": "Not reported",
+    "suspected": false,
+    "original": "19kg",
+    "qty": 19.0,
+    "unit": "kg",
+    "std_qty": 19.0,
+    "std_unit": "kg",
+    "qualifier": "Exact",
+    "background": false,
+    "main": false
+   }
   ]
  },
  {
@@ -13930,13 +13930,6 @@
    "basis": "",
    "text": ""
   },
-  "insider_roles": [],
-  "substances": [
-   "Cocaine"
-  ],
-  "concealment_types": [],
-  "cover_goods": [],
-  "seizures": [],
   "source_panel": {
    "sources": [
     {
@@ -13958,7 +13951,14 @@
    "Not stated in the report: when it happened, outcome"
   ],
   "last_updated": "2026-11-27",
-  "related": []
+  "related": [],
+  "insider_roles": [],
+  "substances": [
+   "Cocaine"
+  ],
+  "concealment_types": [],
+  "cover_goods": [],
+  "seizures": []
  },
  {
   "title": "VIDEO. Dans les fauteuils rouges de \"Complément d'enquête\" : Yoann Barbereau, écrivain, ancien fugitif sous notice rouge Interpol",
@@ -22154,18 +22154,6 @@
    "basis": "",
    "text": ""
   },
-  "insider_roles": [],
-  "substances": [
-   "Firearms",
-   "Cash",
-   "Wildlife",
-   "Gold / precious metals"
-  ],
-  "concealment_types": [
-   "Luggage contents"
-  ],
-  "cover_goods": [],
-  "seizures": [],
   "source_panel": {
    "sources": [
     {
@@ -22194,7 +22182,19 @@
   "uncertainty": [
    "Not stated in the report: when it happened"
   ],
-  "related": []
+  "related": [],
+  "insider_roles": [],
+  "substances": [
+   "Firearms",
+   "Cash",
+   "Wildlife",
+   "Gold / precious metals"
+  ],
+  "concealment_types": [
+   "Luggage contents"
+  ],
+  "cover_goods": [],
+  "seizures": []
  },
  {
   "title": "South Korea - Level 1: Exercise Normal Precautions",
@@ -27544,13 +27544,6 @@
    "basis": "",
    "text": ""
   },
-  "insider_roles": [],
-  "substances": [
-   "Cocaine"
-  ],
-  "concealment_types": [],
-  "cover_goods": [],
-  "seizures": [],
   "source_panel": {
    "sources": [
     {
@@ -27619,7 +27612,14 @@
   "uncertainty": [
    "Not stated in the report: outcome"
   ],
-  "related": []
+  "related": [],
+  "insider_roles": [],
+  "substances": [
+   "Cocaine"
+  ],
+  "concealment_types": [],
+  "cover_goods": [],
+  "seizures": []
  },
  {
   "title": "Malaysia charges six for drug trafficking at military base",
@@ -27927,28 +27927,6 @@
    "basis": "Explicitly stated in article",
    "text": "Origin: Israel; destination not reported"
   },
-  "insider_roles": [],
-  "substances": [
-   "Methamphetamine"
-  ],
-  "concealment_types": [
-   "Luggage contents"
-  ],
-  "cover_goods": [],
-  "seizures": [
-   {
-    "substance": "Methamphetamine",
-    "suspected": false,
-    "original": "96.64kg",
-    "qty": 96.64,
-    "unit": "kg",
-    "std_qty": 96.64,
-    "std_unit": "kg",
-    "qualifier": "Exact",
-    "background": true,
-    "main": false
-   }
-  ],
   "source_panel": {
    "sources": [
     {
@@ -27970,7 +27948,29 @@
    "Journey only partly stated"
   ],
   "last_updated": "2026-11-27",
-  "related": []
+  "related": [],
+  "insider_roles": [],
+  "substances": [
+   "Methamphetamine"
+  ],
+  "concealment_types": [
+   "Luggage contents"
+  ],
+  "cover_goods": [],
+  "seizures": [
+   {
+    "substance": "Methamphetamine",
+    "suspected": false,
+    "original": "96.64kg",
+    "qty": 96.64,
+    "unit": "kg",
+    "std_qty": 96.64,
+    "std_unit": "kg",
+    "qualifier": "Exact",
+    "background": true,
+    "main": false
+   }
+  ]
  },
  {
   "title": "Palau - Level 1: Exercise Normal Precautions",
@@ -29112,28 +29112,6 @@
    "basis": "Explicitly stated in article",
    "text": "Italy → Cyprus"
   },
-  "insider_roles": [],
-  "substances": [
-   "Cannabis"
-  ],
-  "concealment_types": [
-   "Luggage contents"
-  ],
-  "cover_goods": [],
-  "seizures": [
-   {
-    "substance": "Cannabis",
-    "suspected": false,
-    "original": "38.4 kilos",
-    "qty": 38.4,
-    "unit": "kg",
-    "std_qty": 38.4,
-    "std_unit": "kg",
-    "qualifier": "Exact",
-    "background": false,
-    "main": false
-   }
-  ],
   "source_panel": {
    "sources": [
     {
@@ -29171,6 +29149,28 @@
   "last_updated": "2026-11-27",
   "related": [
    "BWO-2026-1186"
+  ],
+  "insider_roles": [],
+  "substances": [
+   "Cannabis"
+  ],
+  "concealment_types": [
+   "Luggage contents"
+  ],
+  "cover_goods": [],
+  "seizures": [
+   {
+    "substance": "Cannabis",
+    "suspected": false,
+    "original": "38.4 kilos",
+    "qty": 38.4,
+    "unit": "kg",
+    "std_qty": 38.4,
+    "std_unit": "kg",
+    "qualifier": "Exact",
+    "background": false,
+    "main": false
+   }
   ]
  },
  {
@@ -30064,143 +30064,6 @@
   "last_updated": "2026-11-27",
   "related": [
    "BWO-2026-2414"
-  ]
- },
- {
-  "title": "New Zealand extends post-study work visa duration to 4 years for Indian PhD graduates. Explore your options now!",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQZ2pFeWFoNU5nMHRTWnFNdG03Nm1RVTQxVmdiNnczMUNYZlpGb1gyREZKX3l4RThyZmwxejRtb2tzNm1uc1Uyd0I1WDRSUkJLV2tCUDg3YkJ1MGV5QXhtd2NYNUhJZENRbmRPMmQ1V3VpTzFwVER3cU5FWWtWcS0yUEl6NEowRUFReHRfSE80dmhGSEZ4?oc=5",
-  "date": "2026-11-27",
-  "source": "Y-Axis Overseas Careers",
-  "lang": "en",
-  "via": "Google News US",
-  "kind": "Update",
-  "categories": [
-   "Visa and entry policy"
-  ],
-  "matched_words": [
-   "work visa"
-  ],
-  "action": false,
-  "document_types": [
-   "Visa"
-  ],
-  "countries": [
-   "New Zealand"
-  ],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0,
-  "id": "02180f6c15ad",
-  "first_seen": "2026-11-27",
-  "other_sources": [],
-  "sources": [
-   {
-    "publisher": "Y-Axis Overseas Careers",
-    "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQZ2pFeWFoNU5nMHRTWnFNdG03Nm1RVTQxVmdiNnczMUNYZlpGb1gyREZKX3l4RThyZmwxejRtb2tzNm1uc1Uyd0I1WDRSUkJLV2tCUDg3YkJ1MGV5QXhtd2NYNUhJZENRbmRPMmQ1V3VpTzFwVER3cU5FWWtWcS0yUEl6NEowRUFReHRfSE80dmhGSEZ4?oc=5",
-    "date": "2026-11-27"
-   }
-  ],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
-  "watch": false,
-  "home": false,
-  "region": false,
-  "event_id": "BWO-2026-2754",
-  "primary_category": "Visa and entry policy",
-  "tags": [],
-  "groups": [
-   "Policy & Systems"
-  ],
-  "published": "2026-11-27",
-  "event_date": "",
-  "event_date_quality": "unknown",
-  "location": {
-   "cities": [],
-   "ports": [],
-   "crossings": []
-  },
-  "transport_mode": "",
-  "outcome": "",
-  "outcome_note": "",
-  "agencies": [],
-  "summary_text": "",
-  "caribbean_connection": [],
-  "jamaica_connection": [],
-  "specialist": [
-   [
-    "Policy update",
-    [
-     [
-      "Issuing authority",
-      ""
-     ],
-     [
-      "Affected travellers / documents",
-      ""
-     ],
-     [
-      "Announcement date (publication)",
-      "2026-11-27"
-     ],
-     [
-      "Effective date",
-      ""
-     ],
-     [
-      "Exceptions",
-      ""
-     ],
-     [
-      "Status",
-      ""
-     ],
-     [
-      "Official guidance link",
-      "https://www.immigration.govt.nz/"
-     ]
-    ]
-   ]
-  ],
-  "nationality": [],
-  "corrections": [],
-  "review_uncertainty": "",
-  "review_status": "Automatically collected",
-  "journey": {
-   "origin": "",
-   "transit": [],
-   "destination": "",
-   "interception": "",
-   "interception_country": "",
-   "completeness": "Not reported",
-   "basis": "",
-   "text": ""
-  },
-  "source_panel": {
-   "sources": [
-    {
-     "publisher": "Y-Axis Overseas Careers",
-     "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQZ2pFeWFoNU5nMHRTWnFNdG03Nm1RVTQxVmdiNnczMUNYZlpGb1gyREZKX3l4RThyZmwxejRtb2tzNm1uc1Uyd0I1WDRSUkJLV2tCUDg3YkJ1MGV5QXhtd2NYNUhJZENRbmRPMmQ1V3VpTzFwVER3cU5FWWtWcS0yUEl6NEowRUFReHRfSE80dmhGSEZ4?oc=5",
-     "date": "2026-11-27",
-     "type": "News report",
-     "role": "Original (earliest found)",
-     "lang": "English"
-    }
-   ],
-   "type": "News report",
-   "language": "English",
-   "supporting": 0,
-   "independent": 1,
-   "relationship": "Single source"
-  },
-  "uncertainty": [],
-  "last_updated": "2026-11-27",
-  "related": [
-   "BWO-2026-1764"
   ]
  },
  {
@@ -36815,13 +36678,6 @@
    "basis": "Explicitly stated in article",
    "text": "Destination: United States; origin not reported"
   },
-  "insider_roles": [],
-  "substances": [
-   "Fentanyl"
-  ],
-  "concealment_types": [],
-  "cover_goods": [],
-  "seizures": [],
   "source_panel": {
    "sources": [
     {
@@ -36843,7 +36699,14 @@
    "Journey only partly stated"
   ],
   "last_updated": "2026-11-27",
-  "related": []
+  "related": [],
+  "insider_roles": [],
+  "substances": [
+   "Fentanyl"
+  ],
+  "concealment_types": [],
+  "cover_goods": [],
+  "seizures": []
  },
  {
   "title": "Haiti - Level 4: Do Not Travel",
@@ -37415,132 +37278,6 @@
    "seizures": []
   },
   "lead": "Nairobi, 26 nov (EFE).- Las autoridades de Gambia rescataron e interceptaron a 537 migrantes \"irregulares\" en dos operaciones -una en tierra y otra en el mar- con ayuda de la Policía Nacional española, en un contexto marcado por el repunte de llegadas desde…"
- },
- {
-  "title": "UAE deports Red Notice subject in Keralam murder case: CBI",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNbUJRbUx5NjlLMlFCbFJCSTR2a3JNSFI4SUdHczFDcmd1bEg4R2pkOElxSG0xUVZUUGQzM0lZRTBxZ2Z5a1Q0bnNTSzFtNks5SnBmWUZyTEF2OVlRR2RmNGR5akpTM2lsT3JvemVNVXZucDNITVIyX3ZNZnhSVG16OGFyLTIxdy1IcjNLV0JUQWR5OTZJLTRpb244bFcxa2tnT21SRHlYTklBeHc?oc=5",
-  "date": "2026-11-26",
-  "source": "Awaz The Voice",
-  "lang": "en",
-  "via": "Google News US",
-  "kind": "Update",
-  "categories": [
-   "Deportation and returns",
-   "INTERPOL and watch lists"
-  ],
-  "matched_words": [
-   "deports",
-   "red notice"
-  ],
-  "action": false,
-  "document_types": [],
-  "countries": [
-   "United Arab Emirates"
-  ],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0,
-  "id": "dd7596b85275",
-  "first_seen": "2026-11-27",
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
-  "watch": false,
-  "home": false,
-  "region": false,
-  "event_id": "BWO-2026-2733",
-  "primary_category": "INTERPOL and watch lists",
-  "tags": [
-   "Deportation and returns"
-  ],
-  "groups": [
-   "Migration & Facilitation",
-   "Border Integrity"
-  ],
-  "published": "2026-11-26",
-  "event_date": "",
-  "event_date_quality": "unknown",
-  "location": {
-   "cities": [],
-   "ports": [],
-   "crossings": []
-  },
-  "transport_mode": "",
-  "outcome": "",
-  "outcome_note": "",
-  "agencies": [],
-  "summary_text": "",
-  "caribbean_connection": [],
-  "jamaica_connection": [],
-  "specialist": [
-   [
-    "Wanted-person interception",
-    [
-     [
-      "Notice or warrant",
-      "INTERPOL Red Notice"
-     ],
-     [
-      "Agency reporting it",
-      ""
-     ],
-     [
-      "Stated basis",
-      ""
-     ],
-     [
-      "Reported outcome",
-      ""
-     ]
-    ]
-   ]
-  ],
-  "sources": [
-   {
-    "publisher": "Awaz The Voice",
-    "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNbUJRbUx5NjlLMlFCbFJCSTR2a3JNSFI4SUdHczFDcmd1bEg4R2pkOElxSG0xUVZUUGQzM0lZRTBxZ2Z5a1Q0bnNTSzFtNks5SnBmWUZyTEF2OVlRR2RmNGR5akpTM2lsT3JvemVNVXZucDNITVIyX3ZNZnhSVG16OGFyLTIxdy1IcjNLV0JUQWR5OTZJLTRpb244bFcxa2tnT21SRHlYTklBeHc?oc=5",
-    "date": "2026-11-26",
-    "lang": "en"
-   }
-  ],
-  "nationality": [],
-  "corrections": [],
-  "review_uncertainty": "",
-  "review_status": "Automatically collected",
-  "journey": {
-   "origin": "",
-   "transit": [],
-   "destination": "",
-   "interception": "",
-   "interception_country": "",
-   "completeness": "Not reported",
-   "basis": "",
-   "text": ""
-  },
-  "source_panel": {
-   "sources": [
-    {
-     "publisher": "Awaz The Voice",
-     "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNbUJRbUx5NjlLMlFCbFJCSTR2a3JNSFI4SUdHczFDcmd1bEg4R2pkOElxSG0xUVZUUGQzM0lZRTBxZ2Z5a1Q0bnNTSzFtNks5SnBmWUZyTEF2OVlRR2RmNGR5akpTM2lsT3JvemVNVXZucDNITVIyX3ZNZnhSVG16OGFyLTIxdy1IcjNLV0JUQWR5OTZJLTRpb244bFcxa2tnT21SRHlYTklBeHc?oc=5",
-     "date": "2026-11-26",
-     "type": "News report",
-     "role": "Original (earliest found)",
-     "lang": "en"
-    }
-   ],
-   "type": "News report",
-   "language": "en",
-   "supporting": 0,
-   "independent": 1,
-   "relationship": "Single source"
-  },
-  "uncertainty": [],
-  "last_updated": "2026-11-27",
-  "related": []
  },
  {
   "title": "Cyprus - Level 1: Exercise Normal Precautions",
@@ -42235,11 +41972,6 @@
    "basis": "",
    "text": ""
   },
-  "insider_roles": [],
-  "substances": [],
-  "concealment_types": [],
-  "cover_goods": [],
-  "seizures": [],
   "source_panel": {
    "sources": [
     {
@@ -42261,7 +41993,12 @@
    "Not stated in the report: where it happened"
   ],
   "last_updated": "2026-11-27",
-  "related": []
+  "related": [],
+  "insider_roles": [],
+  "substances": [],
+  "concealment_types": [],
+  "cover_goods": [],
+  "seizures": []
  },
  {
   "title": "Delhi HC to hear CJP's Saurav Das' plea challenging UK travel restrictions today",
@@ -44987,7 +44724,7 @@
   "related": [
    "BWO-2026-2193",
    "BWO-2026-2144",
-   "BWO-2026-2016"
+   "BWO-2026-2118"
   ],
   "outcome_note": "",
   "source_url": "https://www.shieldsgazette.com/news/stop-this-evil-south-tyneside-airplane-passenger-smuggled-18kg-of-cannabis-into-uk-9377010",
@@ -46148,6 +45885,7 @@
   "kind": "Incident",
   "categories": [
    "Border security",
+   "INTERPOL and watch lists",
    "Terrorism and sanctions"
   ],
   "matched_words": [
@@ -46156,12 +45894,16 @@
   ],
   "action": true,
   "document_types": [],
-  "countries": [],
+  "countries": [
+   "Tunisia",
+   "Italy",
+   "Turkey"
+  ],
   "airports": [],
-  "origin": "",
+  "origin": "Italy",
   "destination": "",
   "documents_count": 0,
-  "people_count": 0,
+  "people_count": 65,
   "weight_kg": 0,
   "id": "b4e94c0eacca",
   "first_seen": "2026-11-26",
@@ -46197,10 +45939,14 @@
     "date": "2026-11-26"
    }
   ],
-  "score": 20,
-  "level": "Medium",
+  "score": 65,
+  "level": "High",
   "reasons": [
-   "Terrorism link (+20: terrorism)"
+   "Organised network or ring (+15: network, networks)",
+   "Wanted person or INTERPOL notice (+15: interpol, red notice, wanted)",
+   "Terrorism link (+20: terrorism, terrorist)",
+   "Detected at an airport or border post (+5: airport)",
+   "Many people involved: 65 (+10)"
   ],
   "watch": false,
   "home": false,
@@ -46208,7 +45954,8 @@
   "event_id": "BWO-2026-2339",
   "primary_category": "Terrorism and sanctions",
   "tags": [
-   "Border security"
+   "Border security",
+   "INTERPOL and watch lists"
   ],
   "groups": [
    "Border Integrity"
@@ -46255,6 +46002,27 @@
       "Arrested"
      ]
     ]
+   ],
+   [
+    "Wanted-person interception",
+    [
+     [
+      "Notice or warrant",
+      "INTERPOL Red Notice; INTERPOL Blue Notice; INTERPOL Diffusion"
+     ],
+     [
+      "Agency reporting it",
+      "INTERPOL; Frontex; Coast Guard"
+     ],
+     [
+      "Stated basis",
+      "terrorism-related offences"
+     ],
+     [
+      "Reported outcome",
+      "Arrested"
+     ]
+    ]
    ]
   ],
   "nationality": [],
@@ -46268,16 +46036,16 @@
    }
   ],
   "review_uncertainty": "",
-  "review_status": "Automatically collected",
+  "review_status": "Awaiting review",
   "journey": {
-   "origin": "",
+   "origin": "Italy",
    "transit": [],
    "destination": "",
    "interception": "",
    "interception_country": "",
-   "completeness": "Not reported",
-   "basis": "",
-   "text": ""
+   "completeness": "Partial",
+   "basis": "Explicitly stated in article",
+   "text": "Origin: Italy; destination not reported"
   },
   "source_panel": {
    "sources": [
@@ -46329,7 +46097,7 @@
    "relationship": "1 independent source; 4 republications of the same report (not counted as separate confirmations)"
   },
   "uncertainty": [
-   "Not stated in the report: where it happened"
+   "Journey only partly stated"
   ],
   "last_updated": "2026-11-27",
   "related": [
@@ -46535,7 +46303,8 @@
      "main": true
     }
    ]
-  }
+  },
+  "lead": "The International Criminal Police Organisation (INTERPOL) says 65 people have been arrested in a major border security operation across 18 countries in Europe, North Africa and the Middle East, with several suspects linked to terrorism investigations."
  },
  {
   "title": "Kosovo - Level 2: Exercise Increased Caution",
@@ -47134,28 +46903,6 @@
    "basis": "",
    "text": ""
   },
-  "insider_roles": [],
-  "substances": [
-   "Methamphetamine"
-  ],
-  "concealment_types": [
-   "Luggage contents"
-  ],
-  "cover_goods": [],
-  "seizures": [
-   {
-    "substance": "Not reported",
-    "suspected": false,
-    "original": "988 gramos",
-    "qty": 988.0,
-    "unit": "g",
-    "std_qty": 0.988,
-    "std_unit": "kg",
-    "qualifier": "Exact",
-    "background": false,
-    "main": false
-   }
-  ],
   "source_panel": {
    "sources": [
     {
@@ -47177,7 +46924,29 @@
    "Not stated in the report: when it happened, outcome"
   ],
   "last_updated": "2026-11-27",
-  "related": []
+  "related": [],
+  "insider_roles": [],
+  "substances": [
+   "Methamphetamine"
+  ],
+  "concealment_types": [
+   "Luggage contents"
+  ],
+  "cover_goods": [],
+  "seizures": [
+   {
+    "substance": "Not reported",
+    "suspected": false,
+    "original": "988 gramos",
+    "qty": 988.0,
+    "unit": "g",
+    "std_qty": 0.988,
+    "std_unit": "kg",
+    "qualifier": "Exact",
+    "background": false,
+    "main": false
+   }
+  ]
  },
  {
   "title": "Dos detenidos en una operación contra el favorecimiento de la migración irregular en Ceuta",
@@ -48785,11 +48554,6 @@
    "basis": "",
    "text": ""
   },
-  "insider_roles": [],
-  "substances": [],
-  "concealment_types": [],
-  "cover_goods": [],
-  "seizures": [],
   "source_panel": {
    "sources": [
     {
@@ -48811,7 +48575,12 @@
    "Not stated in the report: when it happened, where it happened, outcome"
   ],
   "last_updated": "2026-11-27",
-  "related": []
+  "related": [],
+  "insider_roles": [],
+  "substances": [],
+  "concealment_types": [],
+  "cover_goods": [],
+  "seizures": []
  },
  {
   "title": "Llegan a El Hierro 632 migrantes a bordo de siete cayucos interceptados desde la jornada de este miércoles",
@@ -56520,6 +56289,28 @@
    "basis": "Explicitly stated in article",
    "text": "Ecuador → Brazil"
   },
+  "source_panel": {
+   "sources": [
+    {
+     "publisher": "Pamfleti",
+     "url": "https://pamfleti.net/english/anti-mafia/bana-king-nga-kokaina-te-mishi-kontrabande-54-ton-pule-bllokohen-ne-d-i364027",
+     "date": "2026-11-26",
+     "type": "News report",
+     "role": "Original (earliest found)",
+     "lang": "English"
+    }
+   ],
+   "type": "News report",
+   "language": "English",
+   "supporting": 0,
+   "independent": 1,
+   "relationship": "Single source"
+  },
+  "uncertainty": [
+   "Different quantities stated for cocaine: 1.5 tons, 119 kg (may be separate seizures or totals)"
+  ],
+  "last_updated": "2026-11-27",
+  "related": [],
   "insider_roles": [],
   "substances": [
    "Cocaine"
@@ -56565,29 +56356,7 @@
     "background": false,
     "main": false
    }
-  ],
-  "source_panel": {
-   "sources": [
-    {
-     "publisher": "Pamfleti",
-     "url": "https://pamfleti.net/english/anti-mafia/bana-king-nga-kokaina-te-mishi-kontrabande-54-ton-pule-bllokohen-ne-d-i364027",
-     "date": "2026-11-26",
-     "type": "News report",
-     "role": "Original (earliest found)",
-     "lang": "English"
-    }
-   ],
-   "type": "News report",
-   "language": "English",
-   "supporting": 0,
-   "independent": 1,
-   "relationship": "Single source"
-  },
-  "uncertainty": [
-   "Different quantities stated for cocaine: 1.5 tons, 119 kg (may be separate seizures or totals)"
-  ],
-  "last_updated": "2026-11-27",
-  "related": []
+  ]
  },
  {
   "title": "Dubai Police process Dh24.2 million worth payments through travel ban service",
@@ -61411,26 +61180,6 @@
    "basis": "Stated in headline or summary",
    "text": "Destination: New Zealand; origin not reported"
   },
-  "insider_roles": [],
-  "substances": [
-   "Methamphetamine"
-  ],
-  "concealment_types": [],
-  "cover_goods": [],
-  "seizures": [
-   {
-    "substance": "Methamphetamine",
-    "suspected": false,
-    "original": "15kg",
-    "qty": 15.0,
-    "unit": "kg",
-    "std_qty": 15.0,
-    "std_unit": "kg",
-    "qualifier": "Exact",
-    "background": false,
-    "main": true
-   }
-  ],
   "source_panel": {
    "sources": [
     {
@@ -61453,7 +61202,27 @@
    "Journey only partly stated"
   ],
   "last_updated": "2026-11-27",
-  "related": []
+  "related": [],
+  "insider_roles": [],
+  "substances": [
+   "Methamphetamine"
+  ],
+  "concealment_types": [],
+  "cover_goods": [],
+  "seizures": [
+   {
+    "substance": "Methamphetamine",
+    "suspected": false,
+    "original": "15kg",
+    "qty": 15.0,
+    "unit": "kg",
+    "std_qty": 15.0,
+    "std_unit": "kg",
+    "qualifier": "Exact",
+    "background": false,
+    "main": true
+   }
+  ]
  },
  {
   "title": "EFCC arraigns businessman, firm over N11m Canadian visa fraud",
@@ -61465,6 +61234,7 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
+   "Visa and entry policy",
    "Visa and permit fraud"
   ],
   "matched_words": [
@@ -61474,7 +61244,9 @@
   "document_types": [
    "Visa"
   ],
-  "countries": [],
+  "countries": [
+   "Nigeria"
+  ],
   "airports": [],
   "origin": "",
   "destination": "",
@@ -61507,9 +61279,12 @@
   "region": false,
   "event_id": "BWO-2026-2300",
   "primary_category": "Visa and permit fraud",
-  "tags": [],
+  "tags": [
+   "Visa and entry policy"
+  ],
   "groups": [
-   "Document & Identity Fraud"
+   "Document & Identity Fraud",
+   "Policy & Systems"
   ],
   "published": "2026-11-26",
   "event_date": "2026-09-08",
@@ -61594,7 +61369,7 @@
    "relationship": "1 independent source; 1 republication of the same report (not counted as separate confirmations)"
   },
   "uncertainty": [
-   "Not stated in the report: where it happened, outcome"
+   "Not stated in the report: outcome"
   ],
   "last_updated": "2026-11-27",
   "related": [],
@@ -61740,7 +61515,8 @@
   },
   "merged_ids": [
    "BWO-2026-2659"
-  ]
+  ],
+  "lead": "EFCC arraigns businessman, firm for alleged N11 million Canadian visa fraud The Economic and Financial Crimes Commission (EFCC) has arraigned a businessman and his company, Socrates Travels and Tours Nigeria Limited, for alleged N11 million fraud involving a…"
  },
  {
   "title": "Law enforcement dismantle cocaine network from Ecuador to Europe",
@@ -64929,18 +64705,21 @@
   ],
   "action": true,
   "document_types": [],
-  "countries": [],
+  "countries": [
+   "France"
+  ],
   "airports": [],
-  "origin": "",
+  "origin": "France",
   "destination": "",
   "documents_count": 0,
   "people_count": 0,
   "weight_kg": 11.0,
   "id": "549f51c67efc",
   "first_seen": "2026-11-26",
-  "score": 15,
-  "level": "Low",
+  "score": 30,
+  "level": "Medium",
   "reasons": [
+   "Concealment method (body, luggage, cargo) (+15: dissimulee)",
    "Detected at an airport or border post (+5: aeroport)",
    "Large quantity: about 11 kg (+10)"
   ],
@@ -65015,7 +64794,7 @@
      ],
      [
       "Origin",
-      ""
+      "France"
      ],
      [
       "Transit",
@@ -65081,14 +64860,14 @@
   "review_uncertainty": "",
   "review_status": "Automatically collected",
   "journey": {
-   "origin": "",
+   "origin": "France",
    "transit": [],
    "destination": "",
    "interception": "",
    "interception_country": "",
-   "completeness": "Not reported",
-   "basis": "",
-   "text": ""
+   "completeness": "Partial",
+   "basis": "Explicitly stated in article",
+   "text": "Origin: France; destination not reported"
   },
   "source_panel": {
    "sources": [
@@ -65126,10 +64905,13 @@
   "uncertainty": [
    "Different quantities stated for cannabis: 2 025 grammes, 6 250 grammes (may be separate seizures or totals)",
    "Different quantities stated for cocaine: 2 860 grammes, 335 grammes (may be separate seizures or totals)",
-   "Not stated in the report: when it happened, where it happened"
+   "Not stated in the report: when it happened",
+   "Journey only partly stated"
   ],
   "last_updated": "2026-11-27",
-  "related": [],
+  "related": [
+   "BWO-2026-0907"
+  ],
   "outcome_note": "",
   "other_sources": [
    "Outre-mer La 1ère",
@@ -65321,6 +65103,7 @@
    "BWO-2026-2638",
    "BWO-2026-2714"
   ],
+  "lead": "Faits divers Drogue : quatre mules interceptées en une semaine à l'aéroport du Lamentin Plus de 11 kilos de drogues ont été interceptés, à l'aéroport Aimé-Césaire, en l'espace d'une semaine.",
   "insider_roles": [],
   "substances": [
    "Cocaine",
@@ -68422,6 +68205,7 @@
   "id": "47a82574e99a",
   "first_seen": "2026-11-26",
   "other_sources": [
+   "Awaz The Voice",
    "The Siasat Daily"
   ],
   "sources": [
@@ -68434,6 +68218,12 @@
     "publisher": "The Siasat Daily",
     "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPaUNjNmdodXktcnEtaXZuSXRkVVpQRUdrUkZmU3hnUU4tSHR3YlNwZTM1MFRxZjkyelQ1c2E2UEFKM3JKX1EtcTFJRmppaHdJc2EzRWo3dEVmaHRyQkxWa0dMalZXMHQ0YTRnVElQZ1ZKVlJoUWMwNFJnMnU5alR6RVdxOEt0WDdwUXJlYW1Dck8xQ3F6emNV0gGcAUFVX3lxTE1QbnlNTk1fcGlpbnI3bzN4UzNkVllGNEdPck9NVWN5UmluYWlURTJ3ak5XWm5aWXFBVHNKWXdtRUQxOHdjYnZ1UEhWSDRZSHhycjU1cTRDd2dqQXNqS044VFZuMnUxRHEtSGNDSlhWQmc2c29CdEgyTDNYeUdUc1RQOE5UTHVDTWd3a1dzOWVzc19JejV2S3AwNm9laA?oc=5",
     "date": "2026-11-26"
+   },
+   {
+    "publisher": "Awaz The Voice",
+    "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNbUJRbUx5NjlLMlFCbFJCSTR2a3JNSFI4SUdHczFDcmd1bEg4R2pkOElxSG0xUVZUUGQzM0lZRTBxZ2Z5a1Q0bnNTSzFtNks5SnBmWUZyTEF2OVlRR2RmNGR5akpTM2lsT3JvemVNVXZucDNITVIyX3ZNZnhSVG16OGFyLTIxdy1IcjNLV0JUQWR5OTZJLTRpb244bFcxa2tnT21SRHlYTklBeHc?oc=5",
+    "date": "2026-11-26",
+    "lang": "en"
    }
   ],
   "score": 0,
@@ -68519,13 +68309,21 @@
      "type": "News report",
      "role": "Republished (same headline)",
      "lang": "English"
+    },
+    {
+     "publisher": "Awaz The Voice",
+     "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNbUJRbUx5NjlLMlFCbFJCSTR2a3JNSFI4SUdHczFDcmd1bEg4R2pkOElxSG0xUVZUUGQzM0lZRTBxZ2Z5a1Q0bnNTSzFtNks5SnBmWUZyTEF2OVlRR2RmNGR5akpTM2lsT3JvemVNVXZucDNITVIyX3ZNZnhSVG16OGFyLTIxdy1IcjNLV0JUQWR5OTZJLTRpb244bFcxa2tnT21SRHlYTklBeHc?oc=5",
+     "date": "2026-11-26",
+     "type": "News report",
+     "role": "Republished (same headline)",
+     "lang": "en"
     }
    ],
    "type": "News report",
    "language": "English",
-   "supporting": 1,
+   "supporting": 2,
    "independent": 1,
-   "relationship": "1 independent source; 1 republication of the same report (not counted as separate confirmations)"
+   "relationship": "1 independent source; 2 republications of the same report (not counted as separate confirmations)"
   },
   "uncertainty": [
    "Journey only partly stated"
@@ -68537,7 +68335,8 @@
   ],
   "merged_ids": [
    "BWO-2026-2292",
-   "BWO-2026-2660"
+   "BWO-2026-2660",
+   "BWO-2026-2733"
   ],
   "outcome_note": ""
  },
@@ -71002,6 +70801,26 @@
    "basis": "",
    "text": ""
   },
+  "source_panel": {
+   "sources": [
+    {
+     "publisher": "RNZ",
+     "url": "https://www.rnz.co.nz/news/pacific/2817475/crackdown-on-trans-pacific-drug-smuggling-intensifies",
+     "date": "2026-11-26",
+     "type": "News report",
+     "role": "Original (earliest found)",
+     "lang": "English"
+    }
+   ],
+   "type": "News report",
+   "language": "English",
+   "supporting": 0,
+   "independent": 1,
+   "relationship": "Single source. The report itself says it is based on an official statement or release"
+  },
+  "uncertainty": [],
+  "last_updated": "2026-11-27",
+  "related": [],
   "insider_roles": [],
   "substances": [
    "Cocaine",
@@ -71036,27 +70855,7 @@
     "background": true,
     "main": false
    }
-  ],
-  "source_panel": {
-   "sources": [
-    {
-     "publisher": "RNZ",
-     "url": "https://www.rnz.co.nz/news/pacific/2817475/crackdown-on-trans-pacific-drug-smuggling-intensifies",
-     "date": "2026-11-26",
-     "type": "News report",
-     "role": "Original (earliest found)",
-     "lang": "English"
-    }
-   ],
-   "type": "News report",
-   "language": "English",
-   "supporting": 0,
-   "independent": 1,
-   "relationship": "Single source. The report itself says it is based on an official statement or release"
-  },
-  "uncertainty": [],
-  "last_updated": "2026-11-27",
-  "related": []
+  ]
  },
  {
   "title": "Turkish travellers mull a visa-free Europe",
@@ -72520,137 +72319,6 @@
   "last_updated": "2026-11-26",
   "related": [],
   "outcome_note": ""
- },
- {
-  "title": "US judge bars Trump administration from enforcing revised birthright citizenship limits | Hindustan Times",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxQOFc3bVpZYVYwdjM4d3lyYlBYQUlybHBpVllTS3Vrb2RwWVd2OEhKd0RLanI5bXluREFEM3NDN2I5bUVmNUdSdWRTNHpYT1ZydmVKOUJpOW5GMm5NLTRmYU1fWjZSVXlxT2laQXI5LWFiWmxlclBrb25talB2N09sVHQtankwRFBvVWtCRW50WXdzT1RYanZIckdBdEl3TXltTTdWVFdIajhrTnRaVTVEbm84Y1FZU3FsQWdCU1R1OXh3VHRZaGlaU0VsbVNjbnhTMUlla2t6V2VTOWRDSVZnQ2luVU1zcWo0aUxaeU9hRnBWMmFw0gH0AUFVX3lxTFA4VzdtWllhVjB2Mzh3eXJiUFhBSXJscGlWWVNLdWtvZHBZV3Y4SEp3REtqcjlteW5EQUQzc0M3YjltRWY1R1J1ZFM0elhPVnJ2ZUo5Qmk5bkYybk0tNGZhTV9aNlJVeXFPaVpBcjktYWJabGVyUGtvbm1qUHY3T2xUdC1qeTBEUG9Va0JFbnRZd3NPVFhqdkhyR0F0SXdNeW1NN1ZUV0hqOGtOdFpVNURubzhjUVlTcWxBZ0JTVHU5eHdUdFloaVpTRWxtU2NueFMxSWVra3pXZVM5ZENJVmdDaW5VTXNxajRpTFp5T2FGcFYyYXA?oc=5",
-  "date": "2026-11-26",
-  "source": "Hindustan Times",
-  "lang": "en",
-  "via": "Google News US",
-  "kind": "Update",
-  "categories": [
-   "Citizenship and naturalisation"
-  ],
-  "matched_words": [
-   "birthright citizenship"
-  ],
-  "action": false,
-  "document_types": [],
-  "countries": [],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0,
-  "id": "3439b1356aef",
-  "first_seen": "2026-11-27",
-  "other_sources": [],
-  "sources": [
-   {
-    "publisher": "Hindustan Times",
-    "url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxQOFc3bVpZYVYwdjM4d3lyYlBYQUlybHBpVllTS3Vrb2RwWVd2OEhKd0RLanI5bXluREFEM3NDN2I5bUVmNUdSdWRTNHpYT1ZydmVKOUJpOW5GMm5NLTRmYU1fWjZSVXlxT2laQXI5LWFiWmxlclBrb25talB2N09sVHQtankwRFBvVWtCRW50WXdzT1RYanZIckdBdEl3TXltTTdWVFdIajhrTnRaVTVEbm84Y1FZU3FsQWdCU1R1OXh3VHRZaGlaU0VsbVNjbnhTMUlla2t6V2VTOWRDSVZnQ2luVU1zcWo0aUxaeU9hRnBWMmFw0gH0AUFVX3lxTFA4VzdtWllhVjB2Mzh3eXJiUFhBSXJscGlWWVNLdWtvZHBZV3Y4SEp3REtqcjlteW5EQUQzc0M3YjltRWY1R1J1ZFM0elhPVnJ2ZUo5Qmk5bkYybk0tNGZhTV9aNlJVeXFPaVpBcjktYWJabGVyUGtvbm1qUHY3T2xUdC1qeTBEUG9Va0JFbnRZd3NPVFhqdkhyR0F0SXdNeW1NN1ZUV0hqOGtOdFpVNURubzhjUVlTcWxBZ0JTVHU5eHdUdFloaVpTRWxtU2NueFMxSWVra3pXZVM5ZENJVmdDaW5VTXNxajRpTFp5T2FGcFYyYXA?oc=5",
-    "date": "2026-11-26"
-   }
-  ],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
-  "watch": false,
-  "home": false,
-  "region": false,
-  "event_id": "BWO-2026-2643",
-  "primary_category": "Citizenship and naturalisation",
-  "tags": [],
-  "groups": [
-   "Citizenship & Residence"
-  ],
-  "published": "2026-11-26",
-  "event_date": "",
-  "event_date_quality": "unknown",
-  "location": {
-   "cities": [],
-   "ports": [],
-   "crossings": []
-  },
-  "transport_mode": "",
-  "outcome": "",
-  "outcome_note": "",
-  "agencies": [],
-  "summary_text": "",
-  "caribbean_connection": [],
-  "jamaica_connection": [],
-  "specialist": [
-   [
-    "Policy update",
-    [
-     [
-      "Issuing authority",
-      ""
-     ],
-     [
-      "Affected travellers / documents",
-      ""
-     ],
-     [
-      "Announcement date (publication)",
-      "2026-11-26"
-     ],
-     [
-      "Effective date",
-      ""
-     ],
-     [
-      "Exceptions",
-      ""
-     ],
-     [
-      "Status",
-      ""
-     ],
-     [
-      "Official guidance link",
-      ""
-     ]
-    ]
-   ]
-  ],
-  "nationality": [],
-  "corrections": [],
-  "review_uncertainty": "",
-  "review_status": "Automatically collected",
-  "journey": {
-   "origin": "",
-   "transit": [],
-   "destination": "",
-   "interception": "",
-   "interception_country": "",
-   "completeness": "Not reported",
-   "basis": "",
-   "text": ""
-  },
-  "source_panel": {
-   "sources": [
-    {
-     "publisher": "Hindustan Times",
-     "url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxQOFc3bVpZYVYwdjM4d3lyYlBYQUlybHBpVllTS3Vrb2RwWVd2OEhKd0RLanI5bXluREFEM3NDN2I5bUVmNUdSdWRTNHpYT1ZydmVKOUJpOW5GMm5NLTRmYU1fWjZSVXlxT2laQXI5LWFiWmxlclBrb25talB2N09sVHQtankwRFBvVWtCRW50WXdzT1RYanZIckdBdEl3TXltTTdWVFdIajhrTnRaVTVEbm84Y1FZU3FsQWdCU1R1OXh3VHRZaGlaU0VsbVNjbnhTMUlla2t6V2VTOWRDSVZnQ2luVU1zcWo0aUxaeU9hRnBWMmFw0gH0AUFVX3lxTFA4VzdtWllhVjB2Mzh3eXJiUFhBSXJscGlWWVNLdWtvZHBZV3Y4SEp3REtqcjlteW5EQUQzc0M3YjltRWY1R1J1ZFM0elhPVnJ2ZUo5Qmk5bkYybk0tNGZhTV9aNlJVeXFPaVpBcjktYWJabGVyUGtvbm1qUHY3T2xUdC1qeTBEUG9Va0JFbnRZd3NPVFhqdkhyR0F0SXdNeW1NN1ZUV0hqOGtOdFpVNURubzhjUVlTcWxBZ0JTVHU5eHdUdFloaVpTRWxtU2NueFMxSWVra3pXZVM5ZENJVmdDaW5VTXNxajRpTFp5T2FGcFYyYXA?oc=5",
-     "date": "2026-11-26",
-     "type": "News report",
-     "role": "Original (earliest found)",
-     "lang": "English"
-    }
-   ],
-   "type": "News report",
-   "language": "English",
-   "supporting": 0,
-   "independent": 1,
-   "relationship": "Single source"
-  },
-  "uncertainty": [],
-  "last_updated": "2026-11-27",
-  "related": []
  },
  {
   "title": "Italy Opens Work Visas to 14 African Nations",
@@ -78264,9 +77932,12 @@
   "weight_kg": 42.9,
   "id": "1b396695924a",
   "first_seen": "2026-11-26",
-  "score": 10,
-  "level": "Low",
+  "score": 45,
+  "level": "High",
   "reasons": [
+   "Concealment method (body, luggage, cargo) (+15: concealed in, hidden in)",
+   "Cargo red flags (misdeclared, front company, transshipment) (+15: declared as)",
+   "Detected at an airport or border post (+5: airport)",
    "Large quantity: about 42.9 kg (+10)"
   ],
   "watch": false,
@@ -78309,7 +77980,7 @@
     "date": "2026-11-26"
    }
   ],
-  "review_status": "Automatically collected",
+  "review_status": "Awaiting review",
   "last_updated": "2026-11-27",
   "related": [],
   "specialist": [
@@ -78643,6 +78314,7 @@
     }
    ]
   },
+  "lead": "Customs officers at the Ninoy Aquino International Airport opened three parcels this week and found 42.884 kilograms of suspected shabu inside, an estimated P291.61 million worth.",
   "insider_roles": [],
   "substances": [
    "Cannabis",
@@ -89840,9 +89512,9 @@
   "review_status": "Awaiting review",
   "last_updated": "2026-11-27",
   "related": [
+   "BWO-2026-2118",
    "BWO-2026-2193",
-   "BWO-2026-2016",
-   "BWO-2026-2451"
+   "BWO-2026-2016"
   ],
   "specialist": [
    [
@@ -91865,13 +91537,6 @@
    "basis": "Explicitly stated in article",
    "text": "Origin: Philippines; destination not reported"
   },
-  "insider_roles": [],
-  "substances": [
-   "Cash"
-  ],
-  "concealment_types": [],
-  "cover_goods": [],
-  "seizures": [],
   "source_panel": {
    "sources": [
     {
@@ -91894,7 +91559,14 @@
    "Journey only partly stated"
   ],
   "last_updated": "2026-11-27",
-  "related": []
+  "related": [],
+  "insider_roles": [],
+  "substances": [
+   "Cash"
+  ],
+  "concealment_types": [],
+  "cover_goods": [],
+  "seizures": []
  },
  {
   "title": "Gota’s travel ban removal request rejected",
@@ -96465,6 +96137,7 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
+   "Border security",
    "Drug trafficking"
   ],
   "matched_words": [
@@ -96472,13 +96145,18 @@
   ],
   "action": true,
   "document_types": [],
-  "countries": [],
-  "airports": [],
+  "countries": [
+   "United Kingdom",
+   "Thailand"
+  ],
+  "airports": [
+   "London Heathrow (LHR)"
+  ],
   "origin": "",
   "destination": "",
   "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0.0,
+  "people_count": 600,
+  "weight_kg": 33.5,
   "id": "a2c6a1177cf4",
   "first_seen": "2026-11-26",
   "other_sources": [
@@ -96488,16 +96166,24 @@
    "Yahoo News Australia",
    "needtoknow.co.uk"
   ],
-  "score": 0,
-  "level": "Low",
-  "reasons": [],
+  "score": 40,
+  "level": "High",
+  "reasons": [
+   "Organised network or ring (+15: organised crime)",
+   "Detected at an airport or border post (+5: airport, airports)",
+   "Many people involved: 600 (+10)",
+   "Large quantity: about 33.5 kg (+10)"
+  ],
   "watch": false,
   "home": false,
   "region": false,
   "event_id": "BWO-2026-2118",
   "primary_category": "Drug trafficking",
-  "tags": [],
+  "tags": [
+   "Border security"
+  ],
   "groups": [
+   "Border Integrity",
    "Seizures & Contraband"
   ],
   "published": "2026-11-25",
@@ -96552,10 +96238,12 @@
     "date": "2026-11-27"
    }
   ],
-  "review_status": "Automatically collected",
+  "review_status": "Awaiting review",
   "last_updated": "2026-11-27",
   "related": [
-   "BWO-2026-2144"
+   "BWO-2026-2144",
+   "BWO-2026-2451",
+   "BWO-2026-2193"
   ],
   "specialist": [
    [
@@ -96632,6 +96320,27 @@
      [
       "Case development",
       "Court outcome; Arrest"
+     ]
+    ]
+   ],
+   [
+    "Border integrity",
+    [
+     [
+      "Organisation or role implicated",
+      ""
+     ],
+     [
+      "Alleged conduct",
+      ""
+     ],
+     [
+      "Location",
+      "London Heathrow (LHR)"
+     ],
+     [
+      "Investigation / disciplinary / criminal outcome",
+      "Convicted / sentenced; Arrested"
      ]
     ]
    ]
@@ -96714,9 +96423,7 @@
    "independent": 1,
    "relationship": "1 independent source; 5 republications of the same report (not counted as separate confirmations)"
   },
-  "uncertainty": [
-   "Not stated in the report: where it happened"
-  ],
+  "uncertainty": [],
   "merged_ids": [
    "BWO-2026-2239",
    "BWO-2026-2893"
@@ -96920,6 +96627,7 @@
     }
    ]
   },
+  "lead": "A drug mule father and son duo who have a “bond for eternity” have been jailed for smuggling £500,000 worth of cannabis on a flight.",
   "insider_roles": [],
   "substances": [
    "Cannabis"
@@ -105115,14 +104823,6 @@
    "basis": "",
    "text": ""
   },
-  "insider_roles": [],
-  "substances": [
-   "Cocaine",
-   "Cannabis"
-  ],
-  "concealment_types": [],
-  "cover_goods": [],
-  "seizures": [],
   "source_panel": {
    "sources": [
     {
@@ -105144,7 +104844,15 @@
    "Not stated in the report: when it happened, outcome"
   ],
   "last_updated": "2026-11-27",
-  "related": []
+  "related": [],
+  "insider_roles": [],
+  "substances": [
+   "Cocaine",
+   "Cannabis"
+  ],
+  "concealment_types": [],
+  "cover_goods": [],
+  "seizures": []
  },
  {
   "title": "Łukašenka extends visa waiver for Europeans until 2028",
@@ -109478,6 +109186,7 @@
    "BWO-2026-2383",
    "BWO-2026-2614",
    "BWO-2026-2629",
+   "BWO-2026-2643",
    "BWO-2026-2652",
    "BWO-2026-2691",
    "BWO-2026-2747"
@@ -109881,13 +109590,6 @@
    "basis": "",
    "text": ""
   },
-  "insider_roles": [],
-  "substances": [
-   "Fentanyl"
-  ],
-  "concealment_types": [],
-  "cover_goods": [],
-  "seizures": [],
   "source_panel": {
    "sources": [
     {
@@ -109909,7 +109611,14 @@
    "Not stated in the report: when it happened, where it happened"
   ],
   "last_updated": "2026-11-27",
-  "related": []
+  "related": [],
+  "insider_roles": [],
+  "substances": [
+   "Fentanyl"
+  ],
+  "concealment_types": [],
+  "cover_goods": [],
+  "seizures": []
  },
  {
   "title": "Finland and six other EU states want faster visa ban on Russian athletes",
@@ -113640,6 +113349,7 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
+   "Human trafficking",
    "Identity and document fraud"
   ],
   "matched_words": [
@@ -113647,10 +113357,13 @@
   ],
   "action": false,
   "document_types": [],
-  "countries": [],
+  "countries": [
+   "Saudi Arabia",
+   "Pakistan"
+  ],
   "airports": [],
   "origin": "",
-  "destination": "",
+  "destination": "Saudi Arabia",
   "documents_count": 0,
   "people_count": 0,
   "weight_kg": 0,
@@ -113659,19 +113372,23 @@
   "other_sources": [
    "24 News HD"
   ],
-  "score": 5,
-  "level": "Low",
+  "score": 20,
+  "level": "Medium",
   "reasons": [
+   "Exploitation or trafficking indicators (+15: human trafficking)",
    "Detected at an airport or border post (+5: airport)"
   ],
   "watch": false,
   "home": false,
   "region": false,
   "event_id": "BWO-2026-2027",
-  "primary_category": "Identity and document fraud",
-  "tags": [],
+  "primary_category": "Human trafficking",
+  "tags": [
+   "Identity and document fraud"
+  ],
   "groups": [
-   "Document & Identity Fraud"
+   "Document & Identity Fraud",
+   "Human Trafficking"
   ],
   "published": "2026-11-25",
   "event_date": "2026-11-19",
@@ -113740,18 +113457,43 @@
       ""
      ]
     ]
+   ],
+   [
+    "Human trafficking",
+    [
+     [
+      "Reported exploitation type",
+      ""
+     ],
+     [
+      "Potential / suspected victims (as stated)",
+      ""
+     ],
+     [
+      "Identified / rescued victims (as stated)",
+      ""
+     ],
+     [
+      "Assistance or referral reported",
+      ""
+     ],
+     [
+      "Proceedings",
+      ""
+     ]
+    ]
    ]
   ],
   "nationality": [],
   "journey": {
    "origin": "",
    "transit": [],
-   "destination": "",
+   "destination": "Saudi Arabia",
    "interception": "",
    "interception_country": "",
-   "completeness": "Not reported",
-   "basis": "",
-   "text": ""
+   "completeness": "Partial",
+   "basis": "Explicitly stated in article",
+   "text": "Destination: Saudi Arabia; origin not reported"
   },
   "corrections": [
    {
@@ -113797,7 +113539,8 @@
    "relationship": "1 independent source; 2 republications of the same report (not counted as separate confirmations)"
   },
   "uncertainty": [
-   "Not stated in the report: where it happened, outcome"
+   "Not stated in the report: outcome",
+   "Journey only partly stated"
   ],
   "merged_ids": [
    "BWO-2026-2302",
@@ -113982,7 +113725,10 @@
     ]
    ],
    "seizures": []
-  }
+  },
+  "lead": "FIA arrests woman at Multan airport for travelling on fake documents In an operation conducted at Multan airport, the Federal Investigation Agency (FIA) Immigration on Thursday offloaded a female passenger who was heading to Saudi Arabia for performing Umrah…",
+  "exploitation": [],
+  "victim_assistance": ""
  },
  {
   "title": "Turk in Greek prison faces extradition to Turkey",
@@ -119111,7 +118857,7 @@
   "agencies": [
    "Customs"
   ],
-  "summary_text": "KRA intercepts 42.94kg of suspected cannabis from passenger arriving from Qatar Thursday 26th November, 2026 12:56 AM  Kenya Revenue Authority (KRA) Customs officers at Jomo Kenyatta International Airport (JKIA) on Wednesday, November 25, 2026, intercepted approximately 42.94 kilogrammes of suspected processed cannabis sativa concealed in the luggage of a passenger arriving from Doha, Qatar.",
+  "summary_text": "KRA intercepts 42.94kg of suspected cannabis from passenger arriving from Qatar Thursday 26th November, 2026 12:56 AM Kenya Revenue Authority (KRA) Customs officers at Jomo Kenyatta International Airport (JKIA) on Wednesday, November 25, 2026, intercepted approximately 42.94 kilogrammes of suspected processed cannabis sativa concealed in the luggage of a passenger arriving from Doha, Qatar.",
   "caribbean_connection": [],
   "jamaica_connection": [],
   "sources": [
@@ -136639,15 +136385,19 @@
   "destination": "",
   "documents_count": 0,
   "people_count": 0,
-  "weight_kg": 0.0,
+  "weight_kg": 96.6,
   "id": "62afe298b03e",
   "first_seen": "2026-11-26",
   "other_sources": [
    "Malaysiakini"
   ],
-  "score": 0,
-  "level": "Low",
-  "reasons": [],
+  "score": 40,
+  "level": "High",
+  "reasons": [
+   "Organised network or ring (+15: network, organised crime, syndicate)",
+   "Possible insider or corruption (+15: corruption)",
+   "Large quantity: about 96.6 kg (+10)"
+  ],
   "watch": false,
   "home": false,
   "region": false,
@@ -136683,7 +136433,7 @@
     "date": "2026-11-26"
    }
   ],
-  "review_status": "Automatically collected",
+  "review_status": "Awaiting review",
   "last_updated": "2026-11-27",
   "related": [],
   "specialist": [
@@ -136952,6 +136702,7 @@
     }
    ]
   },
+  "lead": "High-profile individuals implicated in drug smuggling using RMAF assets: Saifuddin PARLIAMENT",
   "insider_roles": [
    "Airline crew or staff"
   ],
@@ -158274,7 +158025,8 @@
    "Education Times",
    "NDTV",
    "News18",
-   "The Daily Jagran"
+   "The Daily Jagran",
+   "Y-Axis Overseas Careers"
   ],
   "score": 0,
   "level": "Update",
@@ -158333,13 +158085,16 @@
     "publisher": "Education Times",
     "url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxOUThBYXI0TEVKaE10RVZ2bmRBa0d2V1NGdS1CeU5pb1h6UThKUTdGUW52a1doTFdhTXRaM244U3lPNjlDTjhTNmI4bFlQOWprcGFLbWNSeVMyLTdxdEYydjNxVy1hQlYxaHNzYkV4OVE0aW5yRHp6UmZ2Ti02cllfeXp0RFEzb0RGYnlfa3haa1JXLUo0Z29RYTNFUEdheTN4MG02RXBuaG1IS3B2bHZyN0ZEWER0TGJGYi0yMGN6QTg4MnhtamxfZlQ1VUhsTUh0LXU1QVdBVzlMUXNpZkM3Z2c2ZXN3alZjdGVBV1dqNkN6Ny1BeHc?oc=5",
     "date": "2026-11-27"
+   },
+   {
+    "publisher": "Y-Axis Overseas Careers",
+    "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQZ2pFeWFoNU5nMHRTWnFNdG03Nm1RVTQxVmdiNnczMUNYZlpGb1gyREZKX3l4RThyZmwxejRtb2tzNm1uc1Uyd0I1WDRSUkJLV2tCUDg3YkJ1MGV5QXhtd2NYNUhJZENRbmRPMmQ1V3VpTzFwVER3cU5FWWtWcS0yUEl6NEowRUFReHRfSE80dmhGSEZ4?oc=5",
+    "date": "2026-11-27"
    }
   ],
   "review_status": "Automatically collected",
   "last_updated": "2026-11-26",
-  "related": [
-   "BWO-2026-2754"
-  ],
+  "related": [],
   "specialist": [
    [
     "Policy update",
@@ -158437,13 +158192,21 @@
      "type": "News report",
      "role": "Republished (same headline)",
      "lang": "English"
+    },
+    {
+     "publisher": "Y-Axis Overseas Careers",
+     "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQZ2pFeWFoNU5nMHRTWnFNdG03Nm1RVTQxVmdiNnczMUNYZlpGb1gyREZKX3l4RThyZmwxejRtb2tzNm1uc1Uyd0I1WDRSUkJLV2tCUDg3YkJ1MGV5QXhtd2NYNUhJZENRbmRPMmQ1V3VpTzFwVER3cU5FWWtWcS0yUEl6NEowRUFReHRfSE80dmhGSEZ4?oc=5",
+     "date": "2026-11-27",
+     "type": "News report",
+     "role": "Republished (same headline)",
+     "lang": "English"
     }
    ],
    "type": "News report",
    "language": "English",
-   "supporting": 5,
+   "supporting": 6,
    "independent": 1,
-   "relationship": "1 independent source; 5 republications of the same report (not counted as separate confirmations)"
+   "relationship": "1 independent source; 6 republications of the same report (not counted as separate confirmations)"
   },
   "uncertainty": [],
   "merged_ids": [
@@ -158453,6 +158216,7 @@
    "BWO-2026-2627",
    "BWO-2026-2683",
    "BWO-2026-2719",
+   "BWO-2026-2754",
    "BWO-2026-2778"
   ],
   "outcome_note": ""
@@ -286332,7 +286096,9 @@
   ],
   "review_status": "Automatically collected",
   "last_updated": "2026-11-26",
-  "related": [],
+  "related": [
+   "BWO-2026-2426"
+  ],
   "article": {
    "tried": true,
    "read_on": "2026-11-26",

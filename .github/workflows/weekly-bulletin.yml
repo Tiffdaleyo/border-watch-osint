@@ -1,21 +1,20 @@
-# Every Monday: builds the DRAFT weekly bulletin and emails it to the reviewer only.
-# The team gets it only after the reviewer presses "Run workflow" on "send-bulletin".
+# Every Monday: makes the weekly bulletin PDF from the live site and emails it to the team.
 name: weekly-bulletin
 
 on:
   schedule:
     - cron: "0 12 * * 1"     # Mondays at 12:00 UTC = 07:00 in Jamaica (after the daily run at 06:00)
-  workflow_dispatch:          # "Run workflow" button, to make a draft by hand
+  workflow_dispatch:          # "Run workflow" button, to send it again by hand
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: border-watch-osint
   cancel-in-progress: false
 
 jobs:
-  draft:
+  send:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -24,13 +23,16 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -r requirements.txt
-      - name: Build the draft bulletin
-        run: python -u run.py --rebuild --draft
-      - name: Email the draft to the reviewer
-        run: python -u tools/send_weekly.py --draft
+      - name: Make the PDF and email it to the team
+        run: python -u tools/send_weekly.py
         env:
           MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
           MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
           MAIL_TO: ${{ secrets.MAIL_TO }}
-          MAIL_ALERTS_TO: ${{ secrets.MAIL_ALERTS_TO }}
-          MAIL_REVIEW_TO: ${{ secrets.MAIL_REVIEW_TO }}
+      - name: Save the PDF
+        run: |
+          git config user.name  "border-watch-osint-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add docs/bulletin.pdf
+          git diff --cached --quiet || git commit -m "Weekly bulletin sent $(date -u +%F)"
+          git push || (git pull --rebase -X theirs origin main && git push)

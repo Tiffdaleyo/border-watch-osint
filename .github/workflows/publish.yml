@@ -1,5 +1,5 @@
-# The reviewer has checked the daily draft: press "Run workflow" here to put it on the live site.
-# Reports now live are marked as reviewed, and any held alerts are emailed.
+# Optional: press "Run workflow" to rebuild the live site now (for example right after editing reviews.yaml)
+# instead of waiting for the next morning's run. Today's alerts that have not gone out yet are emailed.
 name: publish
 
 on:
@@ -22,7 +22,7 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -r requirements.txt
-      - name: Rebuild the live site with the reviewer's corrections
+      - name: Rebuild the live site with the latest reviews.yaml
         run: python -u run.py --rebuild --publish
         env:
           MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
@@ -34,5 +34,5 @@ jobs:
           git config user.name  "border-watch-osint-bot"
           git config user.email "actions@users.noreply.github.com"
           git add data docs
-          git diff --cached --quiet || git commit -m "Published after review $(date -u +%F)"
+          git diff --cached --quiet || git commit -m "Rebuild $(date -u +%F)"
           git push || (git pull --rebase -X theirs origin main && git push)

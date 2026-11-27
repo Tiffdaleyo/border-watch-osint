@@ -26,9 +26,9 @@ def main():
     ap.add_argument("--demo", action="store_true", help="use invented sample data (no internet)")
     ap.add_argument("--rebuild", action="store_true", help="only rebuild the website from stored data")
     ap.add_argument("--draft", action="store_true",
-                    help="build a draft for the reviewer in draft/ (the live site in docs/ is not changed, no alerts sent)")
+                    help="build a test copy in draft/ (the live site in docs/ is not changed, no alerts sent)")
     ap.add_argument("--publish", action="store_true",
-                    help="the reviewer approved: rebuild the live site in docs/, mark the batch approved, send held alerts")
+                    help="rebuild the live site in docs/ and send any alerts held since the last publish")
     ap.add_argument("--official-only", action="store_true", help="only read the official press-release feeds (no news search)")
     args = ap.parse_args()
 
@@ -98,7 +98,6 @@ def main():
                              site.get("region_words", []))
     # the full event record: ID, dates, location, connections, transport, outcome, review status, sources, related
     reviews = record.load_reviews(os.path.join(HERE, "reviews.yaml"))
-    approved = record.load_approved(os.path.join(HERE, "data", "published.json"))
     record.assign_ids(events)
     # several outlets reporting the same case become one event (the others are kept as extra sources)
     events, merged = store.group_duplicates(events)
@@ -106,7 +105,7 @@ def main():
     today = dt.date.today().isoformat()
     for ev in events:
         before = (ev.get("review_status"), ev.get("outcome"), ev.get("transport_mode"), ev.get("event_date"))
-        record.build(ev, site, reviews, approved)
+        record.build(ev, site, reviews)
         after = (ev.get("review_status"), ev.get("outcome"), ev.get("transport_mode"), ev.get("event_date"))
         if not ev.get("last_updated"):
             ev["last_updated"] = ev.get("first_seen", today)
@@ -115,7 +114,11 @@ def main():
         if (ev.get("article") or {}).get("read_on", "") > ev["last_updated"]:
             ev["last_updated"] = ev["article"]["read_on"]
     record.related(events)
-    # Review first: a search run only builds a draft. Alerts and the live site wait until the reviewer publishes.
+    # The daily search run publishes straight away. Only reports listed in reviews.yaml get the "Reviewed" mark;
+    # the rest stay "Automatically collected" (or "Awaiting review" when the outcome needs checking).
+    # Alert email for new high-risk or home-country incidents (only on a real search run, and only if email is set up).
+    if not args.rebuild and not args.demo and not args.draft:
+        alerts.send(events, today, site)
     store.save(db_path, events)
 
     keep_from = (dt.date.today() - dt.timedelta(days=(cfg.get("run") or {}).get("report_days", 180))).isoformat()
@@ -128,10 +131,8 @@ def main():
     report.write_tools(out_dir)
     report.write_bulletin(out_dir, shown, summary, cfg)
     if args.publish:
-        # everything now live was approved by the reviewer; alerts held since the last publish go out now
-        newly = record.save_approved(os.path.join(HERE, "data", "published.json"), shown, today)
-        print(f"Published: {newly} newly approved reports are now live.")
-        alerts.send(events, today, site, since=record.last_publish(os.path.join(HERE, "data", "published.json"), before=today))
+        # a manual rebuild of the live site that also sends today's alerts not yet sent (nothing is marked reviewed)
+        alerts.send(events, today, site)
         store.save(db_path, events)
     print(f"Website rebuilt in {os.path.basename(out_dir)}/ with {len(shown)} events "
           f"({summary['by_level'].get('High', 0)} High, {summary['region_count']} in the {site.get('region_name', 'region')}).")

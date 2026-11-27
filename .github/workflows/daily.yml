@@ -1,5 +1,5 @@
-# Runs the watch every morning and emails a DRAFT to the reviewer. The live site only changes when the reviewer
-# presses Run workflow on "publish" (publish.yml).
+# Runs the watch every morning, updates the live site and sends alert emails. Nothing waits for a review:
+# reports listed in reviews.yaml get the "Reviewed" mark, the rest show as automatically collected.
 name: daily-border-watch-osint
 
 on:
@@ -35,7 +35,7 @@ jobs:
       - name: Skip if today's collection already ran (back-up start times)
         id: guard
         run: |
-          if [ "${{ github.event_name }}" = "schedule" ] && git log --since="$(date -u +%F)T00:00:00Z" --format=%s | grep -q "^Daily collection"; then
+          if [ "${{ github.event_name }}" = "schedule" ] && git log --since="$(date -u +%F)T00:00:00Z" --format=%s | grep -q "^Daily update"; then
             echo "Today's collection already ran; nothing to do."; echo "skip=true" >> "$GITHUB_OUTPUT"
           fi
       - uses: actions/setup-python@v5
@@ -44,28 +44,19 @@ jobs:
           python-version: "3.12"
       - run: pip install -r requirements.txt
         if: steps.guard.outputs.skip != 'true'
-      - name: Search the news and build a draft (the live site is not changed)
+      - name: Search the news, analyse and rebuild the website
         if: steps.guard.outputs.skip != 'true'
-        run: python -u run.py --draft --days "${{ github.event.inputs.days || '2' }}" ${{ github.event.inputs.official_only == 'true' && '--official-only' || '' }}
+        run: python -u run.py --days "${{ github.event.inputs.days || '2' }}" ${{ github.event.inputs.official_only == 'true' && '--official-only' || '' }}
         env:                  # email settings for alerts (kept as secrets; nothing is sent until they are added)
           MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
           MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
           MAIL_TO: ${{ secrets.MAIL_TO }}
           MAIL_ALERTS_TO: ${{ secrets.MAIL_ALERTS_TO }}
-      - name: Email the draft to the reviewer
-        if: steps.guard.outputs.skip != 'true'
-        run: python -u tools/send_draft.py
-        env:
-          MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
-          MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
-          MAIL_TO: ${{ secrets.MAIL_TO }}
-          MAIL_ALERTS_TO: ${{ secrets.MAIL_ALERTS_TO }}
-          MAIL_REVIEW_TO: ${{ secrets.MAIL_REVIEW_TO }}
-      - name: Save the collected data (not the website)
+      - name: Save the results
         if: steps.guard.outputs.skip != 'true'
         run: |
           git config user.name  "border-watch-osint-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data
-          git diff --cached --quiet || git commit -m "Daily collection (draft, awaiting review) $(date -u +%F)"
+          git add data docs
+          git diff --cached --quiet || git commit -m "Daily update $(date -u +%F)"
           git push || (git pull --rebase -X theirs origin main && git push)
