@@ -9,6 +9,7 @@ from .extract import GROUPS
 from .places import CENTROIDS, COUNTRIES
 from .record import NR, port_label
 from . import languages
+from . import bulletin_charts as bc
 from .ports import PORTS as PORT_LIST
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -214,7 +215,8 @@ def _top(items, n=3):
 
 
 def bulletin_html(week, start, end, site, trends, root="", archive=(), latest=True):
-    """One weekly bulletin page: reads well on screen, and prints on one A4 page (the links and menus are hidden)."""
+    """One weekly bulletin page with charts and a written analysis: reads well on screen and prints cleanly (the links
+    and menus are hidden in print)."""
     esc = html.escape
     home, region = site.get("home_country", ""), site.get("region_name", "Region")
     order = {"High": 0, "Medium": 1, "Low": 2, "Update": 3}
@@ -274,8 +276,11 @@ h1{{color:#13294b;margin:0;font-size:22px}} h2{{color:#13294b;font-size:12.5px;b
 .kp{{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-top:12px}} .kp div{{background:#f4f6f9;border-radius:10px;padding:8px 10px}} .kp b{{display:block;font-size:20px;color:#13294b}}
 .box{{background:#f4f6f9;padding:8px 12px;border-radius:10px;margin-top:8px}} .cols{{display:grid;grid-template-columns:1fr 1fr;gap:0 20px}}
 .lHigh{{color:#b42318}} .lMedium{{color:#b54708}} .lLow{{color:#067647}} .lUpdate{{color:#475467}} .o{{color:#067647;font-size:10px}}
+.charts{{display:grid;grid-template-columns:1fr 1fr;gap:12px}} .ch{{border:1px solid #e6e9ef;border-radius:10px;padding:8px 10px;break-inside:avoid}}
+.ch h3,.an h3{{font-size:12px;color:#13294b;margin:0 0 6px}} .lg{{font-size:10px;color:#5b6575;margin-top:4px}} .lg span{{display:inline-block;margin-right:8px}}
+.lg i{{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:3px}} .an{{break-inside:avoid;margin-bottom:8px}}
 .arch{{max-width:900px;margin:0 auto 24px;padding:0 18px;font-size:12.5px}} .arch a{{display:inline-block;margin:0 10px 6px 0;color:#13294b}}
-@media (max-width:700px){{.cols{{grid-template-columns:1fr}} .page{{padding:16px}}}}
+@media (max-width:700px){{.cols,.charts{{grid-template-columns:1fr}} .page{{padding:16px}}}}
 @media print{{body{{background:#fff;font-size:10.4px;line-height:1.3}} .top,.arch,.noprint{{display:none}} .page{{border:0;margin:0;padding:0;max-width:none}}
  h1{{font-size:17px}} h2{{font-size:11.5px;margin:8px 0 4px}} .kp b{{font-size:14px}} .kp div{{padding:4px 7px}} .s{{font-size:9.4px}} li{{margin-bottom:3px}}}}</style>
 </head><body>
@@ -288,6 +293,9 @@ h1{{color:#13294b;margin:0;font-size:22px}} h2{{color:#13294b;font-size:12.5px;b
 <div><b>{sum(1 for e in week if e.get('region'))}</b>{esc(region)}</div><div><b>{home_n}</b>{esc(home)}</div>
 <div><b>{len(seiz)}</b>seizures</div><div><b>{len([e for e in week if e.get('kind') == 'Update'])}</b>policy &amp; updates</div><div><b>{official}</b>official releases</div></div>
 <h2>Highlights</h2><ul>{''.join(f'<li>{x}</li>' for x in hl)}</ul>
+<h2>Charts</h2>{bc.charts_block(week, start, end, region)}
+<h2>Analysis: what the week suggests</h2><div class="s" style="margin-bottom:6px">Written automatically from this week's reports · patterns to look into, not findings · check each point against the sources</div>
+{''.join(f"<div class='an'><h3>{esc(t)} <span class='s'>· {n} report{'' if n == 1 else 's'}</span></h3><ul>{''.join(f'<li>{p}</li>' for p in pts)}</ul></div>" for t, n, pts in bc.analysis(week, home, region)) or "<p class='s'>Not enough reports this week for an analysis.</p>"}
 <div class="box"><b>Seizure totals (unverified, one figure per report):</b> {esc(tot_txt)}<br>
 <b>By main group:</b> {esc(' · '.join(f'{k} {v}' for k, v in groups) or 'none')}</div>
 <h2>Top incidents to review</h2><ol>{''.join(li(e) for e in top) or '<li>None this week.</li>'}</ol>

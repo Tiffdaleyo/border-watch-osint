@@ -19,7 +19,10 @@ from email.message import EmailMessage
 
 
 def recipients(kind="bulletin"):
+    # the reviewer (MAIL_REVIEW_TO) gets the daily draft and the draft bulletin; if not set, the alerts list is used
     raw = os.environ.get("MAIL_ALERTS_TO") if kind == "alerts" else ""
+    if kind == "review":
+        raw = os.environ.get("MAIL_REVIEW_TO") or os.environ.get("MAIL_ALERTS_TO") or ""
     raw = raw or os.environ.get("MAIL_TO", "")
     return [a.strip() for a in raw.replace(";", ",").split(",") if "@" in a]
 

@@ -1,0 +1,38 @@
+# The reviewer has checked the daily draft: press "Run workflow" here to put it on the live site.
+# Reports now live are marked as reviewed, and any held alerts are emailed.
+name: publish
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: border-watch-osint
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: Rebuild the live site with the reviewer's corrections
+        run: python -u run.py --rebuild --publish
+        env:
+          MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
+          MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+          MAIL_ALERTS_TO: ${{ secrets.MAIL_ALERTS_TO }}
+      - name: Save
+        run: |
+          git config user.name  "border-watch-osint-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data docs
+          git diff --cached --quiet || git commit -m "Published after review $(date -u +%F)"
+          git push || (git pull --rebase -X theirs origin main && git push)

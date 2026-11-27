@@ -38,12 +38,51 @@ Everything runs automatically on GitHub, free of charge. No one needs to switch 
 5. **Score:** each incident gets a risk score (section 7).
 6. **Apply reviews:** it applies the team's review decisions from `reviews.yaml` (section 9).
 7. **Privacy filter:** it removes ID numbers and victims' names (section 8).
-8. **Alerts:** it emails any new high-risk or Jamaica-linked incidents (section 11).
-9. **Publish:** it rebuilds the website, the CSV download and the weekly bulletin, then saves everything to the
-   repository. A commit called "Daily update" appears each day.
-10. **Mondays, 07:00 Jamaica time:** a second workflow emails the weekly bulletin as a one-page PDF.
+8. **Draft, not live:** it builds a **draft** and emails the reviewer a "Daily draft for review" (section 2b).
+   The live site does **not** change, and no alert goes out yet. Only the collected data is saved, in a commit
+   called "Daily collection (draft, awaiting review)".
+9. **Publish (after review):** when the reviewer presses **Publish**, the website, the CSV and the bulletin are
+   rebuilt with the reviewer's corrections. Held alerts go out at the same time.
+10. **Mondays, 07:00 Jamaica time:** the **draft** weekly bulletin is emailed to the reviewer only. The team gets
+    it after the reviewer presses **Send bulletin**.
 
 To run it by hand: open the **Actions** tab, choose **daily-border-watch-osint**, then click **Run workflow**.
+
+## 2b. Review before anything goes live (agreed with Ray, 27 Nov 2026)
+
+Nothing new reaches the public site, the alert emails or the team's bulletin until the reviewer (Ray) has read it.
+
+**Every morning**
+1. At about 06:30 Jamaica time, an email arrives: **"DRAFT for review: N new Border Watch reports"**. It lists
+   every report not yet live: Jamaica and the Caribbean first, then by review priority. Reports whose headline and
+   article disagree on the outcome are marked **CHECK OUTCOME**.
+2. **To fix or remove a report,** tell Claude in the Border Watch project, for example "remove BWO-2026-1234" or
+   "BWO-2026-1234 is Charged, not Convicted". Claude writes the change into `reviews.yaml` (section 9).
+3. **To publish:** open **Actions → publish → Run workflow** (the email has a direct link), or reply "publish" to
+   Claude. The site updates within about 2 minutes.
+
+**What publishing does**
+- The reports go live.
+- Each one is marked **Reviewed** ("Approved in the daily review before publishing"). The "Reviewed by a person"
+  card counts them.
+- Alerts held since the last publish are emailed.
+
+**Mondays**
+- The **draft bulletin** (PDF, with charts and analysis) is emailed to the reviewer only.
+- After any corrections, **publish** first, then press **Actions → send-bulletin → Run workflow** (or reply "send
+  the bulletin"). The team receives it, and its PDF is saved on the website.
+
+**Who gets the drafts:** the address in the `MAIL_REVIEW_TO` secret. If that is not set, the `MAIL_ALERTS_TO`
+address is used, and failing that `MAIL_TO`.
+
+**If no one publishes:** the drafts keep piling up, and the next draft email lists everything not yet live. Nothing
+is lost.
+
+**Reports live before 27 Nov 2026** were published before this review began. They are not marked reviewed, and
+they are listed as "baseline" in `data/published.json`.
+
+**Good to know:** the GitHub repository itself is public. The collected data file (`data/events.json`) can be seen
+there before review, but the website, the alerts and the bulletin cannot.
 
 ## 3. Where the information comes from
 
@@ -428,8 +467,12 @@ The blue **📰 Weekly bulletin** button at the top of the site opens a one-page
 **All bulletins**. The last 26 weeks are kept. Pages are rebuilt every day, so a late report or a correction also
 updates past weeks.
 
-**Print / save as PDF** gives a clean one-page A4: the menus are left out. The Monday email still sends the latest
-bulletin as a PDF.
+It also has **charts** (reports per day by group, main groups, countries, review priority, seizures by substance and
+by hiding method, transport, routes) and a written **Analysis** for each area: seizures, documents, irregular
+movement, trafficking, visa and entry rules, and border integrity.
+
+**Print / save as PDF** gives a clean printout of 2 to 3 pages: the menus are left out. The weekly email uses the
+same page (section 2b).
 
 ## 11. Email: Monday bulletin and alerts
 
@@ -584,3 +627,4 @@ Privacy rules are in `watch/privacy.py`.
 | 2026-11-27 | Presentation: the site opens on the Caribbean (World and Jamaica one click away); "High-risk" renamed "Review priority"; shorter Overview (key numbers, map, priority feed, latest developments, section tiles), with detailed charts inside each section; new "Reviewed by a person" card next to "Reports collected". |
 | 2026-11-27 | Seizure charts (by drug over time, corridors, hotspots, concealment × drug, insider signals with %), Port lookup (name or UN/LOCODE), Repeat links table, Language coverage map, "What this suggests" analysis in every section. Dutch, German and Italian news searched. Links to the trainer's Investigation Desk removed at Ray's request: the side menu now lists our own tools only. |
 | 2026-11-27 | **Weekly bulletin** button in the site heading: a web page for the last 7 days with highlights, plus a page for every past week and an "All bulletins" list. It prints on one A4 page. |
+| 2026-11-27 | Bulletin now has charts and a written analysis for each area. **Review before publishing:** the daily run makes a draft emailed to the reviewer; the live site, alerts and the team bulletin wait for the reviewer's Publish / Send bulletin (section 2b). |

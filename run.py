@@ -25,6 +25,10 @@ def main():
     ap.add_argument("--days", type=int, default=None, help="how many days back to search")
     ap.add_argument("--demo", action="store_true", help="use invented sample data (no internet)")
     ap.add_argument("--rebuild", action="store_true", help="only rebuild the website from stored data")
+    ap.add_argument("--draft", action="store_true",
+                    help="build a draft for the reviewer in draft/ (the live site in docs/ is not changed, no alerts sent)")
+    ap.add_argument("--publish", action="store_true",
+                    help="the reviewer approved: rebuild the live site in docs/, mark the batch approved, send held alerts")
     ap.add_argument("--official-only", action="store_true", help="only read the official press-release feeds (no news search)")
     args = ap.parse_args()
 
@@ -33,7 +37,11 @@ def main():
     site = cfg.get("site") or {}
     days = args.days or (cfg.get("run") or {}).get("lookback_days", 2)
     db_path = os.path.join(HERE, "data", "demo_events.json" if args.demo else "events.json")
-    out_dir = os.path.join(HERE, "docs")
+    out_dir = os.path.join(HERE, "draft" if args.draft else "docs")
+    if args.draft:
+        import shutil
+        shutil.rmtree(out_dir, ignore_errors=True)
+        shutil.copytree(os.path.join(HERE, "docs", "vendor"), os.path.join(out_dir, "vendor"))
     os.makedirs(out_dir, exist_ok=True)
 
     events = store.load(db_path)
@@ -90,6 +98,7 @@ def main():
                              site.get("region_words", []))
     # the full event record: ID, dates, location, connections, transport, outcome, review status, sources, related
     reviews = record.load_reviews(os.path.join(HERE, "reviews.yaml"))
+    approved = record.load_approved(os.path.join(HERE, "data", "published.json"))
     record.assign_ids(events)
     # several outlets reporting the same case become one event (the others are kept as extra sources)
     events, merged = store.group_duplicates(events)
@@ -97,7 +106,7 @@ def main():
     today = dt.date.today().isoformat()
     for ev in events:
         before = (ev.get("review_status"), ev.get("outcome"), ev.get("transport_mode"), ev.get("event_date"))
-        record.build(ev, site, reviews)
+        record.build(ev, site, reviews, approved)
         after = (ev.get("review_status"), ev.get("outcome"), ev.get("transport_mode"), ev.get("event_date"))
         if not ev.get("last_updated"):
             ev["last_updated"] = ev.get("first_seen", today)
@@ -106,9 +115,7 @@ def main():
         if (ev.get("article") or {}).get("read_on", "") > ev["last_updated"]:
             ev["last_updated"] = ev["article"]["read_on"]
     record.related(events)
-    # alert email for new high-risk or home-country incidents (only on a real search run, and only if email is set up)
-    if not args.rebuild and not args.demo:
-        alerts.send(events, today, site)
+    # Review first: a search run only builds a draft. Alerts and the live site wait until the reviewer publishes.
     store.save(db_path, events)
 
     keep_from = (dt.date.today() - dt.timedelta(days=(cfg.get("run") or {}).get("report_days", 180))).isoformat()
@@ -119,7 +126,13 @@ def main():
     report.write_dashboard(out_dir, shown, summary, cfg, added, demo=args.demo)
     report.write_csv(out_dir, shown)
     report.write_bulletin(out_dir, shown, summary, cfg)
-    print(f"Website rebuilt in docs/ with {len(shown)} events "
+    if args.publish:
+        # everything now live was approved by the reviewer; alerts held since the last publish go out now
+        newly = record.save_approved(os.path.join(HERE, "data", "published.json"), shown, today)
+        print(f"Published: {newly} newly approved reports are now live.")
+        alerts.send(events, today, site, since=record.last_publish(os.path.join(HERE, "data", "published.json"), before=today))
+        store.save(db_path, events)
+    print(f"Website rebuilt in {os.path.basename(out_dir)}/ with {len(shown)} events "
           f"({summary['by_level'].get('High', 0)} High, {summary['region_count']} in the {site.get('region_name', 'region')}).")
 
 

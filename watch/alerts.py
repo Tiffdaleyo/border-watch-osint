@@ -15,15 +15,16 @@ def _recent(e, today):
         return True
 
 
-def pick(events, today, home):
+def pick(events, today, home, since=None):
+    """since: alerts held for review go out at publish time, covering everything first seen after the last publish."""
     return [e for e in events
-            if e.get("first_seen") == today and _recent(e, today) and not e.get("alerted") and e.get("kind") == "Incident"
+            if ((e.get("first_seen") or "") > since if since else e.get("first_seen") == today) and _recent(e, today) and not e.get("alerted") and e.get("kind") == "Incident"
             and e.get("review_status") != "Excluded" and (e.get("level") == "High" or e.get("home"))]
 
 
-def send(events, today, site, subject_prefix=""):
+def send(events, today, site, subject_prefix="", since=None):
     home = site.get("home_country", "")
-    new = pick(events, today, home)
+    new = pick(events, today, home, since if since is not None else None)
     if not new:
         print("  alerts: no new high-risk or home-country incidents")
         return 0
@@ -44,7 +45,7 @@ def send(events, today, site, subject_prefix=""):
     body = (f"<div style='font-family:Arial,sans-serif;max-width:680px'>"
             f"<h2 style='margin:0 0 4px;color:#13294b'>Border Watch OSINT: {len(new)} new alert{'s' if len(new) != 1 else ''}</h2>"
             f"<p style='color:#555;font-size:13px;margin:0 0 14px'>New high review-priority or {html.escape(home)}-linked incidents found "
-            f"in today's run. Open-source news only: leads to verify, not confirmed intelligence.</p>"
+            f"since the last published update, now checked and published. Open-source news only: leads to verify, not confirmed intelligence.</p>"
             f"<ol style='padding-left:18px'>{''.join(row(e) for e in new[:25])}</ol>"
             + (f"<p><a href='{html.escape(url)}'>Open the dashboard</a></p>" if url else "")
             + "<p style='color:#888;font-size:12px'>Unofficial project, open-source news only; not a government service.</p></div>")

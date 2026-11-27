@@ -1,0 +1,37 @@
+# The reviewer has checked the draft bulletin and published the site: press "Run workflow" to email the
+# bulletin to the team (MAIL_TO) and save its PDF on the website.
+name: send-bulletin
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: border-watch-osint
+  cancel-in-progress: false
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: Make the PDF and email it to the team
+        run: python -u tools/send_weekly.py
+        env:
+          MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
+          MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+      - name: Save the PDF
+        run: |
+          git config user.name  "border-watch-osint-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add docs/bulletin.pdf
+          git diff --cached --quiet || git commit -m "Weekly bulletin sent $(date -u +%F)"
+          git push || (git pull --rebase -X theirs origin main && git push)

@@ -332,3 +332,28 @@ def test_concealment_and_cover_categories():
     assert rows["Concealment category"] == "Swallowed / internal body"
     # a drug courier is a person, not a courier parcel
     assert "Courier" not in dict(seizure.details("NDLEA arrests two cocaine couriers", {})[0])["Concealment category"]
+
+
+def test_review_approval_marks_only_published_new_items(tmp_path):
+    import json
+    from watch import record
+    p = tmp_path / "published.json"
+    p.write_text(json.dumps({"baseline": ["BWO-1"], "approved": {}}))
+    shown = [{"event_id": "BWO-1"}, {"event_id": "BWO-2"}]
+    assert record.save_approved(str(p), shown, "2026-11-28") == 1
+    appr = record.load_approved(str(p))
+    assert appr == {"BWO-2": "2026-11-28"}
+    ev = {"event_id": "BWO-2", "level": "Low"}
+    record.apply_review(ev, {}, appr)
+    assert ev["review_status"] == "Reviewed"
+    ev1 = {"event_id": "BWO-1", "level": "Low"}
+    record.apply_review(ev1, {}, appr)
+    assert ev1["review_status"] == "Automatically collected"
+    assert record.last_publish(str(p), before="2026-11-29") == "2026-11-28"
+
+
+def test_alerts_held_until_publish():
+    from watch import alerts
+    evs = [{"first_seen": "2026-11-27", "date": "2026-11-27", "kind": "Incident", "level": "High"},
+           {"first_seen": "2026-11-25", "date": "2026-11-25", "kind": "Incident", "level": "High"}]
+    assert len(alerts.pick(evs, "2026-11-28", "Jamaica", since="2026-11-26")) == 1

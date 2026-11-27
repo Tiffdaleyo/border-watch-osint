@@ -330,6 +330,45 @@ def ensure_sources(ev):
         ev["sources"][0]["url"] = ev["source_url"]
 
 
+def load_approved(path):
+    """Event IDs the reviewer approved by publishing (data/published.json), with the date of approval."""
+    import json
+    if not os.path.exists(path):
+        return {}
+    with open(path, encoding="utf-8") as f:
+        return (json.load(f) or {}).get("approved") or {}
+
+
+def last_publish(path, before=None):
+    """The date of the last publish before the given date (alerts held since then go out at the next publish)."""
+    import json
+    if not os.path.exists(path):
+        return ""
+    with open(path, encoding="utf-8") as f:
+        dates = sorted({d for d in ((json.load(f) or {}).get("approved") or {}).values() if not before or d < before})
+    return dates[-1] if dates else ""
+
+
+def save_approved(path, shown, today):
+    """Mark every report now live as approved (keeps the first approval date). Returns how many are new."""
+    import json
+    data = {}
+    if os.path.exists(path):
+        with open(path, encoding="utf-8") as f:
+            data = json.load(f) or {}
+    appr = data.get("approved") or {}
+    new = 0
+    base = set(data.get("baseline") or [])
+    for e in shown:
+        if e.get("event_id") and e["event_id"] not in appr and e["event_id"] not in base:
+            appr[e["event_id"]] = today
+            new += 1
+    data["approved"], data["last_publish"] = appr, today
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=0, sort_keys=True)
+    return new
+
+
 def load_reviews(path):
     if not os.path.exists(path):
         return {}
@@ -343,7 +382,7 @@ EDITABLE = {"title", "primary_category", "categories", "event_date", "event_date
             "summary_text", "level", "note"}
 
 
-def apply_review(ev, reviews):
+def apply_review(ev, reviews, approved=None):
     r = reviews.get(ev.get("event_id")) or {}
     status = str(r.get("status", "")).lower()
     ev["corrections"] = []
@@ -367,6 +406,11 @@ def apply_review(ev, reviews):
                 ev["primary_category"] = primary_category(ev["categories"])
             ev["tags"] = [x for x in ev.get("categories", []) if x != ev.get("primary_category")]
             ev["groups"] = extract.groups_of(ev.get("categories", []))
+    elif approved and ev.get("event_id") in approved and not ev.get("outcome_note"):
+        # the reviewer read the daily draft and published it
+        ev["review_status"] = "Reviewed"
+        ev["review_date"] = approved[ev["event_id"]]
+        ev["review_note"] = "Approved in the daily review before publishing"
     else:
         ev["review_status"] = "Awaiting review" if (ev.get("level") == "High" or ev.get("home") or ev.get("outcome_note")) else "Automatically collected"
 
@@ -414,7 +458,7 @@ def related(events, window_days=90, top=3):
             e["related"] = [x[2] for x in scored[:top]]
 
 
-def build(ev, site, reviews):
+def build(ev, site, reviews, approved=None):
     """Fills every record field for one event (after extraction, article facts and scoring)."""
     art = ev.get("article") or {}
     text = f"{ev.get('title', '')}. {ev.get('summary', '')}. {art.get('lead', '')}"
@@ -447,7 +491,7 @@ def build(ev, site, reviews):
     for k in ("transit", "interception"):
         ev.pop(k, None)
     ev["nationality"] = list(dict.fromkeys(journey.nationalities(text) + (art.get("nationality") or [])))[:5]
-    apply_review(ev, reviews)
+    apply_review(ev, reviews, approved)
     # the journey is built after the review, so a corrected origin, destination or transit shows up in it
     j = journey.build(ev, text, bool(art.get("read")))
     if art.get("read"):
