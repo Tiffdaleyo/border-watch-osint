@@ -104,6 +104,8 @@ def uncertainty(ev):
                                           ("outcome", ev.get("outcome"))) if not ok]
         if missing:
             notes.append("Not stated in the report: " + ", ".join(missing))
+    if ev.get("outcome_note"):
+        notes.append(ev["outcome_note"])
     if (ev.get("journey") or {}).get("completeness") == "Partial":
         notes.append("Journey only partly stated")
     if ev.get("date_basis"):

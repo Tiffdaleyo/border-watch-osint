@@ -107,6 +107,14 @@ def _substance_near(t, start, end):
     return ""
 
 
+# words that put a figure in the past or in a running total, so it is not this seizure
+_BACKGROUND_RE = re.compile(
+    r"\b(?:since|so far|this year|last year|previous(?:ly)?|earlier this|in the past|over the (?:past|last)|past (?:year|decade|\w+ (?:years|months))|"
+    r"annual(?:ly)?|per year|a year|each year|every year|(?:in|during|between|from) (?:19|20)\d\d|total of|in total|altogether|cumulative|"
+    r"record|largest ever|biggest ever|operation(?:s)? (?:that|which)|across (?:\d+|several|multiple) countries|trafficked|have seized|had seized|"
+    r"desde|en lo que va|ja teve|ja foram|este ano|el ano pasado|en total|depuis|cette annee|l'an dernier|desde o inicio|este ano)\b")
+
+
 def quantities(text, lang="en"):
     """All stated quantities (first 3000 characters), each with its substance, unit and qualifier."""
     t = fold(text[:3000])
@@ -129,6 +137,9 @@ def quantities(text, lang="en"):
             sub = "Tobacco"
         suspected = bool(re.search(r"suspected|presumed|believed to be|presunta|presunto", t[max(0, m.start() - 40): m.end() + 40]))
         std_unit = STD[kind] or unit
+        before, after = t[max(0, m.start() - 90): m.start()], t[m.end(): m.end() + 60]
+        before, after = re.split(r"[.;!?]\s", before)[-1], re.split(r"[.;!?]\s", after)[0]   # same sentence only
+        background = bool(_BACKGROUND_RE.search(before + " " + m.group(0) + " " + after))
         key = (round(val * f, 3), std_unit)
         if key in seen:          # the same figure mentioned twice is one quantity
             continue
@@ -136,7 +147,16 @@ def quantities(text, lang="en"):
         out.append({"substance": sub or "Not reported", "suspected": suspected,
                     "original": re.sub(r"\s+", " ", m.group(0)).strip(), "qty": val, "unit": unit,
                     "std_qty": round(val * f, 3), "std_unit": std_unit,
-                    "qualifier": QUAL.get((m.group("qual") or "").strip(), "Exact")})
+                    "qualifier": QUAL.get((m.group("qual") or "").strip(), "Exact"),
+                    "background": background})
+    # the figure counted in totals: per substance and unit, the first one that is not background (a yearly total,
+    # an earlier case, a whole operation); the rest stay visible in the record but are not added up
+    done = set()
+    for q in out[:6]:
+        k = (q["substance"], q["std_unit"])
+        q["main"] = not q["background"] and q["substance"] != "Not reported" and k not in done
+        if q["main"]:
+            done.add(k)
     return out[:6]
 
 
@@ -196,7 +216,7 @@ _ATTRIB_RE = re.compile(r"(?:according to|said|estimated|say|says)\s+(?:the\s+)?
                         r"prosecutors|ministry|navy|army|office))")
 _CASH_RE = re.compile(r"(" + _MONEY + r")\s+(?:in\s+)?(?:undeclared\s+)?(?:cash|currency|banknotes|in cash)|"
                       r"(?:cash|currency) (?:totall?ing|amounting to|of)\s+(" + _MONEY + ")")
-_GUN_RE = re.compile(r"(\d[\d,]*|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)\s+(?:\w+\s+){0,2}?"
+_GUN_RE = re.compile(r"(?<![a-z]-)(?<!\bak )(?<!\bar )(?<!\w)(\d[\d,]*|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|an?)\s+(?:[\w-]+\s+){0,2}?"
                      r"(firearms?|guns?|pistols?|rifles?|revolvers?|shotguns?|handguns?)")
 _AMMO_RE = re.compile(r"(\d[\d,]*)\s+(?:\w+\s+){0,2}?(?:rounds|cartridges|bullets)")
 CASE = [
@@ -316,6 +336,67 @@ def _cover_zone(t):
     return " ".join(t[m.end(): m.end() + 70] for m in _COVER_CUE.finditer(t))
 
 
+# ---- insider signals: staff of an airport, port, airline, customs, police or a carrier named as involved ----
+INSIDER_ROLES = [
+    ("Airport staff", ["baggage handler*", "ramp agent*", "ramp worker*", "airport worker*", "airport employee*",
+                       "airport staff", "ground staff", "ground handler*", "airside worker*", "aviation security officer*",
+                       "trabajador* del aeropuerto", "empleado* del aeropuerto", "maletero*"]),
+    ("Airline crew or staff", ["flight attendant*", "cabin crew", "air hostess*", "pilot*", "airline employee*",
+                               "airline staff", "airline worker*", "crew member*", "azafat*", "tripulante*"]),
+    ("Port or dock worker", ["dock worker*", "port worker*", "port employee*", "stevedore*", "longshorem*", "dockworker*",
+                             "crane operator*", "terminal worker*", "terminal employee*", "wharf worker*", "port staff",
+                             "trabajador* portuario*", "estibador*", "docker*"]),
+    ("Ship's crew", ["ship's crew", "crew of the vessel", "seafarer*", "sailor*", "captain of the", "ship captain",
+                     "vessel's captain", "marinero*", "tripulacion"]),
+    ("Customs officer", ["customs officer*", "customs official*", "customs agent*", "customs employee*", "customs staff",
+                         "customs inspector*", "funcionario* de aduana*", "agente* de aduana*", "douanier*"]),
+    ("Immigration or border officer", ["immigration officer*", "immigration official*", "border officer*",
+                                       "border agent*", "border guard*", "border patrol agent*", "passport control officer*",
+                                       "agente* de migracion", "oficial* de migracion"]),
+    ("Police or military", ["police officer*", "policeman", "policemen", "police constable*", "cop", "cops",
+                            "soldier*", "army officer*", "navy officer*", "coast guard officer*", "military officer*",
+                            "agente* de policia"]),
+    ("Postal or courier staff", ["postal worker*", "postal employee*", "mail carrier*", "courier company employee*",
+                                 "courier employee*", "courier staff", "warehouse worker*"]),
+    ("Logistics, shipping or clearing agent", ["clearing agent*", "customs broker*", "freight forwarder*", "shipping agent*",
+                                               "logistics company employee*", "logistics employee*", "agente de carga",
+                                               "agente aduanal"]),
+    ("Government official", ["government official*", "public official*", "civil servant*", "ministry official*",
+                             "funcionario* publico*"]),
+]
+_ROLE_RE = [(n, extract.compile_words(w)) for n, w in INSIDER_ROLES]
+_AFTER = re.compile(r"^[\w\s,'-]{0,25}?\b(?:was|were|is|are|has been|have been|had been)?\s*(?:arrested|charged|detained|held|"
+                    r"implicated|accused|suspected|indicted|convicted|sentenced|jailed|dismissed|sacked|suspended|"
+                    r"bribed|paid|recruited|involved|colluded|conspired|pleaded|admitted|helped|facilitated|"
+                    r"detenid|arrestad|implicad|acusad|sobornad)\w*"
+                    # "customs officers arrested a passenger": the officers made the arrest, so it is not a signal
+                    r"(?!\s+(?:a|an|the|two|three|four|five|several|\d+|passengers?|man|men|woman|women|suspects?|"
+                    r"travell?ers?|people|persons|individuals|him|her|them|nationals?|foreigners?|drugs|cocaine)\b)")
+_BEFORE = re.compile(r"(?:arrest(?:ed|s)?|charg(?:ed|es)|detain(?:ed|s)?|jail(?:ed|s)?|sentenc(?:ed|es)|convict(?:ed|s)?|"
+                     r"accus(?:ed|es)|implicat(?:ed|es)|dismiss(?:ed|es)?|suspend(?:ed|s)?|indict(?:ed|s)?|bribed|recruited|"
+                     r"paid|help of|helped by|assisted by|with the help of|in collusion with|colluding|corrupt|rogue|"
+                     r"detienen a|detenido a|arrestan a)"
+                     r"(?:\s+(?:of|a|an|the|two|three|four|five|several|\d+|former|serving|off-duty|senior|junior|alleged|"
+                     r"suspected|dos|tres|un|una|los|las))*\s+$")
+_INSIDER_WORD = re.compile(r"insider|inside help|inside job|bribe|bribery|corrupt|collu|kickback|soborn|cohecho")
+
+
+def insider_roles(text):
+    """Staff roles named as involved: the role is the one arrested, charged, bribed or helping (not the officers who
+    made the arrest), or the sentence calls it insider help, bribery or corruption."""
+    found = []
+    for sent in re.split(r"(?<=[.!?;])\s+|\n", fold(text)):
+        flag = bool(_INSIDER_WORD.search(sent))
+        for n, rx in _ROLE_RE:
+            if n in found:
+                continue
+            for m in rx.finditer(sent):
+                if flag or _AFTER.search(sent[m.end(): m.end() + 60]) or _BEFORE.search(sent[max(0, m.start() - 45): m.start()]):
+                    found.append(n)
+                    break
+    return found[:3]
+
+
 def details(text, ev):
     """Rows for the 'Seizure' specialist section, and the structured quantities for totals."""
     t = fold(text[:3000])
@@ -372,6 +453,7 @@ def details(text, ev):
             ["Destination", j.get("destination", "") or ev.get("destination", "")],
             ["Seizing agency", "; ".join(ev.get("agencies") or [])],
             ["Other seized items", "; ".join(other)],
+            ["Insider signal (staff named as involved)", "; ".join(insider_roles(text[:3000]))],
             ["Reported valuation", value],
             ["Case development", "; ".join(case)]]
     return rows, qs

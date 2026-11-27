@@ -53,9 +53,28 @@ OUTCOMES = [
 _OUT_RE = [(n, extract.compile_words(w)) for n, w in OUTCOMES]
 
 
+# "if convicted", "faces up to 10 years if found guilty", "could be sentenced": a possible outcome, not what happened
+_HYPOTHETICAL = re.compile(r"\b(?:if|once|unless|until|when|before)\s+(?:he |she |they |the \w+ (?:is|are) |(?:is|are) )?"
+                           r"(?:convicted|found guilty|sentenced|charged|jailed)\b"
+                           r"|\b(?:could|may|might|would|will|to) be (?:convicted|sentenced|jailed|charged|imprisoned)\b"
+                           r"|\b(?:faces?|facing|liable to|risk(?:s|ing)?) (?:up to |a |the )?(?:\w+ ){0,3}(?:years?|jail|prison|death penalty)"
+                           r"|\bpreviously (?:convicted|jailed|sentenced)\b|\bwas (?:once|earlier) (?:convicted|jailed)\b")
+STAGE = {n: i for i, (n, _) in enumerate(OUTCOMES)}
+
+
 def outcome(text):
-    folded = extract.fold(text)
+    folded = _HYPOTHETICAL.sub(" ", extract.fold(text))
     return next((n for n, rx in _OUT_RE if rx.search(folded)), "")
+
+
+def check_outcome(title, found):
+    """A court stage in the article that the headline contradicts (headline: charged; article: convicted) is not
+    trusted: the headline's stage is used and the event is flagged for a reviewer. Returns (outcome, note)."""
+    head = outcome(title)
+    court = ("Sentenced", "Convicted", "Acquitted")
+    if found in court and head in ("Charged", "Arrested", "Investigation ongoing", "Seized / intercepted"):
+        return head, f"Outcome needs checking: headline says {head.lower()}, article text says {found.lower()}"
+    return found, ""
 
 
 # ---------------------------------------------------------------------------------------------
@@ -168,22 +187,29 @@ def event_date(text, published):
 # ---------------------------------------------------------------------------------------------
 # location: city, seaport, border crossing
 # ---------------------------------------------------------------------------------------------
-PORTS = {
-    "Kingston Wharves / Port of Kingston": ["Kingston Wharves", "Port of Kingston", "Port Bustamante", "Kingston Freeport"],
-    "Montego Bay Freeport": ["Montego Bay Freeport", "Montego Bay port"], "Port of Spain": ["Port of Spain port"],
-    "Caucedo (DR)": ["Caucedo"], "Freeport (Bahamas)": ["Freeport Container Port", "Grand Bahama port"],
-    "Colon / Manzanillo (Panama)": ["Colon Free Zone", "Manzanillo International Terminal", "port of Colon"],
-    "Cartagena (Colombia)": ["port of Cartagena", "Cartagena port"], "Buenaventura (Colombia)": ["Buenaventura"],
-    "Santa Marta (Colombia)": ["port of Santa Marta"], "Guayaquil (Ecuador)": ["port of Guayaquil", "Guayaquil port"],
-    "Santos (Brazil)": ["port of Santos", "Santos port"], "Manzanillo (Mexico)": ["port of Manzanillo"],
-    "Lazaro Cardenas (Mexico)": ["Lazaro Cardenas"], "Port Everglades (US)": ["Port Everglades"],
-    "PortMiami (US)": ["PortMiami", "Port of Miami"], "Rotterdam": ["port of Rotterdam", "Rotterdam port"],
-    "Antwerp": ["port of Antwerp", "Antwerp port"], "Algeciras": ["Algeciras"], "Valencia": ["port of Valencia"],
-    "Le Havre": ["Le Havre"], "Hamburg": ["port of Hamburg"], "Gioia Tauro": ["Gioia Tauro"],
-    "Felixstowe": ["Felixstowe"], "Southampton": ["port of Southampton"], "Tema (Ghana)": ["Tema port", "port of Tema"],
-    "Apapa / Tin Can (Lagos)": ["Apapa", "Tin Can Island"], "Durban": ["port of Durban", "Durban harbour"],
-    "Mombasa": ["port of Mombasa"],
-}
+from .ports import PORTS as _PORT_LIST
+# seaports: "Kingston (JMKIN)" -> the words that name the port in a report (see watch/ports.py)
+def port_label(p):
+    return p["name"].replace(" (", ", ").rstrip(")") + f" ({p['code']})"
+
+
+PORTS = {port_label(p): p["words"] for p in _PORT_LIST}
+# names used before the world port list (kept in older article facts) -> the current label
+_OLD_PORT = {}
+for _p in _PORT_LIST:
+    for _w in [_p["name"].split(" (")[0].split(" / ")[0]] + _p["words"]:
+        _OLD_PORT.setdefault(extract.fold(_w), port_label(_p))
+
+
+def norm_ports(names):
+    out = []
+    for n in names or []:
+        if n in PORTS:
+            out.append(n)
+            continue
+        base = extract.fold(n.split(" (")[0].split(" / ")[0])
+        out.append(_OLD_PORT.get(base, n))
+    return list(dict.fromkeys(out))
 CROSSINGS = {
     "Darien Gap (Colombia–Panama)": ["Darien Gap", "Darien", "Darién"], "US–Mexico border": ["southern border", "US-Mexico border",
     "U.S.-Mexico border", "Rio Grande", "El Paso", "San Ysidro", "Tijuana"], "Ceuta / Melilla": ["Ceuta", "Melilla"],
@@ -195,13 +221,22 @@ COUNTRY_NAMES = {extract.fold(a) for name, al in COUNTRIES.items() for a in al i
                 {extract.fold(n) for n in COUNTRIES}
 
 
+_HIT_RE = {}
+
+
 def _hits(table, text):
+    """Names from a place table whose words appear in the text (one compiled pattern per table, for speed)."""
+    key = id(table)
+    if key not in _HIT_RE:
+        index = {}
+        for name, words in table.items():
+            for w in words:
+                index.setdefault(extract.fold(w), name)
+        alts = sorted(index, key=len, reverse=True)
+        _HIT_RE[key] = (re.compile(r"(?<!\w)(" + "|".join(re.escape(a) for a in alts) + r")(?!\w)"), index)
+    rx, index = _HIT_RE[key]
     folded = extract.fold(text)
-    out = []
-    for name, words in table.items():
-        if any(re.search(r"(?<!\w)" + re.escape(extract.fold(w)) + r"(?!\w)", folded) for w in words):
-            out.append(name)
-    return out
+    return list(dict.fromkeys(index[m.group(1)] for m in rx.finditer(folded)))
 
 
 def cities(text):
@@ -333,7 +368,7 @@ def apply_review(ev, reviews):
             ev["tags"] = [x for x in ev.get("categories", []) if x != ev.get("primary_category")]
             ev["groups"] = extract.groups_of(ev.get("categories", []))
     else:
-        ev["review_status"] = "Awaiting review" if (ev.get("level") == "High" or ev.get("home")) else "Automatically collected"
+        ev["review_status"] = "Awaiting review" if (ev.get("level") == "High" or ev.get("home") or ev.get("outcome_note")) else "Automatically collected"
 
 
 _STOP = set("the a an of in on at to for and or with by from as is are was were be been after over into its their his her new "
@@ -391,9 +426,13 @@ def build(ev, site, reviews):
         ev["event_date"], ev["event_date_quality"] = art["event_date"], art["event_date_quality"]
     else:
         ev["event_date"], ev["event_date_quality"] = event_date(text, ev.get("date", ""))
-    ev["location"] = art.get("location") or location(text)
+    ev["location"] = dict(art.get("location") or location(text))
+    ev["location"]["ports"] = norm_ports(ev["location"].get("ports"))
     ev["transport_mode"] = art.get("transport") or transport_mode(text)
-    ev["outcome"] = (art.get("outcome") or outcome(text)) if ev.get("kind") == "Incident" else ""
+    ev["outcome"], ev["outcome_note"] = "", ""
+    if ev.get("kind") == "Incident":
+        art_out = outcome(art["lead"]) if art.get("lead") and art.get("outcome") in ("Sentenced", "Convicted", "Acquitted") else art.get("outcome")
+        ev["outcome"], ev["outcome_note"] = check_outcome(ev.get("title", ""), art_out or outcome(text))
     ev["agencies"] = art.get("agencies") or []
     ev["summary_text"] = art.get("summary_text") or ev.get("summary", "")
     ev["caribbean_connection"], ev["jamaica_connection"] = connections(ev, site)
@@ -425,6 +464,11 @@ def build(ev, site, reviews):
     j["text"] = journey.describe(j)
     ev["journey"] = j
     _seizure(ev, art, text)
+    if "insider_roles" not in ev and ev.get("kind") == "Incident":
+        from . import seizure as _sz
+        roles = _sz.insider_roles(text)
+        if roles:
+            ev["insider_roles"] = roles      # staff named as involved, for any incident (corruption, smuggling...)
     from . import sources
     sources.panel(ev)
     ev["uncertainty"] = ([ev["review_uncertainty"]] if ev.get("review_uncertainty") else []) + sources.uncertainty(ev)
@@ -444,6 +488,8 @@ def _seizure(ev, art, text):
     ev.pop("seizures", None)
     ev.pop("concealment_types", None)
     ev.pop("cover_goods", None)
+    ev.pop("insider_roles", None)
+    ev.pop("substances", None)
     ev["specialist"] = [s for s in ev.get("specialist", []) if s[0] != "Seizure"]
     if ev.get("kind") != "Incident" or not set(ev.get("categories", [])) & SEIZURE_TOPICS:
         return
@@ -465,10 +511,39 @@ def _seizure(ev, art, text):
         goods = seizure.cover_goods(" ".join([rows[r["Declared commodity"]][1], rows[r["Concealment method"]][1],
                                               seizure._cover_zone(seizure.fold(text))]))
         rows[r["Cover load / goods used as cover"]][1] = "; ".join(f"{w} ({n})" for n, w in goods)
+    if not full.get("Insider signal (staff named as involved)"):
+        rows[r["Insider signal (staff named as involved)"]][1] = "; ".join(seizure.insider_roles(text))
+    ev["insider_roles"] = [x for x in rows[r["Insider signal (staff named as involved)"]][1].split("; ") if x]
+    ev["substances"] = list(dict.fromkeys(re.sub(r"^Suspected ", "", x).capitalize() if x.startswith("Suspected ") else x
+                                          for x in rows[r["Substance / item (as reported)"]][1].split("; ") if x))
     ev["concealment_types"] = [x for x in rows[r["Concealment category"]][1].split("; ") if x]
     ev["cover_goods"] = [x.rsplit(" (", 1)[1].rstrip(")") for x in rows[r["Cover load / goods used as cover"]][1].split("; ") if " (" in x]
     ev["specialist"].insert(0, ["Seizure", rows])
     ev["seizures"] = art.get("seizures") if art.get("seizure_rows") is not None else qs
+    pick_main_quantities(ev)
+
+
+def pick_main_quantities(ev):
+    """Only one figure per substance and unit counts in the seizure totals: the one in the headline if the headline
+    gives one, otherwise the first figure that is not background (a yearly total, an earlier case). Updates (policy,
+    statistics) add nothing to the totals."""
+    from . import seizure
+    qs = ev.get("seizures") or []
+    head = {(q["substance"], q["std_unit"]): q["std_qty"] for q in seizure.quantities(ev.get("title", ""), ev.get("lang") or "en")
+            if not q["background"]}
+    old = (ev.get("title", "").lower().startswith("archived") or
+           bool(re.search(r"\b(?:ja teve|ja foram|ja apreend\w*|has had|have had)\b", extract.fold(ev.get("title", "")))))
+    done = set()
+    for q in qs:
+        k = (q.get("substance"), q.get("std_unit"))
+        bg = q.get("background", False)
+        if k in head:
+            ok = abs(q.get("std_qty", 0) - head[k]) < 0.01
+        else:
+            ok = not bg
+        q["main"] = bool(ok and ev.get("kind") == "Incident" and not old and q.get("substance") != "Not reported" and k not in done)
+        if q["main"]:
+            done.add(k)
 
 
 def _specialist(ev, art, text):

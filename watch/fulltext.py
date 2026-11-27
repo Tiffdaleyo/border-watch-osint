@@ -122,7 +122,7 @@ def article_facts(ev, text, risk_words, focus):
         "summary_text": lead(text, limit=520),
         "exploitation": record.exploitation(text[:4000]),
         "victim_assistance": record.victim_assistance(text[:4000]),
-        "v": 4,
+        "v": 5,
         "sentence": (lambda m: f"{m.group(1)} {m.group(2)}" if m else "")(_SENT_RE.search(text)),
     }
     # specialist details from the full text (the article text itself is never stored)
@@ -150,7 +150,10 @@ def apply_article(ev):
         ev[k] = list(dict.fromkeys((ev.get(k) or []) + [x for x in a.get(k, []) if x not in (ev.get(k) or [])]))
     ev["categories"] = sorted(ev["categories"])
     for k in ("documents_count", "people_count", "weight_kg"):
-        ev[k] = max(ev.get(k) or 0, a.get(k) or 0)
+        v = a.get(k) or 0
+        if k != "weight_kg" and a.get("v", 1) < 5 and v >= 1000:
+            v = 0          # read before money was told apart from counts: a figure this big was usually a sum of money
+        ev[k] = max(ev.get(k) or 0, v)
     if not ev.get("origin") and a.get("origin"):
         ev["origin"] = a["origin"]
     if not ev.get("destination") and a.get("destination"):
@@ -168,7 +171,7 @@ def read_articles(events, cfg, risk_words, focus, budget_minutes=8, limit=400, w
     # unread reports, plus reports read before the fuller record existed (version 1), read again once
     todo = [e for e in events if e.get("date", "") >= cutoff and "example.org" not in e.get("url", "") and not e.get("title_only")
             and (not (e.get("article") or {}).get("tried")
-                 or ((e.get("article") or {}).get("read") and (e.get("article") or {}).get("v", 1) < 4))]
+                 or ((e.get("article") or {}).get("read") and (e.get("article") or {}).get("v", 1) < 5))]
     if only_direct:      # skip Google News links (used when Google is limiting requests)
         todo = [e for e in todo if "news.google.com" not in e.get("url", "")]
     todo.sort(key=lambda e: (bool((e.get("article") or {}).get("tried")), not e.get("home"), not e.get("region"), e.get("kind") == "Update", e.get("date", "")), reverse=False)

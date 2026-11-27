@@ -429,12 +429,35 @@ _PEOPLE_COUNT_RE = re.compile(_NUM + r"\s+(?:\w+\s+){0,2}?(?:migrants?|people|pe
                               r"etrangers|pessoas?|homens|mulheres|estrangeiros)(?!\w)")
 
 
+_MONEY_BEFORE = re.compile(r"(?:[$€£¥₦₹]|us\$|j\$|r\$|c\$|tt\$|rs\.?|usd|eur|gbp|jmd|cad|sar|aed|inr|ngn|mxn|php|"
+                           r"rp|ksh|ghs|zar|cop|brl|ars)\s?$")
+_MONEY_BETWEEN = re.compile(r"\b(?:riyals?|dollars?|euros?|pounds? sterling|naira|rupees?|pesos?|reais|dirhams?|shillings?|"
+                            r"cedis?|rand|yuan|yen|francs?|usd|eur|gbp|jmd|worth|per|each|a head|for|fees?|paid|"
+                            r"cost|price|bribes?|in cash|million|billion|thousand|lakh|crore|mil|millones)\b")
+_MODEL_BEFORE = re.compile(r"(?:ak|ar|m|g|mp|sks|fn|cz|rpk|pkm|vz|type)[-\s]?$")
+
+
 def find_count(rx, text):
+    """The largest count of documents or people named in the text. Money is never a count: a number right after a
+    currency sign or code ("€22,000 for fake passports", "$21,000 per person"), or with a money word between the
+    number and the item, is skipped, and so is a weapon model number ("AK-47")."""
     best = 0
-    for m in rx.finditer(fold(text)):
+    t = fold(text)
+    pos = 0
+    while True:
+        m = rx.search(t, pos)
+        if not m:
+            break
+        pos = m.end(1)              # look again right after this number, so "AK-47 rifles and 20 passports" finds 20
         n = _to_int(m.group(1))
-        if 1 < n < 1_000_000 and not (1900 <= n <= 2100):   # skip years like "2026"
-            best = max(best, n)
+        if not (1 < n < 1_000_000) or 1900 <= n <= 2100:      # skip years like "2026"
+            continue
+        before = t[max(0, m.start(1) - 6): m.start(1)]
+        if _MONEY_BEFORE.search(before) or _MODEL_BEFORE.search(before):
+            continue
+        if _MONEY_BETWEEN.search(t[m.end(1): m.end()]) or re.match(r"\s*(?:per|each|a head|for each)\b", t[m.end():]):
+            continue
+        best = max(best, n)
     return best
 
 
@@ -468,6 +491,12 @@ def find_weight_kg(text):
     return round(best, 1)
 
 
+_PERSONAL_BAN_RE = re.compile(r"\b(?:court|judge|magistrate|bail|tribunal|defie[sd]|defying|flees?|fled|plea|request to lift|"
+                              r"bid to lift|lifts? (?:his|her) |(?:his|her) (?:overseas |foreign )?travel ban|"
+                              r"barred from leaving|banned from leaving|surrender(?:ed)? (?:his|her) passport)")
+_GROUP_BAN_RE = re.compile(r"\b(?:nationals|citizens of|countries|proclamation|executive order|travellers from|travelers from)\b")
+
+
 def extract(item, focus_countries=()):
     """item = dict with at least 'title' (and optionally 'summary'). Returns the facts, or None if off-topic."""
     text = f"{item.get('title', '')}. {item.get('summary', '')}"
@@ -490,6 +519,13 @@ def extract(item, focus_countries=()):
     for k in ("Corruption and insider facilitation", "Border technology"):
         if k in cats and len(cats) == 1 and not _STRICT_RE.search(folded):
             cats.pop(k)
+    # a court's travel ban on one person (bail, a politician barred from leaving) is not an entry rule
+    pol = cats.get("Visa and entry policy")
+    if pol and all(w.startswith(("travel ban", "entry ban")) for w in pol) and _PERSONAL_BAN_RE.search(folded) \
+            and not _GROUP_BAN_RE.search(folded):
+        cats.pop("Visa and entry policy")
+        if not cats:
+            return None
     # "Cargo operations" on its own needs something that happened or a crime word
     if set(cats) == {"Cargo operations"} and not actions:
         return None

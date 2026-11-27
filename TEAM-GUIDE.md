@@ -203,9 +203,10 @@ counts are **never added together**, and the old single "weight seized" number h
 reported, not verified. They can include approximate figures or totals quoted in background paragraphs, and the
 table says when they do.
 
-## 7. Risk score
+## 7. Review priority (the score)
 
-Only **incidents** are scored, from 0 to 100. **High** means 40 points or more, and **Medium** means 20 or more.
+On the site this is called **Review priority** (it was "High-risk" before). It tells a reviewer what to look at first;
+it is not a judgement about any person or country. Only **incidents** are scored, from 0 to 100. **High** means 40 points or more, and **Medium** means 20 or more.
 A high score means "worth a closer look", never proof. The score **never** uses nationality (section 5). Click "Why this score"
 on any report to see which indicators it matched.
 
@@ -319,7 +320,7 @@ sits at the top and scrolls sideways.
 
 | Section | What it covers |
 |---|---|
-| **Overview** | Everything in one place: key numbers, a "Sections at a glance" panel (reports, high-risk, last 7 days and Jamaica-linked for each section), the map, the priority feed and the trend lookup |
+| **Overview** | A short summary. It opens on the Caribbean. It shows key numbers (reports collected, reviewed by a person, review priority high, Caribbean, Jamaica, updates, largest seizure total), a "Sections at a glance" panel, the map, the priority feed, activity over time and the latest developments. Detailed charts are inside each section. |
 | **Passports & Documents** | Document & Identity Fraud group |
 | **Immigration & Irregular Movement** | Migration & Facilitation group: irregular movements, smuggling, enforcement, deportations |
 | **Human Trafficking** | Human trafficking only (kept separate from smuggling) |
@@ -371,7 +372,7 @@ smuggling ring appears in both Passports & Documents and Immigration.
   example, "Origin: Jamaica; destination not reported".
 - **Nationality (as stated)** and **Nationality by journey:** see the nationality rules in section 5.
 - **Priority feed:** high-risk incidents and anything naming Jamaica.
-- **Trend lookup** (Overview, Immigration, Trafficking, Passports): research a route (origin → destination) with
+- **Trend lookup** (Immigration, Trafficking, Passports): research a route (origin → destination) with
   live news-index results and ready-made searches.
 - **All reports:** a sortable table. Click **Full record** for every field, including specialist fields. Click
   **Why this score** to see the indicators matched.
@@ -449,12 +450,34 @@ simply sends nothing.
 **Note:** alerts and the bulletin come from public news and are leads to verify. Don't reply to them with case
 details.
 
+## 11b. Data quality rules (added after an outside review, 27 Nov 2026)
+
+- **Money is never a count.** "11,500 riyal work visa", "€22,000 for fake passports" and "$21,000 per person" are
+  sums of money, so they are not counted as documents or people. Weapon models ("AK-47", "M-16", "Glock 19") are not
+  counted as firearms.
+- **Repeat coverage is one event.** When several outlets report the same case within 4 days (same kind of event,
+  same numbers, same countries, several distinctive headline words in common), the earliest report keeps its
+  Event ID and the others become extra sources. Their old Event IDs still find it in the search box. Cases reported
+  in two languages are not always matched; tell the maintainer if you spot one.
+- **Charged is not convicted.** Phrases like "if convicted" or "faces up to 10 years" are ignored. If the headline
+  says charged or arrested but the article text says convicted or sentenced, the headline's stage is shown and the
+  report is marked **Awaiting review** with the note "Outcome needs checking".
+- **A court's travel ban on one person is not an entry rule.** Bail conditions or a politician barred from leaving
+  their country are no longer filed under Visa and entry rules. Bans on nationals of whole countries still are.
+- **Comparisons need history.** The "vs previous 90 days" line only shows when collection covered the whole earlier
+  period. Until then the cards say **Insufficient comparison history**.
+- **Seizure totals are unverified.** For each report, one figure per substance is added: the headline figure if there
+  is one, otherwise the first figure that is not background. Background means yearly totals, earlier cases, whole
+  operations or "since January" figures. The same large figure reported again within 30 days (other languages,
+  follow-ups) counts once. Archived pages add nothing. The totals are indications, never official statistics.
+- **Reviewed vs collected.** The "Reviewed by a person" card counts events marked reviewed or corrected in
+  `reviews.yaml`. Everything else is collected automatically and should be treated as a lead.
+
 ## 12. Known limits
 
 - It works by **word matching, not AI**. Expect some off-topic items and some misses. Use `excluded`, and tell the
   maintainer which words cause trouble.
-- **Weights** are the first weight the article mentions. An article that reports a yearly total can inflate the
-  "weight seized" figure.
+- **Weights and seizure totals** follow the rules in section 11b. Some background figures can still slip through.
 - **Event dates, transport mode, outcomes and specialist fields** depend on the full article. Paywalled or blocked
   sites cannot be read, so those reports show more "Not reported".
 - **Google News and GDELT** sometimes limit requests. On a busy day, some searches are skipped and caught up the
@@ -531,3 +554,5 @@ Privacy rules are in `watch/privacy.py`.
 | 2026-11-26 | Light theme by default, with a Light / Dark button that each device remembers. |
 | 2026-11-26 | Side menu on the left. Big **Any selector** box that searches the reports, detects the selector type and opens it in the Investigation Desk. **Investigation tools** link to the LE OSINT Framework's Investigation Desk (its own site, credited): flow chart, any-selector run sheet, world ports and UN/LOCODE, flight tracker, shipping lines, air cargo, visas, HS codes, precursors, playbooks, toolbox. |
 | 2026-11-27 | Concealment and cover loads recorded in standard categories on every seizure, with charts, filters and a weekly concealment trend in the Seizures section, and columns in the CSV. |
+| 2026-11-27 | Data-quality fixes: money and weapon models no longer read as counts; repeat coverage grouped into one event (about 730 repeats merged); charged vs convicted conflicts flagged; personal court travel bans out of policy; "Insufficient comparison history"; seizure totals audited and labelled unverified (cocaine fell from 354 t to about 70 t). |
+| 2026-11-27 | Presentation: the site opens on the Caribbean (World and Jamaica one click away); "High-risk" renamed "Review priority"; shorter Overview (key numbers, map, priority feed, latest developments, section tiles), with detailed charts inside each section; new "Reviewed by a person" card next to "Reports collected". |

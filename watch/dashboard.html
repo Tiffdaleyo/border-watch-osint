@@ -121,7 +121,7 @@
   .head { display:flex; justify-content:space-between; align-items:flex-start; gap:8px; flex-wrap:wrap; }
   .chart { width:100%; }
 
-  .kpis { display:grid; grid-template-columns:repeat(6,1fr); gap:14px; margin-bottom:14px; }
+  .kpis { display:grid; grid-template-columns:repeat(7,1fr); gap:10px; margin-bottom:14px; }
   .kpi { background:var(--panel); border:1px solid var(--line); border-radius:var(--r); padding:14px 16px; cursor:pointer; text-align:left; color:inherit; font:inherit; transition:border-color .15s, transform .15s; }
   .kpi:hover { border-color:var(--c); transform:translateY(-1px); }
   .kpi.on { border-color:var(--c); box-shadow:inset 0 0 0 1px var(--c); }
@@ -146,6 +146,21 @@
   .empty { color:var(--dim); font-size:13px; padding:10px 0; }
 
   .mapbtns { display:flex; gap:6px; }
+  .mapwrap { position:relative; }
+  .mappop { position:absolute; top:8px; right:8px; width:min(420px, 92%); max-height:calc(100% - 16px); overflow:auto; z-index:5;
+            background:var(--panel); border:1px solid var(--line); border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,.18); padding:12px 14px; }
+  .mappop .ph { display:flex; justify-content:space-between; align-items:flex-start; gap:8px; margin-bottom:6px; }
+  .mappop .ph b { font-size:15px; } .mappop .ph .n { color:var(--muted); font-size:12.5px; }
+  .mappop .ph button.x { background:none; border:0; font-size:20px; color:var(--muted); cursor:pointer; line-height:1; }
+  .mappop .acts { display:flex; gap:6px; flex-wrap:wrap; margin:0 0 8px; }
+  .mappop .acts button { background:var(--panel2); border:1px solid var(--line); color:var(--ink); border-radius:8px; padding:3px 9px; cursor:pointer; font-size:12px; }
+  .mappop ul { list-style:none; margin:0; padding:0; }
+  .mappop li { padding:8px 0; border-top:1px solid var(--line); font-size:13px; }
+  .mappop li .m { font-size:11.5px; color:var(--muted); margin-top:2px; display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+  .mappop li a.open { color:var(--accent); font-weight:600; }
+  .mappop li a.rec { color:var(--accent); cursor:pointer; }
+  .maplegend { font-size:12px; color:var(--muted); margin-top:8px; display:flex; gap:14px; flex-wrap:wrap; align-items:center; }
+  .maplegend i { display:inline-block; width:11px; height:11px; border-radius:50%; vertical-align:-1px; margin-right:5px; }
   .mapbtns button { background:var(--panel2); border:1px solid var(--line); color:var(--muted); border-radius:8px; padding:4px 10px; cursor:pointer; font-size:12px; }
   .mapbtns button:hover { color:var(--ink); }
 
@@ -200,7 +215,7 @@
   footer { max-width:1480px; margin:0 auto; padding:0 22px 30px; font-size:11.5px; color:var(--dim); }
 
   @media (max-width:1150px) {
-    .kpis { grid-template-columns:repeat(3,1fr); }
+    .kpis { grid-template-columns:repeat(4,1fr); }
     .s4, .s5 { grid-column:span 6; } .s7, .s8 { grid-column:span 12; }
   }
   @media (max-width:1150px) { .glance { grid-template-columns:repeat(2,1fr); } }
@@ -260,7 +275,7 @@
     <button data-v="7">7d</button><button data-v="30">30d</button><button data-v="90" class="on">90d</button><button data-v="0">All</button>
   </div>
   <div class="seg" id="scope">
-    <button data-v="" class="on">World</button><button data-v="region">__REGION__</button><button data-v="home">__HOME__</button>
+    <button data-v="region" class="on">__REGION__</button><button data-v="">World</button><button data-v="home">__HOME__</button>
   </div>
   <select id="fgroup"><option value="">All areas</option></select>
   <select id="ftopic"><option value="">All topics</option></select>
@@ -269,13 +284,13 @@
   <select id="fmode"><option value="">All transport</option></select>
   <select id="fsrc"><option value="">News + official</option><option value="official">Official releases only</option><option value="news">News only</option></select>
   <select id="freview"><option value="">Any review status</option></select>
-  <select id="flevel"><option value="">Incidents + updates</option><option value="Incident">Incidents only</option><option>High</option><option>Medium</option><option>Low</option><option value="Update">Updates only</option></select>
+  <select id="flevel"><option value="">Incidents + updates</option><option value="Incident">Incidents only</option><option value="High">Priority: high</option><option value="Medium">Priority: medium</option><option value="Low">Priority: low</option><option value="Update">Updates only</option></select>
   <button class="reset" id="reset">Reset</button>
 </div></div>
 
 <div class="wrap">
   <div id="demo" class="demo" hidden><b>Demo data.</b> Everything below is invented to show how the dashboard works. Real results replace it after the first daily run.</div>
-  <p class="note"><b>Unofficial project, open-source news only.</b> Not a government service and not linked to any agency's official systems. Items are found automatically and are leads to verify against the original article and official sources. Risk scores flag what is worth a closer look; they are not evidence and never reflect nationality. Click any bar or map bubble to filter the whole dashboard.</p>
+  <p class="note"><b>Unofficial project, open-source news only.</b> Not a government service and not linked to any agency's official systems. Items are found automatically and are leads to verify against the original article and official sources. Review priority flags what is worth a closer look; they are not evidence and never reflect nationality. Click any bar or map bubble to filter the whole dashboard.</p>
 
   <div class="shead"><div><h2 id="stitle"></h2><p id="sdesc"></p></div>
     <div class="acts"><button id="dlcsv" title="Spreadsheet of every report in this view">⬇ Download this view (CSV)</button>
@@ -290,16 +305,19 @@
       <div class="glance" id="glance"></div>
     </section>
     <section class="card s8">
-      <div class="head"><div><h2>Where it is happening</h2><div class="sub">Bubble size = reports naming the country · red pulse = has high-risk incidents</div></div>
+      <div class="head"><div><h2>Where it is happening</h2><div class="sub">Bubble size = reports naming the country · red pulse = has high review-priority incidents</div></div>
         <div class="mapbtns"><button id="mWorld">World</button><button id="mCar">__REGION__</button></div></div>
-      <div id="map" class="chart" style="height:430px"></div>
+      <div class="mapwrap"><div id="map" class="chart" style="height:430px"></div><div class="mappop" id="mappop" hidden></div></div>
+      <div class="maplegend"><span><i style="background:rgba(51,140,237,.85)"></i>reports naming the country</span>
+        <span><i style="background:rgba(235,98,99,.9);box-shadow:0 0 0 3px rgba(235,98,99,.25)"></i>has high review-priority incidents</span>
+        <span>bigger bubble = more reports</span><span><b>Click a bubble or a country</b> to list its stories · scroll to zoom · drag to move</span></div>
     </section>
     <section class="card s4">
-      <h2>Priority feed</h2><div class="sub">High-risk incidents and anything naming __HOME__</div>
+      <h2>Priority feed</h2><div class="sub">High review-priority incidents and anything naming __HOME__</div>
       <ul class="feed" id="priority"></ul>
     </section>
 
-    <section class="card s12" id="lookup" data-sec="overview migration trafficking documents">
+    <section class="card s12" id="lookup" data-sec="migration trafficking documents">
       <div class="head"><div><h2>Trend lookup</h2><div class="sub">Research a travel route: what open sources say about movement from one country to another, the routes used, visa rules, and smuggling or document facilitation.</div></div></div>
       <div class="lk-form">
         <label>From (origin country)<select id="lkFrom"></select></label>
@@ -318,42 +336,48 @@
       <div id="trend" class="chart" style="height:300px"></div>
     </section>
     <section class="card s4" data-sec="overview">
-      <h2>Risk mix by main group</h2><div class="sub">By primary category · click a group to filter</div>
+      <h2>Latest developments</h2><div class="sub">Newest reports in the selected area · the detailed charts are inside each section</div>
+      <ul class="feed" id="latest" style="max-height:300px"></ul>
+    </section>
+    <section class="card s4" data-sec="documents migration trafficking citizenship border seizures policy official">
+      <h2>Review priority by main group</h2><div class="sub">By primary category · click a group to filter</div>
       <div id="riskmix" class="chart" style="height:300px"></div>
     </section>
 
-    <section class="card s5">
+    <section class="card s5" data-sec="documents migration trafficking citizenship border seizures policy official">
       <h2>Topics</h2><div class="sub">Coloured by main group · a report can carry several topics · click to filter</div>
       <div id="topics" class="chart" style="height:420px"></div>
     </section>
-    <section class="card s7">
+    <section class="card s7" data-sec="documents migration trafficking citizenship border seizures policy official">
       <h2>Countries named</h2><div class="sub">Top 15 · green = __REGION__ · click to filter</div>
       <div id="countries" class="chart" style="height:420px"></div>
     </section>
 
-    <section class="card s8" data-sec="overview documents migration trafficking seizures border">
+    <section class="card s8" data-sec="documents migration trafficking seizures border">
       <div class="head"><div><h2>Reported journeys</h2><div class="sub">● origin · ◆ transit · ▲ intended destination · 📍 interception. A line shows a connection the report states between two places, not an actual flight or sailing path. Line width = number of reports.</div></div>
         <div class="mapbtns"><button id="jWorld">World</button><button id="jCar">__REGION__</button></div></div>
-      <div id="jmap" class="chart" style="height:420px"></div>
+      <div class="mapwrap"><div id="jmap" class="chart" style="height:420px"></div><div class="mappop" id="jpop" hidden></div></div>
+      <div class="maplegend"><span>● origin</span><span>◆ transit</span><span>▲ intended destination</span><span>📍 interception</span>
+        <span>line = a connection the report states, not the actual path</span><span><b>Click a marker</b> to list its stories</span></div>
     </section>
-    <section class="card s4" data-sec="overview documents migration trafficking seizures border">
+    <section class="card s4" data-sec="documents migration trafficking seizures border">
       <h2>Journeys</h2><div class="sub">As reported · incomplete journeys say what is missing · click to search</div>
       <div id="routes" class="chart" style="height:420px"></div>
     </section>
 
-    <section class="card s4" data-sec="overview documents migration trafficking citizenship">
-      <h2>Nationality (as stated)</h2><div class="sub">Only when the article says it in words · never inferred · not used in the risk score · click to filter</div>
+    <section class="card s4" data-sec="documents migration trafficking citizenship">
+      <h2>Nationality (as stated)</h2><div class="sub">Only when the article says it in words · never inferred · not used in the review priority · click to filter</div>
       <div id="nats" class="chart" style="height:340px"></div>
     </section>
-    <section class="card s8" data-sec="overview documents migration trafficking">
+    <section class="card s8" data-sec="documents migration trafficking">
       <h2>Nationality by journey</h2><div class="sub">Reports that state both a nationality and a journey · darker = more reports</div>
       <div id="natroute" class="chart" style="height:340px"></div>
     </section>
 
-    <section class="card s7" data-sec="overview seizures border">
+    <section class="card s7" data-sec="seizures border">
       <h2>Seizures &amp; contraband</h2><div class="sub">Drugs, firearms, cash, wildlife and cargo incidents · totals by substance and unit · open "Full record" for seizure details</div>
       <table class="mini" id="sztotals" style="margin:4px 0 8px"></table>
-      <div class="sub">Each substance and unit is totalled separately (kg, litres, tablets, plants and counts are never added together). Figures are as reported, not verified.</div>
+      <div class="sub"><b>Unverified totals.</b> One figure per report is added (the headline figure where there is one), and the same large figure reported again within 30 days counts once; background figures such as yearly totals, earlier cases or whole operations are left out, and repeat coverage of one case is grouped first, though some repeats may remain. Each substance and unit is totalled separately. Use these as indications, not official statistics.</div>
       <ul class="feed" id="szfeed" style="max-height:300px"></ul>
     </section>
     <section class="card s6" data-sec="seizures">
@@ -368,16 +392,16 @@
       <h2>Concealment trends</h2><div class="sub">Seizures per <span id="cunit">week</span> by concealment method (top 6) · watch for a method that is rising</div>
       <div id="ctrend" class="chart" style="height:300px"></div>
     </section>
-    <section class="card s5" data-sec="overview documents migration trafficking seizures border">
+    <section class="card s5" data-sec="documents migration trafficking seizures border">
       <h2>Transport mode</h2><div class="sub">As stated in the report · click to filter</div>
       <div id="modes" class="chart" style="height:330px"></div>
     </section>
 
-    <section class="card s4" data-sec="overview documents border seizures">
+    <section class="card s4" data-sec="documents border seizures">
       <h2>Airports named</h2><div class="sub">Top 10</div>
       <div id="airports" class="chart" style="height:330px"></div>
     </section>
-    <section class="card s4" data-sec="overview policy citizenship official">
+    <section class="card s4" data-sec="policy citizenship official">
       <h2>Policy &amp; systems</h2><div class="sub">Visa requirements, entry rules, travel authorisations, border technology, health entry rules</div>
       <ul class="feed" id="polfeed" style="max-height:330px"></ul>
     </section>
@@ -385,21 +409,21 @@
       <h2>Who published</h2><div class="sub">Agencies, embassies and high commissions · click to search</div>
       <div id="pubs" class="chart" style="height:330px"></div>
     </section>
-    <section class="card s4" data-sec="overview">
+    <section class="card s4" data-sec="documents migration trafficking citizenship border seizures policy official">
       <h2>Watch list hits</h2><div class="sub">Terms on the watch list in config.yaml</div>
       <ul class="feed" id="watch" style="max-height:330px"></ul>
     </section>
 
     <section class="card s12">
       <div class="head"><div><h2>All reports</h2><div class="sub" id="shown"></div></div>
-        <div class="dl"><select id="fsort"><option value="region">__REGION__ first</option><option value="date">Newest first</option><option value="risk">Highest risk first</option></select>
+        <div class="dl"><select id="fsort"><option value="region">__REGION__ first</option><option value="date">Newest first</option><option value="risk">Review priority first</option></select>
           <a href="events.csv">⬇ CSV</a><a href="bulletin.html">Weekly bulletin</a></div></div>
-      <div class="tablewrap"><table class="rep"><thead><tr><th>Published</th><th>Risk</th><th>Report</th><th class="hide-m">Topics</th><th class="hide-m">Places</th></tr></thead><tbody id="rows"></tbody></table></div>
+      <div class="tablewrap"><table class="rep"><thead><tr><th>Published</th><th>Priority</th><th>Report</th><th class="hide-m">Topics</th><th class="hide-m">Places</th></tr></thead><tbody id="rows"></tbody></table></div>
     </section>
   </div>
 
   <details class="about card">
-    <summary>About the data: how the risk score works, and this week compared with usual</summary>
+    <summary>About the data: how the review priority works, and this week compared with usual</summary>
     <p class="note" style="margin-top:10px">Only incidents (crimes) are scored; policy, security and deportation news is shown as “Update”. __BANDS__</p>
     <table class="mini" id="method"></table>
     <table class="mini" id="trends" style="margin-top:16px"></table>
@@ -421,7 +445,7 @@ const gi = name => GROUPS.findIndex(g => g[0] === name);
 const groupOf = e => topicGroup[e.primary_category] ?? Math.min(...e.categories.map(c => topicGroup[c] ?? 5));
 /* sections: each page of the site is one view of the same reports */
 const SECTIONS = [
-  {id: "overview", label: "Overview", desc: "Everything in one place: the latest high-risk and __HOME__-linked reports, and a summary of every section. Open a section above to see only that subject."},
+  {id: "overview", label: "Overview", desc: "A short summary: key numbers, the map, the latest developments and a tile for every section. Starts on __REGION__; switch to World or __HOME__ at the top. Detailed charts are inside each section. Open a section above to see only that subject."},
   {id: "documents", label: "Passports & Documents", group: "Document & Identity Fraud", desc: "Forged, fraudulent, altered or misused passports, visas, permits and identity documents; impostors (look-alike use of a genuine document); fake supporting documents; digital identity fraud."},
   {id: "migration", nav: "Immigration", label: "Immigration & Irregular Movement", group: "Migration & Facilitation", desc: "Irregular movements and interceptions, migrant smuggling, immigration enforcement, deportations and returns."},
   {id: "trafficking", nav: "Trafficking", label: "Human Trafficking", group: "Human Trafficking", desc: "Human trafficking and exploitation, kept separate from migrant smuggling. Victims are never named."},
@@ -457,14 +481,14 @@ const ev = DATA.events.map(e => ({tags: [], related: [], home: false, region: fa
   groups: GROUPS.filter(([g, ts]) => e.categories.some(c => ts.includes(c))).map(g => g[0]), g: groupOf(e)}));
 
 /* filters: every chart, list and number below follows these */
-const F = {section: "overview", sub: "", conceal: "", cover: "", period: 90, scope: "", group: "", topic: "", country: "", nat: "", level: "", mode: "", review: "", src: "", q: ""};
+const F = {section: "overview", sub: "", conceal: "", cover: "", period: 90, scope: "region", group: "", topic: "", country: "", nat: "", level: "", mode: "", review: "", src: "", q: ""};
 const jText = e => (e.journey || {}).text || "";
 GROUPS.forEach(([g], i) => $("fgroup").add(new Option(g, i)));
 [...new Set(ev.flatMap(e => e.categories))].sort().forEach(v => $("ftopic").add(new Option(v, v)));
 [...new Set(ev.flatMap(e => e.countries))].sort().forEach(v => $("fcountry").add(new Option(v, v)));
 [...new Set(ev.flatMap(e => e.nationality || []))].sort().forEach(v => $("fnat").add(new Option(v, v)));
 ["Air passenger", "Air cargo", "Maritime cargo", "Small vessel", "Land", "Postal / courier", "Mixed", "Not reported"].forEach(v => $("fmode").add(new Option(v, v)));
-["Automatically collected", "Awaiting review", "Reviewed", "Corrected"].forEach(v => $("freview").add(new Option(v, v)));
+["Automatically collected", "Awaiting review", "Reviewed", "Corrected"].forEach(v => $("freview").add(new Option(v, v))); $("freview").add(new Option("Reviewed or corrected", "__reviewed"));
 const byEid = Object.fromEntries(ev.map(e => [e.event_id, e]));
 
 function segment(id, key) {
@@ -482,16 +506,16 @@ $("fmode").onchange = e => { F.mode = e.target.value; update(); };
 $("fnat").onchange = e => { F.nat = e.target.value; update(); };
 $("fsrc").onchange = e => { F.src = e.target.value; update(); };
 $("freview").onchange = e => { F.review = e.target.value; update(); };
-function findEvent(id) { F.q = id.toLowerCase(); $("q").value = id; F.period = 0;
+function findEvent(id) { F.q = id.toLowerCase(); $("q").value = id; F.period = 0; setScope("");
   document.querySelectorAll("#period button").forEach(b => b.classList.toggle("on", b.dataset.v === "0")); update();
   document.querySelector(".tablewrap").scrollIntoView({behavior: "smooth"}); }
 $("q").oninput = e => { F.q = e.target.value.toLowerCase(); update(); };
 $("fsort").onchange = () => renderTable(current);
 $("reset").onclick = () => {
-  Object.assign(F, {sub: "", conceal: "", cover: "", period: 90, scope: "", group: "", topic: "", country: "", nat: "", level: "", mode: "", review: "", src: "", q: ""});
+  Object.assign(F, {sub: "", conceal: "", cover: "", period: 90, scope: "region", group: "", topic: "", country: "", nat: "", level: "", mode: "", review: "", src: "", q: ""});
   ["fgroup", "ftopic", "fcountry", "fnat", "flevel", "fmode", "freview", "fsrc"].forEach(id => $(id).value = ""); $("q").value = "";
   document.querySelectorAll("#period button").forEach(b => b.classList.toggle("on", b.dataset.v === "90"));
-  document.querySelectorAll("#scope button").forEach(b => b.classList.toggle("on", b.dataset.v === ""));
+  document.querySelectorAll("#scope button").forEach(b => b.classList.toggle("on", b.dataset.v === "region"));
   update();
 };
 const setFilter = (key, val, sel) => { F[key] = F[key] === String(val) ? "" : String(val); if (sel) $(sel).value = F[key]; update(); };
@@ -505,8 +529,8 @@ function filtered(ignorePeriod, ignoreSection, ignoreTopic) {
     && (ignoreTopic || !F.topic || e.categories.includes(F.topic))
     && (!F.conceal || (e.concealment_types || []).includes(F.conceal)) && (!F.cover || (e.cover_goods || []).includes(F.cover)) && (!F.country || e.countries.includes(F.country))
     && (!F.level || e.level === F.level || e.kind === F.level)
-    && (!F.nat || (e.nationality || []).includes(F.nat)) && (!F.src || (F.src === "official") === !!e.official) && (!F.mode || modeKey(e.transport_mode) === F.mode) && (!F.review || e.review_status === F.review)
-    && (!F.q || (e.event_id + " " + jText(e) + " " + e.title + " " + (e.summary || "") + " " + (e.lead || "") + " " + e.source + " " + e.countries.join(" ") + " " + (e.terms || []).join(" ")).toLowerCase().includes(F.q)));
+    && (!F.nat || (e.nationality || []).includes(F.nat)) && (!F.src || (F.src === "official") === !!e.official) && (!F.mode || modeKey(e.transport_mode) === F.mode) && (!F.review || (F.review === "__reviewed" ? REVIEWED.includes(e.review_status) : e.review_status === F.review))
+    && (!F.q || (e.event_id + " " + (e.merged_ids || []).join(" ") + " " + jText(e) + " " + e.title + " " + (e.summary || "") + " " + (e.lead || "") + " " + e.source + " " + e.countries.join(" ") + " " + (e.terms || []).join(" ")).toLowerCase().includes(F.q)));
 }
 
 /* charts */
@@ -535,10 +559,29 @@ function hbar(chart, pairs, colorFn, onClick, selected) {
 const count = (rows, fn) => { const m = new Map(); rows.forEach(e => fn(e).forEach(k => m.set(k, (m.get(k) || 0) + 1))); return [...m].sort((a, b) => b[1] - a[1]); };
 
 let geoReady = false, mapView = {center: null, zoom: 1};
-fetch("vendor/world.json").then(r => r.json()).then(w => { echarts.registerMap("world", w); geoReady = true; drawMap(current); drawJourneys(current); })
+// shapes that cross the 180° line (Fiji, the far east of Russia) would draw a line across the map: keep them on one side
+const fixDateline = w => { w.features.forEach(f => { const g = f.geometry; if (!g) return;
+  const polys = g.type === "Polygon" ? [g.coordinates] : g.type === "MultiPolygon" ? g.coordinates : [];
+  polys.forEach(poly => poly.forEach(ring => { const xs = ring.map(p => p[0]);
+    if (Math.max(...xs) - Math.min(...xs) > 180) ring.forEach(p => { if (p[0] < 0) p[0] += 360; }); })); }); return w; };
+fetch("vendor/world.json").then(r => r.json()).then(fixDateline).then(w => { echarts.registerMap("world", w); geoReady = true; drawMap(current); drawJourneys(current); })
   .catch(() => charts.map.setOption({title: {text: "Map could not load", left: "center", top: "middle", textStyle: {color: css("--dim"), fontSize: 13}}}));
 $("mWorld").onclick = () => { mapView = {center: null, zoom: 1}; drawMap(current); };
 $("mCar").onclick = () => { mapView = {center: [-72, 17], zoom: 5.5}; drawMap(current); };
+
+/* click a place on a map: list the stories there, each one openable */
+function placePopup(box, place, rows, how) {
+  const list = rows.slice().sort((a, b) => (rank[a.level] - rank[b.level]) || b.date.localeCompare(a.date));
+  $(box).hidden = false;
+  $(box).innerHTML = `<div class="ph"><div><b>${esc(place)}</b> <span class="n">· ${list.length} report${list.length === 1 ? "" : "s"}${how ? " " + esc(how) : ""}</span></div><button class="x" title="Close">×</button></div>
+    <div class="acts"><button data-a="filter">Filter the whole page to ${esc(place)}</button></div>
+    <ul>${list.slice(0, 40).map(e => `<li>${chip(e)} <a class="open" href="${esc(e.source_url || e.url)}" target="_blank" rel="noopener">${esc(e.title)}</a>
+      <div class="m"><span>${esc(e.date)}</span><span>${esc(e.source)}</span>${jText(e) ? `<span>${esc(jText(e))}</span>` : ""}<a class="rec" data-id="${esc(e.event_id)}">Full record</a></div></li>`).join("")}</ul>
+    ${list.length > 40 ? `<p class="sub">First 40 shown. Use "Filter the whole page" to see them all in the table.</p>` : ""}`;
+  $(box).querySelector(".x").onclick = () => { $(box).hidden = true; };
+  $(box).querySelector('[data-a="filter"]').onclick = () => { $(box).hidden = true; setFilter("country", place, "fcountry"); };
+  $(box).querySelectorAll("a.rec").forEach(a => a.onclick = () => { $(box).hidden = true; findEvent(a.dataset.id); });
+}
 
 function drawMap(rows) {
   if (!geoReady) return;
@@ -553,7 +596,7 @@ function drawMap(rows) {
     top: Object.entries(p.topics).sort((a, b) => b[1] - a[1]).slice(0, 3).map(t => t[0]).join(", ")}));
   const max = Math.max(1, ...pts.map(p => p.value[2]));
   const size = v => 8 + 26 * Math.sqrt(v[2] / max);
-  const tip = p => `<b>${esc(p.name)}</b><br>${p.data.value[2]} report${p.data.value[2] === 1 ? "" : "s"} · ${p.data.high} high-risk<br><span style="color:${MUTED}">${esc(p.data.top)}</span>`;
+  const tip = p => `<b>${esc(p.name)}</b><br>${p.data.value[2]} report${p.data.value[2] === 1 ? "" : "s"} · ${p.data.high} high priority<br><span style="color:${MUTED}">${esc(p.data.top)}</span>`;
   charts.map.setOption({
     tooltip: {...TT, trigger: "item", formatter: p => p.seriesType === "map" || !p.data ? esc(p.name) : tip(p)},
     geo: {map: "world", roam: true, ...(mapView.center ? {center: mapView.center} : {}), zoom: mapView.zoom, scaleLimit: {min: 1, max: 14},
@@ -567,7 +610,10 @@ function drawMap(rows) {
        rippleEffect: {scale: 2.2, brushType: "stroke"}, itemStyle: {color: "rgba(235,98,99,.9)", borderColor: css("--edge"), borderWidth: 2}, z: 4},
     ],
   }, true);
-  charts.map.off("click"); charts.map.on("click", p => { if (p.seriesType !== "map" && p.data) setFilter("country", p.name, "fcountry"); });
+  charts.map.off("click"); charts.map.on("click", p => {
+    const c = p.name; if (!c) return;
+    const r = current.filter(e => e.countries.includes(c));
+    if (r.length) placePopup("mappop", c, r, "naming it"); });
 }
 
 function drawTrend(rows) {
@@ -648,7 +694,14 @@ function drawJourneys(rows) {
   }, true);
   // line width follows the number of reports (set after, so it can use each line's value)
   charts.jmap.setOption({series: [{data: lines.map(l => ({...l, lineStyle: {width: 1 + 4 * l.value / maxLeg}}))}]});
-  charts.jmap.off("click"); charts.jmap.on("click", p => { if (p.seriesType === "scatter") setFilter("country", p.name, "fcountry"); });
+  charts.jmap.off("click"); charts.jmap.on("click", p => {
+    if (p.seriesType === "scatter") {
+      const c = p.name, j = e => e.journey || {};
+      placePopup("jpop", c, current.filter(e => [j(e).origin, j(e).destination, j(e).interception_country, ...(j(e).transit || [])].includes(c)), `as ${(p.seriesName || "place").toLowerCase()} or on the journey`);
+    } else if (p.seriesType === "lines" && p.name) {
+      const [a, b] = p.name.split(" → ");
+      placePopup("jpop", p.name, current.filter(e => { const t = jText(e); return t.includes(a) && t.includes(b); }), "on this connection");
+    } });
 }
 
 function drawNatRoute(rows) {
@@ -671,9 +724,16 @@ function drawNatRoute(rows) {
 
 /* seizure totals: one line per substance and compatible unit; kilograms, litres, tablets and plants are never added up */
 function seizureTotals(rows) {
-  const m = new Map();
-  rows.forEach(e => (e.seizures || []).forEach(q => {
-    if (!q.std_qty || q.substance === "Not reported") return;
+  const m = new Map(), seen = new Map();
+  // the same large figure for the same substance within 30 days is almost always one case reported again
+  // (other languages, follow-up stories), so it is counted once
+  rows.slice().sort((a, b) => a.date.localeCompare(b.date)).forEach(e => (e.seizures || []).forEach(q => {
+    if (!q.std_qty || q.substance === "Not reported" || !q.main) return;
+    if (q.std_qty >= 50) {
+      const key = q.substance + "|" + q.std_unit + "|" + Math.round(q.std_qty), last = seen.get(key);
+      if (last && (new Date(e.date) - new Date(last)) / 864e5 <= 30) return;
+      seen.set(key, e.date);
+    }
     const k = q.substance + "|" + q.std_unit;
     const t = m.get(k) || {sub: q.substance, unit: q.std_unit, qty: 0, n: 0, approx: false, suspected: false};
     t.qty += q.std_qty; t.n++; t.approx ||= q.qualifier !== "Exact"; t.suspected ||= q.suspected; m.set(k, t);
@@ -696,18 +756,20 @@ function drawSeizureTotals(rows) {
 function kpis(rows) {
   const prevFrom = F.period ? (() => { const d = new Date(since(F.period)); d.setDate(d.getDate() - F.period); return d.toISOString().slice(0, 10); })() : null;
   const prev = prevFrom ? filtered(true).filter(e => e.date >= prevFrom && e.date < since(F.period)) : null;
-  const delta = (now, fn) => { if (!prev) return "all dates"; const d = now - prev.filter(fn).length;
+  const enough = prevFrom && DATA.coverage_from && prevFrom >= DATA.coverage_from;
+  const delta = (now, fn) => { if (!prev) return "all dates"; if (!enough) return "Insufficient comparison history"; const d = now - prev.filter(fn).length;
     return `${d > 0 ? "▲ " + d : d < 0 ? "▼ " + (-d) : "no change"} vs previous ${F.period} days`; };
   const n = fn => rows.filter(fn).length;
   const tot = seizureTotals(rows)[0];
   // each card opens the matching list: [label, value, detail, colour, action, is-on, hint]
   const items = [
-    ["Reports", rows.length, delta(rows.length, () => true), css("--accent"), "all", false, "See the list"],
-    ["High-risk incidents", n(e => e.level === "High"), delta(n(e => e.level === "High"), e => e.level === "High"), LV.High, "high", F.level === "High", "Show only these"],
+    ["Reports collected", rows.length, delta(rows.length, () => true), css("--accent"), "all", false, "See the list"],
+    ["Reviewed by a person", n(e => REVIEWED.includes(e.review_status)), `checked events, out of ${rows.length} collected automatically`, css("--g2"), "reviewed", F.review === "__reviewed", "Show only these"],
+    ["Review priority: high", n(e => e.level === "High"), delta(n(e => e.level === "High"), e => e.level === "High"), LV.High, "high", F.level === "High", "Show only these"],
     [DATA.region, n(e => e.region), delta(n(e => e.region), e => e.region), css("--g3"), "region", F.scope === "region", "Show only these"],
     [DATA.home, n(e => e.home), delta(n(e => e.home), e => e.home), css("--home"), "home", F.scope === "home", "Show only these"],
     ["Policy & other updates", n(e => e.kind === "Update"), "visa, entry, citizenship, health", LV.Update, "updates", F.level === "Update", "Show only these"],
-    ["Largest seizure total", tot ? fmtQty(tot.qty, tot.unit) : "–", tot ? `${tot.sub} · totals are kept per substance and unit` : "no quantities stated", css("--g4"), "seizures", false, F.section === "seizures" ? "See seizure totals" : "Open Seizures"],
+    ["Largest seizure total", tot ? fmtQty(tot.qty, tot.unit) : "–", tot ? `${tot.sub} · unverified, one figure per report` : "no quantities stated", css("--g4"), "seizures", false, F.section === "seizures" ? "See seizure totals" : "Open Seizures"],
   ];
   $("kpis").innerHTML = items.map(([l, v, d, c, a, on, hint]) => `<button class="kpi${on ? " on" : ""}" data-act="${a}" style="--c:${c}" title="${on ? "Click again to remove this filter" : hint}">
     <div class="l">${esc(l)}</div><div class="n">${v}</div><div class="d">${esc(d)}</div><div class="go">${on ? "✓ Filter on · click to remove" : hint + " →"}</div><div class="bar"></div></button>`).join("");
@@ -721,6 +783,7 @@ function kpiClick(a) {
     if (F.section !== "seizures") { location.hash = "seizures"; return; }
     $("sztotals").scrollIntoView({behavior: "smooth", block: "center"}); return;
   }
+  if (a === "reviewed") { F.review = F.review === "__reviewed" ? "" : "__reviewed"; $("freview").value = F.review; }
   if (a === "high") F.level = F.level === "High" ? "" : "High";
   if (a === "updates") F.level = F.level === "Update" ? "" : "Update";
   if (a === "region" || a === "home") setScope(F.scope === a ? "" : a);
@@ -729,8 +792,8 @@ function kpiClick(a) {
 /* the filters that are on, each with a ✕, so a short list is never a mystery */
 function activeFilters() {
   const names = {scope: v => v === "region" ? DATA.region : DATA.home, group: v => GROUPS[+v][0], topic: v => v, country: v => v,
-    nat: v => "Nationality: " + v, level: v => v === "Incident" ? "Incidents only" : v === "Update" ? "Updates only" : v + " risk",
-    mode: v => "Transport: " + v, review: v => v, src: v => v === "official" ? "Official only" : "News only", q: v => `Search: "${v}"`,
+    nat: v => "Nationality: " + v, level: v => v === "Incident" ? "Incidents only" : v === "Update" ? "Updates only" : "Review priority: " + v.toLowerCase(),
+    mode: v => "Transport: " + v, review: v => v === "__reviewed" ? "Reviewed by a person" : v, src: v => v === "official" ? "Official only" : "News only", q: v => `Search: "${v}"`,
     sub: v => v === "mission" ? "Embassies & high commissions" : "Agencies",
     conceal: v => "Concealment: " + v, cover: v => "Cover: " + v};
   const on = Object.keys(names).filter(k => F[k] !== "");
@@ -753,6 +816,7 @@ const chip = e => `<span class="chip ${e.level}">${e.level === "Update" ? "Updat
 const feedItem = e => `<li><a class="t" href="${esc(e.source_url || e.url)}" target="_blank" rel="noopener">${esc(e.title)}</a>
   <div class="meta">${chip(e)}${e.home ? `<span class="jm">${esc(DATA.home.toUpperCase())}</span>` : ""}<span>${esc(e.date)}</span><span>${esc(e.source)}</span>${(e.seizures || []).length ? `<span>${esc(e.seizures.slice(0, 2).map(q => q.original + (q.substance !== "Not reported" ? " " + q.substance.toLowerCase() : "")).join(", "))}</span>` : e.weight_kg ? `<span>${e.weight_kg} kg</span>` : ""}${e.outcome ? `<span>${esc(e.outcome)}</span>` : ""}<a class="eid" href="javascript:void 0" onclick="findEvent('${esc(e.event_id)}')">${esc(e.event_id)}</a></div></li>`;
 const feed = (id, rows, empty) => $(id).innerHTML = rows.length ? rows.slice(0, 25).map(feedItem).join("") : `<li class="empty">${empty}</li>`;
+const REVIEWED = ["Reviewed", "Corrected"];
 const rank = {High: 0, Medium: 1, Low: 2, Update: 3};
 
 /* the full event record; anything the report does not state shows as "Not reported" */
@@ -835,9 +899,10 @@ function update() {
   hbar(charts.nats, count(current, e => e.nationality || []).slice(0, 15), () => css("--g5"), n => setFilter("nat", n, "fnat"), F.nat);
   drawJourneys(current); drawNatRoute(current);
   hbar(charts.airports, count(current, e => e.airports).slice(0, 10), () => css("--g1"));
-  feed("priority", current.filter(e => e.level === "High" || e.home).sort((a, b) => (rank[a.level] - rank[b.level]) || b.date.localeCompare(a.date)), "Nothing high-risk in this view.");
+  feed("priority", current.filter(e => e.level === "High" || e.home).sort((a, b) => (rank[a.level] - rank[b.level]) || b.date.localeCompare(a.date)), "Nothing of high review priority in this view.");
   feed("polfeed", current.filter(e => e.kind === "Update" && (e.groups || []).includes("Policy & Systems")).sort((a, b) => b.date.localeCompare(a.date)), "No policy changes in this view.");
   drawSeizureTotals(current);
+  feed("latest", current.slice().sort((a, b) => b.date.localeCompare(a.date)).slice(0, 15), "No reports in this view.");
   feed("szfeed", current.filter(e => e.kind === "Incident" && (e.groups || []).includes("Seizures & Contraband")).sort((a, b) => (b.home - a.home) || (rank[a.level] - rank[b.level]) || b.date.localeCompare(a.date)), "No seizures in this view.");
   hbar(charts.modes, count(current.filter(e => e.kind === "Incident"), e => [modeKey(e.transport_mode)]), m => m === "Not reported" ? css("--upd") : css("--g7"), m => setFilter("mode", m, "fmode"), F.mode);
   feed("watch", current.filter(e => e.watch), "No hits. Add names or terms to the watch list in config.yaml.");
@@ -1024,7 +1089,7 @@ function sectionUI() {
   $("glance").innerHTML = SECTIONS.filter(s => s.id !== "overview").map(s => {
     const r = base.filter(e => inSection(e, s.id));
     return `<a href="#${s.id}" style="--sc:${s.color}"><div class="t">${esc(s.label)}</div><div class="n">${r.length}</div>
-      <div class="x">${r.filter(e => e.level === "High").length} high-risk · ${r.filter(e => e.date >= wk).length} in the last 7 days · ${r.filter(e => e.home).length} __HOME__</div></a>`;
+      <div class="x">${r.filter(e => e.level === "High").length} high priority · ${r.filter(e => e.date >= wk).length} in the last 7 days · ${r.filter(e => e.home).length} __HOME__</div></a>`;
   }).join("");
 }
 function showCards() {

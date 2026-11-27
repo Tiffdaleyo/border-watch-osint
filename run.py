@@ -91,6 +91,9 @@ def main():
     # the full event record: ID, dates, location, connections, transport, outcome, review status, sources, related
     reviews = record.load_reviews(os.path.join(HERE, "reviews.yaml"))
     record.assign_ids(events)
+    # several outlets reporting the same case become one event (the others are kept as extra sources)
+    events, merged = store.group_duplicates(events)
+    print(f"Grouped repeat coverage: {merged} reports merged into existing events.")
     today = dt.date.today().isoformat()
     for ev in events:
         before = (ev.get("review_status"), ev.get("outcome"), ev.get("transport_mode"), ev.get("event_date"))

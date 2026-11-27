@@ -7,7 +7,8 @@ import os
 
 from .extract import GROUPS
 from .places import CENTROIDS, COUNTRIES
-from .record import NR
+from .record import NR, port_label
+from .ports import PORTS as PORT_LIST
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 # CSV columns, in the order of the event record. Empty values are written as "Not reported".
@@ -17,11 +18,39 @@ FIELDS = ["event_id", "title", "summary_text", "primary_category", "tags", "grou
           "route_completeness", "route_basis", "route_text", "nationality",
           "caribbean_connection", "jamaica_connection", "transport_mode", "document_types", "documents_count",
           "people_count", "weight_kg", "agencies", "outcome", "exploitation", "victim_assistance",
-          "seizure_quantities", "concealment_types", "cover_goods", "specialist", "review_status", "review_note", "uncertainty", "corrections", "source_type", "source_language",
+          "seizure_quantities", "concealment_types", "cover_goods", "insider_roles", "substances", "specialist", "review_status", "review_note", "uncertainty", "corrections", "source_type", "source_language",
           "independent_sources", "republications", "source_relationship", "source", "source_url", "url", "sources", "related", "reasons"]
 # fields the website needs (the stored file keeps more, e.g. the raw article facts)
 DROP = {"article", "matched_words", "other_sources", "action", "lang", "via", "id", "published"}
 KEEP = {"categories", "countries", "airports", "reasons", "title", "date", "level", "score", "kind", "source", "url", "event_id"}
+
+
+def coverage_from(events):
+    """The first day from which collection is steady: every later week has at least a third of the typical weekly
+    number of reports. Comparisons with earlier periods would compare against weeks we hardly collected."""
+    import collections
+    import datetime as _d
+    days = collections.Counter(e.get("date", "")[:10] for e in events if e.get("date"))
+    if not days:
+        return ""
+    end = _d.date.fromisoformat(max(days))
+    weeks = []
+    while True:
+        start = end - _d.timedelta(days=6)
+        n = sum(c for d, c in days.items() if start.isoformat() <= d <= end.isoformat())
+        if start.isoformat() < min(days):
+            break
+        weeks.append((start.isoformat(), n))
+        end = start - _d.timedelta(days=1)
+    if not weeks:
+        return min(days)
+    typical = sorted(n for _, n in weeks)[len(weeks) // 2]
+    first = weeks[0][0]
+    for start, n in weeks:
+        if n < typical / 3:
+            break
+        first = start
+    return first
 
 
 def slim(e):
@@ -120,6 +149,8 @@ def write_dashboard(out_dir, events, summary, cfg, new_today, demo=False):
     data = {
         "updated": dt.datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC"),
         "demo": demo, "events": [slim(e) for e in events], "summary": summary, "groups": GROUPS,
+        "ports": [[port_label(p), p["country"], p["code"]] for p in PORT_LIST],
+        "coverage_from": coverage_from(events),
         "spec_labels": spec_labels(events), "new_today": new_today,
         "report_days": (cfg.get("run") or {}).get("report_days", 180),
         "home": site.get("home_country", ""), "region": site.get("region_name", "Region"),
@@ -204,7 +235,7 @@ h1{{color:#13294b;margin:0;font-size:18px}} h2{{color:#13294b;font-size:12px;bor
 <h1>{esc(site.get('title', 'Border Watch OSINT'))}: weekly bulletin</h1>
 <div class="s">{start} to {today.isoformat()} · open-source news only · leads to verify, not confirmed intelligence{(' · ' + esc(url)) if url else ''}</div>
 <div class="box">
-<span class="k"><b>{len(week)}</b> reports</span><span class="k"><b>{sum(1 for e in week if e['level'] == 'High')}</b> high-risk</span>
+<span class="k"><b>{len(week)}</b> reports</span><span class="k"><b>{sum(1 for e in week if e['level'] == 'High')}</b> high review priority</span>
 <span class="k"><b>{sum(1 for e in week if e.get('region'))}</b> {esc(region)}</span><span class="k"><b>{sum(1 for e in week if e.get('home'))}</b> {esc(home)}</span>
 <span class="k"><b>{len([e for e in week if e.get('kind') == 'Update'])}</b> policy &amp; updates</span><span class="k"><b>{official}</b> official releases</span><br>
 <b>By main group:</b> {esc(' · '.join(f'{k} {v}' for k, v in sorted(groups.items(), key=lambda x: -x[1])) or 'none')}<br>
