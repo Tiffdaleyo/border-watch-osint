@@ -349,7 +349,7 @@ sits at the top and scrolls sideways.
 
 | Section | What it covers |
 |---|---|
-| **Overview** | A short summary. It opens on the Caribbean. It shows key numbers (reports collected, reviewed by a person, review priority high, Caribbean, Jamaica, updates, largest seizure total), a "Sections at a glance" panel, the map, the priority feed, activity over time and the latest developments. Detailed charts are inside each section. |
+| **Overview** | A short summary. It opens on the Caribbean. It shows key numbers (reports collected, reviewed by a person, review priority high, Caribbean, Jamaica, updates, largest seizure total), a "Sections at a glance" panel, the map (it shows where countries are named in the news read, not how much happens there; quiet areas may be ones the site cannot read, see Language coverage), the priority feed, activity over time and the latest developments. Detailed charts are inside each section. |
 | **Passports & Documents** | Document & Identity Fraud group |
 | **Immigration & Irregular Movement** | Migration & Facilitation group: irregular movements, smuggling, enforcement, deportations |
 | **Human Trafficking** | Human trafficking only (kept separate from smuggling) |
@@ -634,3 +634,4 @@ Privacy rules are in `watch/privacy.py`.
 | 2026-11-27 | **Weekly bulletin checked before sending:** the Monday bulletin is a draft for the reviewer; the team receives it after **Send bulletin**. Daily reports still go live automatically (section 2b). |
 | 2026-11-27 | The site now states plainly: "Review priority = what to read first. It never means a person, country or region is risky." |
 | 2026-11-27 | No ship tracking: the outside ship-position link was removed from the search box. IMO and MMSI numbers are still recognised in reports and Repeat links. The ship example in "Try" was replaced with a flight number. |
+| 2026-11-27 | The "Where it is happening" map now carries a caution: it shows where countries are named in the news read, not how much happens there; quiet areas may be ones the site cannot read (see Language coverage). |
