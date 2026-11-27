@@ -4,67 +4,52 @@ import sys
 import requests
 
 CANDIDATES = [
-    # --- embassies, high commissions, consulates and foreign ministries ---
-    ("US State travel", ["https://travel.state.gov/_res/rss/TAsTWs.xml"]),
-    ("US Emb Jamaica", ["https://jm.usembassy.gov/feed/", "https://jm.usembassy.gov/news-events/feed/"]),
-    ("US Emb T&T", ["https://tt.usembassy.gov/feed/"]),
-    ("US Emb Barbados", ["https://bb.usembassy.gov/feed/"]),
-    ("US Emb Bahamas", ["https://bs.usembassy.gov/feed/"]),
-    ("US Emb Haiti", ["https://ht.usembassy.gov/feed/"]),
-    ("US Emb DomRep", ["https://do.usembassy.gov/feed/"]),
-    ("US Emb Guyana", ["https://gy.usembassy.gov/feed/"]),
-    ("BHC Kingston", ["https://www.gov.uk/world/organisations/british-high-commission-kingston.atom",
-                      "https://www.gov.uk/search/news-and-communications.atom?world_locations%5B%5D=jamaica"]),
-    ("UKVI", ["https://www.gov.uk/search/news-and-communications.atom?organisations%5B%5D=uk-visas-and-immigration"]),
-    ("FCDO", ["https://www.gov.uk/search/news-and-communications.atom?organisations%5B%5D=foreign-commonwealth-development-office"]),
-    ("IRCC", ["https://api.io.canada.ca/io-server/gc/news/en/v2?dept=immigrationrefugeescitizenshipcanada&type=newsreleases&sort=publishedDate&orderBy=desc&pick=50&format=atom&atomtitle=IRCC"]),
-    ("Global Affairs CA", ["https://api.io.canada.ca/io-server/gc/news/en/v2?dept=departmentofforeignaffairstradeanddevelopment&type=newsreleases&sort=publishedDate&orderBy=desc&pick=50&format=atom&atomtitle=GAC"]),
-    ("EU Home Affairs", ["https://home-affairs.ec.europa.eu/node/2/rss_en", "https://home-affairs.ec.europa.eu/news_en"]),
-    ("EU Delegation JM", ["https://www.eeas.europa.eu/delegations/jamaica/news_en", "https://www.eeas.europa.eu/delegations/jamaica_en"]),
-    ("ETIAS/EES", ["https://travel-europe.europa.eu/news_en", "https://travel-europe.europa.eu/etias/news_en"]),
-    ("CARICOM", ["https://caricom.org/feed/", "https://caricom.org/category/press-releases/feed/"]),
-    ("Jamaica MFAFT", ["https://mfaft.gov.jm/feed/", "https://mfaft.gov.jm/jm/feed/", "https://mfaft.gov.jm/"]),
-    ("Can HC Jamaica", ["https://www.international.gc.ca/country-pays/jamaica-jamaique/kingston.aspx?lang=eng"]),
-    ("US CBP", ["https://www.cbp.gov/rss/newsroom/national-media-release", "https://www.cbp.gov/rss/newsroom/media-releases",
-                "https://www.cbp.gov/newsroom/rss-feeds", "https://www.cbp.gov/newsroom/media-releases/all"]),
-    ("UK Border Force", ["https://www.gov.uk/search/news-and-communications.atom?organisations%5B%5D=border-force"]),
-    ("UK Home Office", ["https://www.gov.uk/search/news-and-communications.atom?organisations%5B%5D=home-office"]),
-    ("UK NCA", ["https://www.nationalcrimeagency.gov.uk/news?format=feed&type=rss", "https://www.nationalcrimeagency.gov.uk/news"]),
-    ("JCF", ["https://jcf.gov.jm/feed/", "https://jcf.gov.jm/category/news/feed/", "https://jcf.gov.jm/"]),
-    ("PICA", ["https://www.pica.gov.jm/feed/", "https://www.pica.gov.jm/rss.xml", "https://www.pica.gov.jm/news", "https://www.pica.gov.jm/"]),
-    ("Jamaica Customs", ["https://www.jacustoms.gov.jm/feed/", "https://www.jacustoms.gov.jm/rss.xml",
-                         "https://www.jacustoms.gov.jm/media/press-releases", "https://www.jacustoms.gov.jm/"]),
-    ("JIS", ["https://jis.gov.jm/feed/", "https://jis.gov.jm/category/news/feed/"]),
-    ("Frontex", ["https://www.frontex.europa.eu/feed/news-release/", "https://www.frontex.europa.eu/media-centre/news/news-release/rss/",
-                 "https://www.frontex.europa.eu/media-centre/news/news-release/"]),
-    ("INTERPOL", ["https://www.interpol.int/en/RSS-feeds", "https://www.interpol.int/en/rss/news",
-                  "https://www.interpol.int/en/News-and-Events/News"]),
-    ("Europol", ["https://www.europol.europa.eu/rss/news", "https://www.europol.europa.eu/rss.xml",
-                 "https://www.europol.europa.eu/media-press/newsroom"]),
-    ("US ICE", ["https://www.ice.gov/feeds/news.rss", "https://www.ice.gov/rss/news/281", "https://www.ice.gov/newsroom"]),
-    ("US DHS", ["https://www.dhs.gov/news-releases/rss.xml", "https://www.dhs.gov/news-releases/press-releases"]),
-    ("US DOJ", ["https://www.justice.gov/news/rss?type=press_release", "https://www.justice.gov/feeds/opa/justice-news.xml"]),
-    ("CARICOM IMPACS", ["https://caricomimpacs.org/feed/", "https://caricomimpacs.org/news/"]),
-    ("UNODC", ["https://www.unodc.org/unodc/en/press/allpress.html", "https://www.unodc.org/unodc/feed/press-releases.xml"]),
-    ("IOM", ["https://www.iom.int/rss.xml", "https://www.iom.int/news"]),
-    ("US Coast Guard", ["https://www.news.uscg.mil/RSS/", "https://www.news.uscg.mil/Press-Releases/"]),
-    ("RCMP", ["https://www.rcmp-grc.gc.ca/en/news/rss", "https://rcmp.ca/en/news"]),
-    ("CBSA", ["https://www.canada.ca/en/border-services-agency/news.html",
-              "https://api.io.canada.ca/io-server/gc/news/en/v2?dept=canadaborderservicesagency&type=newsreleases&sort=publishedDate&orderBy=desc&pick=50&format=atom&atomtitle=CBSA"]),
+    # --- 2026-11-27: embassies, high commissions and foreign ministries relevant to Jamaica ---
+    ("US Emb Jamaica", ["https://jm.usembassy.gov/feed/", "https://jm.usembassy.gov/category/news-events/feed/", "https://jm.usembassy.gov/news-events/"]),
+    ("US State press", ["https://www.state.gov/rss-feed/press-releases/feed/", "https://www.state.gov/rss-feed/western-hemisphere-affairs/feed/"]),
+    ("BHC Kingston", ["https://www.gov.uk/government/world/organisations/british-high-commission-kingston.atom",
+                      "https://www.gov.uk/search/news-and-communications.atom?organisations%5B%5D=british-high-commission-kingston"]),
+    ("Canada IRCC", ["https://api.io.canada.ca/io-server/gc/news/en/v2?dept=immigrationrefugeescitizenshipcanada&type=newsreleases&sort=publishedDate&orderBy=desc&pick=50&format=atom&atomtitle=IRCC"]),
+    ("China Emb JM", ["http://jm.china-embassy.gov.cn/eng/", "http://jm.china-embassy.gov.cn/eng/sgxw/"]),
+    ("China MFA", ["https://www.fmprc.gov.cn/eng/xw/rss.xml", "https://www.mfa.gov.cn/eng/rss.xml"]),
+    ("Cuba Emb JM", ["https://misiones.cubaminrex.cu/en/jamaica", "https://misiones.cubaminrex.cu/en/rss.xml", "https://cubaminrex.cu/en/rss.xml"]),
+    ("India HC JM", ["https://www.hcikingston.gov.in/", "https://www.hcikingston.gov.in/news.php"]),
+    ("India MEA", ["https://www.mea.gov.in/rss/press-releases.xml"]),
+    ("Nigeria MFA", ["https://foreignaffairs.gov.ng/feed/", "https://foreignaffairs.gov.ng/news/"]),
+    ("Venezuela MPPRE", ["https://mppre.gob.ve/feed/", "https://mppre.gob.ve/category/comunicados/feed/"]),
+    ("Japan Emb JM", ["https://www.jamaica.emb-japan.go.jp/itpr_en/index.html"]),
+    ("Japan MOFA", ["https://www.mofa.go.jp/rss/press_e.xml", "https://www.mofa.go.jp/rss/index_e.xml"]),
+    ("EU Delegation JM", ["https://www.eeas.europa.eu/delegations/jamaica/news_en", "https://www.eeas.europa.eu/rss.xml"]),
+    ("Mexico SRE", ["https://www.gob.mx/sre/archivo/prensa?format=rss", "https://www.gob.mx/sre/prensa"]),
+    ("Germany AA", ["https://www.auswaertiges-amt.de/blueprint/servlet/aa/rss/en/newsfeed"]),
+    ("France Diplo", ["https://www.diplomatie.gouv.fr/spip.php?page=backend-fd&lang=en"]),
+    ("Spain Exteriores", ["https://www.exteriores.gob.es/es/Comunicacion/Noticias/rss.xml"]),
+    ("Dom Rep MIREX", ["https://mirex.gob.do/feed/"]),
+    ("Haiti MAE", ["https://www.mae.gouv.ht/feed/"]),
+    ("T&T MFCA", ["https://foreign.gov.tt/feed/", "https://foreign.gov.tt/news/"]),
+    ("Jamaica MFAFT", ["https://mfaft.gov.jm/feed/", "https://mfaft.gov.jm/jm/feed/", "https://mfaft.gov.jm/jm/category/news/feed/", "https://mfaft.gov.jm/jm/news/"]),
+    ("JA Emb USA", ["https://www.embassyofjamaica.org/feed/", "https://www.embassyofjamaica.org/"]),
+    ("JA HC London", ["https://www.jhcuk.com/feed/", "https://www.jhcuk.com/news"]),
+    ("JA CG New York", ["https://jamaicacgny.org/feed/"]),
+    ("JA CG Miami", ["https://jamaicacgmiami.org/feed/"]),
+    ("JA CG Toronto", ["https://www.jcgtoronto.ca/feed/", "https://jcgtoronto.ca/feed/"]),
+    ("JA HC Ottawa", ["https://www.jhcottawa.ca/feed/", "https://jhcottawa.ca/feed/"]),
+    ("CARICOM", ["https://caricom.org/feed/"]),
 ]
 PAGES = [
-    ("EU Home Affairs", "https://home-affairs.ec.europa.eu/news_en", "/news/"),
+    ("US Emb Jamaica", "https://jm.usembassy.gov/news-events/", "jm.usembassy.gov/"),
     ("EU Delegation JM", "https://www.eeas.europa.eu/delegations/jamaica/news_en", "/delegations/jamaica/"),
-    ("ETIAS/EES", "https://travel-europe.europa.eu/news_en", "/news/"),
-    ("Jamaica MFAFT", "https://mfaft.gov.jm/", "/news"),
-    ("Frontex", "https://www.frontex.europa.eu/media-centre/news/news-release/", "/media-centre/news/news-release/"),
-    ("US ICE", "https://www.ice.gov/newsroom", "/news/releases/"),
-    ("US DHS", "https://www.dhs.gov/news-releases/press-releases", "/news/20"),
-    ("UNODC", "https://www.unodc.org/unodc/en/press/allpress.html", "/press/releases/"),
-    ("IOM", "https://www.iom.int/news", "/news/"),
-    ("PICA", "https://www.pica.gov.jm/news", "/news/"),
-    ("CBP page", "https://www.cbp.gov/newsroom/media-releases/all", "/newsroom/"),
+    ("China Emb JM", "http://jm.china-embassy.gov.cn/eng/", "/eng/"),
+    ("India HC JM", "https://www.hcikingston.gov.in/", "hcikingston"),
+    ("Jamaica MFAFT", "https://mfaft.gov.jm/jm/news/", "/news/"),
 ]
+# Google News searches limited to one mission website (site:) and by mission name
+GN = ["site:jm.usembassy.gov", "site:mfaft.gov.jm", "site:gov.uk Jamaica", "site:jm.china-embassy.gov.cn", "site:hcikingston.gov.in",
+      "site:eeas.europa.eu Jamaica", "site:international.gc.ca Jamaica",
+      '"U.S. Embassy Kingston" OR "US Embassy in Jamaica"', '"British High Commission" Jamaica', '"Canadian High Commission" Jamaica',
+      '"Chinese Embassy" Jamaica', '"Cuban Embassy" Jamaica', '"Indian High Commission" Jamaica', '"Nigerian High Commission" Jamaica',
+      '"Venezuelan Embassy" Jamaica', '"Japanese Embassy" Jamaica', '"EU Delegation" Jamaica',
+      '"Jamaican Embassy" OR "Jamaican High Commission" OR "Jamaican Consulate"', '"Ministry of Foreign Affairs and Foreign Trade" Jamaica']
 H = {"User-Agent": "Mozilla/5.0 (compatible; BorderWatchOSINT/1.0; +https://github.com)"}
 for name, urls in CANDIDATES:
     for u in urls:
@@ -96,3 +81,16 @@ for name, url, pat in PAGES:
             print("     ", x[0], "|", x[1])
     except Exception as e:
         print(name, "ERR", type(e).__name__)
+
+
+print("\n--- Google News (last 30 days): headlines and publisher names ---")
+import time, collections
+for q in GN:
+    try:
+        u = "https://news.google.com/rss/search?q=" + urllib.parse.quote(q + " when:30d") + "&hl=en-US&gl=US&ceid=US:en"
+        t = requests.get(u, headers=H, timeout=25).text
+        srcs = collections.Counter(re.findall(r"<source[^>]*>(.*?)</source>", t))
+        print(f"{q[:60]:60} items={len(re.findall(r'<item>', t)):3} sources={srcs.most_common(6)}")
+    except Exception as e:
+        print(q, "ERR", type(e).__name__)
+    time.sleep(2)
