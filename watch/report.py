@@ -284,7 +284,9 @@ def bulletin_html(week, start, end, site, trends, root="", archive=(), latest=Tr
     hl.append(f"<b>{home_n}</b> report{'' if home_n == 1 else 's'} named {esc(home)}." if home_n else f"No report named {esc(home)} this week.")
     rising = [t["category"] for t in trends if t.get("note") == "Rising"] if latest else []
     if rising:
-        hl.append("Rising compared with a usual week: <b>" + esc(", ".join(rising)) + "</b>.")
+        hl.append("Rising compared with a usual week: <b>" + esc(", ".join(rising)) + "</b>. "
+                  "<span style='color:#5b6575'>(Rising = at least 3 reports in the last 7 days and at least double the "
+                  "average week of the 4 weeks before. A pattern to look into, not a finding.)</span>")
     nav_arch = "".join(f"<a href='{root}bulletins/{d}.html'>{esc(label)}</a>" for d, label in archive[:8])
     title = site.get("title", "Border Watch OSINT")
     return f"""<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
