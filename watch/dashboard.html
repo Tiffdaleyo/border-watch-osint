@@ -271,7 +271,7 @@
   <label class="box"><span>ANY SELECTOR</span>
     <input type="search" id="q" autocomplete="off" spellcheck="false" placeholder="Search the reports, or paste a name, email, phone, flight, IMO, container no., port, domain or Event ID…">
     <button class="x" id="qclear" title="Clear" type="button">×</button></label>
-  <div class="try">Try <button>MSCU1234566</button><button>IMO 9074729</button><button>BW2591</button><button>+1 876 555 0100</button><button>JMKIN</button><button>cocaine</button></div>
+  <div class="try">Try <button>MSCU1234566</button><button>AA1427</button><button>BW2591</button><button>+1 876 555 0100</button><button>JMKIN</button><button>cocaine</button></div>
   <div class="selhint" id="selhint" hidden></div>
 </div>
 
@@ -1401,8 +1401,7 @@ function selHint() {
   const port = kind.startsWith("Port") && DATA.ports.find(p => p[2] === c.toUpperCase());
   $("selhint").innerHTML = `Detected: <b>${esc(kind)}</b> · ${n ? `<b>${n}</b> report${n > 1 ? "s" : ""} below mention it` : "no report on this site mentions it"}`
     + (port ? ` · <a href="javascript:void 0" id="selport">Open ${esc(port[0])} in Port lookup</a>` : "")
-    + (kind === "Flight number" ? ` · <a href="tools/flight.html?q=${encodeURIComponent(c)}">Open in Flight tracker</a>` : "")
-    + (kind === "IMO ship number" || kind === "MMSI" ? ` · <a class="alt" href="https://www.marinetraffic.com/en/ais/index/search/all/keyword:${encodeURIComponent(c.replace(/^imo/i, ""))}" target="_blank" rel="noopener">Ship position on MarineTraffic ↗</a>` : "");
+    + (kind === "Flight number" ? ` · <a href="tools/flight.html?q=${encodeURIComponent(c)}">Open in Flight tracker</a>` : "");
   const sp = $("selport"); if (sp) sp.onclick = () => goTool("border", "portlk", port[0]);
 }
 function goTool(sec, id, portName) {

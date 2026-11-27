@@ -382,7 +382,8 @@ smuggling ring appears in both Passports & Documents and Immigration.
 - **Any selector box (top):** type or paste anything: a word, a name, an email, a phone number, a flight number, an
   IMO ship number, a container number, a port code, a website or an Event ID. The site searches its own reports at
   once and says what kind of selector it detected. A port code (e.g. JMKIN) opens in **Port lookup**. A flight number
-  offers its flight history on Flightradar24, and an IMO or MMSI number offers the ship's position on MarineTraffic.
+  opens in the **Flight tracker**. IMO and MMSI ship numbers are recognised, because they appear in seizure and
+  stowaway news, but the site has no ship-tracking tool and no link to one.
   The "Try" examples show the idea.
 - **Filter bar:** choose the period, the scope (World, Caribbean or Jamaica), topic, country, nationality, transport
   mode, news vs official releases, review status, or incidents and updates. Every chart, list and number follows the filters, and the filters stay on when you change section.
@@ -428,7 +429,7 @@ All tools are part of this site and use only the collected news and public refer
 | **Language coverage** | A map of where the site can and cannot see. Green means reports were found. Light green means reports were found, but only through other languages. Yellow means the main language is searched but nothing was found. Red means a **blind spot**: the main language is not searched yet. Languages searched: English, Spanish, French, Portuguese, Dutch, German and Italian |
 | **Any-selector search** | Jumps to the search box at the top |
 
-**Good to know:** don't type case details into outside websites (Flightradar24, MarineTraffic). Follow your agency's
+**Good to know:** don't type case details into outside websites (for example Flightradar24). Follow your agency's
 rules for online enquiries.
 
 ## 10c. "What this suggests"
@@ -632,3 +633,4 @@ Privacy rules are in `watch/privacy.py`.
 | 2026-11-27 | **Automatic publishing restored:** the daily run updates the site and sends alerts straight away. Only reports recorded in `reviews.yaml` carry the **Reviewed** mark; the rest show as Automatically collected or Awaiting review (section 2b). |
 | 2026-11-27 | **Weekly bulletin checked before sending:** the Monday bulletin is a draft for the reviewer; the team receives it after **Send bulletin**. Daily reports still go live automatically (section 2b). |
 | 2026-11-27 | The site now states plainly: "Review priority = what to read first. It never means a person, country or region is risky." |
+| 2026-11-27 | No ship tracking: the outside ship-position link was removed from the search box. IMO and MMSI numbers are still recognised in reports and Repeat links. The ship example in "Try" was replaced with a flight number. |
