@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Subject profile · Border Watch OSINT</title>
+<title>Suspect profile · Border Watch OSINT</title>
 <style>
   :root { --ink:#1d2430; --muted:#5b6575; --line:#dde2ea; --bg:#f3f5f9; --panel:#fff; --navy:#13294b; --ok:#067647; --bad:#b42318; --warn:#b54708; }
   * { box-sizing:border-box; }
@@ -36,9 +36,9 @@
   @media print { .top, .noprint, .note { display:none !important; } body { background:#fff; } .card { border:none; padding:0; } }
 </style></head><body>
 <div class="top"><div class="in"><a href="../index.html">← Border Watch dashboard</a><span class="sp"></span>
-  <a href="travel-document.html">Travel document check</a><a href="visa.html">Visa requirements</a><a href="flight.html">Flight tracker</a><a href="subject-profile.html" class="on">Subject profile</a><a href="case-summary.html">Case summary</a></div></div>
+  <a href="travel-document.html">Travel document check</a><a href="visa.html">Visa requirements</a><a href="flight.html">Flight tracker</a><a href="suspect-profile.html" class="on">Suspect profile</a><a href="case-summary.html">Case summary</a><a href="case-playbooks.html">Case playbooks</a></div></div>
 <div class="wrap">
-  <h1>Subject profile</h1>
+  <h1>Suspect profile</h1>
   <div class="sub">Build a one-page profile of a person of interest from what is known, with ready-made open-source searches for each name, phone, email, username or document.</div>
   <div class="note" style="margin-top:12px"><b>Works only in your browser.</b> Nothing you type is saved, sent or logged, and it is gone when you close or reload the page. Print or save the profile as PDF to keep it, and store it under your agency's rules. <b>The search buttons open outside websites and send them the search words:</b> use them only where your agency's rules for online enquiries allow, and never type case details into those sites. Green buttons search this site's own reports.</div>
 
@@ -141,7 +141,7 @@ function build() {
   const row = (k, v) => v ? `<tr><td>${esc(k)}</td><td>${v}</td></tr>` : "";
   const a = age(p.dob);
   let h = `<div class="card sheet"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
-    <h2 style="margin:0;font-size:15px">Subject profile: ${esc(p.name || "(name not given)")}</h2><span class="stamp">HANDLE UNDER AGENCY RULES</span></div>
+    <h2 style="margin:0;font-size:15px">Suspect profile: ${esc(p.name || "(name not given)")}</h2><span class="stamp">HANDLE UNDER AGENCY RULES</span></div>
     <div class="sub">Prepared ${esc(now)}. Facts as recorded; open-source results are leads, not proof.</div>
     <h3>Person</h3><table>${row("Full name", esc(p.name))}${row("Other names", esc(p.aliases.join("; ")))}
     ${row("Date of birth", p.dob ? esc(p.dob) + (a !== "" ? ` (age ${a}${a < 18 ? ' <span class="bad">MINOR</span>' : ""})` : "") : "")}
@@ -165,7 +165,7 @@ function build() {
 }
 function asText() {
   const p = collect(), L2 = [];
-  L2.push("SUBJECT PROFILE (handle under agency rules)", "Prepared: " + new Date().toLocaleString("en-GB"), "");
+  L2.push("SUSPECT PROFILE (handle under agency rules)", "Prepared: " + new Date().toLocaleString("en-GB"), "");
   [["Full name", p.name], ["Other names", p.aliases.join("; ")], ["Date of birth", p.dob], ["Sex", p.sex], ["Nationality (stated on document)", p.nat], ["Role", p.role]].forEach(([k, v]) => v && L2.push(k + ": " + v));
   if (p.ids.length) { L2.push("", "IDENTIFIERS"); p.ids.forEach(x => L2.push(`- ${x.type}: ${x.value} (${x.source}; ${x.conf})`)); }
   if (p.flight || p.route || p.tdate) L2.push("", "TRAVEL", [p.flight, p.tdate, p.route].filter(Boolean).join(" | "));

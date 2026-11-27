@@ -38,7 +38,7 @@
   @media print { .top, .noprint, .note { display:none !important; } body { background:#fff; } .card { border:none; padding:0; } }
 </style></head><body>
 <div class="top"><div class="in"><a href="../index.html">← Border Watch dashboard</a><span class="sp"></span>
-  <a href="travel-document.html">Travel document check</a><a href="visa.html">Visa requirements</a><a href="flight.html">Flight tracker</a><a href="subject-profile.html">Subject profile</a><a href="case-summary.html" class="on">Case summary</a></div></div>
+  <a href="travel-document.html">Travel document check</a><a href="visa.html">Visa requirements</a><a href="flight.html">Flight tracker</a><a href="suspect-profile.html">Suspect profile</a><a href="case-summary.html" class="on">Case summary</a><a href="case-playbooks.html">Case playbooks</a></div></div>
 <div class="wrap">
   <h1>Case summary</h1>
   <div class="sub">Turn the facts of an airport case into a clear, one-page summary for a supervisor, a referral or a hand-over.</div>
@@ -61,7 +61,7 @@
 
   <div class="card noprint">
     <h2>2. People</h2>
-    <div class="sub">Name, role and stated nationality. For a full profile of one person use the <a href="subject-profile.html">Subject profile</a>.</div>
+    <div class="sub">Name, role and stated nationality. For a full profile of one person use the <a href="suspect-profile.html">Suspect profile</a>.</div>
     <div id="people"></div>
     <div class="row"><button id="addp">+ Add person</button></div>
   </div>
@@ -104,6 +104,7 @@ const ACT = ["Admitted", "Refused entry", "Documents retained", "Person held for
 $("type").innerHTML = Object.keys(IND).map(k => `<option>${esc(k)}</option>`).join("");
 const tick = (box, list) => { box.innerHTML = list.map((x, i) => `<label><input type="checkbox" value="${esc(x)}">${esc(x)}</label>`).join("") || '<span class="sub">Describe the indicators below.</span>'; };
 $("type").onchange = () => tick($("ind"), IND[$("type").value]);
+{ const t0 = new URLSearchParams(location.search).get("type"); if (t0 && IND[t0]) $("type").value = t0; }
 tick($("ind"), IND[$("type").value]); tick($("act"), ACT);
 const ROLES = ["Traveller", "Possible victim", "Suspected facilitator", "Accompanying person", "Sponsor or contact in Jamaica", "Witness", "Other"];
 function addP() {

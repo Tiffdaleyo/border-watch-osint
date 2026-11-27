@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Case playbooks · Border Watch OSINT</title>
+<style>
+  :root { --ink:#1d2430; --muted:#5b6575; --line:#dde2ea; --bg:#f3f5f9; --panel:#fff; --navy:#13294b; --ok:#067647; --bad:#b42318; --warn:#b54708; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:Inter,Segoe UI,Arial,sans-serif; background:var(--bg); color:var(--ink); font-size:14px; line-height:1.5; }
+  .top { background:var(--navy); color:#fff; } .top .in { max-width:1100px; margin:0 auto; padding:12px 18px; display:flex; gap:16px; align-items:center; flex-wrap:wrap; }
+  .top a { color:#cfe0ff; text-decoration:none; font-size:13px; } .top a.on { color:#fff; font-weight:600; border-bottom:2px solid #fff; padding-bottom:2px; } .top .sp { flex:1; }
+  .wrap { max-width:1100px; margin:18px auto; padding:0 18px; }
+  h1 { margin:0 0 4px; font-size:24px; color:var(--navy); } .sub { color:var(--muted); font-size:13px; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:18px 20px; margin-top:14px; }
+  h2 { font-size:12.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--navy); margin:0 0 10px; }
+  textarea { width:100%; font-family:"OCR B","OCR-B",Consolas,"Courier New",monospace; font-size:17px; letter-spacing:.08em; padding:12px; border:2px solid var(--navy); border-radius:10px; text-transform:uppercase; resize:vertical; min-height:96px; }
+  button { font:inherit; border:1px solid var(--line); background:#fff; border-radius:8px; padding:6px 12px; cursor:pointer; }
+  button.go { background:var(--navy); color:#fff; border-color:var(--navy); font-weight:600; }
+  .row { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-top:10px; }
+  table { width:100%; border-collapse:collapse; font-size:13.5px; } td, th { padding:7px 8px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+  th { color:var(--muted); font-size:11px; text-transform:uppercase; letter-spacing:.06em; }
+  .ok { color:var(--ok); font-weight:600; } .bad { color:var(--bad); font-weight:600; } .warn { color:var(--warn); font-weight:600; }
+  .mono { font-family:Consolas,"Courier New",monospace; }
+  .flags li { margin:6px 0; } .pill { display:inline-block; padding:2px 8px; border-radius:20px; font-size:12px; font-weight:600; }
+  .pill.ok { background:#e7f6ec; } .pill.bad { background:#fdecea; } .pill.warn { background:#fff4e5; }
+  .note { background:#eef4ff; border:1px solid #b2ccff; border-radius:10px; padding:10px 12px; font-size:13px; }
+  .grid { display:grid; grid-template-columns:1.2fr 1fr; gap:14px; } @media (max-width:850px) { .grid { grid-template-columns:1fr; } }
+  ol.steps li { margin:6px 0; }
+  .tabs { display:flex; gap:6px; flex-wrap:wrap; margin-top:14px; }
+  .tabs button { padding:8px 14px; border-radius:20px; font-weight:600; }
+  .tabs button.on { background:var(--navy); color:#fff; border-color:var(--navy); }
+  .steps2 { counter-reset:s; list-style:none; padding:0; margin:0; }
+  .steps2 > li { counter-increment:s; position:relative; padding:10px 12px 10px 52px; border:1px solid var(--line); border-radius:12px; margin:10px 0; background:#fff; }
+  .steps2 > li::before { content:counter(s); position:absolute; left:12px; top:10px; width:28px; height:28px; border-radius:50%; background:var(--navy); color:#fff; font-weight:700; display:flex; align-items:center; justify-content:center; }
+  .steps2 h4 { margin:2px 0 6px; font-size:14.5px; color:var(--navy); }
+  .steps2 ul { margin:4px 0; padding-left:18px; } .steps2 li li { margin:3px 0; }
+  .toolbtn { display:inline-block; margin:6px 6px 0 0; padding:4px 10px; border-radius:16px; background:#e7f6ec; border:1px solid #b7e1c4; color:var(--navy); text-decoration:none; font-size:12.5px; font-weight:600; }
+  .dont { background:#fdecea; border:1px solid #f5c2bd; border-radius:12px; padding:10px 14px; margin-top:10px; }
+  .dont ul { margin:4px 0; padding-left:18px; }
+  .lead { font-size:14.5px; }
+  @media print { .top, .tabs, .noprint, .note { display:none !important; } body { background:#fff; } .card { border:none; padding:0; } .steps2 > li { break-inside:avoid; } }
+</style></head><body>
+<div class="top"><div class="in"><a href="../index.html">← Border Watch dashboard</a><span class="sp"></span>
+  <a href="travel-document.html">Travel document check</a><a href="visa.html">Visa requirements</a><a href="flight.html">Flight tracker</a><a href="suspect-profile.html">Suspect profile</a><a href="case-summary.html">Case summary</a><a href="case-playbooks.html" class="on">Case playbooks</a></div></div>
+<div class="wrap">
+  <h1>Case playbooks</h1>
+  <div class="sub">Step-by-step checklists for the four most common airport immigration cases: what to look for, what to check, which tools on this site help, and how to refer and record.</div>
+  <div class="note" style="margin-top:12px"><b>A memory aid, not a procedure.</b> These steps are drawn from public guidance (ICAO Doc 9303, IOM, UNODC and OSCE indicator lists). Your agency's standard operating procedures, the law and your supervisor's instructions always come first.</div>
+  <div class="tabs" id="tabs"></div>
+  <div id="pb"></div>
+  <p class="sub">Unofficial tool, part of Border Watch OSINT (open-source only, not a government service). Indicators are prompts to look closer; no single indicator proves anything.</p>
+</div>
+<script>
+const T = {
+  doc: ['Travel document check', 'travel-document.html'], visa: ['Visa requirements', 'visa.html'], flight: ['Flight tracker', 'flight.html'],
+  prof: ['Suspect profile', 'suspect-profile.html'], sum: ['Case summary', 'case-summary.html'], news: ['Search this site\'s reports', '../index.html#overview'],
+  docs: ['Recent document fraud reports', '../index.html#documents'], traf: ['Recent trafficking reports', '../index.html#trafficking'], mig: ['Recent irregular movement reports', '../index.html#migration'],
+};
+const PB = [
+ {key: "impostor", title: "Suspected impostor", type: "Suspected impostor (look-alike)",
+  lead: "A genuine document used by someone who is not the rightful holder. The document itself passes the checks, so the case rests on the person.",
+  steps: [
+   ["Spot it", ["Face differs from the photo on close comparison: ears, eyebrows, nose, chin, moles and scars change less than hair or weight", "Age, height or eye colour does not fit the document", "Hesitates over their own date or place of birth, or reads them off the page", "Signature differs; cannot sign the same way twice", "Document recently issued, or a replacement for one reported lost"], []],
+   ["First steps at the desk", ["Keep the document in your hands", "Ask open questions only the holder would know: place of birth, parents' names, address, school, previous trips", "Compare the answers with the document and any stamps and visas", "Move to secondary inspection before the queue pressures the decision"], []],
+   ["Check", ["Read the chip if there is one: the chip photo is often older or different", "Check the document number through your agency's lost and stolen systems", "Compare with the travel history: stamps, previous entries, the booking", "Look for the same name and photo in open sources (with care: only allowed searches)"], ["doc", "prof", "flight"]],
+   ["Refer and record", ["Inform your supervisor", "Record exactly what differed and how you compared it", "If confirmed, the genuine holder may be complicit or a victim of theft: note both possibilities"], ["sum"]],
+  ],
+  dont: ["Don't rely on a single feature; compare several", "Don't accuse: describe what you observed"]},
+ {key: "fraud", title: "Fraudulent document", type: "Fraudulent or altered document",
+  lead: "A counterfeit, a forgery (genuine document altered), a fraudulently obtained genuine document, or a stolen blank.",
+  steps: [
+   ["Spot it", ["MRZ fails the check digits, or does not match the printed page", "Raised edges, bubbles or cuts around the photo or laminate", "Page numbers out of order, stitching redone, perforations wrong", "Printing blurred where it should be sharp; colours or fonts differ from a genuine specimen", "Ultraviolet features missing or glowing where they shouldn't"], []],
+   ["First steps at the desk", ["Keep the document; don't hand it back", "Run the MRZ through the check", "Examine under ultraviolet light and a magnifier", "Compare with a genuine specimen (PRADO public register or your agency's reference)"], ["doc"]],
+   ["Check", ["Is a visa needed for this nationality? A fake visa often follows a refused one", "Does the route fit? Look for known fraud routes in recent reports", "Check the number through the lost and stolen systems", "Check the visas and stamps inside, not only the data page"], ["visa", "docs", "flight"]],
+   ["Refer and record", ["Inform your supervisor and the document examination unit", "Retain the document under your agency's procedure", "Record each defect found and how it was detected", "The traveller may be a victim of a facilitator: look for trafficking or smuggling signs"], ["sum", "prof"]],
+  ],
+  dont: ["Don't mark, stamp or damage the suspect document", "Don't treat a passing MRZ check as proof: forgers calculate check digits too"]},
+ {key: "trafficking", title: "Possible trafficking victim", type: "Possible trafficking victim",
+  lead: "A person who may be recruited, moved or held for exploitation. They may not see themselves as a victim and may have been told to lie.",
+  steps: [
+   ["Spot it", ["Someone else holds their passport or ticket, or answers for them", "Vague about the job, the employer or where they will stay", "Job offer too good to be true, often in hospitality, entertainment, domestic work or modelling", "Fearful, coached answers, or watching a companion before speaking", "Little money, little luggage, ticket paid by a third party", "A minor with an unrelated adult, or a group led by one person"], []],
+   ["First steps at the desk", ["Separate the person from any companion, discreetly", "Interview in a private place, with an interpreter if needed (not the companion)", "Ask simple, open questions: who paid, who will meet you, what work, can you leave the job", "Safety first: the person's wellbeing comes before the immigration decision"], []],
+   ["Check", ["Check the address and employer given", "Check the companion's documents and travel history too", "Look for the recruiter, agency or job advert in open sources", "Look for the route in recent trafficking reports"], ["prof", "traf", "flight"]],
+   ["Refer and record", ["Refer to the counter-trafficking unit and victim support under your agency's procedure", "A refusal of entry may put a victim at risk: consult your supervisor first", "Record the indicators observed and the person's own words"], ["sum"]],
+  ],
+  dont: ["Don't treat the person as an offender because their documents are false", "Don't let the companion interpret or stay in the interview", "Don't promise what you can't guarantee"]},
+ {key: "irregular", title: "Irregular migrant or refused entry", type: "Irregular migrant or refused entry",
+  lead: "A traveller whose purpose, documents or means don't meet entry conditions, or who may be using Jamaica as a step to a third country.",
+  steps: [
+   ["Spot it", ["Purpose of visit not credible for the person's profile", "No return or onward ticket, or one that is easily cancelled", "Not enough money for the stay; no confirmed accommodation", "Visa missing or not valid for the purpose", "Route unusual for the stated purpose, or a common route onward to North America", "Previous refusal, overstay or removal"], []],
+   ["First steps at the desk", ["Ask about purpose, length of stay, accommodation, funds and return travel", "Ask to see the bookings, funds and invitation letters", "Check the visa requirement for the nationality"], ["visa"]],
+   ["Check", ["Verify the hotel or host address", "Check whether the onward ticket is real and unused", "Check the route and airline against recent irregular movement reports", "Check the documents"], ["flight", "mig", "doc"]],
+   ["Refer and record", ["If refusing, follow the refusal procedure and inform the airline (carrier return)", "Look for smuggling or trafficking signs before deciding", "Record the reasons for the decision and the evidence for each"], ["sum", "prof"]],
+  ],
+  dont: ["Don't decide on nationality alone", "Don't ignore protection needs: a person asking for asylum must be referred under your agency's procedure"]},
+];
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const btn = k => `<a class="toolbtn" href="${T[k][1]}">${esc(T[k][0])} →</a>`;
+function show(key) {
+  const p = PB.find(x => x.key === key) || PB[0];
+  $("tabs").innerHTML = PB.map(x => `<button data-k="${x.key}"${x.key === p.key ? ' class="on"' : ""}>${esc(x.title)}</button>`).join("") + '<button id="pr" class="noprint">🖨 Print this playbook</button>';
+  $("tabs").querySelectorAll("button[data-k]").forEach(b => b.onclick = () => { history.replaceState(null, "", "#" + b.dataset.k); show(b.dataset.k); });
+  $("pr").onclick = () => window.print();
+  $("pb").innerHTML = `<div class="card"><h2 style="font-size:16px;text-transform:none;letter-spacing:0">${esc(p.title)}</h2><p class="lead">${esc(p.lead)}</p>
+    <ol class="steps2">${p.steps.map(([h, items, tools]) => `<li><h4>${esc(h)}</h4><ul>${items.map(i => `<li>${esc(i)}</li>`).join("")}</ul>${tools.length ? `<div class="noprint">${tools.map(btn).join("")}</div>` : ""}</li>`).join("")}</ol>
+    <div class="dont"><b>Avoid</b><ul>${p.dont.map(i => `<li>${esc(i)}</li>`).join("")}</ul></div>
+    <div class="row noprint"><a class="toolbtn" style="background:var(--navy);color:#fff;border-color:var(--navy);padding:7px 14px" href="case-summary.html?type=${encodeURIComponent(p.type)}">Start a case summary for this case →</a></div></div>`;
+}
+show(location.hash.slice(1));
+</script>
+</body></html>
