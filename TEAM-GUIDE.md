@@ -26,8 +26,9 @@ covers the whole world, and Caribbean and Jamaica stories come first.
 
 Everything runs automatically on GitHub, free of charge. No one needs to switch anything on.
 
-1. **06:00 Jamaica time, every day:** GitHub starts the run (`.github/workflows/daily.yml`). A run takes about
-   30 minutes.
+1. **About 05:15 Jamaica time, every day:** GitHub starts the run (`.github/workflows/daily.yml`). A run takes
+   about 30 minutes. GitHub sometimes starts scheduled runs hours late, so there are two back-up start times
+   (07:15 and 10:15). A back-up runs only if that day's collection has not happened yet.
 2. **Collect:** it reads the official press releases first, then searches the news from the last 2 days
    (section 3).
 3. **Sort and extract:** it reads each headline and summary, decides which topics it belongs to, and pulls out the
@@ -53,7 +54,7 @@ To run it by hand: open the **Actions** tab, choose **daily-border-watch-osint**
 Nothing new reaches the public site, the alert emails or the team's bulletin until the designated reviewer has read and approved it.
 
 **Every morning**
-1. At about 06:30 Jamaica time, an email arrives: **"DRAFT for review: N new Border Watch reports"**. It lists
+1. Usually by about 06:00 Jamaica time (later if GitHub delays the run), an email arrives: **"DRAFT for review: N new Border Watch reports"**. It lists
    every report not yet live: Jamaica and the Caribbean first, then by review priority. Reports whose headline and
    article disagree on the outcome are marked **CHECK OUTCOME**.
 2. **To fix or remove a report,** record the decision in `reviews.yaml` by its Event ID (section 9), for example
@@ -626,3 +627,4 @@ Privacy rules are in `watch/privacy.py`.
 | 2026-11-27 | Seizure charts (by drug over time, corridors, hotspots, concealment × drug, insider signals with %), Port lookup (name or UN/LOCODE), Repeat links table, Language coverage map, "What this suggests" analysis in every section. Dutch, German and Italian news searched. The side menu lists the site's own tools only (links to outside investigation tools removed). |
 | 2026-11-27 | **Weekly bulletin** button in the site heading: a web page for the last 7 days with highlights, plus a page for every past week and an "All bulletins" list. It prints cleanly on A4. |
 | 2026-11-27 | Bulletin now has charts and a written analysis for each area. **Review before publishing:** the daily run makes a draft emailed to the reviewer; the live site, alerts and the team bulletin wait for the reviewer's Publish / Send bulletin (section 2b). |
+| 2026-11-27 | The daily run starts earlier (about 05:15 Jamaica time), with back-up start times at 07:15 and 10:15 in case GitHub delays it. |
