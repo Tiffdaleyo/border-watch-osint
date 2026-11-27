@@ -1127,13 +1127,6 @@
    "basis": "",
    "text": ""
   },
-  "insider_roles": [],
-  "substances": [
-   "Ammunition"
-  ],
-  "concealment_types": [],
-  "cover_goods": [],
-  "seizures": [],
   "source_panel": {
    "sources": [
     {
@@ -1155,7 +1148,14 @@
    "Not stated in the report: when it happened, where it happened, outcome"
   ],
   "last_updated": "2026-11-27",
-  "related": []
+  "related": [],
+  "insider_roles": [],
+  "substances": [
+   "Ammunition"
+  ],
+  "concealment_types": [],
+  "cover_goods": [],
+  "seizures": []
  },
  {
   "title": "Central African Republic - Level 4: Do Not Travel",
@@ -2263,11 +2263,6 @@
    "basis": "",
    "text": ""
   },
-  "insider_roles": [],
-  "substances": [],
-  "concealment_types": [],
-  "cover_goods": [],
-  "seizures": [],
   "source_panel": {
    "sources": [
     {
@@ -2289,7 +2284,12 @@
    "Not stated in the report: when it happened, where it happened, outcome"
   ],
   "last_updated": "2026-11-27",
-  "related": []
+  "related": [],
+  "insider_roles": [],
+  "substances": [],
+  "concealment_types": [],
+  "cover_goods": [],
+  "seizures": []
  },
  {
   "title": "Australia - Level 1: Exercise Normal Precautions",
@@ -2748,13 +2748,6 @@
    "basis": "Explicitly stated in article",
    "text": "Origin: Mexico; destination not reported"
   },
-  "insider_roles": [],
-  "substances": [
-   "Cannabis"
-  ],
-  "concealment_types": [],
-  "cover_goods": [],
-  "seizures": [],
   "source_panel": {
    "sources": [
     {
@@ -2781,7 +2774,14 @@
    "BWO-2026-2491",
    "BWO-2026-2490",
    "BWO-2026-2484"
-  ]
+  ],
+  "insider_roles": [],
+  "substances": [
+   "Cannabis"
+  ],
+  "concealment_types": [],
+  "cover_goods": [],
+  "seizures": []
  },
  {
   "title": "Frosinone e Alatri: maxi-pattuglione interforze di Polizia di Stato, Guardia di Finanza e Polizia Locale. Un arresto per spaccio, sequestri di droga e sanzioni - Questura di Frosinone | Polizia di Stato",
@@ -3762,13 +3762,6 @@
    "basis": "",
    "text": ""
   },
-  "insider_roles": [],
-  "substances": [
-   "Cocaine"
-  ],
-  "concealment_types": [],
-  "cover_goods": [],
-  "seizures": [],
   "source_panel": {
    "sources": [
     {
@@ -3790,7 +3783,14 @@
    "Not stated in the report: when it happened, where it happened, outcome"
   ],
   "last_updated": "2026-11-27",
-  "related": []
+  "related": [],
+  "insider_roles": [],
+  "substances": [
+   "Cocaine"
+  ],
+  "concealment_types": [],
+  "cover_goods": [],
+  "seizures": []
  },
  {
   "title": "Slovakia - Level 1: Exercise Normal Precautions",
@@ -4523,26 +4523,6 @@
    "basis": "",
    "text": ""
   },
-  "insider_roles": [],
-  "substances": [
-   "Cocaine"
-  ],
-  "concealment_types": [],
-  "cover_goods": [],
-  "seizures": [
-   {
-    "substance": "Cocaine",
-    "suspected": false,
-    "original": "100 kilo",
-    "qty": 100.0,
-    "unit": "kg",
-    "std_qty": 100.0,
-    "std_unit": "kg",
-    "qualifier": "Exact",
-    "background": false,
-    "main": true
-   }
-  ],
   "source_panel": {
    "sources": [
     {
@@ -4564,7 +4544,27 @@
    "Not stated in the report: when it happened, where it happened, outcome"
   ],
   "last_updated": "2026-11-27",
-  "related": []
+  "related": [],
+  "insider_roles": [],
+  "substances": [
+   "Cocaine"
+  ],
+  "concealment_types": [],
+  "cover_goods": [],
+  "seizures": [
+   {
+    "substance": "Cocaine",
+    "suspected": false,
+    "original": "100 kilo",
+    "qty": 100.0,
+    "unit": "kg",
+    "std_qty": 100.0,
+    "std_unit": "kg",
+    "qualifier": "Exact",
+    "background": false,
+    "main": true
+   }
+  ]
  },
  {
   "title": "Switzerland - Level 1: Exercise Normal Precautions",
@@ -6494,8 +6494,8 @@
   "last_updated": "2026-11-27",
   "related": [
    "BWO-2026-3119",
-   "BWO-2026-3107",
-   "BWO-2026-3101"
+   "BWO-2026-2818",
+   "BWO-2026-2216"
   ]
  },
  {
@@ -11776,26 +11776,6 @@
    "basis": "",
    "text": ""
   },
-  "insider_roles": [],
-  "substances": [
-   "Cocaine"
-  ],
-  "concealment_types": [],
-  "cover_goods": [],
-  "seizures": [
-   {
-    "substance": "Cocaine",
-    "suspected": false,
-    "original": "290 kg",
-    "qty": 290.0,
-    "unit": "kg",
-    "std_qty": 290.0,
-    "std_unit": "kg",
-    "qualifier": "Exact",
-    "background": false,
-    "main": true
-   }
-  ],
   "source_panel": {
    "sources": [
     {
@@ -11818,7 +11798,27 @@
   ],
   "last_updated": "2026-11-27",
   "related": [],
-  "alerted": true
+  "alerted": true,
+  "insider_roles": [],
+  "substances": [
+   "Cocaine"
+  ],
+  "concealment_types": [],
+  "cover_goods": [],
+  "seizures": [
+   {
+    "substance": "Cocaine",
+    "suspected": false,
+    "original": "290 kg",
+    "qty": 290.0,
+    "unit": "kg",
+    "std_qty": 290.0,
+    "std_unit": "kg",
+    "qualifier": "Exact",
+    "background": false,
+    "main": true
+   }
+  ]
  },
  {
   "title": "Antarctica - Level 2: Exercise Increased Caution",
@@ -14128,6 +14128,7 @@
   "uncertainty": [],
   "last_updated": "2026-11-27",
   "related": [],
+  "alerted": true,
   "insider_roles": [
    "Airline crew or staff",
    "Airport staff"
@@ -14162,8 +14163,7 @@
     "background": false,
     "main": false
    }
-  ],
-  "alerted": true
+  ]
  },
  {
   "title": "Romania - Level 1: Exercise Normal Precautions",
@@ -16270,6 +16270,28 @@
    "basis": "",
    "text": ""
   },
+  "source_panel": {
+   "sources": [
+    {
+     "publisher": "Newswav",
+     "url": "https://newswav.com/article/3-rmaf-officers-3-civilians-charged-with-drug-trafficking-A2611_FMUdHk",
+     "date": "2026-11-27",
+     "type": "News report",
+     "role": "Original (earliest found)",
+     "lang": "English"
+    }
+   ],
+   "type": "News report",
+   "language": "English",
+   "supporting": 0,
+   "independent": 1,
+   "relationship": "Single source"
+  },
+  "uncertainty": [
+   "Not stated in the report: where it happened"
+  ],
+  "last_updated": "2026-11-27",
+  "related": [],
   "insider_roles": [],
   "substances": [
    "Methamphetamine"
@@ -16313,29 +16335,7 @@
     "background": false,
     "main": false
    }
-  ],
-  "source_panel": {
-   "sources": [
-    {
-     "publisher": "Newswav",
-     "url": "https://newswav.com/article/3-rmaf-officers-3-civilians-charged-with-drug-trafficking-A2611_FMUdHk",
-     "date": "2026-11-27",
-     "type": "News report",
-     "role": "Original (earliest found)",
-     "lang": "English"
-    }
-   ],
-   "type": "News report",
-   "language": "English",
-   "supporting": 0,
-   "independent": 1,
-   "relationship": "Single source"
-  },
-  "uncertainty": [
-   "Not stated in the report: where it happened"
-  ],
-  "last_updated": "2026-11-27",
-  "related": []
+  ]
  },
  {
   "title": "New Zealand - Level 1: Exercise Normal Precautions",
@@ -19471,14 +19471,14 @@
   ],
   "last_updated": "2026-11-27",
   "related": [],
+  "alerted": true,
   "insider_roles": [],
   "substances": [
    "Cocaine"
   ],
   "concealment_types": [],
   "cover_goods": [],
-  "seizures": [],
-  "alerted": true
+  "seizures": []
  },
  {
   "title": "VIDEO. Dans les fauteuils rouges de \"Complément d'enquête\" : Yoann Barbereau, écrivain, ancien fugitif sous notice rouge Interpol",
@@ -23737,8 +23737,7 @@
   "uncertainty": [],
   "last_updated": "2026-11-27",
   "related": [
-   "BWO-2026-3168",
-   "BWO-2026-3107"
+   "BWO-2026-3168"
   ]
  },
  {
@@ -24028,164 +24027,6 @@
    "BWO-2026-2960"
   ],
   "other_sources": []
- },
- {
-  "title": "Venezuela elimina requisito de visa para ciudadanos de Panamá",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOYnVrY211Y3JnVGRzSFRzNlRsLUd1RGp2aHpTVjE0VXNfakoxQzRSY205VXNSajR3VkFIbEJORnQ5TDk3Y0tkaDhhcGJ0N1VkU2c1MjNMQ0NlWHYwc3BQamhuYzNxdkp4ZnFUMkQ0VlJ2ekZxVHg0cFoyOFp3UHIzNmFhM2RXb05jVExZNTRYS2FMM0RSazlTc1N1bFotRktfNFRpSnpHTTk?oc=5",
-  "date": "2026-11-27",
-  "source": "Forbes Centroamérica",
-  "lang": "es",
-  "via": "Google News MX",
-  "kind": "Update",
-  "categories": [
-   "Visa and entry policy"
-  ],
-  "matched_words": [
-   "requisito de visa"
-  ],
-  "action": false,
-  "document_types": [
-   "Visa"
-  ],
-  "countries": [
-   "Venezuela",
-   "Panama"
-  ],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0,
-  "id": "5e7e21b38e8b",
-  "first_seen": "2026-11-27",
-  "other_sources": [
-   "VPITV"
-  ],
-  "sources": [
-   {
-    "publisher": "Forbes Centroamérica",
-    "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOYnVrY211Y3JnVGRzSFRzNlRsLUd1RGp2aHpTVjE0VXNfakoxQzRSY205VXNSajR3VkFIbEJORnQ5TDk3Y0tkaDhhcGJ0N1VkU2c1MjNMQ0NlWHYwc3BQamhuYzNxdkp4ZnFUMkQ0VlJ2ekZxVHg0cFoyOFp3UHIzNmFhM2RXb05jVExZNTRYS2FMM0RSazlTc1N1bFotRktfNFRpSnpHTTk?oc=5",
-    "date": "2026-11-27"
-   },
-   {
-    "publisher": "VPITV",
-    "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE04YmdOU29VVWN2b0FoTjhoLTR4V1NhZDV0UXkteFJ5WExoNnJ2WkU5Q0xFd1U0eGVSblkyYWVIa21FTFRUZFlSVS1ySDBUYkQxNi1FNURkNW5vQ1NOZW40SG5yajRKb3Axdy1KTGVqQjlrdGpjZkF5X3l2dDk?oc=5",
-    "date": "2026-11-27"
-   }
-  ],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
-  "watch": false,
-  "home": false,
-  "region": false,
-  "event_id": "BWO-2026-3114",
-  "merged_ids": [
-   "BWO-2026-3143"
-  ],
-  "primary_category": "Visa and entry policy",
-  "tags": [],
-  "groups": [
-   "Policy & Systems"
-  ],
-  "published": "2026-11-27",
-  "event_date": "",
-  "event_date_quality": "unknown",
-  "location": {
-   "cities": [],
-   "ports": [],
-   "crossings": []
-  },
-  "transport_mode": "",
-  "outcome": "",
-  "outcome_note": "",
-  "agencies": [],
-  "summary_text": "",
-  "caribbean_connection": [],
-  "jamaica_connection": [],
-  "specialist": [
-   [
-    "Policy update",
-    [
-     [
-      "Issuing authority",
-      ""
-     ],
-     [
-      "Affected travellers / documents",
-      ""
-     ],
-     [
-      "Announcement date (publication)",
-      "2026-11-27"
-     ],
-     [
-      "Effective date",
-      ""
-     ],
-     [
-      "Exceptions",
-      ""
-     ],
-     [
-      "Status",
-      ""
-     ],
-     [
-      "Official guidance link",
-      "https://www.migracion.gob.pa/"
-     ]
-    ]
-   ]
-  ],
-  "nationality": [
-   "Panama"
-  ],
-  "corrections": [],
-  "review_uncertainty": "",
-  "review_status": "Automatically collected",
-  "journey": {
-   "origin": "",
-   "transit": [],
-   "destination": "",
-   "interception": "",
-   "interception_country": "",
-   "completeness": "Not reported",
-   "basis": "",
-   "text": ""
-  },
-  "source_panel": {
-   "sources": [
-    {
-     "publisher": "Forbes Centroamérica",
-     "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOYnVrY211Y3JnVGRzSFRzNlRsLUd1RGp2aHpTVjE0VXNfakoxQzRSY205VXNSajR3VkFIbEJORnQ5TDk3Y0tkaDhhcGJ0N1VkU2c1MjNMQ0NlWHYwc3BQamhuYzNxdkp4ZnFUMkQ0VlJ2ekZxVHg0cFoyOFp3UHIzNmFhM2RXb05jVExZNTRYS2FMM0RSazlTc1N1bFotRktfNFRpSnpHTTk?oc=5",
-     "date": "2026-11-27",
-     "type": "News report",
-     "role": "Original (earliest found)",
-     "lang": "Spanish"
-    },
-    {
-     "publisher": "VPITV",
-     "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE04YmdOU29VVWN2b0FoTjhoLTR4V1NhZDV0UXkteFJ5WExoNnJ2WkU5Q0xFd1U0eGVSblkyYWVIa21FTFRUZFlSVS1ySDBUYkQxNi1FNURkNW5vQ1NOZW40SG5yajRKb3Axdy1KTGVqQjlrdGpjZkF5X3l2dDk?oc=5",
-     "date": "2026-11-27",
-     "type": "News report",
-     "role": "Republished (same headline)",
-     "lang": "Spanish"
-    }
-   ],
-   "type": "News report",
-   "language": "Spanish",
-   "supporting": 1,
-   "independent": 1,
-   "relationship": "1 independent source; 1 republication of the same report (not counted as separate confirmations)"
-  },
-  "uncertainty": [],
-  "last_updated": "2026-11-27",
-  "related": [
-   "BWO-2026-0440"
-  ]
  },
  {
   "title": "La Guardia Civil detiene a dos personas en Ceuta por tráfico de migrantes",
@@ -25095,26 +24936,6 @@
    "basis": "Stated in headline or summary",
    "text": "Destination: Turkey; origin not reported"
   },
-  "insider_roles": [
-   "Police or military"
-  ],
-  "substances": [],
-  "concealment_types": [],
-  "cover_goods": [],
-  "seizures": [
-   {
-    "substance": "Not reported",
-    "suspected": false,
-    "original": "136 kilograms",
-    "qty": 136.0,
-    "unit": "kg",
-    "std_qty": 136.0,
-    "std_unit": "kg",
-    "qualifier": "Exact",
-    "background": false,
-    "main": false
-   }
-  ],
   "source_panel": {
    "sources": [
     {
@@ -25137,7 +24958,27 @@
    "Journey only partly stated"
   ],
   "last_updated": "2026-11-27",
-  "related": []
+  "related": [],
+  "insider_roles": [
+   "Police or military"
+  ],
+  "substances": [],
+  "concealment_types": [],
+  "cover_goods": [],
+  "seizures": [
+   {
+    "substance": "Not reported",
+    "suspected": false,
+    "original": "136 kilograms",
+    "qty": 136.0,
+    "unit": "kg",
+    "std_qty": 136.0,
+    "std_unit": "kg",
+    "qualifier": "Exact",
+    "background": false,
+    "main": false
+   }
+  ]
  },
  {
   "title": "Grenada - Level 2: Exercise Increased Caution",
@@ -25998,147 +25839,6 @@
    "BWO-2026-2960"
   ],
   "other_sources": []
- },
- {
-  "title": "Türkiye Suspends Visa-Free Travel for Montenegro's Citizens",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQVm1lTFpkZ1dIVWh1SmN0a283Wi1VYkFmUC1kem9BZmJ3eUY3QWJUb29NVUNzdS1zcUlHY25LeXFKX0gxZ0Z0M3J3RWVhQXFDWUtwT3RncWtmUF9aYmZTemxOb0Mtb3FMenhWUUlWaUxUUUo1a0EzbU1yYmU3SjZDNlctbVoxVFNGN2djWTFQeEtPVVV4UkE?oc=5",
-  "date": "2026-11-27",
-  "source": "Caspian Post",
-  "lang": "en",
-  "via": "Google News US",
-  "kind": "Update",
-  "categories": [
-   "Visa and entry policy"
-  ],
-  "matched_words": [
-   "suspends visa"
-  ],
-  "action": false,
-  "document_types": [
-   "Visa"
-  ],
-  "countries": [
-   "Turkey"
-  ],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0,
-  "id": "581555b05091",
-  "first_seen": "2026-11-27",
-  "other_sources": [],
-  "sources": [
-   {
-    "publisher": "Caspian Post",
-    "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQVm1lTFpkZ1dIVWh1SmN0a283Wi1VYkFmUC1kem9BZmJ3eUY3QWJUb29NVUNzdS1zcUlHY25LeXFKX0gxZ0Z0M3J3RWVhQXFDWUtwT3RncWtmUF9aYmZTemxOb0Mtb3FMenhWUUlWaUxUUUo1a0EzbU1yYmU3SjZDNlctbVoxVFNGN2djWTFQeEtPVVV4UkE?oc=5",
-    "date": "2026-11-27"
-   }
-  ],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
-  "watch": false,
-  "home": false,
-  "region": false,
-  "event_id": "BWO-2026-3107",
-  "primary_category": "Visa and entry policy",
-  "tags": [],
-  "groups": [
-   "Policy & Systems"
-  ],
-  "published": "2026-11-27",
-  "event_date": "",
-  "event_date_quality": "unknown",
-  "location": {
-   "cities": [
-    "Türkiye (Turkey)"
-   ],
-   "ports": [],
-   "crossings": []
-  },
-  "transport_mode": "",
-  "outcome": "",
-  "outcome_note": "",
-  "agencies": [],
-  "summary_text": "",
-  "caribbean_connection": [],
-  "jamaica_connection": [],
-  "specialist": [
-   [
-    "Policy update",
-    [
-     [
-      "Issuing authority",
-      ""
-     ],
-     [
-      "Affected travellers / documents",
-      ""
-     ],
-     [
-      "Announcement date (publication)",
-      "2026-11-27"
-     ],
-     [
-      "Effective date",
-      ""
-     ],
-     [
-      "Exceptions",
-      ""
-     ],
-     [
-      "Status",
-      ""
-     ],
-     [
-      "Official guidance link",
-      ""
-     ]
-    ]
-   ]
-  ],
-  "nationality": [],
-  "corrections": [],
-  "review_uncertainty": "",
-  "review_status": "Automatically collected",
-  "journey": {
-   "origin": "",
-   "transit": [],
-   "destination": "",
-   "interception": "",
-   "interception_country": "",
-   "completeness": "Not reported",
-   "basis": "",
-   "text": ""
-  },
-  "source_panel": {
-   "sources": [
-    {
-     "publisher": "Caspian Post",
-     "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQVm1lTFpkZ1dIVWh1SmN0a283Wi1VYkFmUC1kem9BZmJ3eUY3QWJUb29NVUNzdS1zcUlHY25LeXFKX0gxZ0Z0M3J3RWVhQXFDWUtwT3RncWtmUF9aYmZTemxOb0Mtb3FMenhWUUlWaUxUUUo1a0EzbU1yYmU3SjZDNlctbVoxVFNGN2djWTFQeEtPVVV4UkE?oc=5",
-     "date": "2026-11-27",
-     "type": "News report",
-     "role": "Original (earliest found)",
-     "lang": "English"
-    }
-   ],
-   "type": "News report",
-   "language": "English",
-   "supporting": 0,
-   "independent": 1,
-   "relationship": "Single source"
-  },
-  "uncertainty": [],
-  "last_updated": "2026-11-27",
-  "related": [
-   "BWO-2026-3101",
-   "BWO-2026-2818",
-   "BWO-2026-2787"
-  ]
  },
  {
   "title": "Norway - Level 1: Exercise Normal Precautions",
@@ -28361,9 +28061,9 @@
   "uncertainty": [],
   "last_updated": "2026-11-27",
   "related": [
-   "BWO-2026-3107",
    "BWO-2026-3168",
-   "BWO-2026-3101"
+   "BWO-2026-2801",
+   "BWO-2026-2787"
   ]
  },
  {
@@ -29486,147 +29186,6 @@
   ],
   "cover_goods": [],
   "seizures": []
- },
- {
-  "title": "Türkiye suspends visa-free travel for Montenegrins",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNM2FwZVNFQXJGcmNrdzE2MWFxbHFqdTNuVjZ4d2RZM0RBVmhIT1FLUmY4cW1udXdqT0NZTkxzU2tBQkYza0xfT0QtUmN0NmRXQWZiQkJoTEZPT1BlM1pXZjRWMmhqV2hWZk5peXdJMXF4N3JicWFGdWRDbll2LTBsM1VIQ3F2UFZrX1Jlb29jM1NuZjBqZmlWbkR3?oc=5",
-  "date": "2026-11-27",
-  "source": "Türkiye Today",
-  "lang": "en",
-  "via": "Google News US",
-  "kind": "Update",
-  "categories": [
-   "Visa and entry policy"
-  ],
-  "matched_words": [
-   "suspends visa"
-  ],
-  "action": false,
-  "document_types": [
-   "Visa"
-  ],
-  "countries": [
-   "Turkey"
-  ],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0,
-  "id": "4599c5ea5aca",
-  "first_seen": "2026-11-27",
-  "other_sources": [],
-  "sources": [
-   {
-    "publisher": "Türkiye Today",
-    "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNM2FwZVNFQXJGcmNrdzE2MWFxbHFqdTNuVjZ4d2RZM0RBVmhIT1FLUmY4cW1udXdqT0NZTkxzU2tBQkYza0xfT0QtUmN0NmRXQWZiQkJoTEZPT1BlM1pXZjRWMmhqV2hWZk5peXdJMXF4N3JicWFGdWRDbll2LTBsM1VIQ3F2UFZrX1Jlb29jM1NuZjBqZmlWbkR3?oc=5",
-    "date": "2026-11-27"
-   }
-  ],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
-  "watch": false,
-  "home": false,
-  "region": false,
-  "event_id": "BWO-2026-3101",
-  "primary_category": "Visa and entry policy",
-  "tags": [],
-  "groups": [
-   "Policy & Systems"
-  ],
-  "published": "2026-11-27",
-  "event_date": "",
-  "event_date_quality": "unknown",
-  "location": {
-   "cities": [
-    "Türkiye (Turkey)"
-   ],
-   "ports": [],
-   "crossings": []
-  },
-  "transport_mode": "",
-  "outcome": "",
-  "outcome_note": "",
-  "agencies": [],
-  "summary_text": "",
-  "caribbean_connection": [],
-  "jamaica_connection": [],
-  "specialist": [
-   [
-    "Policy update",
-    [
-     [
-      "Issuing authority",
-      ""
-     ],
-     [
-      "Affected travellers / documents",
-      ""
-     ],
-     [
-      "Announcement date (publication)",
-      "2026-11-27"
-     ],
-     [
-      "Effective date",
-      ""
-     ],
-     [
-      "Exceptions",
-      ""
-     ],
-     [
-      "Status",
-      ""
-     ],
-     [
-      "Official guidance link",
-      ""
-     ]
-    ]
-   ]
-  ],
-  "nationality": [],
-  "corrections": [],
-  "review_uncertainty": "",
-  "review_status": "Automatically collected",
-  "journey": {
-   "origin": "",
-   "transit": [],
-   "destination": "",
-   "interception": "",
-   "interception_country": "",
-   "completeness": "Not reported",
-   "basis": "",
-   "text": ""
-  },
-  "source_panel": {
-   "sources": [
-    {
-     "publisher": "Türkiye Today",
-     "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNM2FwZVNFQXJGcmNrdzE2MWFxbHFqdTNuVjZ4d2RZM0RBVmhIT1FLUmY4cW1udXdqT0NZTkxzU2tBQkYza0xfT0QtUmN0NmRXQWZiQkJoTEZPT1BlM1pXZjRWMmhqV2hWZk5peXdJMXF4N3JicWFGdWRDbll2LTBsM1VIQ3F2UFZrX1Jlb29jM1NuZjBqZmlWbkR3?oc=5",
-     "date": "2026-11-27",
-     "type": "News report",
-     "role": "Original (earliest found)",
-     "lang": "English"
-    }
-   ],
-   "type": "News report",
-   "language": "English",
-   "supporting": 0,
-   "independent": 1,
-   "relationship": "Single source"
-  },
-  "uncertainty": [],
-  "last_updated": "2026-11-27",
-  "related": [
-   "BWO-2026-3107",
-   "BWO-2026-2787",
-   "BWO-2026-3168"
-  ]
  },
  {
   "title": "South Korea - Level 1: Exercise Normal Precautions",
@@ -31304,7 +30863,6 @@
   "uncertainty": [],
   "last_updated": "2026-11-27",
   "related": [
-   "BWO-2026-3107",
    "BWO-2026-2818"
   ]
  },
@@ -32617,13 +32175,6 @@
    "basis": "",
    "text": ""
   },
-  "insider_roles": [],
-  "substances": [
-   "Cocaine"
-  ],
-  "concealment_types": [],
-  "cover_goods": [],
-  "seizures": [],
   "source_panel": {
    "sources": [
     {
@@ -32645,7 +32196,14 @@
    "Not stated in the report: when it happened, where it happened, outcome"
   ],
   "last_updated": "2026-11-27",
-  "related": []
+  "related": [],
+  "insider_roles": [],
+  "substances": [
+   "Cocaine"
+  ],
+  "concealment_types": [],
+  "cover_goods": [],
+  "seizures": []
  },
  {
   "title": "Malta - Level 1: Exercise Normal Precautions",
@@ -34217,6 +33775,7 @@
   "other_sources": [
    "Anadolu Ajansı",
    "BGNES",
+   "Caspian Post",
    "Turkish Minute",
    "Türkiye Today",
    "İlke Haber Ajansı"
@@ -34252,6 +33811,11 @@
     "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNSnFaN1lncFo1WWxIRlVKVEZhV0otUDAwMUNfTTRUdEtOM0d5ek84VDhRb1RnQ2ZaYnFMUGlsZGFndHk3WVYyRXBOR0RzSktFZkdGRnJ3S2VIZC1oM0FsYTFMWGJoWWJ1UWVwbHNURG1zcjNrMEUzUTdOeVBuQUIxRWh4UDZNdVI5c2luQnNpNUp4dw?oc=5",
     "date": "2026-11-27",
     "lang": "en"
+   },
+   {
+    "publisher": "Caspian Post",
+    "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQVm1lTFpkZ1dIVWh1SmN0a283Wi1VYkFmUC1kem9BZmJ3eUY3QWJUb29NVUNzdS1zcUlHY25LeXFKX0gxZ0Z0M3J3RWVhQXFDWUtwT3RncWtmUF9aYmZTemxOb0Mtb3FMenhWUUlWaUxUUUo1a0EzbU1yYmU3SjZDNlctbVoxVFNGN2djWTFQeEtPVVV4UkE?oc=5",
+    "date": "2026-11-27"
    }
   ],
   "score": 0,
@@ -34265,6 +33829,8 @@
    "BWO-2026-2811",
    "BWO-2026-2884",
    "BWO-2026-2916",
+   "BWO-2026-3101",
+   "BWO-2026-3107",
    "BWO-2026-3135",
    "BWO-2026-3159",
    "BWO-2026-3187"
@@ -34389,20 +33955,28 @@
      "type": "News report",
      "role": "Republished (same headline)",
      "lang": "en"
+    },
+    {
+     "publisher": "Caspian Post",
+     "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQVm1lTFpkZ1dIVWh1SmN0a283Wi1VYkFmUC1kem9BZmJ3eUY3QWJUb29NVUNzdS1zcUlHY25LeXFKX0gxZ0Z0M3J3RWVhQXFDWUtwT3RncWtmUF9aYmZTemxOb0Mtb3FMenhWUUlWaUxUUUo1a0EzbU1yYmU3SjZDNlctbVoxVFNGN2djWTFQeEtPVVV4UkE?oc=5",
+     "date": "2026-11-27",
+     "type": "News report",
+     "role": "Republished (same headline)",
+     "lang": "English"
     }
    ],
    "type": "News report",
    "language": "English",
-   "supporting": 5,
+   "supporting": 6,
    "independent": 1,
-   "relationship": "1 independent source; 5 republications of the same report (not counted as separate confirmations)"
+   "relationship": "1 independent source; 6 republications of the same report (not counted as separate confirmations)"
   },
   "uncertainty": [],
   "last_updated": "2026-11-27",
   "related": [
-   "BWO-2026-3107",
-   "BWO-2026-3101",
-   "BWO-2026-2818"
+   "BWO-2026-2818",
+   "BWO-2026-2701",
+   "BWO-2026-1683"
   ]
  },
  {
@@ -38022,6 +37596,27 @@
    "basis": "",
    "text": ""
   },
+  "source_panel": {
+   "sources": [
+    {
+     "publisher": "Newswav",
+     "url": "https://newswav.com/article/how-military-air-transport-was-allegedly-used-in-drug-smuggling-A2611_3w5QEB",
+     "date": "2026-11-27",
+     "type": "News report",
+     "role": "Original (earliest found)",
+     "lang": "English"
+    }
+   ],
+   "type": "News report",
+   "language": "English",
+   "supporting": 0,
+   "independent": 1,
+   "relationship": "Single source"
+  },
+  "uncertainty": [],
+  "last_updated": "2026-11-27",
+  "related": [],
+  "alerted": true,
   "insider_roles": [],
   "substances": [
    "Methamphetamine"
@@ -38056,28 +37651,7 @@
     "background": false,
     "main": false
    }
-  ],
-  "source_panel": {
-   "sources": [
-    {
-     "publisher": "Newswav",
-     "url": "https://newswav.com/article/how-military-air-transport-was-allegedly-used-in-drug-smuggling-A2611_3w5QEB",
-     "date": "2026-11-27",
-     "type": "News report",
-     "role": "Original (earliest found)",
-     "lang": "English"
-    }
-   ],
-   "type": "News report",
-   "language": "English",
-   "supporting": 0,
-   "independent": 1,
-   "relationship": "Single source"
-  },
-  "uncertainty": [],
-  "last_updated": "2026-11-27",
-  "related": [],
-  "alerted": true
+  ]
  },
  {
   "title": "Douane houdt acht bolletjesslikkers aan op Schiphol",
@@ -39026,6 +38600,7 @@
   ],
   "last_updated": "2026-11-27",
   "related": [],
+  "alerted": true,
   "insider_roles": [],
   "substances": [
    "Methamphetamine"
@@ -39047,8 +38622,7 @@
     "background": true,
     "main": false
    }
-  ],
-  "alerted": true
+  ]
  },
  {
   "title": "#EnVideo| Delcy Rodríguez ordenó eliminar la exigencia de visa a los panameños La medida suprime el requisito de visado para los ciudadanos de Panamá que viajen a Venezuela. 📹 Cort. @vtvcanal8 #EUVzla #ElUniversal",
@@ -39083,7 +38657,9 @@
   "first_seen": "2026-11-27",
   "other_sources": [
    "Descifrado",
-   "Telemetro"
+   "Forbes Centroamérica",
+   "Telemetro",
+   "VPITV"
   ],
   "sources": [
    {
@@ -39100,6 +38676,16 @@
     "publisher": "Telemetro",
     "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNcWFVWEJTM1FJcnRLN3EwTHJNVTJvdkdGQjFxQnNkdDhCNWFZX25wb2hJMVE1OHBQMG9QSmlBR21RNThSMVNCMjZRVmI2M0s2Zy0wZHhWZVhvX0JKaDNkOURUVERBU192UmdXWlUxN28xbXJhZzNJbjByWHQ5QXN5cVlwbkh2SzF2SUo4N0JnWDdlN0dUYjRSWC0wR3NHV3JmTEtvSVVKM0ZwcUUya3BhV1B2Ujh3ejMtNXFBcGZQUlJSalHSAcgBQVVfeXFMTWNnY2d6cTR6MmhYSG5YZUtUMlNWVEdXSnVjT0g1XzhMUVpacXlXSF92ZTFxaUtqTFpmbDZGUG5MYUVhWVFFSEJrOF8tSGVuWEFCMC0weDl0RXlQdG9sQTBiamg3d0cweWtmc3ktRDZJelloQjFtLWQwd2pzMFFFcXJCWTNMTnNzZ1czeldTbjJ1Mzd3RXY4dWgyYS1MLWpNZkxsSXQ2Qy1rYVhFblZ4LUpDV3VpZWplYTZWb256cnRSWGxQNmpWNFE?oc=5",
     "date": "2026-11-27"
+   },
+   {
+    "publisher": "Forbes Centroamérica",
+    "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOYnVrY211Y3JnVGRzSFRzNlRsLUd1RGp2aHpTVjE0VXNfakoxQzRSY205VXNSajR3VkFIbEJORnQ5TDk3Y0tkaDhhcGJ0N1VkU2c1MjNMQ0NlWHYwc3BQamhuYzNxdkp4ZnFUMkQ0VlJ2ekZxVHg0cFoyOFp3UHIzNmFhM2RXb05jVExZNTRYS2FMM0RSazlTc1N1bFotRktfNFRpSnpHTTk?oc=5",
+    "date": "2026-11-27"
+   },
+   {
+    "publisher": "VPITV",
+    "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE04YmdOU29VVWN2b0FoTjhoLTR4V1NhZDV0UXkteFJ5WExoNnJ2WkU5Q0xFd1U0eGVSblkyYWVIa21FTFRUZFlSVS1ySDBUYkQxNi1FNURkNW5vQ1NOZW40SG5yajRKb3Axdy1KTGVqQjlrdGpjZkF5X3l2dDk?oc=5",
+    "date": "2026-11-27"
    }
   ],
   "score": 0,
@@ -39111,7 +38697,9 @@
   "event_id": "BWO-2026-3068",
   "merged_ids": [
    "BWO-2026-3076",
-   "BWO-2026-3108"
+   "BWO-2026-3108",
+   "BWO-2026-3114",
+   "BWO-2026-3143"
   ],
   "primary_category": "Visa and entry policy",
   "tags": [],
@@ -39209,13 +38797,29 @@
      "type": "News report",
      "role": "Republished (same headline)",
      "lang": "Spanish"
+    },
+    {
+     "publisher": "Forbes Centroamérica",
+     "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOYnVrY211Y3JnVGRzSFRzNlRsLUd1RGp2aHpTVjE0VXNfakoxQzRSY205VXNSajR3VkFIbEJORnQ5TDk3Y0tkaDhhcGJ0N1VkU2c1MjNMQ0NlWHYwc3BQamhuYzNxdkp4ZnFUMkQ0VlJ2ekZxVHg0cFoyOFp3UHIzNmFhM2RXb05jVExZNTRYS2FMM0RSazlTc1N1bFotRktfNFRpSnpHTTk?oc=5",
+     "date": "2026-11-27",
+     "type": "News report",
+     "role": "Republished (same headline)",
+     "lang": "Spanish"
+    },
+    {
+     "publisher": "VPITV",
+     "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE04YmdOU29VVWN2b0FoTjhoLTR4V1NhZDV0UXkteFJ5WExoNnJ2WkU5Q0xFd1U0eGVSblkyYWVIa21FTFRUZFlSVS1ySDBUYkQxNi1FNURkNW5vQ1NOZW40SG5yajRKb3Axdy1KTGVqQjlrdGpjZkF5X3l2dDk?oc=5",
+     "date": "2026-11-27",
+     "type": "News report",
+     "role": "Republished (same headline)",
+     "lang": "Spanish"
     }
    ],
    "type": "Other (social media or blog)",
    "language": "Spanish",
-   "supporting": 2,
+   "supporting": 4,
    "independent": 1,
-   "relationship": "1 independent source; 2 republications of the same report (not counted as separate confirmations)"
+   "relationship": "1 independent source; 4 republications of the same report (not counted as separate confirmations)"
   },
   "uncertainty": [],
   "last_updated": "2026-11-27",
@@ -40532,6 +40136,7 @@
   "related": [
    "BWO-2026-1186"
   ],
+  "alerted": true,
   "insider_roles": [],
   "substances": [
    "Cannabis"
@@ -40553,8 +40158,7 @@
     "background": false,
     "main": false
    }
-  ],
-  "alerted": true
+  ]
  },
  {
   "title": "Albania - Level 2: Exercise Increased Caution",
@@ -41159,11 +40763,6 @@
    "basis": "",
    "text": ""
   },
-  "insider_roles": [],
-  "substances": [],
-  "concealment_types": [],
-  "cover_goods": [],
-  "seizures": [],
   "source_panel": {
    "sources": [
     {
@@ -41186,7 +40785,12 @@
   ],
   "last_updated": "2026-11-27",
   "related": [],
-  "alerted": true
+  "alerted": true,
+  "insider_roles": [],
+  "substances": [],
+  "concealment_types": [],
+  "cover_goods": [],
+  "seizures": []
  },
  {
   "title": "MATTA calls for extension of visa-free entry for Indian travellers",
@@ -41838,7 +41442,7 @@
   "outcome": "Arrested",
   "outcome_note": "",
   "agencies": [],
-  "summary_text": "Who Sent Bomb Threats to Mumbai? US Techie Held in Tamil Nadu By Lokmat Times Desk  Updated: November 27, 2026 10:50 IST2026-11-27T10:50:26+5:302026-11-27T10:50:35+5:30 The accused has been identified as Sharath Subramanian Shankar from Tamil Nadu's Tirunelveli district, who was arrested at the Chennai airport by the state's anti-terrorism squad (ATS) in July this year on his arrival, based on intelligence inputs.",
+  "summary_text": "Who Sent Bomb Threats to Mumbai? US Techie Held in Tamil Nadu By Lokmat Times Desk Updated: November 27, 2026 10:50 IST2026-11-27T10:50:26+5:302026-11-27T10:50:35+5:30 The accused has been identified as Sharath Subramanian Shankar from Tamil Nadu's Tirunelveli district, who was arrested at the Chennai airport by the state's anti-terrorism squad (ATS) in July this year on his arrival, based on intelligence inputs.",
   "caribbean_connection": [],
   "jamaica_connection": [],
   "specialist": [
@@ -42227,143 +41831,6 @@
   "related": [
    "BWO-2026-3081",
    "BWO-2026-2414"
-  ]
- },
- {
-  "title": "New Zealand extends post-study work visa duration to 4 years for Indian PhD graduates. Explore your options now!",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQZ2pFeWFoNU5nMHRTWnFNdG03Nm1RVTQxVmdiNnczMUNYZlpGb1gyREZKX3l4RThyZmwxejRtb2tzNm1uc1Uyd0I1WDRSUkJLV2tCUDg3YkJ1MGV5QXhtd2NYNUhJZENRbmRPMmQ1V3VpTzFwVER3cU5FWWtWcS0yUEl6NEowRUFReHRfSE80dmhGSEZ4?oc=5",
-  "date": "2026-11-27",
-  "source": "Y-Axis Overseas Careers",
-  "lang": "en",
-  "via": "Google News US",
-  "kind": "Update",
-  "categories": [
-   "Visa and entry policy"
-  ],
-  "matched_words": [
-   "work visa"
-  ],
-  "action": false,
-  "document_types": [
-   "Visa"
-  ],
-  "countries": [
-   "New Zealand"
-  ],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0,
-  "id": "02180f6c15ad",
-  "first_seen": "2026-11-27",
-  "other_sources": [],
-  "sources": [
-   {
-    "publisher": "Y-Axis Overseas Careers",
-    "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQZ2pFeWFoNU5nMHRTWnFNdG03Nm1RVTQxVmdiNnczMUNYZlpGb1gyREZKX3l4RThyZmwxejRtb2tzNm1uc1Uyd0I1WDRSUkJLV2tCUDg3YkJ1MGV5QXhtd2NYNUhJZENRbmRPMmQ1V3VpTzFwVER3cU5FWWtWcS0yUEl6NEowRUFReHRfSE80dmhGSEZ4?oc=5",
-    "date": "2026-11-27"
-   }
-  ],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
-  "watch": false,
-  "home": false,
-  "region": false,
-  "event_id": "BWO-2026-3062",
-  "primary_category": "Visa and entry policy",
-  "tags": [],
-  "groups": [
-   "Policy & Systems"
-  ],
-  "published": "2026-11-27",
-  "event_date": "",
-  "event_date_quality": "unknown",
-  "location": {
-   "cities": [],
-   "ports": [],
-   "crossings": []
-  },
-  "transport_mode": "",
-  "outcome": "",
-  "outcome_note": "",
-  "agencies": [],
-  "summary_text": "",
-  "caribbean_connection": [],
-  "jamaica_connection": [],
-  "specialist": [
-   [
-    "Policy update",
-    [
-     [
-      "Issuing authority",
-      ""
-     ],
-     [
-      "Affected travellers / documents",
-      ""
-     ],
-     [
-      "Announcement date (publication)",
-      "2026-11-27"
-     ],
-     [
-      "Effective date",
-      ""
-     ],
-     [
-      "Exceptions",
-      ""
-     ],
-     [
-      "Status",
-      ""
-     ],
-     [
-      "Official guidance link",
-      "https://www.immigration.govt.nz/"
-     ]
-    ]
-   ]
-  ],
-  "nationality": [],
-  "corrections": [],
-  "review_uncertainty": "",
-  "review_status": "Automatically collected",
-  "journey": {
-   "origin": "",
-   "transit": [],
-   "destination": "",
-   "interception": "",
-   "interception_country": "",
-   "completeness": "Not reported",
-   "basis": "",
-   "text": ""
-  },
-  "source_panel": {
-   "sources": [
-    {
-     "publisher": "Y-Axis Overseas Careers",
-     "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQZ2pFeWFoNU5nMHRTWnFNdG03Nm1RVTQxVmdiNnczMUNYZlpGb1gyREZKX3l4RThyZmwxejRtb2tzNm1uc1Uyd0I1WDRSUkJLV2tCUDg3YkJ1MGV5QXhtd2NYNUhJZENRbmRPMmQ1V3VpTzFwVER3cU5FWWtWcS0yUEl6NEowRUFReHRfSE80dmhGSEZ4?oc=5",
-     "date": "2026-11-27",
-     "type": "News report",
-     "role": "Original (earliest found)",
-     "lang": "English"
-    }
-   ],
-   "type": "News report",
-   "language": "English",
-   "supporting": 0,
-   "independent": 1,
-   "relationship": "Single source"
-  },
-  "uncertainty": [],
-  "last_updated": "2026-11-27",
-  "related": [
-   "BWO-2026-1764"
   ]
  },
  {
@@ -43590,26 +43057,6 @@
    "basis": "Explicitly stated in article",
    "text": "Origin: Thailand; transit: Malaysia; destination not reported"
   },
-  "insider_roles": [],
-  "substances": [
-   "Cannabis"
-  ],
-  "concealment_types": [],
-  "cover_goods": [],
-  "seizures": [
-   {
-    "substance": "Cannabis",
-    "suspected": false,
-    "original": "4.8 kilograms",
-    "qty": 4.8,
-    "unit": "kg",
-    "std_qty": 4.8,
-    "std_unit": "kg",
-    "qualifier": "Exact",
-    "background": false,
-    "main": false
-   }
-  ],
   "source_panel": {
    "sources": [
     {
@@ -43635,6 +43082,26 @@
    "BWO-2026-2105",
    "BWO-2026-1224",
    "BWO-2026-1161"
+  ],
+  "insider_roles": [],
+  "substances": [
+   "Cannabis"
+  ],
+  "concealment_types": [],
+  "cover_goods": [],
+  "seizures": [
+   {
+    "substance": "Cannabis",
+    "suspected": false,
+    "original": "4.8 kilograms",
+    "qty": 4.8,
+    "unit": "kg",
+    "std_qty": 4.8,
+    "std_unit": "kg",
+    "qualifier": "Exact",
+    "background": false,
+    "main": false
+   }
   ]
  },
  {
@@ -50591,14 +50058,14 @@
   ],
   "last_updated": "2026-11-27",
   "related": [],
+  "alerted": true,
   "insider_roles": [],
   "substances": [
    "Fentanyl"
   ],
   "concealment_types": [],
   "cover_goods": [],
-  "seizures": [],
-  "alerted": true
+  "seizures": []
  },
  {
   "title": "Haiti - Level 4: Do Not Travel",
@@ -56199,9 +55666,7 @@
   },
   "uncertainty": [],
   "last_updated": "2026-11-26",
-  "related": [
-   "BWO-2026-3107"
-  ],
+  "related": [],
   "outcome_note": ""
  },
  {
@@ -60910,13 +60375,16 @@
   "origin": "",
   "destination": "",
   "documents_count": 0,
-  "people_count": 0,
+  "people_count": 10,
   "weight_kg": 0,
   "id": "af5865238853",
   "first_seen": "2026-11-26",
-  "score": 0,
-  "level": "Low",
-  "reasons": [],
+  "score": 25,
+  "level": "Medium",
+  "reasons": [
+   "Concealment method (body, luggage, cargo) (+15: ocultacion)",
+   "Many people involved: 10 (+10)"
+  ],
   "watch": false,
   "home": false,
   "region": false,
@@ -61165,7 +60633,8 @@
      "main": false
     }
    ]
-  }
+  },
+  "lead": "La Guardia Civil ha detenido a dos personas presuntamente implicadas en el favorecimiento de la migración irregular en Ceuta."
  },
  {
   "title": "Vanuatu, Timor-Leste open visa-free travel for ordinary passport holders",
@@ -107237,14 +106706,14 @@
   ],
   "last_updated": "2026-11-27",
   "related": [],
+  "alerted": true,
   "insider_roles": [],
   "substances": [
    "Cash"
   ],
   "concealment_types": [],
   "cover_goods": [],
-  "seizures": [],
-  "alerted": true
+  "seizures": []
  },
  {
   "title": "Gota’s travel ban removal request rejected",
@@ -120120,8 +119589,8 @@
   "last_updated": "2026-11-26",
   "related": [
    "BWO-2026-3168",
-   "BWO-2026-3101",
-   "BWO-2026-2216"
+   "BWO-2026-2216",
+   "BWO-2026-1889"
   ],
   "specialist": [
    [
@@ -132425,8 +131894,8 @@
   "last_updated": "2026-11-26",
   "related": [
    "BWO-2026-3168",
-   "BWO-2026-3101",
-   "BWO-2026-2082"
+   "BWO-2026-2082",
+   "BWO-2026-1889"
   ],
   "outcome_note": ""
  },
@@ -153024,8 +152493,8 @@
   "last_updated": "2026-11-26",
   "related": [
    "BWO-2026-3168",
-   "BWO-2026-3101",
-   "BWO-2026-2216"
+   "BWO-2026-2216",
+   "BWO-2026-2082"
   ],
   "specialist": [
    [
@@ -161432,7 +160901,7 @@
   "origin": "",
   "destination": "Spain",
   "documents_count": 0,
-  "people_count": 0,
+  "people_count": 7000,
   "weight_kg": 0,
   "id": "2856775bc532",
   "first_seen": "2026-11-26",
@@ -161440,9 +160909,11 @@
    "El Confidencial",
    "Europa Press"
   ],
-  "score": 0,
+  "score": 10,
   "level": "Low",
-  "reasons": [],
+  "reasons": [
+   "Many people involved: 7000 (+10)"
+  ],
   "watch": false,
   "home": false,
   "region": false,
@@ -161762,7 +161233,8 @@
     ]
    ],
    "seizures": []
-  }
+  },
+  "lead": "(EUROPA PRESS) - Las autoridades de Senegal han anunciado este viernes la detención de cuatro personas por su presunta implicación en el tráfico de migrantes hacia España, en medio del aumento de las travesías a través de la ruta del Atlántico, que tiene las…"
  },
  {
   "title": "Dos estibadores detenidos en el puerto de Algeciras tras ocultar más de 53 kilos de cocaína en una alcantarilla",
@@ -174473,9 +173945,7 @@
   ],
   "review_status": "Automatically collected",
   "last_updated": "2026-11-26",
-  "related": [
-   "BWO-2026-3062"
-  ],
+  "related": [],
   "specialist": [
    [
     "Policy update",
@@ -174602,6 +174072,7 @@
    "BWO-2026-2980",
    "BWO-2026-3014",
    "BWO-2026-3038",
+   "BWO-2026-3062",
    "BWO-2026-3079"
   ],
   "outcome_note": ""
@@ -352440,7 +351911,7 @@
   "transport_mode": "",
   "outcome": "",
   "agencies": [],
-  "summary_text": "Kenya asks WHO to intervene over travel bans linked to Ebola outbreak Monday 09th November, 2026 06:57 PM  Kenya has asked the World Health Organization (WHO) to intervene over travel bans and visa restrictions imposed by some countries following the Bundibugyo Ebola outbreak, arguing that blanket restrictions against the country are not supported by scientific evidence.",
+  "summary_text": "Kenya asks WHO to intervene over travel bans linked to Ebola outbreak Monday 09th November, 2026 06:57 PM Kenya has asked the World Health Organization (WHO) to intervene over travel bans and visa restrictions imposed by some countries following the Bundibugyo Ebola outbreak, arguing that blanket restrictions against the country are not supported by scientific evidence.",
   "caribbean_connection": [],
   "jamaica_connection": [],
   "sources": [
@@ -368583,7 +368054,7 @@
   "transport_mode": "",
   "outcome": "",
   "agencies": [],
-  "summary_text": "ETIAS: New Travel Authorisation for Entry into the Schengen Area from 2027 06.11.2026 / 05:54  Aktualizováno: 06.11.2026 / 06:32 In 2027, the European Travel Information and Authorisation System (ETIAS) will be launched. ETIAS serves as an entry authorisation for travellers from visa-exempt countries entering the Schengen Area. ETIAS will complement existing EU information systems and contribute to more efficient border controls and enhanced security within the Schengen Area.",
+  "summary_text": "ETIAS: New Travel Authorisation for Entry into the Schengen Area from 2027 06.11.2026 / 05:54 Aktualizováno: 06.11.2026 / 06:32 In 2027, the European Travel Information and Authorisation System (ETIAS) will be launched. ETIAS serves as an entry authorisation for travellers from visa-exempt countries entering the Schengen Area. ETIAS will complement existing EU information systems and contribute to more efficient border controls and enhanced security within the Schengen Area.",
   "caribbean_connection": [],
   "jamaica_connection": [],
   "sources": [
@@ -368881,7 +368352,7 @@
    ],
    "seizures": []
   },
-  "lead": "ETIAS: New Travel Authorisation for Entry into the Schengen Area from 2027 06.11.2026 / 05:54  Aktualizováno: 06.11.2026 / 06:32 In 2027, the European Travel Information and Authorisation System (ETIAS) will be launched."
+  "lead": "ETIAS: New Travel Authorisation for Entry into the Schengen Area from 2027 06.11.2026 / 05:54 Aktualizováno: 06.11.2026 / 06:32 In 2027, the European Travel Information and Authorisation System (ETIAS) will be launched."
  },
  {
   "title": "More than 100 years behind bars for crime group that smuggled £40m of cocaine at sea",
@@ -388661,9 +388132,7 @@
   ],
   "review_status": "Automatically collected",
   "last_updated": "2026-11-27",
-  "related": [
-   "BWO-2026-3114"
-  ],
+  "related": [],
   "specialist": [
    [
     "Policy update",
@@ -403593,7 +403062,7 @@
   "transport_mode": "",
   "outcome": "",
   "agencies": [],
-  "summary_text": "ETIAS – important information for Czech dual citizens 02.11.2026 / 00:40  Aktualizováno: 02.11.2026 / 02:20 Information for Czech-Australian dual citizens ahead of introduction of ETIAS The Schengen Area, including Czechia, and several other participating countries are introducing ETIAS (European Travel Information and Authorisation System) in a few months.",
+  "summary_text": "ETIAS – important information for Czech dual citizens 02.11.2026 / 00:40 Aktualizováno: 02.11.2026 / 02:20 Information for Czech-Australian dual citizens ahead of introduction of ETIAS The Schengen Area, including Czechia, and several other participating countries are introducing ETIAS (European Travel Information and Authorisation System) in a few months.",
   "caribbean_connection": [],
   "jamaica_connection": [],
   "sources": [
@@ -415619,7 +415088,7 @@
   "transport_mode": "",
   "outcome": "",
   "agencies": [],
-  "summary_text": "ETIAS: A New Travel Authorisation for Entry into the Schengen Area from 2027 (31.10.2026) 31.10.2026 / 21:10  Aktualizováno: 31.10.2026 / 21:14 The European Travel Information and Authorisation System (ETIAS) is expected to be launched in 2027. ETIAS is a travel authorisation required for entry into the Schengen Area for travellers from visa-exempt countries. ETIAS will complement existing EU information systems, contribute to further streamlining border controls and strengthen the security of the Schengen Area.",
+  "summary_text": "ETIAS: A New Travel Authorisation for Entry into the Schengen Area from 2027 (31.10.2026) 31.10.2026 / 21:10 Aktualizováno: 31.10.2026 / 21:14 The European Travel Information and Authorisation System (ETIAS) is expected to be launched in 2027. ETIAS is a travel authorisation required for entry into the Schengen Area for travellers from visa-exempt countries. ETIAS will complement existing EU information systems, contribute to further streamlining border controls and strengthen the security of the Schengen Area.",
   "caribbean_connection": [],
   "jamaica_connection": [],
   "sources": [
@@ -415917,7 +415386,7 @@
    ],
    "seizures": []
   },
-  "lead": "ETIAS: A New Travel Authorisation for Entry into the Schengen Area from 2027 (31.10.2026) 31.10.2026 / 21:10  Aktualizováno: 31.10.2026 / 21:14 The European Travel Information and Authorisation System (ETIAS) is expected to be launched in 2027."
+  "lead": "ETIAS: A New Travel Authorisation for Entry into the Schengen Area from 2027 (31.10.2026) 31.10.2026 / 21:10 Aktualizováno: 31.10.2026 / 21:14 The European Travel Information and Authorisation System (ETIAS) is expected to be launched in 2027."
  },
  {
   "title": "UK Student Visa Rules To Change: Indians Must Show Up To Rs 18 Lakh For Living Expenses",
