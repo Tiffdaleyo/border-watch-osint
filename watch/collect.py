@@ -169,6 +169,32 @@ def official_sources(cfg):
     return items
 
 
+MISSION_EDITION = {"lang": "en", "hl": "en-US", "gl": "US", "ceid": "US:en"}
+
+
+def mission_searches(cfg, days, delay=1.5):
+    """Embassies, high commissions and foreign ministries without a usable feed, found through Google News.
+    A search with `site:` reads one mission's own website, so its results are marked official (mission).
+    A search by mission name finds news about the mission; those are ordinary news results.
+    Every result still has to match a border topic to be kept."""
+    items = []
+    for m in (cfg.get("sources") or {}).get("mission_searches") or []:
+        if _late() or THROTTLED[0] > 20:
+            log("  Embassy searches: stopping early (time budget reached or Google is limiting requests)")
+            break
+        res = google_news(m["query"], MISSION_EDITION, days)
+        for it in res:
+            if m.get("own_site"):
+                it["official"] = True
+                it["mission"] = True
+                it["agency_country"] = m.get("country", "")
+                it["source"] = m.get("name") or it.get("source", "")
+        items += res
+        log(f"  Embassy search {m.get('name') or m['query']}: {len(res)} headlines")
+        time.sleep(delay)
+    return items
+
+
 def collect(cfg, days, budget_minutes=None, official_only=False):
     src = cfg.get("sources") or {}
     budget = budget_minutes or float((cfg.get("run") or {}).get("search_budget_minutes", 20))
@@ -177,6 +203,8 @@ def collect(cfg, days, budget_minutes=None, official_only=False):
     items = official_sources(cfg)
     if official_only:
         src = {k: v for k, v in src.items() if k not in ("google_news", "gdelt", "rss_feeds")}
+    else:
+        items += mission_searches(cfg, days, delay)
     gn = src.get("google_news") or {}
     if gn.get("enabled"):
         def one_edition(ed):
@@ -215,7 +243,14 @@ def collect(cfg, days, budget_minutes=None, official_only=False):
         log(f"  note: news services asked us to slow down {THROTTLED[0]} times")
     cutoff = (dt.date.today() - dt.timedelta(days=days + 1)).isoformat()
     official_names = {n.lower() for n in src.get("official_publishers") or []}
-    for i in items:          # a news-search result published by an agency itself is official too
+    mission_names = {n.lower() for n in (cfg.get("sources") or {}).get("mission_publishers") or []}
+    rename = (cfg.get("sources") or {}).get("publisher_rename") or {}
+    for i in items:
+        if i.get("source") in rename:
+            i["source"] = rename[i["source"]]          # a news-search result published by an agency or a mission itself is official too
         if i.get("source", "").lower() in official_names:
             i["official"] = True
+        if i.get("source", "").lower() in mission_names:
+            i["official"] = True
+            i["mission"] = True
     return [i for i in items if i["title"] and i["url"] and (not i["date"] or i["date"] >= cutoff)]

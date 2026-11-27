@@ -170,6 +170,38 @@ sources:
     - {name: "UK government in the Caribbean", kind: mission, url: "https://www.gov.uk/search/news-and-communications.atom?world_locations%5B%5D=jamaica&world_locations%5B%5D=barbados&world_locations%5B%5D=trinidad-and-tobago&world_locations%5B%5D=the-bahamas&world_locations%5B%5D=guyana&world_locations%5B%5D=haiti&world_locations%5B%5D=dominican-republic&world_locations%5B%5D=belize", country: "United Kingdom"}
     - {name: "UK Foreign Office (FCDO)", kind: mission, url: "https://www.gov.uk/search/news-and-communications.atom?organisations%5B%5D=foreign-commonwealth-development-office", country: "United Kingdom"}
     - {name: "Global Affairs Canada", kind: mission, url: "https://api.io.canada.ca/io-server/gc/news/en/v2?dept=departmentofforeignaffairstradeanddevelopment&type=newsreleases&sort=publishedDate&orderBy=desc&pick=50&format=atom&atomtitle=GAC", country: "Canada"}
+    - {name: "Dominican Republic Foreign Ministry (MIREX)", kind: mission, url: "https://mirex.gob.do/feed/", country: "Dominican Republic"}
+    - {name: "Consulate General of Jamaica, Toronto", kind: mission, url: "https://www.jcgtoronto.ca/feed/", country: "Jamaica"}
+  # Embassies, high commissions and foreign ministries with no feed that GitHub can read (checked 2026-11-27 with the
+  # check-sources workflow: US embassies, India, Japan, Jamaica MFAFT and most Jamaican missions abroad block or have no feed).
+  # They are searched once per run through Google News (US English edition).
+  #   own_site: true  -> a site: search of the mission's own website: results are marked OFFICIAL (Embassies & high commissions)
+  #   own_site: false -> a search by mission name: results are ordinary news about the mission
+  # Every result must still match a border topic to be kept.
+  mission_searches:
+    - {name: "U.S. Embassy Kingston", own_site: true, country: "United States", query: "site:jm.usembassy.gov"}
+    - {own_site: true, country: "United States", query: "site:bb.usembassy.gov OR site:tt.usembassy.gov OR site:bs.usembassy.gov OR site:ht.usembassy.gov OR site:do.usembassy.gov OR site:gy.usembassy.gov OR site:bz.usembassy.gov"}
+    - {name: "Ministry of Foreign Affairs and Foreign Trade (Jamaica)", own_site: true, country: "Jamaica", query: "site:mfaft.gov.jm"}
+    - {own_site: true, country: "Jamaica", query: "site:embassyofjamaica.org OR site:jhcuk.com OR site:jamaicacgny.org OR site:jamaicacgmiami.org OR site:jhcottawa.ca OR site:jcgtoronto.ca"}
+    - {name: "Chinese Embassy in Jamaica", own_site: true, country: "China", query: "site:jm.china-embassy.gov.cn"}
+    - {name: "High Commission of India, Kingston", own_site: true, country: "India", query: "site:hcikingston.gov.in"}
+    - {name: "Canadian High Commission (Global Affairs Canada)", own_site: true, country: "Canada", query: "site:international.gc.ca Jamaica"}
+    - {name: "EU Delegation (EEAS)", own_site: true, country: "European Union", query: "site:eeas.europa.eu Jamaica OR Caribbean"}
+    - {own_site: true, country: "Cuba", query: "site:misiones.cubaminrex.cu OR site:cubaminrex.cu Jamaica OR Caribbean"}
+    - {own_site: true, country: "Nigeria", query: "site:foreignaffairs.gov.ng"}
+    - {own_site: true, country: "Venezuela", query: "site:mppre.gob.ve Jamaica OR Caribe"}
+    - {own_site: true, country: "Japan", query: "site:jamaica.emb-japan.go.jp OR site:mofa.go.jp Jamaica"}
+    - {query: '"High Commission" Jamaica'}
+    - {query: 'embassy Jamaica visa OR passport OR deportees OR immigration OR consular'}
+    - {query: '"Jamaican Embassy" OR "Jamaican High Commission" OR "Jamaican Consulate" OR "Jamaica Consulate"'}
+    - {query: '"Ministry of Foreign Affairs and Foreign Trade" Jamaica'}
+  # News-search results from these publishers come from a mission itself: marked OFFICIAL (Embassies & high commissions).
+  mission_publishers: ["U.S. Embassy in Jamaica (.gov)", "MFAFT Jamaica", "Consulate General of Jamaica, Miami",
+                       "High Commission of India, Kingston, Jamaica", "European External Action Service (EEAS)", "EEAS",
+                       "Global Affairs Canada", "Chinese Embassy in Jamaica", "China Ministry of Foreign Affairs",
+                       "Ministry of Foreign Affairs of Japan"]
+  # Publisher names shown in another script are given an English name.
+  publisher_rename: {"驻牙买加大使馆": "Chinese Embassy in Jamaica", "中华人民共和国外交部": "China Ministry of Foreign Affairs"}
   # News-search results from these publishers are also marked official.
   official_publishers: ["INTERPOL", "Frontex", "Europol", "U.S. Customs and Border Protection (.gov)", "CBP.gov",
                         "GOV.UK", "Jamaica Information Service", "JIS", "Jamaica Constabulary Force", "PICA",
