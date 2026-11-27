@@ -321,3 +321,14 @@ def test_english_decimal_not_thousands():
     from watch import seizure
     assert seizure.quantities("NDLEA seizes 13.795kg of cocaine")[0]["std_qty"] == 13.795
     assert seizure.quantities("incautan 1.200 kilos de cocaína", "es")[0]["std_qty"] == 1200
+
+
+def test_concealment_and_cover_categories():
+    from watch import seizure
+    rows = dict(seizure.details("Police find 40 kg of cocaine concealed among a shipment of bananas at Kingston wharf", {})[0])
+    assert rows["Concealment category"] == "Cargo cover load"
+    assert rows["Cover load / goods used as cover"] == "bananas (Fruit and vegetables)"
+    rows = dict(seizure.details("Woman held with cocaine pellets she swallowed", {})[0])
+    assert rows["Concealment category"] == "Swallowed / internal body"
+    # a drug courier is a person, not a courier parcel
+    assert "Courier" not in dict(seizure.details("NDLEA arrests two cocaine couriers", {})[0])["Concealment category"]

@@ -442,6 +442,8 @@ SEIZURE_TOPICS = {"Drug trafficking", "Firearms and ammunition", "Cash couriers"
 def _seizure(ev, art, text):
     """Seizure fields for seizure incidents; the article's figures are preferred over the headline's."""
     ev.pop("seizures", None)
+    ev.pop("concealment_types", None)
+    ev.pop("cover_goods", None)
     ev["specialist"] = [s for s in ev.get("specialist", []) if s[0] != "Seizure"]
     if ev.get("kind") != "Incident" or not set(ev.get("categories", [])) & SEIZURE_TOPICS:
         return
@@ -453,6 +455,18 @@ def _seizure(ev, art, text):
             continue          # these come from the final journey and agency fields
         if full.get(row[0]):
             row[1] = full[row[0]]
+    # standard categories for trends: from the full article when it gave them, otherwise from the concealment words
+    # (article or headline) plus the headline and summary
+    r = {k: i for i, (k, _) in enumerate(rows)}
+    if not full.get("Concealment category"):
+        rows[r["Concealment category"]][1] = "; ".join(seizure.concealment_types(
+            " ".join([rows[r["Concealment method"]][1], rows[r["Declared commodity"]][1], text])))
+    if not full.get("Cover load / goods used as cover"):
+        goods = seizure.cover_goods(" ".join([rows[r["Declared commodity"]][1], rows[r["Concealment method"]][1],
+                                              seizure._cover_zone(seizure.fold(text))]))
+        rows[r["Cover load / goods used as cover"]][1] = "; ".join(f"{w} ({n})" for n, w in goods)
+    ev["concealment_types"] = [x for x in rows[r["Concealment category"]][1].split("; ") if x]
+    ev["cover_goods"] = [x.rsplit(" (", 1)[1].rstrip(")") for x in rows[r["Cover load / goods used as cover"]][1].split("; ") if " (" in x]
     ev["specialist"].insert(0, ["Seizure", rows])
     ev["seizures"] = art.get("seizures") if art.get("seizure_rows") is not None else qs
 

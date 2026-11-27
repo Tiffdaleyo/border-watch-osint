@@ -209,6 +209,113 @@ CASE = [
 _CASE_RE = [(n, extract.compile_words(w)) for n, w in CASE]
 
 
+# ---- standard categories, so concealment methods and cover loads can be counted and compared over time ----
+CONCEALMENT_TYPES = [
+    ("Swallowed / internal body", ["swallow*", "ingest*", "pellets", "body cavity", "body cavities", "internally",
+                                   "cocaine-filled capsules", "capsules in his stomach", "capsules in her stomach",
+                                   "drug mule*", "body packer*", "stuffer*", "ingerid*", "capsulas", "boulettes"]),
+    ("Strapped or taped to the body", ["strapped to", "taped to", "body pack*", "around his waist", "around her waist",
+                                       "under his clothing", "under her clothing", "in his underwear", "in her underwear",
+                                       "adheridos al cuerpo", "adherida al cuerpo"]),
+    ("Clothing or footwear", ["shoe*", "sneaker*", "boots", "soles", "clothing", "garment*", "jacket*", "wig*",
+                              "zapato*", "calzado", "ropa", "prendas", "chaussures", "vetements"]),
+    ("Luggage: false bottom or lining", ["false bottom*", "double bottom*", "double-bottom*", "lining of", "suitcase lining",
+                                         "luggage lining", "doble fondo", "double fond", "fundo falso"]),
+    ("Luggage contents", ["suitcase*", "luggage", "baggage", "carry-on", "backpack*", "checked bag*", "maleta*",
+                          "equipaje*", "valise*", "bagage*", "malas"]),
+    ("Toiletries, cosmetics or personal items", ["toiletr*", "shampoo", "lotion*", "cosmetic*", "perfume*", "aseo",
+                                                 "deodorant*", "cream jar*", "soap"]),
+    ("Electronics or appliances", ["speaker*", "sound system", "laptop*", "television*", "printer*", "appliance*",
+                                   "bocina*", "equipo de sonido", "electrodomestico*", "microwave*", "refrigerator*"]),
+    ("Inside food or goods", ["coconut*", "cereal*", "fruit*", "banana*", "pineapple*", "avocado*", "coffee", "candy",
+                              "sweets", "chocolate*", "canned", "tins of", "bottles of", "juice", "rum", "sauce*",
+                              "spice*", "hollowed", "cocos", "frutas", "cajas de cereal"]),
+    ("Liquid or impregnated", ["liquid cocaine", "dissolved", "impregnated", "soaked", "in liquid form", "liquid form",
+                               "diluted", "infused"]),
+    ("Courier parcel or mail", ["parcel*", "courier shipment*", "courier parcel*", "courier package*", "courier service*", "courier company", "by courier", "via courier", "express courier", "by mail", "airmail", "mail parcel*", "postal", "package addressed", "encomienda*", "colis",
+                                "envelope*"]),
+    ("Shipping container (structure or rip-on/rip-off)", ["rip-on", "rip-off", "rip on/rip off", "container wall*",
+                                                          "container floor", "container door*", "refrigeration unit*",
+                                                          "reefer unit*", "reefer machinery", "container roof",
+                                                          "contaminated container*", "gancho ciego"]),
+    ("Cargo cover load", ["among legitimate", "mixed with", "among a shipment", "among the cargo", "within a shipment",
+                          "in a shipment of", "in a consignment of", "among bags of", "among boxes of", "among crates",
+                          "inside boxes of", "inside crates", "pallets of", "cover load", "legitimate cargo",
+                          "legitimate goods", "entre cajas de", "camuflad*", "cargamento de"]),
+    ("Vehicle hidden compartment", ["hidden compartment*", "secret compartment*", "trap compartment*", "rocker panel*",
+                                    "fuel tank*", "gas tank*", "spare tyre*", "spare tire*", "dashboard", "door panel*",
+                                    "bumper*", "chassis", "compartimento oculto", "compartimiento oculto", "caleta*"]),
+    ("Vessel hull or compartment", ["hull", "sea chest*", "below deck", "bilge", "engine room", "ballast",
+                                    "submerged", "attached to the hull", "divers", "casco del", "semi-submersible"]),
+    ("Aircraft", ["aircraft panel*", "lavatory", "toilet panel*", "wheel well", "cargo hold", "aircraft seat*",
+                  "galley", "avionics bay"]),
+    ("Furniture, machinery or structures", ["furniture", "machinery", "machine part*", "generator*", "pipes",
+                                            "tiles", "granite", "marble", "timber", "logs", "pallet*",
+                                            "statue*", "muebles", "maquinaria"]),
+    ("Barrel or drum", ["barrel*", "drum*", "barril*", "tonel*"]),
+]
+_CT_RE = [(n, extract.compile_words(w)) for n, w in CONCEALMENT_TYPES]
+
+# goods used as cover (declared or legitimate goods the contraband was hidden in or among)
+COVER_GOODS = [
+    ("Fruit and vegetables", ["banana*", "pineapple*", "avocado*", "coconut*", "mango*", "plantain*", "citrus",
+                              "oranges", "limes", "lemons", "fruit*", "vegetables", "potatoes", "onions", "yams",
+                              "platano*", "banano*", "piña*", "pina*", "cocos", "frutas"]),
+    ("Frozen or fresh fish and meat", ["frozen fish", "fish", "shrimp*", "prawns", "seafood", "frozen meat", "beef",
+                                       "chicken", "pescado", "camaron*", "mariscos"]),
+    ("Coffee, cocoa, sugar or grain", ["coffee", "cocoa", "cacao", "sugar", "rice", "flour", "grain*", "beans",
+                                       "cereal*", "cafe", "azucar", "arroz"]),
+    ("Drinks", ["rum", "beer", "wine", "juice", "liquor", "alcohol", "spirits", "water bottles", "ron", "cerveza"]),
+    ("Building materials and stone", ["granite", "marble", "tiles", "cement", "ceramic*", "bricks", "timber", "lumber",
+                                       "wood", "plywood", "stone", "ceramica*", "madera", "granito"]),
+    ("Scrap, waste and used goods", ["scrap metal", "scrap", "plastic waste", "waste", "used clothing",
+                                     "second-hand clothing", "used tyres", "used tires", "chatarra"]),
+    ("Machinery, vehicles and parts", ["machinery", "machine part*", "spare parts", "auto parts", "car parts",
+                                       "engine*", "generator*", "vehicles", "tyres", "tires", "maquinaria", "repuestos"]),
+    ("Furniture and household goods", ["furniture", "household goods", "personal effects", "appliance*", "mattress*",
+                                       "muebles", "menaje"]),
+    ("Clothing and textiles", ["clothing", "textiles", "fabric*", "garments", "shoes", "footwear", "ropa", "textil*"]),
+    ("Cosmetics and toiletries", ["cosmetic*", "toiletr*", "shampoo", "soap", "perfume*", "cosmeticos"]),
+    ("Electronics", ["electronics", "speakers", "televisions", "laptops", "phones", "electronicos"]),
+    ("Chemicals and fertiliser", ["chemical*", "fertili*er", "paint", "resin", "solvent*", "quimicos", "fertilizante*"]),
+    ("Charcoal, wood pellets or animal feed", ["charcoal", "wood pellets", "animal feed", "pet food", "carbon vegetal"]),
+    ("Flowers and plants", ["flowers", "roses", "plants", "flores"]),
+]
+_CG_RE = [(n, extract.compile_words(w)) for n, w in COVER_GOODS]
+
+
+def concealment_types(text):
+    """Standard concealment categories named in the text (several can apply)."""
+    t = fold(text)
+    found = [n for n, rx in _CT_RE if rx.search(t)]
+    if "Luggage: false bottom or lining" in found and "Luggage contents" in found:
+        found.remove("Luggage contents")          # the more precise one is enough
+    if "Cargo cover load" in found and "Inside food or goods" in found and not re.search(r"inside|hollow|filled|stuffed", t):
+        found.remove("Inside food or goods")
+    return found[:3]
+
+
+def cover_goods(text):
+    """Goods the contraband was declared as, hidden in, or hidden among: (category, words as reported)."""
+    t = fold(text)
+    out = []
+    for n, rx in _CG_RE:
+        m = rx.search(t)
+        if m:
+            out.append((n, m.group(0)))
+    return out[:3]
+
+
+_COVER_CUE = re.compile(r"(?:hidden|concealed|stashed|secreted|packed|camouflaged|disguised|declared as|manifested as|"
+                        r"among|amongst|mixed with|inside|within|shipment of|consignment of|cargo of|load of|boxes of|"
+                        r"crates of|bags of|pallets of|ocult\w*|escondid\w*|camuflad\w*|entre|cargamento de|dissimul\w*)")
+
+
+def _cover_zone(t):
+    """Only the words right after a concealment cue (so 'a fish market' elsewhere in the story is not a cover load)."""
+    return " ".join(t[m.end(): m.end() + 70] for m in _COVER_CUE.finditer(t))
+
+
 def details(text, ev):
     """Rows for the 'Seizure' specialist section, and the structured quantities for totals."""
     t = fold(text[:3000])
@@ -256,8 +363,10 @@ def details(text, ev):
             ["Standardised quantity", std_txt or ("Same as original" if qs else "")],
             ["Quantity qualifier", qual_txt],
             ["Concealment method", concealment[:140]],
+            ["Concealment category", "; ".join(concealment_types(" ".join([concealment, t])))],
             ["Shipment / transport type", "; ".join(ship)],
             ["Declared commodity", declared],
+            ["Cover load / goods used as cover", "; ".join(f"{w} ({n})" for n, w in cover_goods(" ".join([declared, _cover_zone(t)])))],
             ["Origin", j.get("origin", "") or ev.get("origin", "")],
             ["Transit", "; ".join(j.get("transit", []))],
             ["Destination", j.get("destination", "") or ev.get("destination", "")],

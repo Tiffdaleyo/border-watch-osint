@@ -17,7 +17,7 @@ FIELDS = ["event_id", "title", "summary_text", "primary_category", "tags", "grou
           "route_completeness", "route_basis", "route_text", "nationality",
           "caribbean_connection", "jamaica_connection", "transport_mode", "document_types", "documents_count",
           "people_count", "weight_kg", "agencies", "outcome", "exploitation", "victim_assistance",
-          "seizure_quantities", "specialist", "review_status", "review_note", "uncertainty", "corrections", "source_type", "source_language",
+          "seizure_quantities", "concealment_types", "cover_goods", "specialist", "review_status", "review_note", "uncertainty", "corrections", "source_type", "source_language",
           "independent_sources", "republications", "source_relationship", "source", "source_url", "url", "sources", "related", "reasons"]
 # fields the website needs (the stored file keeps more, e.g. the raw article facts)
 DROP = {"article", "matched_words", "other_sources", "action", "lang", "via", "id", "published"}

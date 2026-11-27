@@ -175,8 +175,24 @@ reports in that category. Each field still shows "Not reported" unless the artic
 | Citizenship / residence fraud | Programme involved; application stage; alleged misrepresentation; documents involved; administrative or court outcome |
 | Border integrity | Organisation or role implicated (only in corruption or insider reports); alleged conduct; location; investigation, disciplinary or criminal outcome |
 | Wanted-person interception | Notice or warrant (Red Notice, arrest warrant, extradition request…); agency reporting it; stated basis; reported outcome (arrested, extradited, deported…) |
-| Seizure (drugs, firearms, cash, wildlife, cargo incidents) | Substance or item as reported (keeps "suspected"); confirmation status (suspected, field-tested, laboratory-confirmed); quantity and unit as written ("more than 1,100 kg"); standardised quantity (pounds and tonnes to kg, gallons to litres; counts stay counts); quantity qualifier (exact, approximate, more than, up to); concealment method; shipment or transport type (container, baggage, on the body, courier parcel, air cargo, vessel, vehicle, barrel, sea cargo); declared commodity ("declared as bananas"); origin, transit and destination; seizing agency; other seized items (firearms, ammunition, cash, kept separate); reported valuation, with who gave the estimate, kept apart from quantity; case development (investigation, arrest, charge, court outcome, correction) |
+| Seizure (drugs, firearms, cash, wildlife, cargo incidents) | Substance or item as reported (keeps "suspected"); confirmation status (suspected, field-tested, laboratory-confirmed); quantity and unit as written ("more than 1,100 kg"); standardised quantity (pounds and tonnes to kg, gallons to litres; counts stay counts); quantity qualifier (exact, approximate, more than, up to); concealment method (the words as reported) and **concealment category** (standard list, see below); shipment or transport type (container, baggage, on the body, courier parcel, air cargo, vessel, vehicle, barrel, sea cargo); declared commodity ("declared as bananas"); **cover load / goods used as cover**, with a category; origin, transit and destination; seizing agency; other seized items (firearms, ammunition, cash, kept separate); reported valuation, with who gave the estimate, kept apart from quantity; case development (investigation, arrest, charge, court outcome, correction) |
 | Policy update | Issuing authority; affected travellers or documents; announcement date; effective date; exceptions; status (proposed, active, delayed or withdrawn); official guidance link (that country's official immigration site) |
+
+**Concealment and cover loads, recorded the same way every time (for trends).** Every seizure gets up to three
+standard **concealment categories** and up to three **cover-load categories**, worked out from the report's own words.
+The exact words are kept too, so the category can always be checked.
+
+| Concealment categories | Cover-load categories |
+|---|---|
+| Swallowed / internal body · Strapped or taped to the body · Clothing or footwear · Luggage: false bottom or lining · Luggage contents · Toiletries, cosmetics or personal items · Electronics or appliances · Inside food or goods · Liquid or impregnated · Courier parcel or mail · Shipping container (structure or rip-on/rip-off) · Cargo cover load · Vehicle hidden compartment · Vessel hull or compartment · Aircraft · Barrel or drum · Furniture, machinery or structures | Fruit and vegetables · Frozen or fresh fish and meat · Coffee, cocoa, sugar or grain · Drinks · Building materials and stone · Scrap, waste and used goods · Machinery, vehicles and parts · Furniture and household goods · Clothing and textiles · Cosmetics and toiletries · Electronics · Chemicals and fertiliser · Charcoal, wood pellets or animal feed · Flowers and plants |
+
+A cover load is only recorded when the goods are named next to a concealment word ("hidden among", "declared as",
+"in a shipment of"), so a story that mentions fish somewhere else does not count. An empty category means the report
+did not say how it was hidden.
+
+In the **Seizures & Contraband** section: a **Concealment methods** chart, a **Cover loads** chart (click a bar to
+filter everything to it) and a **Concealment trends** chart showing seizures per week for the six most common
+methods, so a method that starts rising stands out. Both categories are also columns in the CSV downloads.
 
 These fields fill in best when the full article was read. Most older reports were captured from headlines only.
 They fill in as articles are re-read, up to 400 per day.
@@ -297,8 +313,9 @@ is public.**
 
 ## 10. Using the website
 
-The site is organised into **sections**, like the pages of a website. The menu bar at the top lists them, with a
-count of reports beside each one.
+The site is organised into **sections**, like the pages of a website. The **side menu on the left** lists them, with
+a count of reports beside each one, and below them the **Investigation tools** (section 10b). On a phone the menu
+sits at the top and scrolls sideways.
 
 | Section | What it covers |
 |---|---|
@@ -332,9 +349,13 @@ smuggling ring appears in both Passports & Documents and Immigration.
 **Everywhere on the site:**
 - **Light or dark:** the site opens in a light theme. The **☾ Dark** button at the top right switches to dark (and
   **☀ Light** switches back). Each computer or phone remembers its own choice.
+- **Any selector box (top):** type or paste anything: a word, a name, an email, a phone number, a flight number, an
+  IMO ship number, a container number, a port code, a website or an Event ID. The site searches its own reports at
+  once and says what kind of selector it detected. Then a button opens the same selector in the Investigation Desk,
+  which lists every free source that can check it (flight numbers go to the flight tracker, air waybills to Air
+  cargo, port codes to World ports). The "Try" examples show the idea.
 - **Filter bar:** choose the period, the scope (World, Caribbean or Jamaica), topic, country, nationality, transport
-  mode, news vs official releases, review status, or incidents and updates. You can also search headlines or an
-  Event ID. Every chart, list and number follows the filters, and the filters stay on when you change section.
+  mode, news vs official releases, review status, or incidents and updates. Every chart, list and number follows the filters, and the filters stay on when you change section.
   Click any bar or map bubble to filter by it. **Reset** clears the filters but keeps you in the section.
 - **Key numbers (clickable):** reports, high-risk incidents, Caribbean, Jamaica, policy updates and the largest
   seizure total, compared with the previous period. Click a card to open its list: **Reports** jumps to the table;
@@ -356,6 +377,32 @@ smuggling ring appears in both Passports & Documents and Immigration.
   **Why this score** to see the indicators matched.
 - **Full downloads:** the complete CSV (every report, every field) and the **weekly bulletin** are linked above the
   table.
+
+## 10b. Investigation tools (LE OSINT Framework)
+
+The **Investigation tools** in the side menu open the **Investigation Desk** of the LE OSINT Framework
+(https://glretief-ux.github.io/LE-OSINT-Framework/), shown to us by our trainer. It is its authors' own site
+(MIT licence) and opens in a new tab, so it is always their latest version and they keep the credit.
+
+| Tool | What it does |
+|---|---|
+| **Flow chart** | Lines of enquiry (person, communications, goods and transport, money, digital, places) opening into categories and free sources. Click a card to open the next step |
+| **Any-selector search** | Paste one selector; every free source that accepts it is listed as a run sheet, with ticks and a case log |
+| **World ports** | 3,802 seaports from the NGA World Port Index plus 14,700 UN/LOCODE port locations: search by country, name or code, with map and sea chart links, CSV export |
+| **Flight tracker** | Flight number, callsign, registration or ICAO hex: route on a map, aircraft details, and a link to the free live map |
+| **Shipping lines** | 109 carriers with SCAC codes and container prefixes; identifies the line from a container or bill-of-lading number |
+| **Air cargo** | Air waybill check digit, airline and tracking; cargo airlines; airport codes |
+| **Visa requirements** | Passport country + destination: visa free, on arrival, eTA, e-visa or visa required; always confirm with the embassy |
+| **HS codes**, **Drug precursors** | Customs commodity codes; INCB precursor tables |
+| **Case playbooks**, **Toolbox & case log** | Step-by-step guides by case type; validators (container, IMO, VIN, IBAN), hashes, metadata, case log |
+
+**From the Any selector box:** flight numbers open straight in the flight tracker and air waybills in Air cargo.
+For anything else the selector is **copied** and the desk's source list opens: paste it (Ctrl+V) into the desk's
+own selector box.
+
+**Good to know:** the desk runs in your browser; nothing typed there reaches Border Watch. Some sources it opens may
+**alert the subject** (marked `A`) or need privacy care (`P`). Follow your agency's rules for online enquiries and
+don't type case details into outside websites.
 
 ## 11. Email: Monday bulletin and alerts
 
@@ -482,3 +529,5 @@ Privacy rules are in `watch/privacy.py`.
 | 2026-11-26 | Site organised into **sections** (Overview, Passports & Documents, Immigration & Irregular Movement, Human Trafficking, Citizenship & Residence, Border Security, Seizures & Contraband, Visa & Entry Rules, Official Updates), each with its own link, quick sub-topic buttons, relevant charts and a download of the current view. New **Stowaways** and **Travel advisories** topics. Embassy, high commission and foreign-ministry sources added. Fixed: English figures such as "13.795 kg" were read as 13,795 kg. |
 | 2026-11-26 | Key-number cards are clickable. A "Filters on" line shows every active filter with a ✕. An Event ID search from an alert link now clears when you open a section. |
 | 2026-11-26 | Light theme by default, with a Light / Dark button that each device remembers. |
+| 2026-11-26 | Side menu on the left. Big **Any selector** box that searches the reports, detects the selector type and opens it in the Investigation Desk. **Investigation tools** link to the LE OSINT Framework's Investigation Desk (its own site, credited): flow chart, any-selector run sheet, world ports and UN/LOCODE, flight tracker, shipping lines, air cargo, visas, HS codes, precursors, playbooks, toolbox. |
+| 2026-11-27 | Concealment and cover loads recorded in standard categories on every seizure, with charts, filters and a weekly concealment trend in the Seizures section, and columns in the CSV. |

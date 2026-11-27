@@ -14,7 +14,7 @@
     --g1:#2a7de1; --g2:#e0621f; --g3:#00977a; --g4:#c08000; --g5:#d63f7e; --g6:#7b68e0; --g7:#7a9220;
     --hdr1:#ffffff; --hdr2:#f3f5f9; --fbar:rgba(243,245,249,.94); --snav:#ffffff; --pill:#c6cfdf; --pillc:#4a5873;
     --split:#e7ebf2; --land:#dfe6f0; --landb:#b9c4d6; --landh:#cdd7e6; --edge:#ffffff; --tt:#ffffff; --heat0:#dbe7fb;
-    --demoink:#8a1c1c; --shadow:0 1px 2px rgba(20,33,61,.06);
+    --demoink:#8a1c1c; --sidebg:#13294b; --shadow:0 1px 2px rgba(20,33,61,.06);
     --r:14px;
   }
   html[data-theme="dark"] {
@@ -23,7 +23,7 @@
     --g1:#338ced; --g2:#e76624; --g3:#00a888; --g4:#d28e05; --g5:#e24d8b; --g6:#9887ef; --g7:#9fb43c;
     --hdr1:#0c1730; --hdr2:#070d1a; --fbar:rgba(7,13,26,.92); --snav:#0a1324; --pill:#2c3d61; --pillc:#b7c3da;
     --split:#17233a; --land:#15233d; --landb:#26385d; --landh:#1c2e4f; --edge:#0e1729; --tt:#0b1426; --heat0:#1d3557;
-    --demoink:#ffd0d0; --shadow:none;
+    --demoink:#ffd0d0; --sidebg:#0a1324; --shadow:none;
   }
   .themebtn { background:var(--panel); border:1px solid var(--line); color:var(--ink); border-radius:30px; padding:5px 12px; cursor:pointer; font-size:12.5px; white-space:nowrap; }
   .themebtn:hover { border-color:var(--accent); }
@@ -55,14 +55,41 @@
   .reset { background:none; border:1px solid var(--line); color:var(--muted); border-radius:10px; padding:7px 12px; cursor:pointer; font-size:12.5px; }
   .reset:hover { color:var(--ink); border-color:var(--accent); }
 
-  .snav { background:var(--snav); border-bottom:1px solid var(--line); }
-  .snav .in { max-width:1480px; margin:0 auto; padding:0 22px; display:flex; gap:2px; flex-wrap:wrap; }
-  .snav a { display:flex; align-items:center; gap:6px; padding:11px 10px; color:var(--muted); font-size:12.5px; white-space:nowrap;
-            border-bottom:2px solid transparent; }
-  .snav a:hover { color:var(--ink); }
-  .snav a.on { color:var(--ink); border-bottom-color:var(--sc,var(--accent)); font-weight:600; }
-  .snav a .d { width:8px; height:8px; border-radius:50%; background:var(--sc,var(--accent)); }
-  .snav a .c { font-size:11px; color:var(--dim); font-variant-numeric:tabular-nums; }
+  /* left side menu */
+  .side { position:fixed; left:0; top:0; bottom:0; width:240px; overflow-y:auto; background:var(--sidebg); color:#dfe7f5; z-index:30;
+          display:flex; flex-direction:column; scrollbar-width:thin; }
+  .side .brand { display:flex; gap:10px; align-items:center; padding:16px 16px 12px; }
+  .side .brand b { font-size:15px; color:#fff; line-height:1.2; } .side .brand small { display:block; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:#9fb3d6; }
+  .side .sgl { font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:#8ea3c8; padding:14px 18px 6px; }
+  .side nav { display:flex; flex-direction:column; padding:0 8px; gap:1px; }
+  .side nav a { display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px; color:#dfe7f5; font-size:13.5px; text-decoration:none; }
+  .side nav a:hover { background:rgba(255,255,255,.08); color:#fff; }
+  .side nav a.on { background:rgba(255,255,255,.14); color:#fff; font-weight:600; box-shadow:inset 3px 0 0 var(--sc,#fff); }
+  .side nav a .d { width:8px; height:8px; border-radius:50%; background:var(--sc,#9fb3d6); flex:none; }
+  .side nav a .c { margin-left:auto; font-size:11.5px; color:#9fb3d6; font-variant-numeric:tabular-nums; }
+  .side nav a .i { width:16px; text-align:center; flex:none; opacity:.9; }
+  .side nav a .ext { margin-left:auto; font-size:10px; color:#8ea3c8; }
+  .side .credit { font-size:11px; color:#8ea3c8; padding:10px 18px 4px; line-height:1.45; }
+  .side .credit a { color:#cfe0ff; text-decoration:underline; }
+  .side .foot { margin-top:auto; padding:12px 16px 16px; display:flex; gap:8px; align-items:center; }
+  .side .themebtn { background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.2); color:#fff; }
+  .main { margin-left:240px; min-width:0; }
+  .selbox { max-width:1480px; margin:0 auto; padding:12px 22px 0; }
+  .selbox .box { display:flex; align-items:center; gap:10px; background:var(--panel); border:2px solid var(--ink); border-radius:14px; padding:6px 8px 6px 14px; }
+  .selbox .box span { font:600 11px/1 ui-monospace,Menlo,Consolas,monospace; letter-spacing:.1em; color:var(--muted); white-space:nowrap; }
+  .selbox input { flex:1; border:0; outline:0; background:none; color:var(--ink); font:inherit; font-size:15px; padding:8px 4px; min-width:0; }
+  .selbox .x { background:none; border:0; color:var(--muted); font-size:20px; cursor:pointer; padding:0 8px; }
+  .selbox .try { font-size:12px; color:var(--dim); margin:7px 2px 0; display:flex; gap:6px; flex-wrap:wrap; align-items:center; }
+  .selbox .try button { font:12px ui-monospace,Menlo,Consolas,monospace; background:var(--panel2); border:1px solid var(--line); color:var(--ink2); border-radius:7px; padding:2px 8px; cursor:pointer; }
+  .selhint { margin:8px 2px 0; font-size:13px; display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+  .selhint b { color:var(--ink); } .selhint a { background:var(--accent); color:#fff; border-radius:8px; padding:4px 10px; font-size:12.5px; }
+  .selhint a.alt { background:var(--panel2); color:var(--ink); border:1px solid var(--line); }
+  .menu-btn { display:none; }
+  @media (max-width:900px) {
+    .side { position:static; width:auto; max-height:none; }
+    .side nav { flex-direction:row; overflow-x:auto; padding-bottom:6px; } .side nav a { white-space:nowrap; }
+    .side .credit, .side .sgl { padding-top:6px; } .main { margin-left:0; }
+  }
   .shead { display:flex; gap:14px; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; margin:0 0 14px; }
   .shead h2 { margin:0; font-size:22px; } .shead p { margin:3px 0 0; color:var(--muted); font-size:13px; max-width:860px; }
   .shead .acts { display:flex; gap:8px; flex-wrap:wrap; }
@@ -191,16 +218,42 @@
 </style>
 </head>
 <body>
+<aside class="side" aria-label="Menu">
+  <div class="brand"><div class="logo">BW</div><div><b>Border Watch</b><small>OSINT monitor</small></div></div>
+  <div class="sgl">Sections</div>
+  <nav id="snav"></nav>
+  <div class="sgl">Investigation tools</div>
+  <nav class="tools">
+    <a target="_blank" rel="noopener" href="https://glretief-ux.github.io/LE-OSINT-Framework/#flow"><span class="i">⟶</span>Flow chart</a>
+    <a target="_blank" rel="noopener" href="https://glretief-ux.github.io/LE-OSINT-Framework/#desk"><span class="i">⌕</span>Any-selector search</a>
+    <a target="_blank" rel="noopener" href="https://glretief-ux.github.io/LE-OSINT-Framework/#ports"><span class="i">⚓</span>World ports</a>
+    <a target="_blank" rel="noopener" href="https://glretief-ux.github.io/LE-OSINT-Framework/#flights"><span class="i">✈</span>Flight tracker</a>
+    <a target="_blank" rel="noopener" href="https://glretief-ux.github.io/LE-OSINT-Framework/#lines"><span class="i">▦</span>Shipping lines</a>
+    <a target="_blank" rel="noopener" href="https://glretief-ux.github.io/LE-OSINT-Framework/#air"><span class="i">✉</span>Air cargo</a>
+    <a target="_blank" rel="noopener" href="https://glretief-ux.github.io/LE-OSINT-Framework/#visas"><span class="i">⎙</span>Visa requirements</a>
+    <a target="_blank" rel="noopener" href="https://glretief-ux.github.io/LE-OSINT-Framework/#hs"><span class="i">#</span>HS codes</a>
+    <a target="_blank" rel="noopener" href="https://glretief-ux.github.io/LE-OSINT-Framework/#precursors"><span class="i">⚗</span>Drug precursors</a>
+    <a target="_blank" rel="noopener" href="https://glretief-ux.github.io/LE-OSINT-Framework/#playbooks"><span class="i">☰</span>Case playbooks</a>
+    <a target="_blank" rel="noopener" href="https://glretief-ux.github.io/LE-OSINT-Framework/#toolbox"><span class="i">⚙</span>Toolbox &amp; case log</a>
+  </nav>
+  <div class="credit">These open the <a href="https://github.com/glretief-ux/LE-OSINT-Framework" target="_blank" rel="noopener">LE OSINT Framework</a> Investigation Desk in a new tab (its own site, MIT licence).</div>
+  <div class="foot"><button class="themebtn" id="theme" title="Switch between light and dark"></button></div>
+</aside>
+<div class="main">
 <div class="hdr"><div class="in">
-  <div class="logo">BW</div>
   <div class="ttl"><h1>__TITLE__</h1><p>__SUBTITLE__</p></div>
 
   <span class="pill">Unofficial · open-source only</span>
   <span class="upd"><i></i>Updated <span id="updated"></span></span>
-  <button class="themebtn" id="theme" title="Switch between light and dark"></button>
 </div></div>
 
-<nav class="snav" aria-label="Sections"><div class="in" id="snav"></div></nav>
+<div class="selbox">
+  <label class="box"><span>ANY SELECTOR</span>
+    <input type="search" id="q" autocomplete="off" spellcheck="false" placeholder="Search the reports, or paste a name, email, phone, flight, IMO, container no., port, domain or Event ID…">
+    <button class="x" id="qclear" title="Clear" type="button">×</button></label>
+  <div class="try">Try <button>MSCU1234566</button><button>IMO 9074729</button><button>BW2591</button><button>+1 876 555 0100</button><button>JMKIN</button><button>cocaine</button></div>
+  <div class="selhint" id="selhint" hidden></div>
+</div>
 
 <div class="fbar"><div class="in">
   <div class="seg" id="period">
@@ -217,7 +270,6 @@
   <select id="fsrc"><option value="">News + official</option><option value="official">Official releases only</option><option value="news">News only</option></select>
   <select id="freview"><option value="">Any review status</option></select>
   <select id="flevel"><option value="">Incidents + updates</option><option value="Incident">Incidents only</option><option>High</option><option>Medium</option><option>Low</option><option value="Update">Updates only</option></select>
-  <input type="search" id="q" placeholder="Search headlines or event ID…">
   <button class="reset" id="reset">Reset</button>
 </div></div>
 
@@ -302,7 +354,19 @@
       <h2>Seizures &amp; contraband</h2><div class="sub">Drugs, firearms, cash, wildlife and cargo incidents · totals by substance and unit · open "Full record" for seizure details</div>
       <table class="mini" id="sztotals" style="margin:4px 0 8px"></table>
       <div class="sub">Each substance and unit is totalled separately (kg, litres, tablets, plants and counts are never added together). Figures are as reported, not verified.</div>
-      <ul class="feed" id="seizures" style="max-height:300px"></ul>
+      <ul class="feed" id="szfeed" style="max-height:300px"></ul>
+    </section>
+    <section class="card s6" data-sec="seizures">
+      <h2>Concealment methods</h2><div class="sub">Standard categories, from the report's own words · a seizure can use more than one · click to filter</div>
+      <div id="conceal" class="chart" style="height:360px"></div>
+    </section>
+    <section class="card s6" data-sec="seizures">
+      <h2>Cover loads and goods used as cover</h2><div class="sub">What the contraband was declared as, hidden in or hidden among · click to filter</div>
+      <div id="cover" class="chart" style="height:360px"></div>
+    </section>
+    <section class="card s12" data-sec="seizures">
+      <h2>Concealment trends</h2><div class="sub">Seizures per <span id="cunit">week</span> by concealment method (top 6) · watch for a method that is rising</div>
+      <div id="ctrend" class="chart" style="height:300px"></div>
     </section>
     <section class="card s5" data-sec="overview documents migration trafficking seizures border">
       <h2>Transport mode</h2><div class="sub">As stated in the report · click to filter</div>
@@ -315,7 +379,7 @@
     </section>
     <section class="card s4" data-sec="overview policy citizenship official">
       <h2>Policy &amp; systems</h2><div class="sub">Visa requirements, entry rules, travel authorisations, border technology, health entry rules</div>
-      <ul class="feed" id="policy" style="max-height:330px"></ul>
+      <ul class="feed" id="polfeed" style="max-height:330px"></ul>
     </section>
     <section class="card s8" data-sec="official">
       <h2>Who published</h2><div class="sub">Agencies, embassies and high commissions · click to search</div>
@@ -341,7 +405,7 @@
     <table class="mini" id="trends" style="margin-top:16px"></table>
   </details>
 </div>
-<footer>Open-source news only. Only headlines, short summaries and links are stored, never full articles. Map outlines: Natural Earth via world-atlas. Charts: Apache ECharts.</footer>
+<footer>Investigation tools link to the <a href="https://github.com/glretief-ux/LE-OSINT-Framework">LE OSINT Framework</a> Investigation Desk (© LE OSINT Framework contributors, MIT licence). Open-source news only. Only headlines, short summaries and links are stored, never full articles. Map outlines: Natural Earth via world-atlas. Charts: Apache ECharts.</footer>
 
 <script>
 const DATA = __DATA__;
@@ -393,7 +457,7 @@ const ev = DATA.events.map(e => ({tags: [], related: [], home: false, region: fa
   groups: GROUPS.filter(([g, ts]) => e.categories.some(c => ts.includes(c))).map(g => g[0]), g: groupOf(e)}));
 
 /* filters: every chart, list and number below follows these */
-const F = {section: "overview", sub: "", period: 90, scope: "", group: "", topic: "", country: "", nat: "", level: "", mode: "", review: "", src: "", q: ""};
+const F = {section: "overview", sub: "", conceal: "", cover: "", period: 90, scope: "", group: "", topic: "", country: "", nat: "", level: "", mode: "", review: "", src: "", q: ""};
 const jText = e => (e.journey || {}).text || "";
 GROUPS.forEach(([g], i) => $("fgroup").add(new Option(g, i)));
 [...new Set(ev.flatMap(e => e.categories))].sort().forEach(v => $("ftopic").add(new Option(v, v)));
@@ -424,7 +488,7 @@ function findEvent(id) { F.q = id.toLowerCase(); $("q").value = id; F.period = 0
 $("q").oninput = e => { F.q = e.target.value.toLowerCase(); update(); };
 $("fsort").onchange = () => renderTable(current);
 $("reset").onclick = () => {
-  Object.assign(F, {sub: "", period: 90, scope: "", group: "", topic: "", country: "", nat: "", level: "", mode: "", review: "", src: "", q: ""});
+  Object.assign(F, {sub: "", conceal: "", cover: "", period: 90, scope: "", group: "", topic: "", country: "", nat: "", level: "", mode: "", review: "", src: "", q: ""});
   ["fgroup", "ftopic", "fcountry", "fnat", "flevel", "fmode", "freview", "fsrc"].forEach(id => $(id).value = ""); $("q").value = "";
   document.querySelectorAll("#period button").forEach(b => b.classList.toggle("on", b.dataset.v === "90"));
   document.querySelectorAll("#scope button").forEach(b => b.classList.toggle("on", b.dataset.v === ""));
@@ -438,7 +502,8 @@ function filtered(ignorePeriod, ignoreSection, ignoreTopic) {
   return ev.filter(e => (!from || e.date >= from) && (!F.scope || e[F.scope])
     && (ignoreSection || (inSection(e, F.section) && (!F.sub || (F.sub === "mission") === !!e.mission)))
     && (F.group === "" || e.categories.some(c => topicGroup[c] === +F.group))
-    && (ignoreTopic || !F.topic || e.categories.includes(F.topic)) && (!F.country || e.countries.includes(F.country))
+    && (ignoreTopic || !F.topic || e.categories.includes(F.topic))
+    && (!F.conceal || (e.concealment_types || []).includes(F.conceal)) && (!F.cover || (e.cover_goods || []).includes(F.cover)) && (!F.country || e.countries.includes(F.country))
     && (!F.level || e.level === F.level || e.kind === F.level)
     && (!F.nat || (e.nationality || []).includes(F.nat)) && (!F.src || (F.src === "official") === !!e.official) && (!F.mode || modeKey(e.transport_mode) === F.mode) && (!F.review || e.review_status === F.review)
     && (!F.q || (e.event_id + " " + jText(e) + " " + e.title + " " + (e.summary || "") + " " + (e.lead || "") + " " + e.source + " " + e.countries.join(" ") + " " + (e.terms || []).join(" ")).toLowerCase().includes(F.q)));
@@ -446,7 +511,7 @@ function filtered(ignorePeriod, ignoreSection, ignoreTopic) {
 
 /* charts */
 const charts = {};
-["map", "jmap", "trend", "riskmix", "topics", "countries", "routes", "airports", "modes", "nats", "natroute", "pubs"].forEach(id => charts[id] = echarts.init($(id)));
+["map", "jmap", "trend", "riskmix", "topics", "countries", "routes", "airports", "modes", "nats", "natroute", "pubs", "conceal", "cover", "ctrend"].forEach(id => charts[id] = echarts.init($(id)));
 window.addEventListener("resize", () => Object.values(charts).forEach(c => c.resize()));
 const TT = {backgroundColor: css("--tt"), borderColor: css("--line"), textStyle: {color: INK, fontSize: 12}, extraCssText: "border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.18)"};
 const AX = {axisLine: {lineStyle: {color: LINE}}, axisTick: {show: false}, axisLabel: {color: MUTED, fontSize: 11}, splitLine: {lineStyle: {color: css("--split")}}};
@@ -666,7 +731,8 @@ function activeFilters() {
   const names = {scope: v => v === "region" ? DATA.region : DATA.home, group: v => GROUPS[+v][0], topic: v => v, country: v => v,
     nat: v => "Nationality: " + v, level: v => v === "Incident" ? "Incidents only" : v === "Update" ? "Updates only" : v + " risk",
     mode: v => "Transport: " + v, review: v => v, src: v => v === "official" ? "Official only" : "News only", q: v => `Search: "${v}"`,
-    sub: v => v === "mission" ? "Embassies & high commissions" : "Agencies"};
+    sub: v => v === "mission" ? "Embassies & high commissions" : "Agencies",
+    conceal: v => "Concealment: " + v, cover: v => "Cover: " + v};
   const on = Object.keys(names).filter(k => F[k] !== "");
   $("active").hidden = !on.length;
   if (!on.length) return;
@@ -770,15 +836,19 @@ function update() {
   drawJourneys(current); drawNatRoute(current);
   hbar(charts.airports, count(current, e => e.airports).slice(0, 10), () => css("--g1"));
   feed("priority", current.filter(e => e.level === "High" || e.home).sort((a, b) => (rank[a.level] - rank[b.level]) || b.date.localeCompare(a.date)), "Nothing high-risk in this view.");
-  feed("policy", current.filter(e => e.kind === "Update" && (e.groups || []).includes("Policy & Systems")).sort((a, b) => b.date.localeCompare(a.date)), "No policy changes in this view.");
+  feed("polfeed", current.filter(e => e.kind === "Update" && (e.groups || []).includes("Policy & Systems")).sort((a, b) => b.date.localeCompare(a.date)), "No policy changes in this view.");
   drawSeizureTotals(current);
-  feed("seizures", current.filter(e => e.kind === "Incident" && (e.groups || []).includes("Seizures & Contraband")).sort((a, b) => (b.home - a.home) || (rank[a.level] - rank[b.level]) || b.date.localeCompare(a.date)), "No seizures in this view.");
+  feed("szfeed", current.filter(e => e.kind === "Incident" && (e.groups || []).includes("Seizures & Contraband")).sort((a, b) => (b.home - a.home) || (rank[a.level] - rank[b.level]) || b.date.localeCompare(a.date)), "No seizures in this view.");
   hbar(charts.modes, count(current.filter(e => e.kind === "Incident"), e => [modeKey(e.transport_mode)]), m => m === "Not reported" ? css("--upd") : css("--g7"), m => setFilter("mode", m, "fmode"), F.mode);
   feed("watch", current.filter(e => e.watch), "No hits. Add names or terms to the watch list in config.yaml.");
   renderTable(current);
   hbar(charts.pubs, count(current.filter(e => e.official), e => [e.source]).slice(0, 15), p => current.find(e => e.source === p && e.mission) ? css("--home") : css("--g1"),
        p => { F.q = p.toLowerCase(); $("q").value = p; update(); });
-  sectionUI(); activeFilters();
+  const sz = current.filter(e => e.kind === "Incident" && (e.concealment_types || e.cover_goods));
+  hbar(charts.conceal, count(sz, e => e.concealment_types || []), () => css("--g2"), c => setFilter("conceal", c), F.conceal);
+  hbar(charts.cover, count(sz, e => e.cover_goods || []), () => css("--g7"), c => setFilter("cover", c), F.cover);
+  drawConcealTrend(sz);
+  sectionUI(); activeFilters(); if (typeof selHint === "function") selHint();
   const act = Object.entries(F).filter(([k, v]) => v !== "" && !["period", "section"].includes(k)).length;
   $("reset").textContent = act ? `Reset (${act})` : "Reset";
 }
@@ -912,6 +982,22 @@ $("trends").innerHTML = "<tr><th>Topic</th><th>This week</th><th>Usual week</th>
    : '<tr><td colspan="4" class="empty">Needs a few weeks of history.</td></tr>');
 
 
+/* concealment methods over time (top 6), so a rising method stands out */
+function drawConcealTrend(rows) {
+  const top = count(rows, e => e.concealment_types || []).slice(0, 6).map(x => x[0]);
+  const weekly = F.period === 0 || F.period > 30;
+  $("cunit").textContent = weekly ? "week" : "day";
+  const key = d => { if (!weekly) return d; const x = new Date(d); x.setDate(x.getDate() - ((x.getDay() + 6) % 7)); return x.toISOString().slice(0, 10); };
+  const keys = [...new Set(rows.map(e => key(e.date)))].sort();
+  if (!top.length) { charts.ctrend.setOption(EMPTY, true); return; }
+  const pal = ["--g2", "--g1", "--g3", "--g5", "--g6", "--g4"].map(css);
+  charts.ctrend.setOption({animationDuration: 400, grid: {left: 6, right: 10, top: 58, bottom: 4, containLabel: true},
+    legend: {top: 0, left: 0, icon: "roundRect", itemWidth: 10, itemHeight: 10, textStyle: {color: MUTED, fontSize: 11.5}},
+    tooltip: {...TT, trigger: "axis"}, xAxis: {type: "category", data: keys.map(k => k.slice(5)), ...AX}, yAxis: {type: "value", minInterval: 1, ...AX},
+    series: top.map((t, i) => ({name: t, type: "bar", stack: "c", itemStyle: {color: pal[i]},
+      data: keys.map(k => rows.filter(e => key(e.date) === k && (e.concealment_types || []).includes(t)).length)}))}, true);
+}
+
 /* ---------------- Sections ---------------- */
 function sectionUI() {
   const x = SEC[F.section];
@@ -966,7 +1052,8 @@ const CSV_COLS = [["Event ID", e => e.event_id], ["Published", e => e.date], ["E
   ["Headline", e => e.title], ["Summary", e => e.summary_text || e.lead || ""], ["Source", e => e.source], ["Official", e => e.official ? (e.mission ? "Embassy / mission" : "Agency") : ""],
   ["Link", e => e.source_url || e.url], ["Countries", e => e.countries.join("; ")], ["Location", e => Object.values(e.location || {}).filter(Boolean).join(", ")],
   ["Transport", e => e.transport_mode], ["Outcome", e => e.outcome], ["Journey", e => jText(e)], ["Nationality (as stated)", e => (e.nationality || []).join("; ")],
-  ["Seizures", e => (e.seizures || []).map(q => `${q.substance}: ${q.original}`).join("; ")], ["Review status", e => e.review_status]];
+  ["Seizures", e => (e.seizures || []).map(q => `${q.substance}: ${q.original}`).join("; ")],
+  ["Concealment category", e => (e.concealment_types || []).join("; ")], ["Cover load category", e => (e.cover_goods || []).join("; ")], ["Review status", e => e.review_status]];
 function download(name, text, type) {
   const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([text], {type})); a.download = name; a.click();
   setTimeout(() => URL.revokeObjectURL(a.href), 1000);
@@ -980,11 +1067,48 @@ $("dljson").onclick = () => download(fileName("json"), JSON.stringify(current, n
 $("share").onclick = () => { const u = location.href.split("#")[0] + "#" + F.section;
   (navigator.clipboard ? navigator.clipboard.writeText(u) : Promise.reject()).then(() => { $("share").textContent = "✓ Link copied"; setTimeout(() => $("share").textContent = "🔗 Copy link", 1500); }, () => prompt("Copy this link", u)); };
 
+/* ---------------- Any selector ---------------- */
+// The Investigation Desk is the LE OSINT Framework's own site (MIT licence); its search box can't be filled from a
+// link, so the selector is copied to the clipboard and the desk's source list opens, ready to paste.
+const DESK_Q = () => "https://glretief-ux.github.io/LE-OSINT-Framework/#desk";
+const SEL = [
+  ["Event ID", /^BWO-\d{4}-\d+$/i, null],
+  ["Container number", /^[A-Z]{3}[UJZ]\s?\d{6}\s?-?\d$/i, v => DESK_Q(v)],
+  ["Air waybill", /^\d{3}[-\s]?\d{8}$/, v => `https://glretief-ux.github.io/LE-OSINT-Framework/#air=${encodeURIComponent(v)}`],
+  ["IMO ship number", /^(IMO\s?)?\d{7}$/i, v => DESK_Q(v)],
+  ["MMSI", /^\d{9}$/, v => DESK_Q(v)],
+  ["Email address", /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i, v => DESK_Q(v)],
+  ["IP address", /^(\d{1,3}\.){3}\d{1,3}$/, v => DESK_Q(v)],
+  ["Phone number", /^\+?[\d][\d\s().-]{6,}$/, v => DESK_Q(v)],
+  ["Port code (UN/LOCODE)", /^[A-Z]{2}\s?[A-Z]{3}$/, () => "https://glretief-ux.github.io/LE-OSINT-Framework/#ports"],
+  ["Flight number", /^[A-Z0-9]{2}\s?\d{1,4}[A-Z]?$/i, v => `https://glretief-ux.github.io/LE-OSINT-Framework/#flights=${encodeURIComponent(v.replace(/\s/g, ""))}`],
+  ["Website / domain", /^(https?:\/\/)?[a-z0-9-]+(\.[a-z0-9-]+)+(\/\S*)?$/i, v => DESK_Q(v)],
+  ["Social media handle", /^@\w{2,}$/, v => DESK_Q(v)],
+];
+function selHint() {
+  const v = $("q").value.trim();
+  $("selhint").hidden = !v;
+  if (!v) return;
+  const hit = SEL.find(([, re]) => re.test(v));
+  const kind = hit ? hit[0] : (/^[A-Za-z][A-Za-z'’.-]+(\s+[A-Za-z][A-Za-z'’.-]+){1,3}$/.test(v) ? "Name or phrase" : "Word or phrase");
+  const n = current.length;
+  const desk = hit && hit[2] ? hit[2](v) : DESK_Q(v);
+  $("selhint").innerHTML = `Detected: <b>${esc(kind)}</b> · ${n ? `<b>${n}</b> report${n > 1 ? "s" : ""} below mention it` : "no report on this site mentions it"}`
+    + (kind === "Event ID" ? "" : ` · <a href="${desk}" target="_blank" rel="noopener" id="deskgo" title="Opens the Investigation Desk in a new tab; the selector is copied so you can paste it there">Look it up in the Investigation Desk ↗</a>`)
+    + (kind.startsWith("Port") ? ` <a class="alt" target="_blank" rel="noopener" href="https://glretief-ux.github.io/LE-OSINT-Framework/#ports">World ports</a>` : "")
+    + (kind === "Flight number" ? ` <a class="alt" href="https://www.flightradar24.com/data/flights/${encodeURIComponent(v.replace(/\s/g, "").toLowerCase())}" target="_blank" rel="noopener">Flightradar24 ↗</a>` : "");
+  const g = $("deskgo"); if (g) g.onclick = () => { try { navigator.clipboard.writeText(v); } catch (e) { /* ignore */ } };
+}
+$("q").addEventListener("input", () => setTimeout(selHint, 0));
+$("qclear").onclick = () => { $("q").value = ""; F.q = ""; update(); $("q").focus(); };
+document.querySelectorAll(".selbox .try button").forEach(b => b.onclick = () => { $("q").value = b.textContent; F.q = b.textContent.toLowerCase(); update(); });
+
 F.section = SEC[location.hash.slice(1)] ? location.hash.slice(1) : "overview";
 showCards();
 update();
 /* a link ending in #BWO-2026-0123 (used in alert emails) opens that report */
 if (/^#BWO-\d{4}-\d+$/.test(location.hash)) setTimeout(() => findEvent(location.hash.slice(1)), 300);
 </script>
+</div>
 </body>
 </html>
