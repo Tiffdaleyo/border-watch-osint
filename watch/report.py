@@ -167,6 +167,7 @@ def write_dashboard(out_dir, events, summary, cfg, new_today, demo=False):
     page = (page.replace("__TITLE__", html.escape(site.get("title", "Border Watch OSINT")))
                 .replace("__SUBTITLE__", html.escape(site.get("subtitle", "")))
                 .replace("__REGION__", html.escape(site.get("region_name", "Region")))
+                .replace("__PORTS__", str(len(PORT_LIST)))
                 .replace("__HOME__", html.escape(site.get("home_country", "")))
                 .replace("__BANDS__", "{high} or more points = High, {medium} or more = Medium.".format(
                     **((cfg.get("risk") or {}).get("bands") or {"high": 40, "medium": 20})))

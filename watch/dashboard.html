@@ -182,6 +182,7 @@
   details.about summary { cursor:pointer; color:var(--muted); font-size:13px; }
   table.mini { width:100%; border-collapse:collapse; font-size:12.5px; margin-top:8px; }
   table.mini td, table.mini th { padding:6px; border-bottom:1px solid var(--line); text-align:left; }
+  table.xtab td.hc { text-align:center; font-weight:600; border-left:1px solid var(--line); }
   table.mini th { color:var(--dim); font-size:11px; text-transform:uppercase; letter-spacing:.06em; }
   .Rising { color:var(--high); font-weight:600; } .Falling { color:var(--low); font-weight:600; } .Steady { color:var(--dim); }
   /* trend lookup */
@@ -389,8 +390,38 @@
       <div id="cover" class="chart" style="height:360px"></div>
     </section>
     <section class="card s12" data-sec="seizures">
+      <h2>Reports over time by drug</h2><div class="sub">Seizure reports per <span id="dunit">week</span> naming each substance (top 6) · a report can name more than one · click a bar to search</div>
+      <div id="dtrend" class="chart" style="height:300px"></div>
+    </section>
+    <section class="card s6" data-sec="seizures">
+      <h2>Top corridors</h2><div class="sub">Origin → destination as the report states it · reports without a stated route are left out · click to search</div>
+      <div id="corr" class="chart" style="height:340px"></div>
+    </section>
+    <section class="card s6" data-sec="seizures">
+      <h2>Hotspots</h2><div class="sub">Ports, airports and cities where seizures were made or reported · click to search</div>
+      <div id="hot" class="chart" style="height:340px"></div>
+    </section>
+    <section class="card s7" data-sec="seizures">
+      <h2>Concealment × drug</h2><div class="sub">How each substance was hidden · number of reports · darker = more · click a cell to filter</div>
+      <div class="tablewrap" style="max-height:none"><table class="mini xtab" id="cxd"></table></div>
+    </section>
+    <section class="card s5" data-sec="seizures">
+      <h2>Insider signals</h2><div class="sub">Seizures where the report names staff as involved (port, airport, customs, police and others) · an allegation in the news, not a finding</div>
+      <div id="insider" class="chart" style="height:300px"></div>
+    </section>
+    <section class="card s12" data-sec="seizures">
       <h2>Concealment trends</h2><div class="sub">Seizures per <span id="cunit">week</span> by concealment method (top 6) · watch for a method that is rising</div>
       <div id="ctrend" class="chart" style="height:300px"></div>
+    </section>
+    <section class="card s12" data-sec="seizures documents migration trafficking border">
+      <h2>Repeat links across cases</h2><div class="sub">The same route, cover cargo, hiding method, port, document type, container, vessel or flight showing up in separate reports · <b>leads to check, not proof of a connection</b> · click an Event ID to open it</div>
+      <div class="tablewrap" style="max-height:420px"><table class="mini" id="links"></table></div>
+    </section>
+    <section class="card s12" id="portlk" data-sec="seizures border">
+      <div class="head"><div><h2>Port lookup</h2><div class="sub">Type a port name or UN/LOCODE (e.g. Kingston or JMKIN) to see the news and seizures linked to it · uses every date, not only the period above</div></div></div>
+      <div class="lk-form"><label>Port<input id="pkIn" list="pkList" placeholder="Kingston, Jamaica (JMKIN)" autocomplete="off" style="min-width:320px"></label><datalist id="pkList"></datalist>
+        <button class="lk-go" id="pkGo">Look up</button></div>
+      <div id="pkOut"><p class="lk-note">__PORTS__ world ports are on the list. Pick one, then press Look up.</p></div>
     </section>
     <section class="card s5" data-sec="documents migration trafficking seizures border">
       <h2>Transport mode</h2><div class="sub">As stated in the report · click to filter</div>
@@ -535,7 +566,7 @@ function filtered(ignorePeriod, ignoreSection, ignoreTopic) {
 
 /* charts */
 const charts = {};
-["map", "jmap", "trend", "riskmix", "topics", "countries", "routes", "airports", "modes", "nats", "natroute", "pubs", "conceal", "cover", "ctrend"].forEach(id => charts[id] = echarts.init($(id)));
+["map", "jmap", "trend", "riskmix", "topics", "countries", "routes", "airports", "modes", "nats", "natroute", "pubs", "conceal", "cover", "ctrend", "dtrend", "corr", "hot", "insider"].forEach(id => charts[id] = echarts.init($(id)));
 window.addEventListener("resize", () => Object.values(charts).forEach(c => c.resize()));
 const TT = {backgroundColor: css("--tt"), borderColor: css("--line"), textStyle: {color: INK, fontSize: 12}, extraCssText: "border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.18)"};
 const AX = {axisLine: {lineStyle: {color: LINE}}, axisTick: {show: false}, axisLabel: {color: MUTED, fontSize: 11}, splitLine: {lineStyle: {color: css("--split")}}};
@@ -771,6 +802,12 @@ function kpis(rows) {
     ["Policy & other updates", n(e => e.kind === "Update"), "visa, entry, citizenship, health", LV.Update, "updates", F.level === "Update", "Show only these"],
     ["Largest seizure total", tot ? fmtQty(tot.qty, tot.unit) : "–", tot ? `${tot.sub} · unverified, one figure per report` : "no quantities stated", css("--g4"), "seizures", false, F.section === "seizures" ? "See seizure totals" : "Open Seizures"],
   ];
+  if (F.section === "seizures") {
+    const sz = rows.filter(isSeizure), pc = k => sz.length ? Math.round(100 * k / sz.length) + "%" : "–";
+    const ins = sz.filter(e => (e.insider_roles || []).length).length, hid = sz.filter(e => (e.concealment_types || []).length).length;
+    items.splice(2, 0, ["Insider signal", pc(ins), `${ins} of ${sz.length} seizures name staff as involved`, css("--high"), "insider", false, "See insider signals"],
+                       ["Concealment stated", pc(hid), `${hid} of ${sz.length} seizures say how it was hidden`, css("--g2"), "conceal", false, "See methods"]);
+  }
   $("kpis").innerHTML = items.map(([l, v, d, c, a, on, hint]) => `<button class="kpi${on ? " on" : ""}" data-act="${a}" style="--c:${c}" title="${on ? "Click again to remove this filter" : hint}">
     <div class="l">${esc(l)}</div><div class="n">${v}</div><div class="d">${esc(d)}</div><div class="go">${on ? "✓ Filter on · click to remove" : hint + " →"}</div><div class="bar"></div></button>`).join("");
   $("kpis").querySelectorAll(".kpi").forEach(b => b.onclick = () => kpiClick(b.dataset.act));
@@ -779,6 +816,8 @@ const toTable = () => setTimeout(() => document.querySelector(".tablewrap").scro
 function setScope(v) { F.scope = v; document.querySelectorAll("#scope button").forEach(b => b.classList.toggle("on", b.dataset.v === v)); }
 function kpiClick(a) {
   if (a === "all") { toTable(); return; }
+  if (a === "insider") { $("insider").scrollIntoView({behavior: "smooth", block: "center"}); return; }
+  if (a === "conceal") { $("conceal").scrollIntoView({behavior: "smooth", block: "center"}); return; }
   if (a === "seizures") {
     if (F.section !== "seizures") { location.hash = "seizures"; return; }
     $("sztotals").scrollIntoView({behavior: "smooth", block: "center"}); return;
@@ -913,6 +952,8 @@ function update() {
   hbar(charts.conceal, count(sz, e => e.concealment_types || []), () => css("--g2"), c => setFilter("conceal", c), F.conceal);
   hbar(charts.cover, count(sz, e => e.cover_goods || []), () => css("--g7"), c => setFilter("cover", c), F.cover);
   drawConcealTrend(sz);
+  drawSeizureCharts(current.filter(isSeizure));
+  drawLinks(current);
   sectionUI(); activeFilters(); if (typeof selHint === "function") selHint();
   const act = Object.entries(F).filter(([k, v]) => v !== "" && !["period", "section"].includes(k)).length;
   $("reset").textContent = act ? `Reset (${act})` : "Reset";
@@ -1062,6 +1103,96 @@ function drawConcealTrend(rows) {
     series: top.map((t, i) => ({name: t, type: "bar", stack: "c", itemStyle: {color: pal[i]},
       data: keys.map(k => rows.filter(e => key(e.date) === k && (e.concealment_types || []).includes(t)).length)}))}, true);
 }
+
+/* ---------------- Seizure analysis ---------------- */
+const isSeizure = e => e.kind === "Incident" && (e.groups || []).includes("Seizures & Contraband");
+const weekKey = weekly => d => { if (!weekly) return d; const x = new Date(d); x.setDate(x.getDate() - ((x.getDay() + 6) % 7)); return x.toISOString().slice(0, 10); };
+const searchFor = v => { F.q = String(v).toLowerCase(); $("q").value = v; update(); toTable(); };
+const corridor = e => { const j = e.journey || {}; return j.origin && j.destination && j.origin !== j.destination ? [j.origin + " → " + j.destination] : []; };
+const hotspots = e => { const l = e.location || {};
+  return [...new Set([...(l.ports || []).map(p => p.replace(/ \([A-Z]{5}\)$/, "")), ...(e.airports || []), ...(l.cities || [])])]; };
+function drawSeizureCharts(sz) {
+  // reports over time by drug
+  const top = count(sz, e => e.substances || []).slice(0, 6).map(x => x[0]);
+  const weekly = F.period === 0 || F.period > 30, key = weekKey(weekly);
+  $("dunit").textContent = weekly ? "week" : "day";
+  const keys = [...new Set(sz.map(e => key(e.date)))].sort();
+  const pal = ["--g4", "--g1", "--g2", "--g3", "--g5", "--g6"].map(css);
+  if (!top.length) charts.dtrend.setOption(EMPTY, true);
+  else charts.dtrend.setOption({animationDuration: 400, grid: {left: 6, right: 10, top: 58, bottom: 4, containLabel: true},
+    legend: {top: 0, left: 0, icon: "roundRect", itemWidth: 10, itemHeight: 10, textStyle: {color: MUTED, fontSize: 11.5}},
+    tooltip: {...TT, trigger: "axis"}, xAxis: {type: "category", data: keys.map(k => k.slice(5)), ...AX}, yAxis: {type: "value", minInterval: 1, ...AX},
+    series: top.map((t, i) => ({name: t, type: "bar", stack: "d", itemStyle: {color: pal[i]}, cursor: "pointer",
+      data: keys.map(k => sz.filter(e => key(e.date) === k && (e.substances || []).includes(t)).length)}))}, true);
+  charts.dtrend.off("click"); charts.dtrend.on("click", p => searchFor(p.seriesName));
+  hbar(charts.corr, count(sz, corridor).slice(0, 12), () => css("--g3"), searchFor);
+  hbar(charts.hot, count(sz, hotspots).slice(0, 12), () => css("--g4"), searchFor);
+  hbar(charts.insider, count(sz, e => e.insider_roles || []), () => css("--high"), searchFor);
+  // concealment x drug
+  const drugs = count(sz.filter(e => (e.concealment_types || []).length), e => e.substances || []).slice(0, 6).map(x => x[0]);
+  const methods = count(sz.filter(e => (e.substances || []).length), e => e.concealment_types || []).slice(0, 10).map(x => x[0]);
+  if (!drugs.length || !methods.length) { $("cxd").innerHTML = '<tr><td class="empty">No seizure in this view states both a substance and how it was hidden.</td></tr>'; return; }
+  const cell = (m, d) => sz.filter(e => (e.concealment_types || []).includes(m) && (e.substances || []).includes(d)).length;
+  const max = Math.max(1, ...methods.flatMap(m => drugs.map(d => cell(m, d))));
+  $("cxd").innerHTML = `<tr><th>How it was hidden</th>${drugs.map(d => `<th>${esc(d)}</th>`).join("")}</tr>` + methods.map(m => `<tr><td>${esc(m)}</td>${drugs.map(d => {
+    const v = cell(m, d); return `<td class="hc" data-m="${esc(m)}" data-d="${esc(d)}" style="background:${v ? `color-mix(in srgb, var(--g2) ${Math.round(12 + 70 * v / max)}%, transparent)` : "transparent"};${v ? "cursor:pointer" : ""}">${v || ""}</td>`; }).join("")}</tr>`).join("");
+  $("cxd").querySelectorAll("td.hc").forEach(td => td.onclick = () => { if (!td.textContent) return; F.conceal = td.dataset.m; searchFor(td.dataset.d); });
+}
+
+/* ---------------- Repeat links ---------------- */
+const spec = (e, sec, label) => { const x = (e.specialist || []).find(([n]) => n === sec); return x ? (x[1][label] || "") : ""; };
+const portsOf = e => ((e.location || {}).ports || []).map(p => p.replace(/ \([A-Z]{5}\)$/, ""));
+function linkKeys(e) {
+  const t = (e.title || "") + " " + (e.summary || "") + " " + (e.lead || ""), out = [];
+  const add = (type, v) => v && out.push(type + "|" + v);
+  (t.match(/\b[A-Z]{3}U\s?\d{6,7}\b/g) || []).forEach(c => add("Container", c.replace(/\s/g, "")));
+  (t.match(/\bIMO\s?\d{7}\b/gi) || []).forEach(c => add("Vessel (IMO)", c.toUpperCase().replace(/\s/g, " ")));
+  (t.match(/\b(?:MV|M\/V|MT)\s+[A-Z][A-Za-z]+(?:\s[A-Z][A-Za-z]+)?/g) || []).forEach(c => add("Vessel", c));
+  (t.match(/\bflight\s+([A-Z0-9]{2}\s?\d{2,4})\b/gi) || []).forEach(c => add("Flight", c.replace(/^flight\s+/i, "").toUpperCase()));
+  const r = corridor(e)[0];
+  if (r) {
+    (e.cover_goods || []).forEach(c => add("Route + cover cargo", `${r} · ${c}`));
+    (e.concealment_types || []).forEach(c => add("Route + hiding method", `${r} · ${c}`));
+    (e.document_types || []).forEach(d => add("Route + document", `${r} · ${d}`));
+    const fac = spec(e, "Migrant smuggling", "Alleged facilitators (role)"); if (fac) fac.split("; ").forEach(f => add("Route + facilitator", `${r} · ${f}`));
+  }
+  portsOf(e).forEach(p => (e.substances || []).forEach(d => add("Port + substance", `${p} · ${d}`)));
+  (e.insider_roles || []).forEach(i => [...portsOf(e), ...(e.airports || [])].forEach(p => add("Insider + place", `${i} · ${p}`)));
+  const m = spec(e, "Document fraud", "Reported fraud method"), ic = spec(e, "Document fraud", "Issuing country of the document");
+  if (m && ic) m.split("; ").forEach(x => add("Document method + issuing country", `${x} · ${ic}`));
+  return [...new Set(out)];
+}
+function drawLinks(rows) {
+  const m = new Map();
+  rows.filter(e => e.kind === "Incident").forEach(e => linkKeys(e).forEach(k => { if (!m.has(k)) m.set(k, []); m.get(k).push(e); }));
+  const list = [...m].filter(([, es]) => es.length >= 2).sort((a, b) => b[1].length - a[1].length || b[1][0].date.localeCompare(a[1][0].date)).slice(0, 25);
+  $("links").innerHTML = list.length ? `<tr><th>Type</th><th>What repeats</th><th>Cases</th><th>Dates</th><th>Event IDs</th></tr>` + list.map(([k, es]) => {
+    const [type, v] = k.split("|"), d = es.map(e => e.date).sort();
+    return `<tr><td style="color:${MUTED}">${esc(type)}</td><td><b>${esc(v)}</b></td><td>${es.length}</td><td>${esc(d[0] === d[d.length - 1] ? d[0] : d[0] + " to " + d[d.length - 1])}</td>
+      <td>${es.slice(0, 6).map(e => `<a class="eid" href="javascript:void 0" onclick="findEvent('${esc(e.event_id)}')" title="${esc(e.title)}">${esc(e.event_id)}</a>`).join(" ")}${es.length > 6 ? " …" : ""}</td></tr>`; }).join("")
+    : '<tr><td class="empty">No repeat links in this view. Try a longer period or World.</td></tr>';
+}
+
+/* ---------------- Port lookup ---------------- */
+$("pkList").innerHTML = DATA.ports.map(p => `<option value="${esc(p[0])}">`).join("");
+function portLookup() {
+  const v = $("pkIn").value.trim(); if (!v) return;
+  const p = DATA.ports.find(x => x[0].toLowerCase() === v.toLowerCase() || x[2].toLowerCase() === v.replace(/\s/g, "").toLowerCase())
+         || DATA.ports.find(x => x[0].toLowerCase().startsWith(v.toLowerCase()));
+  if (!p) { $("pkOut").innerHTML = `<p class="lk-note">That port is not on the list yet. Try the name as it appears in the list, or its 5-letter UN/LOCODE.</p>`; return; }
+  $("pkIn").value = p[0];
+  const name = p[0].split(",")[0].toLowerCase();
+  const hits = ev.filter(e => ((e.location || {}).ports || []).includes(p[0])).sort((a, b) => b.date.localeCompare(a.date));
+  const sz = hits.filter(isSeizure), subs = count(sz, e => e.substances || []).slice(0, 5), how = count(sz, e => e.concealment_types || []).slice(0, 4);
+  const last = hits[0] ? hits[0].date : "";
+  $("pkOut").innerHTML = `<p class="lk-note"><b>${esc(p[0])}</b> · ${esc(p[1])} · UN/LOCODE <b>${esc(p[2])}</b> · ${hits.length} report${hits.length === 1 ? "" : "s"} linked, ${sz.length} seizure${sz.length === 1 ? "" : "s"}${last ? " · latest " + esc(last) : ""}
+    ${subs.length ? "<br>Substances: " + subs.map(([k, n]) => `${esc(k)} (${n})`).join(", ") : ""}${how.length ? "<br>Hidden: " + how.map(([k, n]) => `${esc(k)} (${n})`).join(", ") : ""}
+    <br><a href="javascript:void 0" id="pkAll">Show these in the report list</a> · <a href="https://glretief-ux.github.io/LE-OSINT-Framework/#ports" target="_blank" rel="noopener">Port tools on the Investigation Desk ↗</a></p>
+    ${hits.length ? `<ul class="feed" style="max-height:320px">${hits.slice(0, 25).map(feedItem).join("")}</ul>` : `<p class="lk-note">No reports in the collected news name this port yet. Only reports that name the port itself are linked, not the city alone.</p>`}`;
+  const a = $("pkAll"); if (a) a.onclick = () => { setScope(""); F.period = 0; document.querySelectorAll("#period button").forEach(b => b.classList.toggle("on", b.dataset.v === "0")); searchFor(name); };
+}
+$("pkGo").onclick = portLookup;
+$("pkIn").onkeydown = e => { if (e.key === "Enter") portLookup(); };
 
 /* ---------------- Sections ---------------- */
 function sectionUI() {
