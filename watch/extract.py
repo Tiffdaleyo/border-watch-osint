@@ -127,6 +127,10 @@ CATEGORIES = {
         "drug traffickers", "drugs seized", "drug bust", "drug haul", "swallowed pellets", "swallower*",
         "body packer*", "cocaine pellets", "cocaina", "marihuana", "narcotrafic*", "droga*", "cocaine", "stupefiants",
         "drogue*", "maconha", "trafico de drogas", "trafico de drogas",
+        # precursor chemicals: the chemicals used to make drugs
+        "precursor chemical*", "chemical precursor*", "drug precursor*", "fentanyl precursor*", "methamphetamine precursor*",
+        "precursores quimicos", "insumos quimicos", "sustancias quimicas controladas", "precurseurs chimiques",
+        "precursori chimici", "acetic anhydride", "potassium permanganate",
     ],
     "Cash couriers": [
         "undeclared cash", "undeclared currency", "undeclared money", "cash smuggl*", "currency smuggl*", "bulk cash",
@@ -531,7 +535,7 @@ _GROUP_BAN_RE = re.compile(r"\b(?:nationals|citizens of|countries|proclamation|e
 _COOP_RE = re.compile(r"(?<!\w)(?:agreements?|memorand(?:um|a) of understanding|mou|sign(?:s|ed)? (?:an? )?(?:deal|pact|accord)|"
                       r"cooperation|co-operation|partnership|join(?:s|ed)? (?:forces|hands)|join(?:s|ed)? (?:the |an? )?(?:\w+ ){0,2}(?:network|alliance|"
                       r"initiative|platform|coalition|operation)|(?:international|regional|global) network|workshops?|"
-                      r"training|summit|conference|forum|acuerdos?|convenios?|memorando|cooperacion|alianza|se (?:incorpora|une|suma)|"
+                      r"training|summit|conference|forum|alliances?|acuerdos?|convenios?|memorando|cooperacion|alianza|se (?:incorpora|une|suma)|"
                       r"red (?:internacional|regional)|taller|capacitacion|firma(?:n|ron)? (?:un )?(?:acuerdo|convenio)|accords?|"
                       r"partenariat|acordos?|parceria|cooperacao)(?!\w)")
 

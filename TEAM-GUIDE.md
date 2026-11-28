@@ -246,6 +246,12 @@ counts are **never added together**, and the old single "weight seized" number h
 reported, not verified. They can include approximate figures or totals quoted in background paragraphs, and the
 table says when they do.
 
+**Precursor chemicals** (the chemicals used to make drugs) are their own substance in the totals, in kilograms or
+litres as reported. They are found by general words (precursor chemicals, chemical precursors, precursores químicos,
+insumos químicos, précurseurs chimiques, controlled chemicals) and by named chemicals inside a seizure report:
+ephedrine, pseudoephedrine, P2P / phenylacetone, BMK, PMK, safrole, piperonal, acetic anhydride, potassium
+permanganate and 4-ANPP / ANPP. "50 kg of fentanyl precursors" counts as precursor chemicals, not as fentanyl.
+
 ## 7. Review priority (the score)
 
 > **Review priority = what to read first. It never means a person, country or region is risky.** The site says this under the filter bar, in "About the data" and in every "Why this score".
@@ -664,4 +670,5 @@ Privacy rules are in `watch/privacy.py`.
 | 2026-11-28 | *Nationality (as stated)* now says plainly that it counts stories, not people. Bar chart tooltips say "N stories". |
 | 2026-11-28 | On every bar chart, clicking the **name beside a bar** (an airport, country, category...) now opens the same story list as clicking the bar, so short bars are easy to use. Chart notes say "click a bar or its name to see the stories". |
 | 2026-11-28 | The **watch list** was removed: the "Watch list hits" box on the website and in the weekly bulletin, the `risk: watchlist` setting and its "always High" rule. It was empty, so no scores changed. The *INTERPOL and watch lists* category and the "wanted / watch list" score words stay. |
+| 2026-11-28 | **Precursor chemicals** widened: general and named chemical words (see section 6, Seizure totals), news searches such as "precursor chemicals seized", "fentanyl precursors seized" and "precursores químicos incautados", and totals in kg or litres. "Alliance" stories with no action reported are now Updates. |
 | 2026-11-28 | **Stricter journeys:** an interception is recorded only when the report says someone or something was stopped there, not because an airport or port is mentioned (interceptions went from 208 to 109). Origin and destination come from the opening of the article, and "nationals from X" no longer counts as an origin; older reads keep them only if the stored opening still names that country (origins went from 315 to 192), and recent ones are read again with the new rules. Cooperation news with no action reported (joining a network, signing an agreement) is now an Update (11 reports). |

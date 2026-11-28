@@ -350005,7 +350005,7 @@
   "source": "Latest news from Azerbaijan",
   "lang": "en",
   "via": "Google News GB",
-  "kind": "Incident",
+  "kind": "Update",
   "categories": [
    "Cargo operations",
    "Drug trafficking",
@@ -350035,13 +350035,9 @@
    "Splash247",
    "The Straits Times"
   ],
-  "score": 40,
-  "level": "High",
-  "reasons": [
-   "Organised network or ring (+15: network, networks, organised crime)",
-   "Wanted person or INTERPOL notice (+15: interpol)",
-   "Transit or onward route (+10: transit)"
-  ],
+  "score": 0,
+  "level": "Update",
+  "reasons": [],
   "home": false,
   "region": false,
   "event_id": "BWO-2026-0658",
@@ -350096,8 +350092,8 @@
     "date": "2026-11-12"
    }
   ],
-  "review_status": "Awaiting review",
-  "last_updated": "2026-11-27",
+  "review_status": "Automatically collected",
+  "last_updated": "2026-11-28",
   "related": [],
   "article": {
    "tried": true,
@@ -350244,83 +350240,6 @@
   },
   "specialist": [
    [
-    "Seizure",
-    [
-     [
-      "Substance / item (as reported)",
-      "Precursor chemicals"
-     ],
-     [
-      "Confirmation status",
-      ""
-     ],
-     [
-      "Quantity and unit (original)",
-      ""
-     ],
-     [
-      "Standardised quantity",
-      ""
-     ],
-     [
-      "Quantity qualifier",
-      ""
-     ],
-     [
-      "Concealment method",
-      ""
-     ],
-     [
-      "Concealment category",
-      ""
-     ],
-     [
-      "Shipment / transport type",
-      "Shipping container"
-     ],
-     [
-      "Declared commodity",
-      ""
-     ],
-     [
-      "Cover load / goods used as cover",
-      ""
-     ],
-     [
-      "Origin",
-      ""
-     ],
-     [
-      "Transit",
-      ""
-     ],
-     [
-      "Destination",
-      ""
-     ],
-     [
-      "Seizing agency",
-      "Customs"
-     ],
-     [
-      "Other seized items",
-      ""
-     ],
-     [
-      "Insider signal (staff named as involved)",
-      ""
-     ],
-     [
-      "Reported valuation",
-      ""
-     ],
-     [
-      "Case development",
-      "Investigation"
-     ]
-    ]
-   ],
-   [
     "Wanted-person interception",
     [
      [
@@ -350404,9 +350323,7 @@
    "independent": 1,
    "relationship": "1 independent source; 3 republications of the same report (not counted as separate confirmations)"
   },
-  "uncertainty": [
-   "Not stated in the report: outcome"
-  ],
+  "uncertainty": [],
   "merged_ids": [
    "BWO-2026-0772",
    "BWO-2026-0784",
@@ -350414,14 +350331,7 @@
   ],
   "alerted": true,
   "lead": "Fourteen major ports are joining forces in a new G7-backed initiative aimed at combating drug trafficking through international shipping networks, with artificial intelligence and closer intelligence sharing central to the programme.",
-  "outcome_note": "",
-  "insider_roles": [],
-  "substances": [
-   "Precursor chemicals"
-  ],
-  "concealment_types": [],
-  "cover_goods": [],
-  "seizures": []
+  "outcome_note": ""
  },
  {
   "title": "Miss Universe Zimbabwe Stranded by US Visa Rules",

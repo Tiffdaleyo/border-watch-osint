@@ -22,7 +22,12 @@ SUBSTANCES = [
     ("Ketamine", ["ketamine", "ketamina"]),
     ("Synthetic drugs (other)", ["tramadol", "captagon", "synthetic drugs", "nitazene*"]),
     ("Khat", ["khat"]),
-    ("Precursor chemicals", ["precursor*"]),
+    # chemicals used to make drugs. The named ones only count inside a seizure report (this module is used for nothing else)
+    ("Precursor chemicals", ["precursor*", "precurseur*", "controlled chemicals", "sustancias quimicas controladas",
+                             "insumos quimicos", "ephedrine", "pseudoephedrine", "efedrina", "pseudoefedrina",
+                             "phenylacetone", "phenyl-2-propanone", "p2p", "bmk", "pmk", "pmk glycidate", "bmk glycidate",
+                             "safrole", "safrol", "piperonal", "acetic anhydride", "anhidrido acetico",
+                             "potassium permanganate", "permanganato de potasio", "4-anpp", "anpp", "n-phenethyl-4-piperidone"]),
     ("Firearms", ["firearm*", "gun", "guns", "pistol*", "rifle*", "revolver*", "shotgun*", "armas de fuego"]),
     ("Ammunition", ["ammunition", "rounds", "cartridges", "bullets", "municiones"]),
     ("Cash", ["cash", "currency", "banknotes", "dinero", "efectivo"]),
@@ -94,6 +99,8 @@ def _substance_near(t, start, end):
     """The substance named closest after (or just before) a quantity: '2 kg of cocaine', 'cocaine weighing 2 kg'."""
     after = t[end: end + 45]
     before = t[max(0, start - 45): start]
+    if re.match(r"\W*(?:of\s+)?(?:[\w-]+\s+){0,3}?(?:precursor|precurseur|chemicals?\b|quimicos?\b)", after):
+        return "Precursor chemicals"      # "50 kg of fentanyl precursors", "2 tonnes of chemicals" -- not the drug itself
     best = None
     for name, rx in _SUB_RE:
         m = rx.search(after)
@@ -164,7 +171,9 @@ def substances(text):
     t = fold(text[:3000])
     out = []
     for name, rx in _SUB_RE:
-        m = rx.search(t)
+        # "fentanyl precursors" are chemicals, not fentanyl
+        m = next((x for x in rx.finditer(t) if name == "Precursor chemicals"
+                  or not re.match(r"\s*(?:precursor|precurseur)", t[x.end():x.end() + 14])), None)
         if m:
             sus = re.search(r"suspected|presumed|presunta|presunto", t[max(0, m.start() - 30): m.start()])
             out.append(("Suspected " + name.lower()) if sus else name)

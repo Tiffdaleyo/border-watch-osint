@@ -70,6 +70,9 @@ sources:
            "cocaine seized airport", "drug mule arrested airport", "swallowed cocaine pellets", "drugs found in luggage",
            "cocaine seized container port", "Jamaica cocaine seized", "ganja seized airport Jamaica",
            "Caribbean drug trafficking route", "cocaine Caribbean Europe seized",
+           # precursor chemicals (used to make drugs)
+           "precursor chemicals seized", "fentanyl precursors seized", "acetic anhydride seized",
+           "potassium permanganate seized", "ephedrine seized", "precursor chemicals Caribbean", "precursor chemicals port",
            # cash couriers
            "undeclared cash seized airport", "cash courier arrested", "currency smuggling airport",
            # firearms
@@ -99,7 +102,8 @@ sources:
       es: ["cocaína incautada aeropuerto", "contenedor cocaína incautado", "armas incautadas aduana",
            "dinero no declarado aeropuerto", "migración irregular", "nuevos requisitos de visa", "exigencia de visa", "notificación roja Interpol",
            "migrantes interceptados", "pasaportes falsos detenido", "pasaporte falso aeropuerto", "red de falsificación de documentos",
-           "tráfico de migrantes detenidos", "visas falsas detenidos", "trata de personas aeropuerto"]
+           "tráfico de migrantes detenidos", "visas falsas detenidos", "trata de personas aeropuerto",
+           "precursores químicos incautados", "insumos químicos incautados"]
       fr: ["cocaïne saisie aéroport", "mule cocaïne interpellée", "migration irrégulière", "obligation de visa", "notice rouge Interpol", "faux passeports interpellé", "passeport falsifié aéroport", "filière d'immigration clandestine démantelée",
            "fraude documentaire aéroport"]
       pt: ["cocaína apreendida aeroporto", "contêiner cocaína apreendido", "migração irregular", "exigência de visto", "difusão vermelha Interpol", "passaportes falsos preso", "passaporte falso aeroporto", "tráfico de migrantes preso"]

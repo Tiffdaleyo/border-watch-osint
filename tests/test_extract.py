@@ -391,3 +391,14 @@ def test_american_as_an_adjective_is_not_a_nationality():
     assert journey.nationalities("U.S. Customs and Border Protection officers seized guns") == []
     assert journey.nationalities("a U.S. citizen was arrested at the airport") == ["United States"]
     assert journey.nationalities("three Jamaican men were arrested") == ["Jamaica"]
+
+
+def test_precursor_chemicals_are_their_own_substance():
+    from watch import seizure as S
+    q = S.quantities("Police seized 50 kg of fentanyl precursors at the port")
+    assert q[0]["substance"] == "Precursor chemicals" and q[0]["std_unit"] == "kg"
+    q = S.quantities("Customs seized 2,000 litres of acetic anhydride in a container")
+    assert q[0]["substance"] == "Precursor chemicals" and q[0]["std_unit"] == "litres"
+    assert S.substances("Police seized 50 kg of fentanyl precursors") == ["Precursor chemicals"]
+    assert S.quantities("seized 10 kg of cocaine at the airport")[0]["substance"] == "Cocaine"
+    assert "Drug trafficking" in extract({"title": "Customs seize 3 tonnes of precursor chemicals at Kingston port"})["categories"]
