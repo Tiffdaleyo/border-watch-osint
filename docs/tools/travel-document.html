@@ -135,6 +135,16 @@ function parse(raw) {
   if (failed.length) f.push(["bad", `${failed.length} check digit${failed.length > 1 ? "s" : ""} failed (${failed.map(c => c.label.toLowerCase()).join(", ")}). Retype carefully first (O/0, I/1, B/8, S/5). If it still fails on the real document, that is a strong reason for examination.`]);
   else f.push(["ok", "All check digits are correct. This only shows the MRZ is internally consistent."]);
   const e = date(exp, "exp"), b = date(dob, "dob");
+  // dates that cannot exist, and letters typed where only digits belong (O/0, I/1, B/8, S/5 look alike)
+  if (b && b.bad) f.push(["bad", `Date of birth ${dob} is not a real date. That is a strong reason for examination, even if the check digits are correct.`]);
+  if (e && e.bad) f.push(["bad", `Date of expiry ${exp} is not a real date. That is a strong reason for examination, even if the check digits are correct.`]);
+  const LOOK = {O: "0", Q: "0", D: "0", I: "1", L: "1", B: "8", S: "5", Z: "2", G: "6"};
+  [["date of birth", dob], ["date of expiry", exp], ["date of birth check digit", dobCd], ["date of expiry check digit", expCd],
+   ["document number check digit", numCd === "<" ? "" : numCd]].forEach(([label, v]) => {
+    const letters = [...new Set((v || "").replace(/[0-9<]/g, ""))];
+    if (letters.length) f.push(["bad", letters.map(l => `Letter ${l} found in the ${label}` + (LOOK[l] ? `; did you mean ${LOOK[l]}?` : ".")).join(" ") +
+      " Only digits belong here. Retype it; if the real document has a letter here, that is a strong reason for examination."]);
+  });
   if (e && !e.bad) { const days = Math.floor((e.dt - today) / 864e5);
     if (days < 0) f.push(["bad", `Expired ${-days} day${days === -1 ? "" : "s"} ago (${e.txt}).`]);
     else if (days < 183) f.push(["warn", `Expires in ${days} days (${e.txt}). Many countries require 6 months' validity on entry.`]);
@@ -166,7 +176,9 @@ function show() {
   $("out").innerHTML = `<div class="grid">
     <div class="card"><h2>2. What the MRZ says</h2><table>${r.fields.map(([k, v]) => `<tr><th style="width:38%">${k}</th><td>${v}</td></tr>`).join("")}</table></div>
     <div class="card"><h2>3. Checks</h2>
-      <p><span class="pill ${allOk ? "ok" : "bad"}">${allOk ? "All check digits correct" : "Check digit failure"}</span></p>
+      <p><span class="pill ${allOk ? "ok" : "bad"}">${allOk ? "All check digits correct" : "Check digit failure"}</span>${(() => {
+        const n = r.flags.filter(([k]) => k === "bad").length - (allOk ? 0 : 1);
+        return n > 0 ? ` <span class="pill bad">${n} other problem${n > 1 ? "s" : ""}: see Points to look at</span>` : ""; })()}</p>
       <table><tr><th>Check digit</th><th>On document</th><th>Should be</th><th></th></tr>${r.checks.map(c => `<tr><td>${c.label}</td><td class="mono">${esc(c.got)}</td><td class="mono">${esc(c.want ?? "?")}</td><td class="${c.ok ? "ok" : "bad"}">${c.ok ? "✓" : "✗"}</td></tr>`).join("")}</table>
       <h2 style="margin-top:14px">Points to look at</h2><ul class="flags">${r.flags.map(([k, t]) => `<li class="${k}">${k === "ok" ? "✓" : k === "bad" ? "✗" : "!"} <span style="color:var(--ink);font-weight:400">${t}</span></li>`).join("")}</ul></div></div>`;
 }
