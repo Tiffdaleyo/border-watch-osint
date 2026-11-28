@@ -122,7 +122,7 @@ def article_facts(ev, text, risk_words, focus):
         "summary_text": lead(text, limit=520),
         "exploitation": record.exploitation(text[:4000]),
         "victim_assistance": record.victim_assistance(text[:4000]),
-        "v": 5,
+        "v": 6,
         "sentence": (lambda m: f"{m.group(1)} {m.group(2)}" if m else "")(_SENT_RE.search(text)),
     }
     # specialist details from the full text (the article text itself is never stored)
@@ -146,6 +146,13 @@ def apply_article(ev):
     a = ev.get("article") or {}
     if not a.get("read"):
         return ev
+    if a.get("v", 1) < 6 and "Irregular migration" in (a.get("categories") or []):
+        # read before 28 Nov 2026, when the bare words "interdicted"/"interdiction" also tagged drug interdictions as
+        # irregular migration: keep the tag only if the stored opening of the article still supports it
+        opening = " ".join(x for x in (ev.get("title"), a.get("summary_text"), a.get("lead")) if x)
+        again = extract.extract({"title": ev.get("title", ""), "summary": opening}) or {}
+        if "interdict" in opening.lower() and "Irregular migration" not in (again.get("categories") or []):
+            a["categories"] = [c for c in a["categories"] if c != "Irregular migration"]
     for k in ("categories", "countries", "airports", "document_types"):
         ev[k] = list(dict.fromkeys((ev.get(k) or []) + [x for x in a.get(k, []) if x not in (ev.get(k) or [])]))
     ev["categories"] = sorted(ev["categories"])

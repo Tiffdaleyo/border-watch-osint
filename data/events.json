@@ -79438,8 +79438,7 @@
   "categories": [
    "Aviation security",
    "Border security",
-   "Drug trafficking",
-   "Irregular migration"
+   "Drug trafficking"
   ],
   "matched_words": [
    "cocaine",
@@ -79477,11 +79476,9 @@
   "primary_category": "Drug trafficking",
   "tags": [
    "Aviation security",
-   "Border security",
-   "Irregular migration"
+   "Border security"
   ],
   "groups": [
-   "Migration & Facilitation",
    "Border Integrity",
    "Seizures & Contraband"
   ],
@@ -79664,8 +79661,7 @@
    "categories": [
     "Aviation security",
     "Border security",
-    "Drug trafficking",
-    "Irregular migration"
+    "Drug trafficking"
    ],
    "countries": [
     "Jamaica",
@@ -100439,11 +100435,9 @@
   "kind": "Incident",
   "categories": [
    "Cargo operations",
-   "Drug trafficking",
-   "Irregular migration"
+   "Drug trafficking"
   ],
   "matched_words": [
-   "interdiction",
    "marijuana",
    "parcels"
   ],
@@ -100470,11 +100464,9 @@
   "event_id": "BWO-2026-2168",
   "primary_category": "Drug trafficking",
   "tags": [
-   "Cargo operations",
-   "Irregular migration"
+   "Cargo operations"
   ],
   "groups": [
-   "Migration & Facilitation",
    "Seizures & Contraband"
   ],
   "published": "2026-11-25",
@@ -205521,8 +205513,7 @@
   "kind": "Incident",
   "categories": [
    "Cargo operations",
-   "Drug trafficking",
-   "Irregular migration"
+   "Drug trafficking"
   ],
   "matched_words": [
    "cocaine"
@@ -205560,8 +205551,7 @@
    "lead": "Air and Marine Operations, an operational component of U.S. Customs and Border Protection, detained four Dominican Republic nationals following the interdiction of a vessel north of Puerto Rico early Oct.",
    "categories": [
     "Cargo operations",
-    "Drug trafficking",
-    "Irregular migration"
+    "Drug trafficking"
    ],
    "countries": [
     "Puerto Rico",
@@ -205588,11 +205578,9 @@
   "event_id": "BWO-2026-1563",
   "primary_category": "Drug trafficking",
   "tags": [
-   "Cargo operations",
-   "Irregular migration"
+   "Cargo operations"
   ],
   "groups": [
-   "Migration & Facilitation",
    "Seizures & Contraband"
   ],
   "published": "2026-11-20",
@@ -214057,8 +214045,7 @@
   "categories": [
    "Border security",
    "Cargo operations",
-   "Drug trafficking",
-   "Irregular migration"
+   "Drug trafficking"
   ],
   "matched_words": [
    "coast guard",
@@ -214092,11 +214079,9 @@
   "primary_category": "Drug trafficking",
   "tags": [
    "Border security",
-   "Cargo operations",
-   "Irregular migration"
+   "Cargo operations"
   ],
   "groups": [
-   "Migration & Facilitation",
    "Border Integrity",
    "Seizures & Contraband"
   ],
@@ -214146,8 +214131,7 @@
    "categories": [
     "Border security",
     "Cargo operations",
-    "Drug trafficking",
-    "Irregular migration"
+    "Drug trafficking"
    ],
    "countries": [
     "United States",
@@ -222946,8 +222930,7 @@
   "categories": [
    "Border security",
    "Cargo operations",
-   "Drug trafficking",
-   "Irregular migration"
+   "Drug trafficking"
   ],
   "matched_words": [
    "cocaine"
@@ -222987,8 +222970,7 @@
    "categories": [
     "Border security",
     "Cargo operations",
-    "Drug trafficking",
-    "Irregular migration"
+    "Drug trafficking"
    ],
    "countries": [
     "Saint Kitts and Nevis",
@@ -223017,11 +222999,9 @@
   "primary_category": "Drug trafficking",
   "tags": [
    "Border security",
-   "Cargo operations",
-   "Irregular migration"
+   "Cargo operations"
   ],
   "groups": [
-   "Migration & Facilitation",
    "Border Integrity",
    "Seizures & Contraband"
   ],
@@ -260537,13 +260517,11 @@
   "kind": "Incident",
   "categories": [
    "Border security",
-   "Drug trafficking",
-   "Irregular migration"
+   "Drug trafficking"
   ],
   "matched_words": [
    "cocaine",
-   "drug smuggling",
-   "interdicted"
+   "drug smuggling"
   ],
   "action": false,
   "document_types": [],
@@ -260572,11 +260550,9 @@
   "event_id": "BWO-2026-1176",
   "primary_category": "Drug trafficking",
   "tags": [
-   "Border security",
-   "Irregular migration"
+   "Border security"
   ],
   "groups": [
-   "Migration & Facilitation",
    "Border Integrity",
    "Seizures & Contraband"
   ],
@@ -260626,8 +260602,7 @@
    "lead": "Archived Content In an effort to keep ICE.gov current, the archive contains content from a previous administration or is otherwise outdated. This information is archived and not reflective of current practice.",
    "categories": [
     "Border security",
-    "Drug trafficking",
-    "Irregular migration"
+    "Drug trafficking"
    ],
    "countries": [
     "Panama",
@@ -262129,103 +262104,6 @@
   "outcome_note": ""
  },
  {
-  "title": "TCI Regiment’s Newest Patrol Vessel Shines In Interdiction Operation",
-  "summary": "",
-  "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOVTZNamJrX1hhTVlYTl82cDl2NnpibUNPR2lCUDJNRVhZRDl4T3dmSFY0Qi1CNG5MaGlzcmlsejIwTTNnR0dId3ZLamhCMTRVSG9BQmNEcXJhODVQdXBGeUIxWnRPcl9VZ3U1UkpJMDZBR3R1VHd6TUloSDBkQWs3S2pxU3o2VnRFLXlUbjQ2S1JQdWZINDJaWEFJTEwzXzNDejRvUnNjdEtaMjA?oc=5",
-  "date": "2026-11-16",
-  "source": "Eurasia Review",
-  "lang": "en",
-  "via": "Google News US",
-  "kind": "Update",
-  "categories": [
-   "Irregular migration"
-  ],
-  "matched_words": [
-   "interdiction"
-  ],
-  "action": false,
-  "document_types": [],
-  "countries": [],
-  "airports": [],
-  "origin": "",
-  "destination": "",
-  "documents_count": 0,
-  "people_count": 0,
-  "weight_kg": 0,
-  "id": "47ae390fc42c",
-  "first_seen": "2026-11-26",
-  "other_sources": [],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
-  "watch": false,
-  "home": false,
-  "region": false,
-  "event_id": "BWO-2026-1166",
-  "primary_category": "Irregular migration",
-  "tags": [],
-  "groups": [
-   "Migration & Facilitation"
-  ],
-  "published": "2026-11-16",
-  "event_date": "",
-  "event_date_quality": "unknown",
-  "location": {
-   "cities": [],
-   "ports": [],
-   "crossings": []
-  },
-  "transport_mode": "",
-  "outcome": "",
-  "agencies": [],
-  "summary_text": "",
-  "caribbean_connection": [],
-  "jamaica_connection": [],
-  "sources": [
-   {
-    "publisher": "Eurasia Review",
-    "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOVTZNamJrX1hhTVlYTl82cDl2NnpibUNPR2lCUDJNRVhZRDl4T3dmSFY0Qi1CNG5MaGlzcmlsejIwTTNnR0dId3ZLamhCMTRVSG9BQmNEcXJhODVQdXBGeUIxWnRPcl9VZ3U1UkpJMDZBR3R1VHd6TUloSDBkQWs3S2pxU3o2VnRFLXlUbjQ2S1JQdWZINDJaWEFJTEwzXzNDejRvUnNjdEtaMjA?oc=5",
-    "date": "2026-11-16"
-   }
-  ],
-  "review_status": "Automatically collected",
-  "last_updated": "2026-11-26",
-  "related": [],
-  "specialist": [],
-  "nationality": [],
-  "journey": {
-   "origin": "",
-   "transit": [],
-   "destination": "",
-   "interception": "",
-   "interception_country": "",
-   "completeness": "Not reported",
-   "basis": "",
-   "text": ""
-  },
-  "corrections": [],
-  "review_uncertainty": "",
-  "source_panel": {
-   "sources": [
-    {
-     "publisher": "Eurasia Review",
-     "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOVTZNamJrX1hhTVlYTl82cDl2NnpibUNPR2lCUDJNRVhZRDl4T3dmSFY0Qi1CNG5MaGlzcmlsejIwTTNnR0dId3ZLamhCMTRVSG9BQmNEcXJhODVQdXBGeUIxWnRPcl9VZ3U1UkpJMDZBR3R1VHd6TUloSDBkQWs3S2pxU3o2VnRFLXlUbjQ2S1JQdWZINDJaWEFJTEwzXzNDejRvUnNjdEtaMjA?oc=5",
-     "date": "2026-11-16",
-     "type": "News report",
-     "role": "Original (earliest found)",
-     "lang": "English"
-    }
-   ],
-   "type": "News report",
-   "language": "English",
-   "supporting": 0,
-   "independent": 1,
-   "relationship": "Single source"
-  },
-  "uncertainty": [],
-  "outcome_note": ""
- },
- {
   "title": "CBP and partners apprehend 81 after four at-sea smuggling attempts",
   "summary": "SAN DIEGO — Over the weekend, U.S. Customs and Border Protection Air and Marine Operations agents, U.S. Border Patrol agents, U.S. Coast Guard crews and military partners intercepted four separate maritime smuggling vessels off the Southern…",
   "url": "https://www.cbp.gov/newsroom/national-media-release/cbp-and-partners-apprehend-81-after-four-sea-smuggling-attempts",
@@ -262237,8 +262115,7 @@
   "agency_country": "United States",
   "kind": "Incident",
   "categories": [
-   "Border security",
-   "Irregular migration"
+   "Border security"
   ],
   "matched_words": [
    "border patrol",
@@ -262267,8 +262144,7 @@
    "kind": "Incident",
    "lead": "SAN DIEGO — Over the weekend, U.S. Customs and Border Protection Air and Marine Operations agents, U.S. Border Patrol agents, U.S.",
    "categories": [
-    "Border security",
-    "Irregular migration"
+    "Border security"
    ],
    "countries": [
     "United States"
@@ -262406,12 +262282,9 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-2487",
-  "primary_category": "Irregular migration",
-  "tags": [
-   "Border security"
-  ],
+  "primary_category": "Border security",
+  "tags": [],
   "groups": [
-   "Migration & Facilitation",
    "Border Integrity"
   ],
   "published": "2026-11-16",
@@ -294782,8 +294655,7 @@
   "kind": "Incident",
   "categories": [
    "Cargo operations",
-   "Drug trafficking",
-   "Irregular migration"
+   "Drug trafficking"
   ],
   "matched_words": [
    "cocaine",
@@ -294811,11 +294683,9 @@
   "event_id": "BWO-2026-0945",
   "primary_category": "Drug trafficking",
   "tags": [
-   "Cargo operations",
-   "Irregular migration"
+   "Cargo operations"
   ],
   "groups": [
-   "Migration & Facilitation",
    "Seizures & Contraband"
   ],
   "published": "2026-11-12",
@@ -294862,8 +294732,7 @@
    "lead": "Authorities discovered suspected cocaine worth about $27,750 inside a coffee container in a passenger’s luggage at Ted Stevens Anchorage International Airport on Nov. 11, the Alaska Department of Public Safety said.",
    "categories": [
     "Cargo operations",
-    "Drug trafficking",
-    "Irregular migration"
+    "Drug trafficking"
    ],
    "countries": [],
    "airports": [],
@@ -321836,8 +321705,7 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Drug trafficking",
-   "Irregular migration"
+   "Drug trafficking"
   ],
   "matched_words": [
    "cocaine"
@@ -321869,11 +321737,8 @@
   "region": false,
   "event_id": "BWO-2026-0802",
   "primary_category": "Drug trafficking",
-  "tags": [
-   "Irregular migration"
-  ],
+  "tags": [],
   "groups": [
-   "Migration & Facilitation",
    "Seizures & Contraband"
   ],
   "published": "2026-11-10",
@@ -321918,8 +321783,7 @@
    "kind": "Incident",
    "lead": "Two passengers arriving from Brazil were arrested after 6.8 kilogrammes of cocaine was found in their lugguage at Suvarnabhumi airport. The two foreigners flew into Bangkok on Sunday, the Customs Department said. It did not name or otherwise identify them.",
    "categories": [
-    "Drug trafficking",
-    "Irregular migration"
+    "Drug trafficking"
    ],
    "countries": [
     "Brazil"
@@ -326203,8 +326067,7 @@
   "via": "Google News CA",
   "kind": "Incident",
   "categories": [
-   "Drug trafficking",
-   "Irregular migration"
+   "Drug trafficking"
   ],
   "matched_words": [
    "cocaine"
@@ -326236,11 +326099,8 @@
   "region": false,
   "event_id": "BWO-2026-0783",
   "primary_category": "Drug trafficking",
-  "tags": [
-   "Irregular migration"
-  ],
+  "tags": [],
   "groups": [
-   "Migration & Facilitation",
    "Seizures & Contraband"
   ],
   "published": "2026-11-10",
@@ -326285,8 +326145,7 @@
    "kind": "Incident",
    "lead": "The pair had traveled from Guarulhos International Airport in Sao Paulo, the Bangkok Post reported, citing Thailand's Customs Department.",
    "categories": [
-    "Drug trafficking",
-    "Irregular migration"
+    "Drug trafficking"
    ],
    "countries": [
     "Brazil",
@@ -354811,7 +354670,6 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Irregular migration",
    "Passport fraud"
   ],
   "matched_words": [
@@ -354848,7 +354706,6 @@
    "kind": "Incident",
    "lead": "The Ministry of Foreign Affairs has interdicted its Acting Director of Passports and a junior Foreign Service Officer over their alleged roles in an illegal Service Passport issuance scheme that has been operating since 2023, with the illegally issued…",
    "categories": [
-    "Irregular migration",
     "Passport fraud"
    ],
    "countries": [
@@ -354875,12 +354732,9 @@
   "lead": "The Ministry of Foreign Affairs has interdicted its Acting Director of Passports and a junior Foreign Service Officer over their alleged roles in an illegal Service Passport issuance scheme that has been operating since 2023, with the illegally issued…",
   "event_id": "BWO-2026-0638",
   "primary_category": "Passport fraud",
-  "tags": [
-   "Irregular migration"
-  ],
+  "tags": [],
   "groups": [
-   "Document & Identity Fraud",
-   "Migration & Facilitation"
+   "Document & Identity Fraud"
   ],
   "published": "2026-11-08",
   "event_date": "",
@@ -414804,12 +414658,10 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Drug trafficking",
-   "Irregular migration"
+   "Drug trafficking"
   ],
   "matched_words": [
    "cannabis",
-   "interdiction",
    "marijuana"
   ],
   "action": true,
@@ -414838,11 +414690,8 @@
   },
   "event_id": "BWO-2026-0288",
   "primary_category": "Drug trafficking",
-  "tags": [
-   "Irregular migration"
-  ],
+  "tags": [],
   "groups": [
-   "Migration & Facilitation",
    "Seizures & Contraband"
   ],
   "published": "2026-10-31",

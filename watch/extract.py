@@ -71,7 +71,7 @@ CATEGORIES = {
     "Irregular migration": [
         "irregular migra*", "illegal migra*", "migrant boat*", "migrant vessel*", "migrant caravan*", "caravan of migrants",
         "Darien Gap", "Darién", "border crossings", "migrant arrivals", "migrants intercepted", "migrants rescued",
-        "migrants detained", "migrants interdicted", "interdicted", "interdiction", "repatriated migrants",
+        "migrants detained", "migrants interdicted", "migrant interdiction", "interdicted migrants", "vessel carrying migrants interdicted", "repatriated migrants",
         "migrant surge", "migrant flows", "migration flows", "migration trends", "unauthorized migrants",
         "illegal immigrants", "irregular migrants", "undocumented migrants", "sloop", "asylum seekers",
         "migracion irregular", "migrantes irregulares", "cruces irregulares", "flujo migratorio", "flujos migratorios",
