@@ -425,7 +425,7 @@ smuggling ring appears in both Passports & Documents and Immigration.
 - **Seizures section extras:** reports over time by drug (the six most reported drugs, plus precursor chemicals
   always shown; firearms, cash and other goods are left out because they have their own totals), top corridors, hotspots, a concealment × drug table,
   insider signals (with % cards), concealment trends and cover loads.
-- **Trend lookup** (Immigration, Trafficking, Passports): research a route (origin → destination) with
+- **Route lookup** (Immigration, Trafficking, Passports): research a route (origin → destination) with
   live news-index results and ready-made searches.
 - **All reports:** a sortable table. Click **Full record** for every field, including specialist fields. Click
   **Why this score** to see the indicators matched.
@@ -445,7 +445,7 @@ All tools are part of this site and use only the collected news and public refer
 | **Case summary** | Turn the facts of an airport case into a one-page summary for a supervisor, a referral or a hand-over: place (KIN, MBJ, OCJ), case type, flight and route, people and their roles, what happened, documents examined, the indicators observed (the tick list changes with the case type: suspected impostor, fraudulent or altered document, possible trafficking victim, irregular migrant or refused entry), action taken and next steps. Print or save it as PDF, or copy it as text. Nothing typed is saved or sent. It does not replace official forms |
 | **Case playbooks** | Step-by-step checklists for four airport cases: suspected impostor, fraudulent document, possible trafficking victim, and irregular migrant or refused entry. Each one covers what to look for, first steps at the desk, what to check (with buttons to the right tool on this site), how to refer and record, and what to avoid. **Start a case summary** opens the Case summary with the case type already chosen. Each playbook prints on its own. It is a memory aid drawn from public guidance (ICAO, IOM, UNODC, OSCE): agency procedures and the law come first |
 | **Port lookup** | Type a port name or UN/LOCODE (e.g. Kingston or JMKIN). It shows the reports and seizures linked to that port, with the substances and hiding methods. It covers 179 world ports and uses every date, not only the chosen period |
-| **Route lookup** | Research a journey from one country to another (the Trend lookup) |
+| **Route lookup** | Research a journey from one country to another |
 | **Repeat links** | The same route, cover cargo, hiding method, port, document type, container, vessel or flight showing up in separate cases. These are **leads to check, not proof** |
 | **Language coverage** | A map of where the site can and cannot see. Green means reports were found. Light green means reports were found, but only through other languages. Yellow means the main language is searched but nothing was found. Red means a **blind spot**: the main language is not searched yet. Languages searched: English, Spanish, French, Portuguese, Dutch, German and Italian |
 | **Any-selector search** | Jumps to the search box at the top |
@@ -568,7 +568,7 @@ details.
   sites cannot be read, so those reports show more "Not reported".
 - **Google News and GDELT** sometimes limit requests. On a busy day, some searches are skipped and caught up the
   next day.
-- The **Trend lookup** live results depend on GDELT being reachable from your browser.
+- The **Route lookup** live results depend on GDELT being reachable from your browser.
 - The site shows the last **180 days**. Older data stays in `data/events.json`.
 
 ## 13. Changing settings
@@ -673,4 +673,5 @@ Privacy rules are in `watch/privacy.py`.
 | 2026-11-28 | The **watch list** was removed: the "Watch list hits" box on the website and in the weekly bulletin, the `risk: watchlist` setting and its "always High" rule. It was empty, so no scores changed. The *INTERPOL and watch lists* category and the "wanted / watch list" score words stay. |
 | 2026-11-28 | **Precursor chemicals** widened: general and named chemical words (see section 6, Seizure totals), news searches such as "precursor chemicals seized", "fentanyl precursors seized" and "precursores químicos incautados", and totals in kg or litres. "Alliance" stories with no action reported are now Updates. |
 | 2026-11-28 | "Reports over time by drug" now shows drugs only (top 6) plus **precursor chemicals, always shown**. Firearms, cash and other goods are no longer mixed in. |
+| 2026-11-28 | The "Trend lookup" card is now called **Route lookup**, matching the side menu. |
 | 2026-11-28 | **Stricter journeys:** an interception is recorded only when the report says someone or something was stopped there, not because an airport or port is mentioned (interceptions went from 208 to 109). Origin and destination come from the opening of the article, and "nationals from X" no longer counts as an origin; older reads keep them only if the stored opening still names that country (origins went from 315 to 192), and recent ones are read again with the new rules. Cooperation news with no action reported (joining a network, signing an agreement) is now an Update (11 reports). |
