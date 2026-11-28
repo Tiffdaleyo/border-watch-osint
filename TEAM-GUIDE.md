@@ -559,6 +559,10 @@ details.
 
 ## 12. Known limits
 
+- **News is not ground truth.** It reflects what journalists and agencies chose to publish. A rise in reports can
+  mean more media attention, not more activity, and a quiet period can mean nobody reported, not that nothing
+  happened. The site shows this line in "About the data" and under Activity over time.
+
 - It works by **word matching, not AI**. Expect some off-topic items and some misses. Use `excluded`, and report to the
   site administrator which words cause trouble.
 - **Weights and seizure totals** follow the rules in section 11b. Some background figures can still slip through.
@@ -674,4 +678,5 @@ Privacy rules are in `watch/privacy.py`.
 | 2026-11-28 | The "Trend lookup" card is now called **Route lookup**, matching the side menu. |
 | 2026-11-28 | Travel document check: an impossible birth or expiry date, or a letter in a digits-only field (O/0, I/1, B/8, S/5), is now a ✗ point, and the result shows "N other problems" next to "All check digits correct". |
 | 2026-11-28 | **Suspect profile** and **Case summary** were removed. This is a public site, so it should not invite anyone to type case or personal details into it, and Suspect profile sent names to outside search engines. Travel document check, Visa requirements, Flight tracker and Case playbooks stay; Case playbooks no longer link to them. |
+| 2026-11-28 | "News is not ground truth" is now shown in About the data, under Activity over time and with the rising rule in "What this suggests". |
 | 2026-11-28 | **Stricter journeys:** an interception is recorded only when the report says someone or something was stopped there, not because an airport or port is mentioned (interceptions went from 208 to 109). Origin and destination come from the opening of the article, and "nationals from X" no longer counts as an origin; older reads keep them only if the stored opening still names that country (origins went from 315 to 192), and recent ones are read again with the new rules. Cooperation news with no action reported (joining a network, signing an agreement) is now an Update (11 reports). |
