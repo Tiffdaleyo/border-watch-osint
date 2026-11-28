@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to read this site · Border Watch OSINT</title>
+<style>
+  :root { --ink:#1d2430; --muted:#5b6575; --line:#dde2ea; --bg:#f3f5f9; --panel:#fff; --navy:#13294b; --high:#b42318; --med:#b54708; --low:#067647; --upd:#667085; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:Inter,Segoe UI,Arial,sans-serif; background:var(--bg); color:var(--ink); font-size:15px; line-height:1.6; }
+  .top { background:var(--navy); color:#fff; } .top .in { max-width:860px; margin:0 auto; padding:12px 18px; display:flex; gap:16px; align-items:center; }
+  .top a { color:#cfe0ff; text-decoration:none; font-size:13px; }
+  .wrap { max-width:860px; margin:22px auto 40px; padding:0 18px; }
+  h1 { margin:0 0 4px; font-size:26px; color:var(--navy); } .sub { color:var(--muted); font-size:14px; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:18px 22px; margin-top:14px; }
+  h2 { font-size:13px; text-transform:uppercase; letter-spacing:.06em; color:var(--navy); margin:0 0 8px; display:flex; gap:10px; align-items:center; }
+  h2 .n { background:var(--navy); color:#fff; border-radius:50%; width:22px; height:22px; display:inline-flex; align-items:center; justify-content:center; font-size:12px; letter-spacing:0; }
+  p { margin:6px 0; } ul { margin:6px 0; padding-left:20px; } li { margin:3px 0; }
+  .key { background:#eef3fb; border-left:4px solid var(--navy); border-radius:8px; padding:10px 14px; margin:8px 0; font-weight:600; color:var(--navy); }
+  .chips { display:flex; gap:8px; flex-wrap:wrap; margin:8px 0; }
+  .chip { border-radius:20px; padding:3px 10px; font-size:13px; font-weight:600; border:1.5px solid; }
+  .chip.High { color:var(--high); } .chip.Medium { color:var(--med); } .chip.Low { color:var(--low); } .chip.Update { color:var(--upd); }
+  .warn { background:#fff4e5; border:1px solid #f5c27a; border-radius:10px; padding:10px 14px; }
+  .steps { counter-reset:s; list-style:none; padding:0; } .steps li { counter-increment:s; padding-left:34px; position:relative; margin:8px 0; }
+  .steps li::before { content:counter(s); position:absolute; left:0; top:1px; width:22px; height:22px; border-radius:50%; background:#e3e8f0; color:var(--navy); font-weight:700; font-size:12px; display:flex; align-items:center; justify-content:center; }
+  .foot { color:var(--muted); font-size:13px; margin-top:18px; }
+  a { color:#1f5fbf; }
+</style></head><body>
+<div class="top"><div class="in"><a href="index.html">← Border Watch dashboard</a></div></div>
+<div class="wrap">
+  <h1>How to read this site</h1>
+  <div class="sub">About 5 minutes. Read this once before using the dashboard.</div>
+
+  <div class="card">
+    <h2><span class="n">1</span>What this site is</h2>
+    <p>Border Watch collects <b>open-source news</b> and official public releases about travel documents, migration, trafficking, smuggling, seizures and border security, worldwide with a Caribbean focus. It updates every morning.</p>
+    <p>It is an <b>unofficial project</b>. It is not a government service, uses no case files or official data, and is not linked to any agency's systems. Every item is a <b>lead to check</b>, not a finding.</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">2</span>Review priority = what to read first</h2>
+    <div class="key">Review priority tells you what to read first. It never means a person, country or region is risky.</div>
+    <div class="chips"><span class="chip High">High</span><span class="chip Medium">Medium</span><span class="chip Low">Low</span><span class="chip Update">Update</span></div>
+    <ul>
+      <li>Only <b>incidents</b> (a crime or enforcement action, such as an arrest, seizure or fake document) are scored, from words in the report such as the amount seized or a link to Jamaica.</li>
+      <li><b>Update</b> = news with no specific crime: a new visa rule, a travel advisory, an agreement. Not scored.</li>
+      <li>Nationality is never part of the score.</li>
+      <li><b>Reviewed</b> appears only on reports a person has checked. Everything else was sorted automatically.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">3</span>How the charts count</h2>
+    <ul>
+      <li>The charts count <b>stories</b>, not people, seizures or cases. A story about three Haitians adds 1 to Haiti.</li>
+      <li><b>Activity over time</b>, <b>Review priority</b> and <b>Main category</b> count each story <b>once</b>, under its main category, so they add up to the same total (the blue "N stories" badge).</li>
+      <li><b>Countries named</b> and <b>Nationality</b> count a story once for each country it names, so they do not add up to the total.</li>
+      <li>Click a bar, or the name beside it, to see the stories behind it. "Filter the whole page" applies it everywhere.</li>
+      <li>The filters at the top (section, Caribbean / World / Jamaica, period) apply to every chart.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">4</span>Cautions</h2>
+    <div class="warn">
+      <ul style="margin:0">
+        <li><b>News is not ground truth.</b> It reflects what journalists and agencies chose to publish. A rise in reports can mean more media attention, not more activity.</li>
+        <li><b>Sorting is automatic and can be wrong.</b> It works by matching words, not by understanding. Expect some off-topic stories and some misses.</li>
+        <li><b>Check the original article</b> and official sources before acting on anything here. Seizure totals and figures are as reported, not verified.</li>
+        <li><b>Coverage is uneven.</b> Some languages and countries are covered better than others (see Language coverage in the side menu).</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">5</span>Where to start</h2>
+    <ol class="steps">
+      <li><b>Overview</b>: the latest developments and the high-priority reports for the Caribbean.</li>
+      <li>Open the section that interests you: <b>Passports &amp; Documents</b>, <b>Immigration</b>, <b>Trafficking</b>, <b>Seizures &amp; Contraband</b> and others.</li>
+      <li>Use <b>search</b> for a place, airport, airline, document type or flight number.</li>
+      <li>Open a story's <b>Full record</b> to see what was extracted and the link to the original article.</li>
+      <li>Use the <b>Tools</b> for reference: Travel document check, Visa requirements, Flight tracker, Port and Route lookup.</li>
+    </ol>
+  </div>
+
+  <p class="foot">Unofficial project, open-source news only; not a government service.</p>
+</div>
+</body></html>

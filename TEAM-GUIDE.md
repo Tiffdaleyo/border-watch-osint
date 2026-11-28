@@ -363,6 +363,10 @@ is public.**
 
 ## 10. Using the website
 
+**How to read this site** (top of the side menu, and the "New here?" link under the page title) is a one-page,
+5-minute introduction for any visitor: what the site is, what review priority means, how the charts count, the main
+cautions and where to start. Keep it in step with this guide when those things change (`watch/how-to-read.html`).
+
 The site is organised into **sections**, like the pages of a website. The **side menu on the left** lists them, with
 a count of reports beside each one, and below them the **Investigation tools** (section 10b). On a phone the menu
 sits at the top and scrolls sideways.
@@ -680,4 +684,5 @@ Privacy rules are in `watch/privacy.py`.
 | 2026-11-28 | "News is not ground truth" is now shown in About the data, under Activity over time and with the rising rule in "What this suggests". |
 | 2026-11-28 | **Document & Identity Fraud subcategories changed:** Passport fraud; **Document fraud** (ID cards, visas, residence and work permits; replaces "Visa and permit fraud"); **Unspecified documents** (no type named; replaces the old catch-all "Identity and document fraud"); **Other civil documents** (birth, marriage and death certificates); Impostors. Stored reports were sorted again: main category Passport fraud 52, Document fraud 50, Unspecified documents 39, Impostors 8, Other civil documents 2. |
 | 2026-11-28 | **Case playbooks** was removed too, so the site holds no case-handling guidance; agency procedures cover that. The Tools menu now has Travel document check, Visa requirements, Flight tracker and the lookups. |
+| 2026-11-28 | New **How to read this site** page for any visitor, linked at the top of the side menu and by "New here?" under the page title. The dashboard's opening note now says a click on a bar or map bubble shows the stories behind it. |
 | 2026-11-28 | **Stricter journeys:** an interception is recorded only when the report says someone or something was stopped there, not because an airport or port is mentioned (interceptions went from 208 to 109). Origin and destination come from the opening of the article, and "nationals from X" no longer counts as an origin; older reads keep them only if the stored opening still names that country (origins went from 315 to 192), and recent ones are read again with the new rules. Cooperation news with no action reported (joining a network, signing an agreement) is now an Update (11 reports). |

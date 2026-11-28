@@ -167,6 +167,11 @@ def write_tools(out_dir):
                 page = page.replace("__" + name.split(".")[0].upper() + "__", data)
             with open(os.path.join(dst, fn), "w", encoding="utf-8") as f:
                 f.write(page)
+    # the short "How to read this site" page for new visitors, at the top level of the site
+    with open(os.path.join(os.path.dirname(__file__), "how-to-read.html"), encoding="utf-8") as f:
+        page = f.read()
+    with open(os.path.join(out_dir, "how-to-read.html"), "w", encoding="utf-8") as f:
+        f.write(page)
 
 
 def write_dashboard(out_dir, events, summary, cfg, new_today, demo=False):
