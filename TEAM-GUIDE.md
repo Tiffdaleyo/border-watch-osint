@@ -422,7 +422,8 @@ smuggling ring appears in both Passports & Documents and Immigration.
   example, "Origin: Jamaica; destination not reported".
 - **Nationality (as stated):** see the nationality rules in section 5.
 - **Priority feed:** high review-priority incidents and anything naming Jamaica.
-- **Seizures section extras:** reports over time by drug, top corridors, hotspots, a concealment × drug table,
+- **Seizures section extras:** reports over time by drug (the six most reported drugs, plus precursor chemicals
+  always shown; firearms, cash and other goods are left out because they have their own totals), top corridors, hotspots, a concealment × drug table,
   insider signals (with % cards), concealment trends and cover loads.
 - **Trend lookup** (Immigration, Trafficking, Passports): research a route (origin → destination) with
   live news-index results and ready-made searches.
@@ -671,4 +672,5 @@ Privacy rules are in `watch/privacy.py`.
 | 2026-11-28 | On every bar chart, clicking the **name beside a bar** (an airport, country, category...) now opens the same story list as clicking the bar, so short bars are easy to use. Chart notes say "click a bar or its name to see the stories". |
 | 2026-11-28 | The **watch list** was removed: the "Watch list hits" box on the website and in the weekly bulletin, the `risk: watchlist` setting and its "always High" rule. It was empty, so no scores changed. The *INTERPOL and watch lists* category and the "wanted / watch list" score words stay. |
 | 2026-11-28 | **Precursor chemicals** widened: general and named chemical words (see section 6, Seizure totals), news searches such as "precursor chemicals seized", "fentanyl precursors seized" and "precursores químicos incautados", and totals in kg or litres. "Alliance" stories with no action reported are now Updates. |
+| 2026-11-28 | "Reports over time by drug" now shows drugs only (top 6) plus **precursor chemicals, always shown**. Firearms, cash and other goods are no longer mixed in. |
 | 2026-11-28 | **Stricter journeys:** an interception is recorded only when the report says someone or something was stopped there, not because an airport or port is mentioned (interceptions went from 208 to 109). Origin and destination come from the opening of the article, and "nationals from X" no longer counts as an origin; older reads keep them only if the stored opening still names that country (origins went from 315 to 192), and recent ones are read again with the new rules. Cooperation news with no action reported (joining a network, signing an agreement) is now an Update (11 reports). |

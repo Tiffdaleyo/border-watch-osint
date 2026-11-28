@@ -400,7 +400,7 @@
       <div id="cover" class="chart" style="height:360px"></div>
     </section>
     <section class="card s12" data-sec="seizures">
-      <h2>Reports over time by drug</h2><div class="sub">Seizure reports per <span id="dunit">week</span> naming each substance (top 6) · a report can name more than one · click a bar to search</div>
+      <h2>Reports over time by drug</h2><div class="sub">Seizure reports per <span id="dunit">week</span> naming each drug (top 6), plus precursor chemicals (the chemicals used to make drugs), always shown · firearms, cash and other goods are not included · a report can name more than one · click a bar to search</div>
       <div id="dtrend" class="chart" style="height:300px"></div>
     </section>
     <section class="card s6" data-sec="seizures">
@@ -1155,6 +1155,8 @@ function drawConcealTrend(rows) {
 }
 
 /* ---------------- Seizure analysis ---------------- */
+const DRUGS = ["Cocaine", "Cannabis", "Heroin", "Methamphetamine", "Fentanyl", "MDMA / ecstasy", "Ketamine",
+               "Synthetic drugs (other)", "Khat", "Precursor chemicals"];
 const isSeizure = e => e.kind === "Incident" && (e.groups || []).includes("Seizures & Contraband");
 const weekKey = weekly => d => { if (!weekly) return d; const x = new Date(d); x.setDate(x.getDate() - ((x.getDay() + 6) % 7)); return x.toISOString().slice(0, 10); };
 const searchFor = v => { F.q = String(v).toLowerCase(); $("q").value = v; update(); toTable(); };
@@ -1162,18 +1164,22 @@ const corridor = e => { const j = e.journey || {}; return j.origin && j.destinat
 const hotspots = e => { const l = e.location || {};
   return [...new Set([...(l.ports || []).map(p => p.replace(/ \([A-Z]{5}\)$/, "")), ...(e.airports || []), ...(l.cities || [])])]; };
 function drawSeizureCharts(sz) {
-  // reports over time by drug
-  const top = count(sz, e => e.substances || []).slice(0, 6).map(x => x[0]);
+  // reports over time by drug: drugs only (firearms, cash and other goods have their own totals), top 6, and
+  // precursor chemicals always shown, even with no reports, so they can be watched over time
+  const PREC = "Precursor chemicals";
+  const drugsOf = e => [...new Set((e.substances || []).map(x => x.replace(/^Suspected (.)/, (m, c) => c.toUpperCase()))
+    .map(x => DRUGS.find(d => d.toLowerCase() === x.toLowerCase())).filter(Boolean))];
+  const top = count(sz, drugsOf).map(x => x[0]).filter(x => x !== PREC).slice(0, 6).concat(PREC);
   const weekly = F.period === 0 || F.period > 30, key = weekKey(weekly);
   $("dunit").textContent = weekly ? "week" : "day";
   const keys = [...new Set(sz.map(e => key(e.date)))].sort();
-  const pal = ["--g4", "--g1", "--g2", "--g3", "--g5", "--g6"].map(css);
-  if (!top.length) charts.dtrend.setOption(EMPTY, true);
+  const pal = ["--g4", "--g1", "--g2", "--g3", "--g5", "--g6"].map(css).slice(0, top.length - 1).concat(css("--g7"));
+  if (!sz.length) charts.dtrend.setOption(EMPTY, true);
   else charts.dtrend.setOption({animationDuration: 400, grid: {left: 14, right: 10, top: 58, bottom: 4, containLabel: true},
     legend: {top: 0, left: 0, icon: "roundRect", itemWidth: 10, itemHeight: 10, textStyle: {color: MUTED, fontSize: 11.5, fontFamily: FONT}},
     tooltip: {...TT, trigger: "axis"}, xAxis: {type: "category", data: keys.map(k => k.slice(5)), ...AX}, yAxis: {type: "value", minInterval: 1, ...AX},
     series: top.map((t, i) => ({name: t, type: "bar", stack: "d", itemStyle: {color: pal[i]}, cursor: "pointer",
-      data: keys.map(k => sz.filter(e => key(e.date) === k && (e.substances || []).includes(t)).length)}))}, true);
+      data: keys.map(k => sz.filter(e => key(e.date) === k && drugsOf(e).includes(t)).length)}))}, true);
   charts.dtrend.off("click"); charts.dtrend.on("click", p => searchFor(p.seriesName));
   hbar(charts.corr, count(sz, corridor).slice(0, 12), () => css("--g3"), searchFor, null, c => sz.filter(e => corridor(e).includes(c)), "on this corridor");
   hbar(charts.hot, count(sz, hotspots).slice(0, 12), () => css("--g4"), searchFor, null, h => sz.filter(e => hotspots(e).includes(h)), "naming this place");
