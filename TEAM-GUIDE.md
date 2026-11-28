@@ -363,6 +363,8 @@ is public.**
 
 ## 10. Using the website
 
+**On a phone** the page uses a compact layout: the side menu shows only the section links, with **Tools & settings ▾** to open the rest; the search box is slim; the filters sit behind **More filters ▾** and do not stay pinned while you scroll; and a click on a bar or map bubble opens the story list as a sheet from the bottom of the screen.
+
 **How to read this site** (top of the side menu, and the "New here?" link under the page title) is a one-page,
 5-minute introduction for any visitor: what the site is, what review priority means, how the charts count, the main
 cautions and where to start. Keep it in step with this guide when those things change (`watch/how-to-read.html`).
@@ -686,3 +688,4 @@ Privacy rules are in `watch/privacy.py`.
 | 2026-11-28 | **Case playbooks** was removed too, so the site holds no case-handling guidance; agency procedures cover that. The Tools menu now has Travel document check, Visa requirements, Flight tracker and the lookups. |
 | 2026-11-28 | New **How to read this site** page for any visitor, linked at the top of the side menu and by "New here?" under the page title. The dashboard's opening note now says a click on a bar or map bubble shows the stories behind it. |
 | 2026-11-28 | **Stricter journeys:** an interception is recorded only when the report says someone or something was stopped there, not because an airport or port is mentioned (interceptions went from 208 to 109). Origin and destination come from the opening of the article, and "nationals from X" no longer counts as an origin; older reads keep them only if the stored opening still names that country (origins went from 315 to 192), and recent ones are read again with the new rules. Cooperation news with no action reported (joining a network, signing an agreement) is now an Update (11 reports). |
+| 2026-11-28 | **Phone view:** compact side menu with Tools & settings, slimmer search, filters folded behind More filters and no longer pinned, story lists as a bottom sheet, and taller charts so legends fit. |

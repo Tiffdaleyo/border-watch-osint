@@ -239,7 +239,33 @@
     .fbar select { flex:1 1 45%; max-width:none; }
     #map { height:300px !important; }
     table.rep .hide-m { display:none; }
+    table.rep { table-layout:fixed; } table.rep th:nth-child(1) { width:28%; } table.rep th:nth-child(2) { width:24%; }
+    table.rep td { overflow-wrap:anywhere; }
+    #trend, #ctrend, #dtrend { height:360px !important; }
+    /* phone: a compact menu, filters folded away, story lists as a sheet from the bottom */
+    .side { padding:10px 12px 6px; } .side .brand { margin-bottom:6px; }
+    .side .sgl { display:none; }
+    .side nav.tools:first-of-type a { padding:4px 10px; font-size:13px; }
+    .side .tools:not(:first-of-type), .side .foot { display:none; }
+    .side.open .tools:not(:first-of-type), .side.open .foot { display:flex; }
+    .side #snav { -webkit-mask-image:linear-gradient(90deg,#000 85%,transparent); mask-image:linear-gradient(90deg,#000 85%,transparent); }
+    .mtoggle, .ftoggle { display:inline-block !important; }
+    .fbar { position:static; }
+    .fbar select, .fbar .reset { display:none; }
+    .fbar.open select, .fbar.open .reset { display:block; }
+    /* phone: a slim search box, examples on one line */
+    .selbox { padding:8px 12px 0; }
+    .selbox .box { border-width:1px; border-radius:10px; padding:2px 4px 2px 10px; }
+    .selbox .box span { display:none; }
+    .selbox input { font-size:14px; padding:7px 2px; }
+    .selbox .try { flex-wrap:nowrap; overflow-x:auto; margin-top:5px; padding-bottom:2px; }
+    .selbox .try button { white-space:nowrap; }
+    .mappop.storypop { position:fixed; top:auto; left:0; right:0; bottom:0; width:auto; max-height:72vh; z-index:60;
+                       border-radius:16px 16px 0 0; box-shadow:0 -8px 30px rgba(0,0,0,.25); }
   }
+  .mtoggle, .ftoggle { display:none; background:transparent; border:1px solid var(--line); color:inherit; border-radius:8px;
+                       padding:5px 10px; font:inherit; font-size:12.5px; cursor:pointer; }
+  .side .mtoggle { color:#cfe0ff; border-color:rgba(255,255,255,.2); margin:4px 0 2px; }
 </style>
 </head>
 <body>
@@ -248,6 +274,7 @@
   <nav class="tools" style="margin-top:6px"><a href="how-to-read.html" style="background:rgba(255,255,255,.08);border-radius:8px"><span class="i">?</span>How to read this site</a></nav>
   <div class="sgl">Sections</div>
   <nav id="snav"></nav>
+  <button class="mtoggle" id="mtoggle" type="button">Tools &amp; settings ▾</button>
   <div class="sgl">Tools</div>
   <nav class="tools">
     <a href="tools/travel-document.html"><span class="i">▤</span>Travel document check</a>
@@ -279,6 +306,7 @@
 </div>
 
 <div class="fbar"><div class="in">
+  <button class="ftoggle" id="ftoggle" type="button">More filters ▾</button>
   <div class="seg" id="period">
     <button data-v="7">7d</button><button data-v="30">30d</button><button data-v="90" class="on">90d</button><button data-v="0">All</button>
   </div>
@@ -592,6 +620,14 @@ const FONT = '"Inter","Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif
 const AX = {axisLine: {lineStyle: {color: LINE}}, axisTick: {show: false}, axisLabel: {color: MUTED, fontSize: 11, fontFamily: FONT}, splitLine: {lineStyle: {color: css("--split")}}};
 const EMPTY = {title: {text: "Nothing in this view", left: "center", top: "middle", textStyle: {color: css("--dim"), fontSize: 13, fontWeight: 400}}};
 
+const NARROW = () => innerWidth < 720;
+const LEG = () => ({});   // legends wrap; on a phone the chart starts lower so they never overlap it
+document.addEventListener("DOMContentLoaded", () => {
+  if (NARROW()) document.getElementById("q").placeholder = "Search reports, names, flights, ports…";
+  const m = document.getElementById("mtoggle"), f = document.getElementById("ftoggle");
+  if (m) m.onclick = () => { const o = document.querySelector(".side").classList.toggle("open"); m.textContent = o ? "Tools & settings ▴" : "Tools & settings ▾"; };
+  if (f) f.onclick = () => { const o = document.querySelector(".fbar").classList.toggle("open"); f.textContent = o ? "Fewer filters ▴" : "More filters ▾"; };
+});
 function hbar(chart, pairs, colorFn, onClick, selected, rowsFor, how) {
   if (!pairs.length) { chart.setOption(EMPTY, true); return; }
   pairs = pairs.slice().reverse();
@@ -707,8 +743,8 @@ function drawTrend(rows) {
             itemStyle: {color: GCOL[i], borderColor: css("--edge"), borderWidth: 1}};
   });
   charts.trend.setOption({
-    animationDuration: 400, grid: {left: 14, right: 10, top: 58, bottom: 4, containLabel: true},
-    legend: {top: 0, left: 0, icon: "roundRect", itemWidth: 10, itemHeight: 10, textStyle: {color: MUTED, fontSize: 11.5, fontFamily: FONT}},
+    animationDuration: 400, grid: {left: 14, right: 10, top: NARROW() ? 104 : 58, bottom: 4, containLabel: true},
+    legend: {...LEG(), top: 0, left: 0, icon: "roundRect", itemWidth: 10, itemHeight: 10, textStyle: {color: MUTED, fontSize: 11.5, fontFamily: FONT}},
     tooltip: {...TT, trigger: "axis", axisPointer: {type: "shadow", shadowStyle: {color: "rgba(51,140,237,.06)"}},
               formatter: ps => `<b>${daily ? "" : "Week of "}${ps[0].axisValue}</b><br>` + (ps.filter(p => p.value).map(p => `${p.marker}${esc(p.seriesName)}: <b>${p.value}</b>`).join("<br>") || "No reports")},
     xAxis: {type: "category", data: keys.map(k => k.slice(5)), ...AX},
@@ -727,7 +763,7 @@ function drawRiskMix(rows) {
   const names = GROUPS.map(g => g[0]).slice().reverse();
   charts.riskmix.setOption({
     animationDuration: 400, grid: {left: 14, right: 12, top: 34, bottom: 4, containLabel: true},
-    legend: {top: 0, left: 0, icon: "roundRect", itemWidth: 10, itemHeight: 10, textStyle: {color: MUTED, fontSize: 11.5, fontFamily: FONT}},
+    legend: {...LEG(), top: 0, left: 0, icon: "roundRect", itemWidth: 10, itemHeight: 10, textStyle: {color: MUTED, fontSize: 11.5, fontFamily: FONT}},
     tooltip: {...TT, trigger: "axis", axisPointer: {type: "shadow", shadowStyle: {color: "rgba(51,140,237,.06)"}}},
     xAxis: {type: "value", minInterval: 1, ...AX}, yAxis: {type: "category", data: names, ...AX, axisLine: {show: false}},
     series: levels.map(l => ({name: l === "Update" ? "Update" : l, type: "bar", stack: "r", barMaxWidth: 16,
@@ -763,9 +799,9 @@ function drawJourneys(rows) {
   charts.jmap.setOption({
     tooltip: {...TT, trigger: "item", formatter: p => p.seriesType === "lines" ? `${esc(p.name)}<br><b>${p.value}</b> report${p.value === 1 ? "" : "s"} state this connection`
       : p.seriesType === "scatter" ? `<b>${esc(p.name)}</b><br>${esc(p.seriesName)} in <b>${p.value[2]}</b> report${p.value[2] === 1 ? "" : "s"}` : esc(p.name)},
-    legend: {top: 0, left: 0, textStyle: {color: MUTED, fontSize: 11.5}, data: ["Origin", "Transit", "Destination", "Interception"]},
+    legend: {...LEG(), top: 0, left: 0, textStyle: {color: MUTED, fontSize: 11.5}, data: ["Origin", "Transit", "Destination", "Interception"]},
     geo: {map: "world", roam: true, ...(jView.center ? {center: jView.center} : {}), zoom: jView.zoom, scaleLimit: {min: 1, max: 14},
-          left: 4, right: 4, top: 28, bottom: 8, itemStyle: {areaColor: css("--land"), borderColor: css("--landb"), borderWidth: .6},
+          left: 4, right: 4, top: NARROW() ? 56 : 28, bottom: 8, itemStyle: {areaColor: css("--land"), borderColor: css("--landb"), borderWidth: .6},
           emphasis: {itemStyle: {areaColor: css("--landh")}, label: {show: false}}, label: {show: false}},
     series: [
       {name: "Reported connection", type: "lines", coordinateSystem: "geo", data: lines, z: 2,
@@ -1147,8 +1183,8 @@ function drawConcealTrend(rows) {
   const keys = [...new Set(rows.map(e => key(e.date)))].sort();
   if (!top.length) { charts.ctrend.setOption(EMPTY, true); return; }
   const pal = ["--g2", "--g1", "--g3", "--g5", "--g6", "--g4"].map(css);
-  charts.ctrend.setOption({animationDuration: 400, grid: {left: 14, right: 10, top: 58, bottom: 4, containLabel: true},
-    legend: {top: 0, left: 0, icon: "roundRect", itemWidth: 10, itemHeight: 10, textStyle: {color: MUTED, fontSize: 11.5, fontFamily: FONT}},
+  charts.ctrend.setOption({animationDuration: 400, grid: {left: 14, right: 10, top: NARROW() ? 104 : 58, bottom: 4, containLabel: true},
+    legend: {...LEG(), top: 0, left: 0, icon: "roundRect", itemWidth: 10, itemHeight: 10, textStyle: {color: MUTED, fontSize: 11.5, fontFamily: FONT}},
     tooltip: {...TT, trigger: "axis"}, xAxis: {type: "category", data: keys.map(k => k.slice(5)), ...AX}, yAxis: {type: "value", minInterval: 1, ...AX},
     series: top.map((t, i) => ({name: t, type: "bar", stack: "c", itemStyle: {color: pal[i]},
       data: keys.map(k => rows.filter(e => key(e.date) === k && (e.concealment_types || []).includes(t)).length)}))}, true);
@@ -1175,8 +1211,8 @@ function drawSeizureCharts(sz) {
   const keys = [...new Set(sz.map(e => key(e.date)))].sort();
   const pal = ["--g4", "--g1", "--g2", "--g3", "--g5", "--g6"].map(css).slice(0, top.length - 1).concat(css("--g7"));
   if (!sz.length) charts.dtrend.setOption(EMPTY, true);
-  else charts.dtrend.setOption({animationDuration: 400, grid: {left: 14, right: 10, top: 58, bottom: 4, containLabel: true},
-    legend: {top: 0, left: 0, icon: "roundRect", itemWidth: 10, itemHeight: 10, textStyle: {color: MUTED, fontSize: 11.5, fontFamily: FONT}},
+  else charts.dtrend.setOption({animationDuration: 400, grid: {left: 14, right: 10, top: NARROW() ? 104 : 58, bottom: 4, containLabel: true},
+    legend: {...LEG(), top: 0, left: 0, icon: "roundRect", itemWidth: 10, itemHeight: 10, textStyle: {color: MUTED, fontSize: 11.5, fontFamily: FONT}},
     tooltip: {...TT, trigger: "axis"}, xAxis: {type: "category", data: keys.map(k => k.slice(5)), ...AX}, yAxis: {type: "value", minInterval: 1, ...AX},
     series: top.map((t, i) => ({name: t, type: "bar", stack: "d", itemStyle: {color: pal[i]}, cursor: "pointer",
       data: keys.map(k => sz.filter(e => key(e.date) === k && drugsOf(e).includes(t)).length)}))}, true);
