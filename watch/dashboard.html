@@ -289,7 +289,7 @@
   <select id="fmode"><option value="">All transport</option></select>
   <select id="fsrc"><option value="">News + official</option><option value="official">Official releases only</option><option value="news">News only</option></select>
   <select id="freview"><option value="">Any review status</option></select>
-  <select id="flevel"><option value="">Incidents + updates</option><option value="Incident">Incidents only</option><option value="High">Priority: high</option><option value="Medium">Priority: medium</option><option value="Low">Priority: low</option><option value="Update">Updates only</option></select>
+  <select id="flevel" title="Update = news with no specific crime (new visa rule, travel advisory, deportation flight, border system); not scored."><option value="">Incidents + updates</option><option value="Incident">Incidents only</option><option value="High">Priority: high</option><option value="Medium">Priority: medium</option><option value="Low">Priority: low</option><option value="Update">Updates only (news with no specific crime)</option></select>
   <button class="reset" id="reset">Reset</button>
 </div></div>
 
@@ -350,7 +350,7 @@
       <ul class="feed" id="latest" style="max-height:300px"></ul>
     </section>
     <section class="card s4" data-sec="documents migration trafficking citizenship border seizures policy official">
-      <h2>Review priority by main group</h2><div class="sub">By primary category · click a group to filter</div>
+      <h2>Review priority by main group</h2><div class="sub">By primary category · click a group to filter</div><div class="sub" style="margin-top:2px"><b>Update</b> = news with no specific crime (new visa rule, travel advisory, deportation flight, border system); not scored.</div>
       <div id="riskmix" class="chart" style="height:300px"></div>
     </section>
 
@@ -469,7 +469,7 @@
 
   <details class="about card">
     <summary>About the data: how the review priority works, and this week compared with usual</summary>
-    <p class="note" style="margin-top:10px"><b>Review priority = what to read first. It never means a person, country or region is risky.</b> Only incidents (crimes) are scored; policy, security and deportation news is shown as “Update”. __BANDS__</p>
+    <p class="note" style="margin-top:10px"><b>Review priority = what to read first. It never means a person, country or region is risky.</b> Only incidents (crimes) are scored; news with no specific crime (new visa rule, travel advisory, deportation flight, border system) is shown as “Update” and not scored. __BANDS__</p>
     <table class="mini" id="method"></table>
     <table class="mini" id="trends" style="margin-top:16px"></table>
     <p class="sub" style="margin-top:6px">“Rising” in this table: at least 3 reports in the last 7 days and at least double the average week of the 4 weeks before. “Falling”: half or less of a usual week (of at least 2). A pattern to look into, not a finding.</p>
@@ -872,7 +872,7 @@ function activeFilters() {
   });
 }
 
-const chip = e => `<span class="chip ${e.level}">${e.level === "Update" ? "Update" : e.watch ? "Watch list" : e.level + " " + e.score}</span>`
+const chip = e => `<span class="chip ${e.level}"${e.level === "Update" ? ' title="Update = news with no specific crime (new visa rule, travel advisory, deportation flight, border system); not scored."' : ""}>${e.level === "Update" ? "Update" : e.watch ? "Watch list" : e.level + " " + e.score}</span>`
   + (e.official ? ' <span class="chip off" title="Published by an official agency">OFFICIAL</span>' : "");
 const feedItem = e => `<li><a class="t" href="${esc(e.source_url || e.url)}" target="_blank" rel="noopener">${esc(e.title)}</a>
   <div class="meta">${chip(e)}${e.home ? `<span class="jm">${esc(DATA.home.toUpperCase())}</span>` : ""}<span>${esc(e.date)}</span><span>${esc(e.source)}</span>${(e.seizures || []).length ? `<span>${esc(e.seizures.slice(0, 2).map(q => q.original + (q.substance !== "Not reported" ? " " + q.substance.toLowerCase() : "")).join(", "))}</span>` : e.weight_kg ? `<span>${e.weight_kg} kg</span>` : ""}${e.outcome ? `<span>${esc(e.outcome)}</span>` : ""}<a class="eid" href="javascript:void 0" onclick="findEvent('${esc(e.event_id)}')">${esc(e.event_id)}</a></div></li>`;
