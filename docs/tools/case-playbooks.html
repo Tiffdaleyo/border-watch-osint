@@ -39,7 +39,7 @@
   @media print { .top, .tabs, .noprint, .note { display:none !important; } body { background:#fff; } .card { border:none; padding:0; } .steps2 > li { break-inside:avoid; } }
 </style></head><body>
 <div class="top"><div class="in"><a href="../index.html">← Border Watch dashboard</a><span class="sp"></span>
-  <a href="travel-document.html">Travel document check</a><a href="visa.html">Visa requirements</a><a href="flight.html">Flight tracker</a><a href="suspect-profile.html">Suspect profile</a><a href="case-summary.html">Case summary</a><a href="case-playbooks.html" class="on">Case playbooks</a></div></div>
+  <a href="travel-document.html">Travel document check</a><a href="visa.html">Visa requirements</a><a href="flight.html">Flight tracker</a><a href="case-playbooks.html" class="on">Case playbooks</a></div></div>
 <div class="wrap">
   <h1>Case playbooks</h1>
   <div class="sub">Step-by-step checklists for the four most common airport immigration cases: what to look for, what to check, which tools on this site help, and how to refer and record.</div>
@@ -51,7 +51,7 @@
 <script>
 const T = {
   doc: ['Travel document check', 'travel-document.html'], visa: ['Visa requirements', 'visa.html'], flight: ['Flight tracker', 'flight.html'],
-  prof: ['Suspect profile', 'suspect-profile.html'], sum: ['Case summary', 'case-summary.html'], news: ['Search this site\'s reports', '../index.html#overview'],
+  news: ['Search this site\'s reports', '../index.html#overview'],
   docs: ['Recent document fraud reports', '../index.html#documents'], traf: ['Recent trafficking reports', '../index.html#trafficking'], mig: ['Recent irregular movement reports', '../index.html#migration'],
 };
 const PB = [
@@ -101,9 +101,8 @@ function show(key) {
   $("tabs").querySelectorAll("button[data-k]").forEach(b => b.onclick = () => { history.replaceState(null, "", "#" + b.dataset.k); show(b.dataset.k); });
   $("pr").onclick = () => window.print();
   $("pb").innerHTML = `<div class="card"><h2 style="font-size:16px;text-transform:none;letter-spacing:0">${esc(p.title)}</h2><p class="lead">${esc(p.lead)}</p>
-    <ol class="steps2">${p.steps.map(([h, items, tools]) => `<li><h4>${esc(h)}</h4><ul>${items.map(i => `<li>${esc(i)}</li>`).join("")}</ul>${tools.length ? `<div class="noprint">${tools.map(btn).join("")}</div>` : ""}</li>`).join("")}</ol>
-    <div class="dont"><b>Avoid</b><ul>${p.dont.map(i => `<li>${esc(i)}</li>`).join("")}</ul></div>
-    <div class="row noprint"><a class="toolbtn" style="background:var(--navy);color:#fff;border-color:var(--navy);padding:7px 14px" href="case-summary.html?type=${encodeURIComponent(p.type)}">Start a case summary for this case →</a></div></div>`;
+    <ol class="steps2">${p.steps.map(([h, items, tools]) => `<li><h4>${esc(h)}</h4><ul>${items.map(i => `<li>${esc(i)}</li>`).join("")}</ul>${tools.filter(k => T[k]).length ? `<div class="noprint">${tools.filter(k => T[k]).map(btn).join("")}</div>` : ""}</li>`).join("")}</ol>
+    <div class="dont"><b>Avoid</b><ul>${p.dont.map(i => `<li>${esc(i)}</li>`).join("")}</ul></div></div>`;
 }
 show(location.hash.slice(1));
 </script>
