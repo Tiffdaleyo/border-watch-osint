@@ -587,18 +587,20 @@ const charts = {};
 ["map", "jmap", "trend", "riskmix", "topics", "countries", "routes", "airports", "modes", "nats", "natroute", "pubs", "conceal", "cover", "ctrend", "dtrend", "corr", "hot", "insider", "langmap"].forEach(id => charts[id] = echarts.init($(id)));
 window.addEventListener("resize", () => Object.values(charts).forEach(c => c.resize()));
 const TT = {backgroundColor: css("--tt"), borderColor: css("--line"), textStyle: {color: INK, fontSize: 12}, extraCssText: "border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.18)"};
-const AX = {axisLine: {lineStyle: {color: LINE}}, axisTick: {show: false}, axisLabel: {color: MUTED, fontSize: 11}, splitLine: {lineStyle: {color: css("--split")}}};
+// the page's own font, so ECharts measures labels with the font it draws them in (otherwise long labels can be cut off)
+const FONT = '"Inter","Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif';
+const AX = {axisLine: {lineStyle: {color: LINE}}, axisTick: {show: false}, axisLabel: {color: MUTED, fontSize: 11, fontFamily: FONT}, splitLine: {lineStyle: {color: css("--split")}}};
 const EMPTY = {title: {text: "Nothing in this view", left: "center", top: "middle", textStyle: {color: css("--dim"), fontSize: 13, fontWeight: 400}}};
 
 function hbar(chart, pairs, colorFn, onClick, selected) {
   if (!pairs.length) { chart.setOption(EMPTY, true); return; }
   pairs = pairs.slice().reverse();
   chart.setOption({
-    animationDuration: 400, grid: {left: 8, right: 36, top: 4, bottom: 4, containLabel: true},
+    animationDuration: 400, grid: {left: 14, right: 36, top: 4, bottom: 4, containLabel: true},
     tooltip: {...TT, trigger: "item", formatter: p => `${esc(p.name)}<br><b>${p.value}</b> report${p.value === 1 ? "" : "s"}`},
     xAxis: {type: "value", show: false},
     yAxis: {type: "category", data: pairs.map(p => p[0]), ...AX, axisLine: {show: false},
-            axisLabel: {color: MUTED, fontSize: 11.5, width: 180, overflow: "truncate"}},
+            axisLabel: {color: MUTED, fontSize: 11.5, fontFamily: FONT, formatter: v => v.length > 30 ? v.slice(0, 29) + "…" : v}},
     series: [{type: "bar", data: pairs.map(p => ({value: p[1], itemStyle: {color: colorFn(p[0]), opacity: selected && selected !== p[0] ? .35 : 1}})),
               barMaxWidth: 14, barCategoryGap: "35%", itemStyle: {borderRadius: [0, 4, 4, 0]},
               label: {show: true, position: "right", color: MUTED, fontSize: 11}, cursor: onClick ? "pointer" : "default"}],
@@ -679,8 +681,8 @@ function drawTrend(rows) {
             itemStyle: {color: GCOL[i], borderColor: css("--edge"), borderWidth: 1}};
   });
   charts.trend.setOption({
-    animationDuration: 400, grid: {left: 6, right: 10, top: 58, bottom: 4, containLabel: true},
-    legend: {top: 0, left: 0, icon: "roundRect", itemWidth: 10, itemHeight: 10, textStyle: {color: MUTED, fontSize: 11.5}},
+    animationDuration: 400, grid: {left: 14, right: 10, top: 58, bottom: 4, containLabel: true},
+    legend: {top: 0, left: 0, icon: "roundRect", itemWidth: 10, itemHeight: 10, textStyle: {color: MUTED, fontSize: 11.5, fontFamily: FONT}},
     tooltip: {...TT, trigger: "axis", axisPointer: {type: "shadow", shadowStyle: {color: "rgba(51,140,237,.06)"}},
               formatter: ps => `<b>${daily ? "" : "Week of "}${ps[0].axisValue}</b><br>` + (ps.filter(p => p.value).map(p => `${p.marker}${esc(p.seriesName)}: <b>${p.value}</b>`).join("<br>") || "No reports")},
     xAxis: {type: "category", data: keys.map(k => k.slice(5)), ...AX},
@@ -693,8 +695,8 @@ function drawRiskMix(rows) {
   const levels = ["High", "Medium", "Low", "Update"];
   const names = GROUPS.map(g => g[0]).slice().reverse();
   charts.riskmix.setOption({
-    animationDuration: 400, grid: {left: 6, right: 12, top: 34, bottom: 4, containLabel: true},
-    legend: {top: 0, left: 0, icon: "roundRect", itemWidth: 10, itemHeight: 10, textStyle: {color: MUTED, fontSize: 11.5}},
+    animationDuration: 400, grid: {left: 14, right: 12, top: 34, bottom: 4, containLabel: true},
+    legend: {top: 0, left: 0, icon: "roundRect", itemWidth: 10, itemHeight: 10, textStyle: {color: MUTED, fontSize: 11.5, fontFamily: FONT}},
     tooltip: {...TT, trigger: "axis", axisPointer: {type: "shadow", shadowStyle: {color: "rgba(51,140,237,.06)"}}},
     xAxis: {type: "value", minInterval: 1, ...AX}, yAxis: {type: "category", data: names, ...AX, axisLine: {show: false}},
     series: levels.map(l => ({name: l === "Update" ? "Update" : l, type: "bar", stack: "r", barMaxWidth: 16,
@@ -762,7 +764,7 @@ function drawNatRoute(rows) {
   const data = [];
   nats.forEach((n, y) => routes.forEach((r, x) => { const v = both.filter(e => e.nationality.includes(n) && jText(e) === r).length; if (v) data.push([x, y, v]); }));
   charts.natroute.setOption({
-    grid: {left: 6, right: 12, top: 8, bottom: 6, containLabel: true},
+    grid: {left: 14, right: 12, top: 8, bottom: 6, containLabel: true},
     tooltip: {...TT, formatter: p => `${esc(nats[p.value[1]])} · ${esc(routes[p.value[0]])}<br><b>${p.value[2]}</b> report${p.value[2] === 1 ? "" : "s"}`},
     xAxis: {type: "category", data: routes, ...AX, axisLabel: {color: MUTED, fontSize: 10.5, interval: 0, rotate: 28, width: 150, overflow: "truncate"}, splitArea: {show: false}},
     yAxis: {type: "category", data: nats, ...AX, axisLine: {show: false}},
@@ -1087,7 +1089,7 @@ function runLookup() {
   fetch(gdeltUrl(gq, "TimelineVolRaw", "&format=json")).then(r => r.json()).then(j => {
     const pts = ((j.timeline || [])[0] || {}).data || [];
     lkChart.hideLoading();
-    lkChart.setOption({grid: {left: 6, right: 10, top: 10, bottom: 4, containLabel: true},
+    lkChart.setOption({grid: {left: 14, right: 10, top: 10, bottom: 4, containLabel: true},
       tooltip: {...TT, trigger: "axis", formatter: p => `${p[0].axisValue}<br><b>${p[0].value}</b> articles`},
       xAxis: {type: "category", data: pts.map(d => `${d.date.slice(0, 4)}-${d.date.slice(4, 6)}-${d.date.slice(6, 8)}`), ...AX},
       yAxis: {type: "value", minInterval: 1, ...AX, axisLine: {show: false}},
@@ -1119,8 +1121,8 @@ function drawConcealTrend(rows) {
   const keys = [...new Set(rows.map(e => key(e.date)))].sort();
   if (!top.length) { charts.ctrend.setOption(EMPTY, true); return; }
   const pal = ["--g2", "--g1", "--g3", "--g5", "--g6", "--g4"].map(css);
-  charts.ctrend.setOption({animationDuration: 400, grid: {left: 6, right: 10, top: 58, bottom: 4, containLabel: true},
-    legend: {top: 0, left: 0, icon: "roundRect", itemWidth: 10, itemHeight: 10, textStyle: {color: MUTED, fontSize: 11.5}},
+  charts.ctrend.setOption({animationDuration: 400, grid: {left: 14, right: 10, top: 58, bottom: 4, containLabel: true},
+    legend: {top: 0, left: 0, icon: "roundRect", itemWidth: 10, itemHeight: 10, textStyle: {color: MUTED, fontSize: 11.5, fontFamily: FONT}},
     tooltip: {...TT, trigger: "axis"}, xAxis: {type: "category", data: keys.map(k => k.slice(5)), ...AX}, yAxis: {type: "value", minInterval: 1, ...AX},
     series: top.map((t, i) => ({name: t, type: "bar", stack: "c", itemStyle: {color: pal[i]},
       data: keys.map(k => rows.filter(e => key(e.date) === k && (e.concealment_types || []).includes(t)).length)}))}, true);
@@ -1141,8 +1143,8 @@ function drawSeizureCharts(sz) {
   const keys = [...new Set(sz.map(e => key(e.date)))].sort();
   const pal = ["--g4", "--g1", "--g2", "--g3", "--g5", "--g6"].map(css);
   if (!top.length) charts.dtrend.setOption(EMPTY, true);
-  else charts.dtrend.setOption({animationDuration: 400, grid: {left: 6, right: 10, top: 58, bottom: 4, containLabel: true},
-    legend: {top: 0, left: 0, icon: "roundRect", itemWidth: 10, itemHeight: 10, textStyle: {color: MUTED, fontSize: 11.5}},
+  else charts.dtrend.setOption({animationDuration: 400, grid: {left: 14, right: 10, top: 58, bottom: 4, containLabel: true},
+    legend: {top: 0, left: 0, icon: "roundRect", itemWidth: 10, itemHeight: 10, textStyle: {color: MUTED, fontSize: 11.5, fontFamily: FONT}},
     tooltip: {...TT, trigger: "axis"}, xAxis: {type: "category", data: keys.map(k => k.slice(5)), ...AX}, yAxis: {type: "value", minInterval: 1, ...AX},
     series: top.map((t, i) => ({name: t, type: "bar", stack: "d", itemStyle: {color: pal[i]}, cursor: "pointer",
       data: keys.map(k => sz.filter(e => key(e.date) === k && (e.substances || []).includes(t)).length)}))}, true);
