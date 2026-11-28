@@ -120,6 +120,11 @@
   .card { background:var(--panel); border:1px solid var(--line); border-radius:var(--r); padding:14px 16px; min-width:0; position:relative; }
   .card h2 { margin:0; font-size:12px; font-weight:600; letter-spacing:.09em; text-transform:uppercase; color:var(--muted); }
   .card .sub { font-size:12px; color:var(--dim); margin:2px 0 6px; }
+  .card h2 .nst { display:inline-block; margin-left:8px; padding:1px 8px; border-radius:20px; background:var(--accent); color:#fff; font-size:11px; letter-spacing:.04em; vertical-align:1px; }
+  .card .sub.howcount { background:#fff7d6; color:#5c4a00; border-radius:8px; padding:5px 9px; }
+  html.dark .card .sub.howcount { background:#3a3420; color:#f3e3a6; }
+  .mappop.storypop { top:44px; left:12px; right:auto; max-height:calc(100% - 52px); }
+  .storypop li .cat { font-size:11.5px; color:var(--muted); margin-top:2px; } .storypop li .cat b { color:var(--ink); font-weight:600; }
   .head { display:flex; justify-content:space-between; align-items:flex-start; gap:8px; flex-wrap:wrap; }
   .chart { width:100%; }
 
@@ -342,7 +347,7 @@
     </section>
 
     <section class="card s8">
-      <h2>Activity over time</h2><div class="sub">Reports per <span id="unit">week</span>, by main group (of the primary category)</div>
+      <h2>Activity over time<span class="nst" id="nst-trend"></span></h2><div class="sub howcount">Each story counted once, by its main category. Bars add up to the total.</div><div class="sub">Reports per <span id="unit">week</span>, by main group · click a bar to see its stories</div>
       <div id="trend" class="chart" style="height:300px"></div>
     </section>
     <section class="card s4" data-sec="overview">
@@ -350,16 +355,16 @@
       <ul class="feed" id="latest" style="max-height:300px"></ul>
     </section>
     <section class="card s4" data-sec="documents migration trafficking citizenship border seizures policy official">
-      <h2>Review priority by main group</h2><div class="sub">By primary category · click a group to filter</div><div class="sub" style="margin-top:4px"><b>How to read:</b> each bar is one subject group (by the report's primary category). Coloured parts count incidents (crimes or enforcement actions) by review priority: High, Medium, Low. <b>Grey = Update:</b> news with no specific crime (new visa rule, travel advisory, deportation flight, border system), not scored. A long bar means a lot of reporting; the red part shows how much of it is serious. A group with many reports but few High is mostly routine news.</div>
+      <h2>Review priority by main group<span class="nst" id="nst-riskmix"></span></h2><div class="sub howcount">Each story counted once, by its main category. Bars add up to the total.</div><div class="sub">Click a bar to see its stories</div><div class="sub" style="margin-top:4px"><b>How to read:</b> each bar is one subject group (by the report's primary category). Coloured parts count incidents (crimes or enforcement actions) by review priority: High, Medium, Low. <b>Grey = Update:</b> news with no specific crime (new visa rule, travel advisory, deportation flight, border system), not scored. A long bar means a lot of reporting; the red part shows how much of it is serious. A group with many reports but few High is mostly routine news.</div>
       <div id="riskmix" class="chart" style="height:300px"></div>
     </section>
 
     <section class="card s5" data-sec="documents migration trafficking citizenship border seizures policy official">
-      <h2>Categories</h2><div class="sub">Coloured by main group · a report can carry several categories · click to filter</div>
+      <h2>Main category<span class="nst" id="nst-topics"></span></h2><div class="sub howcount">Each story counted once, by its main category. Bars add up to the total. Extra categories show in the story list when you click.</div><div class="sub">Coloured by main group · click a bar to see its stories</div>
       <div id="topics" class="chart" style="height:420px"></div>
     </section>
     <section class="card s7" data-sec="documents migration trafficking citizenship border seizures policy official">
-      <h2>Countries named</h2><div class="sub">Top 15 · green = __REGION__ · click to filter</div>
+      <h2>Countries named<span class="nst" id="nst-countries"></span></h2><div class="sub howcount">Stories that name each country. A story naming 3 countries appears on 3 bars, so this chart does not add up to the total.</div><div class="sub">Top 15 · green = __REGION__ · click a bar to see its stories</div>
       <div id="countries" class="chart" style="height:420px"></div>
     </section>
 
@@ -530,7 +535,7 @@ const ev = DATA.events.map(e => ({tags: [], related: [], home: false, region: fa
   groups: GROUPS.filter(([g, ts]) => e.categories.some(c => ts.includes(c))).map(g => g[0]), g: groupOf(e)}));
 
 /* filters: every chart, list and number below follows these */
-const F = {section: "overview", sub: "", conceal: "", cover: "", period: 90, scope: "region", group: "", topic: "", country: "", nat: "", level: "", mode: "", review: "", src: "", q: ""};
+const F = {section: "overview", sub: "", conceal: "", cover: "", period: 90, scope: "region", group: "", pgroup: "", pcat: "", topic: "", country: "", nat: "", level: "", mode: "", review: "", src: "", q: ""};
 const jText = e => (e.journey || {}).text || "";
 // journeys describe the stated movement of people or goods in an incident; updates keep theirs in the full record only
 const incOnly = rows => rows.filter(e => e.kind === "Incident");
@@ -563,7 +568,7 @@ function findEvent(id) { F.q = id.toLowerCase(); $("q").value = id; F.period = 0
 $("q").oninput = e => { F.q = e.target.value.toLowerCase(); update(); };
 $("fsort").onchange = () => renderTable(current);
 $("reset").onclick = () => {
-  Object.assign(F, {sub: "", conceal: "", cover: "", period: 90, scope: "region", group: "", topic: "", country: "", nat: "", level: "", mode: "", review: "", src: "", q: ""});
+  Object.assign(F, {sub: "", conceal: "", cover: "", period: 90, scope: "region", group: "", pgroup: "", pcat: "", topic: "", country: "", nat: "", level: "", mode: "", review: "", src: "", q: ""});
   ["fgroup", "ftopic", "fcountry", "fnat", "flevel", "fmode", "freview", "fsrc"].forEach(id => $(id).value = ""); $("q").value = "";
   document.querySelectorAll("#period button").forEach(b => b.classList.toggle("on", b.dataset.v === "90"));
   document.querySelectorAll("#scope button").forEach(b => b.classList.toggle("on", b.dataset.v === "region"));
@@ -577,6 +582,7 @@ function filtered(ignorePeriod, ignoreSection, ignoreTopic) {
   return ev.filter(e => (!from || e.date >= from) && (!F.scope || e[F.scope])
     && (ignoreSection || (inSection(e, F.section) && (!F.sub || (F.sub === "mission") === !!e.mission)))
     && (F.group === "" || e.categories.some(c => topicGroup[c] === +F.group))
+    && (F.pgroup === "" || e.g === +F.pgroup) && (!F.pcat || mainCat(e) === F.pcat)
     && (ignoreTopic || !F.topic || e.categories.includes(F.topic))
     && (!F.conceal || (e.concealment_types || []).includes(F.conceal)) && (!F.cover || (e.cover_goods || []).includes(F.cover)) && (!F.country || e.countries.includes(F.country))
     && (!F.level || e.level === F.level || e.kind === F.level)
@@ -594,7 +600,7 @@ const FONT = '"Inter","Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif
 const AX = {axisLine: {lineStyle: {color: LINE}}, axisTick: {show: false}, axisLabel: {color: MUTED, fontSize: 11, fontFamily: FONT}, splitLine: {lineStyle: {color: css("--split")}}};
 const EMPTY = {title: {text: "Nothing in this view", left: "center", top: "middle", textStyle: {color: css("--dim"), fontSize: 13, fontWeight: 400}}};
 
-function hbar(chart, pairs, colorFn, onClick, selected) {
+function hbar(chart, pairs, colorFn, onClick, selected, rowsFor, how) {
   if (!pairs.length) { chart.setOption(EMPTY, true); return; }
   pairs = pairs.slice().reverse();
   chart.setOption({
@@ -605,9 +611,11 @@ function hbar(chart, pairs, colorFn, onClick, selected) {
             axisLabel: {color: MUTED, fontSize: 11.5, fontFamily: FONT, formatter: v => v.length > 30 ? v.slice(0, 29) + "…" : v}},
     series: [{type: "bar", data: pairs.map(p => ({value: p[1], itemStyle: {color: colorFn(p[0]), opacity: selected && selected !== p[0] ? .35 : 1}})),
               barMaxWidth: 14, barCategoryGap: "35%", itemStyle: {borderRadius: [0, 4, 4, 0]},
-              label: {show: true, position: "right", color: MUTED, fontSize: 11}, cursor: onClick ? "pointer" : "default"}],
+              label: {show: true, position: "right", color: MUTED, fontSize: 11}, cursor: onClick || rowsFor ? "pointer" : "default"}],
   }, true);
-  chart.off("click"); if (onClick) chart.on("click", p => onClick(p.name));
+  chart.off("click");
+  if (rowsFor) chart.on("click", p => storyPop(chart, p.name, rowsFor(p.name), how || "", onClick ? () => onClick(p.name) : null, p.name));
+  else if (onClick) chart.on("click", p => onClick(p.name));
 }
 const count = (rows, fn) => { const m = new Map(); rows.forEach(e => fn(e).forEach(k => m.set(k, (m.get(k) || 0) + 1))); return [...m].sort((a, b) => b[1] - a[1]); };
 
@@ -634,6 +642,27 @@ function placePopup(box, place, rows, how) {
   $(box).querySelector(".x").onclick = () => { $(box).hidden = true; };
   $(box).querySelector('[data-a="filter"]').onclick = () => { $(box).hidden = true; setFilter("country", place, "fcountry"); };
   $(box).querySelectorAll("a.rec").forEach(a => a.onclick = () => { $(box).hidden = true; findEvent(a.dataset.id); });
+}
+
+/* clicking a bar opens the stories behind it, beside the chart; filtering the whole page is a button, not the first click */
+const mainCat = e => e.primary_category || e.categories[0] || "Not reported";
+function storyPop(chart, title, rows, how, onFilter, searchText) {
+  const card = chart.getDom().closest(".card");
+  let box = card.querySelector(".storypop");
+  if (!box) { box = document.createElement("div"); box.className = "mappop storypop"; card.appendChild(box); }
+  const list = rows.slice().sort((a, b) => (rank[a.level] - rank[b.level]) || b.date.localeCompare(a.date));
+  box.hidden = false;
+  box.innerHTML = `<div class="ph"><div><b>${esc(title)}</b><br><span class="n">${list.length} stor${list.length === 1 ? "y" : "ies"}${how ? " " + esc(how) : ""}</span></div><button class="x" title="Close">×</button></div>
+    <div class="acts">${onFilter ? '<button data-a="filter">Filter the whole page</button>' : ""}${searchText ? '<button data-a="search">Search for this</button>' : ""}</div>
+    <ul>${list.slice(0, 40).map(e => { const also = e.categories.filter(c => c !== mainCat(e));
+      return `<li><a class="open" href="${esc(e.source_url || e.url)}" target="_blank" rel="noopener">${esc(e.title)}</a>
+      <div class="m">${chip(e)}<span>${esc(e.date)}</span><span>${esc(e.event_id)}</span><a class="rec" data-id="${esc(e.event_id)}">Full record</a></div>
+      <div class="cat">Main category: <b>${esc(mainCat(e))}</b>${also.length ? " · also: " + esc(also.join(", ")) : ""}</div></li>`; }).join("")}</ul>
+    ${list.length > 40 ? '<p class="sub">First 40 shown. Use "Filter the whole page" to see them all in the table.</p>' : ""}`;
+  box.querySelector(".x").onclick = () => { box.hidden = true; };
+  const f = box.querySelector('[data-a="filter"]'); if (f) f.onclick = () => { box.hidden = true; onFilter(); };
+  const q = box.querySelector('[data-a="search"]'); if (q) q.onclick = () => { box.hidden = true; F.q = String(searchText).toLowerCase(); $("q").value = searchText; update(); toTable(); };
+  box.querySelectorAll("a.rec").forEach(a => a.onclick = () => { box.hidden = true; findEvent(a.dataset.id); });
 }
 
 function drawMap(rows) {
@@ -670,6 +699,7 @@ function drawMap(rows) {
 }
 
 function drawTrend(rows) {
+  $("nst-trend").textContent = rows.length + " stor" + (rows.length === 1 ? "y" : "ies");
   const daily = F.period && F.period <= 30;
   $("unit").textContent = daily ? "day" : "week";
   const key = d => { if (daily) return d; const x = new Date(d); x.setDate(x.getDate() - ((x.getDay() + 6) % 7)); return x.toISOString().slice(0, 10); };
@@ -691,9 +721,14 @@ function drawTrend(rows) {
     yAxis: {type: "value", minInterval: 1, ...AX, axisLine: {show: false}},
     series,
   }, true);
+  charts.trend.off("click");
+  charts.trend.on("click", p => { const k = keys[p.dataIndex], g = gi(p.seriesName);
+    storyPop(charts.trend, p.seriesName, rows.filter(e => e.g === g && key(e.date) === k), (daily ? "on " : "in the week of ") + k,
+             () => setFilter("pgroup", g, null)); });
 }
 
 function drawRiskMix(rows) {
+  $("nst-riskmix").textContent = rows.length + " stor" + (rows.length === 1 ? "y" : "ies");
   const levels = ["High", "Medium", "Low", "Update"];
   const names = GROUPS.map(g => g[0]).slice().reverse();
   charts.riskmix.setOption({
@@ -705,7 +740,10 @@ function drawRiskMix(rows) {
       itemStyle: {color: LV[l], borderColor: css("--edge"), borderWidth: 1},
       data: names.map(n => rows.filter(e => GROUPS[e.g][0] === n && e.level === l).length)})),
   }, true);
-  charts.riskmix.off("click"); charts.riskmix.on("click", p => setFilter("group", gi(p.name), "fgroup"));
+  charts.riskmix.off("click");
+  charts.riskmix.on("click", p => { const g = gi(p.name), l = p.seriesName;
+    storyPop(charts.riskmix, p.name + " · " + (l === "Update" ? "Update" : l + " priority"), rows.filter(e => e.g === g && e.level === l), "",
+             () => { F.pgroup = String(g); F.level = l; $("flevel").value = l; update(); }); });
 }
 
 /* journeys map: distinct markers per role; lines are reported connections, not paths */
@@ -854,7 +892,7 @@ function kpiClick(a) {
 }
 /* the filters that are on, each with a ✕, so a short list is never a mystery */
 function activeFilters() {
-  const names = {scope: v => v === "region" ? DATA.region : DATA.home, group: v => GROUPS[+v][0], topic: v => v, country: v => v,
+  const names = {scope: v => v === "region" ? DATA.region : DATA.home, group: v => GROUPS[+v][0], pgroup: v => "Main group: " + GROUPS[+v][0], pcat: v => "Main category: " + v, topic: v => v, country: v => v,
     nat: v => "Nationality: " + v, level: v => v === "Incident" ? "Incidents only" : v === "Update" ? "Updates only" : "Review priority: " + v.toLowerCase(),
     mode: v => "Transport: " + v, review: v => v === "__reviewed" ? "Reviewed by a person" : v, src: v => v === "official" ? "Official only" : "News only", q: v => `Search: "${v}"`,
     sub: v => v === "mission" ? "Embassies & high commissions" : "Agencies",
@@ -954,27 +992,37 @@ function update() {
   current = filtered(false);
   kpis(current);
   drawMap(current); drawTrend(current); drawRiskMix(current);
-  hbar(charts.topics, count(current, e => e.categories).slice(0, 18), t => GCOL[topicGroup[t] ?? 5], t => setFilter("topic", t, "ftopic"), F.topic);
+  const mains = count(current, e => [mainCat(e)]);
+  $("topics").style.height = Math.max(300, mains.length * 24 + 20) + "px"; charts.topics.resize();
+  ["topics", "countries"].forEach(id => $("nst-" + id).textContent = current.length + " stor" + (current.length === 1 ? "y" : "ies"));
+  hbar(charts.topics, mains, t => GCOL[topicGroup[t] ?? 5], t => setFilter("pcat", t, null), F.pcat,
+       t => current.filter(e => mainCat(e) === t), "with this main category");
   hbar(charts.countries, count(current, e => e.countries).slice(0, 15),
-       c => DATA.region_countries.includes(c) ? css("--g3") : css("--accent"), c => setFilter("country", c, "fcountry"), F.country);
+       c => DATA.region_countries.includes(c) ? css("--g3") : css("--accent"), c => setFilter("country", c, "fcountry"), F.country,
+       c => current.filter(e => e.countries.includes(c)), "naming this country");
   hbar(charts.routes, count(incOnly(current).filter(jText), e => [jText(e)]).slice(0, 14), t => t.includes("not reported") ? css("--upd") : css("--g6"),
-       t => { F.q = t.toLowerCase(); $("q").value = t; update(); });
-  hbar(charts.nats, count(current, e => e.nationality || []).slice(0, 15), () => css("--g5"), n => setFilter("nat", n, "fnat"), F.nat);
+       t => { F.q = t.toLowerCase(); $("q").value = t; update(); }, null, t => incOnly(current).filter(e => jText(e) === t), "with this journey");
+  hbar(charts.nats, count(current, e => e.nationality || []).slice(0, 15), () => css("--g5"), n => setFilter("nat", n, "fnat"), F.nat,
+       n => current.filter(e => (e.nationality || []).includes(n)), "stating this nationality");
   drawJourneys(incOnly(current)); drawNatRoute(incOnly(current));
-  hbar(charts.airports, count(current, e => e.airports).slice(0, 10), () => css("--g1"));
+  hbar(charts.airports, count(current, e => e.airports).slice(0, 10), () => css("--g1"), null, null,
+       a => current.filter(e => e.airports.includes(a)), "naming this airport");
   feed("priority", current.filter(e => e.level === "High" || e.home).sort((a, b) => (rank[a.level] - rank[b.level]) || b.date.localeCompare(a.date)), "Nothing of high review priority in this view.");
   feed("polfeed", current.filter(e => e.kind === "Update" && (e.groups || []).includes("Policy & Systems")).sort((a, b) => b.date.localeCompare(a.date)), "No policy changes in this view.");
   drawSeizureTotals(current);
   feed("latest", current.slice().sort((a, b) => b.date.localeCompare(a.date)).slice(0, 15), "No reports in this view.");
   feed("szfeed", current.filter(e => e.kind === "Incident" && (e.groups || []).includes("Seizures & Contraband")).sort((a, b) => (b.home - a.home) || (rank[a.level] - rank[b.level]) || b.date.localeCompare(a.date)), "No seizures in this view.");
-  hbar(charts.modes, count(current.filter(e => e.kind === "Incident"), e => [modeKey(e.transport_mode)]), m => m === "Not reported" ? css("--upd") : css("--g7"), m => setFilter("mode", m, "fmode"), F.mode);
+  hbar(charts.modes, count(current.filter(e => e.kind === "Incident"), e => [modeKey(e.transport_mode)]), m => m === "Not reported" ? css("--upd") : css("--g7"), m => setFilter("mode", m, "fmode"), F.mode,
+       m => current.filter(e => e.kind === "Incident" && modeKey(e.transport_mode) === m), "by this transport");
   feed("watch", current.filter(e => e.watch), "No hits. Add names or terms to the watch list in config.yaml.");
   renderTable(current);
   hbar(charts.pubs, count(current.filter(e => e.official), e => [e.source]).slice(0, 15), p => current.find(e => e.source === p && e.mission) ? css("--home") : css("--g1"),
-       p => { F.q = p.toLowerCase(); $("q").value = p; update(); });
+       p => { F.q = p.toLowerCase(); $("q").value = p; update(); }, null, p => current.filter(e => e.official && e.source === p), "published by them");
   const sz = current.filter(e => e.kind === "Incident" && (e.concealment_types || e.cover_goods));
-  hbar(charts.conceal, count(sz, e => e.concealment_types || []), () => css("--g2"), c => setFilter("conceal", c), F.conceal);
-  hbar(charts.cover, count(sz, e => e.cover_goods || []), () => css("--g7"), c => setFilter("cover", c), F.cover);
+  hbar(charts.conceal, count(sz, e => e.concealment_types || []), () => css("--g2"), c => setFilter("conceal", c), F.conceal,
+       c => sz.filter(e => (e.concealment_types || []).includes(c)), "using this method");
+  hbar(charts.cover, count(sz, e => e.cover_goods || []), () => css("--g7"), c => setFilter("cover", c), F.cover,
+       c => sz.filter(e => (e.cover_goods || []).includes(c)), "with this cover load");
   drawConcealTrend(sz);
   drawSeizureCharts(current.filter(isSeizure));
   drawLinks(current);
@@ -1151,9 +1199,9 @@ function drawSeizureCharts(sz) {
     series: top.map((t, i) => ({name: t, type: "bar", stack: "d", itemStyle: {color: pal[i]}, cursor: "pointer",
       data: keys.map(k => sz.filter(e => key(e.date) === k && (e.substances || []).includes(t)).length)}))}, true);
   charts.dtrend.off("click"); charts.dtrend.on("click", p => searchFor(p.seriesName));
-  hbar(charts.corr, count(sz, corridor).slice(0, 12), () => css("--g3"), searchFor);
-  hbar(charts.hot, count(sz, hotspots).slice(0, 12), () => css("--g4"), searchFor);
-  hbar(charts.insider, count(sz, e => e.insider_roles || []), () => css("--high"), searchFor);
+  hbar(charts.corr, count(sz, corridor).slice(0, 12), () => css("--g3"), searchFor, null, c => sz.filter(e => corridor(e).includes(c)), "on this corridor");
+  hbar(charts.hot, count(sz, hotspots).slice(0, 12), () => css("--g4"), searchFor, null, h => sz.filter(e => hotspots(e).includes(h)), "naming this place");
+  hbar(charts.insider, count(sz, e => e.insider_roles || []), () => css("--high"), searchFor, null, r => sz.filter(e => (e.insider_roles || []).includes(r)), "naming this role");
   // concealment x drug
   const drugs = count(sz.filter(e => (e.concealment_types || []).length), e => e.substances || []).slice(0, 6).map(x => x[0]);
   const methods = count(sz.filter(e => (e.substances || []).length), e => e.concealment_types || []).slice(0, 10).map(x => x[0]);
@@ -1355,7 +1403,7 @@ function showCards() {
 }
 function goSection(id) {
   if (!SEC[id]) id = "overview";
-  if (id !== F.section) { F.topic = ""; F.sub = ""; F.group = ""; $("ftopic").value = ""; $("fgroup").value = ""; }
+  if (id !== F.section) { F.topic = ""; F.sub = ""; F.group = ""; F.pgroup = ""; F.pcat = ""; $("ftopic").value = ""; $("fgroup").value = ""; }
   // an Event ID search (from an alert-email link) ends when you open a section, and the usual 90 days come back
   if (/^bwo-\d{4}-\d+$/.test(F.q)) { F.q = ""; $("q").value = ""; F.period = 90;
     document.querySelectorAll("#period button").forEach(b => b.classList.toggle("on", b.dataset.v === "90")); }
