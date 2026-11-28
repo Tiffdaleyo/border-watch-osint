@@ -380,13 +380,9 @@
       <div id="routes" class="chart" style="height:420px"></div>
     </section>
 
-    <section class="card s4" data-sec="documents migration trafficking citizenship">
+    <section class="card s12" data-sec="documents migration trafficking citizenship">
       <h2>Nationality (as stated)</h2><div class="sub">Only when the article says it in words · never inferred · not used in the review priority · click a bar to see its stories</div>
       <div id="nats" class="chart" style="height:340px"></div>
-    </section>
-    <section class="card s8" data-sec="documents migration trafficking">
-      <h2>Nationality by journey</h2><div class="sub">Incidents only · reports that state both a nationality and a journey · darker = more reports</div>
-      <div id="natroute" class="chart" style="height:340px"></div>
     </section>
 
     <section class="card s7" data-sec="seizures border">
@@ -592,7 +588,7 @@ function filtered(ignorePeriod, ignoreSection, ignoreTopic) {
 
 /* charts */
 const charts = {};
-["map", "jmap", "trend", "riskmix", "topics", "countries", "routes", "airports", "modes", "nats", "natroute", "pubs", "conceal", "cover", "ctrend", "dtrend", "corr", "hot", "insider", "langmap"].forEach(id => charts[id] = echarts.init($(id)));
+["map", "jmap", "trend", "riskmix", "topics", "countries", "routes", "airports", "modes", "nats", "pubs", "conceal", "cover", "ctrend", "dtrend", "corr", "hot", "insider", "langmap"].forEach(id => charts[id] = echarts.init($(id)));
 window.addEventListener("resize", () => Object.values(charts).forEach(c => c.resize()));
 const TT = {backgroundColor: css("--tt"), borderColor: css("--line"), textStyle: {color: INK, fontSize: 12}, extraCssText: "border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.18)"};
 // the page's own font, so ECharts measures labels with the font it draws them in (otherwise long labels can be cut off)
@@ -796,24 +792,6 @@ function drawJourneys(rows) {
     } });
 }
 
-function drawNatRoute(rows) {
-  const both = rows.filter(e => (e.nationality || []).length && jText(e));
-  if (!both.length) { charts.natroute.setOption({...EMPTY, xAxis: {show: false}, yAxis: {show: false}, series: []}, true); return; }
-  const nats = count(both, e => e.nationality).slice(0, 8).map(x => x[0]);
-  const routes = count(both, e => [jText(e)]).slice(0, 8).map(x => x[0]);
-  const data = [];
-  nats.forEach((n, y) => routes.forEach((r, x) => { const v = both.filter(e => e.nationality.includes(n) && jText(e) === r).length; if (v) data.push([x, y, v]); }));
-  charts.natroute.setOption({
-    grid: {left: 14, right: 12, top: 8, bottom: 6, containLabel: true},
-    tooltip: {...TT, formatter: p => `${esc(nats[p.value[1]])} · ${esc(routes[p.value[0]])}<br><b>${p.value[2]}</b> report${p.value[2] === 1 ? "" : "s"}`},
-    xAxis: {type: "category", data: routes, ...AX, axisLabel: {color: MUTED, fontSize: 10.5, interval: 0, rotate: 28, width: 150, overflow: "truncate"}, splitArea: {show: false}},
-    yAxis: {type: "category", data: nats, ...AX, axisLine: {show: false}},
-    visualMap: {show: false, min: 1, max: Math.max(1, ...data.map(d => d[2])), inRange: {color: [css("--heat0"), css("--g5")]}},
-    series: [{type: "heatmap", data, label: {show: true, color: INK, fontSize: 11}, itemStyle: {borderColor: css("--edge"), borderWidth: 2, borderRadius: 4}}],
-  }, true);
-  charts.natroute.off("click"); charts.natroute.on("click", p => setFilter("nat", nats[p.value[1]], "fnat"));
-}
-
 /* seizure totals: one line per substance and compatible unit; kilograms, litres, tablets and plants are never added up */
 function seizureTotals(rows) {
   const m = new Map(), seen = new Map();
@@ -1005,7 +983,7 @@ function update() {
        t => { F.q = t.toLowerCase(); $("q").value = t; update(); }, null, t => incOnly(current).filter(e => jText(e) === t), "with this journey");
   hbar(charts.nats, count(current, e => e.nationality || []).slice(0, 15), () => css("--g5"), n => setFilter("nat", n, "fnat"), F.nat,
        n => current.filter(e => (e.nationality || []).includes(n)), "stating this nationality");
-  drawJourneys(incOnly(current)); drawNatRoute(incOnly(current));
+  drawJourneys(incOnly(current));
   hbar(charts.airports, count(current, e => e.airports).slice(0, 10), () => css("--g1"), null, null,
        a => current.filter(e => e.airports.includes(a)), "naming this airport");
   feed("priority", current.filter(e => e.level === "High" || e.home).sort((a, b) => (rank[a.level] - rank[b.level]) || b.date.localeCompare(a.date)), "Nothing of high review priority in this view.");
