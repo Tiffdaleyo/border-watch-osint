@@ -154,8 +154,22 @@ def apply_article(ev):
         again = extract.extract({"title": ev.get("title", ""), "summary": opening}) or {}
         if "interdict" in opening.lower() and "Irregular migration" not in (again.get("categories") or []):
             a["categories"] = [c for c in a["categories"] if c != "Irregular migration"]
+    if any(c in extract.OLD_CATEGORY or c == "Identity and document fraud" for c in a.get("categories") or []):
+        # read before 28 Nov 2026, when visas, permits and ID cards, birth certificates and unnamed "documents" were
+        # grouped differently: rename, and sort the old catch-all again from the stored opening
+        opening = " ".join(x for x in (ev.get("title"), a.get("summary_text"), a.get("lead")) if x)
+        again = set((extract.extract({"title": ev.get("title", ""), "summary": opening}) or {}).get("categories") or [])
+        new = []
+        for c in a["categories"]:
+            if c == "Identity and document fraud":
+                new += sorted(again & (extract.NAMED_DOCS | {"Unspecified documents"})) or ["Unspecified documents"]
+            else:
+                new.append(extract.OLD_CATEGORY.get(c, c))
+        a = {**a, "categories": list(dict.fromkeys(new))}
     for k in ("categories", "countries", "airports", "document_types"):
         ev[k] = list(dict.fromkeys((ev.get(k) or []) + [x for x in a.get(k, []) if x not in (ev.get(k) or [])]))
+    if "Unspecified documents" in ev["categories"] and set(ev["categories"]) & extract.NAMED_DOCS:
+        ev["categories"].remove("Unspecified documents")
     ev["categories"] = sorted(ev["categories"])
     for k in ("documents_count", "people_count", "weight_kg"):
         v = a.get(k) or 0

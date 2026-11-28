@@ -4060,7 +4060,7 @@
   "via": "Google News MX",
   "kind": "Incident",
   "categories": [
-   "Identity and document fraud"
+   "Unspecified documents"
   ],
   "matched_words": [
    "documentos falsos"
@@ -4236,7 +4236,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-3172",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Unspecified documents",
   "tags": [],
   "groups": [
    "Document & Identity Fraud"
@@ -6972,7 +6972,7 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Visa and permit fraud"
+   "Document fraud"
   ],
   "matched_words": [
    "visa scams"
@@ -7151,7 +7151,7 @@
   "home": true,
   "region": true,
   "event_id": "BWO-2026-2938",
-  "primary_category": "Visa and permit fraud",
+  "primary_category": "Document fraud",
   "tags": [],
   "groups": [
    "Document & Identity Fraud"
@@ -7179,6 +7179,35 @@
    "Journey bound for Jamaica"
   ],
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa"
+     ],
+     [
+      "Issuing country of the document",
+      ""
+     ],
+     [
+      "Reported fraud method",
+      ""
+     ],
+     [
+      "Number of documents",
+      ""
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -9954,7 +9983,7 @@
   "kind": "Incident",
   "categories": [
    "Citizenship and naturalisation",
-   "Identity and document fraud"
+   "Unspecified documents"
   ],
   "matched_words": [
    "citizenship fraud"
@@ -10169,7 +10198,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-2922",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Unspecified documents",
   "tags": [
    "Citizenship and naturalisation"
   ],
@@ -13351,7 +13380,6 @@
   "kind": "Incident",
   "categories": [
    "Digital identity fraud",
-   "Identity and document fraud",
    "Passport fraud"
   ],
   "matched_words": [
@@ -13545,8 +13573,7 @@
   "event_id": "BWO-2026-3151",
   "primary_category": "Passport fraud",
   "tags": [
-   "Digital identity fraud",
-   "Identity and document fraud"
+   "Digital identity fraud"
   ],
   "groups": [
    "Document & Identity Fraud"
@@ -15187,7 +15214,7 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Visa and permit fraud"
+   "Document fraud"
   ],
   "matched_words": [
    "fake visa"
@@ -15363,7 +15390,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-3145",
-  "primary_category": "Visa and permit fraud",
+  "primary_category": "Document fraud",
   "tags": [],
   "groups": [
    "Document & Identity Fraud"
@@ -15384,6 +15411,35 @@
   "caribbean_connection": [],
   "jamaica_connection": [],
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa"
+     ],
+     [
+      "Issuing country of the document",
+      ""
+     ],
+     [
+      "Reported fraud method",
+      "Counterfeit (fully false document)"
+     ],
+     [
+      "Number of documents",
+      ""
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -17877,7 +17933,7 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Identity and document fraud"
+   "Unspecified documents"
   ],
   "matched_words": [
    "fake frcs documents"
@@ -18059,7 +18115,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-3132",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Unspecified documents",
   "tags": [],
   "groups": [
    "Document & Identity Fraud"
@@ -25126,7 +25182,7 @@
   "via": "Google News CA",
   "kind": "Incident",
   "categories": [
-   "Identity and document fraud"
+   "Unspecified documents"
   ],
   "matched_words": [
    "fraudulent documents"
@@ -25154,7 +25210,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-3110",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Unspecified documents",
   "tags": [],
   "groups": [
    "Document & Identity Fraud"
@@ -28196,8 +28252,8 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Visa and entry policy",
-   "Visa and permit fraud"
+   "Document fraud",
+   "Visa and entry policy"
   ],
   "matched_words": [
    "student visa",
@@ -28371,7 +28427,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-2815",
-  "primary_category": "Visa and permit fraud",
+  "primary_category": "Document fraud",
   "tags": [
    "Visa and entry policy"
   ],
@@ -28395,6 +28451,35 @@
   "caribbean_connection": [],
   "jamaica_connection": [],
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa"
+     ],
+     [
+      "Issuing country of the document",
+      ""
+     ],
+     [
+      "Reported fraud method",
+      ""
+     ],
+     [
+      "Number of documents",
+      ""
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -29854,7 +29939,7 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Visa and permit fraud"
+   "Document fraud"
   ],
   "matched_words": [
    "visa fraud"
@@ -29890,7 +29975,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-3096",
-  "primary_category": "Visa and permit fraud",
+  "primary_category": "Document fraud",
   "tags": [],
   "groups": [
    "Document & Identity Fraud"
@@ -29911,6 +29996,35 @@
   "caribbean_connection": [],
   "jamaica_connection": [],
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa"
+     ],
+     [
+      "Issuing country of the document",
+      ""
+     ],
+     [
+      "Reported fraud method",
+      ""
+     ],
+     [
+      "Number of documents",
+      ""
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -35366,7 +35480,7 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Visa and permit fraud"
+   "Document fraud"
   ],
   "matched_words": [
    "visa fraud"
@@ -35545,7 +35659,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-3080",
-  "primary_category": "Visa and permit fraud",
+  "primary_category": "Document fraud",
   "tags": [],
   "groups": [
    "Document & Identity Fraud"
@@ -35568,6 +35682,35 @@
   "caribbean_connection": [],
   "jamaica_connection": [],
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa"
+     ],
+     [
+      "Issuing country of the document",
+      ""
+     ],
+     [
+      "Reported fraud method",
+      ""
+     ],
+     [
+      "Number of documents",
+      ""
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -35648,10 +35791,9 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Identity and document fraud"
+   "Document fraud"
   ],
   "matched_words": [
-   "document forgery",
    "fake ids"
   ],
   "action": false,
@@ -35683,7 +35825,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-3078",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Document fraud",
   "tags": [],
   "groups": [
    "Document & Identity Fraud"
@@ -35729,6 +35871,23 @@
      ],
      [
       "Detection stage",
+      ""
+     ]
+    ]
+   ],
+   [
+    "Visa / permit fraud",
+    [
+     [
+      "Visa or permit type",
+      ""
+     ],
+     [
+      "Purported issuing authority",
+      ""
+     ],
+     [
+      "Reported method",
       ""
      ]
     ]
@@ -40069,8 +40228,8 @@
    "Border security",
    "Drug trafficking",
    "INTERPOL and watch lists",
-   "Identity and document fraud",
-   "Terrorism and sanctions"
+   "Terrorism and sanctions",
+   "Unspecified documents"
   ],
   "matched_words": [
    "interpol"
@@ -40310,7 +40469,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-3064",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Unspecified documents",
   "tags": [
    "Border security",
    "Drug trafficking",
@@ -42150,9 +42309,9 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
+   "Document fraud",
    "Human trafficking",
-   "Visa and entry policy",
-   "Visa and permit fraud"
+   "Visa and entry policy"
   ],
   "matched_words": [
    "visa fraud",
@@ -42193,8 +42352,8 @@
   "event_id": "BWO-2026-2473",
   "primary_category": "Human trafficking",
   "tags": [
-   "Visa and entry policy",
-   "Visa and permit fraud"
+   "Document fraud",
+   "Visa and entry policy"
   ],
   "groups": [
    "Document & Identity Fraud",
@@ -42218,6 +42377,35 @@
   "caribbean_connection": [],
   "jamaica_connection": [],
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa"
+     ],
+     [
+      "Issuing country of the document",
+      "United Kingdom"
+     ],
+     [
+      "Reported fraud method",
+      ""
+     ],
+     [
+      "Number of documents",
+      ""
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -48329,9 +48517,9 @@
    "Drug trafficking",
    "Human trafficking",
    "INTERPOL and watch lists",
-   "Identity and document fraud",
    "Irregular migration",
-   "Migrant smuggling"
+   "Migrant smuggling",
+   "Unspecified documents"
   ],
   "matched_words": [
    "interpol",
@@ -48593,9 +48781,9 @@
   "tags": [
    "Drug trafficking",
    "INTERPOL and watch lists",
-   "Identity and document fraud",
    "Irregular migration",
-   "Migrant smuggling"
+   "Migrant smuggling",
+   "Unspecified documents"
   ],
   "groups": [
    "Document & Identity Fraud",
@@ -48885,8 +49073,8 @@
    "Border security",
    "Drug trafficking",
    "INTERPOL and watch lists",
-   "Identity and document fraud",
-   "Terrorism and sanctions"
+   "Terrorism and sanctions",
+   "Unspecified documents"
   ],
   "matched_words": [
    "interpol"
@@ -48927,7 +49115,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-2464",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Unspecified documents",
   "tags": [
    "Border security",
    "Drug trafficking",
@@ -60930,8 +61118,7 @@
   "categories": [
    "Application fraud",
    "Deportation and returns",
-   "Identity and document fraud",
-   "Visa and permit fraud"
+   "Document fraud"
   ],
   "matched_words": [
    "visa fraud"
@@ -60976,11 +61163,10 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-2334",
-  "primary_category": "Visa and permit fraud",
+  "primary_category": "Document fraud",
   "tags": [
    "Application fraud",
-   "Deportation and returns",
-   "Identity and document fraud"
+   "Deportation and returns"
   ],
   "groups": [
    "Document & Identity Fraud",
@@ -62720,9 +62906,9 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
+   "Document fraud",
    "Human trafficking",
-   "Visa and entry policy",
-   "Visa and permit fraud"
+   "Visa and entry policy"
   ],
   "matched_words": [
    "visa fraud",
@@ -62941,8 +63127,8 @@
   ],
   "primary_category": "Human trafficking",
   "tags": [
-   "Visa and entry policy",
-   "Visa and permit fraud"
+   "Document fraud",
+   "Visa and entry policy"
   ],
   "groups": [
    "Document & Identity Fraud",
@@ -62969,6 +63155,35 @@
   "exploitation": [],
   "victim_assistance": "",
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa"
+     ],
+     [
+      "Issuing country of the document",
+      ""
+     ],
+     [
+      "Reported fraud method",
+      ""
+     ],
+     [
+      "Number of documents",
+      ""
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -63668,7 +63883,6 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Identity and document fraud",
    "Passport fraud"
   ],
   "matched_words": [
@@ -63704,9 +63918,7 @@
   "region": false,
   "event_id": "BWO-2026-2328",
   "primary_category": "Passport fraud",
-  "tags": [
-   "Identity and document fraud"
-  ],
+  "tags": [],
   "groups": [
    "Document & Identity Fraud"
   ],
@@ -69196,7 +69408,7 @@
   "categories": [
    "Cargo operations",
    "Drug trafficking",
-   "Identity and document fraud"
+   "Unspecified documents"
   ],
   "matched_words": [
    "cocaine"
@@ -69428,7 +69640,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-2681",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Unspecified documents",
   "tags": [
    "Cargo operations",
    "Drug trafficking"
@@ -72850,7 +73062,7 @@
   "kind": "Incident",
   "categories": [
    "Digital identity fraud",
-   "Identity and document fraud"
+   "Unspecified documents"
   ],
   "matched_words": [
    "identity fraud",
@@ -72885,7 +73097,7 @@
   "event_id": "BWO-2026-2435",
   "primary_category": "Digital identity fraud",
   "tags": [
-   "Identity and document fraud"
+   "Unspecified documents"
   ],
   "groups": [
    "Document & Identity Fraud"
@@ -75021,8 +75233,8 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Visa and entry policy",
-   "Visa and permit fraud"
+   "Document fraud",
+   "Visa and entry policy"
   ],
   "matched_words": [
    "visa fraud"
@@ -75064,7 +75276,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-2300",
-  "primary_category": "Visa and permit fraud",
+  "primary_category": "Document fraud",
   "tags": [
    "Visa and entry policy"
   ],
@@ -75089,6 +75301,35 @@
   "caribbean_connection": [],
   "jamaica_connection": [],
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa"
+     ],
+     [
+      "Issuing country of the document",
+      "Canada"
+     ],
+     [
+      "Reported fraud method",
+      ""
+     ],
+     [
+      "Number of documents",
+      ""
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -81100,8 +81341,8 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Visa and entry policy",
-   "Visa and permit fraud"
+   "Document fraud",
+   "Visa and entry policy"
   ],
   "matched_words": [
    "student visa",
@@ -81143,7 +81384,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-2423",
-  "primary_category": "Visa and permit fraud",
+  "primary_category": "Document fraud",
   "tags": [
    "Visa and entry policy"
   ],
@@ -81166,6 +81407,35 @@
   "caribbean_connection": [],
   "jamaica_connection": [],
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa"
+     ],
+     [
+      "Issuing country of the document",
+      ""
+     ],
+     [
+      "Reported fraud method",
+      ""
+     ],
+     [
+      "Number of documents",
+      ""
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -84811,7 +85081,7 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Identity and document fraud",
+   "Document fraud",
    "Immigration enforcement"
   ],
   "matched_words": [
@@ -84853,7 +85123,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-2277",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Document fraud",
   "tags": [
    "Immigration enforcement"
   ],
@@ -84903,6 +85173,23 @@
      ],
      [
       "Detection stage",
+      ""
+     ]
+    ]
+   ],
+   [
+    "Visa / permit fraud",
+    [
+     [
+      "Visa or permit type",
+      ""
+     ],
+     [
+      "Purported issuing authority",
+      ""
+     ],
+     [
+      "Reported method",
       ""
      ]
     ]
@@ -90332,7 +90619,7 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Identity and document fraud"
+   "Unspecified documents"
   ],
   "matched_words": [
    "false ukrainian documents"
@@ -90370,7 +90657,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-2261",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Unspecified documents",
   "tags": [],
   "groups": [
    "Document & Identity Fraud"
@@ -93792,7 +94079,7 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Visa and permit fraud"
+   "Document fraud"
   ],
   "matched_words": [
    "visa scams"
@@ -93830,7 +94117,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-2248",
-  "primary_category": "Visa and permit fraud",
+  "primary_category": "Document fraud",
   "tags": [],
   "groups": [
    "Document & Identity Fraud"
@@ -93850,6 +94137,35 @@
   "caribbean_connection": [],
   "jamaica_connection": [],
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa; Passport"
+     ],
+     [
+      "Issuing country of the document",
+      ""
+     ],
+     [
+      "Reported fraud method",
+      ""
+     ],
+     [
+      "Number of documents",
+      ""
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -100210,7 +100526,7 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Visa and permit fraud"
+   "Document fraud"
   ],
   "matched_words": [
    "fake visa"
@@ -100248,7 +100564,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-2237",
-  "primary_category": "Visa and permit fraud",
+  "primary_category": "Document fraud",
   "tags": [],
   "groups": [
    "Document & Identity Fraud"
@@ -100270,6 +100586,35 @@
   "caribbean_connection": [],
   "jamaica_connection": [],
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa"
+     ],
+     [
+      "Issuing country of the document",
+      ""
+     ],
+     [
+      "Reported fraud method",
+      "Counterfeit (fully false document)"
+     ],
+     [
+      "Number of documents",
+      ""
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      "Visa or document application"
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -105374,10 +105719,9 @@
   "kind": "Incident",
   "categories": [
    "Deportation and returns",
-   "Identity and document fraud",
+   "Document fraud",
    "Immigration enforcement",
-   "Irregular migration",
-   "Visa and permit fraud"
+   "Irregular migration"
   ],
   "matched_words": [
    "visa fraud"
@@ -105407,10 +105751,9 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-2137",
-  "primary_category": "Visa and permit fraud",
+  "primary_category": "Document fraud",
   "tags": [
    "Deportation and returns",
-   "Identity and document fraud",
    "Immigration enforcement",
    "Irregular migration"
   ],
@@ -111722,8 +112065,8 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Visa and entry policy",
-   "Visa and permit fraud"
+   "Document fraud",
+   "Visa and entry policy"
   ],
   "matched_words": [
    "fake russia work visa",
@@ -111758,7 +112101,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-2115",
-  "primary_category": "Visa and permit fraud",
+  "primary_category": "Document fraud",
   "tags": [
    "Visa and entry policy"
   ],
@@ -111798,6 +112141,35 @@
    "BWO-2026-2248"
   ],
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa; Boarding pass/ticket; Passport"
+     ],
+     [
+      "Issuing country of the document",
+      ""
+     ],
+     [
+      "Reported fraud method",
+      ""
+     ],
+     [
+      "Number of documents",
+      ""
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -116409,8 +116781,7 @@
   "kind": "Incident",
   "categories": [
    "Deportation and returns",
-   "Identity and document fraud",
-   "Visa and permit fraud"
+   "Document fraud"
   ],
   "matched_words": [
    "deportation",
@@ -116442,10 +116813,9 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-2089",
-  "primary_category": "Visa and permit fraud",
+  "primary_category": "Document fraud",
   "tags": [
-   "Deportation and returns",
-   "Identity and document fraud"
+   "Deportation and returns"
   ],
   "groups": [
    "Document & Identity Fraud",
@@ -119633,8 +120003,7 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Identity and document fraud",
-   "Visa and permit fraud"
+   "Document fraud"
   ],
   "matched_words": [
    "document fraud"
@@ -119663,10 +120032,8 @@
   "region": false,
   "other_sources": [],
   "event_id": "BWO-2026-2076",
-  "primary_category": "Visa and permit fraud",
-  "tags": [
-   "Identity and document fraud"
-  ],
+  "primary_category": "Document fraud",
+  "tags": [],
   "groups": [
    "Document & Identity Fraud"
   ],
@@ -121014,7 +121381,7 @@
   "kind": "Incident",
   "categories": [
    "Digital identity fraud",
-   "Identity and document fraud"
+   "Unspecified documents"
   ],
   "matched_words": [
    "deepfake"
@@ -121060,7 +121427,7 @@
   "event_id": "BWO-2026-2223",
   "primary_category": "Digital identity fraud",
   "tags": [
-   "Identity and document fraud"
+   "Unspecified documents"
   ],
   "groups": [
    "Document & Identity Fraud"
@@ -127998,7 +128365,7 @@
   "kind": "Incident",
   "categories": [
    "Human trafficking",
-   "Identity and document fraud"
+   "Unspecified documents"
   ],
   "matched_words": [
    "forged saudi travel documents"
@@ -128031,7 +128398,7 @@
   "event_id": "BWO-2026-2027",
   "primary_category": "Human trafficking",
   "tags": [
-   "Identity and document fraud"
+   "Unspecified documents"
   ],
   "groups": [
    "Document & Identity Fraud",
@@ -131822,7 +132189,7 @@
   "kind": "Incident",
   "categories": [
    "Border technology",
-   "Visa and permit fraud"
+   "Document fraud"
   ],
   "matched_words": [
    "visa scam"
@@ -131853,7 +132220,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-2009",
-  "primary_category": "Visa and permit fraud",
+  "primary_category": "Document fraud",
   "tags": [
    "Border technology"
   ],
@@ -131886,6 +132253,35 @@
   "last_updated": "2026-11-27",
   "related": [],
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa; Passport"
+     ],
+     [
+      "Issuing country of the document",
+      ""
+     ],
+     [
+      "Reported fraud method",
+      ""
+     ],
+     [
+      "Number of documents",
+      ""
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -132451,10 +132847,10 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
+   "Document fraud",
    "Human trafficking",
-   "Identity and document fraud",
    "Irregular migration",
-   "Visa and permit fraud"
+   "Other civil documents"
   ],
   "matched_words": [
    "visa fraud"
@@ -132490,9 +132886,9 @@
   "event_id": "BWO-2026-2005",
   "primary_category": "Human trafficking",
   "tags": [
-   "Identity and document fraud",
+   "Document fraud",
    "Irregular migration",
-   "Visa and permit fraud"
+   "Other civil documents"
   ],
   "groups": [
    "Document & Identity Fraud",
@@ -140547,7 +140943,7 @@
   "kind": "Incident",
   "categories": [
    "Corruption and insider facilitation",
-   "Identity and document fraud"
+   "Unspecified documents"
   ],
   "matched_words": [
    "fraudulent documents"
@@ -140577,7 +140973,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-1961",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Unspecified documents",
   "tags": [
    "Corruption and insider facilitation"
   ],
@@ -141637,9 +142033,9 @@
   "categories": [
    "Human trafficking",
    "INTERPOL and watch lists",
-   "Identity and document fraud",
    "Irregular migration",
-   "Migrant smuggling"
+   "Migrant smuggling",
+   "Unspecified documents"
   ],
   "matched_words": [
    "interpol"
@@ -141675,9 +142071,9 @@
   "primary_category": "Human trafficking",
   "tags": [
    "INTERPOL and watch lists",
-   "Identity and document fraud",
    "Irregular migration",
-   "Migrant smuggling"
+   "Migrant smuggling",
+   "Unspecified documents"
   ],
   "groups": [
    "Document & Identity Fraud",
@@ -144164,7 +144560,7 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Identity and document fraud",
+   "Document fraud",
    "Irregular migration"
   ],
   "matched_words": [
@@ -144188,7 +144584,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-1940",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Document fraud",
   "tags": [
    "Irregular migration"
   ],
@@ -144246,6 +144642,23 @@
      ],
      [
       "Detection stage",
+      ""
+     ]
+    ]
+   ],
+   [
+    "Visa / permit fraud",
+    [
+     [
+      "Visa or permit type",
+      ""
+     ],
+     [
+      "Purported issuing authority",
+      ""
+     ],
+     [
+      "Reported method",
       ""
      ]
     ]
@@ -154822,7 +155235,7 @@
   "via": "Google News MX",
   "kind": "Incident",
   "categories": [
-   "Visa and permit fraud"
+   "Document fraud"
   ],
   "matched_words": [
    "falsas visas"
@@ -154854,7 +155267,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-1867",
-  "primary_category": "Visa and permit fraud",
+  "primary_category": "Document fraud",
   "tags": [],
   "groups": [
    "Document & Identity Fraud"
@@ -154908,6 +155321,35 @@
   "last_updated": "2026-11-27",
   "related": [],
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa"
+     ],
+     [
+      "Issuing country of the document",
+      ""
+     ],
+     [
+      "Reported fraud method",
+      ""
+     ],
+     [
+      "Number of documents",
+      ""
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -155765,7 +156207,7 @@
   "via": "Google News MX",
   "kind": "Incident",
   "categories": [
-   "Identity and document fraud"
+   "Unspecified documents"
   ],
   "matched_words": [
    "documentos falsos"
@@ -155790,7 +156232,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-1864",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Unspecified documents",
   "tags": [],
   "groups": [
    "Document & Identity Fraud"
@@ -157181,9 +157623,9 @@
   "categories": [
    "Human trafficking",
    "INTERPOL and watch lists",
-   "Identity and document fraud",
    "Irregular migration",
-   "Migrant smuggling"
+   "Migrant smuggling",
+   "Unspecified documents"
   ],
   "matched_words": [
    "interpol"
@@ -157218,9 +157660,9 @@
   "primary_category": "Human trafficking",
   "tags": [
    "INTERPOL and watch lists",
-   "Identity and document fraud",
    "Irregular migration",
-   "Migrant smuggling"
+   "Migrant smuggling",
+   "Unspecified documents"
   ],
   "groups": [
    "Document & Identity Fraud",
@@ -158403,8 +158845,8 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Human trafficking",
-   "Visa and permit fraud"
+   "Document fraud",
+   "Human trafficking"
   ],
   "matched_words": [
    "visa fraud"
@@ -158433,7 +158875,7 @@
   "event_id": "BWO-2026-1850",
   "primary_category": "Human trafficking",
   "tags": [
-   "Visa and permit fraud"
+   "Document fraud"
   ],
   "groups": [
    "Document & Identity Fraud",
@@ -158466,6 +158908,35 @@
   "last_updated": "2026-11-27",
   "related": [],
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa"
+     ],
+     [
+      "Issuing country of the document",
+      ""
+     ],
+     [
+      "Reported fraud method",
+      ""
+     ],
+     [
+      "Number of documents",
+      ""
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -164978,9 +165449,9 @@
   "categories": [
    "Human trafficking",
    "INTERPOL and watch lists",
-   "Identity and document fraud",
    "Irregular migration",
-   "Migrant smuggling"
+   "Migrant smuggling",
+   "Unspecified documents"
   ],
   "matched_words": [
    "interpol"
@@ -165015,9 +165486,9 @@
   "primary_category": "Human trafficking",
   "tags": [
    "INTERPOL and watch lists",
-   "Identity and document fraud",
    "Irregular migration",
-   "Migrant smuggling"
+   "Migrant smuggling",
+   "Unspecified documents"
   ],
   "groups": [
    "Document & Identity Fraud",
@@ -170578,9 +171049,9 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
+   "Document fraud",
    "Human trafficking",
-   "Visa and entry policy",
-   "Visa and permit fraud"
+   "Visa and entry policy"
   ],
   "matched_words": [
    "visa fraud"
@@ -170614,8 +171085,8 @@
   "event_id": "BWO-2026-1774",
   "primary_category": "Human trafficking",
   "tags": [
-   "Visa and entry policy",
-   "Visa and permit fraud"
+   "Document fraud",
+   "Visa and entry policy"
   ],
   "groups": [
    "Document & Identity Fraud",
@@ -170653,6 +171124,35 @@
    "BWO-2026-0833"
   ],
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa; Passport"
+     ],
+     [
+      "Issuing country of the document",
+      ""
+     ],
+     [
+      "Reported fraud method",
+      ""
+     ],
+     [
+      "Number of documents",
+      "138"
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -177348,8 +177848,8 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Human trafficking",
-   "Visa and permit fraud"
+   "Document fraud",
+   "Human trafficking"
   ],
   "matched_words": [
    "visa scam"
@@ -177383,7 +177883,7 @@
   "event_id": "BWO-2026-1730",
   "primary_category": "Human trafficking",
   "tags": [
-   "Visa and permit fraud"
+   "Document fraud"
   ],
   "groups": [
    "Document & Identity Fraud",
@@ -177417,6 +177917,35 @@
   "last_updated": "2026-11-27",
   "related": [],
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa; Passport"
+     ],
+     [
+      "Issuing country of the document",
+      ""
+     ],
+     [
+      "Reported fraud method",
+      ""
+     ],
+     [
+      "Number of documents",
+      "131"
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -178754,8 +179283,8 @@
   "via": "Google News CA",
   "kind": "Incident",
   "categories": [
-   "Visa and entry policy",
-   "Visa and permit fraud"
+   "Document fraud",
+   "Visa and entry policy"
   ],
   "matched_words": [
    "visa fraud"
@@ -178785,7 +179314,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-1723",
-  "primary_category": "Visa and permit fraud",
+  "primary_category": "Document fraud",
   "tags": [
    "Visa and entry policy"
   ],
@@ -178861,6 +179390,35 @@
   "last_updated": "2026-11-27",
   "related": [],
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa"
+     ],
+     [
+      "Issuing country of the document",
+      ""
+     ],
+     [
+      "Reported fraud method",
+      ""
+     ],
+     [
+      "Number of documents",
+      ""
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -180346,7 +180904,7 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Visa and permit fraud"
+   "Document fraud"
   ],
   "matched_words": [
    "fake visa"
@@ -180373,7 +180931,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-1713",
-  "primary_category": "Visa and permit fraud",
+  "primary_category": "Document fraud",
   "tags": [],
   "groups": [
    "Document & Identity Fraud"
@@ -180403,6 +180961,35 @@
   "last_updated": "2026-11-26",
   "related": [],
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa"
+     ],
+     [
+      "Issuing country of the document",
+      ""
+     ],
+     [
+      "Reported fraud method",
+      "Counterfeit (fully false document)"
+     ],
+     [
+      "Number of documents",
+      ""
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -180739,7 +181326,6 @@
   "kind": "Incident",
   "categories": [
    "INTERPOL and watch lists",
-   "Identity and document fraud",
    "Irregular migration",
    "Passport fraud"
   ],
@@ -180780,7 +181366,6 @@
   "primary_category": "Passport fraud",
   "tags": [
    "INTERPOL and watch lists",
-   "Identity and document fraud",
    "Irregular migration"
   ],
   "groups": [
@@ -181611,8 +182196,7 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Identity and document fraud",
-   "Visa and permit fraud"
+   "Document fraud"
   ],
   "matched_words": [
    "fake visa"
@@ -181643,10 +182227,8 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-1705",
-  "primary_category": "Visa and permit fraud",
-  "tags": [
-   "Identity and document fraud"
-  ],
+  "primary_category": "Document fraud",
+  "tags": [],
   "groups": [
    "Document & Identity Fraud"
   ],
@@ -188689,9 +189271,9 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
+   "Document fraud",
    "Human trafficking",
-   "Visa and entry policy",
-   "Visa and permit fraud"
+   "Visa and entry policy"
   ],
   "matched_words": [
    "visa fraud"
@@ -188724,8 +189306,8 @@
   "event_id": "BWO-2026-1651",
   "primary_category": "Human trafficking",
   "tags": [
-   "Visa and entry policy",
-   "Visa and permit fraud"
+   "Document fraud",
+   "Visa and entry policy"
   ],
   "groups": [
    "Document & Identity Fraud",
@@ -188762,6 +189344,35 @@
    "BWO-2026-0833"
   ],
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa"
+     ],
+     [
+      "Issuing country of the document",
+      ""
+     ],
+     [
+      "Reported fraud method",
+      ""
+     ],
+     [
+      "Number of documents",
+      ""
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -189017,7 +189628,7 @@
   "via": "Google News MX",
   "kind": "Update",
   "categories": [
-   "Identity and document fraud"
+   "Unspecified documents"
   ],
   "matched_words": [
    "fraude documental"
@@ -189052,7 +189663,7 @@
   "home": false,
   "region": true,
   "event_id": "BWO-2026-1650",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Unspecified documents",
   "tags": [],
   "groups": [
    "Document & Identity Fraud"
@@ -189334,7 +189945,7 @@
   "via": "Google News GB",
   "kind": "Incident",
   "categories": [
-   "Visa and permit fraud"
+   "Document fraud"
   ],
   "matched_words": [
    "fake visa"
@@ -189361,7 +189972,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-1649",
-  "primary_category": "Visa and permit fraud",
+  "primary_category": "Document fraud",
   "tags": [],
   "groups": [
    "Document & Identity Fraud"
@@ -189391,6 +190002,35 @@
   "last_updated": "2026-11-26",
   "related": [],
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa"
+     ],
+     [
+      "Issuing country of the document",
+      ""
+     ],
+     [
+      "Reported fraud method",
+      "Counterfeit (fully false document)"
+     ],
+     [
+      "Number of documents",
+      ""
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -193343,7 +193983,7 @@
   "kind": "Incident",
   "categories": [
    "Human trafficking",
-   "Identity and document fraud"
+   "Unspecified documents"
   ],
   "matched_words": [
    "fake documents"
@@ -193374,7 +194014,7 @@
   "event_id": "BWO-2026-1627",
   "primary_category": "Human trafficking",
   "tags": [
-   "Identity and document fraud"
+   "Unspecified documents"
   ],
   "groups": [
    "Document & Identity Fraud",
@@ -197954,7 +198594,7 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Visa and permit fraud"
+   "Document fraud"
   ],
   "matched_words": [
    "forged estonian visa"
@@ -197981,7 +198621,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-1599",
-  "primary_category": "Visa and permit fraud",
+  "primary_category": "Document fraud",
   "tags": [],
   "groups": [
    "Document & Identity Fraud"
@@ -198011,6 +198651,35 @@
   "last_updated": "2026-11-26",
   "related": [],
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa"
+     ],
+     [
+      "Issuing country of the document",
+      ""
+     ],
+     [
+      "Reported fraud method",
+      "Forged / altered genuine document"
+     ],
+     [
+      "Number of documents",
+      ""
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -202984,7 +203653,7 @@
   "categories": [
    "Cargo operations",
    "Deportation and returns",
-   "Identity and document fraud"
+   "Unspecified documents"
   ],
   "matched_words": [
    "deported",
@@ -203018,7 +203687,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-1568",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Unspecified documents",
   "tags": [
    "Cargo operations",
    "Deportation and returns"
@@ -207632,9 +208301,9 @@
   "categories": [
    "Border security",
    "Corruption and insider facilitation",
+   "Document fraud",
    "INTERPOL and watch lists",
-   "Immigration enforcement",
-   "Visa and permit fraud"
+   "Immigration enforcement"
   ],
   "matched_words": [
    "interpol",
@@ -207667,7 +208336,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-1547",
-  "primary_category": "Visa and permit fraud",
+  "primary_category": "Document fraud",
   "tags": [
    "Border security",
    "Corruption and insider facilitation",
@@ -207707,6 +208376,35 @@
   "last_updated": "2026-11-26",
   "related": [],
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa"
+     ],
+     [
+      "Issuing country of the document",
+      ""
+     ],
+     [
+      "Reported fraud method",
+      ""
+     ],
+     [
+      "Number of documents",
+      ""
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -208006,7 +208704,7 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Identity and document fraud"
+   "Unspecified documents"
   ],
   "matched_words": [
    "fake asylum documents"
@@ -208034,7 +208732,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-1546",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Unspecified documents",
   "tags": [],
   "groups": [
    "Document & Identity Fraud"
@@ -209932,7 +210630,7 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Visa and permit fraud"
+   "Document fraud"
   ],
   "matched_words": [
    "visa fraud"
@@ -209962,7 +210660,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-1531",
-  "primary_category": "Visa and permit fraud",
+  "primary_category": "Document fraud",
   "tags": [],
   "groups": [
    "Document & Identity Fraud"
@@ -209992,6 +210690,35 @@
   "last_updated": "2026-11-26",
   "related": [],
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa"
+     ],
+     [
+      "Issuing country of the document",
+      ""
+     ],
+     [
+      "Reported fraud method",
+      ""
+     ],
+     [
+      "Number of documents",
+      ""
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -212472,7 +213199,6 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Identity and document fraud",
    "Passport fraud"
   ],
   "matched_words": [
@@ -212509,9 +213235,7 @@
   "region": false,
   "event_id": "BWO-2026-1508",
   "primary_category": "Passport fraud",
-  "tags": [
-   "Identity and document fraud"
-  ],
+  "tags": [],
   "groups": [
    "Document & Identity Fraud"
   ],
@@ -214555,7 +215279,7 @@
   "kind": "Incident",
   "categories": [
    "INTERPOL and watch lists",
-   "Identity and document fraud"
+   "Unspecified documents"
   ],
   "matched_words": [
    "interpol"
@@ -214585,7 +215309,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-1495",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Unspecified documents",
   "tags": [
    "INTERPOL and watch lists"
   ],
@@ -215154,9 +215878,8 @@
    "Application fraud",
    "Border security",
    "Corruption and insider facilitation",
-   "Identity and document fraud",
-   "Visa and entry policy",
-   "Visa and permit fraud"
+   "Document fraud",
+   "Visa and entry policy"
   ],
   "matched_words": [
    "visa fraud"
@@ -215186,12 +215909,11 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-1488",
-  "primary_category": "Visa and permit fraud",
+  "primary_category": "Document fraud",
   "tags": [
    "Application fraud",
    "Border security",
    "Corruption and insider facilitation",
-   "Identity and document fraud",
    "Visa and entry policy"
   ],
   "groups": [
@@ -217374,7 +218096,7 @@
   "via": "Google News US",
   "kind": "Update",
   "categories": [
-   "Identity and document fraud"
+   "Unspecified documents"
   ],
   "matched_words": [
    "identity fraud"
@@ -217397,7 +218119,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-1468",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Unspecified documents",
   "tags": [],
   "groups": [
    "Document & Identity Fraud"
@@ -218734,9 +219456,8 @@
   "categories": [
    "Border technology",
    "Citizenship and naturalisation",
-   "Identity and document fraud",
-   "Immigration enforcement",
-   "Visa and permit fraud"
+   "Document fraud",
+   "Immigration enforcement"
   ],
   "matched_words": [
    "visa fraud"
@@ -218762,11 +219483,10 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-1452",
-  "primary_category": "Visa and permit fraud",
+  "primary_category": "Document fraud",
   "tags": [
    "Border technology",
    "Citizenship and naturalisation",
-   "Identity and document fraud",
    "Immigration enforcement"
   ],
   "groups": [
@@ -219409,9 +220129,9 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Identity and document fraud",
    "Immigration enforcement",
    "Irregular migration",
+   "Unspecified documents",
    "Visa and entry policy"
   ],
   "matched_words": [
@@ -219442,7 +220162,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-1447",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Unspecified documents",
   "tags": [
    "Immigration enforcement",
    "Irregular migration",
@@ -223047,7 +223767,7 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Visa and permit fraud"
+   "Document fraud"
   ],
   "matched_words": [
    "fake work permit"
@@ -223074,7 +223794,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-1417",
-  "primary_category": "Visa and permit fraud",
+  "primary_category": "Document fraud",
   "tags": [],
   "groups": [
    "Document & Identity Fraud"
@@ -223104,6 +223824,35 @@
   "last_updated": "2026-11-26",
   "related": [],
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Residence/work permit"
+     ],
+     [
+      "Issuing country of the document",
+      ""
+     ],
+     [
+      "Reported fraud method",
+      ""
+     ],
+     [
+      "Number of documents",
+      ""
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -231559,7 +232308,7 @@
   "via": "Google News CA",
   "kind": "Incident",
   "categories": [
-   "Visa and permit fraud"
+   "Document fraud"
   ],
   "matched_words": [
    "visa fraud"
@@ -231583,7 +232332,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-1361",
-  "primary_category": "Visa and permit fraud",
+  "primary_category": "Document fraud",
   "tags": [],
   "groups": [
    "Document & Identity Fraud"
@@ -231617,6 +232366,35 @@
    "tried": true
   },
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa"
+     ],
+     [
+      "Issuing country of the document",
+      ""
+     ],
+     [
+      "Reported fraud method",
+      ""
+     ],
+     [
+      "Number of documents",
+      ""
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -234853,7 +235631,7 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Identity and document fraud"
+   "Unspecified documents"
   ],
   "matched_words": [
    "identity fraud"
@@ -234876,7 +235654,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-1347",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Unspecified documents",
   "tags": [],
   "groups": [
    "Document & Identity Fraud"
@@ -236196,7 +236974,7 @@
   "kind": "Incident",
   "categories": [
    "Border security",
-   "Identity and document fraud"
+   "Unspecified documents"
   ],
   "matched_words": [
    "border guards",
@@ -236219,7 +236997,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-1338",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Unspecified documents",
   "tags": [
    "Border security"
   ],
@@ -236828,7 +237606,6 @@
   "via": "Google News BR",
   "kind": "Incident",
   "categories": [
-   "Identity and document fraud",
    "Passport fraud"
   ],
   "matched_words": [
@@ -236861,9 +237638,7 @@
   "region": false,
   "event_id": "BWO-2026-1332",
   "primary_category": "Passport fraud",
-  "tags": [
-   "Identity and document fraud"
-  ],
+  "tags": [],
   "groups": [
    "Document & Identity Fraud"
   ],
@@ -237260,7 +238035,7 @@
   "via": "Google News CA",
   "kind": "Incident",
   "categories": [
-   "Visa and permit fraud"
+   "Document fraud"
   ],
   "matched_words": [
    "visa fraud"
@@ -237286,7 +238061,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-1330",
-  "primary_category": "Visa and permit fraud",
+  "primary_category": "Document fraud",
   "tags": [],
   "groups": [
    "Document & Identity Fraud"
@@ -237440,6 +238215,35 @@
    "seizures": []
   },
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa"
+     ],
+     [
+      "Issuing country of the document",
+      ""
+     ],
+     [
+      "Reported fraud method",
+      ""
+     ],
+     [
+      "Number of documents",
+      ""
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -239731,9 +240535,9 @@
   "via": "Google News CA",
   "kind": "Incident",
   "categories": [
+   "Document fraud",
    "Human trafficking",
-   "Visa and entry policy",
-   "Visa and permit fraud"
+   "Visa and entry policy"
   ],
   "matched_words": [
    "visa fraud",
@@ -239765,8 +240569,8 @@
   "event_id": "BWO-2026-1303",
   "primary_category": "Human trafficking",
   "tags": [
-   "Visa and entry policy",
-   "Visa and permit fraud"
+   "Document fraud",
+   "Visa and entry policy"
   ],
   "groups": [
    "Document & Identity Fraud",
@@ -239993,6 +240797,35 @@
    ]
   },
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa"
+     ],
+     [
+      "Issuing country of the document",
+      "United Kingdom"
+     ],
+     [
+      "Reported fraud method",
+      ""
+     ],
+     [
+      "Number of documents",
+      ""
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      "Visa or document application"
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -245267,8 +246100,8 @@
   "categories": [
    "Border security",
    "Border technology",
-   "Identity and document fraud",
-   "Impostors"
+   "Impostors",
+   "Unspecified documents"
   ],
   "matched_words": [
    "impostor"
@@ -245309,7 +246142,7 @@
   "tags": [
    "Border security",
    "Border technology",
-   "Identity and document fraud"
+   "Unspecified documents"
   ],
   "groups": [
    "Document & Identity Fraud",
@@ -246622,7 +247455,7 @@
   "via": "Google News FR",
   "kind": "Incident",
   "categories": [
-   "Identity and document fraud"
+   "Unspecified documents"
   ],
   "matched_words": [
    "fraude documentaire"
@@ -246644,7 +247477,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-1253",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Unspecified documents",
   "tags": [],
   "groups": [
    "Document & Identity Fraud"
@@ -247256,7 +248089,6 @@
   "via": "Google News MX",
   "kind": "Incident",
   "categories": [
-   "Identity and document fraud",
    "Passport fraud"
   ],
   "matched_words": [
@@ -247294,9 +248126,7 @@
   "region": false,
   "event_id": "BWO-2026-1249",
   "primary_category": "Passport fraud",
-  "tags": [
-   "Identity and document fraud"
-  ],
+  "tags": [],
   "groups": [
    "Document & Identity Fraud"
   ],
@@ -248190,7 +249020,7 @@
   "via": "Google News NG",
   "kind": "Incident",
   "categories": [
-   "Identity and document fraud"
+   "Unspecified documents"
   ],
   "matched_words": [
    "fake documents"
@@ -248212,7 +249042,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-1244",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Unspecified documents",
   "tags": [],
   "groups": [
    "Document & Identity Fraud"
@@ -251292,7 +252122,6 @@
   "kind": "Incident",
   "categories": [
    "Border security",
-   "Identity and document fraud",
    "Passport fraud"
   ],
   "matched_words": [
@@ -251324,8 +252153,7 @@
   "event_id": "BWO-2026-1228",
   "primary_category": "Passport fraud",
   "tags": [
-   "Border security",
-   "Identity and document fraud"
+   "Border security"
   ],
   "groups": [
    "Document & Identity Fraud",
@@ -256102,8 +256930,8 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Identity and document fraud",
-   "Irregular migration"
+   "Irregular migration",
+   "Unspecified documents"
   ],
   "matched_words": [
    "fake documents"
@@ -256133,7 +256961,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-1190",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Unspecified documents",
   "tags": [
    "Irregular migration"
   ],
@@ -263964,9 +264792,8 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Identity and document fraud",
-   "Visa and entry policy",
-   "Visa and permit fraud"
+   "Document fraud",
+   "Visa and entry policy"
   ],
   "matched_words": [
    "visa fraud"
@@ -263996,9 +264823,8 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-1148",
-  "primary_category": "Visa and permit fraud",
+  "primary_category": "Document fraud",
   "tags": [
-   "Identity and document fraud",
    "Visa and entry policy"
   ],
   "groups": [
@@ -266860,7 +267686,7 @@
   "via": "Google News BR",
   "kind": "Incident",
   "categories": [
-   "Identity and document fraud"
+   "Unspecified documents"
   ],
   "matched_words": [
    "documentos falsos"
@@ -266892,7 +267718,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-1138",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Unspecified documents",
   "tags": [],
   "groups": [
    "Document & Identity Fraud"
@@ -267842,7 +268668,7 @@
    "Cargo operations",
    "Drug trafficking",
    "Firearms and ammunition",
-   "Identity and document fraud"
+   "Unspecified documents"
   ],
   "matched_words": [
    "drug trafficking"
@@ -267879,7 +268705,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-1127",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Unspecified documents",
   "tags": [
    "Cargo operations",
    "Drug trafficking",
@@ -269123,9 +269949,9 @@
   "categories": [
    "Human trafficking",
    "INTERPOL and watch lists",
-   "Identity and document fraud",
    "Irregular migration",
-   "Migrant smuggling"
+   "Migrant smuggling",
+   "Unspecified documents"
   ],
   "matched_words": [
    "migrants + arrests"
@@ -269158,9 +269984,9 @@
   "primary_category": "Human trafficking",
   "tags": [
    "INTERPOL and watch lists",
-   "Identity and document fraud",
    "Irregular migration",
-   "Migrant smuggling"
+   "Migrant smuggling",
+   "Unspecified documents"
   ],
   "groups": [
    "Document & Identity Fraud",
@@ -270691,7 +271517,7 @@
    "Cargo operations",
    "Drug trafficking",
    "Firearms and ammunition",
-   "Identity and document fraud"
+   "Unspecified documents"
   ],
   "matched_words": [
    "consignments"
@@ -270726,7 +271552,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-1111",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Unspecified documents",
   "tags": [
    "Cargo operations",
    "Drug trafficking",
@@ -271816,8 +272642,8 @@
   "via": "Google News CA",
   "kind": "Incident",
   "categories": [
-   "Visa and entry policy",
-   "Visa and permit fraud"
+   "Document fraud",
+   "Visa and entry policy"
   ],
   "matched_words": [
    "visa racket"
@@ -271845,7 +272671,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-1106",
-  "primary_category": "Visa and permit fraud",
+  "primary_category": "Document fraud",
   "tags": [
    "Visa and entry policy"
   ],
@@ -272005,6 +272831,35 @@
    "seizures": []
   },
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa"
+     ],
+     [
+      "Issuing country of the document",
+      ""
+     ],
+     [
+      "Reported fraud method",
+      ""
+     ],
+     [
+      "Number of documents",
+      "5"
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -278208,8 +279063,8 @@
   "kind": "Incident",
   "categories": [
    "Border security",
-   "Identity and document fraud",
-   "Immigration enforcement"
+   "Immigration enforcement",
+   "Unspecified documents"
   ],
   "matched_words": [
    "forged documents"
@@ -278245,7 +279100,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-1064",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Unspecified documents",
   "tags": [
    "Border security",
    "Immigration enforcement"
@@ -283402,7 +284257,7 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Visa and permit fraud"
+   "Document fraud"
   ],
   "matched_words": [
    "visa fraud"
@@ -283428,7 +284283,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-1012",
-  "primary_category": "Visa and permit fraud",
+  "primary_category": "Document fraud",
   "tags": [],
   "groups": [
    "Document & Identity Fraud"
@@ -283467,6 +284322,35 @@
    "tried": true
   },
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa"
+     ],
+     [
+      "Issuing country of the document",
+      ""
+     ],
+     [
+      "Reported fraud method",
+      "Forged / altered genuine document"
+     ],
+     [
+      "Number of documents",
+      ""
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -284486,7 +285370,7 @@
   "via": "Google News NG",
   "kind": "Incident",
   "categories": [
-   "Identity and document fraud",
+   "Document fraud",
    "Passport fraud"
   ],
   "matched_words": [
@@ -284521,7 +285405,7 @@
   "event_id": "BWO-2026-1005",
   "primary_category": "Passport fraud",
   "tags": [
-   "Identity and document fraud"
+   "Document fraud"
   ],
   "groups": [
    "Document & Identity Fraud"
@@ -284728,6 +285612,23 @@
      [
       "Detection stage",
       "Mail / parcel inspection"
+     ]
+    ]
+   ],
+   [
+    "Visa / permit fraud",
+    [
+     [
+      "Visa or permit type",
+      ""
+     ],
+     [
+      "Purported issuing authority",
+      ""
+     ],
+     [
+      "Reported method",
+      ""
      ]
     ]
    ]
@@ -285113,7 +286014,7 @@
   "via": "Google News CA",
   "kind": "Incident",
   "categories": [
-   "Visa and permit fraud"
+   "Document fraud"
   ],
   "matched_words": [
    "visa fraud"
@@ -285144,7 +286045,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-1003",
-  "primary_category": "Visa and permit fraud",
+  "primary_category": "Document fraud",
   "tags": [],
   "groups": [
    "Document & Identity Fraud"
@@ -285306,6 +286207,35 @@
    "seizures": []
   },
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa"
+     ],
+     [
+      "Issuing country of the document",
+      ""
+     ],
+     [
+      "Reported fraud method",
+      ""
+     ],
+     [
+      "Number of documents",
+      "8"
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -293472,8 +294402,8 @@
   "kind": "Incident",
   "categories": [
    "Border security",
-   "Identity and document fraud",
-   "Irregular migration"
+   "Irregular migration",
+   "Unspecified documents"
   ],
   "matched_words": [
    "forged indian documents"
@@ -293502,7 +294432,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-0943",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Unspecified documents",
   "tags": [
    "Border security",
    "Irregular migration"
@@ -294912,7 +295842,7 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Identity and document fraud",
+   "Document fraud",
    "Passport fraud"
   ],
   "matched_words": [
@@ -294940,7 +295870,7 @@
   "event_id": "BWO-2026-0936",
   "primary_category": "Passport fraud",
   "tags": [
-   "Identity and document fraud"
+   "Document fraud"
   ],
   "groups": [
    "Document & Identity Fraud"
@@ -295139,6 +296069,23 @@
      [
       "Detection stage",
       "Visa or document application"
+     ]
+    ]
+   ],
+   [
+    "Visa / permit fraud",
+    [
+     [
+      "Visa or permit type",
+      ""
+     ],
+     [
+      "Purported issuing authority",
+      "India"
+     ],
+     [
+      "Reported method",
+      ""
      ]
     ]
    ]
@@ -295352,7 +296299,7 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Identity and document fraud"
+   "Document fraud"
   ],
   "matched_words": [
    "fake id"
@@ -295381,7 +296328,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-0933",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Document fraud",
   "tags": [],
   "groups": [
    "Document & Identity Fraud"
@@ -295589,6 +296536,23 @@
      [
       "Detection stage",
       ""
+     ]
+    ]
+   ],
+   [
+    "Visa / permit fraud",
+    [
+     [
+      "Visa or permit type",
+      ""
+     ],
+     [
+      "Purported issuing authority",
+      ""
+     ],
+     [
+      "Reported method",
+      "Bribery or insider issue"
      ]
     ]
    ]
@@ -296208,9 +297172,9 @@
   "categories": [
    "Human trafficking",
    "INTERPOL and watch lists",
-   "Identity and document fraud",
    "Irregular migration",
-   "Migrant smuggling"
+   "Migrant smuggling",
+   "Unspecified documents"
   ],
   "matched_words": [
    "interpol",
@@ -296245,9 +297209,9 @@
   "primary_category": "Human trafficking",
   "tags": [
    "INTERPOL and watch lists",
-   "Identity and document fraud",
    "Irregular migration",
-   "Migrant smuggling"
+   "Migrant smuggling",
+   "Unspecified documents"
   ],
   "groups": [
    "Document & Identity Fraud",
@@ -301206,7 +302170,7 @@
   "kind": "Incident",
   "categories": [
    "Border security",
-   "Identity and document fraud",
+   "Document fraud",
    "Visa and entry policy"
   ],
   "matched_words": [
@@ -301236,7 +302200,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-0902",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Document fraud",
   "tags": [
    "Border security",
    "Visa and entry policy"
@@ -301463,6 +302427,23 @@
      ],
      [
       "Detection stage",
+      ""
+     ]
+    ]
+   ],
+   [
+    "Visa / permit fraud",
+    [
+     [
+      "Visa or permit type",
+      ""
+     ],
+     [
+      "Purported issuing authority",
+      ""
+     ],
+     [
+      "Reported method",
       ""
      ]
     ]
@@ -302292,7 +303273,7 @@
   "categories": [
    "Cargo operations",
    "Drug trafficking",
-   "Identity and document fraud"
+   "Unspecified documents"
   ],
   "matched_words": [
    "cocaine"
@@ -302322,7 +303303,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-0897",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Unspecified documents",
   "tags": [
    "Cargo operations",
    "Drug trafficking"
@@ -307603,9 +308584,9 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Identity and document fraud",
    "Immigration enforcement",
-   "Irregular migration"
+   "Irregular migration",
+   "Unspecified documents"
   ],
   "matched_words": [
    "immigration fraud"
@@ -307636,7 +308617,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-0869",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Unspecified documents",
   "tags": [
    "Immigration enforcement",
    "Irregular migration"
@@ -307920,8 +308901,8 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Identity and document fraud",
-   "Irregular migration"
+   "Irregular migration",
+   "Unspecified documents"
   ],
   "matched_words": [
    "migrants + arrested"
@@ -307949,7 +308930,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-0868",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Unspecified documents",
   "tags": [
    "Irregular migration"
   ],
@@ -313539,9 +314520,9 @@
   "via": "Google News GB",
   "kind": "Incident",
   "categories": [
+   "Document fraud",
    "Human trafficking",
-   "Visa and entry policy",
-   "Visa and permit fraud"
+   "Visa and entry policy"
   ],
   "matched_words": [
    "visa fraud",
@@ -313576,8 +314557,8 @@
   "event_id": "BWO-2026-0833",
   "primary_category": "Human trafficking",
   "tags": [
-   "Visa and entry policy",
-   "Visa and permit fraud"
+   "Document fraud",
+   "Visa and entry policy"
   ],
   "groups": [
    "Document & Identity Fraud",
@@ -313778,6 +314759,35 @@
    "seizures": []
   },
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa"
+     ],
+     [
+      "Issuing country of the document",
+      "United Kingdom"
+     ],
+     [
+      "Reported fraud method",
+      ""
+     ],
+     [
+      "Number of documents",
+      ""
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -315239,7 +316249,7 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Visa and permit fraud"
+   "Document fraud"
   ],
   "matched_words": [
    "visa fraud"
@@ -315264,7 +316274,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-0826",
-  "primary_category": "Visa and permit fraud",
+  "primary_category": "Document fraud",
   "tags": [],
   "groups": [
    "Document & Identity Fraud"
@@ -315298,6 +316308,35 @@
    "tried": true
   },
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa"
+     ],
+     [
+      "Issuing country of the document",
+      ""
+     ],
+     [
+      "Reported fraud method",
+      ""
+     ],
+     [
+      "Number of documents",
+      ""
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -315606,9 +316645,9 @@
   "categories": [
    "Human trafficking",
    "INTERPOL and watch lists",
-   "Identity and document fraud",
    "Irregular migration",
-   "Migrant smuggling"
+   "Migrant smuggling",
+   "Unspecified documents"
   ],
   "matched_words": [
    "irregular migrants"
@@ -315642,9 +316681,9 @@
   "primary_category": "Human trafficking",
   "tags": [
    "INTERPOL and watch lists",
-   "Identity and document fraud",
    "Irregular migration",
-   "Migrant smuggling"
+   "Migrant smuggling",
+   "Unspecified documents"
   ],
   "groups": [
    "Document & Identity Fraud",
@@ -316608,7 +317647,7 @@
   "categories": [
    "Border security",
    "Corruption and insider facilitation",
-   "Visa and permit fraud"
+   "Document fraud"
   ],
   "matched_words": [
    "visa scam"
@@ -316638,7 +317677,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-0816",
-  "primary_category": "Visa and permit fraud",
+  "primary_category": "Document fraud",
   "tags": [
    "Border security",
    "Corruption and insider facilitation"
@@ -316833,6 +317872,35 @@
    "seizures": []
   },
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa"
+     ],
+     [
+      "Issuing country of the document",
+      ""
+     ],
+     [
+      "Reported fraud method",
+      ""
+     ],
+     [
+      "Number of documents",
+      ""
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -318558,7 +319626,6 @@
   "categories": [
    "Human trafficking",
    "INTERPOL and watch lists",
-   "Identity and document fraud",
    "Irregular migration",
    "Migrant smuggling",
    "Passport fraud"
@@ -318597,7 +319664,6 @@
   "primary_category": "Human trafficking",
   "tags": [
    "INTERPOL and watch lists",
-   "Identity and document fraud",
    "Irregular migration",
    "Migrant smuggling",
    "Passport fraud"
@@ -323239,9 +324305,9 @@
   "categories": [
    "Human trafficking",
    "INTERPOL and watch lists",
-   "Identity and document fraud",
    "Irregular migration",
-   "Migrant smuggling"
+   "Migrant smuggling",
+   "Unspecified documents"
   ],
   "matched_words": [
    "human trafficking",
@@ -323278,9 +324344,9 @@
   "primary_category": "Human trafficking",
   "tags": [
    "INTERPOL and watch lists",
-   "Identity and document fraud",
    "Irregular migration",
-   "Migrant smuggling"
+   "Migrant smuggling",
+   "Unspecified documents"
   ],
   "groups": [
    "Document & Identity Fraud",
@@ -325918,7 +326984,7 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Identity and document fraud"
+   "Other civil documents"
   ],
   "matched_words": [
    "fake birth certificate"
@@ -325948,7 +327014,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-0776",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Other civil documents",
   "tags": [],
   "groups": [
    "Document & Identity Fraud"
@@ -328878,9 +329944,9 @@
    "Drug trafficking",
    "Human trafficking",
    "INTERPOL and watch lists",
-   "Identity and document fraud",
    "Irregular migration",
-   "Migrant smuggling"
+   "Migrant smuggling",
+   "Unspecified documents"
   ],
   "matched_words": [
    "migration irreguliere"
@@ -328913,9 +329979,9 @@
   "tags": [
    "Drug trafficking",
    "INTERPOL and watch lists",
-   "Identity and document fraud",
    "Irregular migration",
-   "Migrant smuggling"
+   "Migrant smuggling",
+   "Unspecified documents"
   ],
   "groups": [
    "Document & Identity Fraud",
@@ -335167,8 +336233,8 @@
   "categories": [
    "Border security",
    "Corruption and insider facilitation",
-   "Migrant smuggling",
-   "Visa and permit fraud"
+   "Document fraud",
+   "Migrant smuggling"
   ],
   "matched_words": [
    "fake ngo visa"
@@ -335204,7 +336270,7 @@
   "tags": [
    "Border security",
    "Corruption and insider facilitation",
-   "Visa and permit fraud"
+   "Document fraud"
   ],
   "groups": [
    "Document & Identity Fraud",
@@ -335428,6 +336494,35 @@
    "seizures": []
   },
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa"
+     ],
+     [
+      "Issuing country of the document",
+      ""
+     ],
+     [
+      "Reported fraud method",
+      ""
+     ],
+     [
+      "Number of documents",
+      ""
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -336201,10 +337296,9 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Identity and document fraud",
+   "Document fraud",
    "Immigration enforcement",
-   "Irregular migration",
-   "Visa and permit fraud"
+   "Irregular migration"
   ],
   "matched_words": [
    "visa fraud"
@@ -336233,9 +337327,8 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-0735",
-  "primary_category": "Visa and permit fraud",
+  "primary_category": "Document fraud",
   "tags": [
-   "Identity and document fraud",
    "Immigration enforcement",
    "Irregular migration"
   ],
@@ -337854,9 +338947,9 @@
   "categories": [
    "Human trafficking",
    "INTERPOL and watch lists",
-   "Identity and document fraud",
    "Irregular migration",
-   "Migrant smuggling"
+   "Migrant smuggling",
+   "Unspecified documents"
   ],
   "matched_words": [
    "migrant smuggling",
@@ -337890,9 +338983,9 @@
   "primary_category": "Human trafficking",
   "tags": [
    "INTERPOL and watch lists",
-   "Identity and document fraud",
    "Irregular migration",
-   "Migrant smuggling"
+   "Migrant smuggling",
+   "Unspecified documents"
   ],
   "groups": [
    "Document & Identity Fraud",
@@ -340742,9 +341835,9 @@
   "via": "Google News GB",
   "kind": "Incident",
   "categories": [
+   "Document fraud",
    "Human trafficking",
-   "Visa and entry policy",
-   "Visa and permit fraud"
+   "Visa and entry policy"
   ],
   "matched_words": [
    "visa fraud"
@@ -340809,8 +341902,8 @@
   "event_id": "BWO-2026-0715",
   "primary_category": "Human trafficking",
   "tags": [
-   "Visa and entry policy",
-   "Visa and permit fraud"
+   "Document fraud",
+   "Visa and entry policy"
   ],
   "groups": [
    "Document & Identity Fraud",
@@ -340850,6 +341943,35 @@
    "BWO-2026-0833"
   ],
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa"
+     ],
+     [
+      "Issuing country of the document",
+      "United Kingdom"
+     ],
+     [
+      "Reported fraud method",
+      ""
+     ],
+     [
+      "Number of documents",
+      "52"
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -341544,7 +342666,7 @@
   "via": "Google News MX",
   "kind": "Incident",
   "categories": [
-   "Identity and document fraud"
+   "Unspecified documents"
   ],
   "matched_words": [
    "documentos falsos"
@@ -341712,7 +342834,7 @@
    "seizures": []
   },
   "event_id": "BWO-2026-0709",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Unspecified documents",
   "tags": [],
   "groups": [
    "Document & Identity Fraud"
@@ -343752,10 +344874,10 @@
   "via": "Google News MX",
   "kind": "Incident",
   "categories": [
-   "Identity and document fraud"
+   "Document fraud"
   ],
   "matched_words": [
-   "documentos falsos"
+   "fraude con visas"
   ],
   "action": false,
   "document_types": [
@@ -343816,7 +344938,7 @@
   },
   "lead": "El Departamento de Estado de Estados Unidos expuso este lunes cuatro esquemas concretos de fraude al sistema de visas, desde empresas de contratación inventadas en una nación caribeña hasta redes en África Oriental que falsificaban nacionalidades para eludir…",
   "event_id": "BWO-2026-0689",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Document fraud",
   "tags": [],
   "groups": [
    "Document & Identity Fraud"
@@ -343875,6 +344997,23 @@
      ],
      [
       "Detection stage",
+      ""
+     ]
+    ]
+   ],
+   [
+    "Visa / permit fraud",
+    [
+     [
+      "Visa or permit type",
+      ""
+     ],
+     [
+      "Purported issuing authority",
+      ""
+     ],
+     [
+      "Reported method",
       ""
      ]
     ]
@@ -351263,8 +352402,8 @@
   "via": "Google News CA",
   "kind": "Incident",
   "categories": [
-   "Visa and entry policy",
-   "Visa and permit fraud"
+   "Document fraud",
+   "Visa and entry policy"
   ],
   "matched_words": [
    "visa scam"
@@ -351322,7 +352461,7 @@
   },
   "lead": "The Federal Investigation Agency (FIA) has arrested a woman in a UK visa scam case. The suspect allegedly defrauded the man of Rs5.2 million (Rs52 lakh) by promising him a UK work visa and providing fake IELTS certificates and marriage documents.",
   "event_id": "BWO-2026-0650",
-  "primary_category": "Visa and permit fraud",
+  "primary_category": "Document fraud",
   "tags": [
    "Visa and entry policy"
   ],
@@ -351359,6 +352498,35 @@
    "BWO-2026-2423"
   ],
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa"
+     ],
+     [
+      "Issuing country of the document",
+      "United Kingdom"
+     ],
+     [
+      "Reported fraud method",
+      ""
+     ],
+     [
+      "Number of documents",
+      ""
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -351583,8 +352751,8 @@
   "kind": "Incident",
   "categories": [
    "Deportation and returns",
+   "Document fraud",
    "INTERPOL and watch lists",
-   "Identity and document fraud",
    "Passport fraud"
   ],
   "matched_words": [
@@ -351658,8 +352826,8 @@
   "primary_category": "Passport fraud",
   "tags": [
    "Deportation and returns",
-   "INTERPOL and watch lists",
-   "Identity and document fraud"
+   "Document fraud",
+   "INTERPOL and watch lists"
   ],
   "groups": [
    "Document & Identity Fraud",
@@ -351721,6 +352889,23 @@
      ],
      [
       "Detection stage",
+      ""
+     ]
+    ]
+   ],
+   [
+    "Visa / permit fraud",
+    [
+     [
+      "Visa or permit type",
+      ""
+     ],
+     [
+      "Purported issuing authority",
+      "Mexico"
+     ],
+     [
+      "Reported method",
       ""
      ]
     ]
@@ -361698,9 +362883,9 @@
   "kind": "Incident",
   "categories": [
    "INTERPOL and watch lists",
-   "Identity and document fraud",
    "Irregular migration",
-   "Migrant smuggling"
+   "Migrant smuggling",
+   "Unspecified documents"
   ],
   "matched_words": [
    "migrants + arrests",
@@ -361778,8 +362963,8 @@
   "primary_category": "Migrant smuggling",
   "tags": [
    "INTERPOL and watch lists",
-   "Identity and document fraud",
-   "Irregular migration"
+   "Irregular migration",
+   "Unspecified documents"
   ],
   "groups": [
    "Document & Identity Fraud",
@@ -375180,7 +376365,7 @@
   "via": "Google News MX",
   "kind": "Incident",
   "categories": [
-   "Identity and document fraud"
+   "Unspecified documents"
   ],
   "matched_words": [
    "documentos falsos"
@@ -375232,7 +376417,7 @@
   },
   "lead": "Las autoridades en Bogotá confirmaron la captura de cuatro personas señaladas de integrar la estructura delincuencial conocida como ‘Los Dolphins’, dedicada a la explotación sexual de menores en Bogotá.",
   "event_id": "BWO-2026-0514",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Unspecified documents",
   "tags": [],
   "groups": [
    "Document & Identity Fraud"
@@ -375668,8 +376853,8 @@
   "categories": [
    "Border security",
    "INTERPOL and watch lists",
-   "Identity and document fraud",
-   "Immigration enforcement"
+   "Immigration enforcement",
+   "Unspecified documents"
   ],
   "matched_words": [
    "interpol"
@@ -375736,7 +376921,7 @@
   },
   "lead": "The man, identified by immigration only as ‘Sergey’, was arrested at a dormitory in Patong on Tuesday (Nov 3) following a request from the Embassy of Kazakhstan and Interpol, Phuket Immigration confirmed.",
   "event_id": "BWO-2026-0506",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Unspecified documents",
   "tags": [
    "Border security",
    "INTERPOL and watch lists",
@@ -376264,7 +377449,7 @@
   "categories": [
    "Cash couriers",
    "Citizenship and naturalisation",
-   "Identity and document fraud"
+   "Other civil documents"
   ],
   "matched_words": [
    "citizenship fraud"
@@ -376334,7 +377519,7 @@
   },
   "lead": "Chinese fugitives, fake Thai fathers and forged birth certificates fuel a widening Thai nationality scandal. Police trace one suspect to a ฿2.5bn fraud probe, identify 1,483 suspect registrations and investigate hospitals and government officials.",
   "event_id": "BWO-2026-0502",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Other civil documents",
   "tags": [
    "Cash couriers",
    "Citizenship and naturalisation"
@@ -376556,9 +377741,9 @@
   "via": "Google News FR",
   "kind": "Incident",
   "categories": [
+   "Document fraud",
    "Irregular migration",
-   "Migrant smuggling",
-   "Visa and permit fraud"
+   "Migrant smuggling"
   ],
   "matched_words": [
    "faux visas"
@@ -376624,8 +377809,8 @@
   "event_id": "BWO-2026-0500",
   "primary_category": "Migrant smuggling",
   "tags": [
-   "Irregular migration",
-   "Visa and permit fraud"
+   "Document fraud",
+   "Irregular migration"
   ],
   "groups": [
    "Document & Identity Fraud",
@@ -376656,6 +377841,35 @@
   "last_updated": "2026-11-26",
   "related": [],
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa; Passport"
+     ],
+     [
+      "Issuing country of the document",
+      ""
+     ],
+     [
+      "Reported fraud method",
+      "Counterfeit (fully false document)"
+     ],
+     [
+      "Number of documents",
+      "45"
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -377813,8 +379027,8 @@
   "via": "Google News CA",
   "kind": "Incident",
   "categories": [
-   "Human trafficking",
-   "Visa and permit fraud"
+   "Document fraud",
+   "Human trafficking"
   ],
   "matched_words": [
    "fake umrah visas"
@@ -377879,7 +379093,7 @@
   "event_id": "BWO-2026-0493",
   "primary_category": "Human trafficking",
   "tags": [
-   "Visa and permit fraud"
+   "Document fraud"
   ],
   "groups": [
    "Document & Identity Fraud",
@@ -377919,6 +379133,35 @@
   "last_updated": "2026-11-26",
   "related": [],
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa"
+     ],
+     [
+      "Issuing country of the document",
+      ""
+     ],
+     [
+      "Reported fraud method",
+      ""
+     ],
+     [
+      "Number of documents",
+      ""
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -379513,9 +380756,9 @@
   "via": "Google News GB",
   "kind": "Incident",
   "categories": [
+   "Document fraud",
    "Human trafficking",
-   "Visa and entry policy",
-   "Visa and permit fraud"
+   "Visa and entry policy"
   ],
   "matched_words": [
    "visa fraud"
@@ -379581,8 +380824,8 @@
   "event_id": "BWO-2026-0478",
   "primary_category": "Human trafficking",
   "tags": [
-   "Visa and entry policy",
-   "Visa and permit fraud"
+   "Document fraud",
+   "Visa and entry policy"
   ],
   "groups": [
    "Document & Identity Fraud",
@@ -379618,6 +380861,35 @@
   "last_updated": "2026-11-26",
   "related": [],
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa"
+     ],
+     [
+      "Issuing country of the document",
+      "Turkey"
+     ],
+     [
+      "Reported fraud method",
+      ""
+     ],
+     [
+      "Number of documents",
+      "2"
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -384364,7 +385636,7 @@
   "kind": "Incident",
   "categories": [
    "INTERPOL and watch lists",
-   "Identity and document fraud"
+   "Unspecified documents"
   ],
   "matched_words": [
    "interpol"
@@ -384393,7 +385665,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-0446",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Unspecified documents",
   "tags": [
    "INTERPOL and watch lists"
   ],
@@ -387681,7 +388953,7 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Identity and document fraud"
+   "Unspecified documents"
   ],
   "matched_words": [
    "identity fraud"
@@ -387737,7 +389009,7 @@
   },
   "lead": "Digital passing as an alternative to identity fraud: forging for survival States treat identity fraud as a criminal offence, but in the context of migration and mobility control it is often motivated by attempts to survive and avoid detention or violence…",
   "event_id": "BWO-2026-0430",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Unspecified documents",
   "tags": [],
   "groups": [
    "Document & Identity Fraud"
@@ -390732,7 +392004,7 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Visa and permit fraud"
+   "Document fraud"
   ],
   "matched_words": [
    "visa fraud"
@@ -390787,7 +392059,7 @@
   },
   "lead": "Mohali: Three persons, including the owner and two employees of a Sector 91 immigration firm, have been booked for allegedly duping a Patiala resident of Rs 5.60 lakh on the pretext of arranging a Canadian visitor visa.",
   "event_id": "BWO-2026-0416",
-  "primary_category": "Visa and permit fraud",
+  "primary_category": "Document fraud",
   "tags": [],
   "groups": [
    "Document & Identity Fraud"
@@ -390822,6 +392094,35 @@
    "BWO-2026-1452"
   ],
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa"
+     ],
+     [
+      "Issuing country of the document",
+      "Canada"
+     ],
+     [
+      "Reported fraud method",
+      ""
+     ],
+     [
+      "Number of documents",
+      ""
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -392819,8 +394120,7 @@
   "via": "Google News CA",
   "kind": "Incident",
   "categories": [
-   "Identity and document fraud",
-   "Visa and permit fraud"
+   "Document fraud"
   ],
   "matched_words": [
    "visa fraud"
@@ -392882,10 +394182,8 @@
   },
   "lead": "Tokyo police have arrested three people suspected of helping wealthy Chinese nationals obtain residency in Japan through fraudulent visa applications, with investigators examining an alleged operation that charged clients as much as $600,000 each.",
   "event_id": "BWO-2026-0397",
-  "primary_category": "Visa and permit fraud",
-  "tags": [
-   "Identity and document fraud"
-  ],
+  "primary_category": "Document fraud",
+  "tags": [],
   "groups": [
    "Document & Identity Fraud"
   ],
@@ -394826,8 +396124,8 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Identity and document fraud",
-   "Irregular migration"
+   "Irregular migration",
+   "Unspecified documents"
   ],
   "matched_words": [
    "migrants + arrested"
@@ -394887,7 +396185,7 @@
   },
   "lead": "Thirteen foreign nationals were arrested this month and charged for a scheme to defraud migrants by selling fake immigration legalization services to help them gain lawful status.",
   "event_id": "BWO-2026-0389",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Unspecified documents",
   "tags": [
    "Irregular migration"
   ],
@@ -408654,7 +409952,7 @@
   "categories": [
    "Deportation and returns",
    "INTERPOL and watch lists",
-   "Identity and document fraud"
+   "Unspecified documents"
   ],
   "matched_words": [
    "deported"
@@ -408683,7 +409981,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-0311",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Unspecified documents",
   "tags": [
    "Deportation and returns",
    "INTERPOL and watch lists"
@@ -416123,8 +417421,7 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Identity and document fraud",
-   "Visa and permit fraud"
+   "Document fraud"
   ],
   "matched_words": [
    "fake visa"
@@ -416185,10 +417482,8 @@
   },
   "lead": "The National Cyber Crime Investigation Agency (NCCIA) Islamabad has arrested four suspects allegedly involved in defrauding citizens through fake visa and air ticket services advertised on WhatsApp groups.",
   "event_id": "BWO-2026-0271",
-  "primary_category": "Visa and permit fraud",
-  "tags": [
-   "Identity and document fraud"
-  ],
+  "primary_category": "Document fraud",
+  "tags": [],
   "groups": [
    "Document & Identity Fraud"
   ],
@@ -418239,8 +419534,8 @@
   "kind": "Update",
   "categories": [
    "INTERPOL and watch lists",
-   "Identity and document fraud",
-   "Migrant smuggling"
+   "Migrant smuggling",
+   "Unspecified documents"
   ],
   "matched_words": [
    "frontex"
@@ -418268,7 +419563,7 @@
   "primary_category": "Migrant smuggling",
   "tags": [
    "INTERPOL and watch lists",
-   "Identity and document fraud"
+   "Unspecified documents"
   ],
   "groups": [
    "Document & Identity Fraud",
@@ -422419,7 +423714,7 @@
   "kind": "Incident",
   "categories": [
    "INTERPOL and watch lists",
-   "Identity and document fraud"
+   "Unspecified documents"
   ],
   "matched_words": [
    "interpol",
@@ -422482,7 +423777,7 @@
   },
   "lead": "Chandigarh: Punjab gangster Amritpal Singh Bath, wanted in nearly two dozen criminal cases, has been detained in Canada following a routine traffic stop in Surrey, British Columbia.",
   "event_id": "BWO-2026-0227",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Unspecified documents",
   "tags": [
    "INTERPOL and watch lists"
   ],
@@ -426883,7 +428178,7 @@
   "via": "Google News BR",
   "kind": "Incident",
   "categories": [
-   "Identity and document fraud"
+   "Unspecified documents"
   ],
   "matched_words": [
    "documentos falsos"
@@ -426940,7 +428235,7 @@
   },
   "lead": "A Polícia Civil interrompeu um voo da Gol no Aeroporto de Congonhas, São Paulo, com destino a Brasília, após suspeitas de uso de documentos falsos por parte de membros da equipe do DJ Arana. Três pessoas foram detidas.",
   "event_id": "BWO-2026-0201",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Unspecified documents",
   "tags": [],
   "groups": [
    "Document & Identity Fraud"
@@ -428642,7 +429937,7 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Visa and permit fraud"
+   "Document fraud"
   ],
   "matched_words": [
    "visa fraud"
@@ -428698,7 +429993,7 @@
   },
   "lead": "Tokyo police have arrested two company executives and a Chinese national over a fraudulent application for a visa for highly skilled professionals. One of the executives, Hotei Aizawa, has denied all charges, police said on Wednesday.",
   "event_id": "BWO-2026-0192",
-  "primary_category": "Visa and permit fraud",
+  "primary_category": "Document fraud",
   "tags": [],
   "groups": [
    "Document & Identity Fraud"
@@ -428728,6 +430023,35 @@
   "last_updated": "2026-11-26",
   "related": [],
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa"
+     ],
+     [
+      "Issuing country of the document",
+      ""
+     ],
+     [
+      "Reported fraud method",
+      ""
+     ],
+     [
+      "Number of documents",
+      ""
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -431955,12 +433279,14 @@
   "source": "NTN24",
   "lang": "es",
   "via": "Google News MX",
-  "kind": "Update",
+  "kind": "Incident",
   "categories": [
    "Citizenship and naturalisation",
+   "Document fraud",
    "INTERPOL and watch lists"
   ],
   "matched_words": [
+   "cedula falsa",
    "interpol"
   ],
   "action": false,
@@ -431985,17 +433311,21 @@
    "El Regional del Zulia",
    "Primera Edición Col"
   ],
-  "score": 0,
-  "level": "Update",
-  "reasons": [],
+  "score": 15,
+  "level": "Low",
+  "reasons": [
+   "Wanted person or INTERPOL notice (+15: interpol, notificacion roja)"
+  ],
   "home": false,
   "region": false,
   "event_id": "BWO-2026-0171",
-  "primary_category": "INTERPOL and watch lists",
+  "primary_category": "Document fraud",
   "tags": [
-   "Citizenship and naturalisation"
+   "Citizenship and naturalisation",
+   "INTERPOL and watch lists"
   ],
   "groups": [
+   "Document & Identity Fraud",
    "Citizenship & Residence",
    "Border Integrity"
   ],
@@ -432010,7 +433340,7 @@
    "crossings": []
   },
   "transport_mode": "",
-  "outcome": "",
+  "outcome": "Arrested",
   "agencies": [],
   "summary_text": "Retienen en Cúcuta a coronel de la Fuerza Aérea Venezolana vinculado al régimen y requerido por Interpol: habría ingresado con una cédula falsa Las autoridades migratorias colombianas retuvieron en Cúcuta, Norte de Santander, al coronel de la Fuerza Aérea Venezolana Eddison Ranses Torrealba Rincón, quien es requerido por las autoridades judiciales del régimen venezolano mediante una Notificación Roja de Interpol.",
   "caribbean_connection": [],
@@ -432038,9 +433368,80 @@
    }
   ],
   "review_status": "Automatically collected",
-  "last_updated": "2026-11-27",
+  "last_updated": "2026-11-28",
   "related": [],
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "ID card; Passport"
+     ],
+     [
+      "Issuing country of the document",
+      ""
+     ],
+     [
+      "Reported fraud method",
+      ""
+     ],
+     [
+      "Number of documents",
+      ""
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
+   [
+    "Visa / permit fraud",
+    [
+     [
+      "Visa or permit type",
+      ""
+     ],
+     [
+      "Purported issuing authority",
+      ""
+     ],
+     [
+      "Reported method",
+      ""
+     ]
+    ]
+   ],
+   [
+    "Citizenship / residence fraud",
+    [
+     [
+      "Programme involved",
+      ""
+     ],
+     [
+      "Application stage",
+      ""
+     ],
+     [
+      "Alleged misrepresentation",
+      ""
+     ],
+     [
+      "Documents involved",
+      "ID card; Passport"
+     ],
+     [
+      "Administrative or court outcome",
+      "Arrested"
+     ]
+    ]
+   ],
    [
     "Wanted-person interception",
     [
@@ -432059,39 +433460,6 @@
      [
       "Reported outcome",
       ""
-     ]
-    ]
-   ],
-   [
-    "Policy update",
-    [
-     [
-      "Issuing authority",
-      "Migracion Colombia"
-     ],
-     [
-      "Affected travellers / documents",
-      ""
-     ],
-     [
-      "Announcement date (publication)",
-      "2026-10-29"
-     ],
-     [
-      "Effective date",
-      ""
-     ],
-     [
-      "Exceptions",
-      ""
-     ],
-     [
-      "Status",
-      ""
-     ],
-     [
-      "Official guidance link",
-      "https://www.migracioncolombia.gov.co/"
      ]
     ]
    ]
@@ -432160,7 +433528,9 @@
    "independent": 1,
    "relationship": "1 independent source; 3 republications of the same report (not counted as separate confirmations)"
   },
-  "uncertainty": [],
+  "uncertainty": [
+   "Not stated in the report: when it happened"
+  ],
   "merged_ids": [
    "BWO-2026-0233",
    "BWO-2026-0248",
@@ -433068,7 +434438,7 @@
   "via": "Google News MX",
   "kind": "Incident",
   "categories": [
-   "Visa and permit fraud"
+   "Document fraud"
   ],
   "matched_words": [
    "fraude de visas"
@@ -433121,7 +434491,7 @@
   },
   "lead": "La Oficina del Inspector General (OIG) del Departamento de Trabajo de Estados Unidos, respaldada por la Fuerza de Tarea contra el Fraude de la Casa Blanca, formalizó la publicación de la lista oficial que identifica a los 16 prófugos más buscados del país.",
   "event_id": "BWO-2026-0166",
-  "primary_category": "Visa and permit fraud",
+  "primary_category": "Document fraud",
   "tags": [],
   "groups": [
    "Document & Identity Fraud"
@@ -433153,6 +434523,35 @@
   "last_updated": "2026-11-26",
   "related": [],
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa"
+     ],
+     [
+      "Issuing country of the document",
+      ""
+     ],
+     [
+      "Reported fraud method",
+      ""
+     ],
+     [
+      "Number of documents",
+      ""
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -433428,8 +434827,8 @@
   "kind": "Incident",
   "categories": [
    "Cash couriers",
-   "INTERPOL and watch lists",
-   "Visa and permit fraud"
+   "Document fraud",
+   "INTERPOL and watch lists"
   ],
   "matched_words": [
    "most wanted"
@@ -433458,7 +434857,7 @@
   "home": false,
   "region": false,
   "event_id": "BWO-2026-0164",
-  "primary_category": "Visa and permit fraud",
+  "primary_category": "Document fraud",
   "tags": [
    "Cash couriers",
    "INTERPOL and watch lists"
@@ -433568,6 +434967,35 @@
      ],
      [
       "Case development",
+      ""
+     ]
+    ]
+   ],
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa"
+     ],
+     [
+      "Issuing country of the document",
+      ""
+     ],
+     [
+      "Reported fraud method",
+      ""
+     ],
+     [
+      "Number of documents",
+      ""
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
       ""
      ]
     ]
@@ -434811,7 +436239,6 @@
   "categories": [
    "Border security",
    "Citizenship and naturalisation",
-   "Identity and document fraud",
    "Passport fraud"
   ],
   "matched_words": [
@@ -434885,8 +436312,7 @@
   "primary_category": "Passport fraud",
   "tags": [
    "Border security",
-   "Citizenship and naturalisation",
-   "Identity and document fraud"
+   "Citizenship and naturalisation"
   ],
   "groups": [
    "Document & Identity Fraud",
@@ -436472,7 +437898,7 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Visa and permit fraud"
+   "Document fraud"
   ],
   "matched_words": [
    "visa fraud"
@@ -436528,7 +437954,7 @@
   },
   "lead": "Three people arrested in Tokyo over alleged visa fraud — The Japan Times Police in Tokyo, Japan, have arrested two company executives and a Chinese national in a case involving alleged fraud in obtaining a visa for highly skilled professionals.",
   "event_id": "BWO-2026-0150",
-  "primary_category": "Visa and permit fraud",
+  "primary_category": "Document fraud",
   "tags": [],
   "groups": [
    "Document & Identity Fraud"
@@ -436558,6 +437984,35 @@
   "last_updated": "2026-11-26",
   "related": [],
   "specialist": [
+   [
+    "Document fraud",
+    [
+     [
+      "Document type",
+      "Visa"
+     ],
+     [
+      "Issuing country of the document",
+      ""
+     ],
+     [
+      "Reported fraud method",
+      ""
+     ],
+     [
+      "Number of documents",
+      ""
+     ],
+     [
+      "Blank versus issued documents",
+      ""
+     ],
+     [
+      "Detection stage",
+      ""
+     ]
+    ]
+   ],
    [
     "Visa / permit fraud",
     [
@@ -444589,7 +446044,7 @@
   "via": "Google News US",
   "kind": "Incident",
   "categories": [
-   "Identity and document fraud"
+   "Unspecified documents"
   ],
   "matched_words": [
    "identity fraud"
@@ -444618,7 +446073,7 @@
    "tried": true
   },
   "event_id": "BWO-2026-0113",
-  "primary_category": "Identity and document fraud",
+  "primary_category": "Unspecified documents",
   "tags": [],
   "groups": [
    "Document & Identity Fraud"
@@ -451781,9 +453236,9 @@
   "categories": [
    "Border security",
    "Human trafficking",
-   "Identity and document fraud",
    "Irregular migration",
-   "Migrant smuggling"
+   "Migrant smuggling",
+   "Unspecified documents"
   ],
   "matched_words": [
    "document fraud"
@@ -451850,9 +453305,9 @@
   "primary_category": "Human trafficking",
   "tags": [
    "Border security",
-   "Identity and document fraud",
    "Irregular migration",
-   "Migrant smuggling"
+   "Migrant smuggling",
+   "Unspecified documents"
   ],
   "groups": [
    "Document & Identity Fraud",

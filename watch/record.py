@@ -19,8 +19,8 @@ NR = "Not reported"
 # primary category: the most specific crime topic first, then enforcement, then policy
 # ---------------------------------------------------------------------------------------------
 PRIMARY_ORDER = [
-    "Human trafficking", "Migrant smuggling", "Passport fraud", "Visa and permit fraud", "Impostors",
-    "Digital identity fraud", "Supporting-document fraud", "Identity and document fraud", "Application fraud",
+    "Human trafficking", "Migrant smuggling", "Passport fraud", "Document fraud", "Impostors",
+    "Digital identity fraud", "Other civil documents", "Supporting-document fraud", "Unspecified documents", "Application fraud",
     "Corruption and insider facilitation", "Drug trafficking", "Firearms and ammunition", "Terrorism and sanctions",
     "Cash couriers", "Wildlife smuggling", "Aviation security", "Stowaways", "Cargo operations", "INTERPOL and watch lists",
     "Irregular migration", "Immigration enforcement", "Deportation and returns", "Citizenship and naturalisation",

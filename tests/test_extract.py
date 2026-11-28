@@ -402,3 +402,14 @@ def test_precursor_chemicals_are_their_own_substance():
     assert S.substances("Police seized 50 kg of fentanyl precursors") == ["Precursor chemicals"]
     assert S.quantities("seized 10 kg of cocaine at the airport")[0]["substance"] == "Cocaine"
     assert "Drug trafficking" in extract({"title": "Customs seize 3 tonnes of precursor chemicals at Kingston port"})["categories"]
+
+
+def test_document_subcategories():
+    assert "Document fraud" in extract({"title": "Man arrested with fake ID card at airport"})["categories"]
+    assert "Document fraud" in extract({"title": "Two charged over forged work permits"})["categories"]
+    c = extract({"title": "Woman held with fake documents at Norman Manley"})["categories"]
+    assert "Unspecified documents" in c and "Document fraud" not in c
+    c = extract({"title": "Man arrested with fake passport and fake documents"})["categories"]
+    assert "Passport fraud" in c and "Unspecified documents" not in c
+    c = extract({"title": "BI arrests man using a fake birth certificate"})["categories"]
+    assert "Other civil documents" in c and "Document fraud" not in c

@@ -358,8 +358,8 @@ def official_links(countries, text):
 # which sections apply to which topics
 # ---------------------------------------------------------------------------------------------
 SECTIONS = [
-    ("Document fraud", {"Passport fraud", "Identity and document fraud", "Supporting-document fraud", "Digital identity fraud"}),
-    ("Visa / permit fraud", {"Visa and permit fraud"}),
+    ("Document fraud", {"Passport fraud", "Document fraud", "Unspecified documents", "Other civil documents", "Supporting-document fraud", "Digital identity fraud"}),
+    ("Visa / permit fraud", {"Document fraud"}),
     ("Impostor use", {"Impostors"}),
     ("Migrant smuggling", {"Migrant smuggling"}),
     ("Human trafficking", {"Human trafficking"}),

@@ -20,16 +20,22 @@ CATEGORIES = {
         "pasaporte* falso*", "pasaporte* falsificado*", "pasaporte* robado*",
         "faux passeport*", "passeport* falsifié*", "passaporte* falso*", "passaporte* falsificado*",
     ],
-    "Visa and permit fraud": [
+    # a named identity or travel document other than a passport: ID card, visa, residence or work permit
+    "Document fraud": [
         "visa fraud", "fake visa*", "forged visa*", "fraudulent visa*", "counterfeit visa*", "visa scam*",
-        "fake work permit*", "fake residence permit*", "forged residence permit*", "fake green card*",
+        "fake work permit*", "forged work permit*", "fraudulent work permit*", "fake residence permit*",
+        "forged residence permit*", "fraudulent residence permit*", "fake green card*",
         "fake visa stamp*", "visa racket", "visa* falsa*",
-        "faux visa*", "fraude de visa*", "permiso* de residencia falso*",
+        "faux visa*", "fraude de visa*", "fraude con visa*", "fraudes con visa*", "permiso* de residencia falso*", "permiso* de trabajo falso*",
+        "fake ID*", "forged ID*", "fraudulent ID*", "counterfeit ID*", "fake identity card*", "forged identity card*",
+        "fake national ID*", "fake ID card*", "identity card fraud", "ID card fraud", "cedula* falsa*",
+        "fausse* carte* d'identite", "carteira* de identidade falsa*",
     ],
-    "Identity and document fraud": [
+    # "fake documents" with no type named
+    "Unspecified documents": [
         "identity fraud", "fake document*", "forged document*", "fraudulent document*", "counterfeit document*",
-        "false document*", "fake ID*", "fake identity", "fake identities", "stolen identit*", "fake birth certificate*",
-        "forged birth certificate*", "travel document fraud", "fraudulent travel document*", "document fraud",
+        "false document*", "fake identity", "fake identities", "stolen identit*",
+        "travel document fraud", "fraudulent travel document*", "fake travel document*", "document fraud",
         "document forger*", "documentos falsos", "documento* falsificado*", "fraude documental", "faux papiers",
         "fraude documentaire", "faux documents", "documentos falsificados", "identidade falsa",
     ],
@@ -37,10 +43,17 @@ CATEGORIES = {
         "impostor*", "imposter*", "look-alike*", "lookalike*", "someone else's passport",
         "another person's passport", "suplantación de identidad", "usurpation d'identité",
     ],
+    # birth, marriage and death certificates and other civil documents
+    "Other civil documents": [
+        "fake birth certificate*", "forged birth certificate*", "fraudulent birth certificate*",
+        "fake death certificate*", "forged death certificate*", "fake marriage certificate*", "forged marriage certificate*",
+        "fraudulent marriage certificate*", "fake civil document*", "actas de nacimiento falsas", "acta de nacimiento falsa",
+        "acta* de matrimonio falsa*", "faux acte* de naissance", "certidao de nascimento falsa",
+    ],
     "Supporting-document fraud": [
         "fake bank statement*", "forged bank statement*", "fraudulent bank statement*", "fake employment letter*",
         "fake job offer*", "fake invitation letter*", "fake sponsorship letter*", "fake supporting document*",
-        "forged supporting document*", "fraudulent supporting document*", "fake marriage certificate*",
+        "forged supporting document*", "fraudulent supporting document*",
         "fake degree*", "fake diploma*", "fake academic certificate*", "forged academic certificate*",
         "fake police certificate*", "fake police clearance*", "fake medical certificate*", "fake vaccination card*",
         "fake vaccination certificate*", "fake COVID certificate*", "fake hotel booking*", "fake travel insurance",
@@ -206,8 +219,8 @@ CATEGORIES = {
 
 # The seven main groups shown on the website. An event can carry several topics, so it can sit in several groups.
 GROUPS = [
-    ("Document & Identity Fraud", ["Passport fraud", "Visa and permit fraud", "Identity and document fraud", "Impostors",
-                                   "Supporting-document fraud", "Digital identity fraud"]),
+    ("Document & Identity Fraud", ["Passport fraud", "Document fraud", "Unspecified documents", "Other civil documents",
+                                   "Impostors", "Supporting-document fraud", "Digital identity fraud"]),
     ("Migration & Facilitation", ["Irregular migration", "Migrant smuggling", "Immigration enforcement",
                                   "Deportation and returns"]),
     ("Human Trafficking", ["Human trafficking"]),
@@ -240,8 +253,8 @@ GOODS_TOPICS = {"Drug trafficking", "Cash couriers", "Firearms and ammunition", 
                 "Corruption and insider facilitation", "Border technology"}
 
 # Topics that describe crime. Anything else (policy, security, deportation news) is an "Update", not an incident.
-CRIME_TOPICS = {"Passport fraud", "Visa and permit fraud", "Identity and document fraud", "Impostors",
-                "Supporting-document fraud", "Digital identity fraud", "Application fraud",
+CRIME_TOPICS = {"Passport fraud", "Document fraud", "Unspecified documents", "Impostors",
+                "Other civil documents", "Supporting-document fraud", "Digital identity fraud", "Application fraud",
                 "Migrant smuggling", "Human trafficking", "Drug trafficking", "Cash couriers",
                 "Firearms and ammunition", "Wildlife smuggling", "Stowaways"}
 # These count as an incident only when something happened (arrest, seizure, interception...).
@@ -257,10 +270,11 @@ FAKE_WORDS = ["fake", "forged", "fraudulent", "counterfeit", "false", "falsified
               "falsificados", "faux", "falsifie", "falsifies"]
 PROXIMITY = {
     "Passport fraud": ["passport", "passports"],
-    "Visa and permit fraud": ["visa", "visas", "work permit", "work permits", "residence permit", "residence permits",
-                              "green card", "green cards", "visa stamp", "visa stamps"],
-    "Identity and document fraud": ["id", "ids", "id card", "id cards", "identity card", "identity cards",
-                                    "birth certificate", "birth certificates", "documents", "travel documents"],
+    "Document fraud": ["visa", "visas", "work permit", "work permits", "residence permit", "residence permits",
+                       "green card", "green cards", "visa stamp", "visa stamps",
+                       "id", "ids", "id card", "id cards", "identity card", "identity cards"],
+    "Unspecified documents": ["documents", "travel documents"],
+    "Other civil documents": ["birth certificate", "birth certificates", "marriage certificate", "marriage certificates"],
 }
 
 # Words that show something happened (an arrest, a seizure, a conviction).
@@ -329,9 +343,9 @@ def find_words(compiled, text):
 MORE_LANGUAGES = {
     "Passport fraud": ["vals paspoort", "valse paspoorten", "paspoortfraude", "vervalst paspoort", "gefalschte* reisepass*",
                        "gefalschte* pass", "passfalschung", "passaporto falso", "passaporti falsi"],
-    "Identity and document fraud": ["valse documenten", "vervalste documenten", "identiteitsfraude", "gefalschte* dokumente",
+    "Unspecified documents": ["valse documenten", "vervalste documenten", "identiteitsfraude", "gefalschte* dokumente",
                                     "urkundenfalschung", "documenti falsi", "falsi documenti"],
-    "Visa and permit fraud": ["visumfraude", "vals visum", "visabetrug", "visti falsi", "visto falso"],
+    "Document fraud": ["visumfraude", "vals visum", "visabetrug", "visti falsi", "visto falso"],
     "Migrant smuggling": ["mensensmokkel", "mensensmokkelaar*", "schleuser*", "schleusung", "scafisti", "scafista",
                           "traffico di migranti", "favoreggiamento dell'immigrazione clandestina"],
     "Human trafficking": ["mensenhandel", "menschenhandel", "tratta di esseri umani"],
@@ -531,6 +545,12 @@ _PERSONAL_BAN_RE = re.compile(r"\b(?:court|judge|magistrate|bail|tribunal|defie[
 _GROUP_BAN_RE = re.compile(r"\b(?:nationals|citizens of|countries|proclamation|executive order|travellers from|travelers from)\b")
 
 
+# document categories that name the type of document ("Unspecified documents" is used only when none is named)
+NAMED_DOCS = {"Passport fraud", "Document fraud", "Other civil documents"}
+# names used before 28 Nov 2026 (kept in older stored article facts)
+OLD_CATEGORY = {"Visa and permit fraud": "Document fraud"}
+
+
 # cooperation news: agreements, networks, training. With no arrest, seizure or other action word, it is an Update.
 _COOP_RE = re.compile(r"(?<!\w)(?:agreements?|memorand(?:um|a) of understanding|mou|sign(?:s|ed)? (?:an? )?(?:deal|pact|accord)|"
                       r"cooperation|co-operation|partnership|join(?:s|ed)? (?:forces|hands)|join(?:s|ed)? (?:the |an? )?(?:\w+ ){0,2}(?:network|alliance|"
@@ -548,6 +568,8 @@ def extract(item, focus_countries=()):
     for name, rx in _PROX_RE.items():
         cats[name] = sorted(set(cats.get(name, [])) | {m.group(0) for m in rx.finditer(folded)})
     cats = {k: v for k, v in cats.items() if v}
+    if "Unspecified documents" in cats and set(cats) & NAMED_DOCS:
+        cats.pop("Unspecified documents")      # the type is named, so the documents are not unspecified
     actions = find_words(_ACTION_RE, folded)
     if actions and re.search(r"(?<!\w)(?:migrant|migrante|immigrant|refugee|asylum seeker)s?(?!\w)", folded):
         cats.setdefault("Irregular migration", ["migrants + " + actions[0]])
