@@ -52,7 +52,6 @@ python run.py --days 30   # real search, last 30 days
 
 - **Add a search phrase:** add it under `sources > google_news > queries` (and `gdelt > queries`) in `config.yaml`.
 - **Add an agency feed:** add `- {name: "Agency", url: "https://.../rss"}` under `rss_feeds`.
-- **Flag a name, company, vessel or route:** add it under `risk > watchlist`. Any matching report becomes High and appears in the "Watch list hits" box. The site is public, so only list things that are already public.
 - **Topics now covered**, in seven main groups (a report can carry several topics; human trafficking and migrant smuggling are separate and both are applied only when the report supports each):
   - *Document & Identity Fraud*: passport fraud, visa and permit fraud, identity and document fraud (altered, counterfeit), impostors, supporting-document fraud, digital identity fraud
   - *Migration & Facilitation*: irregular migration, migrant smuggling, immigration enforcement, deportation and returns

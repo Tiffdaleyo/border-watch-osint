@@ -47,13 +47,9 @@ def score_event(ev, risk_cfg, home_places, region_countries, region_words=()):
     if ev.get("kind") == "Update":
         # policy, security and deportation news: worth knowing, but not a crime to score
         score, level, reasons = 0, "Update", []
-    watch = find_words(compile_words(risk_cfg.get("watchlist") or []), folded)
-    if watch:
-        level = "High"
-        reasons.insert(0, f"WATCHLIST match: {', '.join(watch)}")
     ev["score"], ev["level"], ev["reasons"] = score, level, reasons
     home = [fold(x) for x in home_places]
-    ev["watch"] = bool(watch)
+    ev.pop("watch", None)          # the old watch list was removed on 28 Nov 2026
     ev["home"] = any(h and h in folded for h in home)
     ev["region"] = (ev["home"] or any(c in region_countries for c in ev.get("countries", []))
                     or bool(find_words(compile_words(list(region_words)), folded)))
@@ -123,6 +119,5 @@ def summarise(events, cfg, today=None):
         "trends": trends,
         "home_count": sum(1 for e in events if e.get("home")),
         "update_count": sum(1 for e in events if e.get("kind") == "Update"),
-        "watch_count": sum(1 for e in events if e.get("watch")),
         "region_count": sum(1 for e in events if e.get("region")),
     }

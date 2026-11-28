@@ -274,10 +274,8 @@ on any report to see which indicators it matched.
 | 5+ documents (50+ documents) | 10 (20) |
 | 10+ people | 10 |
 | 10+ kg (500+ kg) | 10 (20) |
-| A watch-list term | always High |
 
-Points and words are set in `config.yaml` under `risk`. The watch list is `risk: watchlist:`. Add public names or
-terms to track, such as a known front company.
+Points and words are set in `config.yaml` under `risk`.
 
 ## 8. Privacy rules, and why
 
@@ -472,8 +470,7 @@ The blue **📰 Weekly bulletin** button at the top of the site opens a one-page
 - unverified seizure totals;
 - the top incidents to review;
 - Caribbean and Jamaica;
-- policy and entry rules;
-- watch list hits.
+- policy and entry rules.
 
 **Past weeks:** each finished week (Monday to Sunday) has its own page, linked at the bottom and under
 **All bulletins**. The last 26 weeks are kept. Pages are rebuilt every day, so a late report or a correction also
@@ -490,7 +487,7 @@ same page (section 2b).
 
 **What the team receives:**
 - **Weekly bulletin:** a one-page PDF covering the 7 days up to Monday: key numbers, top incidents, Caribbean and
-  Jamaica, policy, and watch-list hits. A draft goes to the reviewer at 7:00 AM Jamaica time on Monday, and the team
+  Jamaica, and policy. A draft goes to the reviewer at 7:00 AM Jamaica time on Monday, and the team
   receives it once the reviewer presses **Send bulletin** (section 2b). The sent PDF is saved as `docs/bulletin.pdf`.
   The website's "Weekly bulletin" page shows the latest 7 days and updates every day.
 - **Alerts:** one email, sent when the reviewer presses **Send alerts** after checking the morning draft (section 2b). It lists every **new** incident that
@@ -580,7 +577,6 @@ Everything adjustable is in `config.yaml`. Edit it on GitHub with the pencil ico
 | Email recipients | GitHub secrets `MAIL_TO` and `MAIL_ALERTS_TO` (never in the files) |
 | Home country and region | `site: home_country`, `home_places`, `region_countries` |
 | Risk points and bands | `risk: indicators:`, `risk: bands:` |
-| Watch list | `risk: watchlist:` |
 | How far back to search / show | `run: lookback_days`, `run: report_days` |
 | Full-article reading | `run: read_full_articles`, `read_limit`, `read_budget_minutes` |
 
@@ -667,4 +663,5 @@ Privacy rules are in `watch/privacy.py`.
 | 2026-11-28 | The "Nationality by journey" chart was removed. Nationality stays in the filter and the *Nationality (as stated)* chart. |
 | 2026-11-28 | *Nationality (as stated)* now says plainly that it counts stories, not people. Bar chart tooltips say "N stories". |
 | 2026-11-28 | On every bar chart, clicking the **name beside a bar** (an airport, country, category...) now opens the same story list as clicking the bar, so short bars are easy to use. Chart notes say "click a bar or its name to see the stories". |
+| 2026-11-28 | The **watch list** was removed: the "Watch list hits" box on the website and in the weekly bulletin, the `risk: watchlist` setting and its "always High" rule. It was empty, so no scores changed. The *INTERPOL and watch lists* category and the "wanted / watch list" score words stay. |
 | 2026-11-28 | **Stricter journeys:** an interception is recorded only when the report says someone or something was stopped there, not because an airport or port is mentioned (interceptions went from 208 to 109). Origin and destination come from the opening of the article, and "nationals from X" no longer counts as an origin; older reads keep them only if the stored opening still names that country (origins went from 315 to 192), and recent ones are read again with the new rules. Cooperation news with no action reported (joining a network, signing an agreement) is now an Update (11 reports). |

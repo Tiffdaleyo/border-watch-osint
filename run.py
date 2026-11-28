@@ -53,7 +53,6 @@ def main():
     if not args.rebuild:
         if args.demo:
             print("Demo mode: using invented sample headlines.")
-            cfg.setdefault("risk", {})["watchlist"] = ["Example Travel Agency"]   # demo watch list entry
             items = demo.sample_items()
         else:
             print(f"Searching the news for the last {days} days...")

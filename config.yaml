@@ -291,11 +291,6 @@ risk:
   many_people: {threshold: 10, points: 10}
   # extra points for weight (drugs, cash, goods), in kilograms
   weight: {threshold_kg: 10, points: 10, big_threshold_kg: 500, big_points: 20}
-  # YOUR WATCH LIST. Anything listed here (a name, a company, a vessel, a route word) makes every
-  # matching report High and puts it in the "Watch list hits" box at the top of the website.
-  # The site is public, so only list things that are already public (e.g. a fugitive on a public notice).
-  # Example:  watchlist: ["Example Travel Agency", "MV Example"]
-  watchlist: []
 
 analysis:
   trend_days: 7          # "this week" compared with ...

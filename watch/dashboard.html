@@ -446,13 +446,9 @@
       <h2>Policy &amp; systems</h2><div class="sub">Visa requirements, entry rules, travel authorisations, border technology, health entry rules</div>
       <ul class="feed" id="polfeed" style="max-height:330px"></ul>
     </section>
-    <section class="card s8" data-sec="official">
+    <section class="card s12" data-sec="official">
       <h2>Who published</h2><div class="sub">Agencies, embassies and high commissions · click a bar or its name to see the stories</div>
       <div id="pubs" class="chart" style="height:330px"></div>
-    </section>
-    <section class="card s4" data-sec="documents migration trafficking citizenship border seizures policy official">
-      <h2>Watch list hits</h2><div class="sub">Terms on the watch list in config.yaml</div>
-      <ul class="feed" id="watch" style="max-height:330px"></ul>
     </section>
 
     <section class="card s12" data-sec="documents migration trafficking citizenship border seizures policy official">
@@ -892,7 +888,7 @@ function activeFilters() {
   });
 }
 
-const chip = e => `<span class="chip ${e.level}"${e.level === "Update" ? ' title="Update = news with no specific crime (new visa rule, travel advisory, deportation flight, border system); not scored."' : ""}>${e.level === "Update" ? "Update" : e.watch ? "Watch list" : e.level + " " + e.score}</span>`
+const chip = e => `<span class="chip ${e.level}"${e.level === "Update" ? ' title="Update = news with no specific crime (new visa rule, travel advisory, deportation flight, border system); not scored."' : ""}>${e.level === "Update" ? "Update" : e.level + " " + e.score}</span>`
   + (e.official ? ' <span class="chip off" title="Published by an official agency">OFFICIAL</span>' : "");
 const feedItem = e => `<li><a class="t" href="${esc(e.source_url || e.url)}" target="_blank" rel="noopener">${esc(e.title)}</a>
   <div class="meta">${chip(e)}${e.home ? `<span class="jm">${esc(DATA.home.toUpperCase())}</span>` : ""}<span>${esc(e.date)}</span><span>${esc(e.source)}</span>${(e.seizures || []).length ? `<span>${esc(e.seizures.slice(0, 2).map(q => q.original + (q.substance !== "Not reported" ? " " + q.substance.toLowerCase() : "")).join(", "))}</span>` : e.weight_kg ? `<span>${e.weight_kg} kg</span>` : ""}${e.outcome ? `<span>${esc(e.outcome)}</span>` : ""}<a class="eid" href="javascript:void 0" onclick="findEvent('${esc(e.event_id)}')">${esc(e.event_id)}</a></div></li>`;
@@ -995,7 +991,6 @@ function update() {
   feed("szfeed", current.filter(e => e.kind === "Incident" && (e.groups || []).includes("Seizures & Contraband")).sort((a, b) => (b.home - a.home) || (rank[a.level] - rank[b.level]) || b.date.localeCompare(a.date)), "No seizures in this view.");
   hbar(charts.modes, count(current.filter(e => e.kind === "Incident"), e => [modeKey(e.transport_mode)]), m => m === "Not reported" ? css("--upd") : css("--g7"), m => setFilter("mode", m, "fmode"), F.mode,
        m => current.filter(e => e.kind === "Incident" && modeKey(e.transport_mode) === m), "by this transport");
-  feed("watch", current.filter(e => e.watch), "No hits. Add names or terms to the watch list in config.yaml.");
   renderTable(current);
   hbar(charts.pubs, count(current.filter(e => e.official), e => [e.source]).slice(0, 15), p => current.find(e => e.source === p && e.mission) ? css("--home") : css("--g1"),
        p => { F.q = p.toLowerCase(); $("q").value = p; update(); }, null, p => current.filter(e => e.official && e.source === p), "published by them");

@@ -248,7 +248,6 @@ def bulletin_html(week, start, end, site, trends, root="", archive=(), latest=Tr
     pol = [e for e in week if e.get("kind") == "Update" and "Policy & Systems" in (e.get("groups") or [])]
     # entry-rule changes first (Caribbean and home country first); State Department advisories only fill the gaps
     policy = sorted(pol, key=lambda e: (e.get("primary_category") == "Travel advisories", not e.get("home"), not e.get("region")))[:5]
-    watch = [e for e in week if e.get("watch")][:4]
     regional = sorted([e for e in week if e.get("region")], key=lambda e: (not e.get("home"), order[e["level"]]))[:7]
     seiz = [e for e in incidents if "Seizures & Contraband" in (e.get("groups") or [])]
     official = sum(1 for e in week if e.get("official"))
@@ -325,8 +324,7 @@ h1{{color:#13294b;margin:0;font-size:22px}} h2{{color:#13294b;font-size:12.5px;b
 <b>By main group:</b> {esc(' · '.join(f'{k} {v}' for k, v in groups) or 'none')}</div>
 <h2>Top incidents to review</h2><ol>{''.join(li(e) for e in top) or '<li>None this week.</li>'}</ol>
 <div class="cols"><div><h2>{esc(region)} and {esc(home)}</h2><ul>{''.join(li(e) for e in regional) or '<li>None this week.</li>'}</ul></div>
-<div><h2>Policy &amp; entry rules</h2><ul>{''.join(li(e) for e in policy) or '<li>None this week.</li>'}</ul>
-<h2>Watch list hits</h2><ul>{''.join(li(e) for e in watch) or '<li>None this week.</li>'}</ul></div></div>
+<div><h2>Policy &amp; entry rules</h2><ul>{''.join(li(e) for e in policy) or '<li>None this week.</li>'}</ul></div></div>
 <p class="s" style="margin-top:12px">Unofficial project, open-source news only; not a government service. Generated automatically. Check every item against the original article and official sources before acting. Review priority never uses nationality.</p>
 </div>
 <!--nav--><div class="arch noprint">{('<b>Past weeks:</b> ' + nav_arch) if nav_arch else ''}</div><!--/nav-->
