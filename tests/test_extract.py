@@ -366,3 +366,21 @@ def test_alerts_since_date():
     evs = [{"first_seen": "2026-11-27", "date": "2026-11-27", "kind": "Incident", "level": "High"},
            {"first_seen": "2026-11-25", "date": "2026-11-25", "kind": "Incident", "level": "High"}]
     assert len(alerts.pick(evs, "2026-11-28", "Jamaica", since="2026-11-26")) == 1
+
+
+def test_interception_needs_a_stop_near_the_place():
+    ev = {"kind": "Incident", "airports": ["Santo Domingo Las Americas (SDQ)"], "countries": ["Peru"], "location": {}}
+    text = "Peru joins a network against document fraud. Officials met at Las Americas airport in Santo Domingo."
+    assert journey.interception(text, ev) == ("", "")
+    text2 = "Two women were arrested at Las Americas airport carrying forged passports."
+    assert journey.interception(text2, ev)[1] == "Dominican Republic"
+    j = journey.build({"kind": "Incident", "airports": [], "location": {}}, text, False)
+    assert j["interception"] == "" and j["basis"] == ""
+
+
+def test_cooperation_news_is_an_update_and_nationals_from_is_not_an_origin():
+    assert extract({"title": "Perú refuerza sus fronteras: Migraciones se incorpora a red internacional contra fraude documental"})["kind"] == "Update"
+    assert extract({"title": "Nine countries join forces to combat document fraud"})["kind"] == "Update"
+    assert extract({"title": "Police arrest two over fake passports after agreement with Interpol"})["kind"] == "Incident"
+    assert X.find_route("Thirteen foreign nationals from Brazil were arrested") == ("", "")
+    assert X.find_route("a flight from Brazil to Spain")[0] == "Brazil"

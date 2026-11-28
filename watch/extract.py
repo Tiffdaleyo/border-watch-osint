@@ -421,7 +421,9 @@ def find_route(text):
     t = fold(text)
     alt = _country_alternation()
     origin = dest = ""
-    m = re.search(r"(?<!\w)(?:from|desde|depuis|vindo de|procedente de|proveniente de|en provenance d[eu']?)\s+(?:the\s+)?(" + alt
+    # "nationals from Brazil" or "citizens from Cuba" is a nationality, not where a journey started
+    m = re.search(r"(?<!\w)(?<!nationals )(?<!national )(?<!citizens )(?<!citizen )(?<!natives )(?<!native )"
+                  r"(?:from|desde|depuis|vindo de|procedente de|proveniente de|en provenance d[eu']?)\s+(?:the\s+)?(" + alt
                   + r")(?!\w)", t)
     if m:
         origin = _canonical(m.group(1)) or ""
@@ -525,6 +527,15 @@ _PERSONAL_BAN_RE = re.compile(r"\b(?:court|judge|magistrate|bail|tribunal|defie[
 _GROUP_BAN_RE = re.compile(r"\b(?:nationals|citizens of|countries|proclamation|executive order|travellers from|travelers from)\b")
 
 
+# cooperation news: agreements, networks, training. With no arrest, seizure or other action word, it is an Update.
+_COOP_RE = re.compile(r"(?<!\w)(?:agreements?|memorand(?:um|a) of understanding|mou|sign(?:s|ed)? (?:an? )?(?:deal|pact|accord)|"
+                      r"cooperation|co-operation|partnership|join(?:s|ed)? (?:forces|hands)|join(?:s|ed)? (?:the |an? )?(?:\w+ ){0,2}(?:network|alliance|"
+                      r"initiative|platform|coalition|operation)|(?:international|regional|global) network|workshops?|"
+                      r"training|summit|conference|forum|acuerdos?|convenios?|memorando|cooperacion|alianza|se (?:incorpora|une|suma)|"
+                      r"red (?:internacional|regional)|taller|capacitacion|firma(?:n|ron)? (?:un )?(?:acuerdo|convenio)|accords?|"
+                      r"partenariat|acordos?|parceria|cooperacao)(?!\w)")
+
+
 def extract(item, focus_countries=()):
     """item = dict with at least 'title' (and optionally 'summary'). Returns the facts, or None if off-topic."""
     text = f"{item.get('title', '')}. {item.get('summary', '')}"
@@ -563,6 +574,8 @@ def extract(item, focus_countries=()):
         return None
     crime = bool(set(cats) & CRIME_TOPICS) or (
         bool(actions) and bool(set(cats) & ACTION_TOPICS))
+    if crime and not [a for a in actions if a != "held"] and _COOP_RE.search(folded):
+        crime = False          # a country joins a network or signs an agreement against a crime: news, not a case
     origin, dest = find_route(text)
     return {
         "kind": "Incident" if crime else "Update",

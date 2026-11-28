@@ -140,6 +140,8 @@ smuggling network is in both Document & Identity Fraud and Migration & Facilitat
 - An **Incident** is a crime or enforcement action, such as fraud, smuggling, an arrest or a seizure.
 - An **Update** is news without a specific crime, such as a new visa rule, a policy change, a deportation flight or a
   border system. Updates are not risk-scored.
+- Cooperation news is an **Update** when no arrest, seizure or other action is reported: a country joining a network,
+  agencies signing an agreement, training or a conference, even when the subject is a crime such as document fraud.
 
 Category words live in `watch/extract.py` (CATEGORIES). The groups are in the same file (GROUPS).
 
@@ -161,12 +163,12 @@ download. **Anything the report does not state is shown as "Not reported".** Not
 | Source type | *Official release (agency)* or *News report*. |
 | First captured / Last updated | When the site first found the report, and when its record last changed (a new source, a full read or a review). |
 | Incident location: countries named, City, Airport, Seaport, Border crossing | The places named in the report (where it happened, or places mentioned). |
-| Journey: origin | Where the journey started, only when stated ("from Jamaica"). |
+| Journey: origin | Where the journey started, only when stated ("from Jamaica") in the opening of the report. "Nationals from Brazil" is a nationality, not an origin. |
 | Transit points, in order | Places passed through, only when stated ("via Panama"). |
 | Intended destination | Where the journey was going, only when stated ("bound for Spain"). |
-| Interception location | Where it was stopped: the airport, seaport or crossing named, or "intercepted in/at/off X". |
+| Interception location | Where someone or something was stopped, only when the report says so: "intercepted in/at/off X", or an airport, seaport or crossing named right next to a word such as arrested, seized or intercepted. A place that is only mentioned (a meeting, a new system at an airport) is not an interception. |
 | Route completeness | *Complete* (origin and destination stated), *Partial* (only part stated) or *Not reported*. |
-| Source basis | *Explicitly stated in article* (the full article was read) or *Stated in headline or summary*. |
+| Source basis | *Explicitly stated in article* (the full article was read), *Stated in headline or summary*, or *Place of interception stated in report* (only where it was stopped is known). |
 | Journey (summary) | For example "Jamaica → Panama → Spain", or for an incomplete journey "Origin: Jamaica; destination not reported". |
 | Nationality (as stated) | Only when the report says it in words, for example "a Jamaican national", "two Venezuelan migrants", "citizens of Haiti". See below. |
 | Caribbean connection | What kind of link the report has to the region: origin, destination, transit, occurred in or named, or another explicit link. Otherwise "None identified". |
@@ -657,3 +659,4 @@ Privacy rules are in `watch/privacy.py`.
 | 2026-11-28 | Journey charts (Reported journeys map, Journeys, Nationality by journey, Top corridors, Route lookup, "What this suggests" routes) now show **incidents only**: the stated movement of people or goods in a case. Updates such as a call to halt deportations keep their places in the full record but no longer appear as journeys (144 of 530 journeys were updates). |
 | 2026-11-28 | **Same total everywhere:** the Categories chart became **Main category** (each story counted once, by its main category). Activity over time, Review priority by main group, Main category and Countries named show an "N stories" badge and a note on how they count. Clicking a bar now opens the stories behind it instead of filtering the page; filtering is a button in that list. |
 | 2026-11-28 | An open story list now closes when you change section, scope, period or any filter, so it never sits over a chart it no longer matches. |
+| 2026-11-28 | **Stricter journeys:** an interception is recorded only when the report says someone or something was stopped there, not because an airport or port is mentioned (interceptions went from 208 to 109). Origin and destination come from the opening of the article, and "nationals from X" no longer counts as an origin; older reads keep them only if the stored opening still names that country (origins went from 315 to 192), and recent ones are read again with the new rules. Cooperation news with no action reported (joining a network, signing an agreement) is now an Update (11 reports). |

@@ -11,6 +11,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import requests
 
 from . import extract, journey, record, seizure, specialist
+from .places import COUNTRIES
 
 HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
                          "Chrome/124.0 Safari/537.36"}
@@ -98,7 +99,7 @@ def article_facts(ev, text, risk_words, focus):
     top = extract.extract({"title": ev["title"], "summary": head}, focus) or {}
     folded = extract.fold(text)
     terms = sorted({w for rx in risk_words for w in extract.find_words(rx, folded)})[:25]
-    origin, dest = extract.find_route(text)
+    origin, dest = extract.find_route(text[:3000])      # the journey of this case, from the opening, not any "from X" later on
     when, quality = record.event_date(text, ev.get("date", ""))
     facts = {
         "event_date": when, "event_date_quality": quality,
@@ -122,7 +123,7 @@ def article_facts(ev, text, risk_words, focus):
         "summary_text": lead(text, limit=520),
         "exploitation": record.exploitation(text[:4000]),
         "victim_assistance": record.victim_assistance(text[:4000]),
-        "v": 6,
+        "v": 7,
         "sentence": (lambda m: f"{m.group(1)} {m.group(2)}" if m else "")(_SENT_RE.search(text)),
     }
     # specialist details from the full text (the article text itself is never stored)
@@ -161,11 +162,23 @@ def apply_article(ev):
         if k != "weight_kg" and a.get("v", 1) < 5 and v >= 1000:
             v = 0          # read before money was told apart from counts: a figure this big was usually a sum of money
         ev[k] = max(ev.get(k) or 0, v)
-    if not ev.get("origin") and a.get("origin"):
-        ev["origin"] = a["origin"]
-    if not ev.get("destination") and a.get("destination"):
-        ev["destination"] = a["destination"]
-    if a.get("kind") == "Incident":
+    kind, origin, dest = a.get("kind"), a.get("origin", ""), a.get("destination", "")
+    if a.get("v", 1) < 7:
+        # read before 28 Nov 2026 (the stored facts are left as they are, so the next read can redo them):
+        # - the origin and destination could come from any "from X" / "to Y" in the whole article, often a nationality
+        #   or a side remark: keep them only if the stored opening still names that country
+        # - cooperation news (a network, an agreement) was not told apart from cases
+        opening = extract.fold(" ".join(x for x in (ev.get("title"), ev.get("summary"), a.get("summary_text"), a.get("lead")) if x))
+        names = lambda c: any(re.search(r"(?<!\w)" + re.escape(extract.fold(n)) + r"(?!\w)", opening) for n in COUNTRIES.get(c, [c]))
+        origin = origin if origin and names(origin) else ""
+        dest = dest if dest and names(dest) else ""
+        if kind == "Incident" and extract._COOP_RE.search(opening) and not [w for w in extract.find_words(extract._ACTION_RE, opening) if w != "held"]:
+            kind = "Update"
+    if not ev.get("origin") and origin:
+        ev["origin"] = origin
+    if not ev.get("destination") and dest:
+        ev["destination"] = dest
+    if kind == "Incident":
         ev["kind"] = "Incident"
     if a.get("lead") and not ev.get("summary"):
         ev["lead"] = a["lead"]
@@ -178,7 +191,10 @@ def read_articles(events, cfg, risk_words, focus, budget_minutes=8, limit=400, w
     # unread reports, plus reports read before the fuller record existed (version 1), read again once
     todo = [e for e in events if e.get("date", "") >= cutoff and "example.org" not in e.get("url", "") and not e.get("title_only")
             and (not (e.get("article") or {}).get("tried")
-                 or ((e.get("article") or {}).get("read") and (e.get("article") or {}).get("v", 1) < 5))]
+                 or ((e.get("article") or {}).get("read") and (e.get("article") or {}).get("v", 1) < 5)
+               # read before 28 Nov 2026 with a journey or interception from the looser rules: read again with the new ones
+               or ((e.get("article") or {}).get("read") and (e.get("article") or {}).get("v", 1) < 7
+                   and any((e.get("article") or {}).get(k) for k in ("origin", "destination", "interception"))))]
     if only_direct:      # skip Google News links (used when Google is limiting requests)
         todo = [e for e in todo if "news.google.com" not in e.get("url", "")]
     todo.sort(key=lambda e: (bool((e.get("article") or {}).get("tried")), not e.get("home"), not e.get("region"), e.get("kind") == "Update", e.get("date", "")), reverse=False)

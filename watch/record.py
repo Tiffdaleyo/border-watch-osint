@@ -496,7 +496,7 @@ def build(ev, site, reviews, approved=None):
     j = journey.build(ev, text, bool(art.get("read")))
     if art.get("read"):
         j["transit"] = list(dict.fromkeys(j["transit"] + [c for c in art.get("transit", []) if c not in (ev.get("origin"), ev.get("destination"))]))[:4]
-        if not j["interception"] and art.get("interception"):
+        if not j["interception"] and art.get("interception") and art.get("v", 1) >= 7:   # older reads used a looser rule
             j["interception"], j["interception_country"] = art["interception"], art.get("interception_country", "")
         if j["transit"] and j["completeness"] == "Not reported":
             j["completeness"], j["basis"] = "Partial", "Explicitly stated in article"

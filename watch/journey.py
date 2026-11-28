@@ -120,27 +120,49 @@ def transit_points(text):
     return out[:4]
 
 
-_INTERCEPT_WORDS = (r"(?:intercepted|interdicted|arrested|detained|held|seized|caught|stopped|apprehended|nabbed|"
-                    r"captured|found|discovered|refused entry|denied entry|turned back|rescued|detenid[oa]s?|"
-                    r"interceptad[oa]s?|capturad[oa]s?|arrestad[oa]s?|incautad[oa]s?|interpell[ee]s?|apreendid[oa]s?)")
+_INTERCEPT_WORDS = (r"(?:intercept\w*|interdict\w*|arrest\w*|detain\w*|(?<!meeting )(?<!meeting was )(?<!conference )(?<!summit )(?<!workshop )(?<!forum )(?<!event )(?<!talks )held|seiz\w*|caught|stopped|apprehend\w*|nabbed|"
+                    r"captur\w*|refused entry|denied entry|turned back|rescu\w*|busted|deten\w*|detien\w*|interceptad[oa]s?|"
+                    r"intercepta[n]?|aprehend\w*|arrestad[oa]s?|incaut\w*|decomis\w*|rescat\w*|interpell\w*|apreend\w*|"
+                    r"aangehouden|houdt\s+\w+\s+\w*\s*aan|festgenommen)")
+_STOP_RE = re.compile(r"(?<!\w)" + _INTERCEPT_WORDS)
+NEAR = 120      # characters either side of the place name
+
+
+def _stopped_near(t, words):
+    """True when a word for stopping someone or something (arrested, seized, intercepted...) is close to one of the place's names."""
+    for w in words:
+        for m in re.finditer(r"(?<!\w)" + re.escape(fold(w)).replace(r"\ ", r"\s+") + r"(?!\w)", t):
+            if re.search(r"(?<!\w)(?:from|departing|left|desde|saindo de|partindo de|depuis)\s+(?:\S+\s+){0,4}$", t[max(0, m.start() - 40):m.start()]):
+                continue       # "flew in from Guarulhos": where the journey started, not where it was stopped
+            if _STOP_RE.search(t[max(0, m.start() - NEAR):m.end() + NEAR]):
+                return True
+    return False
 
 
 def interception(text, ev):
-    """Where it was stopped: an airport, seaport or crossing named in the report, or 'intercepted in/at/off X'."""
+    """Where it was stopped. Only when the report says someone or something was stopped there: 'intercepted in/at/off X',
+    or an airport, seaport or crossing named close to a word such as arrested, seized or intercepted.
+    A place that is only mentioned (a meeting, a network, a new system at an airport) is not an interception."""
     alt = _alt()
     t = fold(text)
-    m = re.search(_INTERCEPT_WORDS + r"\s+(?:\w+\s+){0,3}?(?:at|in|off|near|on arrival in|upon arrival in|en|a|no|na)\s+"
+    m = re.search(r"(?<!\w)" + _INTERCEPT_WORDS + r"\s+(?:\w+\s+){0,3}?(?:at|in|off|near|on arrival in|upon arrival in|en|a|no|na|op)\s+"
                   r"(?:the\s+)?(?:coast of\s+)?(" + alt + r")(?!\w)", t)
     country = _canon(m.group(1)) if m else ""
-    places = list(ev.get("airports") or [])
-    loc = ev.get("location") or {}
-    places += loc.get("ports", []) + loc.get("crossings", [])
-    if places and ev.get("kind") == "Incident":
-        where = places[0]
-        ap_country = next((v[0] for k, v in AIRPORTS.items() if k == where), "")
-        if not ap_country:     # a seaport or crossing: use the country named with it, if any
-            ap_country = country or next((c for c in ev.get("countries", []) if fold(c) in fold(where)), "")
-        return f"{where}" + (f" ({ap_country})" if ap_country and ap_country not in where else ""), ap_country
+    if ev.get("kind") == "Incident":
+        from .record import PORTS, CROSSINGS, port_label
+        from .ports import PORTS as _PL
+        port_country = {port_label(x): x["country"] for x in _PL}
+        loc = ev.get("location") or {}
+        named = [(a, AIRPORTS[a][1] + [a.split(" (")[0]]) for a in ev.get("airports") or [] if a in AIRPORTS]
+        named += [(p, PORTS.get(p, [])) for p in loc.get("ports", [])]
+        named += [(c, CROSSINGS.get(c, [])) for c in loc.get("crossings", [])]
+        for where, words in named:
+            if not _stopped_near(t, words):
+                continue
+            ap_country = AIRPORTS[where][0] if where in AIRPORTS else port_country.get(where, "")
+            if not ap_country:     # a seaport or crossing: use the country named with it, if any
+                ap_country = next((c for c in ev.get("countries", []) if fold(c) in fold(where)), "") or country
+            return f"{where}" + (f" ({ap_country})" if ap_country and ap_country not in where else ""), ap_country
     return country, country
 
 
@@ -157,7 +179,8 @@ def build(ev, text, from_article):
         comp = "Partial"
     else:
         comp = "Not reported"
-    basis = ("Explicitly stated in article" if from_article else "Stated in headline or summary") if (n or tr) else ""
+    basis = ("Explicitly stated in article" if from_article else "Stated in headline or summary") if (n or tr) else \
+            ("Place of interception stated in report" if inter else "")
     return {"origin": origin, "transit": tr, "destination": dest, "interception": inter,
             "interception_country": inter_country, "completeness": comp, "basis": basis}
 
