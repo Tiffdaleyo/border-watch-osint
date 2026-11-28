@@ -31,7 +31,7 @@ Everything runs automatically on GitHub, free of charge. No one needs to switch 
    (07:15 and 10:15). A back-up runs only if that day's collection has not happened yet.
 2. **Collect:** it reads the official press releases first, then searches the news from the last 2 days
    (section 3).
-3. **Sort and extract:** it reads each headline and summary, decides which topics it belongs to, and pulls out the
+3. **Sort and extract:** it reads each headline and summary, decides which categories it belongs to, and pulls out the
    facts (section 5).
 4. **Read full articles:** it opens up to 400 articles per run (about 8 minutes), Jamaica, the Caribbean and
    incidents first. It takes more precise facts from the article text. **The article text itself is never stored.**
@@ -102,12 +102,12 @@ workflow with **official_only** ticked.
 The same story from several papers is stored **once**. Every publisher's link and date is kept under "Sources"
 (up to 10).
 
-## 4. Topics: seven main groups
+## 4. Categories: seven main groups
 
-Every report gets one or more topics. A report can sit in several groups. For example, a fake passport used by a
+Every report gets one or more categories. A report can sit in several groups. For example, a fake passport used by a
 smuggling network is in both Document & Identity Fraud and Migration & Facilitation.
 
-| Main group | Topics |
+| Main group | Categories |
 |---|---|
 | **Document & Identity Fraud** | Passport fraud; visa and permit fraud; identity and document fraud (altered or counterfeit); impostors; supporting-document fraud (fake bank statements, letters, degrees); digital identity fraud (deepfakes, face morphing, fake e-visa sites) |
 | **Migration & Facilitation** | Irregular migration; migrant smuggling; immigration enforcement; deportation and returns |
@@ -122,7 +122,7 @@ smuggling network is in both Document & Identity Fraud and Migration & Facilitat
   and the security of the border itself.
 - Health travel rules sit under **Policy & Systems**, because they are entry rules.
 - Cargo operations and wildlife sit under **Seizures & Contraband**.
-- **Human trafficking and migrant smuggling are always separate topics.** A report gets both only when its own
+- **Human trafficking and migrant smuggling are always separate categories.** A report gets both only when its own
   words support each one. Vague phrases such as "undocumented migrants" do not count as smuggling.
 
 **Incident or Update:**
@@ -130,7 +130,7 @@ smuggling network is in both Document & Identity Fraud and Migration & Facilitat
 - An **Update** is news without a specific crime, such as a new visa rule, a policy change, a deportation flight or a
   border system. Updates are not risk-scored.
 
-Topic words live in `watch/extract.py` (CATEGORIES). The groups are in the same file (GROUPS).
+Category words live in `watch/extract.py` (CATEGORIES). The groups are in the same file (GROUPS).
 
 ## 5. The event record: every field
 
@@ -142,9 +142,9 @@ download. **Anything the report does not state is shown as "Not reported".** Not
 | Event ID | A permanent reference, for example `BWO-2026-0153`. Use it to discuss or review a report. You can search for it on the site. |
 | Title | The headline as published. |
 | Summary | The opening 2–4 sentences of the article (privacy-filtered), or the news summary if the article could not be read. |
-| Primary category | The single most specific topic, for example Human trafficking ahead of Irregular migration. |
-| Additional tags | Its other topics. |
-| Main group(s) | Which of the 7 groups the topics fall in. |
+| Primary category | The single most specific category, for example Human trafficking ahead of Irregular migration. |
+| Additional tags | Its other categories. |
+| Main group(s) | Which of the 7 groups the categories fall in. |
 | Event date | When it happened, **only if the article says so**. It is marked *exact* (a date is written), *approximate* (for example "on Monday" or "last week") or *unknown*. |
 | Publication date | When the article was published. A few official pages show no date; then it says "First seen (the source page shows no date)". |
 | Source type | *Official release (agency)* or *News report*. |
@@ -166,7 +166,7 @@ download. **Anything the report does not state is shown as "Not reported".** Not
 | Reported outcome | The furthest stage stated: sentenced, acquitted, convicted, charged, arrested, refused entry, seized or intercepted, or investigation ongoing. Updates show "Not applicable". |
 | Review status | Automatically collected, Awaiting review, Reviewed or Corrected (section 9). |
 | Sources | Every publisher that carried the story, with links and dates. |
-| Related events | Up to 3 other reports on the same topic within 90 days that share places, a route or wording. Click one to jump to it. |
+| Related events | Up to 3 other reports in the same category within 90 days that share places, a route or wording. Click one to jump to it. |
 
 **Four different things, kept apart on purpose:**
 
@@ -364,12 +364,12 @@ smuggling ring appears in both Passports & Documents and Immigration.
 
 **How every section works:**
 - A heading and one line saying what the section covers.
-- **Quick buttons** for the section's sub-topics, with counts. For example, Seizures has Drug trafficking, Firearms,
+- **Quick buttons** for the section's categories, with counts. For example, Seizures has Drug trafficking, Firearms,
   Cash couriers, Wildlife and Cargo.
 - Only the charts that matter for that subject. Seizures shows the seizure totals, transport mode and airports;
   Visa & Entry Rules shows the policy feed.
 - **⬇ Download this view (CSV)** saves exactly what is on screen, after every filter, as a spreadsheet that opens in
-  Excel. **⬇ JSON** gives the same reports for analysts. The file name says the section, the topic and the date.
+  Excel. **⬇ JSON** gives the same reports for analysts. The file name says the section, the category and the date.
 - **🔗 Copy link** copies a link straight to the section, for example `…/border-watch-osint/#seizures`. Bookmark it or
   send it to the team.
 
@@ -385,7 +385,7 @@ smuggling ring appears in both Passports & Documents and Immigration.
   opens in the **Flight tracker**. IMO and MMSI ship numbers are recognised, because they appear in seizure and
   stowaway news, but the site has no ship-tracking tool and no link to one.
   The "Try" examples show the idea.
-- **Filter bar:** choose the period, the scope (World, Caribbean or Jamaica), topic, country, nationality, transport
+- **Filter bar:** choose the period, the scope (World, Caribbean or Jamaica), subject group, category, country, nationality, transport
   mode, news vs official releases, review status, or incidents and updates. Every chart, list and number follows the filters, and the filters stay on when you change section.
   Click any bar or map bubble to filter by it. **Reset** clears the filters but keeps you in the section.
 - **Key numbers (clickable):** reports collected, reviewed by a person, review priority high, Caribbean, Jamaica, policy updates and the largest
@@ -441,7 +441,7 @@ Each section opens with a short written analysis, worked out from the reports in
 - **Immigration:** routes, transport, interception countries, facilitators and fees.
 - **Trafficking:** exploitation types, routes and victim support.
 - **Visa & Entry Rules and Citizenship:** whether rules are tightening or easing, and the countries in the news.
-- **Border Security:** insider risk, main topics and airports.
+- **Border Security:** insider risk, main categories and airports.
 
 "Rising" appears only once four weeks have been collected. Every point is a pattern to look into, not a finding.
 Small numbers are marked as early signals.
@@ -451,7 +451,7 @@ Small numbers are marked as early signals.
 The blue **📰 Weekly bulletin** button at the top of the site opens a one-page summary of the last 7 days. It has:
 
 - key numbers;
-- **Highlights** written from the week's counts (main topics, how seizures were hidden, routes, insider signals,
+- **Highlights** written from the week's counts (main categories, how seizures were hidden, routes, insider signals,
   Jamaica, and what is rising);
 - unverified seizure totals;
 - the top incidents to review;
@@ -568,7 +568,7 @@ Everything adjustable is in `config.yaml`. Edit it on GitHub with the pencil ico
 | How far back to search / show | `run: lookback_days`, `run: report_days` |
 | Full-article reading | `run: read_full_articles`, `read_limit`, `read_budget_minutes` |
 
-Topic words and the seven groups are in `watch/extract.py`. Specialist-field words are in `watch/specialist.py`.
+Category words and the seven groups are in `watch/extract.py`. Specialist-field words are in `watch/specialist.py`.
 Privacy rules are in `watch/privacy.py`.
 
 ## 14. Files at a glance
@@ -579,7 +579,7 @@ Privacy rules are in `watch/privacy.py`.
 | `reviews.yaml` | Team review decisions |
 | `run.py` | Runs every step in order |
 | `watch/collect.py` | Searches the news |
-| `watch/extract.py` | Topics, groups, places, routes, numbers |
+| `watch/extract.py` | Categories, groups, places, routes, numbers |
 | `watch/fulltext.py` | Reads full articles (facts only) |
 | `watch/record.py` | The event record (IDs, dates, location, connections, review status, sources, related) |
 | `watch/specialist.py` | Category-specific fields |
@@ -640,3 +640,4 @@ Privacy rules are in `watch/privacy.py`.
 | 2026-11-28 | Fixed chart labels being cut off at the left edge (for example "Document & Identity Fraud" in Review priority by main group): charts now measure labels in the page's own font and keep a wider margin. Very long labels are shortened with "…"; the full name shows on hover. |
 | 2026-11-28 | "Update" is explained on the site: "Update = news with no specific crime (new visa rule, travel advisory, deportation flight, border system); not scored." It appears under the Review priority by main group chart, on the priority filter and Update badges (on hover), and in About the data. |
 | 2026-11-28 | "Review priority by main group" now has a full "How to read" note (subject groups, incidents by priority, grey Update, long bar vs red part). The group filter reads "All subject groups", and "area" is no longer used for subject groups. |
+| 2026-11-28 | "Topics" renamed **"Categories"** everywhere on the site (chart, "All categories" filter, All reports column, CSV/JSON download column, "Main categories", the "this week compared with usual" table) and in this guide. "Primary category" is unchanged. |

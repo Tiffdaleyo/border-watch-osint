@@ -283,7 +283,7 @@
     <button data-v="region" class="on">__REGION__</button><button data-v="">World</button><button data-v="home">__HOME__</button>
   </div>
   <select id="fgroup"><option value="">All subject groups</option></select>
-  <select id="ftopic"><option value="">All topics</option></select>
+  <select id="ftopic"><option value="">All categories</option></select>
   <select id="fcountry"><option value="">All countries</option></select>
   <select id="fnat"><option value="">Any nationality</option></select>
   <select id="fmode"><option value="">All transport</option></select>
@@ -350,12 +350,12 @@
       <ul class="feed" id="latest" style="max-height:300px"></ul>
     </section>
     <section class="card s4" data-sec="documents migration trafficking citizenship border seizures policy official">
-      <h2>Review priority by main group</h2><div class="sub">By primary category · click a group to filter</div><div class="sub" style="margin-top:4px"><b>How to read:</b> each bar is one subject group (by the report's main topic). Coloured parts count incidents (crimes or enforcement actions) by review priority: High, Medium, Low. <b>Grey = Update:</b> news with no specific crime (new visa rule, travel advisory, deportation flight, border system), not scored. A long bar means a lot of reporting; the red part shows how much of it is serious. A group with many reports but few High is mostly routine news.</div>
+      <h2>Review priority by main group</h2><div class="sub">By primary category · click a group to filter</div><div class="sub" style="margin-top:4px"><b>How to read:</b> each bar is one subject group (by the report's primary category). Coloured parts count incidents (crimes or enforcement actions) by review priority: High, Medium, Low. <b>Grey = Update:</b> news with no specific crime (new visa rule, travel advisory, deportation flight, border system), not scored. A long bar means a lot of reporting; the red part shows how much of it is serious. A group with many reports but few High is mostly routine news.</div>
       <div id="riskmix" class="chart" style="height:300px"></div>
     </section>
 
     <section class="card s5" data-sec="documents migration trafficking citizenship border seizures policy official">
-      <h2>Topics</h2><div class="sub">Coloured by main group · a report can carry several topics · click to filter</div>
+      <h2>Categories</h2><div class="sub">Coloured by main group · a report can carry several categories · click to filter</div>
       <div id="topics" class="chart" style="height:420px"></div>
     </section>
     <section class="card s7" data-sec="documents migration trafficking citizenship border seizures policy official">
@@ -463,7 +463,7 @@
       <div class="head"><div><h2>All reports</h2><div class="sub" id="shown"></div></div>
         <div class="dl"><select id="fsort"><option value="region">__REGION__ first</option><option value="date">Newest first</option><option value="risk">Review priority first</option></select>
           <a href="events.csv">⬇ CSV</a><a href="bulletin.html">Weekly bulletin</a></div></div>
-      <div class="tablewrap"><table class="rep"><thead><tr><th>Published</th><th>Priority</th><th>Report</th><th class="hide-m">Topics</th><th class="hide-m">Places</th></tr></thead><tbody id="rows"></tbody></table></div>
+      <div class="tablewrap"><table class="rep"><thead><tr><th>Published</th><th>Priority</th><th>Report</th><th class="hide-m">Categories</th><th class="hide-m">Places</th></tr></thead><tbody id="rows"></tbody></table></div>
     </section>
   </div>
 
@@ -1059,7 +1059,7 @@ function runLookup() {
       <div class="lk-box" style="grid-column:span 4">
         <h3>In this dashboard's data</h3>
         <div class="lk-stat"><div><b>${both.length}</b>reports naming both</div><div><b>${fromAny.length}</b>reports naming ${esc(from)}</div></div>
-        <h3 style="margin-top:10px">Main topics</h3>
+        <h3 style="margin-top:10px">Main categories</h3>
         ${topics.length ? topics.map(([t, n]) => `<span class="tag"><span class="gdot" style="background:${GCOL[topicGroup[t] ?? 5]}"></span>${esc(t)} · ${n}</span>`).join("") : '<span class="empty">None yet.</span>'}
         <h3 style="margin-top:10px">Routes reported involving ${esc(from)}</h3>
         ${routes.length ? routes.map(([r, n]) => `<div style="font-size:13px">${esc(r)} <span style="color:${MUTED}">· ${n}</span></div>`).join("") : '<span class="empty">None yet.</span>'}
@@ -1107,7 +1107,7 @@ function runLookup() {
 $("method").innerHTML = "<tr><th>Indicator</th><th>Points</th><th>Example words</th></tr>" +
   DATA.method.map(m => `<tr><td>${esc(m.label)}</td><td>${m.points}</td><td style="color:${MUTED}">${esc(m.words)}</td></tr>`).join("");
 const S = DATA.summary;
-$("trends").innerHTML = "<tr><th>Topic</th><th>This week</th><th>Usual week</th><th></th></tr>" +
+$("trends").innerHTML = "<tr><th>Category</th><th>This week</th><th>Usual week</th><th></th></tr>" +
   (S.trends.length ? S.trends.map(t => `<tr><td>${esc(t.category)}</td><td>${t.this_week}</td><td>${t.usual_week}</td><td class="${t.note}">${t.note}</td></tr>`).join("")
    : '<tr><td colspan="4" class="empty">Needs a few weeks of history.</td></tr>');
 
@@ -1229,9 +1229,9 @@ function drawSuggest(rows) {
   } else if (sec === "border") {
     const cor = inc.filter(e => e.categories.includes("Corruption and insider facilitation") || (e.insider_roles || []).length);
     out.push(`<b>Insider risk:</b> ${cor.length} of ${inc.length} incidents (${pct(cor.length, inc.length)}) involve staff or corruption${cor.length ? `, mostly ${names(top(cor, e => e.insider_roles || [], 2)) || "unspecified roles"}` : ""}.`);
-    const t = top(inc, e => e.categories, 4); if (t.length) out.push(`<b>Main topics:</b> ${names(t)}.`);
+    const t = top(inc, e => e.categories, 4); if (t.length) out.push(`<b>Main categories:</b> ${names(t)}.`);
     const ap = top(inc, e => e.airports || [], 3); if (ap.length) out.push(`<b>Airports named:</b> ${names(ap)}.`);
-    riseText(inc, e => e.categories, "topic");
+    riseText(inc, e => e.categories, "category");
   } else {
     const t = top(rows, e => e.countries, 4); if (t.length) out.push(`<b>Countries named most:</b> ${names(t)}.`);
     const p = top(rows, e => [e.source], 3); if (p.length) out.push(`<b>Publishing most:</b> ${names(p)}.`);
@@ -1244,7 +1244,7 @@ function drawSuggest(rows) {
 function drawLangMap(rows) {
   const L = DATA.langs; if (!L) return;
   const read = new Set(L.searched), nm = c => L.names[c] || c;
-  $("langnote").innerHTML = `<b>Languages searched:</b> ${L.searched.map(nm).join(", ")}. Official feeds and the GDELT index add some reports in other languages, but they are not searched for every topic. `
+  $("langnote").innerHTML = `<b>Languages searched:</b> ${L.searched.map(nm).join(", ")}. Official feeds and the GDELT index add some reports in other languages, but they are not searched for every category. `
     + `<b>Not searched yet</b> (main languages of red countries): ${[...new Set(Object.values(L.table).map(x => x[0]).filter(c => !read.has(c)))].map(nm).slice(0, 25).join(", ")}. Haitian news is mostly in French, which we read; Haitian Creole itself is not searched.`;
   if (!geoReady) return;
   const per = {}; rows.forEach(e => e.countries.forEach(c => per[c] = (per[c] || 0) + 1));
@@ -1364,7 +1364,7 @@ window.addEventListener("hashchange", () => {
   if (/^BWO-\d{4}-\d+$/.test(h)) { goSection("overview"); findEvent(h); } else { goSection(h); window.scrollTo({top: 0}); }
 });
 const CSV_COLS = [["Event ID", e => e.event_id], ["Published", e => e.date], ["Event date", e => e.event_date], ["Level", e => e.level],
-  ["Score", e => e.score], ["Type", e => e.kind], ["Primary category", e => e.primary_category], ["Topics", e => e.categories.join("; ")],
+  ["Score", e => e.score], ["Type", e => e.kind], ["Primary category", e => e.primary_category], ["Categories", e => e.categories.join("; ")],
   ["Headline", e => e.title], ["Summary", e => e.summary_text || e.lead || ""], ["Source", e => e.source], ["Official", e => e.official ? (e.mission ? "Embassy / mission" : "Agency") : ""],
   ["Link", e => e.source_url || e.url], ["Countries", e => e.countries.join("; ")], ["Location", e => Object.values(e.location || {}).filter(Boolean).join(", ")],
   ["Transport", e => e.transport_mode], ["Outcome", e => e.outcome], ["Journey", e => jText(e)], ["Nationality (as stated)", e => (e.nationality || []).join("; ")],
