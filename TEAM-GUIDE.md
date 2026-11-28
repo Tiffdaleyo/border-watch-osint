@@ -407,7 +407,7 @@ smuggling ring appears in both Passports & Documents and Immigration.
   remove it, plus **Clear all**. If a section shows fewer reports than you expect, look here first. A link from an
   alert email opens one report by its Event ID; opening any section from the menu clears that search.
 - **Map:** countries named. A red pulse means the country has high review-priority incidents.
-- **Reported journeys map:** distinct markers for origin (●), transit (◆), intended destination (▲) and interception
+- **Reported journeys map (incidents only):** distinct markers for origin (●), transit (◆), intended destination (▲) and interception
   (📍). A line shows a connection the report states between two places. **It is not an actual flight or sailing
   path.** Line width = number of reports. Next to it, the **Journeys** list shows incomplete journeys as, for
   example, "Origin: Jamaica; destination not reported".
