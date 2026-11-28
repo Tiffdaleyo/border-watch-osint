@@ -234,7 +234,7 @@ A cover load is only recorded when the goods are named next to a concealment wor
 did not say how it was hidden.
 
 In the **Seizures & Contraband** section: a **Concealment methods** chart, a **Cover loads** chart (click a bar to
-filter everything to it) and a **Concealment trends** chart showing seizures per week for the six most common
+see its stories, then filter everything to it from that list) and a **Concealment trends** chart showing seizures per week for the six most common
 methods, so a method that starts rising stands out. Both categories are also columns in the CSV downloads.
 
 These fields fill in best when the full article was read. Most older reports were captured from headlines only.
