@@ -52,6 +52,7 @@ jobs:
           MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
           MAIL_TO: ${{ secrets.MAIL_TO }}
           MAIL_ALERTS_TO: ${{ secrets.MAIL_ALERTS_TO }}
+          MAIL_REVIEW_TO: ${{ secrets.MAIL_REVIEW_TO }}
       - name: Save the results
         if: steps.guard.outputs.skip != 'true'
         run: |

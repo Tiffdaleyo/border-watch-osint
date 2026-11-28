@@ -253,8 +253,11 @@ def test_alert_pick_and_send(monkeypatch):
            {"event_id": "BWO-2026-0003", "first_seen": "2026-11-26", "kind": "Update", "level": "Update", "home": True,
             "title": "Visa rule", "url": "https://example.org/c"},
            {"event_id": "BWO-2026-0004", "first_seen": "2026-11-25", "kind": "Incident", "level": "High",
-            "title": "Old", "url": "https://example.org/d"}]
-    assert [e["event_id"] for e in alerts.pick(evs, "2026-11-26", "Jamaica")] == ["BWO-2026-0001", "BWO-2026-0002"]
+            "title": "Not sent yesterday", "url": "https://example.org/d"},
+           {"event_id": "BWO-2026-0005", "first_seen": "2026-11-10", "kind": "Incident", "level": "High",
+            "title": "Too old", "url": "https://example.org/e"}]
+    # unsent alerts roll over for up to 7 days
+    assert [e["event_id"] for e in alerts.pick(evs, "2026-11-26", "Jamaica")] == ["BWO-2026-0001", "BWO-2026-0002", "BWO-2026-0004"]
     sent = []
 
     class FakeSMTP:
@@ -268,8 +271,14 @@ def test_alert_pick_and_send(monkeypatch):
     monkeypatch.setenv("MAIL_USERNAME", "sender@example.org")
     monkeypatch.setenv("MAIL_PASSWORD", "x")
     monkeypatch.setenv("MAIL_TO", "a@example.org, b@example.org")
+    monkeypatch.setenv("MAIL_REVIEW_TO", "reviewer@example.org")
+    # the morning draft goes to the reviewer only and marks nothing as sent
+    assert alerts.send(evs, "2026-11-26", {"home_country": "Jamaica", "url": "https://x/"}, draft=True) == 3
+    assert sent[1][1] == "reviewer@example.org" and sent[1][2].startswith("DRAFT") and not evs[0].get("alerted")
+    # an excluded report is left out when the reviewer sends
+    evs[1]["review_status"] = "Excluded"
     assert alerts.send(evs, "2026-11-26", {"home_country": "Jamaica", "url": "https://x/"}) == 2
-    assert sent[1][1] == "a@example.org, b@example.org" and evs[0]["alerted"] and not evs[3].get("alerted")
+    assert sent[3][1] == "a@example.org, b@example.org" and evs[0]["alerted"] and evs[3]["alerted"] and not evs[1].get("alerted")
     assert alerts.pick(evs, "2026-11-26", "Jamaica") == []          # never alerted twice
 
 
@@ -352,7 +361,7 @@ def test_review_approval_marks_only_published_new_items(tmp_path):
     assert record.last_publish(str(p), before="2026-11-29") == "2026-11-28"
 
 
-def test_alerts_held_until_publish():
+def test_alerts_since_date():
     from watch import alerts
     evs = [{"first_seen": "2026-11-27", "date": "2026-11-27", "kind": "Incident", "level": "High"},
            {"first_seen": "2026-11-25", "date": "2026-11-25", "kind": "Incident", "level": "High"}]

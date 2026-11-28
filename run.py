@@ -29,8 +29,10 @@ def main():
                     help="make the weekly bulletin for the 7 days ending on this date (YYYY-MM-DD)")
     ap.add_argument("--draft", action="store_true",
                     help="build a test copy in draft/ (the live site in docs/ is not changed, no alerts sent)")
+    ap.add_argument("--send-alerts", action="store_true",
+                    help="the reviewer checked the draft alerts: email them to the team (after applying reviews.yaml)")
     ap.add_argument("--publish", action="store_true",
-                    help="rebuild the live site in docs/ and send any alerts held since the last publish")
+                    help="rebuild the live site in docs/ (alerts are sent only with --send-alerts)")
     ap.add_argument("--official-only", action="store_true", help="only read the official press-release feeds (no news search)")
     args = ap.parse_args()
 
@@ -118,8 +120,11 @@ def main():
     record.related(events)
     # The daily search run publishes straight away. Only reports listed in reviews.yaml get the "Reviewed" mark;
     # the rest stay "Automatically collected" (or "Awaiting review" when the outcome needs checking).
-    # Alert email for new high-risk or home-country incidents (only on a real search run, and only if email is set up).
+    # Alert email for new high-priority or home-country incidents: a DRAFT goes to the reviewer after each search run;
+    # the team gets the alerts only when the reviewer runs send-alerts (--send-alerts).
     if not args.rebuild and not args.demo and not args.draft:
+        alerts.send(events, today, site, draft=True)
+    if args.send_alerts:
         alerts.send(events, today, site)
     store.save(db_path, events)
 
@@ -134,8 +139,7 @@ def main():
     report.write_bulletin(out_dir, shown, summary, cfg,
                           today=dt.date.fromisoformat(args.bulletin_date) if args.bulletin_date else None)
     if args.publish:
-        # a manual rebuild of the live site that also sends today's alerts not yet sent (nothing is marked reviewed)
-        alerts.send(events, today, site)
+        pass                # a manual rebuild of the live site (nothing is marked reviewed, no alerts are sent)
         store.save(db_path, events)
     print(f"Website rebuilt in {os.path.basename(out_dir)}/ with {len(shown)} events "
           f"({summary['by_level'].get('High', 0)} High, {summary['region_count']} in the {site.get('region_name', 'region')}).")

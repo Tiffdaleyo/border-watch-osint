@@ -1,0 +1,39 @@
+# The reviewer has checked the daily DRAFT alert email: press "Run workflow" to email the alerts to the team.
+# Corrections in reviews.yaml are applied first, and reports marked excluded are left out. Alerts already sent are
+# never sent again; alerts not sent stay in the next day's draft for up to 7 days.
+name: send-alerts
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: border-watch-osint
+  cancel-in-progress: false
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: Apply the latest reviews and email the alerts to the team
+        run: python -u run.py --rebuild --send-alerts
+        env:
+          MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
+          MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+          MAIL_ALERTS_TO: ${{ secrets.MAIL_ALERTS_TO }}
+      - name: Save (marks the alerts as sent)
+        run: |
+          git config user.name  "border-watch-osint-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data docs
+          git diff --cached --quiet || git commit -m "Alerts sent $(date -u +%F)"
+          git push || (git pull --rebase -X theirs origin main && git push)

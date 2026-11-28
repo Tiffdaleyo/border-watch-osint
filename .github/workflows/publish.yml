@@ -1,5 +1,5 @@
 # Optional: press "Run workflow" to rebuild the live site now (for example right after editing reviews.yaml)
-# instead of waiting for the next morning's run. Today's alerts that have not gone out yet are emailed.
+# instead of waiting for the next morning's run. No alerts are sent (use send-alerts for that).
 name: publish
 
 on:

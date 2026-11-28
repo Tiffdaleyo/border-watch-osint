@@ -39,8 +39,9 @@ Everything runs automatically on GitHub, free of charge. No one needs to switch 
 5. **Score:** each incident gets a review-priority score (section 7).
 6. **Apply reviews:** it applies the team's review decisions from `reviews.yaml` (section 9).
 7. **Privacy filter:** it removes ID numbers and victims' names (section 8).
-8. **Publish:** it rebuilds the website, the CSV and the bulletin page, and emails alerts for new high-priority or
-   Jamaica incidents. Nothing waits for a review.
+8. **Publish:** it rebuilds the website, the CSV and the bulletin page straight away. The **alert email** for new
+   high-priority or Jamaica incidents goes to the designated reviewer as a **draft** first; the team receives it after
+   the reviewer presses **Send alerts** (section 2b).
 9. **Mondays, 07:00 Jamaica time:** a **draft** of the weekly bulletin (PDF, with charts and analysis) is emailed to
    the designated reviewer only. The team receives it after the reviewer presses **Send bulletin** (section 2b).
 
@@ -58,8 +59,18 @@ To run it by hand: open the **Actions** tab, choose **daily-border-watch-osint**
   Only the reports listed there carry this mark, and the "Reviewed by a person" card counts them.
 
 To review a report, fix it or remove it, add its Event ID to `reviews.yaml` (section 9). The change appears at the
-next morning's run. To see it at once, open **Actions → publish → Run workflow**, which rebuilds the site (and sends any of today's alerts not yet sent) in about
+next morning's run. To see it at once, open **Actions → publish → Run workflow**, which rebuilds the site (it sends no alerts) in about
 2 minutes.
+
+**The daily alert email is checked before the team gets it.**
+1. After each morning run, usually between about 05:30 and 06:30 Jamaica time (later if GitHub delays the run), an
+   email arrives for the reviewer only: **"DRAFT for review: Border Watch alert: …"**. It lists every new
+   high-priority or Jamaica-linked incident not yet sent.
+2. To correct or remove one, record it in `reviews.yaml` by its Event ID (section 9); `excluded` leaves it out.
+3. To send, open **Actions → send-alerts → Run workflow** (the draft email has a direct link). The latest reviews are
+   applied first, then the alerts go to the team. An alert is never sent twice.
+4. If no one presses Send alerts, nothing reaches the team that day, and the same alerts come back in the next
+   morning's draft (for up to 7 days after the story's date), so none are lost.
 
 **The weekly bulletin is checked before the team gets it.**
 1. Every Monday at about 07:00 Jamaica time, an email arrives for the reviewer only: **"DRAFT for review: Border
@@ -477,7 +488,7 @@ same page (section 2b).
   Jamaica, policy, and watch-list hits. A draft goes to the reviewer at 7:00 AM Jamaica time on Monday, and the team
   receives it once the reviewer presses **Send bulletin** (section 2b). The sent PDF is saved as `docs/bulletin.pdf`.
   The website's "Weekly bulletin" page shows the latest 7 days and updates every day.
-- **Alerts:** one email after each daily run (about **6:30 AM Jamaica time**). It lists every **new** incident that
+- **Alerts:** one email, sent when the reviewer presses **Send alerts** after checking the morning draft (section 2b). It lists every **new** incident that
   is High risk or linked to Jamaica, each with a link to its full record. No new incidents means no email, and a
   report is never alerted twice. Alerts come once a day, when the daily run finishes. They can't be truly instant,
   because the site only collects news once a day. Only stories dated within the **last 7 days** are emailed; an
@@ -642,3 +653,4 @@ Privacy rules are in `watch/privacy.py`.
 | 2026-11-28 | "Review priority by main group" now has a full "How to read" note (subject groups, incidents by priority, grey Update, long bar vs red part). The group filter reads "All subject groups", and "area" is no longer used for subject groups. |
 | 2026-11-28 | "Topics" renamed **"Categories"** everywhere on the site (chart, "All categories" filter, All reports column, CSV/JSON download column, "Main categories", the "this week compared with usual" table) and in this guide. "Primary category" is unchanged. |
 | 2026-11-28 | Drug interdictions no longer tagged **Irregular migration**: the bare words "interdicted" and "interdiction" were removed (specific phrases such as "migrants interdicted" stay). Stored reports were re-checked: 11 drug or cargo reports and 1 passport-fraud report lost the wrong tag, and 1 report with nothing else border-related left the site. |
+| 2026-11-28 | **Daily alert email checked before sending:** a draft goes to the reviewer after the morning run; the team receives it after **Send alerts**. Unsent alerts roll into the next day's draft for up to 7 days. The website itself still updates automatically. |
