@@ -989,6 +989,7 @@ function renderTable(rows) {
 
 let current = [];
 function update() {
+  document.querySelectorAll(".storypop").forEach(b => { b.hidden = true; }); // an open story list belongs to the old view
   current = filtered(false);
   kpis(current);
   drawMap(current); drawTrend(current); drawRiskMix(current);
