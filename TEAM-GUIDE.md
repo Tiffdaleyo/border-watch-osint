@@ -194,7 +194,9 @@ download. **Anything the report does not state is shown as "Not reported".** Not
 - It is recorded **only when the report states it in words**, next to a person: "Jamaican woman", "nationals of
   Haiti", "ciudadano venezolano".
 - It is **never inferred** from a name, a route, an origin or a document's issuing country.
-- "Jamaican police" or "UK student visa" do not count, because the word does not describe a person.
+- "Jamaican police" or "UK student visa" do not count, because the word does not describe a person. "American",
+  "U.S.", "British" and "UK" count only with a clear word for a person ("a U.S. citizen", "American nationals"), never in
+  "American workers", "the American people" or "U.S. Customs officers".
 - It is **never used in the review-priority score**. A tested rule checks that the score stays the same with or without it.
 - It can be used as a filter (Any nationality) and appears in two charts: *Nationality (as stated)* and
   *Nationality by journey*.
@@ -660,4 +662,5 @@ Privacy rules are in `watch/privacy.py`.
 | 2026-11-28 | **Same total everywhere:** the Categories chart became **Main category** (each story counted once, by its main category). Activity over time, Review priority by main group, Main category and Countries named show an "N stories" badge and a note on how they count. Clicking a bar now opens the stories behind it instead of filtering the page; filtering is a button in that list. |
 | 2026-11-28 | An open story list now closes when you change section, scope, period or any filter, so it never sits over a chart it no longer matches. |
 | 2026-11-28 | Chart notes now say "click a bar to see its stories" wherever a click opens the story list (Journeys, Nationality, Concealment, Cover loads, Top corridors, Hotspots, Insider signals, Transport mode, Airports named, Who published). |
+| 2026-11-28 | **Nationality:** "American", "U.S.", "British" and "UK" count only next to a clear word for a person ("a U.S. citizen", "two American nationals", "a British woman"), never in "American workers", "the American people" or "U.S. Customs officers". Older reads keep United States or United Kingdom only if the stored opening still states it (40 reports changed). |
 | 2026-11-28 | **Stricter journeys:** an interception is recorded only when the report says someone or something was stopped there, not because an airport or port is mentioned (interceptions went from 208 to 109). Origin and destination come from the opening of the article, and "nationals from X" no longer counts as an origin; older reads keep them only if the stored opening still names that country (origins went from 315 to 192), and recent ones are read again with the new rules. Cooperation news with no action reported (joining a network, signing an agreement) is now an Update (11 reports). |

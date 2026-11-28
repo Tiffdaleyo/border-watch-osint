@@ -490,7 +490,15 @@ def build(ev, site, reviews, approved=None):
     ensure_sources(ev)
     for k in ("transit", "interception"):
         ev.pop(k, None)
-    ev["nationality"] = list(dict.fromkeys(journey.nationalities(text) + (art.get("nationality") or [])))[:5]
+    stated = journey.nationalities(text)
+    art_nat = art.get("nationality") or []
+    if art.get("v", 1) < 7:
+        # read before 28 Nov 2026, when "American workers" or "U.S. officers" also counted: keep United States or
+        # United Kingdom from those reads only if the stored opening still states it about a person
+        opening = " ".join(x for x in (text, art.get("summary_text")) if x)
+        again = journey.nationalities(opening)
+        art_nat = [c for c in art_nat if c not in ("United States", "United Kingdom") or c in again]
+    ev["nationality"] = list(dict.fromkeys(stated + art_nat))[:5]
     apply_review(ev, reviews, approved)
     # the journey is built after the review, so a corrected origin, destination or transit shows up in it
     j = journey.build(ev, text, bool(art.get("read")))

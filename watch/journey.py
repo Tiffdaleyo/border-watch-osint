@@ -21,7 +21,7 @@ DEMONYMS = {
     "surinamese": "Suriname", "belizean": "Belize", "grenadian": "Grenada", "vincentian": "Saint Vincent and the Grenadines",
     "kittitian": "Saint Kitts and Nevis", "antiguan": "Antigua and Barbuda", "st lucian": "Saint Lucia",
     "saint lucian": "Saint Lucia", "puerto rican": "Puerto Rico", "caymanian": "Cayman Islands",
-    "american": "United States", "us": "United States", "u.s.": "United States", "canadian": "Canada", "mexican": "Mexico",
+    "american": "United States", "u.s.": "United States", "canadian": "Canada", "mexican": "Mexico",
     "british": "United Kingdom", "uk": "United Kingdom",
     "irish": "Ireland", "french": "France", "spanish": "Spain", "german": "Germany", "italian": "Italy", "dutch": "Netherlands",
     "belgian": "Belgium", "portuguese": "Portugal", "swiss": "Switzerland", "greek": "Greece", "polish": "Poland",
@@ -59,6 +59,12 @@ _MID = (r"(?:(?:young|elderly|female|male|undocumented|irregular|illegal|suspect
         r"missing|dual|other|more|fellow)\s+)?")
 _NOT_PERSON = r"(?!\w)(?!\s+(?:visas?|permits?|loans?|fees?|accommodation|housing|routes?|numbers?|cap|levy|programme|program|scheme))"
 _NAT_RE = re.compile(r"(?<![\w.])(" + _DEM + r")\s+" + _MID + PERSON + _NOT_PERSON)
+# "American", "U.S.", "British", "UK" are mostly used for institutions and groups ("American workers", "U.S. Customs
+# officers", "the American people"): for these, only a clear word for one person or for foreign nationals counts
+_INSTITUTIONAL = {"american", "u.s.", "british", "uk"}
+_STRICT_PERSON = re.compile(r"\s+" + _MID + r"(?:nationals?|citizens?|man|men|woman|women|suspects?|passengers?|defendants?|"
+                            r"fugitives?|mules?|couriers?|drug mules?|smugglers?|traffickers?|deportees?|teen(?:ager)?s?|"
+                            r"boys?|girls?|businessman|businesswoman|captain|pilot|tourists?|passport holders?)(?!\w)")
 _NAT_RE2 = re.compile(PERSON + r"\s+(" + _DEM + r")s?(?!\w)")          # Spanish/French order: "ciudadano venezolano"
 _COUNTRY_ALT = None
 _NAT_OF_RE = None
@@ -80,6 +86,8 @@ def nationalities(text):
     t = fold(text)
     hits = []
     for m in _NAT_RE.finditer(t):
+        if m.group(1) in _INSTITUTIONAL and not _STRICT_PERSON.match(t, m.end(1)):
+            continue
         hits.append((m.start(), DEMONYMS[m.group(1)]))
     for m in _NAT_RE2.finditer(t):
         if m.group(1) in DEMONYMS:

@@ -384,3 +384,10 @@ def test_cooperation_news_is_an_update_and_nationals_from_is_not_an_origin():
     assert extract({"title": "Police arrest two over fake passports after agreement with Interpol"})["kind"] == "Incident"
     assert X.find_route("Thirteen foreign nationals from Brazil were arrested") == ("", "")
     assert X.find_route("a flight from Brazil to Spain")[0] == "Brazil"
+
+
+def test_american_as_an_adjective_is_not_a_nationality():
+    assert journey.nationalities("American workers and taxpayers lost millions") == []
+    assert journey.nationalities("U.S. Customs and Border Protection officers seized guns") == []
+    assert journey.nationalities("a U.S. citizen was arrested at the airport") == ["United States"]
+    assert journey.nationalities("three Jamaican men were arrested") == ["Jamaica"]

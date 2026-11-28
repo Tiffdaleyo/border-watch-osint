@@ -194,7 +194,8 @@ def read_articles(events, cfg, risk_words, focus, budget_minutes=8, limit=400, w
                  or ((e.get("article") or {}).get("read") and (e.get("article") or {}).get("v", 1) < 5)
                # read before 28 Nov 2026 with a journey or interception from the looser rules: read again with the new ones
                or ((e.get("article") or {}).get("read") and (e.get("article") or {}).get("v", 1) < 7
-                   and any((e.get("article") or {}).get(k) for k in ("origin", "destination", "interception"))))]
+                   and (any((e.get("article") or {}).get(k) for k in ("origin", "destination", "interception"))
+                        or {"United States", "United Kingdom"} & set((e.get("article") or {}).get("nationality") or []))))]
     if only_direct:      # skip Google News links (used when Google is limiting requests)
         todo = [e for e in todo if "news.google.com" not in e.get("url", "")]
     todo.sort(key=lambda e: (bool((e.get("article") or {}).get("tried")), not e.get("home"), not e.get("region"), e.get("kind") == "Update", e.get("date", "")), reverse=False)

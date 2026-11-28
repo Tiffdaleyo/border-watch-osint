@@ -2724,9 +2724,7 @@
     "official": true
    }
   ],
-  "nationality": [
-   "United States"
-  ],
+  "nationality": [],
   "corrections": [
    {
     "field": "several",
@@ -106057,9 +106055,7 @@
     ]
    ]
   ],
-  "nationality": [
-   "United States"
-  ],
+  "nationality": [],
   "journey": {
    "origin": "",
    "transit": [],
@@ -132589,9 +132585,7 @@
     ]
    ]
   ],
-  "nationality": [
-   "United Kingdom"
-  ],
+  "nationality": [],
   "journey": {
    "origin": "",
    "transit": [],
@@ -133289,9 +133283,7 @@
     ]
    ]
   ],
-  "nationality": [
-   "United States"
-  ],
+  "nationality": [],
   "journey": {
    "origin": "",
    "transit": [],
@@ -133886,7 +133878,6 @@
   "related": [],
   "specialist": [],
   "nationality": [
-   "United States",
    "El Salvador"
   ],
   "journey": {
@@ -136510,9 +136501,7 @@
   "caribbean_connection": [],
   "jamaica_connection": [],
   "specialist": [],
-  "nationality": [
-   "United States"
-  ],
+  "nationality": [],
   "corrections": [
    {
     "field": "several",
@@ -138333,9 +138322,7 @@
   "last_updated": "2026-11-27",
   "related": [],
   "specialist": [],
-  "nationality": [
-   "United States"
-  ],
+  "nationality": [],
   "journey": {
    "origin": "",
    "transit": [],
@@ -153252,7 +153239,6 @@
    }
   ],
   "nationality": [
-   "United States",
    "El Salvador"
   ],
   "review_status": "Automatically collected",
@@ -172485,9 +172471,7 @@
     "official": true
    }
   ],
-  "nationality": [
-   "United States"
-  ],
+  "nationality": [],
   "review_status": "Awaiting review",
   "journey": {
    "origin": "",
@@ -192233,7 +192217,6 @@
    ]
   ],
   "nationality": [
-   "United States",
    "Honduras"
   ],
   "journey": {
@@ -192923,8 +192906,7 @@
    ]
   ],
   "nationality": [
-   "Mexico",
-   "United States"
+   "Mexico"
   ],
   "journey": {
    "origin": "",
@@ -218789,9 +218771,7 @@
     ]
    ]
   ],
-  "nationality": [
-   "United Kingdom"
-  ],
+  "nationality": [],
   "journey": {
    "origin": "",
    "transit": [],
@@ -226869,9 +226849,7 @@
     "official": true
    }
   ],
-  "nationality": [
-   "United States"
-  ],
+  "nationality": [],
   "corrections": [
    {
     "field": "several",
@@ -227646,9 +227624,7 @@
     "official": true
    }
   ],
-  "nationality": [
-   "United States"
-  ],
+  "nationality": [],
   "corrections": [
    {
     "field": "several",
@@ -257640,9 +257616,7 @@
     ]
    ]
   ],
-  "nationality": [
-   "United States"
-  ],
+  "nationality": [],
   "journey": {
    "origin": "",
    "transit": [],
@@ -260029,8 +260003,7 @@
    ]
   ],
   "nationality": [
-   "China",
-   "United States"
+   "China"
   ],
   "journey": {
    "origin": "",
@@ -268582,9 +268555,7 @@
     ]
    ]
   ],
-  "nationality": [
-   "United States"
-  ],
+  "nationality": [],
   "journey": {
    "origin": "",
    "transit": [],
@@ -269595,9 +269566,7 @@
     ]
    ]
   ],
-  "nationality": [
-   "United States"
-  ],
+  "nationality": [],
   "journey": {
    "origin": "South Africa",
    "transit": [
@@ -272438,9 +272407,7 @@
     ]
    ]
   ],
-  "nationality": [
-   "United States"
-  ],
+  "nationality": [],
   "journey": {
    "origin": "South Africa",
    "transit": [
@@ -281649,9 +281616,7 @@
     ]
    ]
   ],
-  "nationality": [
-   "United States"
-  ],
+  "nationality": [],
   "journey": {
    "origin": "",
    "transit": [],
@@ -300849,9 +300814,7 @@
     ]
    ]
   ],
-  "nationality": [
-   "United States"
-  ],
+  "nationality": [],
   "journey": {
    "origin": "",
    "transit": [],
@@ -301144,9 +301107,7 @@
     ]
    ]
   ],
-  "nationality": [
-   "United Kingdom"
-  ],
+  "nationality": [],
   "journey": {
    "origin": "United Kingdom",
    "transit": [],
@@ -304450,9 +304411,7 @@
     ]
    ]
   ],
-  "nationality": [
-   "United States"
-  ],
+  "nationality": [],
   "journey": {
    "origin": "",
    "transit": [],
@@ -309372,8 +309331,7 @@
    ]
   ],
   "nationality": [
-   "Afghanistan",
-   "United States"
+   "Afghanistan"
   ],
   "journey": {
    "origin": "",
@@ -329339,9 +329297,7 @@
     ]
    ]
   ],
-  "nationality": [
-   "United States"
-  ],
+  "nationality": [],
   "journey": {
    "origin": "",
    "transit": [],
@@ -332812,9 +332768,7 @@
     ]
    ]
   ],
-  "nationality": [
-   "United Kingdom"
-  ],
+  "nationality": [],
   "journey": {
    "origin": "",
    "transit": [],
@@ -337620,9 +337574,7 @@
     ]
    ]
   ],
-  "nationality": [
-   "United Kingdom"
-  ],
+  "nationality": [],
   "journey": {
    "origin": "Portugal",
    "transit": [],
@@ -346904,9 +346856,7 @@
     ]
    ]
   ],
-  "nationality": [
-   "United Kingdom"
-  ],
+  "nationality": [],
   "journey": {
    "origin": "",
    "transit": [],
@@ -378736,9 +378686,7 @@
     ]
    ]
   ],
-  "nationality": [
-   "United States"
-  ],
+  "nationality": [],
   "journey": {
    "origin": "",
    "transit": [],
@@ -390645,9 +390593,7 @@
     ]
    ]
   ],
-  "nationality": [
-   "United States"
-  ],
+  "nationality": [],
   "journey": {
    "origin": "",
    "transit": [],
@@ -403360,9 +403306,7 @@
     ]
    ]
   ],
-  "nationality": [
-   "United Kingdom"
-  ],
+  "nationality": [],
   "journey": {
    "origin": "",
    "transit": [],
@@ -404385,9 +404329,7 @@
     ]
    ]
   ],
-  "nationality": [
-   "United States"
-  ],
+  "nationality": [],
   "journey": {
    "origin": "",
    "transit": [],
@@ -405259,9 +405201,7 @@
     ]
    ]
   ],
-  "nationality": [
-   "United States"
-  ],
+  "nationality": [],
   "journey": {
    "origin": "",
    "transit": [
@@ -407011,9 +406951,7 @@
     ]
    ]
   ],
-  "nationality": [
-   "United Kingdom"
-  ],
+  "nationality": [],
   "journey": {
    "origin": "",
    "transit": [],
@@ -427259,8 +427197,7 @@
    ]
   ],
   "nationality": [
-   "Democratic Republic of the Congo",
-   "United States"
+   "Democratic Republic of the Congo"
   ],
   "journey": {
    "origin": "Democratic Republic of the Congo",
@@ -430247,9 +430184,7 @@
     ]
    ]
   ],
-  "nationality": [
-   "United States"
-  ],
+  "nationality": [],
   "journey": {
    "origin": "",
    "transit": [
@@ -430560,9 +430495,7 @@
     ]
    ]
   ],
-  "nationality": [
-   "United States"
-  ],
+  "nationality": [],
   "journey": {
    "origin": "",
    "transit": [],
@@ -435757,9 +435690,7 @@
     ]
    ]
   ],
-  "nationality": [
-   "United States"
-  ],
+  "nationality": [],
   "journey": {
    "origin": "",
    "transit": [],
@@ -445276,9 +445207,7 @@
   "last_updated": "2026-11-26",
   "related": [],
   "specialist": [],
-  "nationality": [
-   "United States"
-  ],
+  "nationality": [],
   "journey": {
    "origin": "United States",
    "transit": [],
@@ -449005,9 +448934,7 @@
     ]
    ]
   ],
-  "nationality": [
-   "United States"
-  ],
+  "nationality": [],
   "journey": {
    "origin": "Democratic Republic of the Congo",
    "transit": [
