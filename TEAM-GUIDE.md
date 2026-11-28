@@ -199,6 +199,8 @@ download. **Anything the report does not state is shown as "Not reported".** Not
   "American workers", "the American people" or "U.S. Customs officers".
 - It is **never used in the review-priority score**. A tested rule checks that the score stays the same with or without it.
 - It can be used as a filter (Any nationality) and appears in one chart: *Nationality (as stated)*.
+- The chart **counts stories, not people**: a story about three Haitians adds 1 to Haiti, and a story stating two
+  nationalities appears on both bars.
 - A pattern in the data is a lead for analysis. It is never a reason to treat an individual traveller differently.
 
 ## 6. Specialist fields (shown only for the matching category)
@@ -663,4 +665,5 @@ Privacy rules are in `watch/privacy.py`.
 | 2026-11-28 | Chart notes now say "click a bar to see its stories" wherever a click opens the story list (Journeys, Nationality, Concealment, Cover loads, Top corridors, Hotspots, Insider signals, Transport mode, Airports named, Who published). |
 | 2026-11-28 | **Nationality:** "American", "U.S.", "British" and "UK" count only next to a clear word for a person ("a U.S. citizen", "two American nationals", "a British woman"), never in "American workers", "the American people" or "U.S. Customs officers". Older reads keep United States or United Kingdom only if the stored opening still states it (40 reports changed). |
 | 2026-11-28 | The "Nationality by journey" chart was removed. Nationality stays in the filter and the *Nationality (as stated)* chart. |
+| 2026-11-28 | *Nationality (as stated)* now says plainly that it counts stories, not people. Bar chart tooltips say "N stories". |
 | 2026-11-28 | **Stricter journeys:** an interception is recorded only when the report says someone or something was stopped there, not because an airport or port is mentioned (interceptions went from 208 to 109). Origin and destination come from the opening of the article, and "nationals from X" no longer counts as an origin; older reads keep them only if the stored opening still names that country (origins went from 315 to 192), and recent ones are read again with the new rules. Cooperation news with no action reported (joining a network, signing an agreement) is now an Update (11 reports). |

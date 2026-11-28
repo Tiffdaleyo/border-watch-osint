@@ -381,7 +381,7 @@
     </section>
 
     <section class="card s12" data-sec="documents migration trafficking citizenship">
-      <h2>Nationality (as stated)</h2><div class="sub">Only when the article says it in words · never inferred · not used in the review priority · click a bar to see its stories</div>
+      <h2>Nationality (as stated)</h2><div class="sub howcount">Counts stories, not people: a story about three Haitians adds 1 to Haiti. A story stating two nationalities appears on both bars.</div><div class="sub">Only when the article says it in words · never inferred · not used in the review priority · click a bar to see its stories</div>
       <div id="nats" class="chart" style="height:340px"></div>
     </section>
 
@@ -601,7 +601,7 @@ function hbar(chart, pairs, colorFn, onClick, selected, rowsFor, how) {
   pairs = pairs.slice().reverse();
   chart.setOption({
     animationDuration: 400, grid: {left: 14, right: 36, top: 4, bottom: 4, containLabel: true},
-    tooltip: {...TT, trigger: "item", formatter: p => `${esc(p.name)}<br><b>${p.value}</b> report${p.value === 1 ? "" : "s"}`},
+    tooltip: {...TT, trigger: "item", formatter: p => `${esc(p.name)}<br><b>${p.value}</b> stor${p.value === 1 ? "y" : "ies"}`},
     xAxis: {type: "value", show: false},
     yAxis: {type: "category", data: pairs.map(p => p[0]), ...AX, axisLine: {show: false},
             axisLabel: {color: MUTED, fontSize: 11.5, fontFamily: FONT, formatter: v => v.length > 30 ? v.slice(0, 29) + "…" : v}},
